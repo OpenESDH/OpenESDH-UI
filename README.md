@@ -117,7 +117,8 @@ npm test
 app/                    --> all of the source files for the application
   assets/app.css        --> default stylesheet
   src/           --> all app specific modules
-     users/              --> package for user features
+     cases/              --> package for cases features
+     ..
   index.html            --> app layout file (the main html template file of the app)
 karma.conf.js         --> config file for running unit tests with Karma
 e2e-tests/            --> end-to-end tests
