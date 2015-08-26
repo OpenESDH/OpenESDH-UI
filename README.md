@@ -2,16 +2,9 @@
 
 This is an implementation of OpenESDH using Angular.js and Angular Material as a foundation.
 
-## Tutorials
+## Branches
 
-The repository contains both ES5 and ES6 versions of the application that are inherited from forked [Angular Material](https://github.com/angular/material-start) project. I don't know what that means but interested parties can check out:
-
-* Branch [**Starter - ES5 Tutorials**](https://github.com/angular/material-start/tree/es5-tutorial):
-for  ES5 Tutorial steps & development process.
-* Branch [**Starter - ES6 Tutorials**](https://github.com/angular/material-start/tree/es6-tutorial):
-for  ES6 Tutorial steps & development process.
-* Branch [**Starter - ES6**](https://github.com/angular/material-start/tree/es6): for example
-implementation of Angular Material 1.x (and Angular 1.x) within an ES6 application.
+The repository contains both ES5 and ES6 versions of the application that are inherited from forked [Angular Material](https://github.com/angular/material-start) project. I don't know what that means. We'll probably replace them with branches for testing, etc.
 
 ## Getting Started
 
