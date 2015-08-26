@@ -33,14 +33,14 @@ To get you started you can simply clone `master` branch from the
 Clone the material-start repository using [git][git]:
 
 ```
-git clone https://github.com/angular/material-start.git
-cd material-start
+git clone https://github.com/iamfrank/OpenEDSH-Angular-Material.git
+cd OpenEDSH-Angular-Material
 ```
 
 If you just want to start a new project without the material-start commit history then you can do:
 
 ```bash
-git clone --depth=1 https://github.com/angular/material-start.git <your-project-name>
+git clone --depth=1 https://github.com/iamfrank/OpenEDSH-Angular-Material.git <your-project-name>
 ```
 
 The `depth=1` tells git to only pull down one commit worth of historical data.
