@@ -2,7 +2,7 @@
 
   angular
        .module('cases')
-       .controller('CaseController', [ '$scope', CaseController ]);
+       .controller('CaseController', [ '$scope', '$mdDialog', CaseController ]);
 
        
   /**
@@ -11,7 +11,7 @@
    * @param cases
    * @constructor
    */
-  function CaseController($scope) {
+  function CaseController($scope, $mdDialog) {
     
     $scope.cases = [
       {
@@ -41,6 +41,33 @@
         isUpdated: false
       }
     ];
+    
+    $scope.createCase = function(ev) {
+      $mdDialog.show({
+        controller: DialogController,
+        templateUrl: 'src/cases/view/caseCrudDialog.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose:true
+      })
+      .then(function(answer) {
+        $scope.status = 'You said the information was "' + answer + '".';
+      }, function() {
+        $scope.status = 'You cancelled the dialog.';
+      });
+    };
+    
+    function DialogController($scope, $mdDialog) {
+      $scope.hide = function() {
+        $mdDialog.hide();
+      };
+      $scope.cancel = function() {
+        $mdDialog.cancel();
+      };
+      $scope.answer = function(answer) {
+        $mdDialog.hide(answer);
+      };
+    };
     
   };
   
