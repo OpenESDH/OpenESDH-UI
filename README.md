@@ -4,7 +4,7 @@ This is an implementation of OpenESDH using Angular.js and Angular Material as a
 
 ## Branches
 
-The repository contains both ES5 and ES6 versions of the application that are inherited from forked [Angular Material](https://github.com/angular/material-start) project. I don't know what that means. We'll probably replace them with branches for testing, etc.
+The repository contains both ES5 and ES6 branches that are inherited from the forked [Angular Material](https://github.com/angular/material-start) project. I don't even know what ES5 and ES6 means. We'll probably replace them with branches for testing, etc.
 
 ## Getting Started
 
