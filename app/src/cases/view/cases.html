@@ -16,15 +16,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+        <tr ng-repeat="case in cases">
+          <td>{{ case.caseId }}</td>
+          <td>{{ case.type }}</td>
+          <td>{{ case.title }}</td>
+          <td>{{ case.createdDate }}</td>
+          <td>{{ case.startDate }}</td>
+          <td>{{ case.endDate }}</td>
+          <td>{{ case.modifiedDate }}</td>
+          <td>{{ case.status }}</td>
           <td><a class="md-button">View</a></td>
         </tr>
       </tbody>
