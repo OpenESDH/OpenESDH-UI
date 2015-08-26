@@ -1,44 +1,10 @@
-# Angular Material-Start
+# OpenESDH Angular Material
 
-This Material **start*** project is a *seed* for AngularJS Material applications. The project contains a sample AngularJS application and is pre-configured to install the Angular framework and a bunch of development and testing tools for instant web development gratification.
+This is an implementation of OpenESDH using Angular.js and Angular Material as a foundation.
 
-This sample application is intended to be useful as both a learning tool and a skeleton application
-for a typical [AngularJS Material](http://material.angularjs.org/) web app: comprised of a Side navigation
-area and a content area. You can use it to quickly bootstrap your AngularJS webapp projects and dev
-environment for these projects.
+## Tutorials
 
-### What is the UX?
-
-Below is a snapshot of the Starter-App with the Users' *master-detail* view. Also shown is the user
-experience that will is displayed for smaller device sizes. The responsive layout changes to hide
-the user list, reveal the **menu** button. In the User Details view, you may also click the
-**share** button  to show the Contact &lt;User&gt; bottom sheet view.
-
-<br/>
-
-![material-starter-ux2](https://cloud.githubusercontent.com/assets/210413/6448551/70864488-c0e0-11e4-8767-c4e1e4c2f343.png)
-
-<br/>
-
-This Starter app demonstrates how:
-
-*  Angular Material `layout` and `flex` options can easily configure HTML containers
-*  Angular Material components `<md-toolbar>`, `<md-sidenav>`, `<md-icon>` can be quickly used
-*  Custom controllers can use and show `<md-bottomsheet>` with HTML templates
-*  Custom controller can easily, programmatically open & close the SideNav component.
-*  Responsive breakpoints and `$mdMedia` are used
-*  Theming can be altered/configured using `$mdThemingProvider`
-*  ARIA features are supported by Angular Material and warnings can be used to improve accessibility.
-
-### Tutorials
-
-The repository contains both ES5 and ES6 versions of the application. Traditional development with
-ES5 standards and solutions are presented here by default. Tutorials are included: step-by-step
-instructions that clearly demonstrate how the Starter application can be created in minutes.
-
-> These tutorials will be presented live, on-stage at **ng-conf 2015, Utah**.
-
-Developers should checkout the following repository branches for:
+The repository contains both ES5 and ES6 versions of the application that are inherited from forked [Angular Material](https://github.com/angular/material-start) project. I don't know what that means but interested parties can check out:
 
 * Branch [**Starter - ES5 Tutorials**](https://github.com/angular/material-start/tree/es5-tutorial):
 for  ES5 Tutorial steps & development process.
@@ -46,9 +12,6 @@ for  ES5 Tutorial steps & development process.
 for  ES6 Tutorial steps & development process.
 * Branch [**Starter - ES6**](https://github.com/angular/material-start/tree/es6): for example
 implementation of Angular Material 1.x (and Angular 1.x) within an ES6 application.
-
-> The **README** for the ES6 branches will provide all details showing how easy, <u>more simplifed</u>,
-and <u>more manageable</u> it is to develop ES6 applications with Angular Material 1.x.<br/><br/>
 
 ## Getting Started
 
@@ -85,7 +48,7 @@ The `depth=1` tells git to only pull down one commit worth of historical data.
 #### Install Dependencies
 
 We have two kinds of dependencies in this project: tools and AngularJS framework code.  The tools help
-us manage and test the application.
+us manage and test the application. You need to have both npm and bower installed.
 
 * We get the tools we depend upon via `npm`, the [node package manager][npm].
 * We get the AngularJS code via `bower`, a [client-side code package manager][bower].
@@ -211,19 +174,3 @@ live-server
 
 Alternatively, you can choose to configure your own webserver, such as apache or nginx. Just
 configure your server to serve the files under the `app/` directory.
-
-
-## Contact
-
-For more information on AngularJS please check out http://angularjs.org/
-For more information on Angular Material, check out https://material.angularjs.org/
-
-[git]: http://git-scm.com/
-[bower]: http://bower.io
-[npm]: https://www.npmjs.org/
-[node]: http://nodejs.org
-[protractor]: https://github.com/angular/protractor
-[jasmine]: http://jasmine.github.io
-[karma]: http://karma-runner.github.io
-[travis]: https://travis-ci.org/
-[http-server]: https://github.com/nodeapps/http-server
