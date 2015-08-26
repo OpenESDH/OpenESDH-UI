@@ -16,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="case in cases">
+        <tr ng-repeat="case in cases" class="{{ case.isUpdated ? 'updated' : 'not-updated' }}">
           <td>{{ case.caseId }}</td>
           <td>{{ case.type }}</td>
           <td>{{ case.title }}</td>
@@ -25,9 +25,10 @@
           <td>{{ case.endDate }}</td>
           <td>{{ case.modifiedDate }}</td>
           <td>{{ case.status }}</td>
-          <td><a class="md-button">View</a></td>
+          <td><md-button>View</md-button></td>
         </tr>
       </tbody>
     </table>
+    <md-button>Create new case</md-button>
   </md-card-content>
 </md-card>

@@ -4,6 +4,7 @@
        .module('cases')
        .controller('CaseController', [ '$scope', CaseController ]);
 
+       
   /**
    * Main Controller for the Cases module
    * @param $scope
@@ -23,7 +24,8 @@
         modifiedDate: 'May 12 2015',
         endDate: 'June 21 2015',
         status: 'In progress',
-        owner: 'Someone Someonesson'
+        owner: 'Someone Someonesson',
+        isUpdated: true
       },
       {
         caseId: 12442,
@@ -35,10 +37,12 @@
         modifiedDate: 'May 12 2015',
         endDate: 'June 21 2015',
         status: 'Archived',
-        owner: 'Someone Elsesson'
+        owner: 'Someone Elsesson',
+        isUpdated: false
       }
     ];
     
   };
+  
 
 })();
