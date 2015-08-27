@@ -25,6 +25,8 @@
         endDate: 'June 21 2015',
         status: 'In progress',
         owner: 'Someone Someonesson',
+        assignee: 'Someone Elsesson',
+        journalKey: 'KGHEISHG',
         isUpdated: true
       },
       {
@@ -38,6 +40,8 @@
         endDate: 'June 21 2015',
         status: 'Archived',
         owner: 'Someone Elsesson',
+        assignee: 'Someone Elsesson',
+        journalKey: 'KGHEISHG',
         isUpdated: false
       }
     ];
@@ -63,9 +67,6 @@
       };
       $scope.cancel = function() {
         $mdDialog.cancel();
-      };
-      $scope.answer = function(answer) {
-        $mdDialog.hide(answer);
       };
     };
     
