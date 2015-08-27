@@ -4,7 +4,10 @@
 
 <md-tabs md-dynamic-height>
   
-  <md-tab label="My cases">
+  <md-tab>
+    <md-tab-label>
+      <span>My cases <span class="label" ng-bind="myUpdatedCases"></span></span>
+    </md-tab-label>
     <md-tab-body>
       <md-card>
         <md-card-content>
@@ -45,7 +48,10 @@
     </md-tab-body>
   </md-tab>
   
-  <md-tab label="Unassigned cases">
+  <md-tab>
+    <md-tab-label>
+      <span>Unassigned cases <span class="label" ng-bind="unassignedCases"></span></span>
+    </md-tab-label>
     <md-tab-body layout="column">
       <md-list>
         <md-list-item ng-repeat="case in cases">
