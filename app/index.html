@@ -41,6 +41,9 @@
     <script src="./src/cases/Cases.js"></script>
     <script src="./src/cases/CaseController.js"></script>
     
+    <script src="./src/documents/Documents.js"></script>
+    <script src="./src/documents/DocumentController.js"></script>
+    
     <script src="./src/files/Files.js"></script>
     <script src="./src/files/FileController.js"></script>
     
@@ -50,7 +53,7 @@
     <script type="text/javascript">
 
       angular
-        .module('openeApp', ['ngMaterial', 'ngRoute', 'cases', 'dashboard', 'files', 'tasks'])
+        .module('openeApp', ['ngMaterial', 'ngRoute', 'cases', 'dashboard', 'files', 'tasks', 'documents'])
         .config(function($mdThemingProvider, $routeProvider){
           
           $mdThemingProvider.theme('default')

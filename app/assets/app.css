@@ -31,3 +31,17 @@ dt {
   float: left;
   width: 8em;
 }
+
+table {
+  width: 100%;
+}
+
+table th,
+table td {
+  border-bottom: solid 1px #ddd;
+  text-align: left;
+}
+
+table th {
+  color: #999;
+}

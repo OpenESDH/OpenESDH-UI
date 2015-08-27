@@ -53,7 +53,34 @@
           <md-card>
             <md-card-content>
               <h3>Documents</h3>
-              
+              <table ng-controller="DocumentController">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Doc.No.</th>
+                    <th>Type</th>
+                    <th>Category</th>
+                    <th>State</th>
+                    <th>Owner</th>
+                    <th>Created</th>
+                    <th>Modified</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="doc in docs" class="{{ doc.isUpdated ? 'updated' : 'not-updated' }}">
+                    <td>{{ doc.title }}</td>
+                    <td>{{ doc.docNo }}</td>
+                    <td>{{ doc.type }}</td>
+                    <td>{{ doc.category }}</td>
+                    <td>{{ doc.state }}</td>
+                    <td>{{ doc.owner }}</td>
+                    <td>{{ doc.createdDate }}</td>
+                    <td>{{ doc.modifiedDate }}</td>
+                    <td><md-button class="md-primary" ng-disabled="true">View details</md-button> <md-button class="md-primary" ng-disabled="true">Preview</md-button></td>
+                  </tr>
+                </tbody>
+              </table>
             </md-card-content>
             <div class="md-actions" layout="row">
               <md-button class="md-primary" ng-disabled="true">Create new document</md-button>
