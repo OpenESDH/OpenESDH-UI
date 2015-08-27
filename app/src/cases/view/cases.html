@@ -36,7 +36,7 @@
                 <td>{{ case.endDate }}</td>
                 <td>{{ case.modifiedDate }}</td>
                 <td>{{ case.status }}</td>
-                <td><md-button>View</md-button></td>
+                <td><md-button href="#/cases/case">View</md-button></td>
               </tr>
             </tbody>
           </table>
@@ -50,7 +50,7 @@
   
   <md-tab>
     <md-tab-label>
-      <span>Unassigned cases <span class="label" ng-bind="unassignedCases"></span></span>
+      <span>Unassigned cases <span class="label" ng-bind="unassignedCasesNum"></span></span>
     </md-tab-label>
     <md-tab-body layout="column">
       <md-list>
@@ -70,7 +70,7 @@
             </md-card-content>
             <div class="md-actions">
               <md-button class="md-primary" ng-disabled="true">Assign to</md-button>
-              <md-button class="md-primary" ng-disabled="true">View case details</md-button>
+              <a class="md-button md-primary" href="#/cases/case">View case details</a>
             </div>
           </md-card>
         </md-list-item>

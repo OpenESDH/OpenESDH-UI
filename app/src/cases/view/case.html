@@ -1,0 +1,116 @@
+<md-content layout-padding>
+  <h2>{{ cases[0].caseId }} {{ cases[0].title }}</h2>
+</md-content>
+
+<md-tabs md-dynamic-height>
+  
+  <md-tab>
+    <md-tab-label>
+      <span>Case home</span>
+    </md-tab-label>
+    <md-tab-body>
+      
+      <div layout="row" layout-wrap>
+        
+        <div flex="50">
+          <md-card>
+            <md-card-content>
+              <h3>Information</h3>
+              <dl>
+                <dt>Case ID</dt><dd>{{ cases[0].caseId }}</dd>
+                <dt>Case title</dt><dd>{{ cases[0].title }}</dd>
+                <dt>Status</dt><dd>{{ cases[0].status }}</dd>
+                <dt>Created by</dt><dd>{{ cases[0].creator }}</dd>
+                <dt>Created</dt><dd>{{ cases[0].createdDate }}</dd>
+                <dt>Case owners</dt><dd>{{ cases[0].owner }}</dd>
+                <dt>Last modified</dt><dd>{{ cases[0].modifiedDate }}</dd>
+                <dt>Description</dt><dd>{{ cases[0].desc }}</dd>
+              </dl>
+            </md-card-content>
+            <div class="md-actions" layout="row">
+              <md-button class="md-primary" ng-click="createCase($event)">Edit information</md-button>
+              <md-button class="md-primary" ng-disabled="true">Print case</md-button>
+              <md-button class="md-primary" ng-disabled="true">Start workflow</md-button>
+              <md-button class="md-primary" ng-disabled="true">Create site</md-button>
+            </div>
+          </md-card>
+        </div>
+        
+        <div flex="50">
+          <md-card>
+            <md-card-content>
+              <h3>Notes</h3>
+              
+            </md-card-content>
+            <div class="md-actions" layout="row">
+              <md-button class="md-primary" ng-disabled="true">New note</md-button>
+              <md-button class="md-primary" ng-disabled="true">Print all notes</md-button>
+            </div>
+          </md-card>
+        </div>
+        
+        <div flex="100">
+          <md-card>
+            <md-card-content>
+              <h3>Documents</h3>
+              
+            </md-card-content>
+            <div class="md-actions" layout="row">
+              <md-button class="md-primary" ng-disabled="true">Create new document</md-button>
+              <md-button class="md-primary" ng-disabled="true">Upload new documents</md-button>
+              <md-button class="md-primary" ng-disabled="true">Email documents</md-button>
+            </div>
+          </md-card>
+        </div>
+        
+      </div>
+      
+    </md-tab-body>
+  </md-tab>
+  
+  <md-tab>
+    <md-tab-label>
+      <span>Members</span>
+    </md-tab-label>
+    <md-tab-body layout="column">
+      <md-card>
+        <md-card-content>
+          <h3>Members</h3>
+        </md-card-content>
+        <div class="md-actions">
+        </div>
+      </md-card>
+    </md-tab-body>
+  </md-tab>
+  
+  <md-tab>
+    <md-tab-label>
+      <span>Parties</span>
+    </md-tab-label>
+    <md-tab-body layout="column">
+      <md-card>
+        <md-card-content>
+          <h3>Parties</h3>
+        </md-card-content>
+        <div class="md-actions">
+        </div>
+      </md-card>
+    </md-tab-body>
+  </md-tab>
+  
+  <md-tab>
+    <md-tab-label>
+      <span>History</span>
+    </md-tab-label>
+    <md-tab-body layout="column">
+      <md-card>
+        <md-card-content>
+          <h3>History</h3>
+        </md-card-content>
+        <div class="md-actions">
+        </div>
+      </md-card>
+    </md-tab-body>
+  </md-tab>
+  
+</md-tabs>

@@ -25,3 +25,9 @@ md-tabs md-tabs-wrapper {
   margin: 0;
   padding: 0;
 }
+
+dt {
+  color: #999;
+  float: left;
+  width: 8em;
+}

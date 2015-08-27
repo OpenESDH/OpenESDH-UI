@@ -96,7 +96,7 @@
       return i;
     };
     
-    $scope.unassignedCases = countUnassignedCases();
+    $scope.unassignedCasesNum = countUnassignedCases();
     
     function countUnassignedCases() {
       var i = 0;
