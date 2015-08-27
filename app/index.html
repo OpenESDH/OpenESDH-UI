@@ -50,10 +50,13 @@
     <script src="./src/tasks/Tasks.js"></script>
     <script src="./src/tasks/TaskController.js"></script>
     
+    <script src="./src/notes/Notes.js"></script>
+    <script src="./src/notes/NoteController.js"></script>
+    
     <script type="text/javascript">
 
       angular
-        .module('openeApp', ['ngMaterial', 'ngRoute', 'cases', 'dashboard', 'files', 'tasks', 'documents'])
+        .module('openeApp', ['ngMaterial', 'ngRoute', 'cases', 'dashboard', 'files', 'tasks', 'documents', 'notes'])
         .config(function($mdThemingProvider, $routeProvider){
           
           $mdThemingProvider.theme('default')

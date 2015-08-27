@@ -40,7 +40,18 @@
           <md-card>
             <md-card-content>
               <h3>Notes</h3>
-              
+              <md-list ng-controller="NoteController">
+                <md-list-item ng-repeat="note in notes">
+                  <div class="md-list-item-text">
+                    <h4>{{ note.title }}</h4>
+                    <p>{{ note.desc }}</p>
+                    <p style="font-size: 0.8em; color: #999;">
+                      Created {{ note.createdDate }} by {{ note.creator }}<br>
+                      Related: <span style="margin-right: 0.5em;" ng-repeat="relation in note.relatedTo">{{ relation }}</span>
+                    </p>
+                  </div>
+                </md-list-item>
+              </md-list>
             </md-card-content>
             <div class="md-actions" layout="row">
               <md-button class="md-primary" ng-disabled="true">New note</md-button>
