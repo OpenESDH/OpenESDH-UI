@@ -16,13 +16,15 @@
   <body ng-app="openeApp">
  
     <md-toolbar layout="row">
-      <a class="md-button" href="#/">Home</a>
-      <a class="md-button" href="#/cases">Cases</a>
-      <a class="md-button" href="#/files">Files</a>
-      <a class="md-button" href="#/tasks">Tasks</a>
+      <div class="md-toolbar-tools">
+        <a class="md-button" href="#/">Home</a>
+        <a class="md-button" href="#/cases">Cases</a>
+        <a class="md-button" href="#/files">Files</a>
+        <a class="md-button" href="#/tasks">Tasks</a>
+      </div>
     </md-toolbar>
-
-    <div id="content" ng-view></div>
+    
+    <md-content id="content" ng-view style="background-color:#ddd;"></md-content>
 
     
     <!-- All the javascript -->

@@ -25,9 +25,11 @@
         endDate: 'June 21 2015',
         status: 'In progress',
         owner: 'Someone Someonesson',
+        creator: 'Svend Tveskæg',
         assignee: 'Someone Elsesson',
         journalKey: 'KGHEISHG',
-        isUpdated: true
+        isUpdated: true,
+        documents: ['document1.xls', 'document2.pdf', 'document3.xls']
       },
       {
         caseId: 12442,
@@ -40,9 +42,11 @@
         endDate: 'June 21 2015',
         status: 'Archived',
         owner: 'Someone Elsesson',
+        creator: 'Someone Someonesson',
         assignee: 'Someone Elsesson',
         journalKey: 'KGHEISHG',
-        isUpdated: false
+        isUpdated: false,
+        documents: ['document1.xls', 'document2.pdf', 'document3.xls']
       }
     ];
     

@@ -1,7 +1,9 @@
 <md-dialog aria-label="Case edit dialog">
   <form>
     <md-toolbar layout="row">
-      <h2>Create / edit case</h2>
+      <div class="md-toolbar-tools">
+        <h2>Create / edit case</h2>
+      </div>
     </md-toolbar>
     <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;">
       <md-input-container>
@@ -38,13 +40,13 @@
       </md-input-container>
     </md-dialog-content>
     <div class="md-actions" layout="row">
-      <md-button class="md-primary" ng-click="cancel()">
+      <md-button class="md-primary" ng-disabled="true">
         Create / Save case
       </md-button>
       <md-button ng-click="cancel()">
         Cancel
       </md-button>
-      <md-button ng-click="cancel()" ng-diabled="true">
+      <md-button ng-disabled="true">
         Archive case
       </md-button>
     </div>
