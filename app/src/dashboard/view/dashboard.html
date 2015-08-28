@@ -1,62 +1,70 @@
 <section layout="row" layout-wrap>
   
-  <div flex="50">
+  <div flex="50" ng-controller="TaskController">
     <md-card>
       <md-card-content>
-        My Tasks
+        <h3>My Tasks</h3>
+        <md-list>
+          <md-list-item class="md-2-line" ng-repeat="task in tasks">
+            <div class="md-list-item-text">
+              <h3>{{task.title}}</h3>
+              <p>{{task.status}}</p>
+            </div>
+          </md-list-item>
+        </md-list>
       </md-card-content>
+      <div class="md-actions">
+        <md-button class="md-primary" ng-disabled="true">Create new task</md-button>
+      </div>
     </md-card>
   </div>
   
-  <div flex="50">
+  <div flex="50" ng-controller="CaseController">
     <md-card>
       <md-card-content>
-        <h2>My Cases</h2>
-        <table style="width: 100%;">
+        <h3>My cases</h3>
+        <table>
           <thead>
             <tr>
               <th>ID</th>
-              <th>Type</th>
               <th>Title</th>
-              <th>Created</th>
-              <th>Start date</th>
-              <th>End date</th>
-              <th>Modified</th>
-              <th>Status</th>
+              <th>Changed</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td><a class="md-button">View</a></td>
+            <tr ng-repeat="case in cases" class="{{ case.isUpdated ? 'updated' : 'not-updated' }}">
+              <td>{{ case.caseId }}</td>
+              <td>{{ case.title }}</td>
+              <td>{{ case.modifiedDate }}</td>
+              <td><md-button href="#/cases/case" class="md-primary">View</md-button></td>
             </tr>
           </tbody>
         </table>
       </md-card-content>
+      <div class="md-actions">
+        <md-button class="md-primary" ng-click="createCase($event)">Create new case</md-button>
+      </div>
     </md-card>
   </div>
   
-  <div flex="50">
+  <div flex="50" ng-controller="FileController">
     <md-card>
       <md-card-content>
-        My Files
+        <h3>My files</h3>
+        <md-list>
+          <md-list-item class="md-2-line" ng-repeat="file in files">
+            <div class="md-list-item-text">
+              <img ng-src="{{ file.icon }}">
+              <h3>{{ file.title }}</h3>
+              <p>Modified {{ file.modifiedDate }} by {{ file.modifiedBy }}</p>
+            </div>
+          </md-list-item>
+        </md-list>
       </md-card-content>
-    </md-card>
-  </div>
-  
-  <div flex="50">
-    <md-card>
-      <md-card-content>
-        My other stuff
-      </md-card-content>
+      <div class="md-actions">
+        <md-button class="md-primary" ng-disabled="true">Create new file</md-button>
+      </div>
     </md-card>
   </div>
   

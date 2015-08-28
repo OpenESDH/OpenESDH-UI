@@ -4,11 +4,19 @@
         .module('openeApp')
         .controller('DashboardController', DashboardController);
     
-    DashboardController.$inject = ['authService'];
+    DashboardController.$inject = ['$scope', 'authService'];
 
-    function DashboardController(authService) {
+    function DashboardController($scope, authService) {
+        // This is just a hack, until we get a login page
         authService.login('admin', 'admin').then(function(response) {
             console.log(response);
         });
+
+        var originatorEv;
+        this.openMenu = function($mdOpenMenu, ev) {
+            originatorEv = ev;
+            $mdOpenMenu(ev);
+        };
+    
     };
 })();
