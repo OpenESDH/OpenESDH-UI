@@ -2,9 +2,15 @@
 
   angular
     .module('dashboard')
-    .controller('DashboardController', [DashboardController]);
+    .controller('DashboardController', ['$scope', DashboardController]);
     
-  function DashboardController() {
+  function DashboardController( $scope ) {
+    
+    var originatorEv;
+    this.openMenu = function($mdOpenMenu, ev) {
+      originatorEv = ev;
+      $mdOpenMenu(ev);
+    };
     
   };
 
