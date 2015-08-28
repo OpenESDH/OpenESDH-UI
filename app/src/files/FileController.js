@@ -1,7 +1,7 @@
 (function(){
 
   angular
-       .module('files')
+       .module('openeApp')
        .controller('FileController', [FileController]);
 
   function FileController( ) {

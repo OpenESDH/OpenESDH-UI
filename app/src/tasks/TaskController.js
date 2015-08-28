@@ -1,7 +1,7 @@
 (function(){
 
   angular
-       .module('tasks')
+       .module('openeApp')
        .controller('TaskController', [TaskController]);
 
   function TaskController( ) {

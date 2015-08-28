@@ -1,7 +1,7 @@
 (function(){
 
   angular
-       .module('notes')
+       .module('openeApp')
        .controller('NoteController', ['$scope', NoteController]);
 
   function NoteController($scope) {

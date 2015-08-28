@@ -1,8 +1,13 @@
 (function() {
 
   angular
-    .module('openeApp', ['ngMaterial', 'ngRoute', 'cases', 'dashboard', 'files', 'tasks', 'documents', 'notes'])
-    .config(function($mdThemingProvider, $routeProvider){
+//    .module('openeApp', ['ngMaterial', 'ngRoute', 'cases', 'dashboard', 'files', 'tasks', 'documents', 'notes', 'authController'])
+    .module('openeApp', ['ngMaterial', 'ngRoute'])
+    .config(config);
+
+  config.$inject = ['$mdThemingProvider', '$routeProvider'];
+
+  function config($mdThemingProvider, $routeProvider) {
 
       $mdThemingProvider.theme('default')
         .primaryPalette('blue')
@@ -11,28 +16,28 @@
       $routeProvider
         .when('/', {
           controller: 'DashboardController',
-          templateUrl: 'src/dashboard/view/dashboard.html'
+          templateUrl: 'app/src/dashboard/view/dashboard.html'
         })
         .when('/cases/', {
           controller: 'CaseController',
-          templateUrl: 'src/cases/view/cases.html'
+          templateUrl: 'app/src/cases/view/cases.html'
         })
         .when('/cases/case', {
           controller: 'CaseController',
-          templateUrl: 'src/cases/view/case.html'
+          templateUrl: 'app/src/cases/view/case.html'
         })
         .when('/files/', {
           controller: 'FileController',
-          templateUrl: 'src/files/view/files.html'
+          templateUrl: 'app/src/files/view/files.html'
         })
         .when('/tasks/', {
           controller: 'TaskController',
-          templateUrl: 'src/tasks/view/tasks.html'
+          templateUrl: 'app/src/tasks/view/tasks.html'
         })
         .otherwise({
           redirectTo: '/'
         });
 
-  });
+  }
 
 })();

@@ -1,7 +1,7 @@
 (function(){
 
   angular
-       .module('documents')
+       .module('openeApp')
        .controller('DocumentController', ['$scope', DocumentController]);
 
   function DocumentController($scope) {

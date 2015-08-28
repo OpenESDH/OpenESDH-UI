@@ -1,11 +1,14 @@
 (function(){
 
-  angular
-    .module('dashboard')
-    .controller('DashboardController', [DashboardController]);
+    angular
+        .module('openeApp')
+        .controller('DashboardController', DashboardController);
     
-  function DashboardController() {
-    
-  };
+    DashboardController.$inject = ['authService'];
 
+    function DashboardController(authService) {
+        authService.login('admin', 'admin').then(function(response) {
+            console.log(response);
+        });
+    };
 })();

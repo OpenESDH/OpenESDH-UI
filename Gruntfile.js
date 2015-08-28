@@ -70,6 +70,8 @@ module.exports = function(grunt) {
                 proxies: [
                     {
                         context: '/alfresco',
+//                        host: 'demo.alfresco.dk',
+//                        port: 80,
                         host: 'localhost',
                         port: 8080,
                         secure: false

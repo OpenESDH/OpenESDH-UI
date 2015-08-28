@@ -1,7 +1,7 @@
 (function(){
 
   angular
-       .module('cases')
+       .module('openeApp')
        .controller('CaseController', [ '$scope', '$mdDialog', CaseController ]);
 
        
@@ -117,7 +117,7 @@
     $scope.createCase = function(ev) {
       $mdDialog.show({
         controller: DialogController,
-        templateUrl: 'src/cases/view/caseCrudDialog.html',
+        templateUrl: 'app/src/cases/view/caseCrudDialog.html',
         parent: angular.element(document.body),
         targetEvent: ev,
         clickOutsideToClose:true
