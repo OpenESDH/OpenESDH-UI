@@ -10,7 +10,7 @@ The repository contains both ES5 and ES6 branches that are inherited from the fo
 
 #### Prerequisites
 
-You will need **git** to clone the material-start repository. You can get git from
+You will need **git** to clone the repository. You can get git from
 [http://git-scm.com/](http://git-scm.com/).
 
 We also use a number of node.js tools to initialize and test material-start. You must have node.js and
@@ -19,21 +19,21 @@ its package manager (npm) installed.  You can get them from [http://nodejs.org/]
 #### Clone material-start
 
 To get you started you can simply clone `master` branch from the
-[Material-Start](https://github.com/angular/material-start) repository and install the dependencies:
+[OpenESDH-UI](https://github.com/OpenESDH/OpenESDH-UI.git) repository and install the dependencies:
 
 > NOTE: The `master` branch contains the traditional, ES5 implementation familiar to Angular developers.
 
-Clone the material-start repository using [git][git]:
+Clone the material-start repository using [git](https://git-scm.com/):
 
 ```
-git clone https://github.com/iamfrank/OpenEDSH-Angular-Material.git
-cd OpenEDSH-Angular-Material
+git clone https://github.com/OpenESDH/OpenESDH-UI.git
+cd OpenEDSH-UI
 ```
 
 If you just want to start a new project without the material-start commit history then you can do:
 
 ```bash
-git clone --depth=1 https://github.com/iamfrank/OpenEDSH-Angular-Material.git <your-project-name>
+git clone --depth=1 https://github.com/OpenESDH/OpenESDH-UI.git <your-project-name>
 ```
 
 The `depth=1` tells git to only pull down one commit worth of historical data.
