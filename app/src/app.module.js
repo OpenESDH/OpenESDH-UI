@@ -1,7 +1,7 @@
 (function() {
 
   angular
-    .module('openeApp', ['ngMaterial', 'ngRoute', 'ngResource', 'openeApp.cases', 'openeApp.dashboard', 'openeApp.files', 'openeApp.tasks', 'openeApp.documents', 'openeApp.notes', 'openeApp.organisations'])
+    .module('openeApp', ['ngMaterial', 'ngRoute', 'ngResource', 'isteven-multi-select', 'openeApp.cases', 'openeApp.dashboard', 'openeApp.files', 'openeApp.tasks', 'openeApp.documents', 'openeApp.notes', 'openeApp.organisations'])
     .config(config);
 
   config.$inject = ['$mdThemingProvider', '$routeProvider'];
