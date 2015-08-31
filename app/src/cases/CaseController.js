@@ -2,13 +2,11 @@
     'use strict';
 
     angular
-       .module('openeApp.cases')
-       .controller('CaseController', CaseController)
-       .run(function(authService, $q) {
+        .module('openeApp.cases')
+        .controller('CaseController', CaseController)
+        .run(function(authService, $q) {
             // This is just a hack, until we get a login page
-            var promise = authService.login('admin', 'admin').then(function(response) {
-            });
-            $q.resolve(promise);
+            $q.resolve(authService.login('admin', 'admin'));
        });
 
     CaseController.$inject = ['$scope', '$mdDialog', 'caseService'];
