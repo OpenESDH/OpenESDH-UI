@@ -6,7 +6,7 @@
         .controller('CaseController', CaseController)
         .run(function(authService, $q) {
             // This is just a hack, until we get a login page
-            $q.resolve(authService.login('admin', 'admin'));
+            $q.resolve(authService.login('admin', 'openeadmin'));
        });
 
     CaseController.$inject = ['$scope', '$mdDialog', 'caseService'];
