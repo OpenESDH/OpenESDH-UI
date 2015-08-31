@@ -10,6 +10,7 @@
 
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
     <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css">
+    <link rel="stylesheet" href="./bower_components/isteven-angular-multiselect/isteven-multi-select.css">
     <link rel="stylesheet" href="./app/assets/app.css">
 </head>
 
@@ -18,75 +19,51 @@
 <md-toolbar layout="row" id="global-toolbar">
     <div class="md-toolbar-tools">
 
-        <a class="md-button" href="#/">Home</a>
-        <!--<a class="md-button" href="#/cases">Cases <span class="label" ng-bind="casesNeedAction" ng-controller="CaseController"></span></a>-->
-        <a class="md-button" href="#/cases">Cases</a>
-        <a class="md-button" href="#/files">Files</a>
-        <a class="md-button" href="#/tasks">Tasks</a>
+  <body ng-app="openeApp">
+ 
+    <md-content id="content" ng-view style="background-color:#ddd;"></md-content>
 
-        <md-input-container>
-            <label>Search</label>
-            <input type="text">
-        </md-input-container>
+    
+    <!-- All the javascript -->
 
-        <md-menu>
-            <md-button aria-label="Open menu" ng-click="$mdOpenMenu($event)" ng-controller="AuthController">
-                {{vm.user.firstName}}
-            </md-button>
-            <md-menu-content width="4">
-                <md-menu-item>
-                    <md-button ng-disabled="true">
-                        View profile
-                    </md-button>
-                </md-menu-item>
-                <md-menu-divider></md-menu-divider>
-                <md-menu-item>
-                    <md-button ng-disabled="true">
-                        Log out
-                    </md-button>
-                </md-menu-item>
-            </md-menu-content>
-        </md-menu>
+    <script src="./bower_components/angular/angular.js"></script>
+    <script src="./bower_components/angular-route/angular-route.js"></script>
+    <script src="./bower_components/angular-resource/angular-resource.js"></script>
+    <script src="./bower_components/angular-animate/angular-animate.js"></script>
+    <script src="./bower_components/angular-aria/angular-aria.js"></script>
+    <script src="./bower_components/angular-material/angular-material.js"></script>
+    <script src="./bower_components/isteven-angular-multiselect/isteven-multi-select.js"></script>
 
-    </div>
-</md-toolbar>
+    <script src="./app/src/app.module.js"></script>
+    
+    <script src="./app/src/shared/services/httpUtilsService.js"></script>
+    <script src="./app/src/shared/services/case/casePartiesService.js"></script>
 
-<md-content id="content" ng-view style="background-color:#ddd;"></md-content>
+    <script src="./app/src/authentication/sessionService.js"></script>
+    <script src="./app/src/authentication/authService.js"></script>
+    <script src="./app/src/authentication/authController.js"></script>
+    
+    <script src="./app/src/header/Header.js"></script>
 
+    <script src="./app/src/dashboard/dashboard.module.js"></script>
+    <script src="./app/src/dashboard/DashboardController.js"></script>
 
-<!-- All the javascript -->
+    <script src="./app/src/cases/cases.module.js"></script>
+    <script src="./app/src/cases/caseService.js"></script>
+    <script src="./app/src/cases/CaseController.js"></script>
 
-<script src="./bower_components/angular/angular.js"></script>
-<script src="./bower_components/angular-route/angular-route.js"></script>
-<script src="./bower_components/angular-resource/angular-resource.js"></script>
-<script src="./bower_components/angular-animate/angular-animate.js"></script>
-<script src="./bower_components/angular-aria/angular-aria.js"></script>
-<script src="./bower_components/angular-material/angular-material.js"></script>
-
-<script src="./app/src/app.module.js"></script>
-
-<script src="./app/src/authentication/sessionService.js"></script>
-<script src="./app/src/authentication/authService.js"></script>
-<script src="./app/src/authentication/authController.js"></script>
-<script src="./app/src/common/userService.js"></script>
-
-<script src="./app/src/dashboard/dashboard.module.js"></script>
-<script src="./app/src/dashboard/DashboardController.js"></script>
-
-<script src="./app/src/cases/cases.module.js"></script>
-<script src="./app/src/cases/caseService.js"></script>
-<script src="./app/src/cases/CaseController.js"></script>
-
-<script src="./app/src/documents/Documents.js"></script>
-<script src="./app/src/documents/DocumentController.js"></script>
-
-<script src="./app/src/files/Files.js"></script>
-<script src="./app/src/files/FileController.js"></script>
-
-<script src="./app/src/tasks/Tasks.js"></script>
-<script src="./app/src/tasks/TaskController.js"></script>
-
-<script src="./app/src/notes/Notes.js"></script>
-<script src="./app/src/notes/NoteController.js"></script>
-</body>
+    <script src="./app/src/documents/Documents.js"></script>
+    <script src="./app/src/documents/DocumentController.js"></script>
+    
+    <script src="./app/src/files/Files.js"></script>
+    <script src="./app/src/files/FileController.js"></script>
+    <script src="./app/src/cases/CaseInfoController.js"></script>
+    
+    <script src="./app/src/tasks/Tasks.js"></script>
+    <script src="./app/src/tasks/TaskController.js"></script>
+    
+    <script src="./app/src/notes/Notes.js"></script>
+    <script src="./app/src/notes/caseNotesService.js"></script>
+    <script src="./app/src/notes/NoteController.js"></script>
+  </body>
 </html>

@@ -1,7 +1,7 @@
 (function() {
 
   angular
-    .module('openeApp', ['ngMaterial', 'ngRoute', 'ngResource', 'openeApp.cases', 'openeApp.dashboard', 'openeApp.files', 'openeApp.tasks', 'openeApp.documents', 'openeApp.notes'])
+    .module('openeApp', ['ngMaterial', 'ngRoute', 'ngResource', 'isteven-multi-select', 'openeApp.cases', 'openeApp.dashboard', 'openeApp.files', 'openeApp.tasks', 'openeApp.documents', 'openeApp.notes'])
     .config(config);
 
   config.$inject = ['$mdThemingProvider', '$routeProvider'];
@@ -17,13 +17,19 @@
           controller: 'DashboardController',
           templateUrl: 'app/src/dashboard/view/dashboard.html'
         })
+        .when('/login', {
+          templateUrl: 'app/src/authentication/view/login.html'
+        })
+        .when('/logout', {
+          templateUrl: 'app/src/authentication/view/logout.html'
+        })
         .when('/cases/', {
           controller: 'CaseController',
           controllerAs: 'vm',
           templateUrl: 'app/src/cases/view/cases.html'
         })
-        .when('/cases/case', {
-          controller: 'CaseController',
+        .when('/cases/case/:caseId', {
+          controller: 'CaseInfoController',
           templateUrl: 'app/src/cases/view/case.html'
         })
         .when('/files/', {

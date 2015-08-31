@@ -1,120 +1,106 @@
+<app-header></app-header>
+
 <md-content layout-padding>
-    <h2>{{ cases[0].caseId }} {{ cases[0].title }}</h2>
+  <h2>{{ case["oe:id"].value }} {{ case["cm:title"].value }}</h2>
 </md-content>
 
 <md-tabs md-dynamic-height>
-
-    <md-tab>
-        <md-tab-label>
-            <span>Case home</span>
-        </md-tab-label>
-        <md-tab-body>
-
-            <div layout="row" layout-wrap>
-
-                <div flex="50">
-                    <md-card>
-                        <md-card-content>
-                            <h3>Information</h3>
-                            <dl>
-                                <dt>Case ID</dt>
-                                <dd>{{ cases[0].caseId }}</dd>
-                                <dt>Case title</dt>
-                                <dd>{{ cases[0].title }}</dd>
-                                <dt>Status</dt>
-                                <dd>{{ cases[0].status }}</dd>
-                                <dt>Created by</dt>
-                                <dd>{{ cases[0].creator }}</dd>
-                                <dt>Created</dt>
-                                <dd>{{ cases[0].createdDate | date: 'yyyy-MM-dd' }}</dd>
-                                <dt>Case owners</dt>
-                                <dd>{{ cases[0].owner }}</dd>
-                                <dt>Last modified</dt>
-                                <dd>{{ cases[0].modifiedDate }}</dd>
-                                <dt>Description</dt>
-                                <dd>{{ cases[0].desc }}</dd>
-                            </dl>
-                        </md-card-content>
-                        <div class="md-actions" layout="row">
-                            <md-button class="md-primary" ng-click="createCase($event)">Edit information</md-button>
-                            <md-button class="md-primary" ng-disabled="true">Print case</md-button>
-                            <md-button class="md-primary" ng-disabled="true">Start workflow</md-button>
-                            <md-button class="md-primary" ng-disabled="true">Create site</md-button>
-                        </div>
-                    </md-card>
-                </div>
-
-                <div flex="50">
-                    <md-card>
-                        <md-card-content>
-                            <h3>Notes</h3>
-                            <md-list ng-controller="NoteController">
-                                <md-list-item ng-repeat="note in notes">
-                                    <div class="md-list-item-text">
-                                        <h4>{{ note.title }}</h4>
-
-                                        <p>{{ note.desc }}</p>
-
-                                        <p style="font-size: 0.8em; color: #999;">
-                                            Created {{ note.createdDate }} by {{ note.creator }}<br>
-                                            Related: <span style="margin-right: 0.5em;"
-                                                           ng-repeat="relation in note.relatedTo">{{ relation }}</span>
-                                        </p>
-                                    </div>
-                                </md-list-item>
-                            </md-list>
-                        </md-card-content>
-                        <div class="md-actions" layout="row">
-                            <md-button class="md-primary" ng-disabled="true">New note</md-button>
-                            <md-button class="md-primary" ng-disabled="true">Print all notes</md-button>
-                        </div>
-                    </md-card>
-                </div>
-
-                <div flex="100">
-                    <md-card>
-                        <md-card-content>
-                            <h3>Documents</h3>
-                            <table ng-controller="DocumentController">
-                                <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Doc.No.</th>
-                                    <th>Type</th>
-                                    <th>Category</th>
-                                    <th>State</th>
-                                    <th>Owner</th>
-                                    <th>Created</th>
-                                    <th>Modified</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr ng-repeat="doc in docs" class="{{ doc.isUpdated ? 'updated' : 'not-updated' }}">
-                                    <td>{{ doc.title }}</td>
-                                    <td>{{ doc.docNo }}</td>
-                                    <td>{{ doc.type }}</td>
-                                    <td>{{ doc.category }}</td>
-                                    <td>{{ doc.state }}</td>
-                                    <td>{{ doc.owner }}</td>
-                                    <td>{{ doc.createdDate }}</td>
-                                    <td>{{ doc.modifiedDate }}</td>
-                                    <td>
-                                        <md-button class="md-primary" ng-disabled="true">View details</md-button>
-                                        <md-button class="md-primary" ng-disabled="true">Preview</md-button>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </md-card-content>
-                        <div class="md-actions" layout="row">
-                            <md-button class="md-primary" ng-disabled="true">Create new document</md-button>
-                            <md-button class="md-primary" ng-disabled="true">Upload new documents</md-button>
-                            <md-button class="md-primary" ng-disabled="true">Email documents</md-button>
-                        </div>
-                    </md-card>
-                </div>
-
+  
+  <md-tab>
+    <md-tab-label>
+      <span>Case home</span>
+    </md-tab-label>
+    <md-tab-body>
+      
+      <div layout="row" layout-wrap>
+        
+        <div flex="50">
+          <md-card>
+            <md-card-content>
+              <h3>Information</h3>
+              <dl>
+                <dt>Case ID</dt><dd>{{ case["oe:id"].value }}</dd>
+                <dt>Case title</dt><dd>{{ case["cm:title"].value }}</dd>
+                <dt>Status</dt><dd>{{ case["oe:status"].value }}</dd>
+                <dt>Created by</dt><dd>{{ case["cm:creator"].fullname }}</dd>
+                <dt>Created</dt><dd>{{ case["cm:created"].value | date: 'yyyy-MM-dd'}}</dd>
+                <dt>Case owners</dt><dd>{{ case["base:owners"].fullname }}</dd>
+                <dt>Last modified</dt><dd>{{ case["cm:modified"].value  | date: 'yyyy-MM-dd'}}</dd>
+                <dt>Description</dt><dd>{{ case["cm:description"].value }}</dd>
+              </dl>
+            </md-card-content>
+            <div class="md-actions" layout="row">
+              <md-button class="md-primary" ng-click="createCase($event)">Edit information</md-button>
+              <md-button class="md-primary" ng-disabled="true">Print case</md-button>
+              <md-button class="md-primary" ng-disabled="true">Start workflow</md-button>
+              <md-button class="md-primary" ng-disabled="true">Create site</md-button>
+            </div>
+          </md-card>
+        </div>
+        
+        <div flex="50">
+          <md-card ng-controller="NoteController as caseNotes">
+            <md-card-content>
+              <h3>Notes</h3>
+              <md-list>
+                <md-list-item ng-repeat="note in caseNotes.notes">
+                  <div class="md-list-item-text">
+                    <h4>{{ note.headline }}</h4>
+                    <p>{{ note.content }}</p>
+                    <p style="font-size: 0.8em; color: #999;">
+                      Created {{ note.created | date: 'yyyy-MM-dd' }} by {{ note.authorInfo.firstName + ' ' + note.authorInfo.lastName }}<br>
+                      Related: <span style="margin-right: 0.5em;" ng-repeat="relation in note.concernedPartiesInfo">{{ relation.name }}</span>
+                    </p>
+                  </div>
+                </md-list-item>                
+              </md-list>
+                Loaded: {{caseNotes.contentRange.startIndex}}-{{caseNotes.contentRange.endIndex}} Total items: {{caseNotes.contentRange.totalItems}}
+                Pages: <span style="margin-right: 10px;" ng-repeat="page in caseNotes.pages"><button ng-click="caseNotes.loadNotes(page)">{{page}}</button></span>
+            </md-card-content>
+            <div class="md-actions" layout="row">
+              <md-button class="md-primary" ng-click="caseNotes.newNote()">New note</md-button>
+              <md-button class="md-primary" ng-disabled="true">Print all notes</md-button>
+            </div>
+          </md-card>
+        </div>
+        
+        <div flex="100">
+          <md-card>
+            <md-card-content>
+              <h3>Documents</h3>
+              <table ng-controller="DocumentController">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Doc.No.</th>
+                    <th>Type</th>
+                    <th>Category</th>
+                    <th>State</th>
+                    <th>Owner</th>
+                    <th>Created</th>
+                    <th>Modified</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="doc in docs" class="{{ doc.isUpdated ? 'updated' : 'not-updated' }}">
+                    <td>{{ doc.title }}</td>
+                    <td>{{ doc.docNo }}</td>
+                    <td>{{ doc.type }}</td>
+                    <td>{{ doc.category }}</td>
+                    <td>{{ doc.state }}</td>
+                    <td>{{ doc.owner }}</td>
+                    <td>{{ doc.createdDate }}</td>
+                    <td>{{ doc.modifiedDate }}</td>
+                    <td><md-button class="md-primary" ng-disabled="true">View details</md-button> <md-button class="md-primary" ng-disabled="true">Preview</md-button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </md-card-content>
+            <div class="md-actions" layout="row">
+              <md-button class="md-primary" ng-disabled="true">Create new document</md-button>
+              <md-button class="md-primary" ng-disabled="true">Upload new documents</md-button>
+              <md-button class="md-primary" ng-disabled="true">Email documents</md-button>
             </div>
 
         </md-tab-body>
