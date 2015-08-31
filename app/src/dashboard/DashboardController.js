@@ -8,7 +8,7 @@
 
     function DashboardController($scope, authService) {
         // This is just a hack, until we get a login page
-        authService.login('admin', 'openeadmin').then(function(response) {
+        authService.login('admin', 'admin').then(function(response) {
             console.log(response);
         });
 
