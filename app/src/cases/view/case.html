@@ -37,8 +37,8 @@
         </div>
         
         <div flex="50">
-          <md-card>
-            <md-card-content ng-controller="NoteController as caseNotes">
+          <md-card ng-controller="NoteController as caseNotes">
+            <md-card-content>
               <h3>Notes</h3>
               <md-list>
                 <md-list-item ng-repeat="note in caseNotes.notes">
@@ -56,7 +56,7 @@
                 Pages: <span style="margin-right: 10px;" ng-repeat="page in caseNotes.pages"><button ng-click="caseNotes.loadNotes(page)">{{page}}</button></span>
             </md-card-content>
             <div class="md-actions" layout="row">
-              <md-button class="md-primary" ng-disabled="true">New note</md-button>
+              <md-button class="md-primary" ng-click="caseNotes.newNote()">New note</md-button>
               <md-button class="md-primary" ng-disabled="true">Print all notes</md-button>
             </div>
           </md-card>

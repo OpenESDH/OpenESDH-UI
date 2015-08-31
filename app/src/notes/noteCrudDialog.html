@@ -1,0 +1,27 @@
+<md-dialog aria-label="Case edit dialog">
+  <form>
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">
+        <h2>Create / edit case</h2>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;">
+      <md-input-container>
+        <label>Headline</label>
+        <input type="text" ng-model="headline" required>
+      </md-input-container>
+      <md-input-container>
+        <label>Content</label>
+        <input type="text" ng-model="content" required>
+      </md-input-container>
+    </md-dialog-content>
+    <div class="md-actions" layout="row">
+      <md-button class="md-primary" ng-click="addNote()">
+        Create / Save case
+      </md-button>
+      <md-button ng-click="cancel()">
+        Cancel
+      </md-button>
+    </div>
+  </form>
+</md-dialog>
