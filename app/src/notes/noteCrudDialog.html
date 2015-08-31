@@ -2,10 +2,10 @@
   <form>
     <md-toolbar layout="row">
       <div class="md-toolbar-tools">
-        <h2>Create / edit case</h2>
+        <h2>Create note</h2>
       </div>
     </md-toolbar>
-    <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;">
+    <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;min-height:300px;">
       <md-input-container>
         <label>Headline</label>
         <input type="text" ng-model="headline" required>
@@ -14,6 +14,17 @@
         <label>Content</label>
         <input type="text" ng-model="content" required>
       </md-input-container>
+      
+        <label>Concerned parties:</label>
+        <div isteven-multi-select 
+            input-model="caseParties" 
+            output-model="concernedParties"
+            output-properties="nodeRef"
+            button-label="displayName"
+            item-label="displayName"
+            helper-elements="all none"
+            tick-property="ticked"> </div>
+      
     </md-dialog-content>
     <div class="md-actions" layout="row">
       <md-button class="md-primary" ng-click="addNote()">

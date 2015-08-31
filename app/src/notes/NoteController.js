@@ -4,11 +4,12 @@
        .module('openeApp.notes')
        .controller('NoteController', NoteController);
 
-    NoteController.$inject = ['$scope', '$routeParams', '$mdDialog', 'caseNotesService'];
+    NoteController.$inject = ['$scope', '$routeParams', '$mdDialog', 'caseNotesService', 'casePartiesService'];
 
-    function NoteController($scope, $routeParams, $mdDialog, caseNotesService) {
+    function NoteController($scope, $routeParams, $mdDialog, caseNotesService, casePartiesService) {
 
         var caseId = $routeParams.caseId;
+        var caseParties = [];
         
         var vm = this;
         vm.newNote = newNote;
@@ -18,7 +19,13 @@
         activate();
         
         function activate(){
+            
             loadNotes(1);
+            
+            casePartiesService.getCaseParties(caseId).then(function(response){
+                caseParties = response.parties;
+            });
+            
         }
         
         function loadNotes(page){
@@ -51,27 +58,34 @@
         }
         
         function addNote(note){
-            
             if(!note || (!note.headline && !note.content)){
                 return;
             }
-            
-            var partiesNodeRefs = [];
-            note.concernedParties = partiesNodeRefs;
             caseNotesService.addNewNote(caseId, note).then(function(response){
                 loadNotes(1);
             });
         }
         
         function DialogController($scope, $mdDialog) {
-            $scope.hide = function() {
-              $mdDialog.hide();
-            };
+            
+            $scope.caseParties = caseParties;
+            
             $scope.cancel = function() {
               $mdDialog.cancel();
             };
-            $scope.addNote = function(){                
-                $mdDialog.hide({headline: $scope.headline, content: $scope.content});
+            
+            $scope.addNote = function(){
+                var partiesNodeRefs = [];
+                for(var i in $scope.concernedParties){
+                    var party = $scope.concernedParties[i];
+                    partiesNodeRefs.push(party.nodeRef);
+                }
+                var note = {
+                        headline: $scope.headline, 
+                        content: $scope.content, 
+                        concernedParties: partiesNodeRefs
+                };
+                $mdDialog.hide(note);
             };
         };
     }
