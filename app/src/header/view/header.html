@@ -1,0 +1,34 @@
+<md-toolbar layout="row" id="global-toolbar">
+      <div class="md-toolbar-tools">
+        
+        <a class="md-button" href="#/">Home</a>
+        <a class="md-button" href="#/cases">Cases</a>
+        <a class="md-button" href="#/files">Files</a>
+        <a class="md-button" href="#/tasks">Tasks</a>
+        
+        <md-input-container>
+          <label>Search</label>
+          <input type="text">
+        </md-input-container>
+        
+        <md-menu>
+          <md-button aria-label="Open menu" ng-click="$mdOpenMenu($event)">
+            Logged in user name
+          </md-button>
+          <md-menu-content width="4">
+            <md-menu-item>
+              <md-button ng-disabled="true">
+                View profile
+              </md-button>
+            </md-menu-item>
+            <md-menu-divider></md-menu-divider>
+            <md-menu-item>
+              <md-button ng-disabled="true">
+                Log out
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+        
+      </div>
+    </md-toolbar>

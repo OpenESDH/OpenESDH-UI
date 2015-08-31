@@ -17,6 +17,12 @@
           controller: 'DashboardController',
           templateUrl: 'app/src/dashboard/view/dashboard.html'
         })
+        .when('/login', {
+          templateUrl: 'app/src/authentication/view/login.html'
+        })
+        .when('/logout', {
+          templateUrl: 'app/src/authentication/view/logout.html'
+        })
         .when('/cases/', {
           controller: 'CaseController',
           controllerAs: 'vm',
