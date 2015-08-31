@@ -38,20 +38,22 @@
         
         <div flex="50">
           <md-card>
-            <md-card-content>
+            <md-card-content ng-controller="NoteController as caseNotes">
               <h3>Notes</h3>
-              <md-list ng-controller="NoteController">
-                <md-list-item ng-repeat="note in notes">
+              <md-list>
+                <md-list-item ng-repeat="note in caseNotes.notes">
                   <div class="md-list-item-text">
-                    <h4>{{ note.title }}</h4>
-                    <p>{{ note.desc }}</p>
+                    <h4>{{ note.headline }}</h4>
+                    <p>{{ note.content }}</p>
                     <p style="font-size: 0.8em; color: #999;">
-                      Created {{ note.createdDate }} by {{ note.creator }}<br>
-                      Related: <span style="margin-right: 0.5em;" ng-repeat="relation in note.relatedTo">{{ relation }}</span>
+                      Created {{ note.created | date: 'yyyy-MM-dd' }} by {{ note.authorInfo.firstName + ' ' + note.authorInfo.lastName }}<br>
+                      Related: <span style="margin-right: 0.5em;" ng-repeat="relation in note.concernedPartiesInfo">{{ relation.name }}</span>
                     </p>
                   </div>
-                </md-list-item>
+                </md-list-item>                
               </md-list>
+                Loaded: {{caseNotes.contentRange.startIndex}}-{{caseNotes.contentRange.endIndex}} Total items: {{caseNotes.contentRange.totalItems}}
+                Pages: <span style="margin-right: 10px;" ng-repeat="page in caseNotes.pages"><button ng-click="caseNotes.loadNotes(page)">{{page}}</button></span>
             </md-card-content>
             <div class="md-actions" layout="row">
               <md-button class="md-primary" ng-disabled="true">New note</md-button>
