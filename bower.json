@@ -1,8 +1,8 @@
 {
-  "name": "angular-material-starter",
-  "description": "A starter project for AngularJS Material",
-  "version": "0.0.2",
-  "homepage": "https://github.com/angular/material-start",
+  "name": "OpenESDH UI",
+  "description": "OpenESDH with Angular Material UI implementation",
+  "version": "0.0.1",
+  "homepage": "https://github.com/OpenESDH/OpenESDH-UI",
   "license": "MIT",
   "private": true,
   "dependencies": {
@@ -10,9 +10,9 @@
     "angular-route": "^1.4.x",
     "angular-animate": "^1.4.x",
     "angular-aria": "^1.4.x",
-    "angular-material": "^0.9.0"
+    "angular-material": "^0.10.0"
   },
   "devDependencies": {
-    "angular-material": "~0.9.4"
+    "angular-material": "~0.10.0"
   }
 }
