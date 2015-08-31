@@ -18,6 +18,7 @@
             authService.login(username, password).then(function(response) {
                 userService.getPerson(username).then(function(response) {
                     vm.user = response;
+                    console.log(vm.user);
                 });
                 $location.path('#/');
             });

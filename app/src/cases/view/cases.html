@@ -1,83 +1,88 @@
 <md-content layout-padding>
-  <h2>Cases</h2>
+    <h2>Cases</h2>
 </md-content>
 
 <md-tabs md-dynamic-height>
-  
-  <md-tab>
-    <md-tab-label>
-      <!--<span>My cases <span class="label" ng-bind="myUpdatedCases"></span></span>-->
-      <span>My cases</span>
-    </md-tab-label>
-    <md-tab-body>
-      <md-card>
-        <md-card-content>
-          <h3>Cases</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Type</th>
-                <th>Title</th>
-                <th>Created</th>
-                <th>Start date</th>
-                <th>End date</th>
-                <th>Modified</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat="case in vm.cases" class="{{ case.isUpdated ? 'updated' : 'not-updated' }}">
-                <td>{{case["oe:id"]}}</td>
-                <td>{{case["TYPE"]}}</td>
-                <td>{{case["cm:title"]}}</td>
-                <td>{{case["cm:created"] | date: 'yyyy-MM-dd'}}</td>
-                <td>{{case["base:startDate"] | date: 'yyyy-MM-dd'}}</td>
-                <td>{{case["base:endDate"] | date: 'yyyy-MM-dd'}}</td>
-                <td>{{case["cm:modified"] | date: 'yyyy-MM-dd'}}</td>
-                <td>{{case["oe:status"]}}</td>
-                <td><md-button href="#/cases/case">View</md-button></td>
-              </tr>
-            </tbody>
-          </table>
-        </md-card-content>
-        <div class="md-actions">
-          <md-button class="md-primary" ng-click="createCase($event)">Create new case</md-button>
-        </div>
-      </md-card>
-    </md-tab-body>
-  </md-tab>
-  
-  <md-tab>
-    <md-tab-label>
-      <!--<span>Unassigned cases <span class="label" ng-bind="unassignedCasesNum"></span></span>-->
-      <span>Unassigned cases</span>
-    </md-tab-label>
-    <md-tab-body layout="column">
-      <md-list>
-        <md-list-item ng-repeat="case in cases">
-          <md-card style="width:100%;">
-            <md-card-content>
-              <md-subheader>case: {{ case.caseId }}</md-subheader>
-              <div style="float: right; width: 20em; color: #999;">
-                Created {{ case.createdDate }} by {{ case.creator }}<br>
-                Status: {{ case.status }}
-              </div>
-              <h2>{{ case.title }}</h2>
-              <p>{{ case.desc }}</p>
-              <ul class="list-unstyled" ng-repeat="doc in case.documents">
-                <li><a href="#">{{ doc }}</a> <md-button ng-disabled="true">Preview</md-button></li>
-              </ul>
-            </md-card-content>
-            <div class="md-actions">
-              <md-button class="md-primary" ng-disabled="true">Assign to</md-button>
-              <a class="md-button md-primary" href="#/cases/case">View case details</a>
-            </div>
-          </md-card>
-        </md-list-item>
-      </md-list>
-    </md-tab-body>
-  </md-tab>
-  
+
+    <md-tab>
+        <md-tab-label>
+            <!--<span>My cases <span class="label" ng-bind="myUpdatedCases"></span></span>-->
+            <span>My cases</span>
+        </md-tab-label>
+        <md-tab-body>
+            <md-card>
+                <md-card-content>
+                    <h3>Cases</h3>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Type</th>
+                            <th>Title</th>
+                            <th>Created</th>
+                            <th>Start date</th>
+                            <th>End date</th>
+                            <th>Modified</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="case in vm.cases" class="{{ case.isUpdated ? 'updated' : 'not-updated' }}">
+                            <td>{{case["oe:id"]}}</td>
+                            <td>{{case["TYPE"]}}</td>
+                            <td>{{case["cm:title"]}}</td>
+                            <td>{{case["cm:created"] | date: 'yyyy-MM-dd'}}</td>
+                            <td>{{case["base:startDate"] | date: 'yyyy-MM-dd'}}</td>
+                            <td>{{case["base:endDate"] | date: 'yyyy-MM-dd'}}</td>
+                            <td>{{case["cm:modified"] | date: 'yyyy-MM-dd'}}</td>
+                            <td>{{case["oe:status"]}}</td>
+                            <td>
+                                <md-button href="#/cases/case">View</md-button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </md-card-content>
+                <div class="md-actions">
+                    <md-button class="md-primary" ng-click="createCase($event)">Create new case</md-button>
+                </div>
+            </md-card>
+        </md-tab-body>
+    </md-tab>
+
+    <md-tab>
+        <md-tab-label>
+            <!--<span>Unassigned cases <span class="label" ng-bind="unassignedCasesNum"></span></span>-->
+            <span>Unassigned cases</span>
+        </md-tab-label>
+        <md-tab-body layout="column">
+            <md-list>
+                <md-list-item ng-repeat="case in cases">
+                    <md-card style="width:100%;">
+                        <md-card-content>
+                            <md-subheader>case: {{ case.caseId }}</md-subheader>
+                            <div style="float: right; width: 20em; color: #999;">
+                                Created {{ case.createdDate }} by {{ case.creator }}<br>
+                                Status: {{ case.status }}
+                            </div>
+                            <h2>{{ case.title }}</h2>
+
+                            <p>{{ case.desc }}</p>
+                            <ul class="list-unstyled" ng-repeat="doc in case.documents">
+                                <li><a href="#">{{ doc }}</a>
+                                    <md-button ng-disabled="true">Preview</md-button>
+                                </li>
+                            </ul>
+                        </md-card-content>
+                        <div class="md-actions">
+                            <md-button class="md-primary" ng-disabled="true">Assign to</md-button>
+                            <a class="md-button md-primary" href="#/cases/case">View case details</a>
+                        </div>
+                    </md-card>
+                </md-list-item>
+            </md-list>
+        </md-tab-body>
+    </md-tab>
+
 </md-tabs>

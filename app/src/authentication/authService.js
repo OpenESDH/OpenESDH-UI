@@ -65,10 +65,12 @@
 
         function logout() {
             var userInfo = sessionService.getUserInfo();
-            return $http.delete('/alfresco/service/api/login/ticket/' + userInfo.ticket).then(function(response) {
-                sessionService.setUserInfo(null);
-                return response;
-            });
+            if (userInfo && userInfo.ticket) {
+                return $http.delete('/alfresco/service/api/login/ticket/' + userInfo.ticket).then(function(response) {
+                    sessionService.setUserInfo(null);
+                    return response;
+                });
+            }
         }
 
         function loggedin() {

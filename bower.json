@@ -8,14 +8,13 @@
   "dependencies": {
     "angular": "^1.4.x",
     "angular-resource": "^1.4.x",
-    "angular-mocks": "^1.4.x",
     "angular-route": "^1.4.x",
     "angular-animate": "^1.4.x",
     "angular-aria": "^1.4.x",
     "angular-material": "^0.10.0"
   },
   "devDependencies": {
-    "angular-material": "~0.10.0"
+    "angular-mocks": "^1.4.x"
   },
   "resolutions": {
     "angular": "1.4.4"
