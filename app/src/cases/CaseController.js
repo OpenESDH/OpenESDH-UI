@@ -1,26 +1,39 @@
 (function(){
+    'use strict';
 
     angular
        .module('openeApp.cases')
-       .controller('CaseController', CaseController);
+       .controller('CaseController', CaseController)
+       .run(function(authService, $q) {
+            // This is just a hack, until we get a login page
+            var promise = authService.login('admin', 'admin').then(function(response) {
+            });
+            $q.resolve(promise);
+       });
 
     CaseController.$inject = ['$scope', '$mdDialog', 'caseService'];
-  /**
-   * Main Controller for the Cases module
-   * @param $scope
-   * @param cases
-   * @constructor
-   */
-  function CaseController($scope, $mdDialog, caseService) {
+
+    /**
+     * Main Controller for the Cases module
+     * @param $scope
+     * @param cases
+     * @constructor
+     */
+    function CaseController($scope, $mdDialog, caseService) {
         var vm = this;
         vm.cases = [];
 
         vm.getCases = getCases;
 
-//        getCases();
+        activate();
+
+        function activate() {
+            return getCases().then(function() {
+
+            });
+        }
 
         function getCases() {
-            console.log('getCases');
             return caseService.getCases('base:case').then(function(response) {
                 vm.cases = response;
                 return vm.cases;

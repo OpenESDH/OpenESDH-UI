@@ -9,7 +9,7 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
-    <link rel="stylesheet" href="./app/bower_components/angular-material/angular-material.css">
+    <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css">
     <link rel="stylesheet" href="./app/assets/app.css">
   </head>
 
@@ -19,7 +19,8 @@
       <div class="md-toolbar-tools">
         
         <a class="md-button" href="#/">Home</a>
-        <a class="md-button" href="#/cases">Cases <span class="label" ng-bind="casesNeedAction" ng-controller="CaseController"></span></a>
+        <!--<a class="md-button" href="#/cases">Cases <span class="label" ng-bind="casesNeedAction" ng-controller="CaseController"></span></a>-->
+        <a class="md-button" href="#/cases">Cases</a>
         <a class="md-button" href="#/files">Files</a>
         <a class="md-button" href="#/tasks">Tasks</a>
         
@@ -55,12 +56,12 @@
     
     <!-- All the javascript -->
 
-    <script src="./app/bower_components/angular/angular.js"></script>
-    <script src="./app/bower_components/angular-route/angular-route.js"></script>
-    <script src="./app/bower_components/angular-resource/angular-resource.js"></script>
-    <script src="./app/bower_components/angular-animate/angular-animate.js"></script>
-    <script src="./app/bower_components/angular-aria/angular-aria.js"></script>
-    <script src="./app/bower_components/angular-material/angular-material.js"></script>
+    <script src="./bower_components/angular/angular.js"></script>
+    <script src="./bower_components/angular-route/angular-route.js"></script>
+    <script src="./bower_components/angular-resource/angular-resource.js"></script>
+    <script src="./bower_components/angular-animate/angular-animate.js"></script>
+    <script src="./bower_components/angular-aria/angular-aria.js"></script>
+    <script src="./bower_components/angular-material/angular-material.js"></script>
 
     <script src="./app/src/app.module.js"></script>
 
@@ -68,10 +69,10 @@
     <script src="./app/src/authentication/authService.js"></script>
     <script src="./app/src/authentication/authController.js"></script>
 
-    <script src="./app/src/dashboard/Dashboard.js"></script>
+    <script src="./app/src/dashboard/dashboard.module.js"></script>
     <script src="./app/src/dashboard/DashboardController.js"></script>
 
-    <script src="./app/src/cases/Cases.js"></script>
+    <script src="./app/src/cases/cases.module.js"></script>
     <script src="./app/src/cases/caseService.js"></script>
     <script src="./app/src/cases/CaseController.js"></script>
 
