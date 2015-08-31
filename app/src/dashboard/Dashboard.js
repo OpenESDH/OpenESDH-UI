@@ -1,6 +1,6 @@
 (function(){
   'use strict';
 
-  angular.module('dashboard', [ 'ngMaterial' ]);
+  angular.module('openeApp.dashboard', [ 'ngMaterial' ]);
 
 })();

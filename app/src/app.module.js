@@ -1,8 +1,7 @@
 (function() {
 
   angular
-//    .module('openeApp', ['ngMaterial', 'ngRoute', 'cases', 'dashboard', 'files', 'tasks', 'documents', 'notes', 'authController'])
-    .module('openeApp', ['ngMaterial', 'ngRoute'])
+    .module('openeApp', ['ngMaterial', 'ngRoute', 'ngResource', 'openeApp.cases', 'openeApp.dashboard', 'openeApp.files', 'openeApp.tasks', 'openeApp.documents', 'openeApp.notes'])
     .config(config);
 
   config.$inject = ['$mdThemingProvider', '$routeProvider'];
@@ -20,6 +19,7 @@
         })
         .when('/cases/', {
           controller: 'CaseController',
+          controllerAs: 'vm',
           templateUrl: 'app/src/cases/view/cases.html'
         })
         .when('/cases/case', {

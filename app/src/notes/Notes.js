@@ -1,6 +1,6 @@
 (function(){
   'use strict';
 
-  angular.module('notes', [ 'ngMaterial' ]);
+  angular.module('openeApp.notes', [ 'ngMaterial' ]);
 
 })();

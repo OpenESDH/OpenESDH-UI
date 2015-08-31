@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('openeApp')
+        .module('openeApp.cases')
         .factory('caseService', caseService);
 
     caseService.$inject = ['$http', '$resource'];

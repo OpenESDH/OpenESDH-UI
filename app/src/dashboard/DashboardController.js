@@ -1,7 +1,7 @@
 (function(){
 
     angular
-        .module('openeApp')
+        .module('openeApp.dashboard')
         .controller('DashboardController', DashboardController);
     
     DashboardController.$inject = ['$scope', 'authService'];

@@ -1,8 +1,10 @@
 (function(){
 
   angular
-       .module('openeApp')
-       .controller('NoteController', ['$scope', NoteController]);
+       .module('openeApp.notes')
+       .controller('NoteController', NoteController);
+
+  NoteController.$inject = ['$scope'];
 
   function NoteController($scope) {
   

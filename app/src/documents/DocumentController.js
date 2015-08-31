@@ -1,8 +1,10 @@
 (function(){
 
   angular
-       .module('openeApp')
-       .controller('DocumentController', ['$scope', DocumentController]);
+       .module('openeApp.documents')
+       .controller('DocumentController', DocumentController);
+
+  DocumentController.$inject = ['$scope'];
 
   function DocumentController($scope) {
   

@@ -7,6 +7,7 @@
   "private": true,
   "dependencies": {
     "angular": "^1.4.x",
+    "angular-resource": "^1.4.x",
     "angular-mocks": "^1.4.x",
     "angular-route": "^1.4.x",
     "angular-animate": "^1.4.x",
@@ -15,5 +16,8 @@
   },
   "devDependencies": {
     "angular-material": "~0.10.0"
+  },
+  "resolutions": {
+    "angular": "1.4.4"
   }
 }

@@ -1,6 +1,6 @@
 (function(){
   'use strict';
 
-  angular.module('documents', [ 'ngMaterial' ]);
+  angular.module('openeApp.documents', [ 'ngMaterial' ]);
 
 })();
