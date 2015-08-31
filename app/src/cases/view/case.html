@@ -1,5 +1,5 @@
 <md-content layout-padding>
-  <h2>{{ cases[0].caseId }} {{ cases[0].title }}</h2>
+  <h2>{{ case["oe:id"].value }} {{ case["cm:title"].value }}</h2>
 </md-content>
 
 <md-tabs md-dynamic-height>
@@ -17,14 +17,14 @@
             <md-card-content>
               <h3>Information</h3>
               <dl>
-                <dt>Case ID</dt><dd>{{ cases[0].caseId }}</dd>
-                <dt>Case title</dt><dd>{{ cases[0].title }}</dd>
-                <dt>Status</dt><dd>{{ cases[0].status }}</dd>
-                <dt>Created by</dt><dd>{{ cases[0].creator }}</dd>
-                <dt>Created</dt><dd>{{ cases[0].createdDate | date: 'yyyy-MM-dd' }}</dd>
-                <dt>Case owners</dt><dd>{{ cases[0].owner }}</dd>
-                <dt>Last modified</dt><dd>{{ cases[0].modifiedDate }}</dd>
-                <dt>Description</dt><dd>{{ cases[0].desc }}</dd>
+                <dt>Case ID</dt><dd>{{ case["oe:id"].value }}</dd>
+                <dt>Case title</dt><dd>{{ case["cm:title"].value }}</dd>
+                <dt>Status</dt><dd>{{ case["oe:status"].value }}</dd>
+                <dt>Created by</dt><dd>{{ case["cm:creator"].fullname }}</dd>
+                <dt>Created</dt><dd>{{ case["cm:created"].value | date: 'yyyy-MM-dd'}}</dd>
+                <dt>Case owners</dt><dd>{{ case["base:owners"].fullname }}</dd>
+                <dt>Last modified</dt><dd>{{ case["cm:modified"].value  | date: 'yyyy-MM-dd'}}</dd>
+                <dt>Description</dt><dd>{{ case["cm:description"].value }}</dd>
               </dl>
             </md-card-content>
             <div class="md-actions" layout="row">

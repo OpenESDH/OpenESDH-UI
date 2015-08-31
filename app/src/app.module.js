@@ -22,8 +22,8 @@
           controllerAs: 'vm',
           templateUrl: 'app/src/cases/view/cases.html'
         })
-        .when('/cases/case', {
-          controller: 'CaseController',
+        .when('/cases/case/:caseId', {
+          controller: 'CaseInfoController',
           templateUrl: 'app/src/cases/view/case.html'
         })
         .when('/files/', {
