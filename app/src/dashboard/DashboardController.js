@@ -1,17 +1,18 @@
 (function(){
 
-  angular
-    .module('dashboard')
-    .controller('DashboardController', ['$scope', DashboardController]);
+    angular
+        .module('openeApp.dashboard')
+        .controller('DashboardController', DashboardController);
     
-  function DashboardController( $scope ) {
-    
-    var originatorEv;
-    this.openMenu = function($mdOpenMenu, ev) {
-      originatorEv = ev;
-      $mdOpenMenu(ev);
-    };
-    
-  };
+    DashboardController.$inject = ['$scope', 'authService'];
 
+    function DashboardController($scope, authService) {
+
+        var originatorEv;
+        this.openMenu = function($mdOpenMenu, ev) {
+            originatorEv = ev;
+            $mdOpenMenu(ev);
+        };
+    
+    };
 })();

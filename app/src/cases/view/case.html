@@ -21,7 +21,7 @@
                 <dt>Case title</dt><dd>{{ cases[0].title }}</dd>
                 <dt>Status</dt><dd>{{ cases[0].status }}</dd>
                 <dt>Created by</dt><dd>{{ cases[0].creator }}</dd>
-                <dt>Created</dt><dd>{{ cases[0].createdDate }}</dd>
+                <dt>Created</dt><dd>{{ cases[0].createdDate | date: 'yyyy-MM-dd' }}</dd>
                 <dt>Case owners</dt><dd>{{ cases[0].owner }}</dd>
                 <dt>Last modified</dt><dd>{{ cases[0].modifiedDate }}</dd>
                 <dt>Description</dt><dd>{{ cases[0].desc }}</dd>

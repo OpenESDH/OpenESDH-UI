@@ -9,22 +9,16 @@ module.exports = function(config){
       'app/bower_components/angular-aria/angular-aria.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
       'app/bower_components/angular-material/angular-material.js',
-      'app/components/**/*.js',
-      'app/view*/**/*.js'
+      'app/src/**/*.js'
     ],
 
-    autoWatch : true,
+    autoWatch : false,
 
     frameworks: ['jasmine'],
 
-    browsers : ['Chrome'],
+    browsers : ['PhantomJS'],
 
-    plugins : [
-            'karma-chrome-launcher',
-            'karma-firefox-launcher',
-            'karma-jasmine',
-            'karma-junit-reporter'
-            ],
+    singleRun: true,
 
     junitReporter : {
       outputFile: 'test_out/unit.xml',

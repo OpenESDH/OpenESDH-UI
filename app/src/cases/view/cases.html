@@ -6,7 +6,8 @@
   
   <md-tab>
     <md-tab-label>
-      <span>My cases <span class="label" ng-bind="myUpdatedCases"></span></span>
+      <!--<span>My cases <span class="label" ng-bind="myUpdatedCases"></span></span>-->
+      <span>My cases</span>
     </md-tab-label>
     <md-tab-body>
       <md-card>
@@ -27,15 +28,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="case in cases" class="{{ case.isUpdated ? 'updated' : 'not-updated' }}">
-                <td>{{ case.caseId }}</td>
-                <td>{{ case.type }}</td>
-                <td>{{ case.title }}</td>
-                <td>{{ case.createdDate }}</td>
-                <td>{{ case.startDate }}</td>
-                <td>{{ case.endDate }}</td>
-                <td>{{ case.modifiedDate }}</td>
-                <td>{{ case.status }}</td>
+              <tr ng-repeat="case in vm.cases" class="{{ case.isUpdated ? 'updated' : 'not-updated' }}">
+                <td>{{case["oe:id"]}}</td>
+                <td>{{case["TYPE"]}}</td>
+                <td>{{case["cm:title"]}}</td>
+                <td>{{case["cm:created"] | date: 'yyyy-MM-dd'}}</td>
+                <td>{{case["base:startDate"] | date: 'yyyy-MM-dd'}}</td>
+                <td>{{case["base:endDate"] | date: 'yyyy-MM-dd'}}</td>
+                <td>{{case["cm:modified"] | date: 'yyyy-MM-dd'}}</td>
+                <td>{{case["oe:status"]}}</td>
                 <td><md-button href="#/cases/case">View</md-button></td>
               </tr>
             </tbody>
@@ -50,7 +51,8 @@
   
   <md-tab>
     <md-tab-label>
-      <span>Unassigned cases <span class="label" ng-bind="unassignedCasesNum"></span></span>
+      <!--<span>Unassigned cases <span class="label" ng-bind="unassignedCasesNum"></span></span>-->
+      <span>Unassigned cases</span>
     </md-tab-label>
     <md-tab-body layout="column">
       <md-list>

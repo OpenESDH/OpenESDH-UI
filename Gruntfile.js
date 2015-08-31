@@ -57,7 +57,7 @@ module.exports = function(grunt) {
             }
         },
         connect: {
-            server: {
+            localhost: {
                 options: {
                     base: '.',
                     middleware: function(connect, options, defaultMiddleware) {
@@ -75,12 +75,33 @@ module.exports = function(grunt) {
                         secure: false
                     }
                 ]
+            },
+            demo: {
+                options: {
+                    base: '.',
+                    middleware: function(connect, options, defaultMiddleware) {
+                        var proxy = require('grunt-connect-proxy/lib/utils').proxyRequest;
+                        return [
+                            proxy
+                        ].concat(defaultMiddleware);
+                    }
+                },
+                proxies: [
+                    {
+                        context: '/alfresco',
+                        host: 'demo.openesdh.dk',
+                        port: 80,
+                        changeOrigin: true,
+                        secure: false
+                    }
+                ]
             }
         }
     });
 
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-    grunt.registerTask('dev', ['bower', 'configureProxies:server', 'connect:server', 'watch:dev']);
+    grunt.registerTask('local', ['bower', 'configureProxies:localhost', 'connect:localhost', 'watch:dev']);
+    grunt.registerTask('dev', ['bower', 'configureProxies:demo', 'connect:demo', 'watch:dev']);
     grunt.registerTask('default', []);
 };

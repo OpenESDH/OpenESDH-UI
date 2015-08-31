@@ -1,10 +1,12 @@
 (function(){
 
   angular
-       .module('files')
-       .controller('FileController', ['$scope', FileController]);
+       .module('openeApp.files')
+       .controller('FileController', FileController);
 
-  function FileController( $scope ) {
+  FileController.$inject = ['$scope'];
+
+  function FileController($scope) {
     
     $scope.files = [
       {

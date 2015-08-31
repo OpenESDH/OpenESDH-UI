@@ -1,8 +1,10 @@
 (function(){
 
   angular
-       .module('tasks')
-       .controller('TaskController', ['$scope', TaskController]);
+       .module('openeApp.tasks')
+       .controller('TaskController', TaskController);
+
+  TaskController.$inject = ['$scope'];
 
   function TaskController( $scope ) {
 

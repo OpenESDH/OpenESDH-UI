@@ -57,6 +57,7 @@
                     userName: username
                 };
                 sessionService.setUserInfo(userInfo);
+                return response;
             }, function(reason) {
                 console.log(reason);
             });
