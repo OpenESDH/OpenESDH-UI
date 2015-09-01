@@ -10,7 +10,8 @@
     function CaseDocumentDetailsService($http, httpUtils, alfrescoUploadService, alfrescoNodeUtils) {
         var service = {
             getCaseDocument: getCaseDocument,
-            getDocumentVersionInfo: getDocumentVersionInfo
+            getDocumentVersionInfo: getDocumentVersionInfo,
+            uploadDocumentNewVersion: uploadDocumentNewVersion
         };
         return service;
         
@@ -34,6 +35,14 @@
             return $http(requestConfig).then(function(response){
                 return response.data;
             });
+        }
+        
+        function uploadDocumentNewVersion(mainDocNodeRef, documentFile){
+            var uploadProps = {
+                updateNodeRef: mainDocNodeRef,
+                overwrite: true
+            };
+            return alfrescoUploadService.uploadFile(documentFile, null, uploadProps);
         }
     }
 })();

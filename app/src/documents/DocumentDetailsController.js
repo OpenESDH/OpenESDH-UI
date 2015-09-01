@@ -16,6 +16,7 @@
         var documentVersions = [];
         
         var vm = this;
+        vm.uploadDocNewVersion = uploadDocNewVersion;
         
         activate();
         
@@ -37,6 +38,37 @@
                 vm.documentVersions = versions;
                 vm.docVersion = versions[0];
             });
+        }
+        
+        function uploadDocNewVersion(ev){
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'app/src/documents/view/documentUploadDialog.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true
+            })
+            .then(function(fileToUpload) {
+                if(!fileToUpload){
+                    return;
+                }
+                caseDocumentDetailsService.uploadDocumentNewVersion(caseDocument.mainDocNodeRef, fileToUpload).then(function(result){
+                   loadVersionDetails(); 
+                });
+            }, function() {
+                //on cancel dialog
+            });
+        }
+        
+        function DialogController($scope, $mdDialog) {
+            
+            $scope.cancel = function() {
+              $mdDialog.cancel();
+            };
+            
+            $scope.upload = function(){
+                $mdDialog.hide($scope.fileToUpload);
+            };
         }
     }
 
