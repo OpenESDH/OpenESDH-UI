@@ -3,15 +3,15 @@
     <h1>ESDH login</h1>
     <md-input-container>
       <label>Username</label>
-      <input type="text">
+      <input type="text" ng-model="vm.credentials.username">
     </md-input-container>
     <md-input-container>
       <label>Password</label>
-      <input type="password">
+      <input type="password" ng-model="vm.credentials.password">
     </md-input-container>
     <md-checkbox aria-label="Sign me in automatically">
       Sign me in automatically
     </md-checkbox>
-    <md-button class="md-raised">Log in</md-button>
+    <md-button class="md-raised" ng-click="vm.login(vm.credentials)">Log in</md-button>
   </md-card-content>
 </md-card>

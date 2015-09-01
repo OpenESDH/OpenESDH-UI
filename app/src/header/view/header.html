@@ -11,7 +11,7 @@
           <input type="text">
         </md-input-container>
         
-        <md-menu>
+        <md-menu ng-controller="AuthController as vm">
           <md-button aria-label="Open menu" ng-click="$mdOpenMenu($event)">
             Logged in user name
           </md-button>
@@ -23,7 +23,7 @@
             </md-menu-item>
             <md-menu-divider></md-menu-divider>
             <md-menu-item>
-              <md-button ng-disabled="true">
+              <md-button ng-click="vm.logout()">
                 Log out
               </md-button>
             </md-menu-item>

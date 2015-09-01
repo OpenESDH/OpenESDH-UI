@@ -38,23 +38,31 @@
         }
     }
 
-    authService.$inject = ['$http', 'sessionService'];
+    authService.$inject = ['$http', 'sessionService', 'userService'];
 
-    function authService($http, sessionService) {
+    function authService($http, sessionService, userService) {
         var userInfo;
         var service = {
             login: login,
             logout: logout,
-            loggedin: loggedin
+            loggedin: loggedin,
+            isAuthenticated: isAuthenticated,
+            isAuthorized: isAuthorized
         };
 
         return service;
 
         function login(username, password) {
-            return $http.post("/alfresco/service/api/login", {username: username, password: password}).then(function(response) {
+            var ticket;
+            return $http.post("/alfresco/service/api/login", {username: username, password: password}).then(function(response){
+                console.log(response);
+                ticket = response.data.data.ticket;
+                return userService.getPerson(username);
+            }).then(function(response) {
+                console.log(response);
                 userInfo = {
-                    ticket: response.data.data.ticket,
-                    userName: username
+                    ticket: ticket,
+                    user: response
                 };
                 sessionService.setUserInfo(userInfo);
                 return response;
@@ -75,6 +83,19 @@
 
         function loggedin() {
             return sessionService.getUserInfo();
+        }
+
+        function isAuthenticated() {
+            return sessionService.getUserInfo();
+        }
+
+        function isAuthorized(authorizedRoles) {
+            if (!angular.isArray(authorizedRoles)) {
+                authorizedRoles = [authorizedRoles];
+            }
+            sessionService.getUserInfo().user.capabilities.isAdmin;
+//            return (isAuthenticated() && authorizedRoles.indexOf(sessionService.))
+            return true;
         }
     }
 })();
