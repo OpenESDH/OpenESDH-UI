@@ -65,8 +65,8 @@
         </div>
         
         <div flex="100">
-          <md-card>
-            <md-card-content ng-controller="DocumentController as docCtrl">
+          <md-card ng-controller="DocumentController as docCtrl">
+            <md-card-content>
               <h3>Documents</h3>
               <table>
                 <thead>
@@ -102,7 +102,7 @@
             </md-card-content>
             <div class="md-actions" layout="row">
               <md-button class="md-primary" ng-disabled="true">Create new document</md-button>
-              <md-button class="md-primary" ng-disabled="true">Upload new documents</md-button>
+              <md-button class="md-primary" ng-click="docCtrl.uploadDocument()">Upload new documents</md-button>
               <md-button class="md-primary" ng-disabled="true">Email documents</md-button>
             </div>
           </md-card>
