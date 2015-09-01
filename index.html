@@ -27,12 +27,21 @@
     <script src="./bower_components/angular-animate/angular-animate.js"></script>
     <script src="./bower_components/angular-aria/angular-aria.js"></script>
     <script src="./bower_components/angular-material/angular-material.js"></script>
+    <script src="./bower_components/angular-translate/angular-translate.js"></script>
     <script src="./bower_components/isteven-angular-multiselect/isteven-multi-select.js"></script>
 
     <script src="./app/src/app.module.js"></script>
     
+    <script src="./app/src/shared/directives/fileModelDirective.js"></script>
+    
+    <script src="./app/src/shared/filters/documentTypeFilter.js"></script>
+    <script src="./app/src/shared/filters/documentCategoryFilter.js"></script>
+    <script src="./app/src/shared/filters/documentStatusFilter.js"></script>
+    
     <script src="./app/src/shared/services/httpUtilsService.js"></script>
+    <script src="./app/src/shared/services/alfrescoUploadService.js"></script>
     <script src="./app/src/shared/services/case/casePartiesService.js"></script>
+    <script src="./app/src/shared/services/case/caseDocumentsService.js"></script>
 
     <script src="./app/src/authentication/sessionService.js"></script>
     <script src="./app/src/authentication/authService.js"></script>
@@ -57,8 +66,12 @@
     <script src="./app/src/tasks/Tasks.js"></script>
     <script src="./app/src/tasks/TaskController.js"></script>
     
+    <script src="./app/src/organisations/Organisations.js"></script>
+    <script src="./app/src/organisations/OrganisationController.js"></script>
+    
     <script src="./app/src/notes/Notes.js"></script>
     <script src="./app/src/notes/caseNotesService.js"></script>
     <script src="./app/src/notes/NoteController.js"></script>
+    
   </body>
 </html>
