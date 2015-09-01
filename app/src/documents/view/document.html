@@ -1,0 +1,45 @@
+<app-header></app-header>
+<md-tabs md-dynamic-height>
+    <md-tab>
+        <md-tab-label>
+          <span>Case home</span>
+        </md-tab-label>
+        <md-tab-body>
+            <div layout="row" layout-wrap>
+                <div flex="100">
+                    <md-card>
+                        <md-card-content>
+                            <h3>Document</h3>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <dl>
+                                            <dt>Title</dt><dd>{{ docCtrl.doc.name }}</dd>
+                                            <dt>State</dt><dd>{{ docCtrl.doc.state | docStatus}}</dd>
+                                            <dt>Type</dt><dd>{{ docCtrl.doc.type | docType}}</dd>
+                                            <dt>Category</dt><dd>{{ docCtrl.doc.category | docCategory}}</dd>
+                                            <dt>Owner</dt><dd>{{ docCtrl.doc.owner }}</dd>
+                                            <dt>Created</dt><dd>{{ docCtrl.doc.created | date }}</dd>
+                                        </dl>
+                                    </td>
+                                    <td>
+                                        <dl>
+                                            <dt>Version</dt>
+                                                <dd>
+                                                    <select ng-model="docCtrl.docVersion" ng-options="version.label for version in docCtrl.documentVersions"></select>
+                                                </dd>
+                                            <dt>Version added</dt><dd>{{docCtrl.docVersion.createdDateISO | date: 'yyyy-MM-dd'}}</dd>
+                                            <dt>Document name</dt><dd>{{ docCtrl.docVersion.name}}</dd>
+                                            <dt>Version description</dt><dd>{{ docCtrl.docVersion.description }}</dd>
+                                        </dl>
+                                    </td>
+                                </tr>
+                            </table>
+                        </md-card-content>
+                        <!-- Version Version added Document name Version description -->
+                    </md-card>
+                 </div>
+            </div>
+        </md-tab-body>
+    </md-tab>
+</md-tabs>

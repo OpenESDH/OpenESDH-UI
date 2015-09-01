@@ -26,6 +26,10 @@
         }).when('/cases/case/:caseId', {
             controller : 'CaseInfoController',
             templateUrl : 'app/src/cases/view/case.html'
+        }).when('/cases/case/:caseId/doc/:storeType/:storeId/:id', {
+            controller : 'DocumentDetailsController',
+            templateUrl : 'app/src/documents/view/document.html',
+            controllerAs: 'docCtrl'
         }).when('/files/', {
             controller : 'FileController',
             templateUrl : 'app/src/files/view/files.html'
