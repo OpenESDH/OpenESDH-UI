@@ -1,0 +1,20 @@
+<md-dialog aria-label="Case edit dialog">
+  <form>
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">
+        <h2>Upload document</h2>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em">
+      <input type="file" file-model="fileToUpload"/>
+    </md-dialog-content>
+    <div class="md-actions" layout="row">
+      <md-button class="md-primary" ng-click="upload()">
+        Upload
+      </md-button>
+      <md-button ng-click="cancel()">
+        Cancel
+      </md-button>
+    </div>
+  </form>
+</md-dialog>
