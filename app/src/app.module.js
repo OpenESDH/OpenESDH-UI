@@ -25,7 +25,8 @@
         })
         .constant('USER_ROLES', {
             admin: 'admin',
-            user: 'user'
+            user: 'user',
+            guest: 'guest'
         })
         .run(function($rootScope, authService, AUTH_EVENTS) {
             $rootScope.$on('$stateChangeStart', function(event, next) {

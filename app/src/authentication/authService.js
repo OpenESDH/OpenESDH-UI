@@ -90,10 +90,15 @@
         }
 
         function isAuthorized(authorizedRoles) {
+            var userInfo = sessionService.getUserInfo();
+            if (typeof userInfo === 'undefined') {
+                return false;
+            }
             if (!angular.isArray(authorizedRoles)) {
                 authorizedRoles = [authorizedRoles];
             }
-            sessionService.getUserInfo().user.capabilities.isAdmin;
+
+            userInfo.user.capabilities.isAdmin;
 //            return (isAuthenticated() && authorizedRoles.indexOf(sessionService.))
             return true;
         }
