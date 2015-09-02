@@ -44,23 +44,15 @@
           console.log('Creating a new case of type ' + caseType);
           
           $mdDialog.show({
-            controller: CaseCrudDialogController,
+            controller: CaseCreateDialogController,
             templateUrl: 'app/src/cases/view/caseCrudDialog.html',
             parent: angular.element(document.body),
             targetEvent: ev,
             clickOutsideToClose:true
-          })
-          .then(
-            function(answer) {
-              $scope.status = 'You said the information was "' + answer + '".';
-            },
-            function() {
-              $scope.status = 'You cancelled the dialog.';
-            }
-          );
+          });
         };
         
-        function CaseCrudDialogController($scope, $mdDialog, $mdToast, $animate) {
+        function CaseCreateDialogController($scope, $mdDialog, $mdToast, $animate) {
           
           // Data from the case creation form
           $scope.caseData = {};
