@@ -28,6 +28,7 @@
 //                $rootScope.toStateParams = params;
                 console.log('next: ', next);
                 if (next.data.authorizedRoles.length > 0) {
+                    event.preventDefault();
                     $state.go('login');
                 }
             });
@@ -66,7 +67,8 @@
             views: {
                 'content@': {
                     templateUrl: '/app/src/cases/view/cases.html',
-                    controller: 'CaseController'
+                    controller: 'CaseController',
+                    controllerAs: 'vm'
                 }
             },
             data: {
