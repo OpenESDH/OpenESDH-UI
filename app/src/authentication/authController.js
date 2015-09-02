@@ -13,15 +13,14 @@
         vm.login = login;
         vm.logout = logout;
         vm.loggedin = loggedin;
+        vm.getUserInfo = getUserInfo;
 
         function login(credentials) {
-            console.log('logging in as ' + credentials.username);
             authService.login(credentials.username, credentials.password).then(function(response) {
                 userService.getPerson(credentials.username).then(function(response) {
                     vm.user = response;
                     console.log(vm.user);
                 });
-                console.log('going to dashboard');
                 $state.go('dashboard');
             });
         }
@@ -35,6 +34,10 @@
 
         function loggedin() {
             return authService.loggedin();
+        }
+
+        function getUserInfo() {
+            return authService.getUserInfo();
         }
     }
 })();

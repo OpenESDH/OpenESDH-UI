@@ -52,11 +52,14 @@
 
         return service;
 
+        function getUserInfo() {
+            return userInfo;
+        }
+
         function login(username, password) {
-            var ticket;
             return $http.post("/alfresco/service/api/login", {username: username, password: password}).then(function(response){
                 console.log(response);
-                ticket = response.data.data.ticket;
+                var ticket = response.data.data.ticket;
                 userInfo['ticket'] = ticket;
                 sessionService.setUserInfo(userInfo);
                 return userService.getPerson(username);

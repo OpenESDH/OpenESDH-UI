@@ -4,7 +4,6 @@
     angular
         .module('openeApp', [
             'ngMaterial',
-            'ngRoute',
             'ui.router',
             'ngResource',
             'pascalprecht.translate',
