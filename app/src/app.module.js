@@ -40,6 +40,7 @@
             templateUrl: 'app/src/organizations/view/organizations.html'
         }).when('/organizations/organization/:storeProtocol/:storeIdentifier/:uuid/', {
             controller: 'OrganizationInfoController',
+            controllerAs: 'vm',
             templateUrl: 'app/src/organizations/view/organization.html'
         }).otherwise({
             redirectTo: '/'

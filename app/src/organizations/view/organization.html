@@ -1,62 +1,63 @@
 <md-card>
-  <md-card-content>
-    
-    <a class="md-button md-primary" href="#/organizations">< Back to organizations</a>
-    
-    <h1>Organization</h1>
-    
-    <div layout="row" layout-wrap>
-        <div flex="50">
-          <md-card>
-            <md-card-content>
-              <h3>Information</h3>
-              <dl>
-                <dt>Name</dt><dd>{{ organization.organizationName }}</dd>
-                <dt>CVR number</dt><dd>{{ organization.cvrNumber }}</dd>
-                <dt>Department</dt><dd>&nbsp;</dd>
-                <dt>Address</dt><dd>{{ organization.address }}</dd>
-                <dt>Street</dt><dd>{{ organization.streetName }}</dd>
-                <dt>House Number</dt><dd>{{ organization.houseNumber }}</dd>
-                <dt>Suite</dt><dd>{{ organization.suiteIdentifier }}</dd>
-                <dt>City</dt><dd>{{ organization.cityName }}</dd>
-                <dt>Country</dt><dd>{{ organization.countryName || organization.countryCode }}</dd>
-                <dt>Postal code</dt><dd>{{ organization.postCode}}</dd>
-                <dt>Email</dt><dd>{{ organization.email }}</dd>
-              </dl>
-            </md-card-content>
-            <div class="md-actions" layout="row">
-              <md-button class="md-primary" ng-click="showAdvanced($event)">Edit organization</md-button>
-              <md-button class="md-primary" ng-disabled="true">Delete organization</md-button>
+    <md-card-content>
+
+        <a class="md-button md-primary" href="#/organizations">< Back to organizations</a>
+
+        <h1>Organization</h1>
+
+        <div layout="row" layout-wrap>
+            <div flex="50">
+                <md-card>
+                    <md-card-content>
+                        <div ng-bind="status" ng-show="status"></div>
+                        <h3>Information</h3>
+                        <dl>
+                            <dt>Company name</dt><dd ng-bind="vm.organization.organizationName"></dd>
+                            <dt>Department</dt><dd ng-bind="vm.organization.department || '&nbsp;'"></dd>
+                            <dt>Address 1</dt><dd ng-bind="vm.organization.address || '&nbsp;'"></dd>
+                            <dt>Address 2</dt><dd ng-bind="vm.organization.addressLine1 || '&nbsp;'"></dd>
+                            <dt>Postal number</dt><dd ng-bind="vm.organization.postCode || '&nbsp;'"></dd>
+                            <dt>City</dt><dd ng-bind="vm.organization.cityName || '&nbsp;'"></dd>
+                            <dt>Country</dt><dd ng-bind="vm.organization.countryCode || '&nbsp;'"></dd>
+                            <dt>VAT number</dt><dd ng-bind="vm.organization.cvrNumber"></dd>
+                            <dt>E-mail address</dt><dd ng-bind="vm.organization.email || '&nbsp;'"></dd>
+                            <dt>Phone</dt><dd ng-bind="vm.organization.phone || '&nbsp;'"></dd>
+                            <dt>Website</dt><dd ng-bind="vm.organization.website || '&nbsp;'"></dd>
+                        </dl>
+                    </md-card-content>
+                    <div class="md-actions" layout="row">
+                        <md-button class="md-primary" ng-click="showAdvanced($event)">Edit organization</md-button>
+                        <md-button class="md-primary" ng-disabled="true">Delete organization</md-button>
+                    </div>
+                </md-card>
             </div>
-          </md-card>
         </div>
-    </div>
-    
-    <h2>Employees</h2>
-    <table>
-      <thead>
-        <th>First name</th>
-        <th>Last name</th>
-        <th>Department</th>
-        <th>Street</th>
-        <th>Postal code</th>
-        <th>City</th>
-        <th>Country</th>
-        <th>Actions</th>
-      </thead>
-      <tbody>
-        <td>Someone</td>
-        <td>Someonesson</td>
-        <td>AKDOL P3</td>
-        <td>Lirumlarumvej 12</td>
-        <td>2300</td>
-        <td>København S</td>
-        <td>Denmark</td>
-        <td><a class="md-button md-primary">View details</a></td>
-      </tbody>
-    </table>
-    
-    <md-button class="md-primary" ng-disabled="true">Create contact</md-button>
-    
-  </md-card-content>
+
+        <h2>Employees</h2>
+        <table>
+            <thead>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Department</th>
+            <th>Street</th>
+            <th>Postal code</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>Actions</th>
+            </thead>
+            <tbody>
+            <td>Someone</td>
+            <td>Someonesson</td>
+            <td>AKDOL P3</td>
+            <td>Lirumlarumvej 12</td>
+            <td>2300</td>
+            <td>København S</td>
+            <td>Denmark</td>
+            <td><a class="md-button md-primary">View details</a></td>
+            </tbody>
+        </table>
+
+        <md-button class="md-primary" ng-disabled="true">Create contact</md-button>
+
+    </md-card-content>
 </md-card>

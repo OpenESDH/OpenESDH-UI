@@ -1,63 +1,68 @@
 <md-dialog aria-label="Create / edit organization">
-  <form>
-  <md-toolbar>
-    <div class="md-toolbar-tools">
-      <h1>Create / edit organization</h1>
-      <span flex></span>
-      <md-button class="md-icon-button" ng-click="answer('not applicable')">
-        <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
-      </md-button>
-    </div>
-  </md-toolbar>
-  <md-dialog-content style="max-width:40em;max-height:810px; ">
-    <md-input-container>
-      <label>Company name</label>
-      <input type="text">
-    </md-input-container>
-    <md-input-container>
-      <label>Address 1</label>
-      <input type="text">
-    </md-input-container>
-    <md-input-container>
-      <label>Address 2</label>
-      <input type="text">
-    </md-input-container>
-    <md-input-container>
-      <label>Postal number</label>
-      <input type="text">
-    </md-input-container>
-    <md-input-container>
-      <label>City</label>
-      <input type="text">
-    </md-input-container>
-    <md-input-container>
-      <label>Country</label>
-      <input type="text">
-    </md-input-container>
-    <md-input-container>
-      <label>VAT number</label>
-      <input type="text">
-    </md-input-container>
-    <md-input-container>
-      <label>E-mail address</label>
-      <input type="text">
-    </md-input-container>
-    <md-input-container>
-      <label>Phone</label>
-      <input type="text">
-    </md-input-container>
-    <md-input-container>
-      <label>Website</label>
-      <input type="text">
-    </md-input-container>
-  </md-dialog-content>
-  <div class="md-actions" layout="row">
-    <md-button class="md-primary" ng-click="cancel()">
-      Save
-    </md-button>
-    <md-button ng-click="cancel()">
-      Cancel
-    </md-button>
-  </div>
-  </form>
+    <form name="orgForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h1>Create / edit organization</h1>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="answer('not applicable')">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="max-width:40em;max-height:810px; ">
+            <div ng-bind="error" ng-show="error"></div>
+            <md-input-container>
+                <label>Company name</label>
+                <input type="text" ng-model="organization.organizationName" required>
+            </md-input-container>
+            <md-input-container>
+                <label>Department</label>
+                <input type="text" ng-model="organization.department" required>
+            </md-input-container>
+            <md-input-container>
+                <label>Address 1</label>
+                <input type="text" ng-model="organization.address" required>
+            </md-input-container>
+            <md-input-container>
+                <label>Address 2</label>
+                <input type="text" ng-model="organization.addressLine1">
+            </md-input-container>
+            <md-input-container>
+                <label>Postal number</label>
+                <input type="number" ng-model="organization.postCode" required ng-minlength="4" ng-maxlength="4">
+            </md-input-container>
+            <md-input-container>
+                <label>City</label>
+                <input type="text" ng-model="organization.cityName" required>
+            </md-input-container>
+            <md-input-container>
+                <label>Country</label>
+                <input type="text" ng-model="organization.countryCode" required>
+            </md-input-container>
+            <md-input-container>
+                <label>VAT number</label>
+                <input type="text" ng-model="organization.cvrNumber" required ng-minlength="8" ng-maxlength="8">
+            </md-input-container>
+            <md-input-container>
+                <label>E-mail address</label>
+                <input name="email" type="email" ng-model="organization.email" required>
+            </md-input-container>
+            <md-input-container>
+                <label>Phone</label>
+                <input type="text" ng-model="organization.phone" required ng-minlength="4" ng-pattern="/^[+]?[0-9\- ]+$/">
+            </md-input-container>
+            <md-input-container>
+                <label>Website</label>
+                <input type="text" ng-model="organization.website" required>
+            </md-input-container>
+        </md-dialog-content>
+        <div class="md-actions" layout="row">
+            <md-button class="md-primary" ng-click="answer(orgForm)">
+                Save
+            </md-button>
+            <md-button ng-click="cancel()">
+                Cancel
+            </md-button>
+        </div>
+    </form>
 </md-dialog>
