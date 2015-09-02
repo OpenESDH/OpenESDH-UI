@@ -91,6 +91,7 @@
 
         function isAuthorized(authorizedRoles) {
             var userInfo = sessionService.getUserInfo();
+            console.log(userInfo);
             if (typeof userInfo === 'undefined') {
                 return false;
             }
