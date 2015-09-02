@@ -4,11 +4,11 @@
         .module('openeApp.documents')
         .controller('DocumentController', DocumentController);
     
-    DocumentController.$inject = [ '$scope', '$routeParams', '$mdDialog', 'caseDocumentsService' ];
+    DocumentController.$inject = [ '$scope', '$stateParams', '$mdDialog', 'caseDocumentsService' ];
     
-    function DocumentController($scope, $routeParams, $mdDialog, caseDocumentsService) {
+    function DocumentController($scope, $stateParams, $mdDialog, caseDocumentsService) {
     
-        var caseId = $routeParams.caseId;
+        var caseId = $stateParams.caseId;
         var caseDocsFolderNodeRef = '';
         var vm = this;
         vm.pageSize = 2;

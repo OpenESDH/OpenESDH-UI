@@ -16,13 +16,14 @@
 
   <body ng-app="openeApp">
  
-    <md-content id="content" ng-view style="background-color:#ddd;"></md-content>
+    <md-content id="content" ui-view="content" style="background-color:#ddd;"></md-content>
 
     
     <!-- All the javascript -->
 
     <script src="./bower_components/angular/angular.js"></script>
     <script src="./bower_components/angular-route/angular-route.js"></script>
+    <script src="./bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="./bower_components/angular-resource/angular-resource.js"></script>
     <script src="./bower_components/angular-animate/angular-animate.js"></script>
     <script src="./bower_components/angular-aria/angular-aria.js"></script>
@@ -46,7 +47,10 @@
     <script src="./app/src/authentication/sessionService.js"></script>
     <script src="./app/src/authentication/authService.js"></script>
     <script src="./app/src/authentication/authController.js"></script>
-    
+    <script src="./app/src/authentication/loginController.js"></script>
+
+    <script src="./app/src/common/userService.js"></script>
+
     <script src="./app/src/header/Header.js"></script>
 
     <script src="./app/src/dashboard/dashboard.module.js"></script>

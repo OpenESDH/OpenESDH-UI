@@ -4,11 +4,11 @@
        .module('openeApp.notes')
        .controller('NoteController', NoteController);
 
-    NoteController.$inject = ['$scope', '$routeParams', '$mdDialog', 'caseNotesService', 'casePartiesService'];
+    NoteController.$inject = ['$scope', '$stateParams', '$mdDialog', 'caseNotesService', 'casePartiesService'];
 
-    function NoteController($scope, $routeParams, $mdDialog, caseNotesService, casePartiesService) {
+    function NoteController($scope, $stateParams, $mdDialog, caseNotesService, casePartiesService) {
 
-        var caseId = $routeParams.caseId;
+        var caseId = $stateParams.caseId;
         var caseParties = [];
         
         var vm = this;
