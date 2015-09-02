@@ -41,7 +41,7 @@
     authService.$inject = ['$http', 'sessionService', 'userService'];
 
     function authService($http, sessionService, userService) {
-        var userInfo;
+        var userInfo = {};
         var service = {
             login: login,
             logout: logout,
@@ -57,13 +57,12 @@
             return $http.post("/alfresco/service/api/login", {username: username, password: password}).then(function(response){
                 console.log(response);
                 ticket = response.data.data.ticket;
+                userInfo['ticket'] = ticket;
+                sessionService.setUserInfo(userInfo);
                 return userService.getPerson(username);
             }).then(function(response) {
                 console.log(response);
-                userInfo = {
-                    ticket: ticket,
-                    user: response
-                };
+                userInfo['user'] = response;
                 sessionService.setUserInfo(userInfo);
                 return response;
             }, function(reason) {

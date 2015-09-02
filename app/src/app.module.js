@@ -27,10 +27,20 @@
 //                $rootScope.toState = next;
 //                $rootScope.toStateParams = params;
                 console.log('next: ', next);
-                if (next.data.authorizedRoles.length > 0) {
+                if (next.data.authorizedRoles.length == 0) {
+                    return;
+                }
+                if (authService.isAuthenticated()) {
+
+                } else {
                     event.preventDefault();
                     $state.go('login');
                 }
+//                console.log('authenticated? ', authService.isAuthenticated());
+//                if (!authService.isAuthenticated()) {
+//                    event.preventDefault();
+//                    $state.go('login');
+//                }
             });
         });
 
@@ -44,7 +54,7 @@
         $urlRouterProvider.otherwise('/');
 
         $stateProvider.state('site', {
-            'abstract': true,
+            abstract: true,
             resolve: {
                 authorize: ['authService', function(authService) {
                     console.log(authService);
@@ -63,6 +73,7 @@
                 authorizedRoles: [USER_ROLES.user]
             }
         }).state('cases', {
+            parent: 'site',
             url: '/cases',
             views: {
                 'content@': {
@@ -75,11 +86,12 @@
                 authorizedRoles: [USER_ROLES.user]
             }
         }).state('login', {
+            parent: 'site',
             url: '/login',
             views: {
                 'content@': {
                     templateUrl: '/app/src/authentication/view/login.html',
-                    controller: 'LoginController',
+                    controller: 'AuthController',
                     controllerAs: 'vm'
                 }
             },
@@ -87,6 +99,7 @@
                 authorizedRoles: []
             }
         }).state('files', {
+            parent: 'site',
             url: '/files',
             views: {
                 'content@': {
@@ -98,6 +111,7 @@
                 authorizedRoles: [USER_ROLES.user]
             }
         }).state('tasks', {
+            parent: 'site',
             url: '/tasks',
             views: {
                 'content@': {
