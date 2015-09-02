@@ -17,6 +17,7 @@
         
         var vm = this;
         vm.uploadDocNewVersion = uploadDocNewVersion;
+        vm.downloadDocument = downloadDocument;
         
         activate();
         
@@ -38,6 +39,10 @@
                 vm.documentVersions = versions;
                 vm.docVersion = versions[0];
             });
+        }
+        
+        function downloadDocument(){
+            caseDocumentDetailsService.downloadDocument(vm.docVersion);
         }
         
         function uploadDocNewVersion(ev){

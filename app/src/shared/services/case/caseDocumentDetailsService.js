@@ -5,13 +5,14 @@
         .module('openeApp')
         .factory('caseDocumentDetailsService', CaseDocumentDetailsService);
 
-    CaseDocumentDetailsService.$inject = ['$http', 'httpUtils', 'alfrescoUploadService', 'alfrescoNodeUtils'];
+    CaseDocumentDetailsService.$inject = ['$http', 'httpUtils', 'alfrescoUploadService', 'alfrescoDownloadService', 'alfrescoNodeUtils'];
 
-    function CaseDocumentDetailsService($http, httpUtils, alfrescoUploadService, alfrescoNodeUtils) {
+    function CaseDocumentDetailsService($http, httpUtils, alfrescoUploadService, alfrescoDownloadService, alfrescoNodeUtils) {
         var service = {
             getCaseDocument: getCaseDocument,
             getDocumentVersionInfo: getDocumentVersionInfo,
-            uploadDocumentNewVersion: uploadDocumentNewVersion
+            uploadDocumentNewVersion: uploadDocumentNewVersion,
+            downloadDocument: downloadDocument
         };
         return service;
         
@@ -43,6 +44,10 @@
                 overwrite: true
             };
             return alfrescoUploadService.uploadFile(documentFile, null, uploadProps);
+        }
+        
+        function downloadDocument(documentVersion){
+            alfrescoDownloadService.downloadFile(documentVersion.nodeRef, documentVersion.name);
         }
     }
 })();
