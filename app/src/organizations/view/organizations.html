@@ -1,0 +1,40 @@
+<md-card>
+    <md-card-content>
+
+        <h1>Organizations</h1>
+
+        <md-input-container>
+            <label>Search for organizations</label>
+            <input type="text">
+        </md-input-container>
+
+        <table>
+            <thead>
+            <th>Name</th>
+            <th>CVR number</th>
+            <th>Department</th>
+            <th>Street</th>
+            <th>Postal code</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>Actions</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="organization in vm.organizations.items">
+                    <td>{{organization['contact:organizationName']}}</td>
+                    <td>{{organization['contact:cvrNumber']}}</td>
+                    <td></td>
+                    <td>{{organization['contact:streetName']}}</td>
+                    <td>{{organization['contact:postCode']}}</td>
+                    <td>{{organization['contact:cityName']}}</td>
+                    <td>{{organization['contact:countryName'] || organization['contact:countryCode']}}</td>
+                    <td><a class="md-button md-primary" 
+                           href="#/organizations/organization/{{organization['sys:store-protocol']}}/{{organization['sys:store-identifier']}}/{{organization['sys:node-uuid']}}/">View details</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <md-button class="md-primary" ng-click="showAdvanced($event)">Create new organization</md-button>
+
+    </md-card-content>
+</md-card>
