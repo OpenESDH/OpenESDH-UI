@@ -37,7 +37,8 @@
         }
 
         function getUserInfo() {
-            return authService.getUserInfo();
+            var userInfo = authService.getUserInfo();
+            return userInfo;
         }
     }
 })();

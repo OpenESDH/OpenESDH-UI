@@ -13,7 +13,7 @@
 
         <md-menu ng-controller="AuthController as vm">
           <md-button aria-label="Open menu" ng-click="$mdOpenMenu($event)">
-            Logged in user name
+            {{vm.getUserInfo().user.firstName}} {{vm.getUserInfo().user.lastName}}
           </md-button>
           <md-menu-content width="4">
             <md-menu-item>
