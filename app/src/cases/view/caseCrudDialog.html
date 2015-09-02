@@ -1,5 +1,5 @@
 <md-dialog aria-label="Case edit dialog">
-  <form>
+  <form name="form">
     <md-toolbar layout="row">
       <div class="md-toolbar-tools">
         <h2>Create / edit case</h2>
@@ -8,45 +8,41 @@
     <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;">
       <md-input-container>
         <label>Case title</label>
-        <input type="text" ng-model="caseTitle" required>
+        <input type="text" ng-model="case.title" required>
       </md-input-container>
       <md-input-container>
         <label>Case status</label>
-        <input type="text" ng-model="caseStatus" required>
+        <input type="text" ng-model="case.status" required>
       </md-input-container>
       <md-input-container>
-        <label>Case owner:</label>
-        <input type="text" ng-model="caseOwner" required>
+        <label>Case owner</label>
+        <input type="text" ng-model="case.owner" required>
       </md-input-container>
       <md-input-container>
-        <label>Assigned to:</label>
-        <input type="text" ng-model="caseAssigned" required>
-      </md-input-container>
-      <md-input-container>
-        <label>Journal key</label>
-        <input type="text" ng-model="caseJournalKey" required>
+        <label>Assigned to</label>
+        <input type="text" ng-model="case.assignedTo" required>
       </md-input-container>
       <md-input-container>
         <label>Start date</label>
-        <input type="text" ng-model="caseStartDate" required>
+        <input type="date" ng-model="case.startDate" required>
       </md-input-container>
       <md-input-container>
         <label>End date</label>
-        <input type="text" ng-model="caseEndDate" required>
+        <input type="date" ng-model="case.endDate" required>
       </md-input-container>
       <md-input-container>
         <label>Notes / Description</label>
-        <textarea ng-model="caseDesc"></textarea>
+        <textarea ng-model="case.desc"></textarea>
       </md-input-container>
     </md-dialog-content>
     <div class="md-actions" layout="row">
-      <md-button class="md-primary" ng-disabled="true">
+      <md-button type="submit" class="md-primary" ng-click="update(case)" ng-disabled="form.$invalid">
         Create / Save case
       </md-button>
-      <md-button ng-click="cancel()">
+      <md-button type="button" ng-click="cancel(form)">
         Cancel
       </md-button>
-      <md-button ng-disabled="true">
+      <md-button type="button" ng-disabled="true">
         Archive case
       </md-button>
     </div>

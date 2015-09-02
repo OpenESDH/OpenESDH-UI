@@ -2,10 +2,6 @@ body {
   background-color: #ddd;
 }
 
-#global-toolbar md-input-container input {
-  
-}
-
 .label {
   background-color: #2196F3;
   display: inline-block;
@@ -34,6 +30,7 @@ dt {
   color: #999;
   float: left;
   width: 8em;
+  clear: left;
 }
 
 table {

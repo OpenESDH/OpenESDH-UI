@@ -22,7 +22,7 @@
         });
     }
     
-    $scope.createCase = function(ev) {
+    $scope.editCase = function(ev) {
       $mdDialog.show({
         controller: DialogController,
         templateUrl: 'app/src/cases/view/caseCrudDialog.html',
