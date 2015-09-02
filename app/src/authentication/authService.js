@@ -47,7 +47,8 @@
             logout: logout,
             loggedin: loggedin,
             isAuthenticated: isAuthenticated,
-            isAuthorized: isAuthorized
+            isAuthorized: isAuthorized,
+            getUserInfo: getUserInfo
         };
 
         return service;
