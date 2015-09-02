@@ -9,16 +9,19 @@
     function DocumentDetailsController($scope, $routeParams, $mdDialog, caseDocumentDetailsService) {
         
         var caseId = $routeParams.caseId;
-        var storeType = $routeParams.storeType;
-        var storeId = $routeParams.storeId;
-        var docId = $routeParams.id;
+        var documentNodeRef = $routeParams.storeType + "://" + $routeParams.storeId + "/" + $routeParams.id;
         var caseDocument = null;
         var documentVersions = [];
         
         var vm = this;
         vm.caseId = caseId;
+        vm.pageSize = 2;
+        
         vm.uploadDocNewVersion = uploadDocNewVersion;
         vm.downloadDocument = downloadDocument;
+        vm.uploadAttachment = uploadAttachment;
+        vm.loadAttachments = loadAttachments;
+        
         
         activate();
         
@@ -27,10 +30,11 @@
         }
         
         function loadCaseDocumentInfo(){
-            caseDocumentDetailsService.getCaseDocument(storeType, storeId, docId).then(function(document){
+            caseDocumentDetailsService.getCaseDocument(documentNodeRef).then(function(document){
                 caseDocument = document;                
                 vm.doc = document;
                 loadVersionDetails();
+                loadAttachments();
             });
         }
         
@@ -42,19 +46,28 @@
             });
         }
         
+        function loadAttachments(page){
+            if(!page){
+                page = 1;
+            }
+            caseDocumentDetailsService.getDocumentAttachments(documentNodeRef, page, vm.pageSize).then(function(attachments){
+                vm.attachments = attachments.resultList;
+                vm.attachmentsContentRange = attachments.contentRange;
+                var pages = [];
+                var pagesCount = Math.ceil(attachments.contentRange.totalItems / vm.pageSize); 
+                for(var i=0; i < pagesCount; i++){
+                    pages.push(i+1);
+                }
+                vm.attachmentsPages = pages;
+            });
+        }
+        
         function downloadDocument(){
             caseDocumentDetailsService.downloadDocument(vm.docVersion);
         }
         
         function uploadDocNewVersion(ev){
-            $mdDialog.show({
-                controller: DialogController,
-                templateUrl: 'app/src/documents/view/documentUploadDialog.html',
-                parent: angular.element(document.body),
-                targetEvent: ev,
-                clickOutsideToClose:true
-            })
-            .then(function(fileToUpload) {
+            uploadDialog(ev).then(function(fileToUpload) {
                 if(!fileToUpload){
                     return;
                 }
@@ -63,6 +76,29 @@
                 });
             }, function() {
                 //on cancel dialog
+            });
+        }
+        
+        function uploadAttachment(ev){
+            uploadDialog(ev).then(function(fileToUpload) {
+                if(!fileToUpload){
+                    return;
+                }
+                caseDocumentDetailsService.uploadDocumentAttachment(documentNodeRef, fileToUpload).then(function(result){
+                   loadAttachments(); 
+                });
+            }, function() {
+                //on cancel dialog
+            });
+        }
+        
+        function uploadDialog(ev){
+            return $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'app/src/documents/view/documentUploadDialog.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true
             });
         }
         

@@ -12,13 +12,15 @@
             getCaseDocument: getCaseDocument,
             getDocumentVersionInfo: getDocumentVersionInfo,
             uploadDocumentNewVersion: uploadDocumentNewVersion,
-            downloadDocument: downloadDocument
+            downloadDocument: downloadDocument,
+            getDocumentAttachments: getDocumentAttachments,
+            uploadDocumentAttachment: uploadDocumentAttachment
         };
         return service;
         
-        function getCaseDocument(storeType, storeId, id){
+        function getCaseDocument(documentNodeRef){
              var requestConfig = { 
-                 url: "/alfresco/service/api/openesdh/documentInfo/" + storeType + "/" + storeId + "/" + id,
+                 url: "/alfresco/service/api/openesdh/documentInfo/" + alfrescoNodeUtils.processNodeRef(documentNodeRef).uri,
                  method: "GET"
              };
              
@@ -48,6 +50,24 @@
         
         function downloadDocument(documentVersion){
             alfrescoDownloadService.downloadFile(documentVersion.nodeRef, documentVersion.name);
+        }
+        
+        function getDocumentAttachments(docRecordNodeRef, page, pageSize){
+            var requestConfig = { 
+                url: "/alfresco/service/api/openesdh/case/document/attachments/versions?nodeRef=" + docRecordNodeRef,
+                method: "GET"
+            };
+            httpUtils.setXrangeHeader(requestConfig, page, pageSize);
+            return $http(requestConfig).then(function(response){
+                return {
+                    resultList: response.data, 
+                    contentRange: httpUtils.parseResponseContentRange(response)
+                };
+            });
+        }
+        
+        function uploadDocumentAttachment(docRecordNodeRef, attachmentFile){
+            return alfrescoUploadService.uploadFile(attachmentFile, docRecordNodeRef);
         }
     }
 })();
