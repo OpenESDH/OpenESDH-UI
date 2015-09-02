@@ -85,7 +85,21 @@
             data: {
                 authorizedRoles: [USER_ROLES.user]
             }
-        }).state('login', {
+        }).state('caseinfo', {
+            parent: 'site',
+            url: '/cases/case/:caseId',
+            views: {
+                'content@': {
+                    templateUrl: '/app/src/cases/view/case.html',
+                    controller: 'CaseInfoController',
+                    controllerAs: 'vm'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
+            }
+        })
+        .state('login', {
             parent: 'site',
             url: '/login',
             views: {

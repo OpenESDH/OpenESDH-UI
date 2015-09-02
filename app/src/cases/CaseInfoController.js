@@ -4,7 +4,7 @@
        .module('openeApp.cases')
        .controller('CaseInfoController', CaseInfoController);
 
-  CaseInfoController.$inject = ['$scope', '$routeParams', '$mdDialog', 'caseService'];
+  CaseInfoController.$inject = ['$scope', '$stateParams', '$mdDialog', 'caseService'];
   
   /**
    * Main CaseInfoController for the Cases module
@@ -12,12 +12,12 @@
    * @param cases
    * @constructor
    */
-  function CaseInfoController($scope, $routeParams, $mdDialog, caseService) {
+  function CaseInfoController($scope, $stateParams, $mdDialog, caseService) {
     
     init();
     
     function init(){
-        caseService.getCaseInfo($routeParams.caseId).then(function(result){
+        caseService.getCaseInfo($stateParams.caseId).then(function(result){
             $scope.case = result.properties;
         });
     }
