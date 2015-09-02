@@ -6,6 +6,13 @@
         </md-tab-label>
         <md-tab-body>
             <div layout="row" layout-wrap>
+                <div flex="10">
+                    <md-card>
+                        <md-card-content>
+                            <md-button class="md-primary" href="#/cases/case/{{docCtrl.caseId}}">Back</md-button>
+                        </md-card-content>
+                    </md-card>
+                </div>
                 <div flex="100">
                     <md-card>
                         <md-card-content>
@@ -42,6 +49,36 @@
                           <md-button class="md-primary" ng-click="docCtrl.downloadDocument()">Download</md-button>
                           <md-button class="md-primary" ng-disabled="true">Open preview</md-button>
                           <md-button class="md-primary" ng-disabled="true">Edit properties</md-button>
+                        </div>
+                    </md-card>
+                 </div>
+                 <div flex="100">
+                    <md-card>
+                        <md-card-content>
+                            <h3>Attachments</h3>
+                            <table>
+                                <thead>
+                                  <tr>
+                                    <th>Title</th>
+                                    <th>Added</th>
+                                    <th>Added by</th>
+                                    <th>Current version</th>
+                                    <th></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </md-card-content>
+                        <div class="md-actions" layout="row">
+                          <md-button class="md-primary" ng-disabled="true">Upload new attachment</md-button>
                         </div>
                     </md-card>
                  </div>

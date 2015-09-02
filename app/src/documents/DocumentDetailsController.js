@@ -16,6 +16,7 @@
         var documentVersions = [];
         
         var vm = this;
+        vm.caseId = caseId;
         vm.uploadDocNewVersion = uploadDocNewVersion;
         vm.downloadDocument = downloadDocument;
         
