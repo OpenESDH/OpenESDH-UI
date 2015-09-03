@@ -28,9 +28,12 @@ md-tabs md-tabs-wrapper {
 
 dt {
   color: #999;
-  float: left;
-  width: 8em;
-  clear: left;
+  max-width: 7em;
+  padding-top: 1em;
+}
+dd {
+  padding-left: 8em;
+  margin: 0;
 }
 
 table {
