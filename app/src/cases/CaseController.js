@@ -23,9 +23,8 @@
         activate();
 
         function activate() {
-            return getCases().then(function() {
-
-            });
+            getAuthorities();
+            getCases();
         }
 
         function getCases() {
@@ -37,10 +36,12 @@
             });
         }
         
+//        $scope.authorities = ['person one', 'person two', 'person three'];
+
         function createCase(ev, caseType) {
             // In the future, we'll need the ability to create other types of cases
             console.log('Creating a new case of type ' + caseType);
-          
+
             $mdDialog.show({
                 controller: CaseCreateDialogController,
                 controllerAs: 'vm',
@@ -66,6 +67,7 @@
             };
             function update(c) {
                 vm.caseData = angular.copy(c);
+                console.log(vm.caseData);
                 $mdDialog.cancel();
                 notifyCaseSaved();
 
@@ -102,6 +104,7 @@
         function getAuthorities() {
             return userService.getAuthorities().then(function(response) {
                 console.log(response);
+                vm.authorities = response;
                 return response;
             });
         }

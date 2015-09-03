@@ -39,7 +39,7 @@
             var params = {
                 prop_cm_title: caseData.title,
                 prop_cm_description: caseData.description,
-                assoc_base_owners_added: 'workspace://SpacesStore/656bd13b-599c-4061-98f4-2638685eb0d9',
+                assoc_base_owners_added: caseData.owner,
                 prop_base_startDate: caseData.startDate,
                 prop_base_endDate: caseData.endDate
             };
