@@ -4,12 +4,12 @@
         .module('openeApp.documents')
         .controller('DocumentDetailsController', DocumentDetailsController);
     
-    DocumentDetailsController.$inject = [ '$scope', '$routeParams', '$mdDialog', 'caseDocumentDetailsService' ];
+    DocumentDetailsController.$inject = [ '$scope', '$stateParams', '$mdDialog', 'caseDocumentDetailsService' ];
     
-    function DocumentDetailsController($scope, $routeParams, $mdDialog, caseDocumentDetailsService) {
+    function DocumentDetailsController($scope, $stateParams, $mdDialog, caseDocumentDetailsService) {
         
-        var caseId = $routeParams.caseId;
-        var documentNodeRef = $routeParams.storeType + "://" + $routeParams.storeId + "/" + $routeParams.id;
+        var caseId = $stateParams.caseId;
+        var documentNodeRef = $stateParams.storeType + "://" + $stateParams.storeId + "/" + $stateParams.id;
         var caseDocument = null;
         var documentVersions = [];
         
