@@ -16,7 +16,7 @@
         
         function downloadFile(nodeRef, fileName){
             
-            var url = "/alfresco/service/api/node/content/" + alfrescoNodeUtils.processNodeRef(nodeRef).uri + "/" + fileName;
+            var url = "/alfresco/service/api/node/content/" + alfrescoNodeUtils.processNodeRef(nodeRef).uri + "/" + fileName + "?a=true";
             
             var iframe = document.querySelector("#downloadFrame");
             if(iframe === null){

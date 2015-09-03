@@ -14,7 +14,9 @@
             uploadDocumentNewVersion: uploadDocumentNewVersion,
             downloadDocument: downloadDocument,
             getDocumentAttachments: getDocumentAttachments,
-            uploadDocumentAttachment: uploadDocumentAttachment
+            uploadDocumentAttachment: uploadDocumentAttachment,
+            uploadAttachmentNewVersion: uploadAttachmentNewVersion,
+            downloadAttachment: downloadAttachment
         };
         return service;
         
@@ -68,6 +70,18 @@
         
         function uploadDocumentAttachment(docRecordNodeRef, attachmentFile){
             return alfrescoUploadService.uploadFile(attachmentFile, docRecordNodeRef);
+        }
+        
+        function uploadAttachmentNewVersion(attachmentNodeRef, attachmentFile){
+            var uploadProps = {
+                updateNodeRef: attachmentNodeRef,
+                overwrite: true
+            };
+            return alfrescoUploadService.uploadFile(attachmentFile, null, uploadProps);
+        }
+        
+        function downloadAttachment(attachment){
+            alfrescoDownloadService.downloadFile(attachment.nodeRef, attachment.name);
         }
     }
 })();

@@ -21,6 +21,8 @@
         vm.downloadDocument = downloadDocument;
         vm.uploadAttachment = uploadAttachment;
         vm.loadAttachments = loadAttachments;
+        vm.uploadAttachmentNewVersion = uploadAttachmentNewVersion;
+        vm.downloadAttachment = downloadAttachment;
         
         
         activate();
@@ -66,8 +68,8 @@
             caseDocumentDetailsService.downloadDocument(vm.docVersion);
         }
         
-        function uploadDocNewVersion(ev){
-            uploadDialog(ev).then(function(fileToUpload) {
+        function uploadDocNewVersion(){
+            uploadDialog().then(function(fileToUpload) {
                 if(!fileToUpload){
                     return;
                 }
@@ -79,8 +81,8 @@
             });
         }
         
-        function uploadAttachment(ev){
-            uploadDialog(ev).then(function(fileToUpload) {
+        function uploadAttachment(){
+            uploadDialog().then(function(fileToUpload) {
                 if(!fileToUpload){
                     return;
                 }
@@ -92,12 +94,29 @@
             });
         }
         
-        function uploadDialog(ev){
+        function uploadAttachmentNewVersion(attachment){
+            uploadDialog().then(function(fileToUpload) {
+                if(!fileToUpload){
+                    return;
+                }
+                caseDocumentDetailsService.uploadAttachmentNewVersion(attachment.nodeRef, fileToUpload).then(function(result){
+                   loadAttachments(); 
+                });
+            }, function() {
+                //on cancel dialog
+            });
+        }
+        
+        function downloadAttachment(attachment){
+            caseDocumentDetailsService.downloadAttachment(attachment);
+        }
+        
+        function uploadDialog(){
             return $mdDialog.show({
                 controller: DialogController,
                 templateUrl: 'app/src/documents/view/documentUploadDialog.html',
                 parent: angular.element(document.body),
-                targetEvent: ev,
+                targetEvent: null,
                 clickOutsideToClose:true
             });
         }

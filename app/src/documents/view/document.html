@@ -72,13 +72,36 @@
                                         <td>{{attachment.created | date: 'yyyy-MM-dd'}}</td>
                                         <td>{{attachment.creator.firstName + ' ' + attachment.creator.lastName}}</td>
                                         <td>{{attachment.versionLabel}}</td>
-                                        <td></td>
+                                        <td>
+                                            <md-menu>
+                                                 <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" style="font-size: 11px;">
+                                                   actions
+                                                 </md-button>
+                                                 <md-menu-content>
+                                                    <md-menu-item><md-button ng-disabled="true">Edit attachment</md-button></md-menu-item>
+                                                    <md-menu-item><md-button ng-click="docCtrl.uploadAttachmentNewVersion(attachment)">Upload new version</md-button></md-menu-item>
+                                                    <md-menu-item><md-button ng-disabled="true">Open preview</md-button></md-menu-item>
+                                                    <md-menu-item><md-button ng-click="docCtrl.downloadAttachment(attachment)">Download</md-button></md-menu-item>
+                                                 </md-menu-content>
+                                            </md-menu>
+                                       </td>
                                     </tr>
                                         <tr ng-repeat="attachmentVersion in attachment.versions" style="color: rgba(0,0,0,0.26);">
                                             <td style="padding-left: 50px;">{{attachmentVersion.name}}</td>
                                             <td>{{attachmentVersion.created | date: 'yyyy-MM-dd'}}</td>
                                             <td>{{attachmentVersion.creator.firstName + ' ' + attachmentVersion.creator.lastName}}</td>
                                             <td>{{attachmentVersion.versionLabel}}</td>
+                                            <td>
+                                                <md-menu>
+                                                     <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button"  style="font-size: 11px;">
+                                                       actions
+                                                     </md-button>
+                                                     <md-menu-content>
+                                                        <md-menu-item><md-button ng-disabled="true">Open preview</md-button></md-menu-item>
+                                                        <md-menu-item><md-button ng-click="docCtrl.downloadAttachment(attachmentVersion)">Download</md-button></md-menu-item>
+                                                     </md-menu-content>
+                                                </md-menu>
+                                           </td>
                                         </tr>
                                     <tr style="display:none" ng-repeat-end></tr>
                                 </tbody>
