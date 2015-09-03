@@ -51,8 +51,8 @@
                             organization: angular.copy(vm.organization)
                         }
                     })
-                    .then(function(answer) {
-                        $scope.status = answer;
+                    .then(function(response) {
+                        $scope.status = response;
                     }, function() {
 
                     });
@@ -66,7 +66,7 @@
             $scope.cancel = function() {
                 $mdDialog.cancel();
             };
-            $scope.answer = function(orgForm) {
+            $scope.save = function(orgForm) {
                 if (!orgForm.$valid) {
                     $scope.error = 'Fill all required fields!';
                     return;
