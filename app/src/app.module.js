@@ -26,7 +26,6 @@
             $rootScope.$on('$stateChangeStart', function(event, next, params) {
 //                $rootScope.toState = next;
 //                $rootScope.toStateParams = params;
-                console.log('next: ', next);
                 if (next.data.authorizedRoles.length == 0) {
                     return;
                 }
@@ -57,7 +56,6 @@
             abstract: true,
             resolve: {
                 authorize: ['authService', function(authService) {
-                    console.log(authService);
                 }]
             }
         }).state('dashboard', {

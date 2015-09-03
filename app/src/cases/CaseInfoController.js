@@ -13,7 +13,10 @@
    * @constructor
    */
   function CaseInfoController($scope, $stateParams, $mdDialog, caseService) {
-    
+    var vm = this;
+
+    vm.editCase = editCase;
+
     init();
     
     function init(){
@@ -22,9 +25,10 @@
         });
     }
     
-    $scope.editCase = function(ev) {
+    function editCase(ev) {
       $mdDialog.show({
         controller: DialogController,
+        controllerAs: 'vm',
         templateUrl: 'app/src/cases/view/caseCrudDialog.html',
         parent: angular.element(document.body),
         targetEvent: ev,
@@ -35,16 +39,20 @@
       }, function() {
         $scope.status = 'You cancelled the dialog.';
       });
-    };
+    }
     
     function DialogController($scope, $mdDialog) {
-      $scope.hide = function() {
+      var vm = this;
+      vm.cancel = cancel;
+      vm.hide = hide;
+
+      function hide() {
         $mdDialog.hide();
       };
-      $scope.cancel = function() {
+      function cancel() {
         $mdDialog.cancel();
       };
-    };
+    }
     
   };
 

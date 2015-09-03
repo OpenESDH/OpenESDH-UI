@@ -16,17 +16,16 @@
         <label>Case status</label>
         <input type="text" ng-model="case.status" required>
       </md-input-container>
-      
       <md-input-container>
         <label>Case owner</label>
-        <md-select ng-model="case.owner" required ng-controller="CaseController">
-          <md-option ng-value="auth" ng-repeat="auth in authorities">{{ auth }}</md-option>
+        <md-select ng-model="case.owner" required ng-controller="CaseController as vm">
+          <md-option ng-value="auth.nodeRef" ng-repeat="auth in vm.authorities">{{ auth.name }}</md-option>
         </md-select>
       </md-input-container>
       <md-input-container>
         <label>Assigned to</label>
-        <md-select ng-model="case.assignedTo" required ng-controller="CaseController">
-          <md-option ng-value="auth" ng-repeat="auth in authorities">{{ auth }}</md-option>
+        <md-select ng-model="case.assignedTo" required ng-controller="CaseController as vm">
+          <md-option ng-value="auth.nodeRef" ng-repeat="auth in vm.authorities">{{ auth.name }}</md-option>
         </md-select>
       </md-input-container>
       
@@ -47,10 +46,10 @@
       
     </md-dialog-content>
     <div class="md-actions" layout="row">
-      <md-button type="submit" class="md-primary" ng-click="update(case)" ng-disabled="form.$invalid">
+      <md-button type="submit" class="md-primary" ng-click="vm.update(case)" ng-disabled="form.$invalid">
         Create / save case
       </md-button>
-      <md-button type="button" ng-click="cancel(form)">
+      <md-button type="button" ng-click="vm.cancel(form)">
         Cancel
       </md-button>
       <md-button type="button" ng-disabled="true">
