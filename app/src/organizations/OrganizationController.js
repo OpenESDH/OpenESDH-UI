@@ -2,11 +2,7 @@
 
     angular
             .module('openeApp.organizations')
-            .controller('OrganizationController', OrganizationController)
-            .run(function(authService, $q) {
-                // This is just a hack, until we get a login page
-                $q.resolve(authService.login('admin', 'openeadmin'));
-            });
+            .controller('OrganizationController', OrganizationController);
 
     OrganizationController.$inject = ['$scope', '$stateParams', '$mdDialog', 'organizationService'];
 
