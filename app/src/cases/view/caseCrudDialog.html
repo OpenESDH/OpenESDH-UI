@@ -6,34 +6,45 @@
       </div>
     </md-toolbar>
     <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;">
+      
       <md-input-container>
         <label>Case title</label>
         <input type="text" ng-model="case.title" required>
       </md-input-container>
+      
       <md-input-container>
         <label>Case status</label>
         <input type="text" ng-model="case.status" required>
       </md-input-container>
+      
       <md-input-container>
         <label>Case owner</label>
-        <input type="text" ng-model="case.owner" required>
+        <md-select ng-model="case.owner" required ng-controller="CaseController">
+          <md-option ng-value="auth" ng-repeat="auth in authorities">{{ auth }}</md-option>
+        </md-select>
       </md-input-container>
       <md-input-container>
         <label>Assigned to</label>
-        <input type="text" ng-model="case.assignedTo" required>
+        <md-select ng-model="case.assignedTo" required ng-controller="CaseController">
+          <md-option ng-value="auth" ng-repeat="auth in authorities">{{ auth }}</md-option>
+        </md-select>
       </md-input-container>
+      
       <md-input-container>
         <label>Start date</label>
         <input type="date" ng-model="case.startDate" required>
       </md-input-container>
+      
       <md-input-container>
         <label>End date</label>
-        <input type="date" ng-model="case.endDate" required>
+        <input type="date" ng-model="case.endDate">
       </md-input-container>
+      
       <md-input-container>
         <label>Notes / Description</label>
         <textarea ng-model="case.desc"></textarea>
       </md-input-container>
+      
     </md-dialog-content>
     <div class="md-actions" layout="row">
       <md-button type="submit" class="md-primary" ng-click="update(case)" ng-disabled="form.$invalid">

@@ -38,6 +38,11 @@
             });
         }
         
+        
+        // This is a placeholder - please remove and hookup to the proper service
+        $scope.authorities = ['person one', 'person two', 'person three'];
+        
+        
         $scope.createCase = function(ev, caseType) {
           
           // In the future, we'll need the ability to create other types of cases
