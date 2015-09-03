@@ -97,6 +97,19 @@
             data: {
                 authorizedRoles: [USER_ROLES.user]
             }
+        }).state('docDetails', {
+            parent: 'site',
+            url: '/cases/case/:caseId/doc/:storeType/:storeId/:id', 
+            views: {
+                'content@': {
+                    controller : 'DocumentDetailsController',
+                    templateUrl : 'app/src/documents/view/document.html',
+                    controllerAs: 'docCtrl'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
+            }
         })
         .state('login', {
             parent: 'site',

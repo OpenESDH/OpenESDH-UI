@@ -1,0 +1,119 @@
+<app-header></app-header>
+<md-tabs md-dynamic-height>
+    <md-tab>
+        <md-tab-label>
+          <span>Case home</span>
+        </md-tab-label>
+        <md-tab-body>
+            <div layout="row" layout-wrap>
+                <div flex="10">
+                    <md-card>
+                        <md-card-content>
+                            <md-button class="md-primary" href="#/cases/case/{{docCtrl.caseId}}">Back</md-button>
+                        </md-card-content>
+                    </md-card>
+                </div>
+                <div flex="100">
+                    <md-card>
+                        <md-card-content>
+                            <h3>Document</h3>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <dl>
+                                            <dt>Title</dt><dd>{{ docCtrl.doc.name }}</dd>
+                                            <dt>State</dt><dd>{{ docCtrl.doc.state | docStatus}}</dd>
+                                            <dt>Type</dt><dd>{{ docCtrl.doc.type | docType}}</dd>
+                                            <dt>Category</dt><dd>{{ docCtrl.doc.category | docCategory}}</dd>
+                                            <dt>Owner</dt><dd>{{ docCtrl.doc.owner }}</dd>
+                                            <dt>Created</dt><dd>{{ docCtrl.doc.created | date }}</dd>
+                                        </dl>
+                                    </td>
+                                    <td>
+                                        <dl>
+                                            <dt>Version</dt>
+                                                <dd>
+                                                    <select ng-model="docCtrl.docVersion" ng-options="version.label for version in docCtrl.documentVersions"></select>
+                                                </dd>
+                                            <dt>Version added</dt><dd>{{docCtrl.docVersion.createdDateISO | date: 'yyyy-MM-dd'}}</dd>
+                                            <dt>Document name</dt><dd>{{ docCtrl.docVersion.name}}</dd>
+                                            <dt>Version description</dt><dd>{{ docCtrl.docVersion.description }}</dd>
+                                        </dl>
+                                    </td>
+                                </tr>
+                            </table>
+                        </md-card-content>
+                        <div class="md-actions" layout="row">
+                          <md-button class="md-primary" ng-disabled="true">Edit document</md-button>
+                          <md-button class="md-primary" ng-click="docCtrl.uploadDocNewVersion()">Upload new version</md-button>
+                          <md-button class="md-primary" ng-click="docCtrl.downloadDocument()">Download</md-button>
+                          <md-button class="md-primary" ng-disabled="true">Open preview</md-button>
+                          <md-button class="md-primary" ng-disabled="true">Edit properties</md-button>
+                        </div>
+                    </md-card>
+                 </div>
+                 <div flex="100">
+                    <md-card>
+                        <md-card-content>
+                            <h3>Attachments</h3>
+                            <table>
+                                <thead>
+                                  <tr>
+                                    <th>Title</th>
+                                    <th>Added</th>
+                                    <th>Added by</th>
+                                    <th>Current version</th>
+                                    <th></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat-start="attachment in docCtrl.attachments">
+                                        <td>{{attachment.name}}</td>
+                                        <td>{{attachment.created | date: 'yyyy-MM-dd'}}</td>
+                                        <td>{{attachment.creator.firstName + ' ' + attachment.creator.lastName}}</td>
+                                        <td>{{attachment.versionLabel}}</td>
+                                        <td>
+                                            <md-menu>
+                                                 <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" style="font-size: 11px;">
+                                                   actions
+                                                 </md-button>
+                                                 <md-menu-content>
+                                                    <md-menu-item><md-button ng-disabled="true">Edit attachment</md-button></md-menu-item>
+                                                    <md-menu-item><md-button ng-click="docCtrl.uploadAttachmentNewVersion(attachment)">Upload new version</md-button></md-menu-item>
+                                                    <md-menu-item><md-button ng-disabled="true">Open preview</md-button></md-menu-item>
+                                                    <md-menu-item><md-button ng-click="docCtrl.downloadAttachment(attachment)">Download</md-button></md-menu-item>
+                                                 </md-menu-content>
+                                            </md-menu>
+                                       </td>
+                                    </tr>
+                                        <tr ng-repeat="attachmentVersion in attachment.versions" style="color: rgba(0,0,0,0.26);">
+                                            <td style="padding-left: 50px;">{{attachmentVersion.name}}</td>
+                                            <td>{{attachmentVersion.created | date: 'yyyy-MM-dd'}}</td>
+                                            <td>{{attachmentVersion.creator.firstName + ' ' + attachmentVersion.creator.lastName}}</td>
+                                            <td>{{attachmentVersion.versionLabel}}</td>
+                                            <td>
+                                                <md-menu>
+                                                     <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button"  style="font-size: 11px;">
+                                                       actions
+                                                     </md-button>
+                                                     <md-menu-content>
+                                                        <md-menu-item><md-button ng-disabled="true">Open preview</md-button></md-menu-item>
+                                                        <md-menu-item><md-button ng-click="docCtrl.downloadAttachment(attachmentVersion)">Download</md-button></md-menu-item>
+                                                     </md-menu-content>
+                                                </md-menu>
+                                           </td>
+                                        </tr>
+                                    <tr style="display:none" ng-repeat-end></tr>
+                                </tbody>
+                            </table>
+                            Pages: <button ng-repeat="page in docCtrl.attachmentsPages" ng-click="docCtrl.loadAttachments(page)">{{page}}</button>
+                        </md-card-content>
+                        <div class="md-actions" layout="row">
+                          <md-button class="md-primary" ng-click="docCtrl.uploadAttachment()">Upload new attachment</md-button>
+                        </div>
+                    </md-card>
+                 </div>
+            </div>
+        </md-tab-body>
+    </md-tab>
+</md-tabs>
