@@ -148,11 +148,36 @@
       <span>History</span>
     </md-tab-label>
     <md-tab-body layout="column">
-      <md-card>
+      <md-card ng-controller="CaseHistoryController as historyCtrl">
         <md-card-content>
-          <h3>History</h3>
+          <h3>Case history</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Action</th>
+                <th>Type</th>
+                <th>User</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="log in historyCtrl.history">
+                <td>{{ log.action }}</td>
+                <td>{{ log.type }}</td>
+                <td>{{ log.user }}</td>
+                <td>{{ log.time | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
+              </tr>
+            </tbody>
+          </table>
         </md-card-content>
         <div class="md-actions">
+            <div style="float: right;">
+                <span>{{historyCtrl.startIndex}} - {{historyCtrl.endIndex}} of {{historyCtrl.totalItems}}</span>
+                <span>
+                    <md-button ng-click="historyCtrl.loadPreviousPage()" ng-disabled="!historyCtrl.previousPage">&lt;</md-button>
+                    <md-button ng-click="historyCtrl.loadNextPage()" ng-disabled="!historyCtrl.nextPage">&gt;</md-button>
+                </span>
+            </div>
         </div>
       </md-card>
     </md-tab-body>
