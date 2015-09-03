@@ -8,12 +8,12 @@
                 $q.resolve(authService.login('admin', 'openeadmin'));
             });
 
-    OrganizationController.$inject = ['$scope', '$routeParams', '$mdDialog', 'organizationService'];
+    OrganizationController.$inject = ['$scope', '$stateParams', '$mdDialog', 'organizationService'];
 
-    function OrganizationController($scope, $routeParams, $mdDialog, organizationService) {
+    function OrganizationController($scope, $stateParams, $mdDialog, organizationService) {
         var vm = this;
         
-        if ($routeParams.uuid) {
+        if ($stateParams.uuid) {
             //infoForm
             initInfo();
         } else {
@@ -31,14 +31,16 @@
         }
         
         function initInfo() {
-            organizationService.getOrganization($routeParams.storeProtocol, $routeParams.storeIdentifier, $routeParams.uuid).then(function(response) {
+            organizationService.getOrganization($stateParams.storeProtocol, $stateParams.storeIdentifier, $stateParams.uuid).then(function(response) {
                 vm.organization = response;
             });
         }
         
-        $scope.doFilter = function(){
+        function doFilter(){
             initList();
         };
+        
+        $scope.doFilter = doFilter;
 
         $scope.showAdvanced = function(ev) {
             $scope.status = null;
@@ -74,9 +76,9 @@
                     return;
                 }
                 $scope.error = null;
-                if ($routeParams.uuid) {
+                if ($stateParams.uuid) {
                     organizationService.updateOrganization(
-                            $routeParams.storeProtocol, $routeParams.storeIdentifier, $routeParams.uuid, $scope.organization)
+                            $stateParams.storeProtocol, $stateParams.storeIdentifier, $stateParams.uuid, $scope.organization)
                             .then(refreshInfoAfterSuccess, saveError);
                 } else {
                     organizationService.createOrganization($scope.organization)
@@ -85,7 +87,7 @@
             };
 
             function refreshListAfterSuccess() {
-                initList();
+                doFilter();
                 $mdDialog.hide('Success!');
             }
             
@@ -95,6 +97,7 @@
             }
 
             function saveError(response) {
+                console.log(response);
                 $scope.error = response.statusText || response.message;
             }
         }

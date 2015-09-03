@@ -50,16 +50,16 @@
     </md-card>
   </div>
   
-  <div flex="50" ng-controller="FileController">
+  <div flex="50" ng-controller="FileController as vm">
     <md-card>
       <md-card-content>
         <h3>My files</h3>
         <md-list>
-          <md-list-item class="md-2-line" ng-repeat="file in files">
+          <md-list-item class="md-2-line" ng-repeat="document in vm.documents">
             <div class="md-list-item-text">
-              <img ng-src="{{ file.icon }}">
-              <h3>{{ file.title }}</h3>
-              <p>Modified {{ file.modifiedDate }} by {{ file.modifiedBy }}</p>
+              <!--<img ng-src="{{ file.icon }}">-->
+              <h3>{{ document.displayName }}</h3>
+              <p>Modified {{ document.modifiedOn }} by {{ document.modifiedBy }}</p>
             </div>
           </md-list-item>
         </md-list>

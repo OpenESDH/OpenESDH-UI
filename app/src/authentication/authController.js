@@ -5,33 +5,40 @@
         .module('openeApp')
         .controller('AuthController', AuthController);
 
-    AuthController.$inject = ['$location', 'authService', 'userService'];
+    AuthController.$inject = ['$state', 'authService', 'userService'];
 
-    function AuthController($location, authService, userService) {
+    function AuthController($state, authService, userService) {
         var vm = this;
 
         vm.login = login;
         vm.logout = logout;
         vm.loggedin = loggedin;
+        vm.getUserInfo = getUserInfo;
 
-        function login(username, password) {
-            authService.login(username, password).then(function(response) {
-                userService.getPerson(username).then(function(response) {
+        function login(credentials) {
+            authService.login(credentials.username, credentials.password).then(function(response) {
+                userService.getPerson(credentials.username).then(function(response) {
                     vm.user = response;
+                    console.log(vm.user);
                 });
-                $location.path('#/');
+                $state.go('dashboard');
             });
         }
 
         function logout() {
             authService.logout().then(function(response) {
                 delete vm.user;
-                $location.path('#/login');
+                $state.go('login');
             });
         }
 
         function loggedin() {
             return authService.loggedin();
+        }
+
+        function getUserInfo() {
+            var userInfo = authService.getUserInfo();
+            return userInfo;
         }
     }
 })();

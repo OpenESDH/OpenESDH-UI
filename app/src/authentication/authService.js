@@ -38,24 +38,33 @@
         }
     }
 
-    authService.$inject = ['$http', 'sessionService'];
+    authService.$inject = ['$http', 'sessionService', 'userService'];
 
-    function authService($http, sessionService) {
-        var userInfo;
+    function authService($http, sessionService, userService) {
+        var userInfo = {};
         var service = {
             login: login,
             logout: logout,
-            loggedin: loggedin
+            loggedin: loggedin,
+            isAuthenticated: isAuthenticated,
+            isAuthorized: isAuthorized,
+            getUserInfo: getUserInfo
         };
 
         return service;
 
+        function getUserInfo() {
+            return sessionService.getUserInfo();
+        }
+
         function login(username, password) {
-            return $http.post("/alfresco/service/api/login", {username: username, password: password}).then(function(response) {
-                userInfo = {
-                    ticket: response.data.data.ticket,
-                    userName: username
-                };
+            return $http.post("/alfresco/service/api/login", {username: username, password: password}).then(function(response){
+                var ticket = response.data.data.ticket;
+                userInfo['ticket'] = ticket;
+                sessionService.setUserInfo(userInfo);
+                return userService.getPerson(username);
+            }).then(function(response) {
+                userInfo['user'] = response;
                 sessionService.setUserInfo(userInfo);
                 return response;
             }, function(reason) {
@@ -65,14 +74,35 @@
 
         function logout() {
             var userInfo = sessionService.getUserInfo();
-            return $http.delete('/alfresco/service/api/login/ticket/' + userInfo.ticket).then(function(response) {
-                sessionService.setUserInfo(null);
-                return response;
-            });
+            if (userInfo && userInfo.ticket) {
+                return $http.delete('/alfresco/service/api/login/ticket/' + userInfo.ticket).then(function(response) {
+                    sessionService.setUserInfo(null);
+                    return response;
+                });
+            }
         }
 
         function loggedin() {
             return sessionService.getUserInfo();
+        }
+
+        function isAuthenticated() {
+            return sessionService.getUserInfo();
+        }
+
+        function isAuthorized(authorizedRoles) {
+            var userInfo = sessionService.getUserInfo();
+            console.log(userInfo);
+            if (typeof userInfo === 'undefined') {
+                return false;
+            }
+            if (!angular.isArray(authorizedRoles)) {
+                authorizedRoles = [authorizedRoles];
+            }
+
+            userInfo.user.capabilities.isAdmin;
+//            return (isAuthenticated() && authorizedRoles.indexOf(sessionService.))
+            return true;
         }
     }
 })();
