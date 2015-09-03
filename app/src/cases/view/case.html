@@ -30,7 +30,7 @@
               </dl>
             </md-card-content>
             <div class="md-actions" layout="row">
-              <md-button class="md-primary" ng-click="editCase($event)">Edit information</md-button>
+              <md-button class="md-primary" ng-click="vm.editCase($event)">Edit information</md-button>
               <md-button class="md-primary" ng-disabled="true">Print case</md-button>
               <md-button class="md-primary" ng-disabled="true">Start workflow</md-button>
               <md-button class="md-primary" ng-disabled="true">Create site</md-button>
@@ -94,7 +94,7 @@
                     </td>
                     <td>{{doc["cm:created"] | date: 'yyyy-MM-dd'}}</td>
                     <td>{{doc["cm:modified"] | date: 'yyyy-MM-dd'}}</td>
-                    <td><md-button class="md-primary" ng-disabled="true">View details</md-button> <md-button class="md-primary" ng-disabled="true">Preview</md-button></td>
+                    <td><md-button class="md-primary" href="#/cases/case/{{docCtrl.caseId}}/doc/{{doc.nodeRef | nodeRef}}">View details</md-button> <md-button class="md-primary" ng-disabled="true">Preview</md-button></td>
                   </tr>
                 </tbody>
               </table>

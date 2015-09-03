@@ -13,7 +13,8 @@
             'openeApp.files',
             'openeApp.tasks',
             'openeApp.documents',
-            'openeApp.notes'
+            'openeApp.notes',
+            'openeApp.organizations'
         ])
         .config(config)
         .constant('USER_ROLES', {
@@ -25,7 +26,6 @@
             $rootScope.$on('$stateChangeStart', function(event, next, params) {
 //                $rootScope.toState = next;
 //                $rootScope.toStateParams = params;
-                console.log('next: ', next);
                 if (next.data.authorizedRoles.length == 0) {
                     return;
                 }
@@ -96,6 +96,19 @@
             data: {
                 authorizedRoles: [USER_ROLES.user]
             }
+        }).state('docDetails', {
+            parent: 'site',
+            url: '/cases/case/:caseId/doc/:storeType/:storeId/:id', 
+            views: {
+                'content@': {
+                    controller : 'DocumentDetailsController',
+                    templateUrl : 'app/src/documents/view/document.html',
+                    controllerAs: 'docCtrl'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
+            }
         })
         .state('login', {
             parent: 'site',
@@ -129,6 +142,32 @@
                 'content@': {
                     templateUrl : '/app/src/tasks/view/tasks.html',
                     controller : 'TaskController'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
+            }
+        }).state('organizations', {
+            parent: 'site',
+            url: '/organizations',
+            views: {
+                'content@': {
+                    templateUrl : '/app/src/organizations/view/organizations.html',
+                    controller : 'OrganizationController',
+                    controllerAs: 'vm'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
+            }
+        }).state('organization', {
+            parent: 'site',
+            url: '/organizations/organization/:storeProtocol/:storeIdentifier/:uuid',
+            views: {
+                'content@': {
+                    templateUrl : '/app/src/organizations/view/organization.html',
+                    controller : 'OrganizationController',
+                    controllerAs: 'vm'
                 }
             },
             data: {

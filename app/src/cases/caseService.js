@@ -5,9 +5,9 @@
         .module('openeApp.cases')
         .factory('caseService', caseService);
 
-    caseService.$inject = ['$http', '$resource'];
+    caseService.$inject = ['$http', '$resource', 'userService'];
 
-    function caseService($http, $resource) {
+    function caseService($http, $resource, userService) {
         var service = {
             getCaseTypes: getCaseTypes,
             getCases: getCases,
@@ -35,8 +35,18 @@
             }
         }
 
-        function createCase(params) {
-            return $resource('/alfresco/service/api/type/:type/formprocessor', {type: 'simple:case'}).save(params, createCaseComplete);
+        function createCase(caseData) {
+            var params = {
+                prop_cm_title: caseData.title,
+                prop_cm_description: caseData.description,
+                assoc_base_owners_added: caseData.owner,
+                prop_base_startDate: caseData.startDate,
+                prop_base_endDate: caseData.endDate
+            };
+            userService.getHome().then(function(response) {
+                params.alf_destination = response.nodeRef;
+                return $resource('/alfresco/service/api/type/:type/formprocessor', {type: 'simple:case'}).save(params, createCaseComplete);
+            });
 
             function createCaseComplete(response) {
                 return response;
