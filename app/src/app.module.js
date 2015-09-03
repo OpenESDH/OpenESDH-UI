@@ -56,7 +56,6 @@
             abstract: true,
             resolve: {
                 authorize: ['authService', function(authService) {
-                    console.log(authService);
                 }]
             }
         }).state('dashboard', {

@@ -14,7 +14,6 @@
 
         function activate() {
             vm.documents = documentService.getDocuments().then(function(response) {
-                console.log(response);
                 vm.documents = response.items;
             });
         }
