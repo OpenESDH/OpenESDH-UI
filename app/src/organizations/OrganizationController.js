@@ -1,5 +1,4 @@
 (function() {
-    'use strict';
 
     angular
             .module('openeApp.organizations')
@@ -9,63 +8,97 @@
                 $q.resolve(authService.login('admin', 'openeadmin'));
             });
 
-    OrganizationController.$inject = ['$scope', '$mdDialog', 'organizationService'];
+    OrganizationController.$inject = ['$scope', '$routeParams', '$mdDialog', 'organizationService'];
 
-    function OrganizationController($scope, $mdDialog, organizationService) {
+    function OrganizationController($scope, $routeParams, $mdDialog, organizationService) {
         var vm = this;
-        vm.organizations = [];
-        vm.searchQuery = '';
-
-        vm.getOrganizations = getOrganizations;
-
-        activate();
-
-        function activate() {
-            getOrganizations(vm.searchQuery).then(function() {
-
-            });
+        
+        if ($routeParams.uuid) {
+            //infoForm
+            initInfo();
+        } else {
+            //list
+            initList();
         }
 
-        function getOrganizations(searchQuery) {
-            return organizationService.getOrganizations(searchQuery).then(function(response) {
+        function initList() {
+            vm.organizations = [];
+            organizationService.getOrganizations(vm.searchQuery || '').then(function(response) {
                 vm.organizations = response;
-                return vm.organizations;
             }, function(error) {
                 console.log(error);
             });
         }
-
-
+        
+        function initInfo() {
+            organizationService.getOrganization($routeParams.storeProtocol, $routeParams.storeIdentifier, $routeParams.uuid).then(function(response) {
+                vm.organization = response;
+            });
+        }
+        
+        $scope.doFilter = function(){
+            initList();
+        };
 
         $scope.showAdvanced = function(ev) {
-            $mdDialog.show({
-                controller: DialogController,
-                templateUrl: 'app/src/organizations/view/organizationCrudDialog.html',
-                parent: angular.element(document.body),
-                targetEvent: ev,
-                clickOutsideToClose: true
-            })
+            $scope.status = null;
+            $mdDialog
+                    .show({
+                        controller: DialogController,
+                        templateUrl: 'app/src/organizations/view/organizationCrudDialog.html',
+                        parent: angular.element(document.body),
+                        targetEvent: ev,
+                        clickOutsideToClose: true,
+                        locals: {
+                            organization: angular.copy(vm.organization)
+                        }
+                    })
                     .then(function(answer) {
-                        $scope.status = 'You said the information was "' + answer + '".';
+                        $scope.status = answer;
                     }, function() {
-                        $scope.status = 'You cancelled the dialog.';
+
                     });
         };
 
-    }
-    ;
+        function DialogController($scope, $mdDialog, organization) {
+            $scope.organization = organization;
+            $scope.hide = function() {
+                $mdDialog.hide();
+            };
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+            $scope.answer = function(orgForm) {
+                if (!orgForm.$valid) {
+                    $scope.error = 'Fill all required fields!';
+                    return;
+                }
+                $scope.error = null;
+                if ($routeParams.uuid) {
+                    organizationService.updateOrganization(
+                            $routeParams.storeProtocol, $routeParams.storeIdentifier, $routeParams.uuid, $scope.organization)
+                            .then(refreshInfoAfterSuccess, saveError);
+                } else {
+                    organizationService.createOrganization($scope.organization)
+                            .then(refreshListAfterSuccess, saveError);
+                }
+            };
 
-    function DialogController($scope, $mdDialog) {
-        $scope.hide = function() {
-            $mdDialog.hide();
-        };
-        $scope.cancel = function() {
-            $mdDialog.cancel();
-        };
-        $scope.answer = function(answer) {
-            $mdDialog.hide(answer);
-        };
+            function refreshListAfterSuccess() {
+                initList();
+                $mdDialog.hide('Success!');
+            }
+            
+            function refreshInfoAfterSuccess(savedOrganization) {
+                vm.organization = savedOrganization;
+                $mdDialog.hide('Success!');
+            }
+
+            function saveError(response) {
+                $scope.error = response.statusText || response.message;
+            }
+        }
     }
-    ;
+
 
 })();

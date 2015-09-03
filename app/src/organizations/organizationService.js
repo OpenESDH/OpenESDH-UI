@@ -3,9 +3,9 @@
 
     angular.module('openeApp.organizations').factory('organizationService', organizationService);
 
-    organizationService.$inject = ['$http', '$resource', '$q'];
+    organizationService.$inject = ['$http', '$q'];
 
-    function organizationService($http, $resource, $q) {
+    function organizationService($http, $q) {
         var service = {
             getOrganizations: getOrganizations,
             getOrganization: getOrganization,
@@ -17,46 +17,33 @@
         function getOrganizations(searchTerm) {
             return $http.get('/alfresco/service/api/openesdh/contactsearch',
                     {params: {baseType: 'contact:organization', term: searchTerm}})
-                    .then(getOrganizations);
-
-            function getOrganizations(response) {
-                return response.data;
-            }
+                    .then(successOrReject);
         }
 
         function getOrganization(storeProtocol, storeIdentifier, uuid) {
             //api/openesdh/contact/{store_type}/{store_id}/{id}
             return $http.get('/alfresco/service/api/openesdh/contact/' + storeProtocol + '/' + storeIdentifier + '/' + uuid)
-                    .then(getOrganization);
-
-            function getOrganization(response) {
-                return response.data;
-            }
+                    .then(successOrReject);
         }
 
         function updateOrganization(storeProtocol, storeIdentifier, uuid, organization) {
             //api/openesdh/contact/{store_type}/{store_id}/{id}
             return $http.put('/alfresco/service/api/openesdh/contact/' + storeProtocol + '/' + storeIdentifier + '/' + uuid,
-                    organization).then(updateOrganizationComplete);
-
-            function updateOrganizationComplete(response) {
-                if (response.status && response.status !== 200) {
-                    return $q.reject(response);
-                }
-                return response.data;
-            }
+                    organization).then(successOrReject);
         }
 
         function createOrganization(organization) {
-            return $resource('/alfresco/service/api/openesdh/contact/' + storeProtocol + '/' + storeIdentifier + '/' + uuid,
-                    {type: 'contact:organization'}).save(organization, createOrganizationComplete);
-
-            function createOrganizationComplete(response) {
-                return response;
-            }
+            ///api/openesdh/contacts/create
+            return $http.post('/alfresco/service/api/openesdh/contacts/create',
+                    angular.extend({contactType: 'ORGANIZATION'}, organization))
+                    .then(successOrReject);
         }
 
-
-
+        function successOrReject(response) {
+            if (response.status && response.status !== 200) {
+                return $q.reject(response);
+            }
+            return response.data;
+        }
     }
 })();
