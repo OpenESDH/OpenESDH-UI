@@ -1,40 +1,22 @@
 (function(){
+    'use strict';
 
-  angular
-       .module('openeApp.files')
-       .controller('FileController', FileController);
+     angular
+        .module('openeApp.files')
+        .controller('FileController', FileController);
 
-  FileController.$inject = ['$scope'];
+    FileController.$inject = ['$scope', 'documentService'];
 
-  function FileController($scope) {
-    
-    $scope.files = [
-      {
-        title: 'Somefilename.doc',
-        modifiedDate: 'Aug 26 2015',
-        modifiedBy: 'Svend Tveskæg',
-        createdDate: 'Jun 1 2015',
-        createdBy: 'Someone Someonsson',
-        icon: ''
-      },
-      {
-        title: 'Otherfilename.doc',
-        modifiedDate: 'Aug 26 2015',
-        modifiedBy: 'Svend Tveskæg',
-        createdDate: 'Jun 1 2015',
-        createdBy: 'Someone Someonsson',
-        icon: ''
-      },
-      {
-        title: 'Somefilename.pdf',
-        modifiedDate: 'Aug 26 2015',
-        modifiedBy: 'Svend Tveskæg',
-        createdDate: 'Jun 1 2015',
-        createdBy: 'Someone Someonsson',
-        icon: ''
-      }
-    ];
-    
-  }
+    function FileController($scope, documentService) {
+        var vm = this;
 
+        activate();
+
+        function activate() {
+            vm.documents = documentService.getDocuments().then(function(response) {
+                console.log(response);
+                vm.documents = response.items;
+            });
+        }
+    }
 })();
