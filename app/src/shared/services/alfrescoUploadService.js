@@ -31,9 +31,13 @@
              *      siteId
              *      containerId
              *      uploaddirectory
+             *      majorVersion
+             *      updateNodeRef
+             *      description
              *      username
              *      overwrite
              *      thumbnails
+             *      username
              */
             
             if(extras){

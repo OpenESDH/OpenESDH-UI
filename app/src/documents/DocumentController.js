@@ -11,6 +11,7 @@
         var caseId = $stateParams.caseId;
         var caseDocsFolderNodeRef = '';
         var vm = this;
+        vm.caseId = caseId;
         vm.pageSize = 2;
         
         vm.loadDocuments = loadDocuments;
@@ -42,7 +43,7 @@
         function uploadDocument(ev){
             $mdDialog.show({
                 controller: DialogController,
-                templateUrl: 'app/src/documents/documentUploadDialog.html',
+                templateUrl: 'app/src/documents/view/documentUploadDialog.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose:true
