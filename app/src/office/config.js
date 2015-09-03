@@ -1,9 +1,10 @@
 (function(){
     'use strict';
 
-    var module = angular.module('openeApp.office');
-    module.config(configure);
-    console.log(module);
+    angular.module('openeApp.office').config(['$stateProvider', function($stateProvider) {
+        console.log('in configure');
+    }]);
+//    module.config(configure);
 
     configure.$inject = ['$stateProvider'];
 

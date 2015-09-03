@@ -8,6 +8,6 @@
     OfficeController.$inject = [];
 
     function OfficeController() {
-
+        console.log('office controller');
     }
 })();
