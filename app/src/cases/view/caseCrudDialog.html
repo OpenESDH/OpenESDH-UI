@@ -16,7 +16,7 @@
       </md-input-container>
       <md-input-container ng-controller="CaseController as vm">
         <label>Case owner</label>
-        <select ng-model="case.owner" ng-options="authority.nodeRef as authority.name for authority in vm.authorities"/>
+        <input type="text" ng-model="case.owner" required>
       </md-input-container>
       <md-input-container>
         <label>Assigned to</label>
