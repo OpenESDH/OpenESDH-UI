@@ -1,0 +1,40 @@
+<md-card>
+    <md-card-content>
+
+        <h1>Contacts</h1>
+
+        <md-input-container>
+            <label>Search for contacts</label>
+            <input type="text" ng-model="vm.searchQuery" ng-change="vm.doFilter()">
+        </md-input-container>
+
+        <table>
+            <thead>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Department</th>
+            <th>Street</th>
+            <th>Postal code</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>Actions</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="person in vm.persons.items">
+                    <td>{{person['contact:firstName']}}</td>
+                    <td>{{person['contact:lastName']}}</td>
+                    <td></td>
+                    <td>{{person['contact:address']}}</td>
+                    <td>{{person['contact:postCode']}}</td>
+                    <td>{{person['contact:cityName']}}</td>
+                    <td>{{person['contact:countryCode']}}</td>
+                    <td><a class="md-button md-primary" 
+                           href="#/contacts/person/{{person['sys:store-protocol']}}/{{person['sys:store-identifier']}}/{{person['sys:node-uuid']}}">View details</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <md-button class="md-primary" href="#/contacts/person/create">Create new contact</md-button>
+
+    </md-card-content>
+</md-card>

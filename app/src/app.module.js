@@ -14,7 +14,7 @@
             'openeApp.tasks',
             'openeApp.documents',
             'openeApp.notes',
-            'openeApp.organizations'
+            'openeApp.contacts'
         ])
         .config(config)
         .constant('USER_ROLES', {
@@ -152,7 +152,7 @@
             url: '/organizations',
             views: {
                 'content@': {
-                    templateUrl : '/app/src/organizations/view/organizations.html',
+                    templateUrl : '/app/src/contacts/view/organizations.html',
                     controller : 'OrganizationController',
                     controllerAs: 'vm'
                 }
@@ -165,8 +165,47 @@
             url: '/organizations/organization/:storeProtocol/:storeIdentifier/:uuid',
             views: {
                 'content@': {
-                    templateUrl : '/app/src/organizations/view/organization.html',
+                    templateUrl : '/app/src/contacts/view/organization.html',
                     controller : 'OrganizationController',
+                    controllerAs: 'vm'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
+            }
+        }).state('contacts', {
+            parent: 'site',
+            url: '/contacts',
+            views: {
+                'content@': {
+                    templateUrl : '/app/src/contacts/view/persons.html',
+                    controller : 'PersonsController',
+                    controllerAs: 'vm'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
+            }
+        }).state('contact', {
+            parent: 'site',
+            url: '/contacts/person/:storeProtocol/:storeIdentifier/:uuid',
+            views: {
+                'content@': {
+                    templateUrl : '/app/src/contacts/view/personCrud.html',
+                    controller : 'PersonCrudController',
+                    controllerAs: 'vm'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
+            }
+        }).state('contactNew', {
+            parent: 'site',
+            url: '/contacts/person/create',
+            views: {
+                'content@': {
+                    templateUrl : '/app/src/contacts/view/personCrud.html',
+                    controller : 'PersonCrudController',
                     controllerAs: 'vm'
                 }
             },
