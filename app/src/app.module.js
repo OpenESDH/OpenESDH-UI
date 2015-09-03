@@ -13,7 +13,8 @@
             'openeApp.files',
             'openeApp.tasks',
             'openeApp.documents',
-            'openeApp.notes'
+            'openeApp.notes',
+            'openeApp.organizations'
         ])
         .config(config)
         .constant('USER_ROLES', {
@@ -130,6 +131,32 @@
                 'content@': {
                     templateUrl : '/app/src/tasks/view/tasks.html',
                     controller : 'TaskController'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
+            }
+        }).state('organizations', {
+            parent: 'site',
+            url: '/organizations',
+            views: {
+                'content@': {
+                    templateUrl : '/app/src/organizations/view/organizations.html',
+                    controller : 'OrganizationController',
+                    controllerAs: 'vm'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
+            }
+        }).state('organization', {
+            parent: 'site',
+            url: '/organizations/organization/:storeProtocol/:storeIdentifier/:uuid',
+            views: {
+                'content@': {
+                    templateUrl : '/app/src/organizations/view/organization.html',
+                    controller : 'OrganizationController',
+                    controllerAs: 'vm'
                 }
             },
             data: {
