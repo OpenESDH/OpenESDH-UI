@@ -14,9 +14,9 @@
         <label>Case status</label>
         <input type="text" ng-model="case.status" required>
       </md-input-container>
-      <md-input-container>
+      <md-input-container ng-controller="CaseController as vm">
         <label>Case owner</label>
-        <input type="text" ng-model="case.owner" required>
+        <select ng-model="case.owner" ng-options="authority.nodeRef as authority.name for authority in vm.authorities"/>
       </md-input-container>
       <md-input-container>
         <label>Assigned to</label>
@@ -36,10 +36,10 @@
       </md-input-container>
     </md-dialog-content>
     <div class="md-actions" layout="row">
-      <md-button type="submit" class="md-primary" ng-click="update(case)" ng-disabled="form.$invalid">
+      <md-button type="submit" class="md-primary" ng-click="vm.update(case)" ng-disabled="form.$invalid">
         Create / save case
       </md-button>
-      <md-button type="button" ng-click="cancel(form)">
+      <md-button type="button" ng-click="vm.cancel(form)">
         Cancel
       </md-button>
       <md-button type="button" ng-disabled="true">
