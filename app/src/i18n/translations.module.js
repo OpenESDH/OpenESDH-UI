@@ -11,12 +11,20 @@
 
     function config($translateProvider, $translatePartialLoaderProvider) {
         
+        $translatePartialLoaderProvider.addPart('login');
+        $translatePartialLoaderProvider.addPart('menu');
         $translatePartialLoaderProvider.addPart('common');
         $translateProvider.useLoader('$translatePartialLoader', {
            urlTemplate: '/app/src/i18n/{lang}/{part}.json' 
         });
+        
         $translateProvider
-            .preferredLanguage('en_EN');
+            .registerAvailableLanguageKeys(['en', 'da'], {
+              'en_US': 'en',
+              'en_UK': 'en',
+              'da_DK': 'da'
+            })
+            .determinePreferredLanguage();
     }
 
 })();

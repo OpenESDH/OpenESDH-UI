@@ -2,20 +2,20 @@
   <form>
     <md-toolbar layout="row">
       <div class="md-toolbar-tools">
-        <h2>{{'CREATE_NOTE_DIALOG_TITLE' | translate}}</h2>
+        <h2>{{'notes.CREATE_NOTE' | translate}}</h2>
       </div>
     </md-toolbar>
     <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;min-height:300px;">
       <md-input-container>
-        <label>{{'NOTE_HEADLINE_FIELD' | translate}}</label>
+        <label>{{'notes.HEADLINE' | translate}}</label>
         <input type="text" ng-model="headline" required>
       </md-input-container>
       <md-input-container>
-        <label>{{'NOTE_CONTENT_FIELD' | translate}}</label>
+        <label>{{'notes.CONTENT' | translate}}</label>
         <input type="text" ng-model="content" required>
       </md-input-container>
       
-        <label>{{'NOTE_CONCERNED_PARTIES_FIELD' | translate}}:</label>
+        <label>{{'notes.CONCERNED_PARTIES' | translate}}:</label>
         
         <div isteven-multi-select 
             input-model="caseParties" 
@@ -29,10 +29,10 @@
     </md-dialog-content>
     <div class="md-actions" layout="row">
       <md-button class="md-primary" ng-click="addNote()">
-        {{'ADD_NOTE_BUTTON' | translate}}
+        {{'notes.ADD_NOTE' | translate}}
       </md-button>
       <md-button ng-click="cancel()">
-        {{'CANCEL_BUTTON' | translate}}
+        {{'common.CANCEL' | translate}}
       </md-button>
     </div>
   </form>

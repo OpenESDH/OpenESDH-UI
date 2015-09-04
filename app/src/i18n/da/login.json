@@ -1,0 +1,7 @@
+{
+	"login": {
+      "username": "Brugernavn",
+      "password": "Kodeord",
+      "signmein": "Automatisk log ind"
+    }
+}

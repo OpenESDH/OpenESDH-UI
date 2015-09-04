@@ -1,0 +1,7 @@
+{
+	"login": {
+      "username": "User name",
+      "password": "Password",
+      "signmein": "Sign me in automatically"
+    }
+}

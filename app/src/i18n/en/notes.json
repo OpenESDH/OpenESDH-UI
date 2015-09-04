@@ -1,0 +1,20 @@
+{
+	"notes": {
+		"notes": "Notes",
+		
+		"CREATED": "Created",
+		"BY": "by",
+		"RELATED": "Related",
+		
+		"NEW_NOTE": "New note",
+		"PRINT_ALL_NOTES": "Print all notes",
+		
+		"CREATE_NOTE": "Create note",
+		"HEADLINE": "Headline",
+		"CONTENT": "Content",
+		"CONCERNED_PARTIES": "Concerned parties",
+		"ADD_NOTE": "Add note"	
+	}
+	
+	
+}

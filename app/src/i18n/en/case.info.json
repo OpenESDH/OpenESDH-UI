@@ -1,0 +1,29 @@
+{
+	"CASEINFO": {
+      "MYCASES": "My cases",
+      "CASES": "Cases",
+      "UNASSIGNEDCASES": "Unassigned cases",
+      "ID": "Case ID",
+      "TYPE": "Type",
+      "TITLE": "Case title",
+      "STATUS": "Status",
+      "CREATEDBY": "Created by",
+      "CREATED": "Created",
+      "CASEOWNERS": "Case owners",
+      "MODIFIED": "Last modified",
+      "DESCRIPTION": "Description",
+      "STARTDATE": "Start date",
+      "ENDDATE": "End date",
+      "ACTIONS": "Actions",
+      "CREATENEWCASE": "Create new case",
+      "VIEW": "View",
+      "CASETYPESTANDARD": "Standard case",
+      "CASETYPEOTHER": "Other type of case",
+      
+      "CARDTITLE": "Information",
+      "EDIT_INFORMATION": "Edit information",
+      "PRINT_CASE": "Print case",
+      "START_WORKFLOW": "Start workflow",
+      "CREATE_SITE": "Create site"
+    }
+}
