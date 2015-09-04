@@ -41,15 +41,15 @@
         <div flex="50">
           <md-card ng-controller="NoteController as caseNotes">
             <md-card-content>
-              <h3>Notes</h3>
+              <h3>{{'NOTES_CARD_TITLE' | translate}}</h3>
               <md-list>
                 <md-list-item ng-repeat="note in caseNotes.notes">
                   <div class="md-list-item-text">
                     <h4>{{ note.headline }}</h4>
                     <p>{{ note.content }}</p>
                     <p style="font-size: 0.8em; color: #999;">
-                      Created {{ note.created | date: 'yyyy-MM-dd' }} by {{ note.authorInfo.firstName + ' ' + note.authorInfo.lastName }}<br>
-                      Related: <span style="margin-right: 0.5em;" ng-repeat="relation in note.concernedPartiesInfo">{{ relation.name }}</span>
+                      {{'NOTE_CREATED_FIELD' | translate}} {{ note.created | date: 'yyyy-MM-dd' }} {{'NOTE_CREATED_BY' | translate}} {{ note.authorInfo.firstName + ' ' + note.authorInfo.lastName }}<br>
+                      {{'NOTE_RELATED_FIELD' | translate}}: <span style="margin-right: 0.5em;" ng-repeat="relation in note.concernedPartiesInfo">{{ relation.name }}</span>
                     </p>
                   </div>
                 </md-list-item>                
@@ -58,8 +58,8 @@
                 Pages: <span style="margin-right: 10px;" ng-repeat="page in caseNotes.pages"><button ng-click="caseNotes.loadNotes(page)">{{page}}</button></span>
             </md-card-content>
             <div class="md-actions" layout="row">
-              <md-button class="md-primary" ng-click="caseNotes.newNote()">New note</md-button>
-              <md-button class="md-primary" ng-disabled="true">Print all notes</md-button>
+              <md-button class="md-primary" ng-click="caseNotes.newNote()">{{'NEW_NOTE_BUTTON' | translate}}</md-button>
+              <md-button class="md-primary" ng-disabled="true">{{'PRINT_ALL_NOTES_BUTTON' | translate}}</md-button>
             </div>
           </md-card>
         </div>
@@ -67,19 +67,19 @@
         <div flex="100">
           <md-card ng-controller="DocumentController as docCtrl">
             <md-card-content>
-              <h3>Documents</h3>
+              <h3>{{'DOCUMENTS_CARD_TITLE' | translate}}</h3>
               <table>
                 <thead>
                   <tr>
-                    <th>Title</th>
-                    <th>Doc.No.</th>
-                    <th>Type</th>
-                    <th>Category</th>
-                    <th>State</th>
-                    <th>Owner</th>
-                    <th>Created</th>
-                    <th>Modified</th>
-                    <th>Action</th>
+                    <th>{{'DOCUMENT_TITLE_COLUMN' | translate}}</th>
+                    <th>{{'DOCUMENT_NO_COLUMN' | translate}}</th>
+                    <th>{{'DOCUMENT_TYPE_COLUMN' | translate}}</th>
+                    <th>{{'DOCUMENT_CATEGORY_COLUMN' | translate}}</th>
+                    <th>{{'DOCUMENT_STATE_COLUMN' | translate}}</th>
+                    <th>{{'DOCUMENT_OWNER_COLUMN' | translate}}</th>
+                    <th>{{'DOCUMENT_CREATED_COLUMN' | translate}}</th>
+                    <th>{{'DOCUMENT_MODIFIED_COLUMN' | translate}}</th>
+                    <th>{{'ACTION_COLUMN' | translate}}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -94,16 +94,19 @@
                     </td>
                     <td>{{doc["cm:created"] | date: 'yyyy-MM-dd'}}</td>
                     <td>{{doc["cm:modified"] | date: 'yyyy-MM-dd'}}</td>
-                    <td><md-button class="md-primary" href="#/cases/case/{{docCtrl.caseId}}/doc/{{doc.nodeRef | nodeRef}}">View details</md-button> <md-button class="md-primary" ng-disabled="true">Preview</md-button></td>
+                    <td>
+                        <md-button class="md-primary" href="#/cases/case/{{docCtrl.caseId}}/doc/{{doc.nodeRef | nodeRef}}">{{'VIEW_DETAILS_BUTTON' | translate}}</md-button> 
+                        <md-button class="md-primary" ng-disabled="true">{{'PREVIEW_BUTTON' | translate}}</md-button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
               Pages: <button ng-repeat="page in docCtrl.pages" ng-click="docCtrl.loadDocuments(page)">{{page}}</button>
             </md-card-content>
             <div class="md-actions" layout="row">
-              <md-button class="md-primary" ng-disabled="true">Create new document</md-button>
-              <md-button class="md-primary" ng-click="docCtrl.uploadDocument()">Upload new documents</md-button>
-              <md-button class="md-primary" ng-disabled="true">Email documents</md-button>
+              <md-button class="md-primary" ng-disabled="true">{{'CREATE_NEW_DOCUMENT_BUTTON' | translate}}</md-button>
+              <md-button class="md-primary" ng-click="docCtrl.uploadDocument()">{{'UPLOAD_NEW_DOCUMENTS_BUTTON' | translate}}</md-button>
+              <md-button class="md-primary" ng-disabled="true">{{'EMAIL_DOCUMENTS_BUTTON' | translate}}</md-button>
             </div>
           </md-card>
         </div>

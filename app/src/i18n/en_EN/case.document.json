@@ -1,0 +1,53 @@
+{
+	"DOCUMENTS_CARD_TITLE": "Documents",
+		
+	"DOCUMENT_TITLE_COLUMN": "Title",
+	"DOCUMENT_NO_COLUMN": "Doc.No",
+	"DOCUMENT_TYPE_COLUMN": "Type",
+	"DOCUMENT_CATEGORY_COLUMN": "Category",
+	"DOCUMENT_STATE_COLUMN": "State",
+	"DOCUMENT_OWNER_COLUMN": "Owner",
+	"DOCUMENT_CREATED_COLUMN": "Created",
+	"DOCUMENT_MODIFIED_COLUMN": "Modified",
+	
+	"CREATE_NEW_DOCUMENT_BUTTON": "Create new document",
+	"UPLOAD_NEW_DOCUMENTS_BUTTON": "Upload new documents",
+	"EMAIL_DOCUMENTS_BUTTON": "Email documents",
+	"VIEW_DETAILS_BUTTON": "View details",
+	"PREVIEW_BUTTON": "Preview",
+	
+	"document":{
+            "status":{
+                "received": "Received",
+                "distributed": "Distributed",
+                "draft": "Draft",
+                "under-review": "Under review",
+                "published": "Published",
+                "finalised": "Finalised",
+                "submitted": "Submitted"
+            },
+            "category":{
+                "annex": "Annex",
+                "proof": "Proof",
+                "contract": "Contract",
+                "note": "Note",
+                "report": "Report",
+                "proxy": "Proxy",
+                "warranty": "Warranty",
+                "part": "Part",
+                "statement": "Statement",
+                "summary": "Summary",
+                "accounting": "Accounting",
+                "offers": "Offers",
+                "other": "Other"
+            },
+            "type":{
+                "invoice": "Invoice",
+                "letter": "Letter",
+                "note": "Note",
+                "report": "Report",
+                "agenda": "Agenda",
+                "other": "Other"
+            }
+    }
+}

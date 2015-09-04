@@ -1,0 +1,17 @@
+{
+	"NOTES_CARD_TITLE": "Notes",
+	
+	"NOTE_CREATED_FIELD": "Created",
+	"NOTE_CREATED_BY": "by",
+	"NOTE_RELATED_FIELD": "Related",
+	
+	"NEW_NOTE_BUTTON": "New note",
+	"PRINT_ALL_NOTES_BUTTON": "Print all notes",
+	
+	"CREATE_NOTE_DIALOG_TITLE": "Create note",
+	"NOTE_HEADLINE_FIELD": "Headline",
+	"NOTE_CONTENT_FIELD": "Content",
+	"NOTE_CONCERNED_PARTIES_FIELD": "Concerned parties",
+	"ADD_NOTE_BUTTON": "Add note"
+	
+}
