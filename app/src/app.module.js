@@ -14,7 +14,8 @@
             'openeApp.tasks',
             'openeApp.documents',
             'openeApp.notes',
-            'openeApp.organizations'
+            'openeApp.organizations',
+            'openeApp.office'
         ])
         .config(config)
         .constant('USER_ROLES', {
