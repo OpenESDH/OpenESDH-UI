@@ -5,7 +5,21 @@
         .module('openeApp.translations', [
             'pascalprecht.translate'
         ])
+        .factory('availableLanguages', AvailableLanguages)
         .config(config);
+    
+    var availableLanguages = {
+        keys: ['en', 'da'],
+        localesKeys: {
+            'en_US': 'en',
+            'en_UK': 'en',
+            'da_DK': 'da'
+        }
+    }; 
+    
+    function AvailableLanguages(){
+        return availableLanguages;
+    }
 
     config.$inject = ['$translateProvider', '$translatePartialLoaderProvider'];
 
@@ -19,11 +33,7 @@
         });
         
         $translateProvider
-            .registerAvailableLanguageKeys(['en', 'da'], {
-              'en_US': 'en',
-              'en_UK': 'en',
-              'da_DK': 'da'
-            })
+            .registerAvailableLanguageKeys(availableLanguages.keys, availableLanguages.localesKeys)
             .determinePreferredLanguage();
     }
 

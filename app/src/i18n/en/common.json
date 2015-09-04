@@ -1,4 +1,10 @@
 {
+	"language":{
+		"language": "Language",
+		"en": "English",
+		"da": "Danish"
+	},
+	
 	"common": {
 		"ACTION": "Action",
 		"CANCEL": "Cancel",
