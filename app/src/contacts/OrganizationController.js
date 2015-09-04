@@ -1,12 +1,12 @@
 (function() {
 
     angular
-            .module('openeApp.organizations')
+            .module('openeApp.contacts')
             .controller('OrganizationController', OrganizationController);
 
-    OrganizationController.$inject = ['$scope', '$stateParams', '$mdDialog', 'organizationService'];
+    OrganizationController.$inject = ['$scope', '$stateParams', '$mdDialog', 'contactsService'];
 
-    function OrganizationController($scope, $stateParams, $mdDialog, organizationService) {
+    function OrganizationController($scope, $stateParams, $mdDialog, contactsService) {
         var vm = this;
         
         if ($stateParams.uuid) {
@@ -19,7 +19,7 @@
 
         function initList() {
             vm.organizations = [];
-            organizationService.getOrganizations(vm.searchQuery || '').then(function(response) {
+            contactsService.getOrganizations(vm.searchQuery || '').then(function(response) {
                 vm.organizations = response;
             }, function(error) {
                 console.log(error);
@@ -27,7 +27,7 @@
         }
         
         function initInfo() {
-            organizationService.getOrganization($stateParams.storeProtocol, $stateParams.storeIdentifier, $stateParams.uuid).then(function(response) {
+            contactsService.getOrganization($stateParams.storeProtocol, $stateParams.storeIdentifier, $stateParams.uuid).then(function(response) {
                 vm.organization = response;
             });
         }
@@ -43,7 +43,7 @@
             $mdDialog
                     .show({
                         controller: DialogController,
-                        templateUrl: 'app/src/organizations/view/organizationCrudDialog.html',
+                        templateUrl: 'app/src/contacts/view/organizationCrudDialog.html',
                         parent: angular.element(document.body),
                         targetEvent: ev,
                         clickOutsideToClose: true,
@@ -73,11 +73,11 @@
                 }
                 $scope.error = null;
                 if ($stateParams.uuid) {
-                    organizationService.updateOrganization(
+                    contactsService.updateOrganization(
                             $stateParams.storeProtocol, $stateParams.storeIdentifier, $stateParams.uuid, $scope.organization)
                             .then(refreshInfoAfterSuccess, saveError);
                 } else {
-                    organizationService.createOrganization($scope.organization)
+                    contactsService.createOrganization($scope.organization)
                             .then(refreshListAfterSuccess, saveError);
                 }
             };
