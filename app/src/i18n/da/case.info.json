@@ -1,0 +1,23 @@
+{
+	"CASEINFO": {
+      "MYCASES": "Mine sager",
+      "CASES": "Sager",
+      "UNASSIGNEDCASES": "Utildelte sager",
+      "ID": "Sags-ID",
+      "TITLE": "Sagstitel",
+      "TYPE": "Type",
+      "STATUS": "Status",
+      "CREATEDBY": "Oprettet af",
+      "CREATED": "Oprettet",
+      "CASEOWNERS": "Sagsejer",
+      "MODIFIED": "Sidst ændret",
+      "DESCRIPTION": "Beskrivelse",
+      "STARTDATE": "Startdato",
+      "ENDDATE": "Slutdato",
+      "ACTIONS": "Handlinger",
+      "CREATENEWCASE": "Opret ny sag",
+      "VIEW": "Vis",
+      "CASETYPESTANDARD": "Standard-sag",
+      "CASETYPEOTHER": "Anden type sag"
+    }
+}

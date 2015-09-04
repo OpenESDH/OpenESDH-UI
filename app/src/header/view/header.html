@@ -10,6 +10,20 @@
           <label>{{ 'search.search' | translate }}</label>
           <input type="text">
         </md-input-container>
+        
+        <md-menu ng-controller="LanguageMenuController as languages">
+            <md-button ng-click="$mdOpenMenu($event)">
+                {{'language.language' | translate}} ({{'language.' + languages.currentLanguage | translate}})
+            </md-button>
+            <md-menu-content width="4">
+                <md-menu-item ng-repeat-start="langKey in languages.availableLangKeys">
+                  <md-button ng-click="languages.setLanguage(langKey)" ng-disabled="langKey == languages.currentLanguage">
+                    {{'language.' + langKey | translate}}
+                  </md-button>
+                </md-menu-item>
+                <md-menu-divider ng-repeat-end></md-menu-divider>                
+            </md-menu-content>
+        </md-menu>
 
         <md-menu ng-controller="AuthController as vm">
           <md-button aria-label="{{ 'menu.openmenu' | translate }}" ng-click="$mdOpenMenu($event)">
