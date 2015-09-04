@@ -215,54 +215,167 @@
         });
         $translateProvider
             .translations('en', en_translations)
-            .preferredLanguage('en');
+            .translations('da', da_translations)
+            .registerAvailableLanguageKeys(['en', 'da'], {
+              'en_US': 'en',
+              'en_UK': 'en',
+              'da_DK': 'da'
+            })
+            .determinePreferredLanguage();
     }
 
     var en_translations = {
-        CASEINFO: {
-          ID: 'Case ID',
-          TITLE: 'Case title',
-          STATUS: 'Status',
-          CREATEDBY: 'Created by',
-          CREATED: 'Created',
-          CASEOWNERS: 'Case owners',
-          MODIFIED: 'Last modified',
-          DESCRIPTION: 'Description'
+      HOME: 'Home',
+      CASEINFO: {
+        MYCASES: 'My cases',
+        CASES: 'Cases',
+        UNASSIGNEDCASES: 'Unassigned cases',
+        ID: 'Case ID',
+        TYPE: 'Type',
+        TITLE: 'Case title',
+        STATUS: 'Status',
+        CREATEDBY: 'Created by',
+        CREATED: 'Created',
+        CASEOWNERS: 'Case owners',
+        MODIFIED: 'Last modified',
+        DESCRIPTION: 'Description',
+        STARTDATE: 'Start date',
+        ENDDATE: 'End date',
+        ACTIONS: 'Actions',
+        CREATENEWCASE: 'Create new case',
+        VIEW: 'View',
+        CASETYPESTANDARD: 'Standard case',
+        CASETYPEOTHER: 'Other type of case'
+      },
+      document:{
+        documents: 'Documents',
+        status:{
+          received: 'Received',
+          distributed: 'Distributed',
+          draft: 'Draft',
+          'under-review': 'Under review',
+          published: 'Published',
+          finalised: 'Finalised',
+          submitted: 'Submitted'
         },
-            
-        document:{
-            status:{
-                received: 'Received',
-                distributed: 'Distributed',
-                draft: 'Draft',
-                'under-review': 'Under review',
-                published: 'Published',
-                finalised: 'Finalised',
-                submitted: 'Submitted'
-            },
-            category:{
-                annex: 'Annex',
-                proof: 'Proof',
-                contract: 'Contract',
-                note: 'Note',
-                report: 'Report',
-                proxy: 'Proxy',
-                warranty: 'Warranty',
-                part: 'Part',
-                statement: 'Statement',
-                summary: 'Summary',
-                accounting: 'Accounting',
-                offers: 'Offers',
-                other: 'Other'
-            },
-            type:{
-                invoice: 'Invoice',
-                letter: 'Letter',
-                note: 'Note',
-                report: 'Report',
-                agenda: 'Agenda',
-                other: 'Other'
-            }
+        category:{
+          annex: 'Annex',
+          proof: 'Proof',
+          contract: 'Contract',
+          note: 'Note',
+          report: 'Report',
+          proxy: 'Proxy',
+          warranty: 'Warranty',
+          part: 'Part',
+          statement: 'Statement',
+          summary: 'Summary',
+          accounting: 'Accounting',
+          offers: 'Offers',
+          other: 'Other'
+        },
+        type:{
+          invoice: 'Invoice',
+          letter: 'Letter',
+          note: 'Note',
+          report: 'Report',
+          agenda: 'Agenda',
+          other: 'Other'
         }
+      },
+      task: {
+        tasks: 'Tasks'
+      },
+      search: {
+        search: 'Search'
+      },
+      menu: {
+        openmenu: 'Open menu',
+        viewprofile: 'View profile',
+        logout: 'Logout',
+        login: 'Login'
+      },
+      login: {
+        username: 'User name',
+        password: 'Password',
+        signmein: 'Sign me in automatically'
+      }
     };
+    
+    var da_translations = {
+      HOME: 'Min side',
+      CASEINFO: {
+        MYCASES: 'Mine sager',
+        CASES: 'Sager',
+        UNASSIGNEDCASES: 'Utildelte sager',
+        ID: 'Sags-ID',
+        TITLE: 'Sagstitel',
+        TYPE: 'Type',
+        STATUS: 'Status',
+        CREATEDBY: 'Oprettet af',
+        CREATED: 'Oprettet',
+        CASEOWNERS: 'Sagsejer',
+        MODIFIED: 'Sidst ændret',
+        DESCRIPTION: 'Beskrivelse',
+        STARTDATE: 'Startdato',
+        ENDDATE: 'Slutdato',
+        ACTIONS: 'Handlinger',
+        CREATENEWCASE: 'Opret ny sag',
+        VIEW: 'Vis',
+        CASETYPESTANDARD: 'Standard-sag',
+        CASETYPEOTHER: 'Anden type sag'
+      },
+      document:{
+        documents: 'Dokumenter',
+        status:{
+          received: 'Modtaget',
+          distributed: 'Distribueret',
+          draft: 'Kladde',
+          'under-review': 'Under godkendelse',
+          published: 'Publiseret',
+          finalised: 'Færdiggjort',
+          submitted: 'Afsendt'
+        },
+        category:{
+          annex: 'Annex',
+          proof: 'Proof',
+          contract: 'Kontrakt',
+          note: 'Note',
+          report: 'Rapport',
+          proxy: 'Proxy',
+          warranty: 'Garanti',
+          part: 'Part',
+          statement: 'Udtalelse',
+          summary: 'Resumé',
+          accounting: 'Regnskab',
+          offers: 'Tilbud',
+          other: 'Andre'
+        },
+        type:{
+          invoice: 'Faktura',
+          letter: 'Brev',
+          note: 'Note',
+          report: 'Rapport',
+          agenda: 'Agenda',
+          other: 'Andet'
+        }
+      },
+      task: {
+        tasks: 'Opgaver'
+      },
+      search: {
+        search: 'Søg'
+      },
+      menu: {
+        openmenu: 'Åben menu',
+        viewprofile: 'Se profil',
+        logout: 'Log ud',
+        login: 'Log ind'
+      },
+      login: {
+        username: 'Brugernavn',
+        password: 'Kodeord',
+        signmein: 'Automatisk log ind'
+      }
+    };
+    
 })();

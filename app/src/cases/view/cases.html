@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <md-content layout-padding>
-  <h2>Cases</h2>
+  <h2>{{ 'CASEINFO.CASES' | translate }}</h2>
 </md-content>
 
 <md-tabs md-dynamic-height>
@@ -9,24 +9,24 @@
   <md-tab>
     <md-tab-label>
       <!--<span>My cases <span class="label" ng-bind="myUpdatedCases"></span></span>-->
-      <span>My cases</span>
+      <span>{{ 'CASEINFO.MYCASES' | translate }}</span>
     </md-tab-label>
     <md-tab-body>
       <md-card>
         <md-card-content>
-          <h3>Cases</h3>
+          <h3>{{ 'CASEINFO.CASES' | translate }}</h3>
           <table>
             <thead>
               <tr>
-                <th>ID</th>
-                <th>Type</th>
-                <th>Title</th>
-                <th>Created</th>
-                <th>Start date</th>
-                <th>End date</th>
-                <th>Modified</th>
-                <th>Status</th>
-                <th>Actions</th>
+                <th>{{ 'CASEINFO.ID' | translate }}</th>
+                <th>{{ 'CASEINFO.TYPE' | translate }}</th>
+                <th>{{ 'CASEINFO.TITLE' | translate }}</th>
+                <th>{{ 'CASEINFO.CREATED' | translate }}</th>
+                <th>{{ 'CASEINFO.STARTDATE' | translate }}</th>
+                <th>{{ 'CASEINFO.ENDDATE' | translate }}</th>
+                <th>{{ 'CASEINFO.MODIFIED' | translate }}</th>
+                <th>{{ 'CASEINFO.STATUS' | translate }}</th>
+                <th>{{ 'CASEINFO.ACTIONS' | translate }}</th>
               </tr>
             </thead>
             <tbody>
@@ -39,7 +39,7 @@
                 <td>{{case["base:endDate"] | date: 'yyyy-MM-dd'}}</td>
                 <td>{{case["cm:modified"] | date: 'yyyy-MM-dd'}}</td>
                 <td>{{case["oe:status"]}}</td>
-                <td><md-button href="#/cases/case/{{case['oe:id']}}">View</md-button></td>
+                <td><md-button href="#/cases/case/{{case['oe:id']}}">{{ 'CASEINFO.VIEW' | translate }}</md-button></td>
               </tr>
             </tbody>
           </table>
@@ -47,12 +47,12 @@
         <div class="md-actions">
           
           <md-menu>
-            <md-button class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="Create new case">
-              Create new case
+            <md-button class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="{{ 'CASEINFO.CREATENEWCASE' | translate }}">
+              {{ 'CASEINFO.CREATENEWCASE' | translate }}
             </md-button>
             <md-menu-content>
-              <md-menu-item><md-button ng-click="vm.createCase($event, 'standard')">Standard case</md-button></md-menu-item>
-              <md-menu-item><md-button ng-disabled="true">Other type of case</md-button></md-menu-item>
+              <md-menu-item><md-button ng-click="vm.createCase($event, 'standard')">{{ 'CASEINFO.CASETYPESTANDARD' | translate }}</md-button></md-menu-item>
+              <md-menu-item><md-button ng-disabled="true">{{ 'CASEINFO.CASETYPEOTHER' | translate }}</md-button></md-menu-item>
             </md-menu-content>
           </md-menu>
         </div>
@@ -62,8 +62,7 @@
   
   <md-tab>
     <md-tab-label>
-      <!--<span>Unassigned cases <span class="label" ng-bind="unassignedCasesNum"></span></span>-->
-      <span>Unassigned cases</span>
+      <span>{{ 'CASEINFO.UNASSIGNEDCASES' | translate }}</span>
     </md-tab-label>
     <md-tab-body layout="column">
       <md-list>
@@ -92,3 +91,5 @@
   </md-tab>
   
 </md-tabs>
+
+<app-footer></app-footer>
