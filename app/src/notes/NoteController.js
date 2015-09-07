@@ -47,8 +47,9 @@
                 controller: DialogController,
                 templateUrl: 'app/src/notes/noteCrudDialog.html',
                 parent: angular.element(document.body),
+                focusOnOpen: false,
                 targetEvent: ev,
-                clickOutsideToClose:true
+                clickOutsideToClose: true
               })
               .then(function(note) {
                   addNote(note);
