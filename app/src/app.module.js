@@ -14,7 +14,8 @@
             'openeApp.tasks',
             'openeApp.notes',
             'openeApp.documents',
-            'openeApp.contacts'
+            'openeApp.contacts',
+            'openeApp.administration'
         ])
         .config(config)
         .constant('USER_ROLES', {
@@ -206,6 +207,19 @@
                 'content@': {
                     templateUrl : '/app/src/contacts/view/personCrud.html',
                     controller : 'PersonCrudController',
+                    controllerAs: 'vm'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
+            }
+        }).state('administration', {
+            parent: 'site',
+            url: '/admin',
+            views: {
+                'content@': {
+                    templateUrl : '/app/src/admin/view/admin.html',
+                    controller : 'AdminController',
                     controllerAs: 'vm'
                 }
             },
