@@ -10,7 +10,6 @@
         var vm = this;
 
         activate();
-        debugger;
 
         function activate() {
             vm.isDevelopmentMode = document.location.hostname == "localhost" ||
