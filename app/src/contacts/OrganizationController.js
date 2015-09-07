@@ -8,8 +8,10 @@
 
     function OrganizationController($scope, $stateParams, $mdDialog, contactsService) {
         var vm = this;
+        vm.doFilter = doFilter;
         vm.showOrganizationEdit = showOrganizationEdit;
         vm.showPersonEdit = showPersonEdit;
+        vm.initPersons = initPersons;
 
         if ($stateParams.uuid) {
             //infoForm
@@ -20,7 +22,7 @@
         }
 
         function initList() {
-            vm.organizations = [];
+            vm.organizations.length = 0;
             contactsService.getOrganizations(vm.searchQuery || '').then(function(response) {
                 vm.organizations = response;
             }, function(error) {
@@ -34,12 +36,15 @@
                 vm.persons = {
                     items: []
                 };
-                contactsService.getAssociations(organization.nodeRefId).then(function(persons) {
-                    vm.persons.items = persons;
-                });
-
+                initPersons();
             });
+        }
 
+        function initPersons() {
+            vm.persons.items.length = 0;
+            contactsService.getAssociations(vm.organization.nodeRefId).then(function(persons) {
+                vm.persons.items = persons;
+            });
         }
 
         function doFilter() {
@@ -72,6 +77,7 @@
             $scope.hide = function() {
                 $mdDialog.hide();
             };
+
             $scope.cancel = function() {
                 $mdDialog.cancel();
             };
@@ -92,8 +98,8 @@
             };
 
             function refreshListAfterSuccess() {
-                doFilter();
                 $mdDialog.hide('Success!');
+                vm.doFilter();
             }
 
             function refreshInfoAfterSuccess(savedOrganization) {
@@ -145,6 +151,11 @@
                 $mdDialog.cancel();
             };
 
+            $scope.delete = function() {
+                contactsService.deletePerson($scope.person)
+                        .then(refreshInfoAfterSuccess, saveError);
+            };
+
             $scope.save = function(personForm) {
                 vm.error = null;
                 vm.success = null;
@@ -163,6 +174,7 @@
 
             function refreshInfoAfterSuccess(savedPerson) {
                 $mdDialog.hide('Success!');
+                vm.initPersons();
             }
 
             function saveError(response) {

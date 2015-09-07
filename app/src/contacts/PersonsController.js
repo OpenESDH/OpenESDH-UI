@@ -16,6 +16,7 @@
         initList();
 
         function initList() {
+            vm.persons.lenght = 0;
             contactsService.getPersons(vm.searchQuery).then(function(response) {
                 vm.persons = response;
             }, function(error) {
@@ -59,6 +60,11 @@
                 $mdDialog.cancel();
             };
 
+            $scope.delete = function() {
+                contactsService.deletePerson($scope.person)
+                        .then(refreshInfoAfterSuccess, saveError);
+            };
+
             $scope.save = function(personForm) {
                 vm.error = null;
                 vm.success = null;
@@ -77,6 +83,7 @@
 
             function refreshInfoAfterSuccess(savedPerson) {
                 $mdDialog.hide('Success!');
+                vm.doFilter();
             }
 
             function saveError(response) {
