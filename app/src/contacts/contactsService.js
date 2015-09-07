@@ -14,6 +14,7 @@
             getOrganization: getContact,
             updateOrganization: updateContact,
             createOrganization: createOrganization,
+            getAssociations: getAssociations,
             //persons
             getPersons: getPersons,
             getPerson: getContact,
@@ -31,13 +32,18 @@
             return createContact(organization, 'ORGANIZATION');
         }
         
+        function getAssociations(parentNodeRefId) {
+            return $http.get('/alfresco/service/api/openesdh/contact?parentNodeRefId=' + parentNodeRefId)
+                    .then(successOrReject);
+        }
+        
         //persons
         function getPersons(searchTerm) {
             return getContacts(searchTerm, 'contact:person');
         }
         
-        function createPerson(organization) {
-            return createContact(organization, 'PERSON');
+        function createPerson(person) {
+            return createContact(person, 'PERSON');
         }
         
         //contacts
@@ -53,9 +59,9 @@
                     .then(successOrReject);
         }
 
-        function updateContact(storeProtocol, storeIdentifier, uuid, contact) {
+        function updateContact(contact) {
             //api/openesdh/contact/{store_type}/{store_id}/{id}
-            return $http.put('/alfresco/service/api/openesdh/contact/' + storeProtocol + '/' + storeIdentifier + '/' + uuid,
+            return $http.put('/alfresco/service/api/openesdh/contact/' + contact.storeType + '/' + contact.storeId + '/' + contact.id,
                     contact).then(successOrReject);
         }
         
