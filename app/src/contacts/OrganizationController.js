@@ -4,9 +4,9 @@
             .module('openeApp.contacts')
             .controller('OrganizationController', OrganizationController);
 
-    OrganizationController.$inject = ['$scope', '$stateParams', '$mdDialog', 'contactsService', 'alfrescoNodeUtils'];
+    OrganizationController.$inject = ['$scope', '$stateParams', '$mdDialog', 'contactsService'];
 
-    function OrganizationController($scope, $stateParams, $mdDialog, contactsService, alfrescoNodeUtils) {
+    function OrganizationController($scope, $stateParams, $mdDialog, contactsService) {
         var vm = this;
         vm.showOrganizationEdit = showOrganizationEdit;
         vm.showPersonEdit = showPersonEdit;
