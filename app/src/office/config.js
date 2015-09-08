@@ -1,15 +1,15 @@
 (function(){
     'use strict';
 
-    angular.module('openeApp.office').config(['$stateProvider', function($stateProvider) {
-        console.log('in configure');
-    }]);
-//    module.config(configure);
+    angular.module('openeApp.office').config(configure);
 
+//    configure.$inject = ['$stateProvider', 'USER_ROLES'];
     configure.$inject = ['$stateProvider'];
 
+//    function configure($stateProvider, USER_ROLES) {
     function configure($stateProvider) {
         console.log('in configure');
+
         $stateProvider.state('outlook', {
             url: '/outlook',
             views: {
@@ -20,7 +20,8 @@
                 }
             },
             data: {
-                authorizedRoles: [USER_ROLES.user]
+//                authorizedRoles: [USER_ROLES.user]
+                authorizedRoles: ['user']
             }
         });
     }
