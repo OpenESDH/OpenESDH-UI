@@ -192,7 +192,7 @@
             }
         }).state('contact', {
             parent: 'site',
-            url: '/contacts/person/:storeProtocol/:storeIdentifier/:uuid',
+            url: '/contacts/person/:storeType/:storeId/:id',
             views: {
                 'content@': {
                     templateUrl : '/app/src/contacts/view/personCrud.html',
