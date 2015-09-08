@@ -21,7 +21,11 @@
         vm.cancel = cancel;
 
         function save() {
+//            caseService.getCaseDocumentsFolderNodeRef(vm.caseId).then(function(response) {
+//                console.log(response);
+//            });
             officeService.saveEmail({
+                caseId: vm.caseId,
                 name: vm.subject,
                 email: vm.email
             });

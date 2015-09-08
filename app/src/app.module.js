@@ -6,15 +6,16 @@
             'ngMaterial',
             'ui.router',
             'ngResource',
-            'pascalprecht.translate',
             'isteven-multi-select',
+            'openeApp.translations',
             'openeApp.cases',
             'openeApp.dashboard',
             'openeApp.files',
             'openeApp.tasks',
             'openeApp.documents',
             'openeApp.notes',
-            'openeApp.organizations',
+            'openeApp.contacts',
+            'openeApp.administration',
             'openeApp.office'
         ])
         .config(config)
@@ -25,8 +26,8 @@
         })
         .run(function($rootScope, $state, $stateParams, authService) {
             $rootScope.$on('$stateChangeStart', function(event, next, params) {
-//                $rootScope.toState = next;
-//                $rootScope.toStateParams = params;
+                $rootScope.toState = next;
+                $rootScope.toStateParams = params;
                 if (next.data.authorizedRoles.length == 0) {
                     return;
                 }
@@ -34,6 +35,8 @@
 
                 } else {
                     event.preventDefault();
+                    $rootScope.returnToState = $rootScope.toState;
+                    $rootScope.returnToStateParams = $rootScope.toStateParams;
                     $state.go('login');
                 }
 //                console.log('authenticated? ', authService.isAuthenticated());
@@ -44,9 +47,9 @@
             });
         });
 
-    config.$inject = ['$mdThemingProvider', '$translateProvider', '$stateProvider', '$urlRouterProvider', 'USER_ROLES'];
+    config.$inject = ['$mdThemingProvider', '$stateProvider', '$urlRouterProvider', 'USER_ROLES'];
 
-    function config($mdThemingProvider, $translateProvider, $stateProvider, $urlRouterProvider, USER_ROLES) {
+    function config($mdThemingProvider, $stateProvider, $urlRouterProvider, USER_ROLES) {
         $mdThemingProvider.theme('default')
             .primaryPalette('blue')
             .accentPalette('orange');
@@ -153,7 +156,7 @@
             url: '/organizations',
             views: {
                 'content@': {
-                    templateUrl : '/app/src/organizations/view/organizations.html',
+                    templateUrl : '/app/src/contacts/view/organizations.html',
                     controller : 'OrganizationController',
                     controllerAs: 'vm'
                 }
@@ -166,7 +169,7 @@
             url: '/organizations/organization/:storeProtocol/:storeIdentifier/:uuid',
             views: {
                 'content@': {
-                    templateUrl : '/app/src/organizations/view/organization.html',
+                    templateUrl : '/app/src/contacts/view/organization.html',
                     controller : 'OrganizationController',
                     controllerAs: 'vm'
                 }
@@ -174,57 +177,59 @@
             data: {
                 authorizedRoles: [USER_ROLES.user]
             }
-        });
-        $translateProvider
-            .translations('en', en_translations)
-            .preferredLanguage('en');
-    }
-
-    var en_translations = {
-        CASEINFO: {
-          ID: 'Case ID',
-          TITLE: 'Case title',
-          STATUS: 'Status',
-          CREATEDBY: 'Created by',
-          CREATED: 'Created',
-          CASEOWNERS: 'Case owners',
-          MODIFIED: 'Last modified',
-          DESCRIPTION: 'Description'
-        },
-            
-        document:{
-            status:{
-                received: 'Received',
-                distributed: 'Distributed',
-                draft: 'Draft',
-                'under-review': 'Under review',
-                published: 'Published',
-                finalised: 'Finalised',
-                submitted: 'Submitted'
+        }).state('contacts', {
+            parent: 'site',
+            url: '/contacts',
+            views: {
+                'content@': {
+                    templateUrl : '/app/src/contacts/view/persons.html',
+                    controller : 'PersonsController',
+                    controllerAs: 'vm'
+                }
             },
-            category:{
-                annex: 'Annex',
-                proof: 'Proof',
-                contract: 'Contract',
-                note: 'Note',
-                report: 'Report',
-                proxy: 'Proxy',
-                warranty: 'Warranty',
-                part: 'Part',
-                statement: 'Statement',
-                summary: 'Summary',
-                accounting: 'Accounting',
-                offers: 'Offers',
-                other: 'Other'
-            },
-            type:{
-                invoice: 'Invoice',
-                letter: 'Letter',
-                note: 'Note',
-                report: 'Report',
-                agenda: 'Agenda',
-                other: 'Other'
+            data: {
+                authorizedRoles: [USER_ROLES.user]
             }
-        }
-    };
+        }).state('contact', {
+            parent: 'site',
+            url: '/contacts/person/:storeProtocol/:storeIdentifier/:uuid',
+            views: {
+                'content@': {
+                    templateUrl : '/app/src/contacts/view/personCrud.html',
+                    controller : 'PersonCrudController',
+                    controllerAs: 'vm'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
+            }
+        }).state('contactNew', {
+            parent: 'site',
+            url: '/contacts/person/create',
+            views: {
+                'content@': {
+                    templateUrl : '/app/src/contacts/view/personCrud.html',
+                    controller : 'PersonCrudController',
+                    controllerAs: 'vm'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
+            }
+        }).state('administration', {
+            parent: 'site',
+            url: '/admin',
+            views: {
+                'content@': {
+                    templateUrl : '/app/src/admin/view/admin.html',
+                    controller : 'AdminController',
+                    controllerAs: 'vm'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
+            }
+        });
+    }
+    
 })();

@@ -5,9 +5,9 @@
         .module('openeApp')
         .controller('AuthController', AuthController);
 
-    AuthController.$inject = ['$state', 'authService', 'userService'];
+    AuthController.$inject = ['$scope', '$state', 'authService', 'userService'];
 
-    function AuthController($state, authService, userService) {
+    function AuthController($scope, $state, authService, userService) {
         var vm = this;
 
         vm.login = login;
@@ -21,7 +21,12 @@
                     vm.user = response;
                     console.log(vm.user);
                 });
-                $state.go('dashboard');
+                console.log('tostate: ' + $scope.returnToState);
+                if ($scope.returnToState) {
+                    $state.go($scope.returnToState.name, $scope.returnToStateParams);
+                } else {
+                    $state.go('dashboard');
+                }
             });
         }
 

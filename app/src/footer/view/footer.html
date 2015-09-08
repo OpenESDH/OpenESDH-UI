@@ -1,0 +1,6 @@
+<footer ng-controller="FooterController as vm">
+  <div ng-show="vm.isDevelopmentMode" style="text-align: center; font-size: 80%; margin-top: 1em;">
+    OpenESDH Server running: <a
+          ng-href="https://github.com/openesdh/openesdh-core/commit/{{ vm.gitCommitId }}" title="View commit on GitHub">{{ vm.gitCommitId }}</a> on branch {{ vm.gitBranch }}
+  </div>
+</footer>

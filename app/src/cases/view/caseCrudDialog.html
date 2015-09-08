@@ -9,13 +9,9 @@
       
       <md-input-container>
         <label>Case title</label>
-        <input type="text" ng-model="case.title" required>
+        <input type="text" ng-model="case.title" required focus-me>
       </md-input-container>
-      
-      <md-input-container>
-        <label>Case status</label>
-        <input type="text" ng-model="case.status" required>
-      </md-input-container>
+
       <md-input-container>
         <label>Case owner</label>
         <md-select ng-model="case.owner" required ng-controller="CaseController as vm">
@@ -31,7 +27,7 @@
       
       <md-input-container>
         <label>Start date</label>
-        <input type="date" ng-model="case.startDate" required>
+        <input type="date" ng-model="case.startDate">
       </md-input-container>
       
       <md-input-container>

@@ -29,16 +29,21 @@
     <script src="./bower_components/angular-aria/angular-aria.js"></script>
     <script src="./bower_components/angular-material/angular-material.js"></script>
     <script src="./bower_components/angular-translate/angular-translate.js"></script>
+    <script src="./bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
     <script src="./bower_components/isteven-angular-multiselect/isteven-multi-select.js"></script>
 
     <script src="./app/src/app.module.js"></script>
 
+    <script src="./app/src/i18n/translations.module.js"></script>
+
     <script src="./app/src/shared/directives/fileModelDirective.js"></script>
+    <script src="./app/src/shared/directives/focusMeDirective.js"></script>
     
     <script src="./app/src/shared/services/httpUtilsService.js"></script>
     <script src="./app/src/shared/services/alfrescoUploadService.js"></script>
     <script src="./app/src/shared/services/alfrescoDownloadService.js"></script>
     <script src="./app/src/shared/services/alfrescoNodeUtilsService.js"></script>
+    <script src="./app/src/shared/services/serverVersionService.js"></script>
     <script src="./app/src/shared/services/case/casePartiesService.js"></script>
     <script src="./app/src/shared/services/case/caseDocumentsService.js"></script>
     <script src="./app/src/shared/services/case/caseDocumentDetailsService.js"></script>
@@ -46,7 +51,7 @@
     <script src="./app/src/shared/filters/documentTypeFilter.js"></script>
     <script src="./app/src/shared/filters/documentCategoryFilter.js"></script>
     <script src="./app/src/shared/filters/documentStatusFilter.js"></script>
-    <script src="./app/src/shared/filters/nodeRefFilter.js"></script>
+    <script src="./app/src/shared/filters/nodeRefUriFilter.js"></script>
 
     <script src="./app/src/authentication/sessionService.js"></script>
     <script src="./app/src/authentication/authService.js"></script>
@@ -55,7 +60,10 @@
 
     <script src="./app/src/common/userService.js"></script>
 
+    <script src="./app/src/language/LanguageMenuController.js"></script>
     <script src="./app/src/header/Header.js"></script>
+    <script src="./app/src/footer/Footer.js"></script>
+    <script src="./app/src/footer/FooterController.js"></script>
 
     <script src="./app/src/dashboard/dashboard.module.js"></script>
     <script src="./app/src/dashboard/DashboardController.js"></script>
@@ -69,6 +77,9 @@
     <script src="./app/src/documents/DocumentController.js"></script>
     <script src="./app/src/documents/DocumentDetailsController.js"></script>
     
+    <script src="./app/src/history/caseHistoryService.js"></script>
+    <script src="./app/src/history/CaseHistoryController.js"></script>
+    
     <script src="./app/src/files/Files.js"></script>
     <script src="./app/src/files/FileController.js"></script>
     <script src="./app/src/cases/CaseInfoController.js"></script>
@@ -76,11 +87,13 @@
     <script src="./app/src/tasks/Tasks.js"></script>
     <script src="./app/src/tasks/TaskController.js"></script>
     
-    <script src="./app/src/organizations/organizations.module.js"></script>
-    <script src="./app/src/organizations/organizationService.js"></script>
-    <script src="./app/src/organizations/OrganizationController.js"></script>
-    
-    <script src="./app/src/notes/Notes.js"></script>
+    <script src="./app/src/contacts/contacts.module.js"></script>
+    <script src="./app/src/contacts/contactsService.js"></script>
+    <script src="./app/src/contacts/OrganizationController.js"></script>
+    <script src="./app/src/contacts/PersonsController.js"></script>
+    <script src="./app/src/contacts/PersonCrudController.js"></script>
+
+    <script src="./app/src/notes/notes.module.js"></script>
     <script src="./app/src/notes/caseNotesService.js"></script>
     <script src="./app/src/notes/NoteController.js"></script>
 
@@ -88,5 +101,8 @@
     <script src="./app/src/office/officeService.js"></script>
     <script src="./app/src/office/officeController.js"></script>
     <script src="./app/src/office/config.js"></script>
+
+    <script src="./app/src/admin/admin.module.js"></script>
+    <script src="./app/src/admin/AdminController.js"></script>
   </body>
 </html>

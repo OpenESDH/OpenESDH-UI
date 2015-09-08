@@ -15,7 +15,8 @@
     "angular-aria": "^1.4.x",
     "angular-material": "^0.10.0",
     "angular-translate": "",
-    "isteven-angular-multiselect":""
+    "angular-translate-loader-partial": "",
+    "isteven-angular-multiselect":"3.0.0"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.x"

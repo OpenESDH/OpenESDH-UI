@@ -162,14 +162,26 @@ To install (Grunt)[http://gruntjs.com/getting-started] CLI, run:
 sudo npm install -g grunt-cli
 ```
 
-To run and connect to OpenESDH server on the demo.openesdh.dk server, run:
+To run and connect to OpenESDH server on the test.openesdh.dk server, run:
 
 ```
 grunt dev
 ```
+
+This server always runs the latest builds of the OpenESDH repository develop branch.
+
 
 To run and connect to a locally running OpenESDH server on localhost:8080, run:
 
 ```
 grunt local
 ```
+
+
+To run and connect to OpenESDH server on the demo.openesdh.dk server, run:
+
+```
+grunt demo-dev
+```
+
+This server runs demo-able versions of OpenESDH, but may be less up-to-date.

@@ -48,7 +48,8 @@
                 templateUrl: 'app/src/cases/view/caseCrudDialog.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
-                clickOutsideToClose:true
+                clickOutsideToClose: true,
+                focusOnOpen: false
             });
         };
         

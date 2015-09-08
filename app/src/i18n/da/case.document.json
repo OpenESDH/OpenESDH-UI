@@ -1,0 +1,37 @@
+{
+	"document":{
+			"documents": "Dokumenter",
+            "status":{
+                "received": "Modtaget",
+                "distributed": "Distribueret",
+                "draft": "Kladde",
+                "under-review": "Under godkendelse",
+                "published": "Publiseret",
+                "finalised": "Færdiggjort",
+                "submitted": "Afsendt"
+            },
+            "category":{
+                "annex": "Annex",
+                "proof": "Proof",
+                "contract": "Kontrakt",
+                "note": "Note",
+                "report": "Rapport",
+                "proxy": "Proxy",
+                "warranty": "Garanti",
+                "part": "Part",
+                "statement": "Udtalelse",
+                "summary": "Resumé",
+                "accounting": "Regnskab",
+                "offers": "Tilbud",
+                "other": "Andre"
+            },
+            "type":{
+                "invoice": "Faktura",
+                "letter": "Brev",
+                "note": "Note",
+                "report": "Rapport",
+                "agenda": "Agenda",
+                "other": "Andet"
+            }
+    }
+}

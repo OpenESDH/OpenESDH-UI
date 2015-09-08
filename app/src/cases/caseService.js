@@ -60,5 +60,11 @@
                 return response.data;
             }
         }
+
+        function getCaseDocumentsFolderNodeRef(caseId) {
+            return $http.get('/alfresco/service/api/openesdh/case/docfolder/noderef/' + caseId).then(function(response) {
+                return response.data;
+            });
+        }
     }
 })();

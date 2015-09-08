@@ -24,10 +24,10 @@
                     <td>{{organization['contact:organizationName']}}</td>
                     <td>{{organization['contact:cvrNumber']}}</td>
                     <td></td>
-                    <td>{{organization['contact:streetName']}}</td>
+                    <td>{{organization['contact:address']}}</td>
                     <td>{{organization['contact:postCode']}}</td>
                     <td>{{organization['contact:cityName']}}</td>
-                    <td>{{organization['contact:countryName'] || organization['contact:countryCode']}}</td>
+                    <td>{{organization['contact:countryCode']}}</td>
                     <td><a class="md-button md-primary" 
                            href="#/organizations/organization/{{organization['sys:store-protocol']}}/{{organization['sys:store-identifier']}}/{{organization['sys:node-uuid']}}">View details</a></td>
                 </tr>

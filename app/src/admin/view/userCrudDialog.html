@@ -1,0 +1,30 @@
+<md-dialog aria-label="Case edit dialog">
+  <form name="form">
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">
+        <h2>Create user</h2>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;">
+      
+      <md-input-container>
+        <label>User name</label>
+        <input type="text" ng-model="user.name" required focus-me="true">
+      </md-input-container>
+      
+      <md-input-container>
+        <label>Description</label>
+        <textarea ng-model="user.desc"></textarea>
+      </md-input-container>
+      
+    </md-dialog-content>
+    <div class="md-actions" layout="row">
+      <md-button type="submit" class="md-primary" ng-click="vm.update(user)" ng-disabled="form.$invalid">
+        Create user
+      </md-button>
+      <md-button type="button" ng-click="vm.cancel(form)">
+        Cancel
+      </md-button>
+    </div>
+  </form>
+</md-dialog>

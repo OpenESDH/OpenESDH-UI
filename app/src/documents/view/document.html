@@ -9,7 +9,7 @@
                 <div flex="10">
                     <md-card>
                         <md-card-content>
-                            <md-button class="md-primary" href="#/cases/case/{{docCtrl.caseId}}">Back</md-button>
+                            <md-button class="md-primary" href="#/cases/case/{{docCtrl.caseId}}">{{'common.BACK' | translate}}</md-button>
                         </md-card-content>
                     </md-card>
                 </div>
@@ -21,34 +21,34 @@
                                 <tr>
                                     <td>
                                         <dl>
-                                            <dt>Title</dt><dd>{{ docCtrl.doc.name }}</dd>
-                                            <dt>State</dt><dd>{{ docCtrl.doc.state | docStatus}}</dd>
-                                            <dt>Type</dt><dd>{{ docCtrl.doc.type | docType}}</dd>
-                                            <dt>Category</dt><dd>{{ docCtrl.doc.category | docCategory}}</dd>
-                                            <dt>Owner</dt><dd>{{ docCtrl.doc.owner }}</dd>
-                                            <dt>Created</dt><dd>{{ docCtrl.doc.created | date }}</dd>
+                                            <dt>{{'document.TITLE' | translate}}</dt><dd>{{ docCtrl.doc.name }}</dd>
+                                            <dt>{{'document.STATE' | translate}}</dt><dd>{{ docCtrl.doc.state | docStatus}}</dd>
+                                            <dt>{{'document.TYPE' | translate}}</dt><dd>{{ docCtrl.doc.type | docType}}</dd>
+                                            <dt>{{'document.CATEGORY' | translate}}</dt><dd>{{ docCtrl.doc.category | docCategory}}</dd>
+                                            <dt>{{'document.OWNER' | translate}}</dt><dd>{{ docCtrl.doc.owner }}</dd>
+                                            <dt>{{'document.CREATED' | translate}}</dt><dd>{{ docCtrl.doc.created | date }}</dd>
                                         </dl>
                                     </td>
                                     <td>
                                         <dl>
-                                            <dt>Version</dt>
+                                            <dt>{{'document.VERSION' | translate}}</dt>
                                                 <dd>
                                                     <select ng-model="docCtrl.docVersion" ng-options="version.label for version in docCtrl.documentVersions"></select>
                                                 </dd>
-                                            <dt>Version added</dt><dd>{{docCtrl.docVersion.createdDateISO | date: 'yyyy-MM-dd'}}</dd>
-                                            <dt>Document name</dt><dd>{{ docCtrl.docVersion.name}}</dd>
-                                            <dt>Version description</dt><dd>{{ docCtrl.docVersion.description }}</dd>
+                                            <dt>{{'document.VERSION_ADDED' | translate}}</dt><dd>{{docCtrl.docVersion.createdDateISO | date: 'yyyy-MM-dd'}}</dd>
+                                            <dt>{{'document.DOCUMENT_NAME' | translate}}</dt><dd>{{ docCtrl.docVersion.name}}</dd>
+                                            <dt>{{'document.VERSION_DESCRIPTION' | translate}}</dt><dd>{{ docCtrl.docVersion.description }}</dd>
                                         </dl>
                                     </td>
                                 </tr>
                             </table>
                         </md-card-content>
                         <div class="md-actions" layout="row">
-                          <md-button class="md-primary" ng-disabled="true">Edit document</md-button>
-                          <md-button class="md-primary" ng-click="docCtrl.uploadDocNewVersion()">Upload new version</md-button>
-                          <md-button class="md-primary" ng-click="docCtrl.downloadDocument()">Download</md-button>
-                          <md-button class="md-primary" ng-disabled="true">Open preview</md-button>
-                          <md-button class="md-primary" ng-disabled="true">Edit properties</md-button>
+                          <md-button class="md-primary" ng-disabled="true">{{'document.EDIT_DOCUMENT' | translate}}</md-button>
+                          <md-button class="md-primary" ng-click="docCtrl.uploadDocNewVersion()">{{'document.UPLOAD_NEW_VERSION' | translate}}</md-button>
+                          <md-button class="md-primary" ng-click="docCtrl.downloadDocument()">{{'document.DOWNLOAD' | translate}}</md-button>
+                          <md-button class="md-primary" ng-disabled="true">{{'document.OPEN_PREVIEW' | translate}}</md-button>
+                          <md-button class="md-primary" ng-disabled="true">{{'document.EDIT_PROPERTIES' | translate}}</md-button>
                         </div>
                     </md-card>
                  </div>
@@ -59,10 +59,10 @@
                             <table>
                                 <thead>
                                   <tr>
-                                    <th>Title</th>
-                                    <th>Added</th>
-                                    <th>Added by</th>
-                                    <th>Current version</th>
+                                    <th>{{'document.attachments.TITLE' | translate}}</th>
+                                    <th>{{'document.attachments.ADDED' | translate}}</th>
+                                    <th>{{'document.attachments.ADDED_BY' | translate}}</th>
+                                    <th>{{'document.attachments.CURRENT_VERSION' | translate}}</th>
                                     <th></th>
                                   </tr>
                                 </thead>
@@ -78,10 +78,10 @@
                                                    actions
                                                  </md-button>
                                                  <md-menu-content>
-                                                    <md-menu-item><md-button ng-disabled="true">Edit attachment</md-button></md-menu-item>
-                                                    <md-menu-item><md-button ng-click="docCtrl.uploadAttachmentNewVersion(attachment)">Upload new version</md-button></md-menu-item>
-                                                    <md-menu-item><md-button ng-disabled="true">Open preview</md-button></md-menu-item>
-                                                    <md-menu-item><md-button ng-click="docCtrl.downloadAttachment(attachment)">Download</md-button></md-menu-item>
+                                                    <md-menu-item><md-button ng-disabled="true">{{'document.attachments.EDIT_ATTACHMENT' | translate}}</md-button></md-menu-item>
+                                                    <md-menu-item><md-button ng-click="docCtrl.uploadAttachmentNewVersion(attachment)">{{'document.UPLOAD_NEW_VERSION' | translate}}</md-button></md-menu-item>
+                                                    <md-menu-item><md-button ng-disabled="true">{{'document.OPEN_PREVIEW' | translate}}</md-button></md-menu-item>
+                                                    <md-menu-item><md-button ng-click="docCtrl.downloadAttachment(attachment)">{{'document.DOWNLOAD' | translate}}</md-button></md-menu-item>
                                                  </md-menu-content>
                                             </md-menu>
                                        </td>
@@ -97,8 +97,8 @@
                                                        actions
                                                      </md-button>
                                                      <md-menu-content>
-                                                        <md-menu-item><md-button ng-disabled="true">Open preview</md-button></md-menu-item>
-                                                        <md-menu-item><md-button ng-click="docCtrl.downloadAttachment(attachmentVersion)">Download</md-button></md-menu-item>
+                                                        <md-menu-item><md-button ng-disabled="true">{{'document.OPEN_PREVIEW' | translate}}</md-button></md-menu-item>
+                                                        <md-menu-item><md-button ng-click="docCtrl.downloadAttachment(attachmentVersion)">{{'document.DOWNLOAD' | translate}}</md-button></md-menu-item>
                                                      </md-menu-content>
                                                 </md-menu>
                                            </td>
@@ -109,7 +109,7 @@
                             Pages: <button ng-repeat="page in docCtrl.attachmentsPages" ng-click="docCtrl.loadAttachments(page)">{{page}}</button>
                         </md-card-content>
                         <div class="md-actions" layout="row">
-                          <md-button class="md-primary" ng-click="docCtrl.uploadAttachment()">Upload new attachment</md-button>
+                          <md-button class="md-primary" ng-click="docCtrl.uploadAttachment()">{{'document.attachments.UPLOAD_NEW_ATTACHMENT' | translate}}</md-button>
                         </div>
                     </md-card>
                  </div>
@@ -117,3 +117,5 @@
         </md-tab-body>
     </md-tab>
 </md-tabs>
+
+<app-footer></app-footer>
