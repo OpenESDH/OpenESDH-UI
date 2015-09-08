@@ -47,7 +47,7 @@
                           <md-button class="md-primary" ng-disabled="true">{{'document.EDIT_DOCUMENT' | translate}}</md-button>
                           <md-button class="md-primary" ng-click="docCtrl.uploadDocNewVersion()">{{'document.UPLOAD_NEW_VERSION' | translate}}</md-button>
                           <md-button class="md-primary" ng-click="docCtrl.downloadDocument()">{{'document.DOWNLOAD' | translate}}</md-button>
-                          <md-button class="md-primary" ng-disabled="true">{{'document.OPEN_PREVIEW' | translate}}</md-button>
+                          <md-button class="md-primary" ng-click="docCtrl.previewDocument()">{{'document.OPEN_PREVIEW' | translate}}</md-button>
                           <md-button class="md-primary" ng-disabled="true">{{'document.EDIT_PROPERTIES' | translate}}</md-button>
                         </div>
                     </md-card>
@@ -80,7 +80,7 @@
                                                  <md-menu-content>
                                                     <md-menu-item><md-button ng-disabled="true">{{'document.attachments.EDIT_ATTACHMENT' | translate}}</md-button></md-menu-item>
                                                     <md-menu-item><md-button ng-click="docCtrl.uploadAttachmentNewVersion(attachment)">{{'document.UPLOAD_NEW_VERSION' | translate}}</md-button></md-menu-item>
-                                                    <md-menu-item><md-button ng-disabled="true">{{'document.OPEN_PREVIEW' | translate}}</md-button></md-menu-item>
+                                                    <md-menu-item><md-button ng-click="docCtrl.previewAttachment(attachment)">{{'document.OPEN_PREVIEW' | translate}}</md-button></md-menu-item>
                                                     <md-menu-item><md-button ng-click="docCtrl.downloadAttachment(attachment)">{{'document.DOWNLOAD' | translate}}</md-button></md-menu-item>
                                                  </md-menu-content>
                                             </md-menu>
@@ -97,7 +97,7 @@
                                                        actions
                                                      </md-button>
                                                      <md-menu-content>
-                                                        <md-menu-item><md-button ng-disabled="true">{{'document.OPEN_PREVIEW' | translate}}</md-button></md-menu-item>
+                                                        <md-menu-item><md-button ng-click="docCtrl.previewAttachment(attachmentVersion)">{{'document.OPEN_PREVIEW' | translate}}</md-button></md-menu-item>
                                                         <md-menu-item><md-button ng-click="docCtrl.downloadAttachment(attachmentVersion)">{{'document.DOWNLOAD' | translate}}</md-button></md-menu-item>
                                                      </md-menu-content>
                                                 </md-menu>

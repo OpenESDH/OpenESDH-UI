@@ -28,6 +28,7 @@
         $translatePartialLoaderProvider.addPart('login');
         $translatePartialLoaderProvider.addPart('menu');
         $translatePartialLoaderProvider.addPart('common');
+        $translatePartialLoaderProvider.addPart('document.preview');
         $translateProvider.useLoader('$translatePartialLoader', {
            urlTemplate: '/app/src/i18n/{lang}/{part}.json' 
         });

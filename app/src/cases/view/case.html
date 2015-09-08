@@ -96,7 +96,7 @@
                     <td>{{doc["cm:modified"] | date: 'yyyy-MM-dd'}}</td>
                     <td>
                         <md-button class="md-primary" href="#/cases/case/{{docCtrl.caseId}}/doc/{{doc.nodeRef | nodeRefUri}}">{{'document.VIEW_DETAILS' | translate}}</md-button> 
-                        <md-button class="md-primary" ng-disabled="true">{{'document.PREVIEW' | translate}}</md-button>
+                        <md-button class="md-primary" ng-click="docCtrl.previewDocument(doc.mainDocNodeRef)">{{'document.PREVIEW' | translate}}</md-button>
                     </td>
                   </tr>
                 </tbody>

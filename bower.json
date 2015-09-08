@@ -16,7 +16,10 @@
     "angular-material": "^0.10.0",
     "angular-translate": "",
     "angular-translate-loader-partial": "",
-    "isteven-angular-multiselect":"3.0.0"
+    "isteven-angular-multiselect":"3.0.0",
+    "pdfjs-dist": "",
+    "ng-pdfviewer": "",
+    "angular-swfobject": ""
   },
   "devDependencies": {
     "angular-mocks": "^1.4.x"
