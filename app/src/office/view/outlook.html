@@ -1,0 +1,29 @@
+<md-card>
+    <md-card-content>
+        <h2>Save email in OpenESDH</h2>
+
+        <form name="form">
+            <md-input-container>
+                <label>Title</label>
+                <input type="text" ng-model="vm.subject" required>
+            </md-input-container>
+            <md-input-container>
+                <label>Case id</label>
+                <input type="text" ng-model="vm.caseId" required>
+            </md-input-container>
+            <div ng-show="vm.attachments.length > 0">
+                <md-subheader class="md-no-sticky">Attachments:</md-subheader>
+                <md-list-item ng-repeat="attachment in vm.attachments">
+                    <md-checkbox ng-model="attachment.selected"></md-checkbox>
+                    <p>{{attachment.Name}}</p>
+                </md-list-item>
+            </div>
+
+            <div class="md-actions" layout="row">
+                <md-button type="submit" class="md-primary" ng-click="vm.save(form)" ng-disabled="form.$invalid">Save</md-button>
+                <md-button type="button" ng-click="vm.cancel(form)">Cancel</md-button>
+            </div>
+        </form>
+
+    </md-card-content>
+</md-card>

@@ -12,9 +12,11 @@
             'openeApp.dashboard',
             'openeApp.files',
             'openeApp.tasks',
-            'openeApp.notes',
             'openeApp.documents',
-            'openeApp.contacts'
+            'openeApp.notes',
+            'openeApp.contacts',
+            'openeApp.administration',
+            'openeApp.office'
         ])
         .config(config)
         .constant('USER_ROLES', {
@@ -24,8 +26,8 @@
         })
         .run(function($rootScope, $state, $stateParams, authService) {
             $rootScope.$on('$stateChangeStart', function(event, next, params) {
-//                $rootScope.toState = next;
-//                $rootScope.toStateParams = params;
+                $rootScope.toState = next;
+                $rootScope.toStateParams = params;
                 if (next.data.authorizedRoles.length == 0) {
                     return;
                 }
@@ -33,6 +35,8 @@
 
                 } else {
                     event.preventDefault();
+                    $rootScope.returnToState = $rootScope.toState;
+                    $rootScope.returnToStateParams = $rootScope.toStateParams;
                     $state.go('login');
                 }
 //                console.log('authenticated? ', authService.isAuthenticated());
@@ -188,7 +192,7 @@
             }
         }).state('contact', {
             parent: 'site',
-            url: '/contacts/person/:storeProtocol/:storeIdentifier/:uuid',
+            url: '/contacts/person/:storeType/:storeId/:id',
             views: {
                 'content@': {
                     templateUrl : '/app/src/contacts/view/personCrud.html',
@@ -206,6 +210,19 @@
                 'content@': {
                     templateUrl : '/app/src/contacts/view/personCrud.html',
                     controller : 'PersonCrudController',
+                    controllerAs: 'vm'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
+            }
+        }).state('administration', {
+            parent: 'site',
+            url: '/admin',
+            views: {
+                'content@': {
+                    templateUrl : '/app/src/admin/view/admin.html',
+                    controller : 'AdminController',
                     controllerAs: 'vm'
                 }
             },

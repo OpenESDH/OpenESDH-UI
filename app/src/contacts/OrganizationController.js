@@ -8,7 +8,11 @@
 
     function OrganizationController($scope, $stateParams, $mdDialog, contactsService) {
         var vm = this;
-        
+        vm.doFilter = doFilter;
+        vm.showOrganizationEdit = showOrganizationEdit;
+        vm.showPersonEdit = showPersonEdit;
+        vm.initPersons = initPersons;
+
         if ($stateParams.uuid) {
             //infoForm
             initInfo();
@@ -18,27 +22,36 @@
         }
 
         function initList() {
-            vm.organizations = [];
+            vm.organizations.length = 0;
             contactsService.getOrganizations(vm.searchQuery || '').then(function(response) {
                 vm.organizations = response;
             }, function(error) {
                 console.log(error);
             });
         }
-        
+
         function initInfo() {
-            contactsService.getOrganization($stateParams.storeProtocol, $stateParams.storeIdentifier, $stateParams.uuid).then(function(response) {
-                vm.organization = response;
+            contactsService.getOrganization($stateParams.storeProtocol, $stateParams.storeIdentifier, $stateParams.uuid).then(function(organization) {
+                vm.organization = organization;
+                vm.persons = {
+                    items: []
+                };
+                initPersons();
             });
         }
-        
-        function doFilter(){
-            initList();
-        };
-        
-        $scope.doFilter = doFilter;
 
-        $scope.showAdvanced = function(ev) {
+        function initPersons() {
+            vm.persons.items.length = 0;
+            contactsService.getAssociations(vm.organization.nodeRefId).then(function(persons) {
+                vm.persons.items = persons;
+            });
+        }
+
+        function doFilter() {
+            initList();
+        }
+
+        function showOrganizationEdit(ev) {
             $scope.status = null;
             $mdDialog
                     .show({
@@ -56,25 +69,27 @@
                     }, function() {
 
                     });
-        };
+        }
 
         function DialogController($scope, $mdDialog, organization) {
             $scope.organization = organization;
+
             $scope.hide = function() {
                 $mdDialog.hide();
             };
+
             $scope.cancel = function() {
                 $mdDialog.cancel();
             };
+
             $scope.save = function(orgForm) {
                 if (!orgForm.$valid) {
                     $scope.error = 'Fill all required fields!';
                     return;
                 }
                 $scope.error = null;
-                if ($stateParams.uuid) {
-                    contactsService.updateOrganization(
-                            $stateParams.storeProtocol, $stateParams.storeIdentifier, $stateParams.uuid, $scope.organization)
+                if ($scope.organization.id) {
+                    contactsService.updateOrganization($scope.organization)
                             .then(refreshInfoAfterSuccess, saveError);
                 } else {
                     contactsService.createOrganization($scope.organization)
@@ -83,10 +98,10 @@
             };
 
             function refreshListAfterSuccess() {
-                doFilter();
                 $mdDialog.hide('Success!');
+                vm.doFilter();
             }
-            
+
             function refreshInfoAfterSuccess(savedOrganization) {
                 vm.organization = savedOrganization;
                 $mdDialog.hide('Success!');
@@ -97,7 +112,76 @@
                 $scope.error = response.statusText || response.message;
             }
         }
-    }
 
+
+        function showPersonEdit(ev, person) {
+            $mdDialog
+                    .show({
+                        controller: PersonDialogController,
+                        templateUrl: 'app/src/contacts/view/personCrudDialog.html',
+                        parent: angular.element(document.body),
+                        targetEvent: ev,
+                        clickOutsideToClose: true,
+                        locals: {
+                            person: angular.copy(person)
+                        }
+                    })
+                    .then(function(response) {
+                        console.log(response);
+                    }, function() {
+
+                    });
+        }
+
+        function PersonDialogController($scope, $mdDialog, person) {
+            if (!person) {
+                person = {
+                    parentNodeRefId: vm.organization.nodeRefId
+                };
+            }
+            $scope.person = person;
+            $scope.error = null;
+            $scope.success = null;
+
+            $scope.hide = function() {
+                $mdDialog.hide();
+            };
+
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+
+            $scope.delete = function() {
+                contactsService.deletePerson($scope.person)
+                        .then(refreshInfoAfterSuccess, saveError);
+            };
+
+            $scope.save = function(personForm) {
+                vm.error = null;
+                vm.success = null;
+                if (!personForm.$valid) {
+                    vm.error = 'Fill all required fields!';
+                    return;
+                }
+                if ($scope.person.id) {
+                    contactsService.updatePerson($scope.person)
+                            .then(refreshInfoAfterSuccess, saveError);
+                } else {
+                    contactsService.createPerson($scope.person)
+                            .then(refreshInfoAfterSuccess, saveError);
+                }
+            };
+
+            function refreshInfoAfterSuccess(savedPerson) {
+                $mdDialog.hide('Success!');
+                vm.initPersons();
+            }
+
+            function saveError(response) {
+                console.log(response);
+                $scope.error = response.statusText || response.message;
+            }
+        }
+    }
 
 })();

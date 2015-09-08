@@ -1,9 +1,13 @@
+<app-header></app-header>
+
+<md-content layout-padding>
+    <h2>{{vm.organization.organizationName}}</h2>
+</md-content>
+
 <md-card>
     <md-card-content>
 
         <a class="md-button md-primary" href="#/organizations">Back to organizations</a>
-
-        <h1>Organization</h1>
 
         <div layout="row" layout-wrap>
             <div flex="50">
@@ -26,38 +30,46 @@
                         </dl>
                     </md-card-content>
                     <div class="md-actions" layout="row">
-                        <md-button class="md-primary" ng-click="showAdvanced($event)">Edit organization</md-button>
+                        <md-button class="md-primary" ng-click="showOrganizationEdit($event)">Edit organization</md-button>
                         <md-button class="md-primary" ng-disabled="true">Delete organization</md-button>
                     </div>
                 </md-card>
             </div>
         </div>
-
+        
         <h2>Employees</h2>
-        <table>
-            <thead>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Department</th>
-            <th>Street</th>
-            <th>Postal code</th>
-            <th>City</th>
-            <th>Country</th>
-            <th>Actions</th>
-            </thead>
-            <tbody>
-            <td>Someone</td>
-            <td>Someonesson</td>
-            <td>AKDOL P3</td>
-            <td>Lirumlarumvej 12</td>
-            <td>2300</td>
-            <td>København S</td>
-            <td>Denmark</td>
-            <td><a class="md-button md-primary">View details</a></td>
-            </tbody>
-        </table>
-
-        <md-button class="md-primary" ng-disabled="true">Create contact</md-button>
+        <md-card>
+            <md-card-content>
+                <div ng-include="'app/src/contacts/view/sharedPersonsList.html'" ></div>
+            </md-card-content>
+        </md-card>
+        <!--
+                <h2>Employees</h2>
+                <table>
+                    <thead>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Department</th>
+                    <th>Street</th>
+                    <th>Postal code</th>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>Actions</th>
+                    </thead>
+                    <tbody>
+                    <td>Someone</td>
+                    <td>Someonesson</td>
+                    <td>AKDOL P3</td>
+                    <td>Lirumlarumvej 12</td>
+                    <td>2300</td>
+                    <td>København S</td>
+                    <td>Denmark</td>
+                    <td><a class="md-button md-primary">View details</a></td>
+                    </tbody>
+                </table>
+        
+                <md-button class="md-primary" ng-disabled="true">Create contact</md-button>
+        -->
 
     </md-card-content>
 </md-card>
