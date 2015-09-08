@@ -18,6 +18,13 @@
       "CREATENEWCASE": "Opret ny sag",
       "VIEW": "Vis",
       "CASETYPESTANDARD": "Standard-sag",
-      "CASETYPEOTHER": "Anden type sag"
+      "CASETYPEOTHER": "Anden type sag",
+
+      "status": {
+          "active": "Under behandling",
+          "passive": "Passiv",
+          "closed": "Afsluttet",
+          "archived": "Periodeskiftet"
+      }
     }
 }

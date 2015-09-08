@@ -2,13 +2,8 @@
 	"document":{
 			"documents": "Dokumenter",
             "status":{
-                "received": "Modtaget",
-                "distributed": "Distribueret",
                 "draft": "Kladde",
-                "under-review": "Under godkendelse",
-                "published": "Publiseret",
-                "finalised": "Færdiggjort",
-                "submitted": "Afsendt"
+                "final": "Endelig"
             },
             "category":{
                 "annex": "Annex",

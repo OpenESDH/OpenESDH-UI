@@ -38,7 +38,7 @@
                 <td>{{case["base:startDate"] | date: 'yyyy-MM-dd'}}</td>
                 <td>{{case["base:endDate"] | date: 'yyyy-MM-dd'}}</td>
                 <td>{{case["cm:modified"] | date: 'yyyy-MM-dd'}}</td>
-                <td>{{case["oe:status"]}}</td>
+                <td>{{case["oe:status"] | caseStatus}}</td>
                 <td><md-button href="#/cases/case/{{case['oe:id']}}">{{ 'CASEINFO.VIEW' | translate }}</md-button></td>
               </tr>
             </tbody>
