@@ -21,21 +21,21 @@
         vm.cancel = cancel;
 
         function save() {
-//            caseService.getCaseDocumentsFolderNodeRef(vm.caseId).then(function(response) {
-//                console.log(response);
-//            });
             officeService.saveEmail({
                 caseId: vm.caseId,
                 name: vm.subject,
                 email: vm.email
+            }).then(function(response) {
+                alert(JSON.stringify(response));
+                var metadata = {
+                    caseId: vm.caseId,
+                    documentName: vm.subject,
+                    nodeRef: response.nodeRef
+                };
+                $window.external.SaveAsOpenEsdh(JSON.stringify(metadata), JSON.stringify(vm.attachments.filter(function(attachment) {
+                    return attachment.selected;
+                })));
             });
-            var metadata = {
-                caseId: vm.caseId,
-                documentName: vm.subject
-            };
-            $window.external.SaveAsOpenEsdh(JSON.stringify(metadata), JSON.stringify(vm.attachments.filter(function(attachment) {
-                return attachment.selected;
-            })));
         }
 
         function cancel() {
