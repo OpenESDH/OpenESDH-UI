@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <md-content layout-padding>
-  <h1>Administration pages</h1>
+    <h1>Administration pages</h1>
 </md-content>
 
 <md-tabs md-dynamic-height>
@@ -24,7 +24,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="user in vm.allSystemUsers">
+              <tr ng-repeat="user in vm.allSystemUsers" class="{{user.enabled ? 'enabled' : 'muted'}}">
                 <td>{{user.userName}}</td>
                 <td>{{user.firstName}}</td>
                 <td>{{user.lastName}}</td>
