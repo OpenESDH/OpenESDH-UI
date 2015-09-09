@@ -64,7 +64,7 @@
             var type = 'simple:case';
             return userService.getHome().then(function (response) {
                 params.alf_destination = response.nodeRef;
-                return $http.post('/alfresco/servic/api/type/' + type + '/formprocessor', params).then(function (response) {
+                return $http.post('/alfresco/service/api/type/' + type + '/formprocessor', params).then(function (response) {
                     var nodeRef = response.data.persistedObject;
                     return $http.get('/alfresco/service/api/openesdh/documents/isCaseDoc/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri).then(function (response) {
                         return response.data.caseId;
