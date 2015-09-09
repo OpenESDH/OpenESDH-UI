@@ -18,19 +18,23 @@
                         <dl>
                             <dt>Company name</dt><dd ng-bind="vm.organization.organizationName"></dd>
                             <dt>Department</dt><dd ng-bind="vm.organization.department || '&nbsp;'"></dd>
-                            <dt>Address 1</dt><dd ng-bind="vm.organization.address || '&nbsp;'"></dd>
-                            <dt>Address 2</dt><dd ng-bind="vm.organization.addressLine1 || '&nbsp;'"></dd>
+                            <dt>Address 1</dt><dd ng-bind="vm.organization.addressLine1 || '&nbsp;'"></dd>
+                            <dt>Address 2</dt><dd ng-bind="vm.organization.addressLine2 || '&nbsp;'"></dd>
                             <dt>Postal number</dt><dd ng-bind="vm.organization.postCode || '&nbsp;'"></dd>
                             <dt>City</dt><dd ng-bind="vm.organization.cityName || '&nbsp;'"></dd>
                             <dt>Country</dt><dd ng-bind="vm.organization.countryCode || '&nbsp;'"></dd>
                             <dt>VAT number</dt><dd ng-bind="vm.organization.cvrNumber"></dd>
                             <dt>E-mail address</dt><dd ng-bind="vm.organization.email || '&nbsp;'"></dd>
                             <dt>Phone</dt><dd ng-bind="vm.organization.phone || '&nbsp;'"></dd>
+                            <dt>Mobile</dt><dd ng-bind="vm.organization.mobile || '&nbsp;'"></dd>
                             <dt>Website</dt><dd ng-bind="vm.organization.website || '&nbsp;'"></dd>
+                            <dt>Linkedin</dt><dd ng-bind="vm.organization.linkedin || '&nbsp;'"></dd>
+                            <dt>IM</dt><dd ng-bind="vm.organization.IM || '&nbsp;'"></dd>
+                            <dt>Notes</dt><dd ng-bind="vm.organization.notes || '&nbsp;'"></dd>
                         </dl>
                     </md-card-content>
                     <div class="md-actions" layout="row">
-                        <md-button class="md-primary" ng-click="showOrganizationEdit($event)">Edit organization</md-button>
+                        <md-button class="md-primary" ng-click="vm.showOrganizationEdit($event)">Edit organization</md-button>
                         <md-button class="md-primary" ng-disabled="true">Delete organization</md-button>
                     </div>
                 </md-card>
