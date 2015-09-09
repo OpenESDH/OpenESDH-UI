@@ -5,9 +5,9 @@
         .module('openeApp')
         .factory('documentPreviewService', DocumentPreviewService);
 
-    DocumentPreviewService.$inject = ['$mdDialog', 'alfrescoDocumentService', 'alfrescoDownloadService', 'PDFViewerService'];
+    DocumentPreviewService.$inject = ['$mdDialog', 'alfrescoDocumentService', 'alfrescoDownloadService', 'PDFViewerService', 'sessionService'];
 
-    function DocumentPreviewService($mdDialog, alfrescoDocumentService, alfrescoDownloadService, pdf) {
+    function DocumentPreviewService($mdDialog, alfrescoDocumentService, alfrescoDownloadService, pdf, sessionService) {
         
         var templatesUrl = 'app/src/shared/services/document/preview/view/';
         
@@ -92,7 +92,7 @@
             
             resultPlugin.nodeRef = item.node.nodeRef;
             resultPlugin.fileName = item.location.file;
-            resultPlugin.contentUrl = '/alfresco/service' + item.node.contentURL;
+            resultPlugin.contentUrl = '/alfresco/service' + item.node.contentURL + '?alf_ticket='+sessionService.getUserInfo().ticket;
             resultPlugin.itemSize = item.node.size;
             resultPlugin.mimeType = item.node.mimetype;
             
