@@ -1,7 +1,28 @@
 <app-header></app-header>
 
-<md-content layout-padding>
-  <h2>{{ case["oe:id"].value }} {{ case["cm:title"].value }}</h2>
+<md-content>
+  <div layout="row" layout-padding layout-align="space-between end">
+    <div>
+      <h2>{{ case["oe:id"].value }} {{ case["cm:title"].value }}</h2>
+    </div>
+    <div class="md-actions" layout="column">
+      <md-menu>
+        <md-button class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="{{ 'CASEINFO.CHANGE_STATUS' | translate }}">
+          {{ 'CASEINFO.CHANGE_STATUS' | translate }}
+        </md-button>
+        <md-menu-content>
+          <md-menu-item ng-repeat="choiceName in caseStatusChoices">
+            <md-button
+                    ng-class="{'current-choice': choiceName === case['oe:status'].value}"
+                    ng-disabled="choiceName === case['oe:status'].value"
+                    aria-label="{{ choiceName | caseStatus }}"
+                    ng-click="vm.changeCaseStatus($event, choiceName)">{{ choiceName | caseStatus }}</md-button>
+          </md-menu-item>
+
+        </md-menu-content>
+      </md-menu>
+    </div>
+  </div>
 </md-content>
 
 <md-tabs md-dynamic-height>
@@ -21,7 +42,7 @@
               <dl>
                 <dt>{{ 'CASEINFO.ID' | translate }}</dt><dd>{{ case["oe:id"].value }}</dd>
                 <dt>{{ 'CASEINFO.TITLE' | translate }}</dt><dd>{{ case["cm:title"].value }}</dd>
-                <dt>{{ 'CASEINFO.STATUS' | translate }}</dt><dd>{{ case["oe:status"].value }}</dd>
+                <dt>{{ 'CASEINFO.STATUS' | translate }}</dt><dd>{{ case["oe:status"].value | caseStatus }}</dd>
                 <dt>{{ 'CASEINFO.CREATEDBY' | translate }}</dt><dd>{{ case["cm:creator"].fullname }}</dd>
                 <dt>{{ 'CASEINFO.CREATED' | translate }}</dt><dd>{{ case["cm:created"].value | date: 'yyyy-MM-dd'}}</dd>
                 <dt>{{ 'CASEINFO.CASEOWNERS' | translate }}</dt><dd>{{ case["base:owners"].fullname }}</dd>
@@ -30,7 +51,8 @@
               </dl>
             </md-card-content>
             <div class="md-actions" layout="row">
-              <md-button class="md-primary" ng-click="vm.editCase($event)">{{ 'CASEINFO.EDIT_INFORMATION' | translate }}</md-button>
+              <md-button class="md-primary" ng-click="vm.editCase($event)"
+                         ng-disabled="caseIsLocked">{{ 'CASEINFO.EDIT_INFORMATION' | translate }}</md-button>
               <md-button class="md-primary" ng-disabled="true">{{ 'CASEINFO.PRINT_CASE' | translate }}</md-button>
               <md-button class="md-primary" ng-disabled="true">{{ 'CASEINFO.START_WORKFLOW' | translate }}</md-button>
               <md-button class="md-primary" ng-disabled="true">{{ 'CASEINFO.CREATE_SITE' | translate }}</md-button>
@@ -58,7 +80,8 @@
                 Pages: <span style="margin-right: 10px;" ng-repeat="page in caseNotes.pages"><button ng-click="caseNotes.loadNotes(page)">{{page}}</button></span>
             </md-card-content>
             <div class="md-actions" layout="row">
-              <md-button class="md-primary" ng-click="caseNotes.newNote()">{{'notes.NEW_NOTE' | translate}}</md-button>
+              <md-button class="md-primary" ng-click="caseNotes.newNote()"
+                         ng-disabled="caseIsLocked">{{'notes.NEW_NOTE' | translate}}</md-button>
               <md-button class="md-primary" ng-disabled="true">{{'notes.PRINT_ALL_NOTES' | translate}}</md-button>
             </div>
           </md-card>
@@ -105,7 +128,10 @@
             </md-card-content>
             <div class="md-actions" layout="row">
               <md-button class="md-primary" ng-disabled="true">{{'document.CREATE_NEW_DOCUMENT' | translate}}</md-button>
-              <md-button class="md-primary" ng-click="docCtrl.uploadDocument()">{{'document.UPLOAD_NEW_DOCUMENTS' | translate}}</md-button>
+              <md-button class="md-primary"
+                         ng-click="docCtrl.uploadDocument()"
+                         ng-disabled="caseIsLocked">{{'document.UPLOAD_NEW_DOCUMENTS' |
+                translate}}</md-button>
               <md-button class="md-primary" ng-disabled="true">{{'document.EMAIL_DOCUMENTS' | translate}}</md-button>
             </div>
           </md-card>

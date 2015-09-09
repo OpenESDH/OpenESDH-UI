@@ -8,6 +8,8 @@
 	"common": {
 		"ACTION": "Action",
 		"CANCEL": "Cancel",
-		"BACK": "Back"
+		"BACK": "Back",
+	  	"OK": "OK",
+	  	"CONFIRM": "Confirm"
 	}
 }

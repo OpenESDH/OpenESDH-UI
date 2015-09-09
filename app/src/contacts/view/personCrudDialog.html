@@ -13,23 +13,23 @@
             <div ng-bind="error" ng-show="error"></div>
             <md-input-container>
                 <label>First Name</label>
-                <input type="text" ng-model="person.firstName" required>
+                <input type="text" ng-model="person.firstName" required ng-maxlength="50">
             </md-input-container>
             <md-input-container>
                 <label>Middle Name</label>
-                <input type="text" ng-model="person.middleName">
+                <input type="text" ng-model="person.middleName" ng-maxlength="50">
             </md-input-container>
             <md-input-container>
                 <label>Last Name</label>
-                <input type="text" ng-model="person.lastName" required>
+                <input type="text" ng-model="person.lastName" required ng-maxlength="40">
             </md-input-container>
             <md-input-container>
                 <label>Address 1</label>
-                <input type="text" ng-model="person.address" required>
+                <input type="text" ng-model="person.addressLine1" required>
             </md-input-container>
             <md-input-container>
                 <label>Address 2</label>
-                <input type="text" ng-model="person.addressLine1">
+                <input type="text" ng-model="person.addressLine2">
             </md-input-container>
             <md-input-container>
                 <label>Postal number</label>
@@ -56,8 +56,24 @@
                 <input type="text" ng-model="person.phone" ng-minlength="4" ng-pattern="/^[+]?[0-9\- ]+$/">
             </md-input-container>
             <md-input-container>
+                <label>Mobile</label>
+                <input type="text" ng-model="organization.mobile" ng-minlength="4" ng-pattern="/^[+]?[0-9\- ]+$/">
+            </md-input-container>
+            <md-input-container>
                 <label>Website</label>
-                <input type="text" ng-model="person.website">
+                <input type="text" ng-model="organization.website" ng-maxlength="70">
+            </md-input-container>
+            <md-input-container>
+                <label>Linkedin</label>
+                <input type="text" ng-model="organization.linkedin" ng-maxlength="70">
+            </md-input-container>
+            <md-input-container>
+                <label>IM</label>
+                <input type="text" ng-model="organization.IM" ng-maxlength="70">
+            </md-input-container>
+            <md-input-container>
+                <label>Notes</label>
+                <textarea ng-model="organization.notes" ng-maxlength="2000"></textarea>
             </md-input-container>
         </md-dialog-content>
         <div class="md-actions" layout="row">

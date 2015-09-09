@@ -21,7 +21,7 @@
     </md-card>
   </div>
   
-  <div flex="50" ng-controller="CaseController">
+  <div flex="50" ng-controller="CaseController as caseController">
     <md-card>
       <md-card-content>
         <h3>My cases</h3>
@@ -35,17 +35,17 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="case in cases" class="{{ case.isUpdated ? 'updated' : 'not-updated' }}">
-              <td>{{ case.caseId }}</td>
-              <td>{{ case.title }}</td>
-              <td>{{ case.modifiedDate }}</td>
+            <tr ng-repeat="case in caseController.cases" class="{{ case.isUpdated ? 'updated' : 'not-updated' }}">
+              <td>{{case["oe:id"]}}</td>
+              <td>{{case["cm:title"]}}</td>
+              <td>{{case["cm:modified"] | date: 'yyyy-MM-dd'}}</td>
               <td><md-button href="#/cases/case" class="md-primary">View</md-button></td>
             </tr>
           </tbody>
         </table>
       </md-card-content>
       <div class="md-actions">
-        <md-button class="md-primary" ng-click="createCase($event)">Create new case</md-button>
+        <md-button class="md-primary" ng-click="caseController.createCase($event, 'standard')">Create new case</md-button>
       </div>
     </md-card>
   </div>

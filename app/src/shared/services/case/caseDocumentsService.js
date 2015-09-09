@@ -11,7 +11,8 @@
         var service = {
             getDocumentsByCaseId: getDocumentsByCaseId,
             uploadCaseDocument: uploadCaseDocument,
-            getDocumentsFolderNodeRef: getDocumentsFolderNodeRef
+            getDocumentsFolderNodeRef: getDocumentsFolderNodeRef,
+            getCaseDocumentsWithAttachments: getCaseDocumentsWithAttachments
         };
         return service;
         
@@ -52,5 +53,16 @@
             }
             return alfrescoUploadService.uploadFile(documentFile, caseDocumentsFolder, documentProps);
         }
+        
+        function getCaseDocumentsWithAttachments(caseId){
+            var requestConfig = { 
+                url: "/alfresco/service/api/openesdh/case/" + caseId + "/documents/attachments",
+                method: "GET"
+            };
+            return $http(requestConfig).then(function(response){
+                return response.data;
+            });
+        }
+        
     }
 })();

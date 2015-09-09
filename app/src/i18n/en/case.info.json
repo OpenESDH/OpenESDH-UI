@@ -19,11 +19,19 @@
       "VIEW": "View",
       "CASETYPESTANDARD": "Standard case",
       "CASETYPEOTHER": "Other type of case",
-      
+      "CHANGE_STATUS": "Change status",
       "CARDTITLE": "Information",
       "EDIT_INFORMATION": "Edit information",
       "PRINT_CASE": "Print case",
       "START_WORKFLOW": "Start workflow",
-      "CREATE_SITE": "Create site"
+      "CREATE_SITE": "Create site",
+      "CONFIRM_CLOSE_CASE": "Are you sure you want to close the case?",
+
+      "status": {
+          "active": "Active",
+          "passive": "Passive",
+          "closed": "Closed",
+          "archived": "Archived"
+      }
     }
 }
