@@ -28,15 +28,10 @@
 			"DOWNLOAD": "Download",
 			"OPEN_PREVIEW": "Open preview",
 			"EDIT_PROPERTIES": "Edit properties",
-	
+
             "status":{
-                "received": "Received",
-                "distributed": "Distributed",
-                "draft": "Draft",
-                "under-review": "Under review",
-                "published": "Published",
-                "finalised": "Finalised",
-                "submitted": "Submitted"
+              "draft": "Draft",
+              "final": "Final"
             },
             
             "category":{

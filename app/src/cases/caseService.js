@@ -12,7 +12,8 @@
             getCaseTypes: getCaseTypes,
             getCases: getCases,
             createCase: createCase,
-            getCaseInfo: getCaseInfo
+            getCaseInfo: getCaseInfo,
+            changeCaseStatus: changeCaseStatus
         };
         return service;
 
@@ -63,6 +64,12 @@
 
         function getCaseDocumentsFolderNodeRef(caseId) {
             return $http.get('/alfresco/service/api/openesdh/case/docfolder/noderef/' + caseId).then(function(response) {
+                return response.data;
+            });
+        }
+
+        function changeCaseStatus(caseId, status) {
+            return $http.post('/alfresco/service/api/openesdh/case/' + caseId + '/status', {status: status}).then(function (response) {
                 return response.data;
             });
         }

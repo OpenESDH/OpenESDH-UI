@@ -14,6 +14,13 @@
      */
     function AdminController($scope, $mdDialog, userService) {
 
+  /**
+   * Main Controller for the Admin module
+   * @param $scope
+   * @constructor
+   */
+  function AdminController($scope, $mdDialog, userService) {
+        initTab();
         var vm = this;
         vm.createUser = createUser;
         vm.editUser = editUser;
@@ -24,10 +31,16 @@
             getAllSystemUsers();
         }
 
+
+        function initTab() {
+            $scope.$on('$stateChangeSuccess', function(event, toState) {
+                $scope.currentTab = toState.data.selectedTab;
+            });
+        }
+      
         function createUser(ev) {
             console.log('Creating a new user');
 
-            vm.userDialogMode = "Create";
             $mdDialog.show({
                 controller: UserDialogController,
                 controllerAs: 'vm',
