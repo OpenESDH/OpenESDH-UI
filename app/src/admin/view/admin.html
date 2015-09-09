@@ -1,76 +1,90 @@
 <app-header></app-header>
 
 <md-content layout-padding>
-    <h1>Administration pages</h1>
+  <h1>Administration pages</h1>
 </md-content>
 
-<md-tabs md-dynamic-height md-selected="currentTab">
-
-    <md-tab>
-        <md-tab-label>
-            <span>Users</span>
-        </md-tab-label>
-        <md-tab-body>
-            <md-card>
-                <md-card-content>
-                    <h3>Users</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>User name</th>
-                                <th>{{ 'CASEINFO.ACTIONS' | translate }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Username goes here</td>
-                                <td><md-button>{{ 'CASEINFO.VIEW' | translate }}</md-button></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </md-card-content>
-                <div class="md-actions">
-                    <md-button class="md-primary" ng-click="vm.createUser($event)" aria-label="Create new user">
-                        Create user
-                    </md-button>
-                </div>
-            </md-card>
-        </md-tab-body>
-    </md-tab>
-
-    <md-tab>
-        <md-tab-label>
-            <span>Groups</span>
-        </md-tab-label>
-        <md-tab-body layout="column">
-            <md-card>
-                <md-card-content>
-                    <p>Some stuff goes here</p>
-                </md-card-content>
-            </md-card>
-        </md-tab-body>
-    </md-tab>
-
-    <md-tab>
-        <md-tab-label>
-            <span>Organizations</span>
-        </md-tab-label>
-        <md-tab-body layout="column">
-            <div ng-include="'app/src/contacts/view/organizations.html'" ></div>
-        </md-tab-body>
-    </md-tab>
-
-    <md-tab>
-        <md-tab-label>
-            <span>Contacts</span>
-        </md-tab-label>
-        <md-tab-body layout="column">
-            <div ng-controller="PersonsController as vm">
-                <div ng-include="'app/src/contacts/view/persons.html'" ></div>
-            </div>
-        </md-tab-body>
-    </md-tab>
-
+<md-tabs md-dynamic-height>
+  
+  <md-tab>
+    <md-tab-label>
+      <span>Users</span>
+    </md-tab-label>
+    <md-tab-body>
+      <md-card>
+        <md-card-content>
+          <h3>Users</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>{{ 'CASEINFO.ACTIONS' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="user in vm.allSystemUsers">
+                <td>{{user.userName}}</td>
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>
+                  <md-button class="md-primary" ng-click="vm.editUser($event, user)" aria-label="Edit user">
+                    Edit user
+                  </md-button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </md-card-content>
+        <div class="md-actions">
+          <md-button class="md-primary" ng-click="vm.createUser($event)" aria-label="Create new user">
+            Create user
+          </md-button>
+        </div>
+      </md-card>
+    </md-tab-body>
+  </md-tab>
+  
+  <md-tab>
+    <md-tab-label>
+      <span>Groups</span>
+    </md-tab-label>
+    <md-tab-body layout="column">
+      <md-card>
+        <md-card-content>
+          <p>Some stuff goes here</p>
+        </md-card-content>
+      </md-card>
+    </md-tab-body>
+  </md-tab>
+  
+  <md-tab>
+    <md-tab-label>
+      <span>Organisations</span>
+    </md-tab-label>
+    <md-tab-body layout="column">
+      <md-card>
+        <md-card-content>
+          <p>Some stuff goes here</p>
+        </md-card-content>
+      </md-card>
+    </md-tab-body>
+  </md-tab>
+  
+  <md-tab>
+    <md-tab-label>
+      <span>Contacts</span>
+    </md-tab-label>
+    <md-tab-body layout="column">
+      <md-card>
+        <md-card-content>
+          <p>Some stuff goes here</p>
+        </md-card-content>
+      </md-card>
+    </md-tab-body>
+  </md-tab>
+  
 </md-tabs>
 
 <app-footer></app-footer>

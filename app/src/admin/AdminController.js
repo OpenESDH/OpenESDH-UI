@@ -6,14 +6,6 @@
         .controller('AdminController', AdminController);
 
     AdminController.$inject = ['$scope', '$mdDialog', 'userService'];
-
-    /**
-     * Main Controller for the Admin module
-     * @param $scope
-     * @constructor
-     */
-    function AdminController($scope, $mdDialog, userService) {
-
   /**
    * Main Controller for the Admin module
    * @param $scope
@@ -40,6 +32,7 @@
       
         function createUser(ev) {
             console.log('Creating a new user');
+            vm.user = {};
 
             $mdDialog.show({
                 controller: UserDialogController,
