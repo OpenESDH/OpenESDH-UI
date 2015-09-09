@@ -113,8 +113,7 @@
             data: {
                 authorizedRoles: [USER_ROLES.user]
             }
-        })
-        .state('login', {
+        }).state('login', {
             parent: 'site',
             url: '/login',
             views: {
@@ -151,71 +150,6 @@
             data: {
                 authorizedRoles: [USER_ROLES.user]
             }
-        }).state('organizations', {
-            parent: 'site',
-            url: '/organizations',
-            views: {
-                'content@': {
-                    templateUrl : '/app/src/contacts/view/organizations.html',
-                    controller : 'OrganizationController',
-                    controllerAs: 'vm'
-                }
-            },
-            data: {
-                authorizedRoles: [USER_ROLES.user]
-            }
-        }).state('organization', {
-            parent: 'site',
-            url: '/organizations/organization/:storeProtocol/:storeIdentifier/:uuid',
-            views: {
-                'content@': {
-                    templateUrl : '/app/src/contacts/view/organization.html',
-                    controller : 'OrganizationController',
-                    controllerAs: 'vm'
-                }
-            },
-            data: {
-                authorizedRoles: [USER_ROLES.user]
-            }
-        }).state('contacts', {
-            parent: 'site',
-            url: '/contacts',
-            views: {
-                'content@': {
-                    templateUrl : '/app/src/contacts/view/persons.html',
-                    controller : 'PersonsController',
-                    controllerAs: 'vm'
-                }
-            },
-            data: {
-                authorizedRoles: [USER_ROLES.user]
-            }
-        }).state('contact', {
-            parent: 'site',
-            url: '/contacts/person/:storeType/:storeId/:id',
-            views: {
-                'content@': {
-                    templateUrl : '/app/src/contacts/view/personCrud.html',
-                    controller : 'PersonCrudController',
-                    controllerAs: 'vm'
-                }
-            },
-            data: {
-                authorizedRoles: [USER_ROLES.user]
-            }
-        }).state('contactNew', {
-            parent: 'site',
-            url: '/contacts/person/create',
-            views: {
-                'content@': {
-                    templateUrl : '/app/src/contacts/view/personCrud.html',
-                    controller : 'PersonCrudController',
-                    controllerAs: 'vm'
-                }
-            },
-            data: {
-                authorizedRoles: [USER_ROLES.user]
-            }
         }).state('administration', {
             parent: 'site',
             url: '/admin',
@@ -223,6 +157,47 @@
                 'content@': {
                     templateUrl : '/app/src/admin/view/admin.html',
                     controller : 'AdminController',
+                    controllerAs: 'vm'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
+            }
+        }).state('administration.organizations', {
+            parent: 'site',
+            url: '/admin/organizations',
+            views: {
+                'content@': {
+                    templateUrl: '/app/src/admin/view/admin.html',
+                    controller: 'AdminController',
+                    controllerAs: 'vm'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user],
+                selectedTab: 2
+            }
+        }).state('administration.contacts', {
+            parent: 'site',
+            url: '/admin/contacts',
+            views: {
+                'content@': {
+                    templateUrl: '/app/src/admin/view/admin.html',
+                    controller: 'AdminController',
+                    controllerAs: 'vm'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user],
+                selectedTab: 3
+            }
+        }).state('administration.organizations.organization', {
+            parent: 'site',
+            url: '/admin/organizations/:storeProtocol/:storeIdentifier/:uuid',
+            views: {
+                'content@': {
+                    templateUrl: '/app/src/contacts/view/organization.html',
+                    controller: 'OrganizationController',
                     controllerAs: 'vm'
                 }
             },

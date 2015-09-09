@@ -13,9 +13,15 @@
    * @constructor
    */
   function AdminController($scope, $mdDialog, userService) {
-        
+        initTab();
         var vm = this;
         vm.createUser = createUser;
+
+        function initTab() {
+            $scope.$on('$stateChangeSuccess', function(event, toState) {
+                $scope.currentTab = toState.data.selectedTab;
+            });
+        }
       
         function createUser(ev) {
             
