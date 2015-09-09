@@ -5,9 +5,9 @@
         .module('openeApp')
         .factory('documentPreviewService', DocumentPreviewService);
 
-    DocumentPreviewService.$inject = ['$mdDialog', 'alfrescoDocumentService', 'alfrescoDownloadService', 'PDFViewerService', 'sessionService'];
+    DocumentPreviewService.$inject = ['$mdDialog', 'alfrescoDocumentService', 'alfrescoDownloadService', 'PDFViewerService', 'sessionService', '$http', '$sce'];
 
-    function DocumentPreviewService($mdDialog, alfrescoDocumentService, alfrescoDownloadService, pdf, sessionService) {
+    function DocumentPreviewService($mdDialog, alfrescoDocumentService, alfrescoDownloadService, pdf, sessionService, $http, $sce) {
         
         var templatesUrl = 'app/src/shared/services/document/preview/view/';
         
@@ -68,7 +68,8 @@
                            pdfViewer(),
                            imageViewer(),
                            videoViewer(),
-                           strobeMediaPlayback()
+                           strobeMediaPlayback(),
+                           webViewer()
                        ];
             return plugins;
         }
@@ -183,6 +184,30 @@
             };
         }
         
+        function webViewer(){
+            var viewer = {
+                    mimeTypes: [
+                                'text/plain',
+                                'text/html',
+                                'text/xml',
+                                'text/xhtml+xml'
+                                ],
+                    templateUrl: 'web.html',
+                    init: function($scope){
+                        var _this = this;
+                        $http.get(this.contentUrl).then(function(response){
+                            if(_this.mimeType == 'text/html' || _this.mimeType == 'text/xhtml+xml'){
+                                $scope.htmlContent = $sce.trustAsHtml(response.data);    
+                            }else{
+                                $scope.plainTextContent = response.data;
+                            }
+                        });
+                    }
+            };
+            var result = generalPreviewPlugin();
+            return angular.extend(result, viewer);
+        }
+        
         function generalPlaybackPlugin(){
             var plugin = {
                     init: function($scope){
@@ -207,6 +232,5 @@
                 }
             };
         }
-        
     }
 })();
