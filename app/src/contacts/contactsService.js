@@ -25,8 +25,8 @@
         return service;
 
         //organizations
-        function getOrganizations(searchTerm) {
-            return getContacts(searchTerm, 'contact:organization');
+        function getOrganizations(searchTerm, pagingParams) {
+            return getContacts(searchTerm, 'contact:organization', pagingParams);
         }
 
         function createOrganization(organization) {
@@ -39,8 +39,8 @@
         }
 
         //persons
-        function getPersons(searchTerm) {
-            return getContacts(searchTerm, 'contact:person');
+        function getPersons(searchTerm, pagingParams) {
+            return getContacts(searchTerm, 'contact:person', pagingParams);
         }
 
         function createPerson(person) {
@@ -48,9 +48,9 @@
         }
 
         //contacts
-        function getContacts(searchTerm, baseType) {
+        function getContacts(searchTerm, baseType, pagingParams) {
             return $http.get('/alfresco/service/api/openesdh/contactsearch',
-                    {params: {baseType: baseType, term: searchTerm}})
+                    {params: angular.extend({baseType: baseType, term: searchTerm || ''}, pagingParams)})
                     .then(successOrReject);
         }
 
@@ -75,7 +75,7 @@
         function deleteContact(contact) {
             //api/openesdh/contact/{store_type}/{store_id}/{id}
             return $http.delete('/alfresco/service/api/openesdh/contact/' + contact.storeType + '/' + contact.storeId + '/' + contact.id,
-            {}).then(successOrReject);
+                    {}).then(successOrReject);
         }
 
         function successOrReject(response) {
