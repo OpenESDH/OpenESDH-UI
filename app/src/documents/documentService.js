@@ -18,7 +18,6 @@
             return $http.get('/alfresco/s/slingshot/doclib/doclist/documents/node/alfresco/company/home', {
                 params: {max: 50, filter: 'recentlyModifiedByMe'}
             }).then(function(response) {
-                console.log(response);
                 return response.data;
             });
         }

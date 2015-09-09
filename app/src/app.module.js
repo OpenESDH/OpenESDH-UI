@@ -12,10 +12,11 @@
             'openeApp.dashboard',
             'openeApp.files',
             'openeApp.tasks',
-            'openeApp.notes',
             'openeApp.documents',
+            'openeApp.notes',
             'openeApp.contacts',
-            'openeApp.administration'
+            'openeApp.administration',
+            'openeApp.office'
         ])
         .config(config)
         .constant('USER_ROLES', {
@@ -25,8 +26,8 @@
         })
         .run(function($rootScope, $state, $stateParams, authService) {
             $rootScope.$on('$stateChangeStart', function(event, next, params) {
-//                $rootScope.toState = next;
-//                $rootScope.toStateParams = params;
+                $rootScope.toState = next;
+                $rootScope.toStateParams = params;
                 if (next.data.authorizedRoles.length == 0) {
                     return;
                 }
@@ -34,6 +35,8 @@
 
                 } else {
                     event.preventDefault();
+                    $rootScope.returnToState = $rootScope.toState;
+                    $rootScope.returnToStateParams = $rootScope.toStateParams;
                     $state.go('login');
                 }
 //                console.log('authenticated? ', authService.isAuthenticated());

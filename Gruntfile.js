@@ -60,6 +60,7 @@ module.exports = function(grunt) {
             localhost: {
                 options: {
                     base: '.',
+                    hostname: '*',
                     middleware: function(connect, options, defaultMiddleware) {
                         var proxy = require('grunt-connect-proxy/lib/utils').proxyRequest;
                         return [

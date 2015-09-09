@@ -104,7 +104,6 @@
 
         function getAuthorities() {
             return userService.getAuthorities().then(function(response) {
-                console.log(response);
                 vm.authorities = response;
                 return response;
             });

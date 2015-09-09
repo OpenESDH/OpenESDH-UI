@@ -16,6 +16,10 @@ body {
   font-weight: bold;
 }
 
+md-menu-item > .md-button.current-choice {
+  font-weight: bold;
+}
+
 md-tabs md-tabs-wrapper {
   background-color: #fff;
 }
