@@ -77,7 +77,6 @@
         
         function getCaseDocumentConstraints(){
             return $http.get("/alfresco/service/api/openesdh/case/document/constraints").then(function(response){
-                console.log("got", response);
                return response.data; 
             });
         }

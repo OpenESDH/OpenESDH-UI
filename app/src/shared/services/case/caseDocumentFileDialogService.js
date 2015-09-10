@@ -5,74 +5,170 @@
         .module('openeApp')
         .factory('caseDocumentFileDialogService', CaseDocumentFileDialogService);
 
-    CaseDocumentFileDialogService.$inject = ['$mdDialog', 'caseDocumentsService'];
+    CaseDocumentFileDialogService.$inject = ['$mdDialog', '$q', 'caseDocumentsService', 'caseDocumentDetailsService'];
 
-    function CaseDocumentFileDialogService($mdDialog, caseDocumentsService) {
+    function CaseDocumentFileDialogService($mdDialog, $q, caseDocumentsService, caseDocumentDetailsService) {
         var service = {
-                uploadNewCaseDocument: uploadNewCaseDocument,
-                documentConstraints: null,
-                _showDialog: _showDialog,
-                _loadDocumentConstraints: _loadDocumentConstraints
+                uploadCaseDocument: uploadCaseDocument,
+                uploadCaseDocumentNewVersion: uploadCaseDocumentNewVersion,
+                uploadAttachment: uploadAttachment,
+                uploadAttachmentNewVersion: uploadAttachmentNewVersion
         };
         
         return service;
         
-        function uploadNewCaseDocument(caseId, callback){
-            var _this = this;
-            this._loadDocumentConstraints();
-            caseDocumentsService.getDocumentsFolderNodeRef(caseId).then(function(res){
-                _this._showDialog(res.caseDocsFolderNodeRef, callback);
+        function uploadCaseDocument(caseId){
+            return $q(function(resolve, reject){
+                showDialog(NewCaseDocumentDialogController).then(function(formData) {
+                    
+                    if(!formData.fileToUpload){
+                        return;
+                    }
+                    
+                    caseDocumentsService.getDocumentsFolderNodeRef(caseId).then(function(res){
+                        caseDocumentsService.uploadCaseDocument(formData.fileToUpload, res.caseDocsFolderNodeRef, formData.documentProperties).then(function(result){
+                            resolve(result);
+                        });
+                    });
+                    
+                });
             });
         }
         
-        function _loadDocumentConstraints(){
-            var _this = this;
-            caseDocumentsService.getCaseDocumentConstraints().then(function(documentConstraints){
-                _this.documentConstraints = documentConstraints;
+        function uploadCaseDocumentNewVersion(documentNodeRef){
+            return $q(function(resolve, reject){
+                caseDocumentDetailsService.getCaseDocument(documentNodeRef).then(function(document){
+                    showDialog(CaseDocumentNewVersionDialogController, {document: document}).then(function(formData) {
+                        
+                        if(!formData.fileToUpload){
+                            return;
+                        }
+                        
+                        caseDocumentDetailsService.uploadDocumentNewVersion(document.mainDocNodeRef, formData.fileToUpload, formData.documentProperties).then(function(result){
+                            resolve(result);
+                        });
+                        
+                    });
+                });
             });
         }
         
-        function _showDialog(caseDocsFolderNodeRef, callback){
-            $mdDialog.show({
-                controller: DialogController,
+        function uploadAttachment(documentNodeRef){
+            return $q(function(resolve, reject){
+                showDialog(CaseDocumentAttachmentDialogController, {isNewVersion: false}).then(function(formData) {
+                    
+                    if(!formData.fileToUpload){
+                        return;
+                    }
+                    
+                    caseDocumentDetailsService.uploadDocumentAttachment(documentNodeRef, formData.fileToUpload, formData.documentProperties).then(function(result){
+                        resolve(result); 
+                    });
+                    
+                });
+            });
+        }
+        
+        function uploadAttachmentNewVersion(attachmentNodeRef){
+            return $q(function(resolve, reject){
+                showDialog(CaseDocumentAttachmentDialogController, {isNewVersion: true}).then(function(formData) {
+                    
+                    if(!formData.fileToUpload){
+                        return;
+                    }
+                    
+                    caseDocumentDetailsService.uploadAttachmentNewVersion(attachmentNodeRef, formData.fileToUpload, formData.documentProperties).then(function(result){
+                        resolve(result); 
+                    });
+                    
+                });
+            });
+        }
+        
+        function showDialog(controller, locals){
+            if(!locals){
+                locals = {};
+            }
+            return $mdDialog.show({
+                controller: controller,
                 templateUrl: 'app/src/shared/services/case/view/caseDocumentDialog.html',
                 parent: angular.element(document.body),
                 targetEvent: null,
                 clickOutsideToClose: true,
-                locals: {
-                    documentConstraints: this.documentConstraints 
-                }
-            })
-            .then(function(fileToUpload, documentProperties) {
-                if(!fileToUpload){
-                    return;
-                }
-                caseDocumentsService.uploadCaseDocument(fileToUpload, caseDocsFolderNodeRef, documentProperties).then(function(result){
-                    if(callback){
-                        callback();
-                    }
-                });
-            }, function() {
-                //on cancel dialog
+                locals
             });
         }
         
-        function DialogController($scope, $mdDialog, documentConstraints) {
+        function NewCaseDocumentDialogController($scope, $mdDialog) {
             
-            $scope.documentConstraints = documentConstraints;
+            loadDocumentConstraints($scope);
+            
+            $scope.documentProperties = {
+                    majorVersion: "false"
+            };
             
             $scope.cancel = function() {
               $mdDialog.cancel();
             };
             
             $scope.upload = function(){
-                var props = {
-                    doc_category: $scope.documentCategory,
-                    doc_state: $scope.documentState,
-                    doc_type: $scope.documentType
+                var response = {
+                    fileToUpload: $scope.fileToUpload,
+                    documentProperties: $scope.documentProperties
                 };
-                $mdDialog.hide($scope.fileToUpload, props);
+                $mdDialog.hide(response);
             };
+        }
+        
+        function CaseDocumentNewVersionDialogController($scope, $mdDialog, document){
+            loadDocumentConstraints($scope);
+            
+            $scope.newDocumentVersion = true;
+            
+            $scope.documentProperties = {
+                    doc_type: document.type,
+                    doc_state: document.state,
+                    doc_category: document.category,
+                    majorVersion: "false"
+            };
+            
+            $scope.cancel = function() {
+              $mdDialog.cancel();
+            };
+            
+            $scope.upload = function(){
+                var response = {
+                    fileToUpload: $scope.fileToUpload,
+                    documentProperties: $scope.documentProperties
+                };
+                $mdDialog.hide(response);
+            };
+        }
+        
+        function CaseDocumentAttachmentDialogController($scope, $mdDialog, isNewVersion){
+            $scope.newDocumentVersion = isNewVersion;
+            $scope.isAttachment = true;
+            $scope.documentProperties = {
+                    majorVersion: "false"
+            };
+            
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+              
+            $scope.upload = function(){
+                var response = {
+                    fileToUpload: $scope.fileToUpload,
+                    documentProperties: $scope.documentProperties
+                };
+                $mdDialog.hide(response);
+            };
+        }
+        
+        function loadDocumentConstraints($scope){
+            caseDocumentsService.getCaseDocumentConstraints().then(function(documentConstraints){
+                $scope.documentConstraints = documentConstraints;
+            });
         }
     }
 

@@ -42,11 +42,14 @@
             });
         }
         
-        function uploadDocumentNewVersion(mainDocNodeRef, documentFile){
+        function uploadDocumentNewVersion(mainDocNodeRef, documentFile, docProps){
             var uploadProps = {
                 updateNodeRef: mainDocNodeRef,
                 overwrite: true
             };
+            if(docProps){
+                angular.extend(uploadProps, docProps);
+            }
             return alfrescoUploadService.uploadFile(documentFile, null, uploadProps);
         }
         
@@ -68,15 +71,18 @@
             });
         }
         
-        function uploadDocumentAttachment(docRecordNodeRef, attachmentFile){
-            return alfrescoUploadService.uploadFile(attachmentFile, docRecordNodeRef);
+        function uploadDocumentAttachment(docRecordNodeRef, attachmentFile, props){
+            return alfrescoUploadService.uploadFile(attachmentFile, docRecordNodeRef, props);
         }
         
-        function uploadAttachmentNewVersion(attachmentNodeRef, attachmentFile){
+        function uploadAttachmentNewVersion(attachmentNodeRef, attachmentFile, props){
             var uploadProps = {
                 updateNodeRef: attachmentNodeRef,
                 overwrite: true
             };
+            if(props){
+                angular.extend(uploadProps, props);
+            }
             return alfrescoUploadService.uploadFile(attachmentFile, null, uploadProps);
         }
         

@@ -1,12 +1,16 @@
 {
-	"caseDocumentDialog":{
-		"uploadDocument": "Upload document",
-		"documentToUpload": "Document to upload",
-		"document": {
-			"category": "Category",
-			"type": "Type",
-			"state": "State",
-			"description": "Description"
-		}
-	}
+    "caseDocumentDialog":{
+        "uploadDocument": "Upload document",
+        "uploadAttachment": "Upload attachment",
+        "documentToUpload": "Document to upload",
+        "document": {
+            "category": "Category",
+            "type": "Type",
+            "state": "State",
+            "description": "Description",
+            "versionType": "Version type",
+            "minorVersion": "Minor version",
+            "majorVersion": "Major version"
+        }
+    }
 }
