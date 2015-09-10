@@ -132,7 +132,7 @@
                          ng-click="docCtrl.uploadDocument()"
                          ng-disabled="caseIsLocked">{{'document.UPLOAD_NEW_DOCUMENTS' |
                 translate}}</md-button>
-              <md-button class="md-primary" ng-disabled="true">{{'document.EMAIL_DOCUMENTS' | translate}}</md-button>
+              <md-button class="md-primary" ng-disabled="!docCtrl.documents" ng-click="docCtrl.emailDocuments()">{{'document.EMAIL_DOCUMENTS' | translate}}</md-button>
             </div>
           </md-card>
         </div>

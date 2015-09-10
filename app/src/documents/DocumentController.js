@@ -17,6 +17,7 @@
         vm.loadDocuments = loadDocuments;
         vm.uploadDocument = uploadDocument;
         vm.previewDocument = previewDocument;
+        vm.emailDocuments = emailDocuments;
         
         activate();
         
@@ -74,6 +75,10 @@
         
         function previewDocument(nodeRef){
             documentPreviewService.previewDocument(nodeRef);
+        }
+
+        function emailDocuments() {
+            console.log('in emailDocuments');
         }
     }
 

@@ -6,9 +6,9 @@
 //    configure.$inject = ['$stateProvider', 'USER_ROLES'];
     configure.$inject = ['$stateProvider'];
 
-//    function configure($stateProvider, USER_ROLES) {
-    function configure($stateProvider) {
-        console.log('in configure');
+    function configure($stateProvider, USER_ROLES) {
+//    function configure($stateProvider) {
+        console.log('in configure', USER_ROLES);
 
         $stateProvider.state('outlook', {
             parent: 'site',
