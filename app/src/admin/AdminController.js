@@ -22,70 +22,93 @@
                 $scope.currentTab = toState.data.selectedTab;
             });
         }
-      
+
         function createUser(ev) {
-            
             console.log('Creating a new user');
 
+            vm.userDialogMode = "Create";
             $mdDialog.show({
-                controller: UserCreateDialogController,
+                controller: UserDialogController,
                 controllerAs: 'vm',
                 templateUrl: 'app/src/admin/view/userCrudDialog.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
-                clickOutsideToClose:true
+                clickOutsideToClose: true
             });
-        };
-        
-        function UserCreateDialogController($scope, $mdDialog, $mdToast, $animate) {
-            var vm = this;
-          
+        }
+
+        function editUser(ev, user) {
+            console.log('Editing user');
+            vm.userDialogMode = "Update";
+            vm.user = user;
+
+            $mdDialog.show({
+                controller: UserDialogController,
+                controllerAs: 'vm',
+                templateUrl: 'app/src/admin/view/userCrudDialog.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true
+            });
+        }
+
+        function UserDialogController($scope, $mdDialog, $mdToast, $animate, userService) {
+            var ucd = this;
+
             // Data from the user creation form
-            vm.userData = {};
-            vm.cancel = cancel;
-            vm.update = update;
-            vm.getToastPosition = getToastPosition;
+            $scope.user = vm.user;
+            ucd.userData = {};
+            ucd.dialogMode = vm.userDialogMode;
+            ucd.cancel = cancel;
+            ucd.update = update;
+            ucd.getToastPosition = getToastPosition;
 
             // Cancel or submit form in dialog
             function cancel(form) {
                 $mdDialog.cancel();
-            };
-            function update(u) {
-                vm.userData = angular.copy(u);
-                console.log(vm.userData);
-                $mdDialog.cancel();
-                notifyUserSaved();
+            }
 
-                // When submitting, do something with the case data
-                
-            };
-          
-          
+            function update(u) {
+                ucd.userData = angular.copy(u);
+                var createSuccess = (ucd.dialogMode == "Create") ? userService.createUser(ucd.userData) : userService.updateUser(ucd.userData);
+                console.log(ucd.userData);
+                $mdDialog.cancel();
+                notifyUserSaved(createSuccess);
+            }
+
             // When the form is submitted, show a notification:
-          
-            vm.toastPosition = {
+            ucd.toastPosition = {
                 bottom: false,
                 top: true,
                 left: false,
                 right: true
             };
-            function getToastPosition() {
-                return Object.keys(vm.toastPosition)
-                  .filter(function(pos) { return vm.toastPosition[pos]; })
-                  .join(' ');
-            };
 
-            function notifyUserSaved() {
+            function getToastPosition() {
+                return Object.keys(ucd.toastPosition)
+                    .filter(function (pos) {
+                        return ucd.toastPosition[pos];
+                    })
+                    .join(' ');
+            }
+
+            function notifyUserSaved(cuSuccess) {
                 $mdToast.show(
                     $mdToast.simple()
-                        .content('User created')
-                        .position(vm.getToastPosition())
+                        .content(cuSuccess.message)
+                        .position(ucd.getToastPosition())
                         .hideDelay(3000)
                 );
-            };
-          
-        };  
-      
-  };
-  
+                getAllSystemUsers();
+            }
+        }
+
+        function getAllSystemUsers() {
+            return userService.getPeople("*").then(function (response) {
+                vm.allSystemUsers = response.people;
+                return response;
+            });
+        }
+    }
+
 })();

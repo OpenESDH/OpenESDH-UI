@@ -10,10 +10,13 @@
     function userService($http, $resource) {
         var service = {
             getPerson: getPerson,
+            getPeople: getPeople,
             getHome: getHome,
             getAuthorities: getAuthorities,
             getPreferences: getPreferences,
-            setPreferences: setPreferences
+            setPreferences: setPreferences,
+            createUser: createUser,
+            updateUser: updateUser
         };
         return service;
 
@@ -48,6 +51,30 @@
 
         function setPreferences(username, preferences) {
             return $http.post('/alfresco/s/api/people/' + username + '/preferences', preferences).then(function(response) {
+                return response.data;
+            });
+        }
+
+        function createUser(userObj) {
+            return $http.post('/alfresco/s/api/people',
+               userObj
+            ).then(function(response) {
+                console.log("Return success");
+                return response.data;
+            });
+        }
+
+        function updateUser(userObj) {
+            return $http.put('/alfresco/s/api/people/'+encodeURIComponent(userObj.userName),
+               userObj
+            ).then(function(response) {
+                console.log("Return success");
+                return response.data;
+            });
+        }
+
+        function getPeople(filter) {
+            return $http.get('/alfresco/s/api/people?filter='+filter).then(function(response) {
                 return response.data;
             });
         }
