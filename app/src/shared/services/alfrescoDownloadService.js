@@ -5,9 +5,9 @@
         .module('openeApp')
         .factory('alfrescoDownloadService', AlfrescoDownloadService);
 
-    AlfrescoDownloadService.$inject = ['$http', 'alfrescoNodeUtils'];
+    AlfrescoDownloadService.$inject = ['alfrescoNodeUtils'];
 
-    function AlfrescoDownloadService($http, alfrescoNodeUtils) {
+    function AlfrescoDownloadService(alfrescoNodeUtils) {
         
         var service = {
             downloadFile: downloadFile

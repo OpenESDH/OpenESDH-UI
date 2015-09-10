@@ -5,7 +5,7 @@
         .module('openeApp.cases')
         .controller('CaseController', CaseController);
 
-    CaseController.$inject = ['$scope', '$mdDialog', 'caseService', 'userService'];
+    CaseController.$inject = ['$scope', '$mdDialog', '$location', 'caseService', 'userService'];
 
     /**
      * Main Controller for the Cases module
@@ -13,12 +13,13 @@
      * @param cases
      * @constructor
      */
-    function CaseController($scope, $mdDialog, caseService, userService) {
+    function CaseController($scope, $mdDialog, $location, caseService, userService) {
         var vm = this;
         vm.cases = [];
 
         vm.getCases = getCases;
         vm.createCase = createCase;
+        vm.getMyCases = getMyCases;
 
         activate();
 
@@ -35,7 +36,17 @@
                 console.log(error);
             });
         }
-        
+
+        function getMyCases() {
+            return caseService.getMyCases().then(function(response) {
+                vm.cases = response;
+                return vm.cases;
+            }, function(error) {
+                console.log(error);
+            });
+        }
+
+
 //        $scope.authorities = ['person one', 'person two', 'person three'];
 
         function createCase(ev, caseType) {
@@ -52,55 +63,36 @@
                 focusOnOpen: false
             });
         };
-        
-        function CaseCreateDialogController($scope, $mdDialog, $mdToast, $animate) {
+
+        CaseCreateDialogController.$inject = ['$scope', '$mdDialog', '$animate', 'notificationUtilsService'];
+        function CaseCreateDialogController($scope, $mdDialog, $animate, notificationUtilsService) {
             var vm = this;
           
             // Data from the case creation form
             vm.caseData = {};
             vm.cancel = cancel;
             vm.update = update;
-            vm.getToastPosition = getToastPosition;
 
             // Cancel or submit form in dialog
             function cancel(form) {
                 $mdDialog.cancel();
-            };
+            }
             function update(c) {
                 vm.caseData = angular.copy(c);
                 console.log(vm.caseData);
                 $mdDialog.cancel();
-                notifyCaseSaved();
 
                 // When submitting, do something with the case data
-                caseService.createCase(vm.caseData);
-            };
-          
-          
-            // When the form is submitted, show a notification:
-          
-            vm.toastPosition = {
-                bottom: true,
-                top: false,
-                left: false,
-                right: true
-            };
-            function getToastPosition() {
-                return Object.keys(vm.toastPosition)
-                  .filter(function(pos) { return vm.toastPosition[pos]; })
-                  .join(' ');
-            };
-
-            function notifyCaseSaved() {
-                $mdToast.show(
-                    $mdToast.simple()
-                        .content('Case ' + vm.caseData.title + ' created')
-                        .position(vm.getToastPosition())
-                        .hideDelay(3000)
-                );
-            };
-          
-        };
+                caseService.createCase(vm.caseData).then(function (caseId) {
+                    //cases/case/20150908-865
+                    $location.path("/cases/case/" + caseId);
+                    // When the form is submitted, show a notification:
+                    notificationUtilsService.notify('Case ' + vm.caseData.title + ' created');
+                }, function (error) {
+                    notificationUtilsService.notify('Error creating case: ' + error);
+                });
+            }
+        }
 
         function getAuthorities() {
             return userService.getAuthorities().then(function(response) {
