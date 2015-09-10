@@ -16,7 +16,7 @@
         var vm = this;
         vm.createUser = createUser;
         vm.editUser = editUser;
-        vm.userDialogMode = "Create";
+        vm.userExists = false;
 
         populateUsersList();
         function populateUsersList(){
@@ -32,6 +32,7 @@
       
         function createUser(ev) {
             console.log('Creating a new user');
+            vm.userExists = false;
             vm.user = {};
 
             $mdDialog.show({
@@ -46,7 +47,7 @@
 
         function editUser(ev, user) {
             console.log('Editing user');
-            vm.userDialogMode = "Update";
+            vm.userExists = true;
             vm.user = user;
 
             $mdDialog.show({
@@ -65,7 +66,7 @@
             // Data from the user creation form
             $scope.user = vm.user;
             ucd.userData = {};
-            ucd.dialogMode = vm.userDialogMode;
+            ucd.userExists = vm.userExists;
             ucd.cancel = cancel;
             ucd.update = update;
             ucd.getToastPosition = getToastPosition;
