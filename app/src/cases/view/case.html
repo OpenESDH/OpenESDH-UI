@@ -8,7 +8,9 @@
     </div>
     <div class="md-actions" layout="column">
       <md-menu>
-        <md-button class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="{{ 'CASEINFO.CHANGE_STATUS' | translate }}">
+        <md-button class="md-primary" ng-click="$mdOpenMenu($event)"
+                   aria-label="{{ 'CASEINFO.CHANGE_STATUS' | translate }}"
+                   ng-disabled="caseStatusChoices.length == 0">
           {{ 'CASEINFO.CHANGE_STATUS' | translate }}
         </md-button>
         <md-menu-content>
