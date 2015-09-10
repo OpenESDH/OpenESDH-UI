@@ -12,7 +12,8 @@
                 uploadCaseDocument: uploadCaseDocument,
                 uploadCaseDocumentNewVersion: uploadCaseDocumentNewVersion,
                 uploadAttachment: uploadAttachment,
-                uploadAttachmentNewVersion: uploadAttachmentNewVersion
+                uploadAttachmentNewVersion: uploadAttachmentNewVersion,
+                editDocumentProperties: editDocumentProperties
         };
         
         return service;
@@ -85,6 +86,27 @@
             });
         }
         
+        function editDocumentProperties(documentNodeRef){
+            return $q(function(resolve, reject){
+                caseDocumentDetailsService.getCaseDocument(documentNodeRef).then(function(document){
+                    showDialog(CaseDocumentEditPropertiesDialogController, {document: document}).then(function(formData) {
+                        
+                        var updatedDocument = {
+                                nodeRef: documentNodeRef,
+                                type: formData.doc_type,
+                                category: formData.doc_category,
+                                state: formData.doc_state
+                        };
+                        
+                        caseDocumentDetailsService.updateDocumentProperties(updatedDocument).then(function(result){
+                            resolve(result);
+                        });
+                        
+                    });
+                });
+            });
+        }
+        
         function showDialog(controller, locals){
             if(!locals){
                 locals = {};
@@ -142,6 +164,26 @@
                     documentProperties: $scope.documentProperties
                 };
                 $mdDialog.hide(response);
+            };
+        }
+        
+        function CaseDocumentEditPropertiesDialogController($scope, $mdDialog, document){
+            loadDocumentConstraints($scope);
+            
+            $scope.isEditProperties = true;
+            
+            $scope.documentProperties = {
+                    doc_type: document.type,
+                    doc_state: document.state,
+                    doc_category: document.category
+            };
+            
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+          
+            $scope.upload = function(){
+                $mdDialog.hide($scope.documentProperties);
             };
         }
         

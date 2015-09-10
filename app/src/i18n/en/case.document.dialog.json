@@ -3,6 +3,7 @@
         "uploadDocument": "Upload document",
         "uploadAttachment": "Upload attachment",
         "documentToUpload": "Document to upload",
+        "editProperties": "Edit properties",
         "document": {
             "category": "Category",
             "type": "Type",

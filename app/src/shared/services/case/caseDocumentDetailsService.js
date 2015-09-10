@@ -16,7 +16,8 @@
             getDocumentAttachments: getDocumentAttachments,
             uploadDocumentAttachment: uploadDocumentAttachment,
             uploadAttachmentNewVersion: uploadAttachmentNewVersion,
-            downloadAttachment: downloadAttachment
+            downloadAttachment: downloadAttachment,
+            updateDocumentProperties: updateDocumentProperties
         };
         return service;
         
@@ -88,6 +89,13 @@
         
         function downloadAttachment(attachment){
             alfrescoDownloadService.downloadFile(attachment.nodeRef, attachment.name);
+        }
+        
+        function updateDocumentProperties(document){
+            var url = "/alfresco/service/api/openesdh/case/document/properties";
+            return $http.post(url, document).then(function(response){
+                return response;
+            });
         }
     }
 })();

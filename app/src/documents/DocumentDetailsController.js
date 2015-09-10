@@ -25,6 +25,7 @@
         vm.downloadAttachment = downloadAttachment;
         vm.previewDocument = previewDocument;
         vm.previewAttachment = previewAttachment;
+        vm.editDocumentProperties = editDocumentProperties;
         
         activate();
         
@@ -97,6 +98,12 @@
         
         function previewAttachment(attachment){
             documentPreviewService.previewDocument(attachment.nodeRef);
+        }
+        
+        function editDocumentProperties(){
+            caseDocumentFileDialogService.editDocumentProperties(documentNodeRef).then(function(result){
+                loadCaseDocumentInfo();
+            });
         }
     }
 

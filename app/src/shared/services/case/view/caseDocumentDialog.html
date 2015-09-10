@@ -2,13 +2,14 @@
   <form>
     <md-toolbar layout="row">
       <div class="md-toolbar-tools">
-        <h2 ng-show="!isAttachment">{{'caseDocumentDialog.uploadDocument' | translate}}</h2>
+        <h2 ng-show="!isAttachment && !isEditProperties">{{'caseDocumentDialog.uploadDocument' | translate}}</h2>
         <h2 ng-show="isAttachment">{{'caseDocumentDialog.uploadAttachment' | translate}}</h2>
+        <h2 ng-show="isEditProperties">{{'caseDocumentDialog.editProperties' | translate}}</h2>
       </div>
     </md-toolbar>
     <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em">
       
-      <table>
+      <table ng-show="!isEditProperties">
         <tr>
             <td>
               <md-input-container>
@@ -31,13 +32,12 @@
             </td>
         </tr>
       </table>
-      
-      
+
       <md-input-container ng-show="!isAttachment">
-        <label>{{'caseDocumentDialog.document.category' | translate}}</label>
-        <md-select ng-model="documentProperties.doc_category" ng-disabled="newDocumentVersion">
-          <md-option ng-repeat="category in documentConstraints.categoryConstraint" ng-value="category.value">
-            {{ category.value | docCategory }}
+        <label>{{'caseDocumentDialog.document.state' | translate}}</label>
+        <md-select ng-model="documentProperties.doc_state" ng-disabled="newDocumentVersion">
+          <md-option ng-repeat="state in documentConstraints.stateConstraint" ng-value="state.value">
+            {{ state.value | docState }}
           </md-option>
         </md-select>
       </md-input-container>
@@ -52,15 +52,15 @@
       </md-input-container>
       
       <md-input-container ng-show="!isAttachment">
-        <label>{{'caseDocumentDialog.document.state' | translate}}</label>
-        <md-select ng-model="documentProperties.doc_state" ng-disabled="newDocumentVersion">
-          <md-option ng-repeat="state in documentConstraints.stateConstraint" ng-value="state.value">
-            {{ state.value | docState }}
+        <label>{{'caseDocumentDialog.document.category' | translate}}</label>
+        <md-select ng-model="documentProperties.doc_category" ng-disabled="newDocumentVersion">
+          <md-option ng-repeat="category in documentConstraints.categoryConstraint" ng-value="category.value">
+            {{ category.value | docCategory }}
           </md-option>
         </md-select>
       </md-input-container>
       
-      <md-input-container>
+      <md-input-container ng-show="!isEditProperties">
         <label>{{'caseDocumentDialog.document.description' | translate}}</label>
         <textarea ng-model="documentProperties.description"></textarea>
       </md-input-container>
