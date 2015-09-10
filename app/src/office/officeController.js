@@ -13,7 +13,7 @@
         var vm = this;
 
         vm.email = email;
-        vm.from = email.From.EMail;
+//        vm.from = email.From.EMail;
         vm.subject = email.Subject;
         vm.caseId;
         vm.attachments = email.Attachments;

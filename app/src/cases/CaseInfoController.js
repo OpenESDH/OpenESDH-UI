@@ -21,6 +21,7 @@
     loadCaseInfo();
     
     function loadCaseInfo(){
+        console.log($stateParams);
         caseService.getCaseInfo($stateParams.caseId).then(function(result){
             $scope.case = result.properties;
             $scope.caseIsLocked = result.isLocked;
