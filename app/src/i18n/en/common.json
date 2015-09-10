@@ -10,6 +10,8 @@
 		"CANCEL": "Cancel",
 		"BACK": "Back",
 	  	"OK": "OK",
-	  	"CONFIRM": "Confirm"
+	  	"CONFIRM": "Confirm",
+		"CLOSE": "Close",
+		"DOWNLOAD": "Download"
 	}
 }

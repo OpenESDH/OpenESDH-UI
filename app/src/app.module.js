@@ -6,6 +6,8 @@
             'ngMaterial',
             'ui.router',
             'ngResource',
+            'ngPDFViewer',
+            'swfobject',
             'isteven-multi-select',
             'openeApp.translations',
             'openeApp.cases',

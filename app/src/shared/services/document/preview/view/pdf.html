@@ -1,0 +1,8 @@
+<div>
+    <button ng-click="prevPage()">&lt;</button>
+    <button ng-click="nextPage()">&gt;</button>
+    <br>
+    <span>{{currentPage}}/{{totalPages}}</span>
+    <br>
+    <pdfviewer src="{{config.contentUrl}}" on-page-load='pageLoaded(page,total)' id="viewer"></pdfviewer>
+</div>
