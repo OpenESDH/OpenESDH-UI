@@ -1,17 +1,19 @@
 {
-	"language":{
-		"language": "Language",
-		"en": "English",
-		"da": "Danish"
-	},
-	
-	"common": {
-		"ACTION": "Action",
-		"CANCEL": "Cancel",
-		"BACK": "Back",
-	  	"OK": "OK",
-	  	"CONFIRM": "Confirm",
-		"CLOSE": "Close",
-		"DOWNLOAD": "Download"
-	}
+    "language": {
+        "language": "Language",
+        "en": "English",
+        "da": "Danish"
+    },
+    "common": {
+        "ACTION": "Action",
+        "CANCEL": "Cancel",
+        "BACK": "Back",
+        "OK": "OK",
+        "CONFIRM": "Confirm",
+        "CLOSE": "Close",
+        "DOWNLOAD": "Download",
+        "ACTIONS": "Actions",
+        "REMOVE": "Remove",
+        "VIEW": "View"
+    }
 }

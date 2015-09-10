@@ -1,0 +1,22 @@
+{
+    "party": {
+        "TITLE": "Parties DA",
+        "ADD_PARTIES_TITLE": "Add parties DA",
+        "CHANGE_PARTY_TITLE": "Change role DA",
+        "CHOOSE_ORG_CONTACTS": "Select Organizations DA",
+        "CHOOSE_PER_CONTACTS": "Select Persons DA",
+        "ADD": "Add parties DA",
+        "ADD_NEW": "Add new parties DA",
+        "NAME": "Name DA",
+        "EMAIL": "Email DA",
+        "TYPE": "Type DA",
+        "ROLE": "Role DA",
+        "ORGANIZATIONS": "Organizations DA",
+        "PERSONS": "Persons DA",
+        "OLD_ROLE": "Role DA",
+        "TO_ROLE": "New role DA",
+        "CHANGE": "Change role DA",
+        
+        "":""
+    }
+}
