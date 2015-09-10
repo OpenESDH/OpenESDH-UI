@@ -4,9 +4,9 @@
         .module('openeApp.documents')
         .controller('DocumentController', DocumentController);
     
-    DocumentController.$inject = [ '$scope', '$stateParams', '$mdDialog', 'caseDocumentsService' ];
+    DocumentController.$inject = [ '$scope', '$stateParams', '$mdDialog', 'caseDocumentsService', 'documentPreviewService' ];
     
-    function DocumentController($scope, $stateParams, $mdDialog, caseDocumentsService) {
+    function DocumentController($scope, $stateParams, $mdDialog, caseDocumentsService, documentPreviewService) {
     
         var caseId = $stateParams.caseId;
         var caseDocsFolderNodeRef = '';
@@ -15,7 +15,8 @@
         vm.pageSize = 2;
         
         vm.loadDocuments = loadDocuments;
-        vm.uploadDocument = uploadDocument; 
+        vm.uploadDocument = uploadDocument;
+        vm.previewDocument = previewDocument;
         
         activate();
         
@@ -69,6 +70,10 @@
             $scope.upload = function(){
                 $mdDialog.hide($scope.fileToUpload);
             };
+        }
+        
+        function previewDocument(nodeRef){
+            documentPreviewService.previewDocument(nodeRef);
         }
     }
 
