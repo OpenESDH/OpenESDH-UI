@@ -4,7 +4,7 @@
   <md-button ng-href="#/cases">Back to cases</md-button>
   <div layout="row" layout-padding layout-align="space-between end">
     <div>
-      <h2>{{ case["oe:id"].value }} {{ case["cm:title"].value }} <span class="muted">({{ case['oe:status'].value }})</span></h2>
+      <h2>{{ case["oe:id"].value }} {{ case["cm:title"].value }} <span class="muted">({{ case['oe:status'].value | caseStatus }})</span></h2>
     </div>
     <div class="md-actions" layout="column">
       <md-menu>
