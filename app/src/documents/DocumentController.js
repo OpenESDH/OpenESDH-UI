@@ -4,9 +4,9 @@
         .module('openeApp.documents')
         .controller('DocumentController', DocumentController);
     
-    DocumentController.$inject = [ '$scope', '$stateParams', '$mdDialog', 'caseDocumentsService' ];
+    DocumentController.$inject = [ '$scope', '$stateParams', '$mdDialog', 'caseDocumentsService', 'caseDocumentFileDialogService'];
     
-    function DocumentController($scope, $stateParams, $mdDialog, caseDocumentsService) {
+    function DocumentController($scope, $stateParams, $mdDialog, caseDocumentsService, caseDocumentFileDialogService) {
     
         var caseId = $stateParams.caseId;
         var caseDocsFolderNodeRef = '';
@@ -41,6 +41,12 @@
         }
         
         function uploadDocument(ev){
+            
+            caseDocumentFileDialogService.uploadNewCaseDocument(caseId, function(){
+                loadDocuments(1);
+            });
+            return;
+            
             $mdDialog.show({
                 controller: DialogController,
                 templateUrl: 'app/src/documents/view/documentUploadDialog.html',

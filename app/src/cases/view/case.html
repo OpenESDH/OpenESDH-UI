@@ -111,7 +111,7 @@
                     <td>{{ doc.docNo }}</td>
                     <td>{{doc["doc:type"] | docType}}</td>
                     <td>{{doc["doc:category"] | docCategory}}</td>
-                    <td>{{doc["doc:state"] | docStatus}}</td>
+                    <td>{{doc["doc:state"] | docState}}</td>
                     <td>
                         <span ng-repeat="owner in doc['doc:owner']">{{owner.fullname}}</span>
                     </td>

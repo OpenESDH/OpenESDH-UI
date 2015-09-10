@@ -12,7 +12,8 @@
             getDocumentsByCaseId: getDocumentsByCaseId,
             uploadCaseDocument: uploadCaseDocument,
             getDocumentsFolderNodeRef: getDocumentsFolderNodeRef,
-            getCaseDocumentsWithAttachments: getCaseDocumentsWithAttachments
+            getCaseDocumentsWithAttachments: getCaseDocumentsWithAttachments,
+            getCaseDocumentConstraints: getCaseDocumentConstraints
         };
         return service;
         
@@ -50,6 +51,16 @@
                         doc_state: "received",
                         doc_type: "invoice"
                 };
+            }else{
+                if(!documentProps.doc_category){
+                    documentProps.doc_category = "annex";                    
+                }
+                if(!documentProps.doc_state){
+                    documentProps.doc_state = "received";                    
+                }
+                if(!documentProps.doc_type){
+                    documentProps.doc_type = "invoice";                    
+                }
             }
             return alfrescoUploadService.uploadFile(documentFile, caseDocumentsFolder, documentProps);
         }
@@ -61,6 +72,13 @@
             };
             return $http(requestConfig).then(function(response){
                 return response.data;
+            });
+        }
+        
+        function getCaseDocumentConstraints(){
+            return $http.get("/alfresco/service/api/openesdh/case/document/constraints").then(function(response){
+                console.log("got", response);
+               return response.data; 
             });
         }
         

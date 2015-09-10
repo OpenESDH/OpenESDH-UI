@@ -1,0 +1,57 @@
+<md-dialog aria-label="Case edit dialog">
+  <form>
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">
+        <h2>{{'caseDocumentDialog.uploadDocument' | translate}}</h2>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em">
+      
+      <md-input-container>
+        <label>{{'caseDocumentDialog.documentToUpload' | translate}}</label>
+        <input type="file" file-model="fileToUpload"/>
+      </md-input-container>
+      
+      <md-input-container>
+        <label>{{'caseDocumentDialog.document.category' | translate}}</label>
+        <md-select ng-model="documentCategory">
+          <md-option ng-repeat="category in documentConstraints.categoryConstraint" ng-value="category.value">
+            {{ category.value | docCategory }}
+          </md-option>
+        </md-select>
+      </md-input-container>
+      
+      <md-input-container>
+        <label>{{'caseDocumentDialog.document.type' | translate}}</label>
+        <md-select ng-model="documentType">
+          <md-option ng-repeat="type in documentConstraints.typeConstraint" ng-value="type.value">
+            {{ type.value | docType }}
+          </md-option>
+        </md-select>
+      </md-input-container>
+      
+      <md-input-container>
+        <label>{{'caseDocumentDialog.document.state' | translate}}</label>
+        <md-select ng-model="documentState">
+          <md-option ng-repeat="state in documentConstraints.stateConstraint" ng-value="state.value">
+            {{ state.value | docState }}
+          </md-option>
+        </md-select>
+      </md-input-container>
+      
+      <md-input-container>
+        <label>{{'caseDocumentDialog.document.description' | translate}}</label>
+        <textarea ng-model="documentDescription"></textarea>
+      </md-input-container>
+      
+    </md-dialog-content>
+    <div class="md-actions" layout="row">
+      <md-button class="md-primary" ng-click="upload()">
+        Upload
+      </md-button>
+      <md-button ng-click="cancel()">
+        Cancel
+      </md-button>
+    </div>
+  </form>
+</md-dialog>

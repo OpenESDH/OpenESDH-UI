@@ -1,0 +1,12 @@
+{
+	"caseDocumentDialog":{
+		"uploadDocument": "Upload document",
+		"documentToUpload": "Document to upload",
+		"document": {
+			"category": "Category",
+			"type": "Type",
+			"state": "State",
+			"description": "Description"
+		}
+	}
+}
