@@ -128,18 +128,6 @@
             data: {
                 authorizedRoles: []
             }
-        }).state('files', {
-            parent: 'site',
-            url: '/files',
-            views: {
-                'content@': {
-                    templateUrl : '/app/src/files/view/files.html',
-                    controller : 'FileController'
-                }
-            },
-            data: {
-                authorizedRoles: [USER_ROLES.user]
-            }
         }).state('tasks', {
             parent: 'site',
             url: '/tasks',
