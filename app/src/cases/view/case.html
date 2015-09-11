@@ -32,7 +32,7 @@
 
 <md-tabs md-dynamic-height>
   
-  <md-tab>
+  <md-tab md-on-select="vm.onTabChange('case')">
     <md-tab-label>
       <span>Case home</span>
     </md-tab-label>
@@ -147,7 +147,7 @@
     </md-tab-body>
   </md-tab>
   
-  <md-tab>
+  <md-tab md-on-select="vm.onTabChange('members')">
     <md-tab-label>
       <span>Members</span>
     </md-tab-label>
@@ -162,22 +162,16 @@
     </md-tab-body>
   </md-tab>
   
-  <md-tab>
+  <md-tab md-on-select="vm.onTabChange('parties')">
     <md-tab-label>
-      <span>Parties</span>
+      <span>{{'party.TITLE'| translate}}</span>
     </md-tab-label>
-    <md-tab-body layout="column">
-      <md-card>
-        <md-card-content>
-          <h3>Parties</h3>
-        </md-card-content>
-        <div class="md-actions">
-        </div>
-      </md-card>
+      <md-tab-body layout="column">
+          <div ng-include="'app/src/parties/view/caseParties.html'"></div>
     </md-tab-body>
   </md-tab>
-  
-  <md-tab>
+    
+  <md-tab md-on-select="vm.onTabChange('history')">
     <md-tab-label>
       <span>History</span>
     </md-tab-label>

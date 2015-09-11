@@ -9,7 +9,10 @@
   /**
    * Main CaseInfoController for the Cases module
    * @param $scope
-   * @param cases
+   * @param $stateParams
+   * @param $mdDialog
+   * @param $translate
+   * @param caseService
    * @constructor
    */
   function CaseInfoController($scope, $stateParams, $mdDialog, $translate, caseService) {
@@ -17,6 +20,7 @@
 
     vm.editCase = editCase;
     vm.changeCaseStatus = changeCaseStatus;
+    vm.onTabChange = onTabChange;
 
     loadCaseInfo();
     
@@ -85,6 +89,10 @@
       function cancel() {
         $mdDialog.cancel();
       };
+    }
+    
+    function onTabChange(tabName){
+        $scope.$broadcast('tabSelectEvent', { tab: tabName});
     }
     
   };

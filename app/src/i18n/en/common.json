@@ -1,10 +1,9 @@
 {
-    "language":{
+    "language": {
         "language": "Language",
         "en": "English",
         "da": "Danish"
     },
-    
     "common": {
         "ACTION": "Action",
         "CANCEL": "Cancel",
@@ -13,6 +12,9 @@
         "CONFIRM": "Confirm",
         "CLOSE": "Close",
         "DOWNLOAD": "Download",
-        "UPLOAD": "Upload"
+        "UPLOAD": "Upload",
+        "ACTIONS": "Actions",
+        "REMOVE": "Remove",
+        "VIEW": "View"
     }
 }

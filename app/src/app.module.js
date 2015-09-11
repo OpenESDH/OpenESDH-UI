@@ -19,7 +19,8 @@
             'openeApp.notes',
             'openeApp.contacts',
             'openeApp.administration',
-            'openeApp.office'
+            'openeApp.office',
+            'openeApp.parties'
         ])
         .config(config)
         .constant('USER_ROLES', {
