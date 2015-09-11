@@ -1,14 +1,14 @@
 <md-card style="width:100%;">
   <md-card-content>
-    <md-subheader>case: {{ case.caseId }}</md-subheader>
+    <md-subheader>{{ 'CASE' | translate }}: {{ case.caseId }}</md-subheader>
     <div style="float: right; width: 20em; color: #999;">
-      Created {{ case.createdDate }} by {{ case.creator }}<br>
-      Last modified by: {{ case.modifiedDate }} by {{ case.modifier }}
+      {{ 'COMMON.CREATED' | translate }} {{ case.createdDate }} {{ 'COMMON.BY' | translate }} {{ case.creator }}<br>
+      {{ 'COMMON.LAST_MODIFIED' | translate }}: {{ case.modifiedDate }} {{ 'COMMON.BY' | translate }} {{ case.modifier }}
     </div>
     <h2>{{ case.title }}</h2>
     <p>{{ case.desc }}</p>
   </md-card-content>
   <div class="md-actions">
-    <a class="md-button md-primary" href="#/cases/case{{ case.caseId }}">View case details</a>
+    <a class="md-button md-primary" href="#/cases/case{{ case.caseId }}">{{ 'CASE.VIEW_DETAILS' | translate }}</a>
   </div>
 </md-card>

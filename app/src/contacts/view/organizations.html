@@ -1,21 +1,21 @@
 <md-card ng-controller="OrganizationController as vm">
     <md-card-content>
-        <h3>Organizations</h3>
+        <h3>{{ 'ORG.ORGANIZATIONS' | translate }}</h3>
         <md-input-container>
-            <label>Search for organizations</label>
+            <label>{{ 'ORG.SEARCH_FOR_ORG' | translate }}</label>
             <input type="text" ng-model="vm.searchQuery" ng-change="vm.doFilter()">
         </md-input-container>
 
         <table>
             <thead>
-            <th>Name</th>
-            <th>CVR number</th>
-            <th>Department</th>
-            <th>Street</th>
-            <th>Postal code</th>
-            <th>City</th>
-            <th>Country</th>
-            <th>Actions</th>
+            <th>{{ 'COMMON.NAME' | translate }}</th>
+            <th>{{ 'ORG.CVR_NO' | translate }}</th>
+            <th>{{ 'ORG.DEPARTMENT' | translate }}</th>
+            <th>{{ 'ORG.STREET' | translate }}</th>
+            <th>{{ 'ORG.POSTAL_CODE' | translate }}</th>
+            <th>{{ 'ORG.CITY' | translate }}</th>
+            <th>{{ 'ORG.COUNTRY' | translate }}</th>
+            <th>{{ 'COMMON.ACTIONS' | translate }}</th>
             </thead>
             <tbody>
                 <tr ng-repeat="organization in vm.organizations.items">
@@ -27,13 +27,13 @@
                     <td>{{organization.cityName}}</td>
                     <td>{{organization.countryCode}}</td>
                     <td><a class="md-button md-primary" 
-                           href="#/admin/organizations/{{organization.storeType}}/{{organization.storeId}}/{{organization.id}}">View details</a></td>
+                           href="#/admin/organizations/{{organization.storeType}}/{{organization.storeId}}/{{organization.id}}">{{ 'COMMON.VIEW_DETAILS' | translate }}</a></td>
                 </tr>
             </tbody>
         </table>
-        <md-button class="md-primary" ng-click="vm.showOrganizationEdit($event)">Create new organization</md-button>
+        <md-button class="md-primary" ng-click="vm.showOrganizationEdit($event)">{{ 'ORG.CREATE_NEW_ORG' | translate }}</md-button>
         <div style="margin: 0 8px; padding: 0 6px;">
-            Showing {{vm.pagingParams.pageSize < vm.pagingParams.totalRecords ? vm.pagingParams.pageSize : vm.pagingParams.totalRecords}} of {{vm.pagingParams.totalRecords}}. Pages: 
+            {{ 'COMMON.SHOW' | translate }} {{vm.pagingParams.pageSize < vm.pagingParams.totalRecords ? vm.pagingParams.pageSize : vm.pagingParams.totalRecords}} {{ 'COMMON.OF' | translate }} {{vm.pagingParams.totalRecords}}. Pages: 
             <button ng-repeat="page in vm.pages" ng-click="vm.doFilter(page);" style="margin: 0 2px;">{{page}}</button>
         </div>
     </md-card-content>

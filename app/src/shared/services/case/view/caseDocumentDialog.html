@@ -2,9 +2,9 @@
   <form>
     <md-toolbar layout="row">
       <div class="md-toolbar-tools">
-        <h2 ng-hide="isAttachment || isEditProperties">{{'caseDocumentDialog.uploadDocument' | translate}}</h2>
-        <h2 ng-show="isAttachment">{{'caseDocumentDialog.uploadAttachment' | translate}}</h2>
-        <h2 ng-show="isEditProperties">{{'caseDocumentDialog.editProperties' | translate}}</h2>
+        <h2 ng-hide="isAttachment || isEditProperties">{{ 'DOCUMENT.UPLOAD_DOCUMENT' | translate }}</h2>
+        <h2 ng-show="isAttachment">{{ 'DOCUMENT.UPLOAD_ATTACHMENT' | translate }}</h2>
+        <h2 ng-show="isEditProperties">{{ 'DOCUMENT.EDIT_PROPERTIES' | translate }}</h2>
       </div>
     </md-toolbar>
     <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em">
@@ -13,19 +13,19 @@
         <tr>
             <td>
               <md-input-container>
-                <label>{{'caseDocumentDialog.documentToUpload' | translate}}</label>
+                <label>{{ 'DOCUMENT.DOCUMENT_TO_UPLOAD' | translate }}</label>
                 <input type="file" file-model="fileToUpload"/>
               </md-input-container>
             </td>
             <td>
                   <md-input-container ng-show="newDocumentVersion">
-                    <label>{{'caseDocumentDialog.document.versionType' | translate}}</label>
+                    <label>{{ 'DOCUMENT.VERSIONTYPE' | translate }}</label>
                     <md-select ng-model="documentProperties.majorVersion">
                       <md-option ng-value="false">
-                        {{ 'caseDocumentDialog.document.minorVersion' | translate }}
+                        {{ 'DOCUMENT.MINOR_VERSION' | translate }}
                       </md-option>
                       <md-option ng-value="true">
-                        {{ 'caseDocumentDialog.document.majorVersion' | translate }}
+                        {{ 'DOCUMENT.MAJOR_VERSION' | translate }}
                       </md-option>
                     </md-select>
                   </md-input-container>
@@ -34,7 +34,7 @@
       </table>
 
       <md-input-container ng-hide="isAttachment">
-        <label>{{'caseDocumentDialog.document.state' | translate}}</label>
+        <label>{{ 'COMMON.STATE' | translate }}</label>
         <md-select ng-model="documentProperties.doc_state" ng-disabled="newDocumentVersion">
           <md-option ng-repeat="state in documentConstraints.stateConstraint" ng-value="state.value">
             {{ state.value | docState }}
@@ -43,7 +43,7 @@
       </md-input-container>
       
       <md-input-container ng-hide="isAttachment">
-        <label>{{'caseDocumentDialog.document.type' | translate}}</label>
+        <label>{{ 'COMMON.TYPE' | translate }}</label>
         <md-select ng-model="documentProperties.doc_type" ng-disabled="newDocumentVersion">
           <md-option ng-repeat="type in documentConstraints.typeConstraint" ng-value="type.value">
             {{ type.value | docType }}
@@ -52,7 +52,7 @@
       </md-input-container>
       
       <md-input-container ng-hide="isAttachment">
-        <label>{{'caseDocumentDialog.document.category' | translate}}</label>
+        <label>{{ 'COMMON.CATEGORY' | translate }}</label>
         <md-select ng-model="documentProperties.doc_category" ng-disabled="newDocumentVersion">
           <md-option ng-repeat="category in documentConstraints.categoryConstraint" ng-value="category.value">
             {{ category.value | docCategory }}
@@ -61,17 +61,17 @@
       </md-input-container>
       
       <md-input-container ng-hide="isEditProperties">
-        <label>{{'caseDocumentDialog.document.description' | translate}}</label>
+        <label>{{ 'COMMON.DESCRIPTION' | translate }}</label>
         <textarea ng-model="documentProperties.description"></textarea>
       </md-input-container>
       
     </md-dialog-content>
     <div class="md-actions" layout="row">
       <md-button class="md-primary" ng-click="upload()">
-        {{'common.UPLOAD' | translate}}
+        {{ 'COMMON.UPLOAD' | translate }}
       </md-button>
       <md-button ng-click="cancel()">
-        {{'common.CANCEL' | translate}}
+        {{ 'COMMON.CANCEL' | translate }}
       </md-button>
     </div>
   </form>

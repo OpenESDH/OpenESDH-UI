@@ -9,24 +9,24 @@
   <md-tab>
     <md-tab-label>
       <!--<span>My cases <span class="label" ng-bind="myUpdatedCases"></span></span>-->
-      <span>{{ 'CASEINFO.MYCASES' | translate }}</span>
+      <span>{{ 'CASE.MY_CASES' | translate }}</span>
     </md-tab-label>
     <md-tab-body>
       <md-card>
         <md-card-content>
-          <h3>{{ 'CASEINFO.CASES' | translate }}</h3>
+          <h3>{{ 'CASE.CASES' | translate }}</h3>
           <table>
             <thead>
               <tr>
-                <th>{{ 'CASEINFO.ID' | translate }}</th>
-                <th>{{ 'CASEINFO.TYPE' | translate }}</th>
-                <th>{{ 'CASEINFO.TITLE' | translate }}</th>
-                <th>{{ 'CASEINFO.CREATED' | translate }}</th>
-                <th>{{ 'CASEINFO.STARTDATE' | translate }}</th>
-                <th>{{ 'CASEINFO.ENDDATE' | translate }}</th>
-                <th>{{ 'CASEINFO.MODIFIED' | translate }}</th>
-                <th>{{ 'CASEINFO.STATUS' | translate }}</th>
-                <th>{{ 'CASEINFO.ACTIONS' | translate }}</th>
+                <th>{{ 'COMMON.ID' | translate }}</th>
+                <th>{{ 'COMMON.TYPE' | translate }}</th>
+                <th>{{ 'COMMON.TITLE' | translate }}</th>
+                <th>{{ 'COMMON.CREATED' | translate }}</th>
+                <th>{{ 'CASE.STARTDATE' | translate }}</th>
+                <th>{{ 'CASE.ENDDATE' | translate }}</th>
+                <th>{{ 'COMMON.MODIFIED' | translate }}</th>
+                <th>{{ 'COMMON.STATUS' | translate }}</th>
+                <th>{{ 'COMMON.ACTIONS' | translate }}</th>
               </tr>
             </thead>
             <tbody>
@@ -39,7 +39,7 @@
                 <td>{{case["base:endDate"] | date: 'yyyy-MM-dd'}}</td>
                 <td>{{case["cm:modified"] | date: 'yyyy-MM-dd'}}</td>
                 <td>{{case["oe:status"] | caseStatus}}</td>
-                <td><md-button href="#/cases/case/{{case['oe:id']}}">{{ 'CASEINFO.VIEW' | translate }}</md-button></td>
+                <td><md-button href="#/cases/case/{{case['oe:id']}}">{{ 'COMMON.VIEW' | translate }}</md-button></td>
               </tr>
             </tbody>
           </table>
@@ -47,12 +47,12 @@
         <div class="md-actions">
           
           <md-menu>
-            <md-button class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="{{ 'CASEINFO.CREATENEWCASE' | translate }}">
-              {{ 'CASEINFO.CREATENEWCASE' | translate }}
+            <md-button class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="{{ 'CASE.CREATE_NEW_CASE' | translate }}">
+              {{ 'CASE.CREATE_NEW_CASE' | translate }}
             </md-button>
             <md-menu-content>
-              <md-menu-item><md-button ng-click="vm.createCase($event, 'standard')">{{ 'CASEINFO.CASETYPESTANDARD' | translate }}</md-button></md-menu-item>
-              <md-menu-item><md-button ng-disabled="true">{{ 'CASEINFO.CASETYPEOTHER' | translate }}</md-button></md-menu-item>
+              <md-menu-item><md-button ng-click="vm.createCase($event, 'standard')">{{ 'CASE.CASETYPE_STANDARD' | translate }}</md-button></md-menu-item>
+              <md-menu-item><md-button ng-disabled="true">{{ 'CASE.CASETYPE_OTHER' | translate }}</md-button></md-menu-item>
             </md-menu-content>
           </md-menu>
         </div>
@@ -62,27 +62,27 @@
   
   <md-tab>
     <md-tab-label>
-      <span>{{ 'CASEINFO.UNASSIGNEDCASES' | translate }}</span>
+      <span>{{ 'CASE.UNASSIGNED_CASES' | translate }}</span>
     </md-tab-label>
     <md-tab-body layout="column">
       <md-list>
         <md-list-item ng-repeat="case in cases">
           <md-card style="width:100%;">
             <md-card-content>
-              <md-subheader>case: {{ case.caseId }}</md-subheader>
+              <md-subheader>{{ 'CASE.CASE' | translate }}: {{ case.caseId }}</md-subheader>
               <div style="float: right; width: 20em; color: #999;">
-                Created {{ case.createdDate }} by {{ case.creator }}<br>
-                Status: {{ case.status }}
+                {{ 'COMMON.CREATED' | translate }} {{ case.createdDate }} {{ 'COMMON.BY' | translate }} {{ case.creator }}<br>
+                {{ 'COMMON.STATUS' | translate }}: {{ case.status }}
               </div>
               <h2>{{ case.title }}</h2>
               <p>{{ case.desc }}</p>
               <ul class="list-unstyled" ng-repeat="doc in case.documents">
-                <li><a href="#">{{ doc }}</a> <md-button ng-disabled="true">Preview</md-button></li>
+                <li><a href="#">{{ doc }}</a> <md-button ng-disabled="true">{{ 'COMMON.PREVIEW' | translate }}</md-button></li>
               </ul>
             </md-card-content>
             <div class="md-actions">
-              <md-button class="md-primary" ng-disabled="true">Assign to</md-button>
-              <a class="md-button md-primary" href="#/cases/case">View case details</a>
+              <md-button class="md-primary" ng-disabled="true">{{ 'CASE.ASSIGN_TO' | translate }}</md-button>
+              <a class="md-button md-primary" href="#/cases/case">{{ 'CASE.VIEW_CASE_DETAILS' | translate }}</a>
             </div>
           </md-card>
         </md-list-item>

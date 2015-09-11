@@ -2,54 +2,54 @@
   <form name="form">
     <md-toolbar layout="row">
       <div class="md-toolbar-tools">
-        <h2>Create / edit case</h2>
+        <h2>{{ 'CASE.CRUD_CASE' | translate }}</h2>
       </div>
     </md-toolbar>
     <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;">
       
       <md-input-container>
-        <label>Case title</label>
+        <label>{{ 'CASE.TITLE' | translate }}</label>
         <input type="text" ng-model="case.title" required focus-me>
       </md-input-container>
 
       <md-input-container>
-        <label>Case owner</label>
+        <label>{{ 'CASE.OWNER' | translate }}</label>
         <md-select ng-model="case.owner" required ng-controller="CaseController as vm">
           <md-option ng-value="auth.nodeRef" ng-repeat="auth in vm.authorities">{{ auth.name }}</md-option>
         </md-select>
       </md-input-container>
       <md-input-container>
-        <label>Assigned to</label>
+        <label>{{ 'CASE.ASSIGNED_TO' | translate }}</label>
         <md-select ng-model="case.assignedTo" required ng-controller="CaseController as vm">
           <md-option ng-value="auth.nodeRef" ng-repeat="auth in vm.authorities">{{ auth.name }}</md-option>
         </md-select>
       </md-input-container>
       
       <md-input-container>
-        <label>Start date</label>
+        <label>{{ 'CASE.START_DATE' | translate }}</label>
         <input type="date" ng-model="case.startDate">
       </md-input-container>
       
       <md-input-container>
-        <label>End date</label>
+        <label>{{ 'CASE.END_DATE' | translate }}</label>
         <input type="date" ng-model="case.endDate">
       </md-input-container>
       
       <md-input-container>
-        <label>Notes / Description</label>
+        <label>{{ 'CASE.DESCRIPTION' | translate }}</label>
         <textarea ng-model="case.desc"></textarea>
       </md-input-container>
       
     </md-dialog-content>
     <div class="md-actions" layout="row">
       <md-button type="submit" class="md-primary" ng-click="vm.update(case)" ng-disabled="form.$invalid">
-        Create / save case
+        {{ 'CASE.CREATE_SAVE_CASE' | translate }}
       </md-button>
       <md-button type="button" ng-click="vm.cancel(form)">
-        Cancel
+        {{ 'COMMON.CANCEL' | translate }}
       </md-button>
       <md-button type="button" ng-disabled="true">
-        Archive case
+        {{ 'CASE.ARCHIVE_CASE' | translate }}
       </md-button>
     </div>
   </form>

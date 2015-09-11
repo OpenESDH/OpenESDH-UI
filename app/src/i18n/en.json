@@ -3,11 +3,7 @@
         "CONFIRM": "Confirm",
         "OK": "OK",
         "CANCEL": "Cancel",
-        "ACTION": "Action",
-        "BACK": "Back",
-        "UPLOAD": "Upload",
-        "DOWNLOAD": "Download",
-        "CLOSE": "Close"
+        "BACK": "Back"
     },
     "CASEINFO": {
         "CONFIRM_CLOSE_CASE": "Do you want to close this case?",
@@ -16,29 +12,8 @@
         ],
         "ACTIONS": "Actions",
         "CHANGE_STATUS": "Change status",
-        "CARDTITLE": "Card title",
-        "ID": "ID",
-        "TITLE": "Title",
-        "STATUS": "Status",
-        "CREATEDBY": "Created by",
-        "CREATED": "Created",
-        "CASEOWNERS": "Case owners",
-        "MODIFIED": "Modified",
-        "DESCRIPTION": "Description",
-        "EDIT_INFORMATION": "Edit information",
-        "PRINT_CASE": "Print case",
-        "START_WORKFLOW": "Start workflow",
-        "CREATE_SITE": "Create site",
         "CASES": "Cases",
-        "MYCASES": "My cases",
-        "TYPE": "Type",
-        "STARTDATE": "Start date",
-        "ENDDATE": "End date",
-        "VIEW": "View",
-        "CREATENEWCASE": "Create new case",
-        "CASETYPESTANDARD": "Standard case",
-        "CASETYPEOTHER": "Other case type",
-        "UNASSIGNEDCASES": "Unassigned cases"
+        "VIEW": "View"
     },
     "document": {
         "category": [
@@ -52,76 +27,181 @@
         ],
         "type": [
             ""
-        ],
-        "documents": "Documents",
+        ]
+    },
+    "ADMIN": {
+        "ADMINISTRATION_PAGES": "Administration pages",
+        "ADMINISTRATION": "Administration"
+    },
+    "USER": {
+        "USERS": "Users",
+        "USERNAME": "Username",
+        "FIRST_NAME": "First name",
+        "LAST_NAME": "Last name",
+        "EDIT_USER": "Edit user",
+        "CREATE_USER": "Create user",
+        "USER": "User"
+    },
+    "GROUP": {
+        "GROUPS": "Groups"
+    },
+    "ORG": {
+        "ORGANIZATIONS": "Organisations",
+        "BACK_TO_ORGS": "Back to organisations",
+        "COMPANY_NAME": "Company name",
+        "DEPARTMENT": "Department",
+        "ADDRESS_1": "Address 1",
+        "ADDRESS_2": "Address 2",
+        "POSTAL_CODE": "Postal code",
+        "CITY": "City",
+        "COUNTRY": "Country",
+        "VAT_NO": "VAT No",
+        "PHONE": "Phone",
+        "MOBILE_PHONE": "Mobile phone",
+        "WEBSITE": "Website",
+        "LINKEDIN": "LinkedIn",
+        "IM": "IM",
+        "EDIT_ORG": "Edit organisation",
+        "DELETE_ORG": "Delete organisation",
+        "EMPLOYEES": "Employees",
+        "CRUD_ORG": "Create / edit organisation",
+        "SEARCH_FOR_ORG": "Search for organisation",
+        "CVR_NO": "CVR No",
+        "STREET": "Street",
+        "CREATE_NEW_ORG": "Create new organisation"
+    },
+    "CONTACT": {
+        "CONTACTS": "Contacts",
+        "FIRST_NAME": "First name",
+        "MIDDLE_NAME": "Middle name",
+        "LAST_NAME": "Last name",
+        "ADDRESS_1": "Address 1",
+        "ADDRESS_2": "Address 2",
+        "POSTAL_CODE": "Postal code",
+        "CITY": "City",
+        "COUNTRY": "Country",
+        "CPR_NO": "CPR No",
+        "PHONE": "Phone",
+        "MOBILE_PHONE": "Mobile phone",
+        "WEBSITE": "Website",
+        "LINKEDIN": "LinkedIn",
+        "IM": "IM",
+        "SEARCH_FOR_CONTACTS": "Search for contacts",
+        "DEPARTMENT": "Department",
+        "STREET": "Street",
+        "CREATE_NEW_CONTACT": "Create new contact"
+    },
+    "COMMON": {
+        "EMAIL": "Email",
+        "DESCRIPTION": "Description",
+        "CANCEL": "Cancel",
+        "INFORMATION": "Information",
+        "ID": "ID",
         "TITLE": "Title",
-        "NO": "Doc.No",
+        "STATUS": "Status",
+        "CREATEDBY": "Created by",
+        "CREATED": "Created",
+        "MODIFIED": "Modified",
+        "BY": "by",
+        "LOADED": "Loaded",
+        "TOTAL_ITEMS": "Total items",
+        "PAGES": "Pages",
         "TYPE": "Type",
         "CATEGORY": "Category",
         "STATE": "State",
-        "OWNER": "Owner",
-        "CREATED": "Created",
-        "MODIFIED": "Modified",
+        "ACTION": "Action",
         "VIEW_DETAILS": "View details",
         "PREVIEW": "Preview",
-        "CREATE_NEW_DOCUMENT": "Create new document",
-        "UPLOAD_NEW_DOCUMENTS": "Upload new documents",
-        "EMAIL_DOCUMENTS": "Email documents"
+        "HISTORY": "History",
+        "TIME": "Time",
+        "OF": "of",
+        "ACTIONS": "Actions",
+        "VIEW": "View",
+        "SAVE": "Save",
+        "NAME": "Name",
+        "SHOW": "Show",
+        "DELETE": "Delete",
+        "SHOWING": "Showing",
+        "DOWNLOAD": "Download",
+        "ADDED": "Added",
+        "ADDED_BY": "Added by",
+        "UPLOAD": "Upload",
+        "HOME": "Home",
+        "REMOVE": "Remove",
+        "ADD_NEW": "Add new",
+        "ADD": "Add",
+        "LAST_MODIFIED": "Last modified",
+        "CLOSE": "Close"
     },
-    "menu": {
-        "login": "Login",
-        "openmenu": "Open menu"
+    "LOGIN": {
+        "USER_NAME": "Username",
+        "PASSWORD": "Password",
+        "VERIFY_PASSWORD": "Verify password",
+        "LOGIN": "Login",
+        "SIGN_ME_IN_AUTOMATICALLY": "Sign me in automatically"
     },
-    "login": {
-        "username": "User name",
-        "password": "Password",
-        "signmein": "Sign me in automatically"
+    "{{ 'LOGIN": {
+        "SIGN_ME_IN_AUTOMATICALLY' | translate }}": ""
     },
-    "{{ 'login": {
-        "signmein' | translate }}": "Sign me in automatically aria"
+    "CASE": {
+        "BACK_TO_CASES": "Back to cases",
+        "CHANGE_STATUS": "Change status",
+        "CASE_HOME": "Case home",
+        "CASE_OWNER": "Case owner",
+        "EDIT_INFORMATION": "Edit information",
+        "PRINT_CASE": "Print case",
+        "START_WORKFLOW": "Start workflow",
+        "CASE_HISTORY": "Case history",
+        "CRUD_CASE": "Create / edit case",
+        "TITLE": "Title",
+        "OWNER": "Owner",
+        "ASSIGNED_TO": "Assigned to",
+        "START_DATE": "Start date",
+        "END_DATE": "End date",
+        "DESCRIPTION": "Description",
+        "CREATE_SAVE_CASE": "Create / save case",
+        "ARCHIVE_CASE": "Archive case",
+        "MY_CASES": "My cases",
+        "CASES": "Cases",
+        "STARTDATE": "Start date",
+        "ENDDATE": "End date",
+        "CREATE_NEW_CASE": "Create new case",
+        "CASETYPE_STANDARD": "Standard case",
+        "CASETYPE_OTHER": "Other type case",
+        "UNASSIGNED_CASES": "Unassigned cases",
+        "CASE": "Case",
+        "ASSIGN_TO": "Assign to",
+        "VIEW_CASE_DETAILS": "View case details",
+        "ID": "ID",
+        "VIEW_DETAILS": "View details"
     },
     "notes": {
-        "notes": "Notes",
-        "CREATED": "Created",
-        "BY": "by",
+        "notes": "Notes"
+    },
+    "NOTE": {
         "RELATED": "Related",
         "NEW_NOTE": "New note",
         "PRINT_ALL_NOTES": "Print all notes",
+        "NOTES": "Notes",
         "CREATE_NOTE": "Create note",
         "HEADLINE": "Headline",
         "CONTENT": "Content",
         "CONCERNED_PARTIES": "Concerned parties",
         "ADD_NOTE": "Add note"
     },
-    "party": {
-        "TITLE": "Title",
-        "CHOOSE_ORG_CONTACTS": "Choose organisation contacts",
-        "CHOOSE_PER_CONTACTS": "Choose person contacts"
-    },
-    "{{ 'CASEINFO": {
-        "CHANGE_STATUS' | translate }}": "",
-        "CREATENEWCASE' | translate }}": ""
-    },
-    "TASK": {
-        "MY_TASKS": "My tasks",
-        "CREATE_NEW_TASK": "Start workflow",
-        "TASKS": "Tasks"
-    },
-    "CASE": {
-        "MY_CASES": "My cases",
-        "ID": "ID",
-        "TITLE": "Title",
-        "CREATE_NEW_CASE": "Create new case",
-        "CASES": "Cases"
-    },
     "DOCUMENT": {
+        "DOCUMENTS": "Documents",
+        "NO": "No",
+        "OWNER": "Owner",
+        "CREATE_NEW_DOCUMENT": "Create new document",
+        "UPLOAD_NEW_DOCUMENTS": "Upload new document",
+        "EMAIL_DOCUMENTS": "Email documents",
         "MY_RECENT_DOCUMENTS": "My recent documents",
         "DOCUMENT": "Document",
         "TITLE": "Title",
         "STATE": "State",
         "TYPE": "Type",
         "CATEGORY": "Category",
-        "OWNER": "Owner",
         "VERSION": "Version",
         "VERSION_ADDED": "Version added",
         "DOCUMENT_NAME": "Document name",
@@ -136,29 +216,43 @@
             "EDIT_ATTACHMENT": "Edit attachment",
             "UPLOAD_NEW_ATTACHMENT": "Upload new attachment"
         },
-        "UPLOAD_DOCUMENT": "Upload document"
+        "UPLOAD_DOCUMENT": "Upload document",
+        "UPLOAD_ATTACHMENT": "Upload attachment",
+        "DOCUMENT_TO_UPLOAD": "Document to upload",
+        "VERSIONTYPE": "Version type",
+        "MINOR_VERSION": "Minor version",
+        "MAJOR_VERSION": "Major version",
+        "CANNOT_PREVIEW": "Can't preview",
+        "DOWNLOAD_DOCUMENT": "Download document"
     },
-    "COMMON": {
-        "CREATED": "Created",
-        "DOWNLOAD": "Download",
-        "ADDED": "Added",
-        "ADDED_BY": "Added by",
-        "ACTIONS": "Actions",
-        "UPLOAD": "Upload",
-        "CANCEL": "Cancel",
-        "HOME": "Home",
-        "NAME": "Name",
-        "EMAIL": "Email",
-        "TYPE": "Type",
-        "REMOVE": "Remove",
-        "ADD_NEW": "Add new",
-        "ADD": "Add"
+    "MEMBER": {
+        "MEMBERS": "Members"
     },
-    "ADMIN": {
-        "ADMINISTRATION": "Administration"
+    "PARTY": {
+        "TITLE": "Title",
+        "ROLE": "Role",
+        "CHANGE": "Change",
+        "ADD_PARTIES_TITLE": "Add party title",
+        "ORGANIZATIONS": "Organisations",
+        "PERSONS": "Persons",
+        "CHANGE_PARTY_TITLE": "Change party title",
+        "OLD_ROLE": "Old role",
+        "TO_ROLE": "New role"
+    },
+    "{{ 'CASE": {
+        "CHANGE_STATUS' | translate }}": "",
+        "CREATE_NEW_CASE' | translate }}": ""
+    },
+    "TASK": {
+        "MY_TASKS": "My tasks",
+        "CREATE_NEW_TASK": "Start workflow",
+        "TASKS": "Tasks"
     },
     "SEARCH": {
         "SEARCH": "Search"
+    },
+    "menu": {
+        "openmenu": "Open menu"
     },
     "MENU": {
         "VIEW_PROFILE": "View profile",
@@ -177,39 +271,15 @@
             }
         }
     },
-    "PARTY": {
-        "TITLE": "Title",
-        "ROLE": "Role",
-        "CHANGE": "Change",
-        "ADD_PARTIES_TITLE": "Add party title",
-        "ORGANIZATIONS": "Organisations",
-        "PERSONS": "Persons",
-        "CHANGE_PARTY_TITLE": "Change party title",
-        "OLD_ROLE": "Old role",
-        "TO_ROLE": "New role"
+    "OFFICE": {
+        "SAVE_EMAIL_IN_OPENESDH": "SAVE E-mail in OpenESDH"
     },
-    "caseDocumentDialog": {
-        "uploadDocument": "Upload Dokument",
-        "uploadAttachment": "",
-        "editProperties": "",
-        "documentToUpload": "",
-        "document": {
-            "versionType": "",
-            "minorVersion": "",
-            "majorVersion": "",
-            "state": "",
-            "type": "",
-            "category": "",
-            "description": ""
-        }
+    "party": {
+        "CHOOSE_ORG_CONTACTS": "Choose organisation contacts",
+        "CHOOSE_PER_CONTACTS": "Choose person contacts"
     },
     "docpreview": {
-        "cannot_preview": "Cannot preview document",
-        "download_document": "Download document",
         "image_max_size_exceeded": "Image \"{{image}}\" is too large to display.",
         "preview_document": "Preview document"
-    },
-    "task": {
-        "tasks": "Tasks"
     }
 }
