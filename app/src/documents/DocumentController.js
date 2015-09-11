@@ -4,12 +4,11 @@
         .module('openeApp.documents')
         .controller('DocumentController', DocumentController);
     
-    DocumentController.$inject = [ '$scope', '$stateParams', '$mdDialog', 'caseDocumentsService', 'documentPreviewService' ];
+    DocumentController.$inject = [ '$scope', '$stateParams', 'caseDocumentsService', 'documentPreviewService', 'caseDocumentFileDialogService' ];
     
-    function DocumentController($scope, $stateParams, $mdDialog, caseDocumentsService, documentPreviewService) {
+    function DocumentController($scope, $stateParams, caseDocumentsService, documentPreviewService, caseDocumentFileDialogService) {
     
         var caseId = $stateParams.caseId;
-        var caseDocsFolderNodeRef = '';
         var vm = this;
         vm.caseId = caseId;
         vm.pageSize = 2;
@@ -21,9 +20,6 @@
         activate();
         
         function activate(){
-            caseDocumentsService.getDocumentsFolderNodeRef(caseId).then(function(res){
-                caseDocsFolderNodeRef = res.caseDocsFolderNodeRef;
-            });
             loadDocuments(1);
         }
         
@@ -41,35 +37,10 @@
             });
         }
         
-        function uploadDocument(ev){
-            $mdDialog.show({
-                controller: DialogController,
-                templateUrl: 'app/src/documents/view/documentUploadDialog.html',
-                parent: angular.element(document.body),
-                targetEvent: ev,
-                clickOutsideToClose:true
-            })
-            .then(function(fileToUpload) {
-                if(!fileToUpload){
-                    return;
-                }
-                caseDocumentsService.uploadCaseDocument(fileToUpload, caseDocsFolderNodeRef).then(function(result){
-                    loadDocuments(1);
-                });
-            }, function() {
-                //on cancel dialog
+        function uploadDocument(){
+            caseDocumentFileDialogService.uploadCaseDocument(caseId).then(function(result){
+                loadDocuments(1); 
             });
-        }
-        
-        function DialogController($scope, $mdDialog) {
-            
-            $scope.cancel = function() {
-              $mdDialog.cancel();
-            };
-            
-            $scope.upload = function(){
-                $mdDialog.hide($scope.fileToUpload);
-            };
         }
         
         function previewDocument(nodeRef){

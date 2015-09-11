@@ -3,6 +3,7 @@
 
     angular
         .module('openeApp', [
+            'ngSanitize',
             'ngMaterial',
             'ui.router',
             'ngResource',

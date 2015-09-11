@@ -3,17 +3,5 @@
         "language": "Sprog",
         "en": "Engelsk",
         "da": "Danske"
-    },
-    "common": {
-        "ACTION": "Action",
-        "CANCEL": "Cancel",
-        "BACK": "Back",
-        "OK": "OK",
-        "CONFIRM": "Confirm",
-        "CLOSE": "Close",
-        "DOWNLOAD": "Download",
-        "ACTIONS": "Actions",
-        "REMOVE": "Remove",
-        "VIEW": "View"
     }
 }

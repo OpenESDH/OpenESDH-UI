@@ -16,7 +16,8 @@
             getDocumentAttachments: getDocumentAttachments,
             uploadDocumentAttachment: uploadDocumentAttachment,
             uploadAttachmentNewVersion: uploadAttachmentNewVersion,
-            downloadAttachment: downloadAttachment
+            downloadAttachment: downloadAttachment,
+            updateDocumentProperties: updateDocumentProperties
         };
         return service;
         
@@ -42,11 +43,14 @@
             });
         }
         
-        function uploadDocumentNewVersion(mainDocNodeRef, documentFile){
+        function uploadDocumentNewVersion(mainDocNodeRef, documentFile, docProps){
             var uploadProps = {
                 updateNodeRef: mainDocNodeRef,
                 overwrite: true
             };
+            if(docProps){
+                angular.extend(uploadProps, docProps);
+            }
             return alfrescoUploadService.uploadFile(documentFile, null, uploadProps);
         }
         
@@ -68,20 +72,30 @@
             });
         }
         
-        function uploadDocumentAttachment(docRecordNodeRef, attachmentFile){
-            return alfrescoUploadService.uploadFile(attachmentFile, docRecordNodeRef);
+        function uploadDocumentAttachment(docRecordNodeRef, attachmentFile, props){
+            return alfrescoUploadService.uploadFile(attachmentFile, docRecordNodeRef, props);
         }
         
-        function uploadAttachmentNewVersion(attachmentNodeRef, attachmentFile){
+        function uploadAttachmentNewVersion(attachmentNodeRef, attachmentFile, props){
             var uploadProps = {
                 updateNodeRef: attachmentNodeRef,
                 overwrite: true
             };
+            if(props){
+                angular.extend(uploadProps, props);
+            }
             return alfrescoUploadService.uploadFile(attachmentFile, null, uploadProps);
         }
         
         function downloadAttachment(attachment){
             alfrescoDownloadService.downloadFile(attachment.nodeRef, attachment.name);
+        }
+        
+        function updateDocumentProperties(document){
+            var url = "/alfresco/service/api/openesdh/case/document/properties";
+            return $http.post(url, document).then(function(response){
+                return response;
+            });
         }
     }
 })();
