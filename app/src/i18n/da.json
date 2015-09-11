@@ -11,7 +11,7 @@
     "CASEINFO": {
         "CONFIRM_CLOSE_CASE": "Vil du lukke denne sag?",
         "status": [
-            "Status af sag"
+            ""
         ],
         "ACTIONS": "Handlinger",
         "CHANGE_STATUS": "Skift status",
@@ -83,9 +83,7 @@
     },
     "menu": {
         "login": "Log ind",
-        "openmenu": "Åben menu",
-        "viewprofile": "Vis profil",
-        "logout": "Log ud"
+        "openmenu": "Åben menu"
     },
     "login": {
         "username": "Brugernavn",
@@ -112,14 +110,33 @@
         "CHANGE_STATUS' | translate }}": "",
         "CREATENEWCASE' | translate }}": ""
     },
-    "task": {
-        "tasks": "Opgaver"
+    "TASK": {
+        "MY_TASKS": "Mine opgaver",
+        "CREATE_NEW_TASK": "Start workflow",
+        "TASKS": "Opgaver"
     },
-    "search": {
-        "search": "Søg"
+    "CASE": {
+        "MY_CASES": "Mine sager",
+        "ID": "ID",
+        "TITLE": "Titel",
+        "CREATE_NEW_CASE": "Opret ny sag",
+        "CASES": "Sager"
     },
-    "language": {
-        "language": "Sprog"
+    "DOCUMENT": {
+        "MY_RECENT_DOCUMENTS": "Senest redigérede dokumenter"
+    },
+    "COMMON": {
+        "HOME": "Min side"
+    },
+    "ADMIN": {
+        "ADMINISTRATION": "Administration"
+    },
+    "SEARCH": {
+        "SEARCH": "Søg"
+    },
+    "MENU": {
+        "VIEW_PROFILE": "Vis profil",
+        "LOGOUT": "Log ud"
     },
     "{{vm": {
         "getUserInfo()": {
@@ -139,5 +156,8 @@
         "download_document": "Download dokument",
         "image_max_size_exceeded": "Filstørrelse for billede er overskredet",
         "preview_document": "Prævis dokument"
+    },
+    "task": {
+        "tasks": "Opgaver"
     }
 }

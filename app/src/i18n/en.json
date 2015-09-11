@@ -11,7 +11,7 @@
     "CASEINFO": {
         "CONFIRM_CLOSE_CASE": "Do you want to close this case?",
         "status": [
-            "Status of this case"
+            ""
         ],
         "ACTIONS": "Actions",
         "CHANGE_STATUS": "Change status",
@@ -43,10 +43,9 @@
         "category": [
             ""
         ],
-        "status": {
-          "draft": "Draft",
-          "final": "Final"
-        },
+        "status": [
+            ""
+        ],
         "type": [
             ""
         ],
@@ -84,9 +83,7 @@
     },
     "menu": {
         "login": "Login",
-        "openmenu": "Open menu",
-        "viewprofile": "View profile",
-        "logout": "Logout"
+        "openmenu": "Open menu"
     },
     "login": {
         "username": "User name",
@@ -113,14 +110,33 @@
         "CHANGE_STATUS' | translate }}": "",
         "CREATENEWCASE' | translate }}": ""
     },
-    "task": {
-        "tasks": "Tasks"
+    "TASK": {
+        "MY_TASKS": "My tasks",
+        "CREATE_NEW_TASK": "Start workflow",
+        "TASKS": "Tasks"
     },
-    "search": {
-        "search": "Search"
+    "CASE": {
+        "MY_CASES": "My cases",
+        "ID": "ID",
+        "TITLE": "Title",
+        "CREATE_NEW_CASE": "Create new case",
+        "CASES": "Cases"
     },
-    "language": {
-        "language": "Language"
+    "DOCUMENT": {
+        "MY_RECENT_DOCUMENTS": "My recent documents"
+    },
+    "COMMON": {
+        "HOME": "Home"
+    },
+    "ADMIN": {
+        "ADMINISTRATION": "Administration"
+    },
+    "SEARCH": {
+        "SEARCH": "Search"
+    },
+    "MENU": {
+        "VIEW_PROFILE": "View profile",
+        "LOGOUT": "Logout"
     },
     "{{vm": {
         "getUserInfo()": {
@@ -140,5 +156,8 @@
         "download_document": "Download document",
         "image_max_size_exceeded": "Image \"{{image}}\" is too large to display.",
         "preview_document": "Preview document"
+    },
+    "task": {
+        "tasks": "Tasks"
     }
 }
