@@ -1,0 +1,144 @@
+{
+    "common": {
+        "CONFIRM": "Confirm",
+        "OK": "OK",
+        "CANCEL": "Cancel",
+        "ACTION": "Action",
+        "BACK": "Back",
+        "DOWNLOAD": "Download",
+        "CLOSE": "Close"
+    },
+    "CASEINFO": {
+        "CONFIRM_CLOSE_CASE": "Do you want to close this case?",
+        "status": [
+            "Status of this case"
+        ],
+        "ACTIONS": "Actions",
+        "CHANGE_STATUS": "Change status",
+        "CARDTITLE": "Card title",
+        "ID": "ID",
+        "TITLE": "Title",
+        "STATUS": "Status",
+        "CREATEDBY": "Created by",
+        "CREATED": "Created",
+        "CASEOWNERS": "Case owners",
+        "MODIFIED": "Modified",
+        "DESCRIPTION": "Description",
+        "EDIT_INFORMATION": "Edit information",
+        "PRINT_CASE": "Print case",
+        "START_WORKFLOW": "Start workflow",
+        "CREATE_SITE": "Create site",
+        "CASES": "Cases",
+        "MYCASES": "My cases",
+        "TYPE": "Type",
+        "STARTDATE": "Start date",
+        "ENDDATE": "End date",
+        "VIEW": "View",
+        "CREATENEWCASE": "Create new case",
+        "CASETYPESTANDARD": "Standard case",
+        "CASETYPEOTHER": "Other case type",
+        "UNASSIGNEDCASES": "Unassigned cases"
+    },
+    "document": {
+        "category": [
+            ""
+        ],
+        "status": {
+          "draft": "Draft",
+          "final": "Final"
+        },
+        "type": [
+            ""
+        ],
+        "documents": "Documents",
+        "TITLE": "Title",
+        "NO": "Doc.No",
+        "TYPE": "Type",
+        "CATEGORY": "Category",
+        "STATE": "State",
+        "OWNER": "Owner",
+        "CREATED": "Created",
+        "MODIFIED": "Modified",
+        "VIEW_DETAILS": "View details",
+        "PREVIEW": "Preview",
+        "CREATE_NEW_DOCUMENT": "Create new document",
+        "UPLOAD_NEW_DOCUMENTS": "Upload new documents",
+        "EMAIL_DOCUMENTS": "Email documents",
+        "VERSION": "Version",
+        "VERSION_ADDED": "Version added",
+        "DOCUMENT_NAME": "Document name",
+        "VERSION_DESCRIPTION": "Version description",
+        "EDIT_DOCUMENT": "Edit document",
+        "UPLOAD_NEW_VERSION": "Upload new version",
+        "DOWNLOAD": "Download",
+        "OPEN_PREVIEW": "Open preview",
+        "EDIT_PROPERTIES": "Edit properties",
+        "attachments": {
+            "TITLE": "Title",
+            "ADDED": "Added",
+            "ADDED_BY": "Added by",
+            "CURRENT_VERSION": "Current version",
+            "EDIT_ATTACHMENT": "Edit attachment",
+            "UPLOAD_NEW_ATTACHMENT": "Upload new attachment"
+        }
+    },
+    "menu": {
+        "login": "Login",
+        "openmenu": "Open menu",
+        "viewprofile": "View profile",
+        "logout": "Logout"
+    },
+    "login": {
+        "username": "User name",
+        "password": "Password",
+        "signmein": "Sign me in automatically"
+    },
+    "{{ 'login": {
+        "signmein' | translate }}": "Sign me in automatically aria"
+    },
+    "notes": {
+        "notes": "Notes",
+        "CREATED": "Created",
+        "BY": "by",
+        "RELATED": "Related",
+        "NEW_NOTE": "New note",
+        "PRINT_ALL_NOTES": "Print all notes",
+        "CREATE_NOTE": "Create note",
+        "HEADLINE": "Headline",
+        "CONTENT": "Content",
+        "CONCERNED_PARTIES": "Concerned parties",
+        "ADD_NOTE": "Add note"
+    },
+    "{{ 'CASEINFO": {
+        "CHANGE_STATUS' | translate }}": "",
+        "CREATENEWCASE' | translate }}": ""
+    },
+    "task": {
+        "tasks": "Tasks"
+    },
+    "search": {
+        "search": "Search"
+    },
+    "language": {
+        "language": "Language"
+    },
+    "{{vm": {
+        "getUserInfo()": {
+            "user": {
+                "firstName}} {{vm": {
+                    "getUserInfo()": {
+                        "user": {
+                            "lastName}}": ""
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "docpreview": {
+        "cannot_preview": "Cannot preview document",
+        "download_document": "Download document",
+        "image_max_size_exceeded": "Image \"{{image}}\" is too large to display.",
+        "preview_document": "Preview document"
+    }
+}

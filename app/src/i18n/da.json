@@ -1,0 +1,143 @@
+{
+    "common": {
+        "CONFIRM": "Bekræft",
+        "OK": "OK",
+        "CANCEL": "Annullér",
+        "ACTION": "Handling",
+        "BACK": "Tilbage",
+        "DOWNLOAD": "Download",
+        "CLOSE": "Luk"
+    },
+    "CASEINFO": {
+        "CONFIRM_CLOSE_CASE": "Vil du lukke denne sag?",
+        "status": [
+            "Status af sag"
+        ],
+        "ACTIONS": "Handlinger",
+        "CHANGE_STATUS": "Skift status",
+        "CARDTITLE": "Card title?",
+        "ID": "ID",
+        "TITLE": "Titel",
+        "STATUS": "Status",
+        "CREATEDBY": "Oprettet af",
+        "CREATED": "Oprettet",
+        "CASEOWNERS": "Sags-ejere",
+        "MODIFIED": "Ændret",
+        "DESCRIPTION": "Beskrivelse",
+        "EDIT_INFORMATION": "Redigér information",
+        "PRINT_CASE": "Print sag",
+        "START_WORKFLOW": "Start workflow",
+        "CREATE_SITE": "Opret site",
+        "CASES": "Sager",
+        "MYCASES": "Mine sager",
+        "TYPE": "Type",
+        "STARTDATE": "Startdato",
+        "ENDDATE": "Slutdato",
+        "VIEW": "Vis",
+        "CREATENEWCASE": "Opret ny sag",
+        "CASETYPESTANDARD": "Standard-sag",
+        "CASETYPEOTHER": "Anden type sag",
+        "UNASSIGNEDCASES": "Utildelte sager"
+    },
+    "document": {
+        "category": [
+            ""
+        ],
+        "status": [
+            ""
+        ],
+        "type": [
+            ""
+        ],
+        "documents": "Dokumenter",
+        "TITLE": "Titel",
+        "NO": "Nr.",
+        "TYPE": "Type",
+        "CATEGORY": "Kategori",
+        "STATE": "Status",
+        "OWNER": "Ejer",
+        "CREATED": "Oprettet",
+        "MODIFIED": "Ændret",
+        "VIEW_DETAILS": "Vis detaljer",
+        "PREVIEW": "Pre-visning",
+        "CREATE_NEW_DOCUMENT": "Opret nyt dokument",
+        "UPLOAD_NEW_DOCUMENTS": "Upload nye dokumenter",
+        "EMAIL_DOCUMENTS": "Email dokumenter",
+        "VERSION": "Version",
+        "VERSION_ADDED": "Version tilføjet",
+        "DOCUMENT_NAME": "Dokumentnavn",
+        "VERSION_DESCRIPTION": "Versionsbeskrivelse",
+        "EDIT_DOCUMENT": "Redigér dokument",
+        "UPLOAD_NEW_VERSION": "Upload ny version",
+        "DOWNLOAD": "Download",
+        "OPEN_PREVIEW": "Åben præ-visning",
+        "EDIT_PROPERTIES": "Redigér egenskaber",
+        "attachments": {
+            "TITLE": "Titel",
+            "ADDED": "Tilføjet",
+            "ADDED_BY": "Tilføjet af",
+            "CURRENT_VERSION": "Indeværende version",
+            "EDIT_ATTACHMENT": "Redigér vedhæftning",
+            "UPLOAD_NEW_ATTACHMENT": "Upload ny vedhæftning"
+        }
+    },
+    "menu": {
+        "login": "Log ind",
+        "openmenu": "Åben menu",
+        "viewprofile": "Vis profil",
+        "logout": "Log ud"
+    },
+    "login": {
+        "username": "Brugernavn",
+        "password": "Kodeord",
+        "signmein": "Log mig ind automatisk"
+    },
+    "{{ 'login": {
+        "signmein' | translate }}": "Log mig ind automatisk aria"
+    },
+    "notes": {
+        "notes": "Noter",
+        "CREATED": "Oprettet",
+        "BY": "af",
+        "RELATED": "Relateret",
+        "NEW_NOTE": "Ny note",
+        "PRINT_ALL_NOTES": "Print alle noter",
+        "CREATE_NOTE": "Opret note",
+        "HEADLINE": "Overskrift",
+        "CONTENT": "Indhold",
+        "CONCERNED_PARTIES": "Relaterede parter",
+        "ADD_NOTE": "Tilføj note"
+    },
+    "{{ 'CASEINFO": {
+        "CHANGE_STATUS' | translate }}": "",
+        "CREATENEWCASE' | translate }}": ""
+    },
+    "task": {
+        "tasks": "Opgaver"
+    },
+    "search": {
+        "search": "Søg"
+    },
+    "language": {
+        "language": "Sprog"
+    },
+    "{{vm": {
+        "getUserInfo()": {
+            "user": {
+                "firstName}} {{vm": {
+                    "getUserInfo()": {
+                        "user": {
+                            "lastName}}": ""
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "docpreview": {
+        "cannot_preview": "Kan ikke præ-vise",
+        "download_document": "Download dokument",
+        "image_max_size_exceeded": "Filstørrelse for billede er overskredet",
+        "preview_document": "Prævis dokument"
+    }
+}

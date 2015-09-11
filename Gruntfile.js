@@ -117,13 +117,31 @@ module.exports = function(grunt) {
                     }
                 ]
             }
+        },
+        
+        /**
+        * i18nextract build json lang files
+        */
+        i18nextract: {
+          default_options: {
+            defaultLang: "en_US",
+            src: [ 'app/src/**/*.js', 'app/src/**/*.html' ],
+            lang: ['en', 'da'],
+            dest: 'app/src/i18n',
+            namespace: true,
+            safeMode: false
+          }
         }
     });
 
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
+    grunt.loadNpmTasks('grunt-angular-translate');
+    
     grunt.registerTask('local', ['bower', 'configureProxies:localhost', 'connect:localhost', 'watch:dev']);
     grunt.registerTask('dev', ['bower', 'configureProxies:test', 'connect:test', 'watch:dev']);
     grunt.registerTask('demo-dev', ['bower', 'configureProxies:demo', 'connect:demo', 'watch:dev']);
+    grunt.registerTask('update-lang', ['i18nextract']);
     grunt.registerTask('default', []);
+    
 };
