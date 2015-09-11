@@ -28,10 +28,10 @@
         <table>
           <thead>
             <tr>
-              <th>{{ 'CASE.ID' | translate }}</th>
-              <th>{{ 'CASE.TITLE' | translate }}</th>
-              <th>{{ 'MODIFIED' | translate }}</th>
-              <th>{{ 'ACTIONS' | translate }}</th>
+              <th>{{ 'COMMON.ID' | translate }}</th>
+              <th>{{ 'COMMON.TITLE' | translate }}</th>
+              <th>{{ 'COMMON.MODIFIED' | translate }}</th>
+              <th>{{ 'COMMON.ACTIONS' | translate }}</th>
             </tr>
           </thead>
           <tbody>
@@ -39,7 +39,7 @@
               <td>{{case["oe:id"]}}</td>
               <td>{{case["cm:title"]}}</td>
               <td>{{case["cm:modified"] | date: 'yyyy-MM-dd'}}</td>
-              <td><md-button href="#/cases/case" class="md-primary">{{ 'CASEINFO.VIEW' | translate }}</md-button></td>
+              <td><md-button href="#/cases/case" class="md-primary">{{ 'COMMON.VIEW' | translate }}</md-button></td>
             </tr>
           </tbody>
         </table>
@@ -59,7 +59,7 @@
             <div class="md-list-item-text">
               <!--<img ng-src="{{ file.icon }}">-->
               <h3>{{ document.displayName }}</h3>
-              <p>{{ 'MODIFIED' | translate }} {{ document.modifiedOn }} {{ 'BY' | translate }} {{ document.modifiedBy }}</p>
+              <p>{{ 'COMMON.MODIFIED' | translate }} {{ document.modifiedOn }} {{ 'COMMON.BY' | translate }} {{ document.modifiedBy }}</p>
             </div>
           </md-list-item>
         </md-list>

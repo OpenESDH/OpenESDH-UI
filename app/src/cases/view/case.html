@@ -11,7 +11,7 @@
     <div class="md-actions" layout="column">
       <md-menu>
         <md-button class="md-primary" ng-click="$mdOpenMenu($event)"
-                   aria-label="{{ 'CASEINFO.CHANGE_STATUS' | translate }}"
+                   aria-label="{{ 'CASE.CHANGE_STATUS' | translate }}"
                    ng-disabled="caseStatusChoices.length == 0">
           {{ 'CASE.CHANGE_STATUS' | translate }}
         </md-button>
@@ -67,7 +67,7 @@
         <div flex="50">
           <md-card ng-controller="NoteController as caseNotes">
             <md-card-content>
-              <h3>{{'notes.notes' | translate}}</h3>
+              <h3>{{ 'NOTE.NOTES' | translate }}</h3>
               <md-list>
                 <md-list-item ng-repeat="note in caseNotes.notes">
                   <div class="md-list-item-text">
@@ -119,8 +119,8 @@
                     <td>
                         <span ng-repeat="owner in doc['doc:owner']">{{owner.fullname}}</span>
                     </td>
-                    <td>{{doc["cm:created"] | date: 'yyyy-MM-dd'}}</td>
-                    <td>{{doc["cm:modified"] | date: 'yyyy-MM-dd'}}</td>
+                    <td>{{ doc["cm:created"] | date: 'yyyy-MM-dd' }}</td>
+                    <td>{{ doc["cm:modified"] | date: 'yyyy-MM-dd' }}</td>
                     <td>
                         <md-button class="md-primary" href="#/cases/case/{{docCtrl.caseId}}/doc/{{doc.nodeRef | nodeRefUri}}">{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button> 
                         <md-button class="md-primary" ng-click="docCtrl.previewDocument(doc.mainDocNodeRef)">{{ 'COMMON.PREVIEW' | translate }}</md-button>

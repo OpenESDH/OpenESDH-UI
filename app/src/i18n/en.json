@@ -1,33 +1,130 @@
 {
-    "common": {
+    "COMMON": {
         "CONFIRM": "Confirm",
         "OK": "OK",
         "CANCEL": "Cancel",
-        "BACK": "Back"
-    },
-    "CASEINFO": {
-        "CONFIRM_CLOSE_CASE": "Do you want to close this case?",
-        "status": [
-            ""
-        ],
         "ACTIONS": "Actions",
-        "CHANGE_STATUS": "Change status",
-        "CASES": "Cases",
-        "VIEW": "View"
+        "EMAIL": "Email",
+        "DESCRIPTION": "Description",
+        "INFORMATION": "Information",
+        "ID": "ID",
+        "TITLE": "Title",
+        "STATUS": "Status",
+        "CREATEDBY": "Created by",
+        "CREATED": "Created",
+        "MODIFIED": "Modified",
+        "BY": "by",
+        "LOADED": "Loaded",
+        "TOTAL_ITEMS": "Total items",
+        "PAGES": "Pages",
+        "TYPE": "Type",
+        "CATEGORY": "Category",
+        "STATE": "State",
+        "ACTION": "Action",
+        "VIEW_DETAILS": "View details",
+        "PREVIEW": "Preview",
+        "HISTORY": "History",
+        "TIME": "Time",
+        "OF": "of",
+        "VIEW": "View",
+        "SAVE": "Save",
+        "NAME": "Name",
+        "SHOW": "Show",
+        "DELETE": "Delete",
+        "SHOWING": "Showing",
+        "BACK": "Back",
+        "DOWNLOAD": "Download",
+        "ADDED": "Added",
+        "ADDED_BY": "Added by",
+        "UPLOAD": "Upload",
+        "HOME": "Home",
+        "REMOVE": "Remove",
+        "ADD_NEW": "Add new",
+        "ADD": "Add",
+        "LAST_MODIFIED": "Last modified",
+        "CLOSE": "Close"
     },
-    "document": {
-        "category": [
+    "CASE": {
+        "CONFIRM_CLOSE_CASE": "Do you want to close this case?",
+        "STATUS": [
             ""
         ],
-        "state": [
+        "BACK_TO_CASES": "Back to cases",
+        "CHANGE_STATUS": "Change status",
+        "CASE_HOME": "Case home",
+        "CASE_OWNER": "Case owner",
+        "EDIT_INFORMATION": "Edit information",
+        "PRINT_CASE": "Print case",
+        "START_WORKFLOW": "Start workflow",
+        "CASE_HISTORY": "Case history",
+        "CRUD_CASE": "Create / edit case",
+        "TITLE": "Title",
+        "OWNER": "Owner",
+        "ASSIGNED_TO": "Assigned to",
+        "START_DATE": "Start date",
+        "END_DATE": "End date",
+        "DESCRIPTION": "Description",
+        "CREATE_SAVE_CASE": "Create / save case",
+        "ARCHIVE_CASE": "Archive case",
+        "CASES": "Cases",
+        "MY_CASES": "My cases",
+        "STARTDATE": "Start date",
+        "ENDDATE": "End date",
+        "CREATE_NEW_CASE": "Create new case",
+        "CASETYPE_STANDARD": "Standard case",
+        "CASETYPE_OTHER": "Other type case",
+        "UNASSIGNED_CASES": "Unassigned cases",
+        "CASE": "Case",
+        "ASSIGN_TO": "Assign to",
+        "VIEW_CASE_DETAILS": "View case details",
+        "VIEW_DETAILS": "View details"
+    },
+    "DOCUMENT": {
+        "CATEGORY": [
             ""
         ],
-        "status": [
+        "STATE": [
             ""
         ],
-        "type": [
+        "STATUS": [
             ""
-        ]
+        ],
+        "TYPE": [
+            ""
+        ],
+        "DOCUMENTS": "Documents",
+        "NO": "No",
+        "OWNER": "Owner",
+        "CREATE_NEW_DOCUMENT": "Create new document",
+        "UPLOAD_NEW_DOCUMENTS": "Upload new document",
+        "EMAIL_DOCUMENTS": "Email documents",
+        "MY_RECENT_DOCUMENTS": "My recent documents",
+        "DOCUMENT": "Document",
+        "TITLE": "Title",
+        "VERSION": "Version",
+        "VERSION_ADDED": "Version added",
+        "DOCUMENT_NAME": "Document name",
+        "VERSION_DESCRIPTION": "Version description",
+        "EDIT_DOCUMENT": "Edit document",
+        "UPLOAD_NEW_VERSION": "Upload new version",
+        "OPEN_PREVIEW": "Open prevew",
+        "EDIT_PROPERTIES": "Edit properties",
+        "ATTACHMENTS": {
+            "TITLE": "Title",
+            "CURRENT_VERSION": "Current version",
+            "EDIT_ATTACHMENT": "Edit attachment",
+            "UPLOAD_NEW_ATTACHMENT": "Upload new attachment"
+        },
+        "UPLOAD_DOCUMENT": "Upload document",
+        "UPLOAD_ATTACHMENT": "Upload attachment",
+        "DOCUMENT_TO_UPLOAD": "Document to upload",
+        "VERSIONTYPE": "Version type",
+        "MINOR_VERSION": "Minor version",
+        "MAJOR_VERSION": "Major version",
+        "CANNOT_PREVIEW": "Can't preview",
+        "DOWNLOAD_DOCUMENT": "Download document",
+        "IMAGE_MAX_SIZE_EXCEEDED": "Image \"{{image}}\" is too large to display.",
+        "PREVIEW_DOCUMENT": "Preview document"
     },
     "ADMIN": {
         "ADMINISTRATION_PAGES": "Administration pages",
@@ -91,48 +188,6 @@
         "STREET": "Street",
         "CREATE_NEW_CONTACT": "Create new contact"
     },
-    "COMMON": {
-        "EMAIL": "Email",
-        "DESCRIPTION": "Description",
-        "CANCEL": "Cancel",
-        "INFORMATION": "Information",
-        "ID": "ID",
-        "TITLE": "Title",
-        "STATUS": "Status",
-        "CREATEDBY": "Created by",
-        "CREATED": "Created",
-        "MODIFIED": "Modified",
-        "BY": "by",
-        "LOADED": "Loaded",
-        "TOTAL_ITEMS": "Total items",
-        "PAGES": "Pages",
-        "TYPE": "Type",
-        "CATEGORY": "Category",
-        "STATE": "State",
-        "ACTION": "Action",
-        "VIEW_DETAILS": "View details",
-        "PREVIEW": "Preview",
-        "HISTORY": "History",
-        "TIME": "Time",
-        "OF": "of",
-        "ACTIONS": "Actions",
-        "VIEW": "View",
-        "SAVE": "Save",
-        "NAME": "Name",
-        "SHOW": "Show",
-        "DELETE": "Delete",
-        "SHOWING": "Showing",
-        "DOWNLOAD": "Download",
-        "ADDED": "Added",
-        "ADDED_BY": "Added by",
-        "UPLOAD": "Upload",
-        "HOME": "Home",
-        "REMOVE": "Remove",
-        "ADD_NEW": "Add new",
-        "ADD": "Add",
-        "LAST_MODIFIED": "Last modified",
-        "CLOSE": "Close"
-    },
     "LOGIN": {
         "USER_NAME": "Username",
         "PASSWORD": "Password",
@@ -143,87 +198,16 @@
     "{{ 'LOGIN": {
         "SIGN_ME_IN_AUTOMATICALLY' | translate }}": ""
     },
-    "CASE": {
-        "BACK_TO_CASES": "Back to cases",
-        "CHANGE_STATUS": "Change status",
-        "CASE_HOME": "Case home",
-        "CASE_OWNER": "Case owner",
-        "EDIT_INFORMATION": "Edit information",
-        "PRINT_CASE": "Print case",
-        "START_WORKFLOW": "Start workflow",
-        "CASE_HISTORY": "Case history",
-        "CRUD_CASE": "Create / edit case",
-        "TITLE": "Title",
-        "OWNER": "Owner",
-        "ASSIGNED_TO": "Assigned to",
-        "START_DATE": "Start date",
-        "END_DATE": "End date",
-        "DESCRIPTION": "Description",
-        "CREATE_SAVE_CASE": "Create / save case",
-        "ARCHIVE_CASE": "Archive case",
-        "MY_CASES": "My cases",
-        "CASES": "Cases",
-        "STARTDATE": "Start date",
-        "ENDDATE": "End date",
-        "CREATE_NEW_CASE": "Create new case",
-        "CASETYPE_STANDARD": "Standard case",
-        "CASETYPE_OTHER": "Other type case",
-        "UNASSIGNED_CASES": "Unassigned cases",
-        "CASE": "Case",
-        "ASSIGN_TO": "Assign to",
-        "VIEW_CASE_DETAILS": "View case details",
-        "ID": "ID",
-        "VIEW_DETAILS": "View details"
-    },
-    "notes": {
-        "notes": "Notes"
-    },
     "NOTE": {
+        "NOTES": "Notes",
         "RELATED": "Related",
         "NEW_NOTE": "New note",
         "PRINT_ALL_NOTES": "Print all notes",
-        "NOTES": "Notes",
         "CREATE_NOTE": "Create note",
         "HEADLINE": "Headline",
         "CONTENT": "Content",
         "CONCERNED_PARTIES": "Concerned parties",
         "ADD_NOTE": "Add note"
-    },
-    "DOCUMENT": {
-        "DOCUMENTS": "Documents",
-        "NO": "No",
-        "OWNER": "Owner",
-        "CREATE_NEW_DOCUMENT": "Create new document",
-        "UPLOAD_NEW_DOCUMENTS": "Upload new document",
-        "EMAIL_DOCUMENTS": "Email documents",
-        "MY_RECENT_DOCUMENTS": "My recent documents",
-        "DOCUMENT": "Document",
-        "TITLE": "Title",
-        "STATE": "State",
-        "TYPE": "Type",
-        "CATEGORY": "Category",
-        "VERSION": "Version",
-        "VERSION_ADDED": "Version added",
-        "DOCUMENT_NAME": "Document name",
-        "VERSION_DESCRIPTION": "Version description",
-        "EDIT_DOCUMENT": "Edit document",
-        "UPLOAD_NEW_VERSION": "Upload new version",
-        "OPEN_PREVIEW": "Open prevew",
-        "EDIT_PROPERTIES": "Edit properties",
-        "ATTACHMENTS": {
-            "TITLE": "Title",
-            "CURRENT_VERSION": "Current version",
-            "EDIT_ATTACHMENT": "Edit attachment",
-            "UPLOAD_NEW_ATTACHMENT": "Upload new attachment"
-        },
-        "UPLOAD_DOCUMENT": "Upload document",
-        "UPLOAD_ATTACHMENT": "Upload attachment",
-        "DOCUMENT_TO_UPLOAD": "Document to upload",
-        "VERSIONTYPE": "Version type",
-        "MINOR_VERSION": "Minor version",
-        "MAJOR_VERSION": "Major version",
-        "CANNOT_PREVIEW": "Can't preview",
-        "DOWNLOAD_DOCUMENT": "Download document"
     },
     "MEMBER": {
         "MEMBERS": "Members"
@@ -234,7 +218,9 @@
         "CHANGE": "Change",
         "ADD_PARTIES_TITLE": "Add party title",
         "ORGANIZATIONS": "Organisations",
+        "CHOOSE_ORG_CONTACTS": "Choose organisation contacts",
         "PERSONS": "Persons",
+        "CHOOSE_PERSON_CONTACTS": "Choose person contacts",
         "CHANGE_PARTY_TITLE": "Change party title",
         "OLD_ROLE": "Old role",
         "TO_ROLE": "New role"
@@ -251,10 +237,8 @@
     "SEARCH": {
         "SEARCH": "Search"
     },
-    "menu": {
-        "openmenu": "Open menu"
-    },
     "MENU": {
+        "OPEN_MENU": "Open menu",
         "VIEW_PROFILE": "View profile",
         "LOGOUT": "Logout"
     },
@@ -273,13 +257,5 @@
     },
     "OFFICE": {
         "SAVE_EMAIL_IN_OPENESDH": "SAVE E-mail in OpenESDH"
-    },
-    "party": {
-        "CHOOSE_ORG_CONTACTS": "Choose organisation contacts",
-        "CHOOSE_PER_CONTACTS": "Choose person contacts"
-    },
-    "docpreview": {
-        "image_max_size_exceeded": "Image \"{{image}}\" is too large to display.",
-        "preview_document": "Preview document"
     }
 }

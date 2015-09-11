@@ -54,11 +54,11 @@
         // notify the user in the confirmation dialog.
 
         var confirm = $mdDialog.confirm()
-            .title($translate.instant("common.CONFIRM"))
-            .content($translate.instant("CASEINFO.CONFIRM_CLOSE_CASE"))
-            .ariaLabel($translate.instant("CASEINFO.CONFIRM_CLOSE_CASE"))
-            .ok($translate.instant("common.OK"))
-            .cancel($translate.instant("common.CANCEL"));
+            .title($translate.instant("COMMON.CONFIRM"))
+            .content($translate.instant("CASE.CONFIRM_CLOSE_CASE"))
+            .ariaLabel($translate.instant("CASE.CONFIRM_CLOSE_CASE"))
+            .ok($translate.instant("COMMON.OK"))
+            .cancel($translate.instant("COMMON.CANCEL"));
         return $mdDialog.show(confirm);
       }
 

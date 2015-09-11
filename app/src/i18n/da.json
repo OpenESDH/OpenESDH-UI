@@ -1,33 +1,130 @@
 {
-    "common": {
+    "COMMON": {
         "CONFIRM": "Bekræft",
         "OK": "OK",
         "CANCEL": "Annullér",
-        "BACK": "Tilbage"
-    },
-    "CASEINFO": {
-        "CONFIRM_CLOSE_CASE": "Vil du lukke denne sag?",
-        "status": [
-            ""
-        ],
         "ACTIONS": "Handlinger",
-        "CHANGE_STATUS": "Skift status",
-        "CASES": "Sager",
-        "VIEW": "Vis"
+        "EMAIL": "Email",
+        "DESCRIPTION": "Beskrivelse",
+        "INFORMATION": "Information",
+        "ID": "ID",
+        "TITLE": "Titel",
+        "STATUS": "Status",
+        "CREATEDBY": "Oprettet af",
+        "CREATED": "Oprettet",
+        "MODIFIED": "Ændret",
+        "BY": "af",
+        "LOADED": "Ladet",
+        "TOTAL_ITEMS": "Ialt",
+        "PAGES": "Sider",
+        "TYPE": "Type",
+        "CATEGORY": "Kategori",
+        "STATE": "Status",
+        "ACTION": "Handling",
+        "VIEW_DETAILS": "Vis detaljer",
+        "PREVIEW": "Preview",
+        "HISTORY": "Historik",
+        "TIME": "Tidspunkt",
+        "OF": "af",
+        "VIEW": "Vis",
+        "SAVE": "Gem",
+        "NAME": "Navn",
+        "SHOW": "Vis",
+        "DELETE": "Slet",
+        "SHOWING": "Viser",
+        "BACK": "Tilbage",
+        "DOWNLOAD": "Download",
+        "ADDED": "Tilføjet",
+        "ADDED_BY": "Tilføjet af",
+        "UPLOAD": "Upload",
+        "HOME": "Min side",
+        "REMOVE": "Fjern",
+        "ADD_NEW": "Tilføj ny",
+        "ADD": "Tilføj",
+        "LAST_MODIFIED": "Senest ændret",
+        "CLOSE": "Luk"
     },
-    "document": {
-        "category": [
+    "CASE": {
+        "CONFIRM_CLOSE_CASE": "Vil du lukke denne sag?",
+        "STATUS": [
             ""
         ],
-        "state": [
+        "BACK_TO_CASES": "Tilbage til sager",
+        "CHANGE_STATUS": "Skift status",
+        "CASE_HOME": "Sager",
+        "CASE_OWNER": "Sags-ejer",
+        "EDIT_INFORMATION": "Redigér information",
+        "PRINT_CASE": "Print sag",
+        "START_WORKFLOW": "Start workflow",
+        "CASE_HISTORY": "Sags-historik",
+        "CRUD_CASE": "Opret / redigér sag",
+        "TITLE": "Titel",
+        "OWNER": "Ejer",
+        "ASSIGNED_TO": "Tildelt til",
+        "START_DATE": "Start-dato",
+        "END_DATE": "Slut-dato",
+        "DESCRIPTION": "Beskrivelse",
+        "CREATE_SAVE_CASE": "Opret / gem sag",
+        "ARCHIVE_CASE": "Arkivér sag",
+        "CASES": "Sager",
+        "MY_CASES": "Mine sager",
+        "STARTDATE": "Stat-dato",
+        "ENDDATE": "Slut-dato",
+        "CREATE_NEW_CASE": "Opret ny sag",
+        "CASETYPE_STANDARD": "Standard sag",
+        "CASETYPE_OTHER": "Anden sagstype",
+        "UNASSIGNED_CASES": "Utildelte sager",
+        "CASE": "Sag",
+        "ASSIGN_TO": "Tildel til",
+        "VIEW_CASE_DETAILS": "Vis detaljer",
+        "VIEW_DETAILS": "Vis detaljer"
+    },
+    "DOCUMENT": {
+        "CATEGORY": [
             ""
         ],
-        "status": [
+        "STATE": [
             ""
         ],
-        "type": [
+        "STATUS": [
             ""
-        ]
+        ],
+        "TYPE": [
+            ""
+        ],
+        "DOCUMENTS": "Dokumenter",
+        "NO": "Nr",
+        "OWNER": "Ejer",
+        "CREATE_NEW_DOCUMENT": "Opret nyt dokument",
+        "UPLOAD_NEW_DOCUMENTS": "Upload nyt dokument",
+        "EMAIL_DOCUMENTS": "Email dokument",
+        "MY_RECENT_DOCUMENTS": "Senest redigérede dokumenter",
+        "DOCUMENT": "Dokument",
+        "TITLE": "Titel",
+        "VERSION": "Version",
+        "VERSION_ADDED": "Version tilføjet",
+        "DOCUMENT_NAME": "Dokumentnavn",
+        "VERSION_DESCRIPTION": "Versionsbeskrivelse",
+        "EDIT_DOCUMENT": "Redigér dokument",
+        "UPLOAD_NEW_VERSION": "Upload ny version",
+        "OPEN_PREVIEW": "Open preview",
+        "EDIT_PROPERTIES": "Redigér egenskaber",
+        "ATTACHMENTS": {
+            "TITLE": "Titel",
+            "CURRENT_VERSION": "Nuværende version",
+            "EDIT_ATTACHMENT": "Redigér vedhæftning",
+            "UPLOAD_NEW_ATTACHMENT": "Upload ny vedhæftning"
+        },
+        "UPLOAD_DOCUMENT": "Upload dokument",
+        "UPLOAD_ATTACHMENT": "Upload vedhæftning",
+        "DOCUMENT_TO_UPLOAD": "Dokument til upload",
+        "VERSIONTYPE": "Versionstype",
+        "MINOR_VERSION": "Underordnet version",
+        "MAJOR_VERSION": "Overordnet version",
+        "CANNOT_PREVIEW": "Kan ikke vise preview",
+        "DOWNLOAD_DOCUMENT": "Download dokument",
+        "IMAGE_MAX_SIZE_EXCEEDED": "Billedet \"{{image}}\" er for stort til at blive vist.",
+        "PREVIEW_DOCUMENT": "Preview dokument"
     },
     "ADMIN": {
         "ADMINISTRATION_PAGES": "Administrationssider",
@@ -91,48 +188,6 @@
         "STREET": "Gade",
         "CREATE_NEW_CONTACT": "Opret ny kontakt"
     },
-    "COMMON": {
-        "EMAIL": "Email",
-        "DESCRIPTION": "Beskrivelse",
-        "CANCEL": "Annullér",
-        "INFORMATION": "Information",
-        "ID": "ID",
-        "TITLE": "Titel",
-        "STATUS": "Status",
-        "CREATEDBY": "Oprettet af",
-        "CREATED": "Oprettet",
-        "MODIFIED": "Ændret",
-        "BY": "af",
-        "LOADED": "Ladet",
-        "TOTAL_ITEMS": "Ialt",
-        "PAGES": "Sider",
-        "TYPE": "Type",
-        "CATEGORY": "Kategori",
-        "STATE": "Status",
-        "ACTION": "Handling",
-        "VIEW_DETAILS": "Vis detaljer",
-        "PREVIEW": "Preview",
-        "HISTORY": "Historik",
-        "TIME": "Tidspunkt",
-        "OF": "af",
-        "ACTIONS": "Handlinger",
-        "VIEW": "Vis",
-        "SAVE": "Gem",
-        "NAME": "Navn",
-        "SHOW": "Vis",
-        "DELETE": "Slet",
-        "SHOWING": "Viser",
-        "DOWNLOAD": "Download",
-        "ADDED": "Tilføjet",
-        "ADDED_BY": "Tilføjet af",
-        "UPLOAD": "Upload",
-        "HOME": "Min side",
-        "REMOVE": "Fjern",
-        "ADD_NEW": "Tilføj ny",
-        "ADD": "Tilføj",
-        "LAST_MODIFIED": "Senest ændret",
-        "CLOSE": "Luk"
-    },
     "LOGIN": {
         "USER_NAME": "Brugernavn",
         "PASSWORD": "Kodeord",
@@ -143,87 +198,16 @@
     "{{ 'LOGIN": {
         "SIGN_ME_IN_AUTOMATICALLY' | translate }}": ""
     },
-    "CASE": {
-        "BACK_TO_CASES": "Tilbage til sager",
-        "CHANGE_STATUS": "Skift status",
-        "CASE_HOME": "Sager",
-        "CASE_OWNER": "Sags-ejer",
-        "EDIT_INFORMATION": "Redigér information",
-        "PRINT_CASE": "Print sag",
-        "START_WORKFLOW": "Start workflow",
-        "CASE_HISTORY": "Sags-historik",
-        "CRUD_CASE": "Opret / redigér sag",
-        "TITLE": "Titel",
-        "OWNER": "Ejer",
-        "ASSIGNED_TO": "Tildelt til",
-        "START_DATE": "Start-dato",
-        "END_DATE": "Slut-dato",
-        "DESCRIPTION": "Beskrivelse",
-        "CREATE_SAVE_CASE": "Opret / gem sag",
-        "ARCHIVE_CASE": "Arkivér sag",
-        "MY_CASES": "Mine sager",
-        "CASES": "Sager",
-        "STARTDATE": "Stat-dato",
-        "ENDDATE": "Slut-dato",
-        "CREATE_NEW_CASE": "Opret ny sag",
-        "CASETYPE_STANDARD": "Standard sag",
-        "CASETYPE_OTHER": "Anden sagstype",
-        "UNASSIGNED_CASES": "Utildelte sager",
-        "CASE": "Sag",
-        "ASSIGN_TO": "Tildel til",
-        "VIEW_CASE_DETAILS": "Vis detaljer",
-        "ID": "ID",
-        "VIEW_DETAILS": "Vis detaljer"
-    },
-    "notes": {
-        "notes": "Noter"
-    },
     "NOTE": {
+        "NOTES": "Noter",
         "RELATED": "Relateret",
         "NEW_NOTE": "Ny note",
         "PRINT_ALL_NOTES": "Print alle noter",
-        "NOTES": "Noter",
         "CREATE_NOTE": "Opret note",
         "HEADLINE": "Overskrift",
         "CONTENT": "Indhold",
         "CONCERNED_PARTIES": "Relaterede parter",
         "ADD_NOTE": "Tilføj note"
-    },
-    "DOCUMENT": {
-        "DOCUMENTS": "Dokumenter",
-        "NO": "Nr",
-        "OWNER": "Ejer",
-        "CREATE_NEW_DOCUMENT": "Opret nyt dokument",
-        "UPLOAD_NEW_DOCUMENTS": "Upload nyt dokument",
-        "EMAIL_DOCUMENTS": "Email dokument",
-        "MY_RECENT_DOCUMENTS": "Senest redigérede dokumenter",
-        "DOCUMENT": "Dokument",
-        "TITLE": "Titel",
-        "STATE": "Status",
-        "TYPE": "Type",
-        "CATEGORY": "Kategori",
-        "VERSION": "Version",
-        "VERSION_ADDED": "Version tilføjet",
-        "DOCUMENT_NAME": "Dokumentnavn",
-        "VERSION_DESCRIPTION": "Versionsbeskrivelse",
-        "EDIT_DOCUMENT": "Redigér dokument",
-        "UPLOAD_NEW_VERSION": "Upload ny version",
-        "OPEN_PREVIEW": "Open preview",
-        "EDIT_PROPERTIES": "Redigér egenskaber",
-        "ATTACHMENTS": {
-            "TITLE": "Titel",
-            "CURRENT_VERSION": "Nuværende version",
-            "EDIT_ATTACHMENT": "Redigér vedhæftning",
-            "UPLOAD_NEW_ATTACHMENT": "Upload ny vedhæftning"
-        },
-        "UPLOAD_DOCUMENT": "Upload dokument",
-        "UPLOAD_ATTACHMENT": "Upload vedhæftning",
-        "DOCUMENT_TO_UPLOAD": "Dokument til upload",
-        "VERSIONTYPE": "Versionstype",
-        "MINOR_VERSION": "Underordnet version",
-        "MAJOR_VERSION": "Overordnet version",
-        "CANNOT_PREVIEW": "Kan ikke vise preview",
-        "DOWNLOAD_DOCUMENT": "Download dokument"
     },
     "MEMBER": {
         "MEMBERS": "Medlemmer"
@@ -234,7 +218,9 @@
         "CHANGE": "Skift",
         "ADD_PARTIES_TITLE": "Tilføj part-titel",
         "ORGANIZATIONS": "Organisationer",
+        "CHOOSE_ORG_CONTACTS": "Vælg organisationskontakter",
         "PERSONS": "Personer",
+        "CHOOSE_PERSON_CONTACTS": "Vælg personkontakter",
         "CHANGE_PARTY_TITLE": "Skift part-titel",
         "OLD_ROLE": "Gammel rolle",
         "TO_ROLE": "Ny rolle"
@@ -251,10 +237,8 @@
     "SEARCH": {
         "SEARCH": "Søg"
     },
-    "menu": {
-        "openmenu": "Åben menu"
-    },
     "MENU": {
+        "OPEN_MENU": "Åben menu",
         "VIEW_PROFILE": "Vis profil",
         "LOGOUT": "Log ud"
     },
@@ -273,13 +257,5 @@
     },
     "OFFICE": {
         "SAVE_EMAIL_IN_OPENESDH": "Gem Email i OpenESDH"
-    },
-    "party": {
-        "CHOOSE_ORG_CONTACTS": "",
-        "CHOOSE_PER_CONTACTS": ""
-    },
-    "docpreview": {
-        "image_max_size_exceeded": "Filstørrelse for billede er overskredet",
-        "preview_document": "Preview dokument"
     }
 }

@@ -23,7 +23,7 @@
             md-item-text="item.name"
             md-no-cache="true"
             md-icon=""
-            placeholder="{{'party.CHOOSE_ORG_CONTACTS'| translate}}">
+            placeholder="{{ 'PARTY.CHOOSE_ORG_CONTACTS'| translate }}">
           <span md-highlight-text="ctrl.searchText">{{item.organizationName}} ({{item.email}})</span>
         </md-autocomplete>
         <md-chip-template>
@@ -42,7 +42,7 @@
             md-items="item in ctrl.querySearchP(ctrl.searchTextP)"
             md-item-text="item.name"
             md-no-cache="true"
-            placeholder="{{'party.CHOOSE_PER_CONTACTS'| translate}}">
+            placeholder="{{ 'PARTY.CHOOSE_PERSON_CONTACTS'| translate }}">
           <span md-highlight-text="ctrl.searchTextP">{{item.firstName}} {{item.lastName}} ({{item.email}})</span>
         </md-autocomplete>
         <md-chip-template>

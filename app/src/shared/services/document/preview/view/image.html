@@ -1,7 +1,7 @@
 <div>
     <img ng-show="!itemMaxSizeExceeded" src="{{imageUrl}}"/>
     <p ng-show="itemMaxSizeExceeded">
-        <span translate="docpreview.image_max_size_exceeded" translate-values="{image: '{{config.fileName}}'}"></span>
+        <span translate="DOCUMENT.IMAGE_MAX_SIZE_EXCEEDED" translate-values="{image: '{{config.fileName}}'}"></span>
         <p><md-button class="md-primary" ng-click="download()">{{ 'COMMON.DOWNLOAD' | translate }}</md-button></p>
     </p>
 </div>

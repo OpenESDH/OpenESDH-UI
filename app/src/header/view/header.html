@@ -12,7 +12,7 @@
         </md-input-container>
 
         <md-menu ng-controller="AuthController as vm">
-          <md-button aria-label="{{ 'menu.openmenu' | translate }}" ng-click="$mdOpenMenu($event)">
+          <md-button aria-label="{{ 'MENU.OPEN_MENU' | translate }}" ng-click="$mdOpenMenu($event)">
             {{vm.getUserInfo().user.firstName}} {{vm.getUserInfo().user.lastName}}
           </md-button>
           <md-menu-content width="4">

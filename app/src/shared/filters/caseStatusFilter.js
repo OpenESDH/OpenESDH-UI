@@ -9,7 +9,7 @@
     
     function caseStatusFilterFactory($translate){
         function caseStatusFilter(caseStatusValue) {
-            return $translate.instant('CASEINFO.status.' + caseStatusValue);
+            return $translate.instant('CASE.STATUS.' + caseStatusValue);
         }
         return caseStatusFilter;
     }
