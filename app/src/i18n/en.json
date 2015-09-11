@@ -5,6 +5,7 @@
         "CANCEL": "Cancel",
         "ACTION": "Action",
         "BACK": "Back",
+        "UPLOAD": "Upload",
         "DOWNLOAD": "Download",
         "CLOSE": "Close"
     },
@@ -43,6 +44,9 @@
         "category": [
             ""
         ],
+        "state": [
+            ""
+        ],
         "status": [
             ""
         ],
@@ -62,24 +66,7 @@
         "PREVIEW": "Preview",
         "CREATE_NEW_DOCUMENT": "Create new document",
         "UPLOAD_NEW_DOCUMENTS": "Upload new documents",
-        "EMAIL_DOCUMENTS": "Email documents",
-        "VERSION": "Version",
-        "VERSION_ADDED": "Version added",
-        "DOCUMENT_NAME": "Document name",
-        "VERSION_DESCRIPTION": "Version description",
-        "EDIT_DOCUMENT": "Edit document",
-        "UPLOAD_NEW_VERSION": "Upload new version",
-        "DOWNLOAD": "Download",
-        "OPEN_PREVIEW": "Open preview",
-        "EDIT_PROPERTIES": "Edit properties",
-        "attachments": {
-            "TITLE": "Title",
-            "ADDED": "Added",
-            "ADDED_BY": "Added by",
-            "CURRENT_VERSION": "Current version",
-            "EDIT_ATTACHMENT": "Edit attachment",
-            "UPLOAD_NEW_ATTACHMENT": "Upload new attachment"
-        }
+        "EMAIL_DOCUMENTS": "Email documents"
     },
     "menu": {
         "login": "Login",
@@ -106,6 +93,11 @@
         "CONCERNED_PARTIES": "Concerned parties",
         "ADD_NOTE": "Add note"
     },
+    "party": {
+        "TITLE": "Title",
+        "CHOOSE_ORG_CONTACTS": "Choose organisation contacts",
+        "CHOOSE_PER_CONTACTS": "Choose person contacts"
+    },
     "{{ 'CASEINFO": {
         "CHANGE_STATUS' | translate }}": "",
         "CREATENEWCASE' | translate }}": ""
@@ -123,10 +115,44 @@
         "CASES": "Cases"
     },
     "DOCUMENT": {
-        "MY_RECENT_DOCUMENTS": "My recent documents"
+        "MY_RECENT_DOCUMENTS": "My recent documents",
+        "DOCUMENT": "Document",
+        "TITLE": "Title",
+        "STATE": "State",
+        "TYPE": "Type",
+        "CATEGORY": "Category",
+        "OWNER": "Owner",
+        "VERSION": "Version",
+        "VERSION_ADDED": "Version added",
+        "DOCUMENT_NAME": "Document name",
+        "VERSION_DESCRIPTION": "Version description",
+        "EDIT_DOCUMENT": "Edit document",
+        "UPLOAD_NEW_VERSION": "Upload new version",
+        "OPEN_PREVIEW": "Open prevew",
+        "EDIT_PROPERTIES": "Edit properties",
+        "ATTACHMENTS": {
+            "TITLE": "Title",
+            "CURRENT_VERSION": "Current version",
+            "EDIT_ATTACHMENT": "Edit attachment",
+            "UPLOAD_NEW_ATTACHMENT": "Upload new attachment"
+        },
+        "UPLOAD_DOCUMENT": "Upload document"
     },
     "COMMON": {
-        "HOME": "Home"
+        "CREATED": "Created",
+        "DOWNLOAD": "Download",
+        "ADDED": "Added",
+        "ADDED_BY": "Added by",
+        "ACTIONS": "Actions",
+        "UPLOAD": "Upload",
+        "CANCEL": "Cancel",
+        "HOME": "Home",
+        "NAME": "Name",
+        "EMAIL": "Email",
+        "TYPE": "Type",
+        "REMOVE": "Remove",
+        "ADD_NEW": "Add new",
+        "ADD": "Add"
     },
     "ADMIN": {
         "ADMINISTRATION": "Administration"
@@ -149,6 +175,32 @@
                     }
                 }
             }
+        }
+    },
+    "PARTY": {
+        "TITLE": "Title",
+        "ROLE": "Role",
+        "CHANGE": "Change",
+        "ADD_PARTIES_TITLE": "Add party title",
+        "ORGANIZATIONS": "Organisations",
+        "PERSONS": "Persons",
+        "CHANGE_PARTY_TITLE": "Change party title",
+        "OLD_ROLE": "Old role",
+        "TO_ROLE": "New role"
+    },
+    "caseDocumentDialog": {
+        "uploadDocument": "Upload Dokument",
+        "uploadAttachment": "",
+        "editProperties": "",
+        "documentToUpload": "",
+        "document": {
+            "versionType": "",
+            "minorVersion": "",
+            "majorVersion": "",
+            "state": "",
+            "type": "",
+            "category": "",
+            "description": ""
         }
     },
     "docpreview": {

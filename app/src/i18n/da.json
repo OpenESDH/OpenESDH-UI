@@ -5,6 +5,7 @@
         "CANCEL": "Annullér",
         "ACTION": "Handling",
         "BACK": "Tilbage",
+        "UPLOAD": "Upload",
         "DOWNLOAD": "Download",
         "CLOSE": "Luk"
     },
@@ -43,6 +44,9 @@
         "category": [
             ""
         ],
+        "state": [
+            ""
+        ],
         "status": [
             ""
         ],
@@ -62,24 +66,7 @@
         "PREVIEW": "Pre-visning",
         "CREATE_NEW_DOCUMENT": "Opret nyt dokument",
         "UPLOAD_NEW_DOCUMENTS": "Upload nye dokumenter",
-        "EMAIL_DOCUMENTS": "Email dokumenter",
-        "VERSION": "Version",
-        "VERSION_ADDED": "Version tilføjet",
-        "DOCUMENT_NAME": "Dokumentnavn",
-        "VERSION_DESCRIPTION": "Versionsbeskrivelse",
-        "EDIT_DOCUMENT": "Redigér dokument",
-        "UPLOAD_NEW_VERSION": "Upload ny version",
-        "DOWNLOAD": "Download",
-        "OPEN_PREVIEW": "Åben præ-visning",
-        "EDIT_PROPERTIES": "Redigér egenskaber",
-        "attachments": {
-            "TITLE": "Titel",
-            "ADDED": "Tilføjet",
-            "ADDED_BY": "Tilføjet af",
-            "CURRENT_VERSION": "Indeværende version",
-            "EDIT_ATTACHMENT": "Redigér vedhæftning",
-            "UPLOAD_NEW_ATTACHMENT": "Upload ny vedhæftning"
-        }
+        "EMAIL_DOCUMENTS": "Email dokumenter"
     },
     "menu": {
         "login": "Log ind",
@@ -106,6 +93,11 @@
         "CONCERNED_PARTIES": "Relaterede parter",
         "ADD_NOTE": "Tilføj note"
     },
+    "party": {
+        "TITLE": "",
+        "CHOOSE_ORG_CONTACTS": "",
+        "CHOOSE_PER_CONTACTS": ""
+    },
     "{{ 'CASEINFO": {
         "CHANGE_STATUS' | translate }}": "",
         "CREATENEWCASE' | translate }}": ""
@@ -123,10 +115,44 @@
         "CASES": "Sager"
     },
     "DOCUMENT": {
-        "MY_RECENT_DOCUMENTS": "Senest redigérede dokumenter"
+        "MY_RECENT_DOCUMENTS": "Senest redigérede dokumenter",
+        "DOCUMENT": "Dokument",
+        "TITLE": "Titel",
+        "STATE": "Status",
+        "TYPE": "Type",
+        "CATEGORY": "Kategori",
+        "OWNER": "Ejer",
+        "VERSION": "Version",
+        "VERSION_ADDED": "Version tilføjet",
+        "DOCUMENT_NAME": "Dokumentnavn",
+        "VERSION_DESCRIPTION": "Versionsbeskrivelse",
+        "EDIT_DOCUMENT": "Redigér dokument",
+        "UPLOAD_NEW_VERSION": "Upload ny version",
+        "OPEN_PREVIEW": "Open preview",
+        "EDIT_PROPERTIES": "Redigér egenskaber",
+        "ATTACHMENTS": {
+            "TITLE": "Titel",
+            "CURRENT_VERSION": "Nuværende version",
+            "EDIT_ATTACHMENT": "Redigér vedhæftning",
+            "UPLOAD_NEW_ATTACHMENT": "Upload ny vedhæftning"
+        },
+        "UPLOAD_DOCUMENT": "Upload dokument"
     },
     "COMMON": {
-        "HOME": "Min side"
+        "CREATED": "Oprettet",
+        "DOWNLOAD": "Download",
+        "ADDED": "Tilføjet",
+        "ADDED_BY": "Tilføjet af",
+        "ACTIONS": "Handlinger",
+        "UPLOAD": "Upload",
+        "CANCEL": "Annullér",
+        "HOME": "Min side",
+        "NAME": "Navn",
+        "EMAIL": "Email",
+        "TYPE": "Type",
+        "REMOVE": "Fjern",
+        "ADD_NEW": "Tilføj ny",
+        "ADD": "Tilføj"
     },
     "ADMIN": {
         "ADMINISTRATION": "Administration"
@@ -149,6 +175,32 @@
                     }
                 }
             }
+        }
+    },
+    "PARTY": {
+        "TITLE": "Titel",
+        "ROLE": "Rolle",
+        "CHANGE": "Skift",
+        "ADD_PARTIES_TITLE": "Tilføj part-titel",
+        "ORGANIZATIONS": "Organisationer",
+        "PERSONS": "Personer",
+        "CHANGE_PARTY_TITLE": "Skift part-titel",
+        "OLD_ROLE": "Gammel rolle",
+        "TO_ROLE": "Ny rolle"
+    },
+    "caseDocumentDialog": {
+        "uploadDocument": "",
+        "uploadAttachment": "",
+        "editProperties": "",
+        "documentToUpload": "",
+        "document": {
+            "versionType": "",
+            "minorVersion": "",
+            "majorVersion": "",
+            "state": "",
+            "type": "",
+            "category": "",
+            "description": ""
         }
     },
     "docpreview": {

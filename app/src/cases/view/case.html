@@ -4,11 +4,15 @@
   <md-button ng-href="#/cases">Back to cases</md-button>
   <div layout="row" layout-padding layout-align="space-between end">
     <div>
-      <h2>{{ case["oe:id"].value }} {{ case["cm:title"].value }} <span class="muted">({{ case['oe:status'].value }})</span></h2>
+      <h2>{{ case["oe:id"].value }} {{ case["cm:title"].value }}
+        <span class="muted"
+              ng-hide="case['oe:status'].value === 'active'">({{case['oe:status'].value | caseStatus}})</span></h2>
     </div>
     <div class="md-actions" layout="column">
       <md-menu>
-        <md-button class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="{{ 'CASEINFO.CHANGE_STATUS' | translate }}">
+        <md-button class="md-primary" ng-click="$mdOpenMenu($event)"
+                   aria-label="{{ 'CASEINFO.CHANGE_STATUS' | translate }}"
+                   ng-disabled="caseStatusChoices.length == 0">
           {{ 'CASEINFO.CHANGE_STATUS' | translate }}
         </md-button>
         <md-menu-content>
@@ -28,7 +32,7 @@
 
 <md-tabs md-dynamic-height>
   
-  <md-tab>
+  <md-tab md-on-select="vm.onTabChange('case')">
     <md-tab-label>
       <span>Case home</span>
     </md-tab-label>
@@ -112,7 +116,7 @@
                     <td>{{ doc.docNo }}</td>
                     <td>{{doc["doc:type"] | docType}}</td>
                     <td>{{doc["doc:category"] | docCategory}}</td>
-                    <td>{{doc["doc:state"] | docStatus}}</td>
+                    <td>{{doc["doc:state"] | docState}}</td>
                     <td>
                         <span ng-repeat="owner in doc['doc:owner']">{{owner.fullname}}</span>
                     </td>
@@ -143,7 +147,7 @@
     </md-tab-body>
   </md-tab>
   
-  <md-tab>
+  <md-tab md-on-select="vm.onTabChange('members')">
     <md-tab-label>
       <span>Members</span>
     </md-tab-label>
@@ -158,22 +162,16 @@
     </md-tab-body>
   </md-tab>
   
-  <md-tab>
+  <md-tab md-on-select="vm.onTabChange('parties')">
     <md-tab-label>
-      <span>Parties</span>
+      <span>{{'party.TITLE'| translate}}</span>
     </md-tab-label>
-    <md-tab-body layout="column">
-      <md-card>
-        <md-card-content>
-          <h3>Parties</h3>
-        </md-card-content>
-        <div class="md-actions">
-        </div>
-      </md-card>
+      <md-tab-body layout="column">
+          <div ng-include="'app/src/parties/view/caseParties.html'"></div>
     </md-tab-body>
   </md-tab>
-  
-  <md-tab>
+    
+  <md-tab md-on-select="vm.onTabChange('history')">
     <md-tab-label>
       <span>History</span>
     </md-tab-label>

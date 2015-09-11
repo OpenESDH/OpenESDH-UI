@@ -14,6 +14,7 @@
     "angular-animate": "^1.4.x",
     "angular-aria": "^1.4.x",
     "angular-material": "^0.10.0",
+    "angular-sanitize": "1.4.x",
     "angular-translate": "",
     "angular-translate-loader-static-files": "",
     "isteven-angular-multiselect":"3.0.0",

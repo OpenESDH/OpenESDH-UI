@@ -30,6 +30,7 @@
             suffix: '.json'
         });
         
+        $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
         $translateProvider
             .registerAvailableLanguageKeys(availableLanguages.keys, availableLanguages.localesKeys)
             .determinePreferredLanguage();

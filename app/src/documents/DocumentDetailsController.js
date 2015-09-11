@@ -4,9 +4,9 @@
         .module('openeApp.documents')
         .controller('DocumentDetailsController', DocumentDetailsController);
     
-    DocumentDetailsController.$inject = [ '$scope', '$stateParams', '$mdDialog', 'caseDocumentDetailsService', 'documentPreviewService' ];
+    DocumentDetailsController.$inject = [ '$scope', '$stateParams', '$mdDialog', 'caseDocumentDetailsService', 'documentPreviewService', 'caseDocumentFileDialogService' ];
     
-    function DocumentDetailsController($scope, $stateParams, $mdDialog, caseDocumentDetailsService, documentPreviewService) {
+    function DocumentDetailsController($scope, $stateParams, $mdDialog, caseDocumentDetailsService, documentPreviewService, caseDocumentFileDialogService) {
         
         var caseId = $stateParams.caseId;
         var documentNodeRef = $stateParams.storeType + "://" + $stateParams.storeId + "/" + $stateParams.id;
@@ -25,6 +25,7 @@
         vm.downloadAttachment = downloadAttachment;
         vm.previewDocument = previewDocument;
         vm.previewAttachment = previewAttachment;
+        vm.editDocumentProperties = editDocumentProperties;
         
         activate();
         
@@ -74,41 +75,20 @@
         }
         
         function uploadDocNewVersion(){
-            uploadDialog().then(function(fileToUpload) {
-                if(!fileToUpload){
-                    return;
-                }
-                caseDocumentDetailsService.uploadDocumentNewVersion(caseDocument.mainDocNodeRef, fileToUpload).then(function(result){
-                   loadVersionDetails(); 
-                });
-            }, function() {
-                //on cancel dialog
+            caseDocumentFileDialogService.uploadCaseDocumentNewVersion(documentNodeRef).then(function(result){
+                loadVersionDetails();
             });
         }
         
         function uploadAttachment(){
-            uploadDialog().then(function(fileToUpload) {
-                if(!fileToUpload){
-                    return;
-                }
-                caseDocumentDetailsService.uploadDocumentAttachment(documentNodeRef, fileToUpload).then(function(result){
-                   loadAttachments(); 
-                });
-            }, function() {
-                //on cancel dialog
+            caseDocumentFileDialogService.uploadAttachment(documentNodeRef).then(function(result){
+                loadAttachments();
             });
         }
         
         function uploadAttachmentNewVersion(attachment){
-            uploadDialog().then(function(fileToUpload) {
-                if(!fileToUpload){
-                    return;
-                }
-                caseDocumentDetailsService.uploadAttachmentNewVersion(attachment.nodeRef, fileToUpload).then(function(result){
-                   loadAttachments(); 
-                });
-            }, function() {
-                //on cancel dialog
+            caseDocumentFileDialogService.uploadAttachmentNewVersion(attachment.nodeRef).then(function(result){
+                loadAttachments();
             });
         }
         
@@ -116,29 +96,14 @@
             caseDocumentDetailsService.downloadAttachment(attachment);
         }
         
-        function uploadDialog(){
-            return $mdDialog.show({
-                controller: DialogController,
-                templateUrl: 'app/src/documents/view/documentUploadDialog.html',
-                parent: angular.element(document.body),
-                targetEvent: null,
-                clickOutsideToClose:true
-            });
-        }
-        
-        function DialogController($scope, $mdDialog) {
-            
-            $scope.cancel = function() {
-              $mdDialog.cancel();
-            };
-            
-            $scope.upload = function(){
-                $mdDialog.hide($scope.fileToUpload);
-            };
-        }
-        
         function previewAttachment(attachment){
             documentPreviewService.previewDocument(attachment.nodeRef);
+        }
+        
+        function editDocumentProperties(){
+            caseDocumentFileDialogService.editDocumentProperties(documentNodeRef).then(function(result){
+                loadCaseDocumentInfo();
+            });
         }
     }
 
