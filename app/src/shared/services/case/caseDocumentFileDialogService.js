@@ -117,7 +117,7 @@
                 parent: angular.element(document.body),
                 targetEvent: null,
                 clickOutsideToClose: true,
-                locals
+                locals: locals
             });
         }
         
