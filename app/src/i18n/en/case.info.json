@@ -31,7 +31,9 @@
           "active": "Active",
           "passive": "Passive",
           "closed": "Closed",
-          "archived": "Archived"
+          "archived": "Archived",
+          "undefined": "Undefined",
+          "planned": "Planned"
       }
     }
 }
