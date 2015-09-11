@@ -80,6 +80,5 @@
                return response.data; 
             });
         }
-        
     }
 })();

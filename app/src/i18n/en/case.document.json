@@ -29,6 +29,8 @@
 			"OPEN_PREVIEW": "Open preview",
 			"EDIT_PROPERTIES": "Edit properties",
 
+	  		"CHANGE_STATUS": "Change status",
+
             "status":{
               "draft": "Draft",
               "final": "Final"

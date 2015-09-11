@@ -26,6 +26,7 @@
         vm.previewDocument = previewDocument;
         vm.previewAttachment = previewAttachment;
         vm.editDocumentProperties = editDocumentProperties;
+        vm.changeDocumentStatus = changeDocumentStatus;
         
         activate();
         
@@ -103,6 +104,13 @@
         function editDocumentProperties(){
             caseDocumentFileDialogService.editDocumentProperties(documentNodeRef).then(function(result){
                 loadCaseDocumentInfo();
+            });
+        }
+
+        function changeDocumentStatus(status) {
+            caseDocumentDetailsService.changeDocumentStatus(documentNodeRef, status).then(function (json) {
+                loadCaseDocumentInfo();
+                // TODO: Display a toast message?
             });
         }
     }

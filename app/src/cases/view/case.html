@@ -21,7 +21,7 @@
                     ng-class="{'current-choice': choiceName === case['oe:status'].value}"
                     ng-disabled="choiceName === case['oe:status'].value"
                     aria-label="{{ choiceName | caseStatus }}"
-                    ng-click="vm.changeCaseStatus($event, choiceName)">{{ choiceName | caseStatus }}</md-button>
+                    ng-click="vm.changeCaseStatus(choiceName)">{{ choiceName | caseStatus }}</md-button>
           </md-menu-item>
 
         </md-menu-content>

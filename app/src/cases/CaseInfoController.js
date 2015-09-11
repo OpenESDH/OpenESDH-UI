@@ -48,7 +48,7 @@
       });
     }
 
-    function changeCaseStatus(ev, status) {
+    function changeCaseStatus(status) {
       function confirmCloseCase() {
         // TODO: Check if there are any unlocked documents in the case and
         // notify the user in the confirmation dialog.
