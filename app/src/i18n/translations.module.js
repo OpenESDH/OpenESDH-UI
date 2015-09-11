@@ -21,16 +21,13 @@
         return availableLanguages;
     }
 
-    config.$inject = ['$translateProvider', '$translatePartialLoaderProvider'];
+    config.$inject = ['$translateProvider', '$translateStaticFilesLoaderProvider'];
 
-    function config($translateProvider, $translatePartialLoaderProvider) {
+    function config($translateProvider, $translateStaticFilesLoaderProvider) {
         
-        $translatePartialLoaderProvider.addPart('login');
-        $translatePartialLoaderProvider.addPart('menu');
-        $translatePartialLoaderProvider.addPart('common');
-        $translatePartialLoaderProvider.addPart('document.preview');
-        $translateProvider.useLoader('$translatePartialLoader', {
-           urlTemplate: '/app/src/i18n/{lang}/{part}.json' 
+        $translateProvider.useStaticFilesLoader({
+            prefix: '/app/src/i18n/',
+            suffix: '.json'
         });
         
         $translateProvider
