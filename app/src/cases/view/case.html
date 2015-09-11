@@ -101,6 +101,7 @@
                   <tr>
                     <th>{{'document.TITLE' | translate}}</th>
                     <th>{{'document.NO' | translate}}</th>
+                    <th>{{'document.STATUS' | translate}}</th>
                     <th>{{'document.TYPE' | translate}}</th>
                     <th>{{'document.CATEGORY' | translate}}</th>
                     <th>{{'document.STATE' | translate}}</th>
@@ -114,6 +115,7 @@
                   <tr ng-repeat="doc in docCtrl.documents" class="{{ doc.isUpdated ? 'updated' : 'not-updated' }}">
                     <td>{{ doc["cm:name"] }}</td>
                     <td>{{ doc.docNo }}</td>
+                    <td>{{doc["oe:status"] | docStatus}}</td>
                     <td>{{doc["doc:type"] | docType}}</td>
                     <td>{{doc["doc:category"] | docCategory}}</td>
                     <td>{{doc["doc:state"] | docState}}</td>

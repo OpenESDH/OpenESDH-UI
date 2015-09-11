@@ -4,9 +4,9 @@
         .module('openeApp.documents')
         .controller('DocumentDetailsController', DocumentDetailsController);
     
-    DocumentDetailsController.$inject = [ '$scope', '$stateParams', '$mdDialog', 'caseDocumentDetailsService', 'documentPreviewService', 'caseDocumentFileDialogService' ];
+    DocumentDetailsController.$inject = [ '$scope', '$stateParams', '$mdDialog', 'caseDocumentDetailsService', 'documentPreviewService', 'caseDocumentFileDialogService', 'notificationUtilsService' ];
     
-    function DocumentDetailsController($scope, $stateParams, $mdDialog, caseDocumentDetailsService, documentPreviewService, caseDocumentFileDialogService) {
+    function DocumentDetailsController($scope, $stateParams, $mdDialog, caseDocumentDetailsService, documentPreviewService, caseDocumentFileDialogService, notificationUtilsService) {
         
         var caseId = $stateParams.caseId;
         var documentNodeRef = $stateParams.storeType + "://" + $stateParams.storeId + "/" + $stateParams.id;
@@ -110,7 +110,10 @@
         function changeDocumentStatus(status) {
             caseDocumentDetailsService.changeDocumentStatus(documentNodeRef, status).then(function (json) {
                 loadCaseDocumentInfo();
-                // TODO: Display a toast message?
+                // TODO: I18N
+                notificationUtilsService.notify("Status changed successfully.")
+            }).catch(function (e) {
+                notificationUtilsService.notify(e.message)
             });
         }
     }

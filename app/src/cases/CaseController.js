@@ -88,8 +88,8 @@
                     $location.path("/cases/case/" + caseId);
                     // When the form is submitted, show a notification:
                     notificationUtilsService.notify('Case ' + vm.caseData.title + ' created');
-                }, function (error) {
-                    notificationUtilsService.notify('Error creating case: ' + error);
+                }).catch(function (e) {
+                    notificationUtilsService.notify('Error creating case: ' + e.message);
                 });
             }
         }

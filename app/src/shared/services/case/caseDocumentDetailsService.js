@@ -101,6 +101,9 @@
 
         function changeDocumentStatus(documentNodeRef, status) {
             return $http.post('/alfresco/service/api/openesdh/documents/' + alfrescoNodeUtils.processNodeRef(documentNodeRef).uri + '/status', {status: status}).then(function (response) {
+                if (response.status != 200) {
+                    throw new Error(response.data.message);
+                }
                 return response.data;
             });
         }
