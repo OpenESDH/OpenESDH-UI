@@ -9,7 +9,7 @@
             <md-input-container>
                 <label>To</label>
                 <md-select ng-model="vm.to" required>
-                    <md-option ng-value="party.name" ng-repeat="party in vm.parties">{{ party.name }}</md-option>
+                    <md-option ng-value="party.displayName" ng-repeat="party in vm.parties">{{ party.displayName }}</md-option>
                 </md-select>
             </md-input-container>
             <md-input-container>
