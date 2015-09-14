@@ -78,6 +78,7 @@
 
             function update(u) {
                 ucd.userData = angular.copy(u);
+                ucd.userData.disableAccount = u.enabled;
                 var createSuccess = (ucd.dialogMode == "Create") ? userService.createUser(ucd.userData) : userService.updateUser(ucd.userData);
                 console.log(ucd.userData);
                 $mdDialog.cancel();
