@@ -92,6 +92,9 @@
 
         function changeCaseStatus(caseId, status) {
             return $http.post('/alfresco/service/api/openesdh/case/' + caseId + '/status', {status: status}).then(function (response) {
+                if (response.status != 200) {
+                    throw new Error(response.data.message);
+                }
                 return response.data;
             });
         }

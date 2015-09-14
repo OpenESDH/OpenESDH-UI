@@ -4,7 +4,7 @@
        .module('openeApp.cases')
        .controller('CaseInfoController', CaseInfoController);
 
-  CaseInfoController.$inject = ['$scope', '$stateParams', '$mdDialog', '$translate', 'caseService'];
+  CaseInfoController.$inject = ['$scope', '$stateParams', '$mdDialog', '$translate', 'caseService', 'notificationUtilsService'];
   
   /**
    * Main CaseInfoController for the Cases module
@@ -15,7 +15,7 @@
    * @param caseService
    * @constructor
    */
-  function CaseInfoController($scope, $stateParams, $mdDialog, $translate, caseService) {
+  function CaseInfoController($scope, $stateParams, $mdDialog, $translate, caseService, notificationUtilsService) {
     var vm = this;
 
     vm.editCase = editCase;
@@ -65,7 +65,10 @@
       var changeCaseStatusImpl = function () {
         caseService.changeCaseStatus($stateParams.caseId, status).then(function (json) {
           loadCaseInfo();
-          // TODO: Display a toast message?
+          // TODO: Documents listing also needs to be reloaded
+          notificationUtilsService.notify($translate.instant("CASEINFO.STATUS_CHANGED_SUCCESS"));
+        }).catch(function (e) {
+          notificationUtilsService.notify(e.message)
         });
       };
 
