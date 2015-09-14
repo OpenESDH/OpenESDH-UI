@@ -128,6 +128,7 @@ module.exports = function(grunt) {
             src: [ 'app/src/**/*.js', 'app/src/**/*.html' ],
             lang: ['en', 'da'],
             dest: 'app/src/i18n',
+            prefix: 'draft_',
             namespace: true,
             safeMode: false
           }
