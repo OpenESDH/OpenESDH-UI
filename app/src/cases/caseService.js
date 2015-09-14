@@ -1,16 +1,17 @@
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('openeApp.cases')
         .factory('caseService', caseService);
 
-    caseService.$inject = ['$http', '$resource', 'userService'];
+    caseService.$inject = ['$http', 'userService', 'alfrescoNodeUtils'];
 
-    function caseService($http, $resource, userService) {
+    function caseService($http, userService, alfrescoNodeUtils) {
         var service = {
             getCaseTypes: getCaseTypes,
             getCases: getCases,
+            getMyCases: getMyCases,
             createCase: createCase,
             getCaseInfo: getCaseInfo,
             changeCaseStatus: changeCaseStatus
@@ -36,6 +37,22 @@
             }
         }
 
+        function getMyCases(baseType) {
+            return $http.get('/alfresco/service/api/openesdh/userinvolvedsearch', {}).then(getCasesComplete, getCasesFailed);
+
+            function getCasesComplete(response) {
+                return response.data;
+            }
+
+            function getCasesFailed(error) {
+            }
+        }
+
+        /**
+         * Returns the id of the created case as a Promise.
+         * @param caseData
+         * @returns {*}
+         */
         function createCase(caseData) {
             var params = {
                 prop_cm_title: caseData.title,
@@ -44,14 +61,16 @@
                 prop_base_startDate: caseData.startDate,
                 prop_base_endDate: caseData.endDate
             };
-            userService.getHome().then(function(response) {
+            var type = 'simple:case';
+            return userService.getHome().then(function (response) {
                 params.alf_destination = response.nodeRef;
-                return $resource('/alfresco/service/api/type/:type/formprocessor', {type: 'simple:case'}).save(params, createCaseComplete);
+                return $http.post('/alfresco/service/api/type/' + type + '/formprocessor', params).then(function (response) {
+                    var nodeRef = response.data.persistedObject;
+                    return $http.get('/alfresco/service/api/openesdh/documents/isCaseDoc/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri).then(function (response) {
+                        return response.data.caseId;
+                    });
+                });
             });
-
-            function createCaseComplete(response) {
-                return response;
-            }
         }
 
         function getCaseInfo(caseId) {
@@ -63,7 +82,7 @@
         }
 
         function getCaseDocumentsFolderNodeRef(caseId) {
-            return $http.get('/alfresco/service/api/openesdh/case/docfolder/noderef/' + caseId).then(function(response) {
+            return $http.get('/alfresco/service/api/openesdh/case/docfolder/noderef/' + caseId).then(function (response) {
                 return response.data;
             });
         }

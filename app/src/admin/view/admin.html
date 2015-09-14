@@ -4,7 +4,7 @@
     <h1>Administration pages</h1>
 </md-content>
 
-<md-tabs md-dynamic-height>
+<md-tabs md-dynamic-height md-selected="currentTab">
   
   <md-tab>
     <md-tab-label>
@@ -61,27 +61,21 @@
   
   <md-tab>
     <md-tab-label>
-      <span>Organisations</span>
+      <span>Organizations</span>
     </md-tab-label>
     <md-tab-body layout="column">
-      <md-card>
-        <md-card-content>
-          <p>Some stuff goes here</p>
-        </md-card-content>
-      </md-card>
+      <div ng-include="'app/src/contacts/view/organizations.html'" ></div>
     </md-tab-body>
   </md-tab>
-  
+
   <md-tab>
     <md-tab-label>
       <span>Contacts</span>
     </md-tab-label>
     <md-tab-body layout="column">
-      <md-card>
-        <md-card-content>
-          <p>Some stuff goes here</p>
-        </md-card-content>
-      </md-card>
+      <div ng-controller="PersonsController as vm">
+        <div ng-include="'app/src/contacts/view/persons.html'" ></div>
+      </div>
     </md-tab-body>
   </md-tab>
   

@@ -59,6 +59,16 @@
                 "other": "Other"
             },
             
+            "state":{
+				"received": "Received",
+				"distributed": "Distributed",
+				"draft": "Draft",
+				"under-review": "Under review",
+				"published": "Published",
+				"finalised": "Finalised",
+				"submitted": "Submitted"            
+            },
+            
             "attachments": {
             	"TITLE": "Title",
             	"ADDED": "Added",

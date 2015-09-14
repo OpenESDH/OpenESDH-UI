@@ -53,7 +53,7 @@
   <div flex="50" ng-controller="FileController as vm">
     <md-card>
       <md-card-content>
-        <h3>My files</h3>
+        <h3>My recent documents</h3>
         <md-list>
           <md-list-item class="md-2-line" ng-repeat="document in vm.documents">
             <div class="md-list-item-text">
@@ -64,9 +64,6 @@
           </md-list-item>
         </md-list>
       </md-card-content>
-      <div class="md-actions">
-        <md-button class="md-primary" ng-disabled="true">Create new file</md-button>
-      </div>
     </md-card>
   </div>
 </section>

@@ -3,9 +3,12 @@
 
     angular
         .module('openeApp', [
+            'ngSanitize',
             'ngMaterial',
             'ui.router',
             'ngResource',
+            'ngPDFViewer',
+            'swfobject',
             'isteven-multi-select',
             'openeApp.translations',
             'openeApp.cases',
@@ -16,7 +19,8 @@
             'openeApp.notes',
             'openeApp.contacts',
             'openeApp.administration',
-            'openeApp.office'
+            'openeApp.office',
+            'openeApp.parties'
         ])
         .config(config)
         .constant('USER_ROLES', {
@@ -125,18 +129,6 @@
             },
             data: {
                 authorizedRoles: []
-            }
-        }).state('files', {
-            parent: 'site',
-            url: '/files',
-            views: {
-                'content@': {
-                    templateUrl : '/app/src/files/view/files.html',
-                    controller : 'FileController'
-                }
-            },
-            data: {
-                authorizedRoles: [USER_ROLES.user]
             }
         }).state('tasks', {
             parent: 'site',
