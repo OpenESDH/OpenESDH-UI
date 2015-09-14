@@ -4,9 +4,16 @@
         .module('openeApp.documents')
         .controller('DocumentController', DocumentController);
     
-    DocumentController.$inject = [ '$scope', '$stateParams', '$mdDialog', 'caseDocumentsService', 'documentPreviewService' ];
+    DocumentController.$inject = [
+        '$scope',
+        '$stateParams',
+        '$mdDialog',
+        'caseDocumentsService',
+        'documentPreviewService',
+        'casePartiesService'
+    ];
     
-    function DocumentController($scope, $stateParams, $mdDialog, caseDocumentsService, documentPreviewService) {
+    function DocumentController($scope, $stateParams, $mdDialog, caseDocumentsService, documentPreviewService, casePartiesService) {
     
         var caseId = $stateParams.caseId;
         var caseDocsFolderNodeRef = '';
@@ -18,7 +25,8 @@
         vm.uploadDocument = uploadDocument;
         vm.previewDocument = previewDocument;
         vm.emailDocuments = emailDocuments;
-        
+        vm.noDocuments = noDocuments;
+
         activate();
         
         function activate(){
@@ -78,7 +86,51 @@
         }
 
         function emailDocuments() {
-            console.log('in emailDocuments');
+            caseDocumentsService.getDocumentsByCaseId(vm.caseId, 1, 100).then(function(response) {
+                vm.docs = response.documents;
+                $mdDialog.show({
+                    templateUrl: '/app/src/documents/view/emailDialog.html',
+                    controller: EmailDocumentsDialogController,
+                    controllerAs: 'vm',
+                    clickOutsideToClose: true,
+                    locals: {
+                        docs: vm.docs
+                    }
+                });
+            });
+        }
+
+        EmailDocumentsDialogController.$inject = ['$mdDialog', 'docs'];
+
+        function EmailDocumentsDialogController($mdDialog, docs) {
+            var vm = this;
+
+            vm.documents = docs;
+            vm.emailDocuments = emailDocuments;
+            vm.cancel = cancel;
+
+            activate()
+
+            function activate() {
+                casePartiesService.getCaseParties(caseId).then(function(response) {
+                    console.log(response);
+//                    vm.parties = response.data;
+                    vm.parties = [{name: 'Donald Duck', email: 'donald.duck@andeby.dk'}];
+                })
+            }
+
+            function emailDocuments() {
+                // Send the email
+                $mdDialog.hide();
+            }
+
+            function cancel(form) {
+                $mdDialog.cancel();
+            }
+        }
+
+        function noDocuments() {
+            return typeof vm.documents === 'undefined' || vm.documents.length === 0;
         }
     }
 

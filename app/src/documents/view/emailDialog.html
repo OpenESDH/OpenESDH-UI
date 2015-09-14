@@ -1,0 +1,41 @@
+<md-dialog aria-label="Email documents">
+    <form name="form">
+        <md-toolbar layout="row">
+            <div class="md-toolbar-tools">
+                <h2>Email documents</h2>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;">
+            <md-input-container>
+                <label>To</label>
+                <md-select ng-model="vm.to" required>
+                    <md-option ng-value="party.name" ng-repeat="party in vm.parties">{{ party.name }}</md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container>
+                <label>Cc</label>
+                <input type="text" ng-model="vm.cc">
+            </md-input-container>
+            <md-input-container>
+                <label>Subject</label>
+                <input type="text" ng-model="vm.subject" required>
+            </md-input-container>
+            <md-input-container>
+                <label>Message</label>
+                <textarea ng-model="vm.message"></textarea>
+            </md-input-container>
+            <md-list-item ng-repeat="document in vm.documents">
+                <md-checkbox ng-model="document.selected"></md-checkbox>
+                <p>{{document['cm:name']}}</p>
+            </md-list-item>
+        </md-dialog-content>
+        <div class="md-actions" layout="row">
+            <md-button type="submit" class="md-primary" ng-click="vm.emailDocuments()" ng-disabled="form.$invalid">
+                Email documents
+            </md-button>
+            <md-button type="button" ng-click="vm.cancel(form)">
+                Cancel
+            </md-button>
+        </div>
+    </form>
+</md-dialog>
