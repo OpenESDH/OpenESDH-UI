@@ -85,9 +85,7 @@
 
             function activate() {
                 casePartiesService.getCaseParties(caseId).then(function(response) {
-                    console.log(response);
-//                    vm.parties = response.data;
-                    vm.parties = [{name: 'Donald Duck', email: 'donald.duck@andeby.dk'}];
+                    vm.parties = response;
                 })
             }
 
