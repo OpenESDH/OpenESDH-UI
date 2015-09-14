@@ -111,8 +111,8 @@
             caseDocumentDetailsService.changeDocumentStatus(documentNodeRef, status).then(function (json) {
                 loadCaseDocumentInfo();
                 notificationUtilsService.notify($translate.instant("document.STATUS_CHANGED_SUCCESS"));
-            }).catch(function (e) {
-                notificationUtilsService.notify(e.message)
+            }, function (response) {
+                notificationUtilsService.notify(response.data.message)
             });
         }
     }
