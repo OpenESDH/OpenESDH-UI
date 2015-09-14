@@ -9,7 +9,7 @@
     
     function docStateFilterFactory($translate){
         function docStateFilter(docStateValue) {
-            return $translate.instant('document.state.' + docStateValue);
+            return $translate.instant('DOCUMENT.STATE.' + docStateValue);
         }
         return docStateFilter;
     }

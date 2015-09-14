@@ -55,11 +55,11 @@
         // notify the user in the confirmation dialog.
 
         var confirm = $mdDialog.confirm()
-            .title($translate.instant("common.CONFIRM"))
-            .content($translate.instant("CASEINFO.CONFIRM_CLOSE_CASE"))
-            .ariaLabel($translate.instant("CASEINFO.CONFIRM_CLOSE_CASE"))
-            .ok($translate.instant("common.OK"))
-            .cancel($translate.instant("common.CANCEL"));
+            .title($translate.instant("COMMON.CONFIRM"))
+            .content($translate.instant("CASE.CONFIRM_CLOSE_CASE"))
+            .ariaLabel($translate.instant("CASE.CONFIRM_CLOSE_CASE"))
+            .ok($translate.instant("COMMON.OK"))
+            .cancel($translate.instant("COMMON.CANCEL"));
         return $mdDialog.show(confirm);
       }
 
@@ -67,7 +67,7 @@
         caseService.changeCaseStatus($stateParams.caseId, status).then(function (json) {
           loadCaseInfo();
           // TODO: Documents listing also needs to be reloaded
-          notificationUtilsService.notify($translate.instant("CASEINFO.STATUS_CHANGED_SUCCESS"));
+          notificationUtilsService.notify($translate.instant("CASE.STATUS_CHANGED_SUCCESS"));
         }).catch(function (e) {
           notificationUtilsService.notify(e.message)
         });

@@ -1,9 +1,0 @@
-{
-	"docpreview": {
-		"preview_document": "Preview dokument",
-		"cannot_preview": "Kan ikke previewe dokument",
-		"download_document": "Download dokument",
-		"image_max_size_exceeded": "Billede \"{{image}}\" er for stort til at blive vist.",
-		"download": "Download"
-	}
-}

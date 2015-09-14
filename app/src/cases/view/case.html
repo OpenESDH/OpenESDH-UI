@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <md-content>
-  <md-button ng-href="#/cases">Back to cases</md-button>
+  <md-button ng-href="#/cases">{{ 'CASE.BACK_TO_CASES' | translate }}</md-button>
   <div layout="row" layout-padding layout-align="space-between end">
     <div>
       <h2>{{ case["oe:id"].value }} {{ case["cm:title"].value }}
@@ -11,9 +11,9 @@
     <div class="md-actions" layout="column">
       <md-menu>
         <md-button class="md-primary" ng-click="$mdOpenMenu($event)"
-                   aria-label="{{ 'CASEINFO.CHANGE_STATUS' | translate }}"
+                   aria-label="{{ 'CASE.CHANGE_STATUS' | translate }}"
                    ng-disabled="caseStatusChoices.length == 0">
-          {{ 'CASEINFO.CHANGE_STATUS' | translate }}
+          {{ 'CASE.CHANGE_STATUS' | translate }}
         </md-button>
         <md-menu-content>
           <md-menu-item ng-repeat="choiceName in caseStatusChoices">
@@ -34,7 +34,7 @@
   
   <md-tab md-on-select="vm.onTabChange('case')">
     <md-tab-label>
-      <span>Case home</span>
+      <span>{{ 'CASE.CASE_HOME' | translate }}</span>
     </md-tab-label>
     <md-tab-body>
       
@@ -43,24 +43,23 @@
         <div flex="50">
           <md-card>
             <md-card-content>
-              <h3>{{ 'CASEINFO.CARDTITLE' | translate }}</h3>
+              <h3>{{ 'COMMON.INFORMATION' | translate }}</h3>
               <dl>
-                <dt>{{ 'CASEINFO.ID' | translate }}</dt><dd>{{ case["oe:id"].value }}</dd>
-                <dt>{{ 'CASEINFO.TITLE' | translate }}</dt><dd>{{ case["cm:title"].value }}</dd>
-                <dt>{{ 'CASEINFO.STATUS' | translate }}</dt><dd>{{ case["oe:status"].value | caseStatus }}</dd>
-                <dt>{{ 'CASEINFO.CREATEDBY' | translate }}</dt><dd>{{ case["cm:creator"].fullname }}</dd>
-                <dt>{{ 'CASEINFO.CREATED' | translate }}</dt><dd>{{ case["cm:created"].value | date: 'yyyy-MM-dd'}}</dd>
-                <dt>{{ 'CASEINFO.CASEOWNERS' | translate }}</dt><dd>{{ case["base:owners"].fullname }}</dd>
-                <dt>{{ 'CASEINFO.MODIFIED' | translate }}</dt><dd>{{ case["cm:modified"].value  | date: 'yyyy-MM-dd'}}</dd>
-                <dt>{{ 'CASEINFO.DESCRIPTION' | translate }}</dt><dd>{{ case["cm:description"].value }}</dd>
+                <dt>{{ 'COMMON.ID' | translate }}</dt><dd>{{ case["oe:id"].value }}</dd>
+                <dt>{{ 'COMMON.TITLE' | translate }}</dt><dd>{{ case["cm:title"].value }}</dd>
+                <dt>{{ 'COMMON.STATUS' | translate }}</dt><dd>{{ case["oe:status"].value | caseStatus }}</dd>
+                <dt>{{ 'COMMON.CREATEDBY' | translate }}</dt><dd>{{ case["cm:creator"].fullname }}</dd>
+                <dt>{{ 'COMMON.CREATED' | translate }}</dt><dd>{{ case["cm:created"].value | date: 'yyyy-MM-dd'}}</dd>
+                <dt>{{ 'CASE.CASE_OWNER' | translate }}</dt><dd>{{ case["base:owners"].fullname }}</dd>
+                <dt>{{ 'COMMON.MODIFIED' | translate }}</dt><dd>{{ case["cm:modified"].value  | date: 'yyyy-MM-dd'}}</dd>
+                <dt>{{ 'COMMON.DESCRIPTION' | translate }}</dt><dd>{{ case["cm:description"].value }}</dd>
               </dl>
             </md-card-content>
             <div class="md-actions" layout="row">
               <md-button class="md-primary" ng-click="vm.editCase($event)"
-                         ng-disabled="caseIsLocked">{{ 'CASEINFO.EDIT_INFORMATION' | translate }}</md-button>
-              <md-button class="md-primary" ng-disabled="true">{{ 'CASEINFO.PRINT_CASE' | translate }}</md-button>
-              <md-button class="md-primary" ng-disabled="true">{{ 'CASEINFO.START_WORKFLOW' | translate }}</md-button>
-              <md-button class="md-primary" ng-disabled="true">{{ 'CASEINFO.CREATE_SITE' | translate }}</md-button>
+                         ng-disabled="caseIsLocked">{{ 'CASE.EDIT_INFORMATION' | translate }}</md-button>
+              <md-button class="md-primary" ng-disabled="true">{{ 'CASE.PRINT_CASE' | translate }}</md-button>
+              <md-button class="md-primary" ng-disabled="true">{{ 'CASE.START_WORKFLOW' | translate }}</md-button>
             </div>
           </md-card>
         </div>
@@ -68,26 +67,26 @@
         <div flex="50">
           <md-card ng-controller="NoteController as caseNotes">
             <md-card-content>
-              <h3>{{'notes.notes' | translate}}</h3>
+              <h3>{{ 'NOTE.NOTES' | translate }}</h3>
               <md-list>
                 <md-list-item ng-repeat="note in caseNotes.notes">
                   <div class="md-list-item-text">
                     <h4>{{ note.headline }}</h4>
                     <p>{{ note.content }}</p>
                     <p style="font-size: 0.8em; color: #999;">
-                      {{'notes.CREATED' | translate}} {{ note.created | date: 'yyyy-MM-dd' }} {{'notes.BY' | translate}} {{ note.authorInfo.firstName + ' ' + note.authorInfo.lastName }}<br>
-                      {{'notes.RELATED' | translate}}: <span style="margin-right: 0.5em;" ng-repeat="relation in note.concernedPartiesInfo">{{ relation.name }}</span>
+                      {{ 'COMMON.CREATED' | translate }} {{ note.created | date: 'yyyy-MM-dd' }} {{ 'COMMON.BY' | translate }} {{ note.authorInfo.firstName + ' ' + note.authorInfo.lastName }}<br>
+                      {{ 'NOTE.RELATED' | translate }}: <span style="margin-right: 0.5em;" ng-repeat="relation in note.concernedPartiesInfo">{{ relation.name }}</span>
                     </p>
                   </div>
                 </md-list-item>                
               </md-list>
-                Loaded: {{caseNotes.contentRange.startIndex}}-{{caseNotes.contentRange.endIndex}} Total items: {{caseNotes.contentRange.totalItems}}
-                Pages: <span style="margin-right: 10px;" ng-repeat="page in caseNotes.pages"><button ng-click="caseNotes.loadNotes(page)">{{page}}</button></span>
+                {{ 'COMMON.LOADED' | translate }}: {{caseNotes.contentRange.startIndex}}-{{caseNotes.contentRange.endIndex}} {{ 'COMMON.TOTAL_ITEMS' | translate }}: {{caseNotes.contentRange.totalItems}}
+                {{ 'COMMON.PAGES' | translate }}: <span style="margin-right: 10px;" ng-repeat="page in caseNotes.pages"><button ng-click="caseNotes.loadNotes(page)">{{page}}</button></span>
             </md-card-content>
             <div class="md-actions" layout="row">
               <md-button class="md-primary" ng-click="caseNotes.newNote()"
-                         ng-disabled="caseIsLocked">{{'notes.NEW_NOTE' | translate}}</md-button>
-              <md-button class="md-primary" ng-disabled="true">{{'notes.PRINT_ALL_NOTES' | translate}}</md-button>
+                         ng-disabled="caseIsLocked">{{ 'NOTE.NEW_NOTE' | translate }}</md-button>
+              <md-button class="md-primary" ng-disabled="true">{{ 'NOTE.PRINT_ALL_NOTES' | translate }}</md-button>
             </div>
           </md-card>
         </div>
@@ -95,51 +94,52 @@
         <div flex="100">
           <md-card ng-controller="DocumentController as docCtrl">
             <md-card-content>
-              <h3>{{'document.documents' | translate}}</h3>
+              <h3>{{ 'DOCUMENT.DOCUMENTS' | translate }}</h3>
               <table>
                 <thead>
                   <tr>
-                    <th>{{'document.TITLE' | translate}}</th>
-                    <th>{{'document.NO' | translate}}</th>
-                    <th>{{'document.STATUS' | translate}}</th>
-                    <th>{{'document.TYPE' | translate}}</th>
-                    <th>{{'document.CATEGORY' | translate}}</th>
-                    <th>{{'document.STATE' | translate}}</th>
-                    <th>{{'document.OWNER' | translate}}</th>
-                    <th>{{'document.CREATED' | translate}}</th>
-                    <th>{{'document.MODIFIED' | translate}}</th>
-                    <th>{{'common.ACTION' | translate}}</th>
+                    <th>{{ 'COMMON.TITLE' | translate }}</th>
+                    <th>{{ 'COMMON.NO' | translate }}</th>
+                    <th>{{ 'COMMON.STATUS' | translate }}</th>
+                    <th>{{ 'COMMON.TYPE' | translate }}</th>
+                    <th>{{ 'COMMON.CATEGORY' | translate }}</th>
+                    <th>{{ 'COMMON.STATE' | translate }}</th>
+                    <th>{{ 'COMMON.OWNER' | translate }}</th>
+                    <th>{{ 'COMMON.CREATED' | translate }}</th>
+                    <th>{{ 'COMMON.MODIFIED' | translate }}</th>
+                    <th>{{ 'COMMON.ACTION' | translate }}</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr ng-repeat="doc in docCtrl.documents" class="{{ doc.isUpdated ? 'updated' : 'not-updated' }}">
                     <td>{{ doc["cm:name"] }}</td>
                     <td>{{ doc.docNo }}</td>
-                    <td>{{doc["oe:status"] | docStatus}}</td>
-                    <td>{{doc["doc:type"] | docType}}</td>
-                    <td>{{doc["doc:category"] | docCategory}}</td>
-                    <td>{{doc["doc:state"] | docState}}</td>
+                    <td>{{ doc["oe:status"] | docStatus }}</td>
+                    <td>{{ doc["doc:type"] | docType }}</td>
+                    <td>{{ doc["doc:category"] | docCategory }}</td>
+                    <td>{{ doc["doc:state"] | docState }}</td>
                     <td>
                         <span ng-repeat="owner in doc['doc:owner']">{{owner.fullname}}</span>
                     </td>
-                    <td>{{doc["cm:created"] | date: 'yyyy-MM-dd'}}</td>
-                    <td>{{doc["cm:modified"] | date: 'yyyy-MM-dd'}}</td>
+                    <td>{{ doc["cm:created"] | date: 'yyyy-MM-dd' }}</td>
+                    <td>{{ doc["cm:modified"] | date: 'yyyy-MM-dd' }}</td>
                     <td>
-                        <md-button class="md-primary" href="#/cases/case/{{docCtrl.caseId}}/doc/{{doc.nodeRef | nodeRefUri}}">{{'document.VIEW_DETAILS' | translate}}</md-button> 
-                        <md-button class="md-primary" ng-click="docCtrl.previewDocument(doc.mainDocNodeRef)">{{'document.PREVIEW' | translate}}</md-button>
+                        <md-button class="md-primary" href="#/cases/case/{{docCtrl.caseId}}/doc/{{doc.nodeRef | nodeRefUri}}">{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button> 
+                        <md-button class="md-primary" ng-click="docCtrl.previewDocument(doc.mainDocNodeRef)">{{ 'COMMON.PREVIEW' | translate }}</md-button>
                     </td>
                   </tr>
                 </tbody>
               </table>
-              Pages: <button ng-repeat="page in docCtrl.pages" ng-click="docCtrl.loadDocuments(page)">{{page}}</button>
+              {{ 'COMMON.PAGES' | translate }}: <button ng-repeat="page in docCtrl.pages" ng-click="docCtrl.loadDocuments(page)">{{page}}</button>
             </md-card-content>
             <div class="md-actions" layout="row">
-              <md-button class="md-primary" ng-disabled="true">{{'document.CREATE_NEW_DOCUMENT' | translate}}</md-button>
+              <md-button class="md-primary" ng-disabled="true">{{ 'DOCUMENT.CREATE_NEW_DOCUMENT' | translate }}</md-button>
               <md-button class="md-primary"
                          ng-click="docCtrl.uploadDocument()"
-                         ng-disabled="caseIsLocked">{{'document.UPLOAD_NEW_DOCUMENTS' |
-                translate}}</md-button>
-              <md-button class="md-primary" ng-disabled="docCtrl.noDocuments()" ng-click="docCtrl.emailDocuments()">{{'document.EMAIL_DOCUMENTS' | translate}}</md-button>
+                         ng-disabled="caseIsLocked">
+                {{ 'DOCUMENT.UPLOAD_NEW_DOCUMENTS' | translate }}
+              </md-button>
+              <md-button class="md-primary" ng-disabled="docCtrl.noDocuments()" ng-click="docCtrl.emailDocuments()">{{'DOCUMENT.EMAIL_DOCUMENTS' | translate}}</md-button>
             </div>
           </md-card>
         </div>
@@ -151,12 +151,12 @@
   
   <md-tab md-on-select="vm.onTabChange('members')">
     <md-tab-label>
-      <span>Members</span>
+      <span>{{ 'MEMBER.MEMBERS' | translate }}</span>
     </md-tab-label>
     <md-tab-body layout="column">
       <md-card>
         <md-card-content>
-          <h3>Members</h3>
+          <h3>{{ 'MEMBER.MEMBERS' | translate }}</h3>
         </md-card-content>
         <div class="md-actions">
         </div>
@@ -166,7 +166,7 @@
   
   <md-tab md-on-select="vm.onTabChange('parties')">
     <md-tab-label>
-      <span>{{'party.TITLE'| translate}}</span>
+      <span>{{ 'PARTY.TITLE'| translate }}</span>
     </md-tab-label>
       <md-tab-body layout="column">
           <div ng-include="'app/src/parties/view/caseParties.html'"></div>
@@ -175,19 +175,19 @@
     
   <md-tab md-on-select="vm.onTabChange('history')">
     <md-tab-label>
-      <span>History</span>
+      <span>{{ 'COMMON.HISTORY' | translate }}</span>
     </md-tab-label>
     <md-tab-body layout="column">
       <md-card ng-controller="CaseHistoryController as historyCtrl">
         <md-card-content>
-          <h3>Case history</h3>
+          <h3>{{ 'CASE.CASE_HISTORY' | translate }}</h3>
           <table>
             <thead>
               <tr>
-                <th>Action</th>
-                <th>Type</th>
-                <th>User</th>
-                <th>Time</th>
+                <th>{{ 'COMMON.ACTION' | translate }}</th>
+                <th>{{ 'COMMON.TYPE' | translate }}</th>
+                <th>{{ 'USER.USER' | translate }}</th>
+                <th>{{ 'COMMON.TIME' | translate }}</th>
               </tr>
             </thead>
             <tbody>
@@ -202,7 +202,7 @@
         </md-card-content>
         <div class="md-actions">
             <div style="float: right;">
-                <span>{{historyCtrl.startIndex}} - {{historyCtrl.endIndex}} of {{historyCtrl.totalItems}}</span>
+                <span>{{historyCtrl.startIndex}} - {{historyCtrl.endIndex}} {{ 'COMMON.OF' | translate }} {{historyCtrl.totalItems}}</span>
                 <span>
                     <md-button ng-click="historyCtrl.loadPreviousPage()" ng-disabled="!historyCtrl.previousPage">&lt;</md-button>
                     <md-button ng-click="historyCtrl.loadNextPage()" ng-disabled="!historyCtrl.nextPage">&gt;</md-button>

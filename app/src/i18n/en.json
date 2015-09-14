@@ -1,0 +1,284 @@
+{
+    "COMMON": {
+        "CONFIRM": "Confirm",
+        "OK": "OK",
+        "CANCEL": "Cancel",
+        "ACTIONS": "Actions",
+        "EMAIL": "Email",
+        "DESCRIPTION": "Description",
+        "INFORMATION": "Information",
+        "ID": "ID",
+        "TITLE": "Title",
+        "STATUS": "Status",
+        "CREATEDBY": "Created by",
+        "CREATED": "Created",
+        "MODIFIED": "Modified",
+        "BY": "by",
+        "LOADED": "Loaded",
+        "TOTAL_ITEMS": "Total items",
+        "PAGES": "Pages",
+        "NO": "No",
+        "TYPE": "Type",
+        "CATEGORY": "Category",
+        "STATE": "State",
+        "OWNER": "Owner",
+        "ACTION": "Action",
+        "VIEW_DETAILS": "View details",
+        "PREVIEW": "Preview",
+        "HISTORY": "History",
+        "TIME": "Time",
+        "OF": "of",
+        "VIEW": "View",
+        "SAVE": "Save",
+        "NAME": "Name",
+        "SHOW": "Show",
+        "DELETE": "Delete",
+        "SHOWING": "Showing",
+        "BACK": "Back",
+        "DOWNLOAD": "Download",
+        "ADDED": "Added",
+        "ADDED_BY": "Added by",
+        "UPLOAD": "Upload",
+        "HOME": "Home",
+        "REMOVE": "Remove",
+        "ADD_NEW": "Add new",
+        "ADD": "Add",
+        "CLOSE": "Close"
+    },
+    "CASE": {
+        "CONFIRM_CLOSE_CASE": "Do you want to close this case?",
+        "STATUS_CHANGED_SUCCESS": "Status has been changed successfully",
+        "STATUS": {
+            "active": "Active",
+            "passive": "Passive",
+            "closed": "Closed",
+            "archived": "Archived"  
+        },
+        "BACK_TO_CASES": "Back to cases",
+        "CHANGE_STATUS": "Change status",
+        "CASE_HOME": "Case home",
+        "CASE_OWNER": "Case owner",
+        "EDIT_INFORMATION": "Edit information",
+        "PRINT_CASE": "Print case",
+        "START_WORKFLOW": "Start workflow",
+        "CASE_HISTORY": "Case history",
+        "CRUD_CASE": "Create / edit case",
+        "TITLE": "Title",
+        "OWNER": "Owner",
+        "ASSIGNED_TO": "Assigned to",
+        "START_DATE": "Start date",
+        "END_DATE": "End date",
+        "DESCRIPTION": "Description",
+        "CREATE_SAVE_CASE": "Create / save case",
+        "ARCHIVE_CASE": "Archive case",
+        "CASES": "Cases",
+        "MY_CASES": "My cases",
+        "STARTDATE": "Start date",
+        "ENDDATE": "End date",
+        "CREATE_NEW_CASE": "Create new case",
+        "CASETYPE_STANDARD": "Standard case",
+        "CASETYPE_OTHER": "Other type case",
+        "UNASSIGNED_CASES": "Unassigned cases",
+        "CASE": "Case",
+        "ASSIGN_TO": "Assign to",
+        "VIEW_CASE_DETAILS": "View case details"
+    },
+    "DOCUMENT": {
+        "STATUS_CHANGED_SUCCESS": "Status has been changed successfully",
+        "CATEGORY": {
+            "annex": "Annex",
+            "proof": "Proof",
+            "contract": "Contract",
+            "note": "Note",
+            "report": "Report",
+            "proxy": "Proxy",
+            "warranty": "Warranty",
+            "part": "Part",
+            "statement": "Statement",
+            "summary": "Summary",
+            "accounting": "Accounting",
+            "offers": "Offers",
+            "other": "Other"  
+        },
+        "STATE": {
+            "draft": "Draft",
+            "final": "Final"  
+        },
+        "STATUS": {
+            "draft": "Draft",
+            "final": "Final"  
+        },
+        "TYPE": {
+            "invoice": "Invoice",
+            "letter": "Letter",
+            "note": "Note",
+            "report": "Report",
+            "agenda": "Agenda",
+            "other": "Other"  
+        },
+        "DOCUMENTS": "Documents",
+        "CREATE_NEW_DOCUMENT": "Create new document",
+        "UPLOAD_NEW_DOCUMENTS": "Upload new document",
+        "EMAIL_DOCUMENTS": "Email documents",
+        "MY_RECENT_DOCUMENTS": "My recent documents",
+        "CHANGE_STATUS": "Change status",
+        "VERSION": "Version",
+        "VERSION_ADDED": "Version added",
+        "DOCUMENT_NAME": "Document name",
+        "VERSION_DESCRIPTION": "Version description",
+        "EDIT_DOCUMENT": "Edit document",
+        "UPLOAD_NEW_VERSION": "Upload new version",
+        "OPEN_PREVIEW": "Open prevew",
+        "EDIT_PROPERTIES": "Edit properties",
+        "ATTACHMENTS": {
+            "CURRENT_VERSION": "Current version",
+            "EDIT_ATTACHMENT": "Edit attachment",
+            "UPLOAD_NEW_ATTACHMENT": "Upload new attachment"
+        },
+        "UPLOAD_DOCUMENT": "Upload document",
+        "UPLOAD_ATTACHMENT": "Upload attachment",
+        "DOCUMENT_TO_UPLOAD": "Document to upload",
+        "VERSIONTYPE": "Version type",
+        "MINOR_VERSION": "Minor version",
+        "MAJOR_VERSION": "Major version",
+        "CANNOT_PREVIEW": "Can't preview",
+        "DOWNLOAD_DOCUMENT": "Download document",
+        "IMAGE_MAX_SIZE_EXCEEDED": "Image \"{{image}}\" is too large to display.",
+        "PREVIEW_DOCUMENT": "Preview document"
+    },
+    "ADMIN": {
+        "ADMINISTRATION_PAGES": "Administration pages",
+        "ADMINISTRATION": "Administration"
+    },
+    "USER": {
+        "USERS": "Users",
+        "USERNAME": "Username",
+        "FIRST_NAME": "First name",
+        "LAST_NAME": "Last name",
+        "EDIT_USER": "Edit user",
+        "CREATE_USER": "Create user",
+        "USER": "User"
+    },
+    "GROUP": {
+        "GROUPS": "Groups"
+    },
+    "ORG": {
+        "ORGANIZATIONS": "Organisations",
+        "BACK_TO_ORGS": "Back to organisations",
+        "COMPANY_NAME": "Company name",
+        "DEPARTMENT": "Department",
+        "ADDRESS_1": "Address 1",
+        "ADDRESS_2": "Address 2",
+        "POSTAL_CODE": "Postal code",
+        "CITY": "City",
+        "COUNTRY": "Country",
+        "VAT_NO": "VAT No",
+        "PHONE": "Phone",
+        "MOBILE_PHONE": "Mobile phone",
+        "WEBSITE": "Website",
+        "LINKEDIN": "LinkedIn",
+        "IM": "IM",
+        "EDIT_ORG": "Edit organisation",
+        "DELETE_ORG": "Delete organisation",
+        "EMPLOYEES": "Employees",
+        "CRUD_ORG": "Create / edit organisation",
+        "SEARCH_FOR_ORG": "Search for organisation",
+        "CVR_NO": "CVR No",
+        "STREET": "Street",
+        "CREATE_NEW_ORG": "Create new organisation"
+    },
+    "CONTACT": {
+        "CONTACTS": "Contacts",
+        "FIRST_NAME": "First name",
+        "MIDDLE_NAME": "Middle name",
+        "LAST_NAME": "Last name",
+        "ADDRESS_1": "Address 1",
+        "ADDRESS_2": "Address 2",
+        "POSTAL_CODE": "Postal code",
+        "CITY": "City",
+        "COUNTRY": "Country",
+        "CPR_NO": "CPR No",
+        "PHONE": "Phone",
+        "MOBILE_PHONE": "Mobile phone",
+        "WEBSITE": "Website",
+        "LINKEDIN": "LinkedIn",
+        "IM": "IM",
+        "SEARCH_FOR_CONTACTS": "Search for contacts",
+        "DEPARTMENT": "Department",
+        "STREET": "Street",
+        "CREATE_NEW_CONTACT": "Create new contact"
+    },
+    "LOGIN": {
+        "USER_NAME": "Username",
+        "PASSWORD": "Password",
+        "VERIFY_PASSWORD": "Verify password",
+        "LOGIN": "Login",
+        "SIGN_ME_IN_AUTOMATICALLY": "Sign me in automatically"
+    },
+    "{{ 'LOGIN": {
+        "SIGN_ME_IN_AUTOMATICALLY' | translate }}": ""
+    },
+    "NOTE": {
+        "NOTES": "Notes",
+        "RELATED": "Related",
+        "NEW_NOTE": "New note",
+        "PRINT_ALL_NOTES": "Print all notes",
+        "CREATE_NOTE": "Create note",
+        "HEADLINE": "Headline",
+        "CONTENT": "Content",
+        "CONCERNED_PARTIES": "Concerned parties",
+        "ADD_NOTE": "Add note"
+    },
+    "MEMBER": {
+        "MEMBERS": "Members"
+    },
+    "PARTY": {
+        "TITLE": "Title",
+        "ROLE": "Role",
+        "CHANGE": "Change",
+        "ADD_PARTIES_TITLE": "Add party title",
+        "ORGANIZATIONS": "Organisations",
+        "CHOOSE_ORG_CONTACTS": "Choose organisation contacts",
+        "PERSONS": "Persons",
+        "CHOOSE_PERSON_CONTACTS": "Choose person contacts",
+        "CHANGE_PARTY_TITLE": "Change party title",
+        "OLD_ROLE": "Old role",
+        "TO_ROLE": "New role"
+    },
+    "{{ 'CASE": {
+        "CHANGE_STATUS' | translate }}": "",
+        "CREATE_NEW_CASE' | translate }}": ""
+    },
+    "TASK": {
+        "MY_TASKS": "My tasks",
+        "CREATE_NEW_TASK": "Start workflow",
+        "TASKS": "Tasks"
+    },
+    "{{ 'DOCUMENT": {
+        "CHANGE_STATUS' | translate }}": ""
+    },
+    "SEARCH": {
+        "SEARCH": "Search"
+    },
+    "MENU": {
+        "OPEN_MENU": "Open menu",
+        "VIEW_PROFILE": "View profile",
+        "LOGOUT": "Logout"
+    },
+    "{{vm": {
+        "getUserInfo()": {
+            "user": {
+                "firstName}} {{vm": {
+                    "getUserInfo()": {
+                        "user": {
+                            "lastName}}": ""
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "OFFICE": {
+        "SAVE_EMAIL_IN_OPENESDH": "SAVE E-mail in OpenESDH"
+    }
+}

@@ -16,7 +16,7 @@
     "angular-material": "^0.10.0",
     "angular-sanitize": "1.4.x",
     "angular-translate": "",
-    "angular-translate-loader-partial": "",
+    "angular-translate-loader-static-files": "",
     "isteven-angular-multiselect":"3.0.0",
     "pdfjs-dist": "",
     "ng-pdfviewer": "",

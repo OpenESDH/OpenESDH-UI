@@ -1,0 +1,262 @@
+{
+    "COMMON": {
+        "CONFIRM": "Bekræft",
+        "OK": "OK",
+        "CANCEL": "Annullér",
+        "ACTIONS": "Handlinger",
+        "EMAIL": "Email",
+        "DESCRIPTION": "Beskrivelse",
+        "INFORMATION": "Information",
+        "ID": "ID",
+        "TITLE": "Titel",
+        "STATUS": "Status",
+        "CREATEDBY": "Oprettet af",
+        "CREATED": "Oprettet",
+        "MODIFIED": "Ændret",
+        "BY": "af",
+        "LOADED": "Ladet",
+        "TOTAL_ITEMS": "Ialt",
+        "PAGES": "Sider",
+        "NO": "Nr",
+        "TYPE": "Type",
+        "CATEGORY": "Kategori",
+        "STATE": "Status",
+        "OWNER": "Ejer",
+        "ACTION": "Handling",
+        "VIEW_DETAILS": "Vis detaljer",
+        "PREVIEW": "Preview",
+        "HISTORY": "Historik",
+        "TIME": "Tidspunkt",
+        "OF": "af",
+        "VIEW": "Vis",
+        "SAVE": "Gem",
+        "NAME": "Navn",
+        "SHOW": "Vis",
+        "DELETE": "Slet",
+        "SHOWING": "Viser",
+        "BACK": "Tilbage",
+        "DOWNLOAD": "Download",
+        "ADDED": "Tilføjet",
+        "ADDED_BY": "Tilføjet af",
+        "UPLOAD": "Upload",
+        "HOME": "Min side",
+        "REMOVE": "Fjern",
+        "ADD_NEW": "Tilføj ny",
+        "ADD": "Tilføj",
+        "CLOSE": "Luk"
+    },
+    "CASE": {
+        "CONFIRM_CLOSE_CASE": "Vil du lukke denne sag?",
+        "STATUS_CHANGED_SUCCESS": "Status er ændret",
+        "STATUS": [
+            ""
+        ],
+        "BACK_TO_CASES": "Tilbage til sager",
+        "CHANGE_STATUS": "Skift status",
+        "CASE_HOME": "Sager",
+        "CASE_OWNER": "Sags-ejer",
+        "EDIT_INFORMATION": "Redigér information",
+        "PRINT_CASE": "Print sag",
+        "START_WORKFLOW": "Start workflow",
+        "CASE_HISTORY": "Sags-historik",
+        "CRUD_CASE": "Opret / redigér sag",
+        "TITLE": "Titel",
+        "OWNER": "Ejer",
+        "ASSIGNED_TO": "Tildelt til",
+        "START_DATE": "Start-dato",
+        "END_DATE": "Slut-dato",
+        "DESCRIPTION": "Beskrivelse",
+        "CREATE_SAVE_CASE": "Opret / gem sag",
+        "ARCHIVE_CASE": "Arkivér sag",
+        "CASES": "Sager",
+        "MY_CASES": "Mine sager",
+        "STARTDATE": "Stat-dato",
+        "ENDDATE": "Slut-dato",
+        "CREATE_NEW_CASE": "Opret ny sag",
+        "CASETYPE_STANDARD": "Standard sag",
+        "CASETYPE_OTHER": "Anden sagstype",
+        "UNASSIGNED_CASES": "Utildelte sager",
+        "CASE": "Sag",
+        "ASSIGN_TO": "Tildel til",
+        "VIEW_CASE_DETAILS": "Vis detaljer"
+    },
+    "DOCUMENT": {
+        "STATUS_CHANGED_SUCCESS": "Status er ændret",
+        "CATEGORY": [
+            ""
+        ],
+        "STATE": [
+            ""
+        ],
+        "STATUS": [
+            ""
+        ],
+        "TYPE": [
+            ""
+        ],
+        "DOCUMENTS": "Dokumenter",
+        "CREATE_NEW_DOCUMENT": "Opret nyt dokument",
+        "UPLOAD_NEW_DOCUMENTS": "Upload nyt dokument",
+        "EMAIL_DOCUMENTS": "Email dokument",
+        "MY_RECENT_DOCUMENTS": "Senest redigérede dokumenter",
+        "CHANGE_STATUS": "Skift status",
+        "VERSION": "Version",
+        "VERSION_ADDED": "Version tilføjet",
+        "DOCUMENT_NAME": "Dokumentnavn",
+        "VERSION_DESCRIPTION": "Versionsbeskrivelse",
+        "EDIT_DOCUMENT": "Redigér dokument",
+        "UPLOAD_NEW_VERSION": "Upload ny version",
+        "OPEN_PREVIEW": "Open preview",
+        "EDIT_PROPERTIES": "Redigér egenskaber",
+        "ATTACHMENTS": {
+            "CURRENT_VERSION": "Nuværende version",
+            "EDIT_ATTACHMENT": "Redigér vedhæftning",
+            "UPLOAD_NEW_ATTACHMENT": "Upload ny vedhæftning"
+        },
+        "UPLOAD_DOCUMENT": "Upload dokument",
+        "UPLOAD_ATTACHMENT": "Upload vedhæftning",
+        "DOCUMENT_TO_UPLOAD": "Dokument til upload",
+        "VERSIONTYPE": "Versionstype",
+        "MINOR_VERSION": "Underordnet version",
+        "MAJOR_VERSION": "Overordnet version",
+        "CANNOT_PREVIEW": "Kan ikke vise preview",
+        "DOWNLOAD_DOCUMENT": "Download dokument",
+        "IMAGE_MAX_SIZE_EXCEEDED": "Billedet \"{{image}}\" er for stort til at blive vist.",
+        "PREVIEW_DOCUMENT": "Preview dokument"
+    },
+    "ADMIN": {
+        "ADMINISTRATION_PAGES": "Administrationssider",
+        "ADMINISTRATION": "Administration"
+    },
+    "USER": {
+        "USERS": "Brugere",
+        "USERNAME": "Brugernavn",
+        "FIRST_NAME": "Fornavn",
+        "LAST_NAME": "Efternavn",
+        "EDIT_USER": "Redigér bruger",
+        "CREATE_USER": "Opret bruger",
+        "USER": "Bruger"
+    },
+    "GROUP": {
+        "GROUPS": "Grupper"
+    },
+    "ORG": {
+        "ORGANIZATIONS": "Organisationer",
+        "BACK_TO_ORGS": "Tilbage til organisationer",
+        "COMPANY_NAME": "Navn",
+        "DEPARTMENT": "Afdeling",
+        "ADDRESS_1": "Adresse 1",
+        "ADDRESS_2": "Adresse 2",
+        "POSTAL_CODE": "Postnr",
+        "CITY": "By",
+        "COUNTRY": "Land",
+        "VAT_NO": "VAT-nr",
+        "PHONE": "Telefon",
+        "MOBILE_PHONE": "Mobil",
+        "WEBSITE": "Website",
+        "LINKEDIN": "LinkedIn",
+        "IM": "IM",
+        "EDIT_ORG": "Redigér organisation",
+        "DELETE_ORG": "Slet organisation",
+        "EMPLOYEES": "Ansatte",
+        "CRUD_ORG": "Opret / redigér organisation",
+        "SEARCH_FOR_ORG": "Søg i organisationer",
+        "CVR_NO": "CVR-nr",
+        "STREET": "Gade",
+        "CREATE_NEW_ORG": "Opret ny organisation"
+    },
+    "CONTACT": {
+        "CONTACTS": "Kontakter",
+        "FIRST_NAME": "Fornavn",
+        "MIDDLE_NAME": "Mellemnavn",
+        "LAST_NAME": "Efternavn",
+        "ADDRESS_1": "Adresse 1",
+        "ADDRESS_2": "Adresse 2",
+        "POSTAL_CODE": "Postnr",
+        "CITY": "By",
+        "COUNTRY": "Land",
+        "CPR_NO": "CPR-nr",
+        "PHONE": "Telefon",
+        "MOBILE_PHONE": "Mobil",
+        "WEBSITE": "Website",
+        "LINKEDIN": "LinkedIn",
+        "IM": "IM",
+        "SEARCH_FOR_CONTACTS": "Søg i kontakter",
+        "DEPARTMENT": "Afdeling",
+        "STREET": "Gade",
+        "CREATE_NEW_CONTACT": "Opret ny kontakt"
+    },
+    "LOGIN": {
+        "USER_NAME": "Brugernavn",
+        "PASSWORD": "Kodeord",
+        "VERIFY_PASSWORD": "Gentag kodeord",
+        "LOGIN": "Log ind",
+        "SIGN_ME_IN_AUTOMATICALLY": "Log mig ind automatisk"
+    },
+    "{{ 'LOGIN": {
+        "SIGN_ME_IN_AUTOMATICALLY' | translate }}": ""
+    },
+    "NOTE": {
+        "NOTES": "Noter",
+        "RELATED": "Relateret",
+        "NEW_NOTE": "Ny note",
+        "PRINT_ALL_NOTES": "Print alle noter",
+        "CREATE_NOTE": "Opret note",
+        "HEADLINE": "Overskrift",
+        "CONTENT": "Indhold",
+        "CONCERNED_PARTIES": "Relaterede parter",
+        "ADD_NOTE": "Tilføj note"
+    },
+    "MEMBER": {
+        "MEMBERS": "Medlemmer"
+    },
+    "PARTY": {
+        "TITLE": "Titel",
+        "ROLE": "Rolle",
+        "CHANGE": "Skift",
+        "ADD_PARTIES_TITLE": "Tilføj part-titel",
+        "ORGANIZATIONS": "Organisationer",
+        "CHOOSE_ORG_CONTACTS": "Vælg organisationskontakter",
+        "PERSONS": "Personer",
+        "CHOOSE_PERSON_CONTACTS": "Vælg personkontakter",
+        "CHANGE_PARTY_TITLE": "Skift part-titel",
+        "OLD_ROLE": "Gammel rolle",
+        "TO_ROLE": "Ny rolle"
+    },
+    "{{ 'CASE": {
+        "CHANGE_STATUS' | translate }}": "",
+        "CREATE_NEW_CASE' | translate }}": ""
+    },
+    "TASK": {
+        "MY_TASKS": "Mine opgaver",
+        "CREATE_NEW_TASK": "Start workflow",
+        "TASKS": "Opgaver"
+    },
+    "{{ 'DOCUMENT": {
+        "CHANGE_STATUS' | translate }}": ""
+    },
+    "SEARCH": {
+        "SEARCH": "Søg"
+    },
+    "MENU": {
+        "OPEN_MENU": "Åben menu",
+        "VIEW_PROFILE": "Vis profil",
+        "LOGOUT": "Log ud"
+    },
+    "{{vm": {
+        "getUserInfo()": {
+            "user": {
+                "firstName}} {{vm": {
+                    "getUserInfo()": {
+                        "user": {
+                            "lastName}}": ""
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "OFFICE": {
+        "SAVE_EMAIL_IN_OPENESDH": "Gem Email i OpenESDH"
+    }
+}

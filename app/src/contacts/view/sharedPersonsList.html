@@ -1,13 +1,13 @@
 <table>
     <thead>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Department</th>
-        <th>Street</th>
-        <th>Postal code</th>
-        <th>City</th>
-        <th>Country</th>
-        <th>Actions</th>
+        <th>{{ 'CONTACT.FIRST_NAME' | translate }}</th>
+        <th>{{ 'CONTACT.LAST_NAME' | translate }}</th>
+        <th>{{ 'CONTACT.DEPARTMENT' | translate }}</th>
+        <th>{{ 'CONTACT.STREET' | translate }}</th>
+        <th>{{ 'CONTACT.POSTAL_CODE' | translate }}</th>
+        <th>{{ 'CONTACT.CITY' | translate }}</th>
+        <th>{{ 'CONTACT.COUNTRY' | translate }}</th>
+        <th>{{ 'COMMON.ACTIONS' | translate }}</th>
     </thead>
     <tbody>
         <tr ng-repeat="person in vm.persons.items">
@@ -18,9 +18,9 @@
             <td>{{person.postCode}}</td>
             <td>{{person.cityName}}</td>
             <td>{{person.countryCode}}</td>
-            <td><md-button class="md-primary" ng-click="vm.showPersonEdit($event, person)">View details</md-button></td>
+            <td><md-button class="md-primary" ng-click="vm.showPersonEdit($event, person)">{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button></td>
         </tr>
     </tbody>
 </table>
 
-<md-button class="md-primary" ng-click="vm.showPersonEdit($event, null)">Create new contact</md-button>
+<md-button class="md-primary" ng-click="vm.showPersonEdit($event, null)">{{ 'CONTACT.CREATE_NEW_CONTACT' | translate }}</md-button>

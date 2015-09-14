@@ -9,7 +9,7 @@
     
     function docTypeFilterFactory($translate){
         function docTypeFilter(docTypeValue) {
-            return $translate.instant('document.type.' + docTypeValue);
+            return $translate.instant('DOCUMENT.TYPE.' + docTypeValue);
         }
         return docTypeFilter;
     }

@@ -5,7 +5,7 @@
   <div flex="50" ng-controller="TaskController">
     <md-card>
       <md-card-content>
-        <h3>My Tasks</h3>
+        <h3>{{ 'TASK.MY_TASKS' | translate }}</h3>
         <md-list>
           <md-list-item class="md-2-line" ng-repeat="task in tasks">
             <div class="md-list-item-text">
@@ -16,7 +16,7 @@
         </md-list>
       </md-card-content>
       <div class="md-actions">
-        <md-button class="md-primary" ng-disabled="true">Create new task</md-button>
+        <md-button class="md-primary" ng-disabled="true">{{ 'TASK.CREATE_NEW_TASK' | translate }}</md-button>
       </div>
     </md-card>
   </div>
@@ -24,14 +24,14 @@
   <div flex="50" ng-controller="CaseController as caseController">
     <md-card>
       <md-card-content>
-        <h3>My cases</h3>
+        <h3>{{ 'CASE.MY_CASES' | translate }}</h3>
         <table>
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Title</th>
-              <th>Changed</th>
-              <th>Actions</th>
+              <th>{{ 'COMMON.ID' | translate }}</th>
+              <th>{{ 'COMMON.TITLE' | translate }}</th>
+              <th>{{ 'COMMON.MODIFIED' | translate }}</th>
+              <th>{{ 'COMMON.ACTIONS' | translate }}</th>
             </tr>
           </thead>
           <tbody>
@@ -39,13 +39,13 @@
               <td>{{case["oe:id"]}}</td>
               <td>{{case["cm:title"]}}</td>
               <td>{{case["cm:modified"] | date: 'yyyy-MM-dd'}}</td>
-              <td><md-button href="#/cases/case" class="md-primary">View</md-button></td>
+              <td><md-button href="#/cases/case" class="md-primary">{{ 'COMMON.VIEW' | translate }}</md-button></td>
             </tr>
           </tbody>
         </table>
       </md-card-content>
       <div class="md-actions">
-        <md-button class="md-primary" ng-click="caseController.createCase($event, 'standard')">Create new case</md-button>
+        <md-button class="md-primary" ng-click="caseController.createCase($event, 'standard')">{{ 'CASE.CREATE_NEW_CASE' | translate }}</md-button>
       </div>
     </md-card>
   </div>
@@ -53,13 +53,13 @@
   <div flex="50" ng-controller="FileController as vm">
     <md-card>
       <md-card-content>
-        <h3>My recent documents</h3>
+        <h3>{{ 'DOCUMENT.MY_RECENT_DOCUMENTS' | translate }}</h3>
         <md-list>
           <md-list-item class="md-2-line" ng-repeat="document in vm.documents">
             <div class="md-list-item-text">
               <!--<img ng-src="{{ file.icon }}">-->
               <h3>{{ document.displayName }}</h3>
-              <p>Modified {{ document.modifiedOn }} by {{ document.modifiedBy }}</p>
+              <p>{{ 'COMMON.MODIFIED' | translate }} {{ document.modifiedOn }} {{ 'COMMON.BY' | translate }} {{ document.modifiedBy }}</p>
             </div>
           </md-list-item>
         </md-list>
