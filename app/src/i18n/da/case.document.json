@@ -1,6 +1,9 @@
 {
 	"document":{
 			"documents": "Dokumenter",
+
+            "CHANGE_STATUS": "Skift status",
+
             "status":{
                 "draft": "Kladde",
                 "final": "Endelig"

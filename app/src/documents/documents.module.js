@@ -9,6 +9,7 @@
     
     function config($translatePartialLoaderProvider){
         $translatePartialLoaderProvider.addPart('case.document');
+        $translatePartialLoaderProvider.addPart('case.document.dialog');
     }
     
 

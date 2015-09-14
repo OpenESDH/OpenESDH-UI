@@ -4,19 +4,23 @@
        .module('openeApp.cases')
        .controller('CaseInfoController', CaseInfoController);
 
-  CaseInfoController.$inject = ['$scope', '$stateParams', '$mdDialog', '$translate', 'caseService'];
+  CaseInfoController.$inject = ['$scope', '$stateParams', '$mdDialog', '$translate', 'caseService', 'notificationUtilsService'];
   
   /**
    * Main CaseInfoController for the Cases module
    * @param $scope
-   * @param cases
+   * @param $stateParams
+   * @param $mdDialog
+   * @param $translate
+   * @param caseService
    * @constructor
    */
-  function CaseInfoController($scope, $stateParams, $mdDialog, $translate, caseService) {
+  function CaseInfoController($scope, $stateParams, $mdDialog, $translate, caseService, notificationUtilsService) {
     var vm = this;
 
     vm.editCase = editCase;
     vm.changeCaseStatus = changeCaseStatus;
+    vm.onTabChange = onTabChange;
 
     loadCaseInfo();
     
@@ -45,7 +49,7 @@
       });
     }
 
-    function changeCaseStatus(ev, status) {
+    function changeCaseStatus(status) {
       function confirmCloseCase() {
         // TODO: Check if there are any unlocked documents in the case and
         // notify the user in the confirmation dialog.
@@ -62,7 +66,10 @@
       var changeCaseStatusImpl = function () {
         caseService.changeCaseStatus($stateParams.caseId, status).then(function (json) {
           loadCaseInfo();
-          // TODO: Display a toast message?
+          // TODO: Documents listing also needs to be reloaded
+          notificationUtilsService.notify($translate.instant("CASEINFO.STATUS_CHANGED_SUCCESS"));
+        }).catch(function (e) {
+          notificationUtilsService.notify(e.message)
         });
       };
 
@@ -86,6 +93,10 @@
       function cancel() {
         $mdDialog.cancel();
       };
+    }
+    
+    function onTabChange(tabName){
+        $scope.$broadcast('tabSelectEvent', { tab: tabName});
     }
     
   };

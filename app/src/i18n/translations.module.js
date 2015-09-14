@@ -33,6 +33,7 @@
            urlTemplate: '/app/src/i18n/{lang}/{part}.json' 
         });
         
+        $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
         $translateProvider
             .registerAvailableLanguageKeys(availableLanguages.keys, availableLanguages.localesKeys)
             .determinePreferredLanguage();

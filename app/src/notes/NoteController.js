@@ -22,8 +22,8 @@
             
             loadNotes(1);
             
-            casePartiesService.getCaseParties(caseId).then(function(response){
-                caseParties = response.parties;
+            casePartiesService.getCaseParties(caseId).then(function(parties){
+                caseParties = parties;
             });
             
         }

@@ -3,6 +3,7 @@
 
     angular
         .module('openeApp', [
+            'ngSanitize',
             'ngMaterial',
             'ui.router',
             'ngResource',
@@ -18,7 +19,8 @@
             'openeApp.notes',
             'openeApp.contacts',
             'openeApp.administration',
-            'openeApp.office'
+            'openeApp.office',
+            'openeApp.parties'
         ])
         .constant('USER_ROLES', {
             admin: 'admin',
@@ -127,18 +129,6 @@
             },
             data: {
                 authorizedRoles: []
-            }
-        }).state('files', {
-            parent: 'site',
-            url: '/files',
-            views: {
-                'content@': {
-                    templateUrl : '/app/src/files/view/files.html',
-                    controller : 'FileController'
-                }
-            },
-            data: {
-                authorizedRoles: [USER_ROLES.user]
             }
         }).state('tasks', {
             parent: 'site',

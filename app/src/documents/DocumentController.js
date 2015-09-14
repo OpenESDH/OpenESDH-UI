@@ -10,13 +10,13 @@
         '$mdDialog',
         'caseDocumentsService',
         'documentPreviewService',
+        'caseDocumentFileDialogService',
         'casePartiesService'
     ];
     
-    function DocumentController($scope, $stateParams, $mdDialog, caseDocumentsService, documentPreviewService, casePartiesService) {
-    
+    function DocumentController($scope, $stateParams, $mdDialog, caseDocumentsService, documentPreviewService, caseDocumentFileDialogService, casePartiesService) {
+
         var caseId = $stateParams.caseId;
-        var caseDocsFolderNodeRef = '';
         var vm = this;
         vm.caseId = caseId;
         vm.pageSize = 2;
@@ -30,9 +30,6 @@
         activate();
         
         function activate(){
-            caseDocumentsService.getDocumentsFolderNodeRef(caseId).then(function(res){
-                caseDocsFolderNodeRef = res.caseDocsFolderNodeRef;
-            });
             loadDocuments(1);
         }
         
@@ -50,35 +47,10 @@
             });
         }
         
-        function uploadDocument(ev){
-            $mdDialog.show({
-                controller: DialogController,
-                templateUrl: 'app/src/documents/view/documentUploadDialog.html',
-                parent: angular.element(document.body),
-                targetEvent: ev,
-                clickOutsideToClose:true
-            })
-            .then(function(fileToUpload) {
-                if(!fileToUpload){
-                    return;
-                }
-                caseDocumentsService.uploadCaseDocument(fileToUpload, caseDocsFolderNodeRef).then(function(result){
-                    loadDocuments(1);
-                });
-            }, function() {
-                //on cancel dialog
+        function uploadDocument(){
+            caseDocumentFileDialogService.uploadCaseDocument(caseId).then(function(result){
+                loadDocuments(1); 
             });
-        }
-        
-        function DialogController($scope, $mdDialog) {
-            
-            $scope.cancel = function() {
-              $mdDialog.cancel();
-            };
-            
-            $scope.upload = function(){
-                $mdDialog.hide($scope.fileToUpload);
-            };
         }
         
         function previewDocument(nodeRef){
