@@ -17,9 +17,11 @@
         "LOADED": "Ladet",
         "TOTAL_ITEMS": "Ialt",
         "PAGES": "Sider",
+        "NO": "Nr",
         "TYPE": "Type",
         "CATEGORY": "Kategori",
         "STATE": "Status",
+        "OWNER": "Ejer",
         "ACTION": "Handling",
         "VIEW_DETAILS": "Vis detaljer",
         "PREVIEW": "Preview",
@@ -41,11 +43,11 @@
         "REMOVE": "Fjern",
         "ADD_NEW": "Tilføj ny",
         "ADD": "Tilføj",
-        "LAST_MODIFIED": "Senest ændret",
         "CLOSE": "Luk"
     },
     "CASE": {
         "CONFIRM_CLOSE_CASE": "Vil du lukke denne sag?",
+        "STATUS_CHANGED_SUCCESS": "Status er ændret",
         "STATUS": [
             ""
         ],
@@ -76,10 +78,10 @@
         "UNASSIGNED_CASES": "Utildelte sager",
         "CASE": "Sag",
         "ASSIGN_TO": "Tildel til",
-        "VIEW_CASE_DETAILS": "Vis detaljer",
-        "VIEW_DETAILS": "Vis detaljer"
+        "VIEW_CASE_DETAILS": "Vis detaljer"
     },
     "DOCUMENT": {
+        "STATUS_CHANGED_SUCCESS": "Status er ændret",
         "CATEGORY": [
             ""
         ],
@@ -93,14 +95,11 @@
             ""
         ],
         "DOCUMENTS": "Dokumenter",
-        "NO": "Nr",
-        "OWNER": "Ejer",
         "CREATE_NEW_DOCUMENT": "Opret nyt dokument",
         "UPLOAD_NEW_DOCUMENTS": "Upload nyt dokument",
         "EMAIL_DOCUMENTS": "Email dokument",
         "MY_RECENT_DOCUMENTS": "Senest redigérede dokumenter",
-        "DOCUMENT": "Dokument",
-        "TITLE": "Titel",
+        "CHANGE_STATUS": "Skift status",
         "VERSION": "Version",
         "VERSION_ADDED": "Version tilføjet",
         "DOCUMENT_NAME": "Dokumentnavn",
@@ -110,7 +109,6 @@
         "OPEN_PREVIEW": "Open preview",
         "EDIT_PROPERTIES": "Redigér egenskaber",
         "ATTACHMENTS": {
-            "TITLE": "Titel",
             "CURRENT_VERSION": "Nuværende version",
             "EDIT_ATTACHMENT": "Redigér vedhæftning",
             "UPLOAD_NEW_ATTACHMENT": "Upload ny vedhæftning"
@@ -233,6 +231,9 @@
         "MY_TASKS": "Mine opgaver",
         "CREATE_NEW_TASK": "Start workflow",
         "TASKS": "Opgaver"
+    },
+    "{{ 'DOCUMENT": {
+        "CHANGE_STATUS' | translate }}": ""
     },
     "SEARCH": {
         "SEARCH": "Søg"

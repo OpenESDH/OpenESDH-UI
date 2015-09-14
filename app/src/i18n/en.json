@@ -17,9 +17,11 @@
         "LOADED": "Loaded",
         "TOTAL_ITEMS": "Total items",
         "PAGES": "Pages",
+        "NO": "No",
         "TYPE": "Type",
         "CATEGORY": "Category",
         "STATE": "State",
+        "OWNER": "Owner",
         "ACTION": "Action",
         "VIEW_DETAILS": "View details",
         "PREVIEW": "Preview",
@@ -41,11 +43,11 @@
         "REMOVE": "Remove",
         "ADD_NEW": "Add new",
         "ADD": "Add",
-        "LAST_MODIFIED": "Last modified",
         "CLOSE": "Close"
     },
     "CASE": {
         "CONFIRM_CLOSE_CASE": "Do you want to close this case?",
+        "STATUS_CHANGED_SUCCESS": "Status has been changed successfully",
         "STATUS": [
             ""
         ],
@@ -76,10 +78,10 @@
         "UNASSIGNED_CASES": "Unassigned cases",
         "CASE": "Case",
         "ASSIGN_TO": "Assign to",
-        "VIEW_CASE_DETAILS": "View case details",
-        "VIEW_DETAILS": "View details"
+        "VIEW_CASE_DETAILS": "View case details"
     },
     "DOCUMENT": {
+        "STATUS_CHANGED_SUCCESS": "Status has been changed successfully",
         "CATEGORY": [
             ""
         ],
@@ -93,14 +95,11 @@
             ""
         ],
         "DOCUMENTS": "Documents",
-        "NO": "No",
-        "OWNER": "Owner",
         "CREATE_NEW_DOCUMENT": "Create new document",
         "UPLOAD_NEW_DOCUMENTS": "Upload new document",
         "EMAIL_DOCUMENTS": "Email documents",
         "MY_RECENT_DOCUMENTS": "My recent documents",
-        "DOCUMENT": "Document",
-        "TITLE": "Title",
+        "CHANGE_STATUS": "Change status",
         "VERSION": "Version",
         "VERSION_ADDED": "Version added",
         "DOCUMENT_NAME": "Document name",
@@ -110,7 +109,6 @@
         "OPEN_PREVIEW": "Open prevew",
         "EDIT_PROPERTIES": "Edit properties",
         "ATTACHMENTS": {
-            "TITLE": "Title",
             "CURRENT_VERSION": "Current version",
             "EDIT_ATTACHMENT": "Edit attachment",
             "UPLOAD_NEW_ATTACHMENT": "Upload new attachment"
@@ -233,6 +231,9 @@
         "MY_TASKS": "My tasks",
         "CREATE_NEW_TASK": "Start workflow",
         "TASKS": "Tasks"
+    },
+    "{{ 'DOCUMENT": {
+        "CHANGE_STATUS' | translate }}": ""
     },
     "SEARCH": {
         "SEARCH": "Search"
