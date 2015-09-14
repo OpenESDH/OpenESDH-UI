@@ -120,7 +120,8 @@ module.exports = function(grunt) {
         },
         
         /**
-        * i18nextract build json lang files
+        * i18nextract build json lang files. Files are stored as draft_[lang].json.
+        * You should manually compare with and update [lang].json which is used for actual translation.
         */
         i18nextract: {
           default_options: {
