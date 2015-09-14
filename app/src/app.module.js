@@ -22,12 +22,12 @@
             'openeApp.office',
             'openeApp.parties'
         ])
-        .config(config)
         .constant('USER_ROLES', {
             admin: 'admin',
             user: 'user',
             guest: 'guest'
         })
+        .config(config)
         .run(function($rootScope, $state, $stateParams, authService) {
             $rootScope.$on('$stateChangeStart', function(event, next, params) {
                 $rootScope.toState = next;
