@@ -20,8 +20,8 @@
         var userInfo;
 
         function init() {
-            if ($window.sessionStorage['userInfo']) {
-                userInfo = JSON.parse($window.sessionStorage['userInfo']);
+            if ($window.sessionStorage.getItem('userInfo')) {
+                userInfo = angular.fromJson($window.sessionStorage.getItem('userInfo'));
             }
         }
 
@@ -31,7 +31,7 @@
 
         function setUserInfo(info) {
             userInfo = info;
-            $window.sessionStorage['userInfo'] = JSON.stringify(userInfo);
+            $window.sessionStorage.setItem('userInfo', angular.toJson(userInfo));
         }
     }
 })();
