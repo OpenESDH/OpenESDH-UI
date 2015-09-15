@@ -112,7 +112,7 @@
                 loadCaseDocumentInfo();
                 notificationUtilsService.notify($translate.instant("DOCUMENT.STATUS_CHANGED_SUCCESS"));
             }, function (response) {
-                notificationUtilsService.notify(response.data.message)
+                notificationUtilsService.alert(response.data.message)
             });
         }
     }
