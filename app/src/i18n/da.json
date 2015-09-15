@@ -102,7 +102,13 @@
         },
         "STATE": {
             "draft": "Kladde",
-            "final": "Endelig"  
+            "final": "Endelig",
+            "received": "Modtaget",
+            "distributed": "Distribueret",
+            "under-review": "Under gennemlæsning",
+            "published": "Publiseret",
+            "finalised": "Færdiggjort",
+            "submitted": "Indmeldt"
         },
         "STATUS": {
             "draft": "Kladde",

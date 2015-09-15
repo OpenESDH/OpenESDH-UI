@@ -1,19 +1,18 @@
 <md-toolbar id="global-toolbar">
-  <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+  <div class="md-toolbar-tools" layout="row">
 
-    <div flex>
+    <div flex layout="row" layout-align="start center">
       <a class="md-button" ui-sref="dashboard">{{ 'COMMON.HOME' | translate }}</a>
       <a class="md-button" ui-sref="cases">{{ 'CASE.CASES' | translate }}</a>
       <a class="md-button" ui-sref="tasks">{{ 'TASK.TASKS' | translate }}</a>
     </div>
 
-    
-    <md-input-container flex id="global-search">
+    <md-input-container flex="25" id="global-search">
       <label>{{ 'SEARCH.SEARCH' | translate }}</label>
       <input type="text">
     </md-input-container>
 
-    <md-menu ng-controller="AuthController as vm" flex style="text-align: right;">
+    <md-menu ng-controller="AuthController as vm" flex="25" layout="row" layout-align="end center">
       <md-button aria-label="{{ 'MENU.OPEN_MENU' | translate }}" ng-click="$mdOpenMenu($event)">
         {{vm.getUserInfo().user.firstName}} {{vm.getUserInfo().user.lastName}}
       </md-button>

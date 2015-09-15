@@ -42,22 +42,22 @@
         
         <div layout="row" layout-wrap>
           
-          <div flex="50">
+          <div flex="25">
             <md-card>
               <md-card-content>
-                <h3>{{ 'COMMON.INFORMATION' | translate }}</h3>
-                <dl>
-                  <dt>{{ 'COMMON.ID' | translate }}</dt><dd>{{ case["oe:id"].value }}</dd>
-                  <dt>{{ 'COMMON.TITLE' | translate }}</dt><dd>{{ case["cm:title"].value }}</dd>
-                  <dt>{{ 'COMMON.STATUS' | translate }}</dt><dd>{{ case["oe:status"].value | caseStatus }}</dd>
-                  <dt>{{ 'COMMON.CREATEDBY' | translate }}</dt><dd>{{ case["cm:creator"].fullname }}</dd>
-                  <dt>{{ 'COMMON.CREATED' | translate }}</dt><dd>{{ case["cm:created"].value | date: 'yyyy-MM-dd'}}</dd>
-                  <dt>{{ 'CASE.CASE_OWNER' | translate }}</dt><dd>{{ case["base:owners"].fullname }}</dd>
-                  <dt>{{ 'COMMON.MODIFIED' | translate }}</dt><dd>{{ case["cm:modified"].value  | date: 'yyyy-MM-dd'}}</dd>
-                  <dt>{{ 'COMMON.DESCRIPTION' | translate }}</dt><dd>{{ case["cm:description"].value }}</dd>
+                <h3 class="md-title">{{ 'COMMON.INFORMATION' | translate }}</h3>
+                <dl layout="row" layout-wrap>
+                  <dt flex="25">{{ 'COMMON.ID' | translate }}</dt><dd flex="75">{{ case["oe:id"].value }}</dd>
+                  <dt flex="25">{{ 'COMMON.TITLE' | translate }}</dt><dd flex="75">{{ case["cm:title"].value }}</dd>
+                  <dt flex="25">{{ 'COMMON.STATUS' | translate }}</dt><dd flex="75">{{ case["oe:status"].value | caseStatus }}</dd>
+                  <dt flex="25">{{ 'COMMON.CREATEDBY' | translate }}</dt><dd flex="75">{{ case["cm:creator"].fullname }}</dd>
+                  <dt flex="25">{{ 'COMMON.CREATED' | translate }}</dt><dd flex="75">{{ case["cm:created"].value | date: 'yyyy-MM-dd'}}</dd>
+                  <dt flex="25">{{ 'CASE.CASE_OWNER' | translate }}</dt><dd flex="75">{{ case["base:owners"].fullname }}</dd>
+                  <dt flex="25">{{ 'COMMON.MODIFIED' | translate }}</dt><dd flex="75">{{ case["cm:modified"].value  | date: 'yyyy-MM-dd'}}</dd>
+                  <dt flex="25">{{ 'COMMON.DESCRIPTION' | translate }}</dt><dd flex="75">{{ case["cm:description"].value }}</dd>
                 </dl>
               </md-card-content>
-              <div class="md-actions" layout="row">
+              <div class="md-actions" layout="row" layout-wrap>
                 <md-button class="md-primary" ng-click="vm.editCase($event)"
                            ng-disabled="caseIsLocked">{{ 'CASE.EDIT_INFORMATION' | translate }}</md-button>
                 <md-button class="md-primary" ng-disabled="true">{{ 'CASE.PRINT_CASE' | translate }}</md-button>
@@ -66,34 +66,7 @@
             </md-card>
           </div>
           
-          <div flex="50">
-            <md-card ng-controller="NoteController as caseNotes">
-              <md-card-content>
-                <h3>{{ 'NOTE.NOTES' | translate }}</h3>
-                <md-list>
-                  <md-list-item ng-repeat="note in caseNotes.notes">
-                    <div class="md-list-item-text">
-                      <h4>{{ note.headline }}</h4>
-                      <p>{{ note.content }}</p>
-                      <p style="font-size: 0.8em; color: #999;">
-                        {{ 'COMMON.CREATED' | translate }} {{ note.created | date: 'yyyy-MM-dd' }} {{ 'COMMON.BY' | translate }} {{ note.authorInfo.firstName + ' ' + note.authorInfo.lastName }}<br>
-                        {{ 'NOTE.RELATED' | translate }}: <span style="margin-right: 0.5em;" ng-repeat="relation in note.concernedPartiesInfo">{{ relation.name }}</span>
-                      </p>
-                    </div>
-                  </md-list-item>                
-                </md-list>
-                  {{ 'COMMON.LOADED' | translate }}: {{caseNotes.contentRange.startIndex}}-{{caseNotes.contentRange.endIndex}} {{ 'COMMON.TOTAL_ITEMS' | translate }}: {{caseNotes.contentRange.totalItems}}
-                  {{ 'COMMON.PAGES' | translate }}: <span style="margin-right: 10px;" ng-repeat="page in caseNotes.pages"><button ng-click="caseNotes.loadNotes(page)">{{page}}</button></span>
-              </md-card-content>
-              <div class="md-actions" layout="row">
-                <md-button class="md-primary" ng-click="caseNotes.newNote()"
-                           ng-disabled="caseIsLocked">{{ 'NOTE.NEW_NOTE' | translate }}</md-button>
-                <md-button class="md-primary" ng-disabled="true">{{ 'NOTE.PRINT_ALL_NOTES' | translate }}</md-button>
-              </div>
-            </md-card>
-          </div>
-          
-          <div flex="100">
+          <div flex="75">
             <md-card ng-controller="DocumentController as docCtrl">
               <md-card-content>
                 <h3>{{ 'DOCUMENT.DOCUMENTS' | translate }}</h3>
@@ -148,6 +121,38 @@
           
         </div>
         
+      </md-tab-body>
+    </md-tab>
+    
+    <md-tab>
+      <md-tab-label>
+        <span>{{ 'NOTE.NOTES' | translate }}</span>
+      </md-tab-label>
+      <md-tab-body layout="column">
+        <md-card ng-controller="NoteController as caseNotes">
+          <md-card-content>
+            <h3>{{ 'NOTE.NOTES' | translate }}</h3>
+            <md-list>
+              <md-list-item ng-repeat="note in caseNotes.notes">
+                <div class="md-list-item-text">
+                  <h4>{{ note.headline }}</h4>
+                  <p>{{ note.content }}</p>
+                  <p style="font-size: 0.8em; color: #999;">
+                    {{ 'COMMON.CREATED' | translate }} {{ note.created | date: 'yyyy-MM-dd' }} {{ 'COMMON.BY' | translate }} {{ note.authorInfo.firstName + ' ' + note.authorInfo.lastName }}<br>
+                    {{ 'NOTE.RELATED' | translate }}: <span style="margin-right: 0.5em;" ng-repeat="relation in note.concernedPartiesInfo">{{ relation.name }}</span>
+                  </p>
+                </div>
+              </md-list-item>                
+            </md-list>
+              {{ 'COMMON.SHOWING' | translate }} {{caseNotes.contentRange.startIndex}}-{{caseNotes.contentRange.endIndex}} {{ 'COMMON.OF' | translate }} {{caseNotes.contentRange.totalItems}}<br>
+              {{ 'COMMON.PAGES' | translate }}: <span style="margin-right: 10px;" ng-repeat="page in caseNotes.pages"><button ng-click="caseNotes.loadNotes(page)">{{page}}</button></span>
+          </md-card-content>
+          <div class="md-actions" layout="row">
+            <md-button class="md-primary" ng-click="caseNotes.newNote()"
+                       ng-disabled="caseIsLocked">{{ 'NOTE.NEW_NOTE' | translate }}</md-button>
+            <md-button class="md-primary" ng-disabled="true">{{ 'NOTE.PRINT_ALL_NOTES' | translate }}</md-button>
+          </div>
+        </md-card>
       </md-tab-body>
     </md-tab>
     

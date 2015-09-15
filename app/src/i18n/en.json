@@ -102,7 +102,13 @@
         },
         "STATE": {
             "draft": "Draft",
-            "final": "Final"  
+            "final": "Final",
+            "received": "Received",
+            "distributed": "Distributed",
+            "under-review": "Under review",
+            "published": "Published",
+            "finalised": "Finalised",
+            "submitted": "Submitted"
         },
         "STATUS": {
             "draft": "Draft",
@@ -215,9 +221,6 @@
         "LOGIN": "Login",
         "SIGN_ME_IN_AUTOMATICALLY": "Sign me in automatically"
     },
-    "{{ 'LOGIN": {
-        "SIGN_ME_IN_AUTOMATICALLY' | translate }}": ""
-    },
     "NOTE": {
         "NOTES": "Notes",
         "RELATED": "Related",
@@ -245,17 +248,10 @@
         "OLD_ROLE": "Old role",
         "TO_ROLE": "New role"
     },
-    "{{ 'CASE": {
-        "CHANGE_STATUS' | translate }}": "",
-        "CREATE_NEW_CASE' | translate }}": ""
-    },
     "TASK": {
         "MY_TASKS": "My tasks",
         "CREATE_NEW_TASK": "Start workflow",
         "TASKS": "Tasks"
-    },
-    "{{ 'DOCUMENT": {
-        "CHANGE_STATUS' | translate }}": ""
     },
     "SEARCH": {
         "SEARCH": "Search"
@@ -264,19 +260,6 @@
         "OPEN_MENU": "Open menu",
         "VIEW_PROFILE": "View profile",
         "LOGOUT": "Logout"
-    },
-    "{{vm": {
-        "getUserInfo()": {
-            "user": {
-                "firstName}} {{vm": {
-                    "getUserInfo()": {
-                        "user": {
-                            "lastName}}": ""
-                        }
-                    }
-                }
-            }
-        }
     },
     "OFFICE": {
         "SAVE_EMAIL_IN_OPENESDH": "SAVE E-mail in OpenESDH"
