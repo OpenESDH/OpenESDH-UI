@@ -1,0 +1,37 @@
+<md-dialog aria-label="Case members change dialog">
+  <form name="form">
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">
+        <h2>{{ 'MEMBER.CHANGE_MEMBER_ROLE' | translate }}</h2>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;min-height:300px;">
+
+      <md-input-container>
+        <label>{{ 'COMMON.NAME' | translate }}</label>
+        <input type="text" ng-model="cmcChange.member.displayName" ng-readonly="true">
+      </md-input-container>
+      
+      <md-input-container>
+        <label>{{ 'MEMBER.OLD_ROLE' | translate }}</label>
+        <input type="text" ng-model="cmcChange.member.role" ng-readonly="true">
+      </md-input-container>
+      
+      <md-input-container>
+        <label>{{ 'MEMBER.TO_ROLE' | translate }}</label>
+        <md-select ng-model="cmcChange.newRole" md-on-open="cmcChange.loadRoles()" required>
+          <md-option ng-value="role" ng-repeat="role in cmcChange.roles">{{role}}</md-option>
+        </md-select>
+      </md-input-container>
+
+    </md-dialog-content>
+    <div class="md-actions" layout="row">
+      <md-button class="md-primary" ng-click="cmcChange.save()" ng-disabled="form.$invalid">
+        {{ 'MEMBER.CHANGE' | translate }}
+      </md-button>
+      <md-button ng-click="cmcChange.cancel()">
+        {{ 'COMMON.CANCEL' | translate }}
+      </md-button>
+    </div>
+  </form>
+</md-dialog>

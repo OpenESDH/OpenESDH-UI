@@ -12,6 +12,8 @@
             'isteven-multi-select',
             'openeApp.translations',
             'openeApp.cases',
+            'openeApp.cases.members',
+            'openeApp.cases.parties',
             'openeApp.dashboard',
             'openeApp.files',
             'openeApp.tasks',
@@ -19,8 +21,7 @@
             'openeApp.notes',
             'openeApp.contacts',
             'openeApp.administration',
-            'openeApp.office',
-            'openeApp.parties'
+            'openeApp.office'
         ])
         .constant('USER_ROLES', {
             admin: 'admin',

@@ -156,22 +156,16 @@
         <span>{{ 'MEMBER.MEMBERS' | translate }}</span>
       </md-tab-label>
       <md-tab-body layout="column">
-        <md-card>
-          <md-card-content>
-            <h3>{{ 'MEMBER.MEMBERS' | translate }}</h3>
-          </md-card-content>
-          <div class="md-actions">
-          </div>
-        </md-card>
+        <div ng-include="'app/src/case_members/view/caseMembers.html'"></div>
       </md-tab-body>
     </md-tab>
     
     <md-tab md-on-select="vm.onTabChange('parties')">
       <md-tab-label>
-        <span>{{ 'PARTY.TITLE'| translate }}</span>
+        <span>{{ 'PARTY.PARTIES'| translate }}</span>
       </md-tab-label>
-        <md-tab-body layout="column">
-            <div ng-include="'app/src/parties/view/caseParties.html'"></div>
+      <md-tab-body layout="column">
+        <div ng-include="'app/src/parties/view/caseParties.html'"></div>
       </md-tab-body>
     </md-tab>
       

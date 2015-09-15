@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-            .module('openeApp.parties')
+            .module('openeApp.cases.parties')
             .factory('partyPermittedRolesService', PartyPermittedRolesService);
 
     PartyPermittedRolesService.$inject = ['$http', '$q'];
