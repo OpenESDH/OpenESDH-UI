@@ -60,7 +60,9 @@
         }
 
         function error(response) {
-            vm.status = 'Error: ' + response;
+            vm.status = 'Error: ' + response.data && response.data.text
+                    ? response.data.text
+                    : response.data;
         }
 
         function showNewDialog(event) {
@@ -125,7 +127,7 @@
 
             function loadAuthorities() {
                 return userService.getAuthorities().then(function(response) {
-                    self.authorities =  response.map(function(authority) {
+                    self.authorities = response.map(function(authority) {
                         authority._lowername = angular.lowercase(authority.name);
                         return authority;
                     });
