@@ -80,15 +80,29 @@
             vm.documents = docs;
             vm.emailDocuments = emailDocuments;
             vm.cancel = cancel;
+            vm.querySearch = querySearch;
+            vm.filterSelected = true;
 
             activate()
 
             function activate() {
                 casePartiesService.getCaseParties(caseId).then(function(response) {
                     vm.parties = response;
+                    vm.to = [];
                 })
             }
 
+            function querySearch(query) {
+                var results = query ? vm.parties.filter(createFilterFor(query)) : [];
+                return results;
+            }
+
+            function createFilterFor(query) {
+                var lowercaseQuery = angular.lowercase(query);
+                return function filterFn(party) {
+                    return (party.displayName.toLowerCase().indexOf(lowercaseQuery) != -1);
+                };
+            }
             function emailDocuments() {
                 // Send the email
                 $mdDialog.hide();

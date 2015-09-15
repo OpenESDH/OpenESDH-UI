@@ -8,9 +8,8 @@
         <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;">
             <md-input-container>
                 <label>To</label>
-                <md-select ng-model="vm.to" required>
-                    <md-option ng-value="party.displayName" ng-repeat="party in vm.parties">{{ party.displayName }}</md-option>
-                </md-select>
+                <!--<input type="text" ng-model="vm.to">-->
+                <md-contact-chips ng-model="vm.to" md-contacts="vm.querySearch($query)" md-contact-name="displayName" md-contact-email="contactId" filter-selected="vm.filterSelected"></md-contact-chips>
             </md-input-container>
             <md-input-container>
                 <label>Cc</label>
