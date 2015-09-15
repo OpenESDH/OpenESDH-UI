@@ -12,9 +12,9 @@
       <input type="text">
     </md-input-container>
 
-    <md-menu ng-controller="AuthController as vm" flex="25" layout="row" layout-align="end center">
-      <md-button aria-label="{{ 'MENU.OPEN_MENU' | translate }}" ng-click="$mdOpenMenu($event)">
-        {{vm.getUserInfo().user.firstName}} {{vm.getUserInfo().user.lastName}}
+    <md-menu ng-controller="AuthController as vm" flex="25" layout="row" layout-align="end center" md-position-mode="target-right target">
+      <md-button aria-label="{{ 'MENU.OPEN_MENU' | translate }}" ng-click="$mdOpenMenu($event)" style="text-transform: capitalize;">
+        {{ vm.getUserInfo().user.firstName }} <span hide show-gt-md>{{ vm.getUserInfo().user.lastName }}</span> <i class="material-icons" style="vertical-align: middle;">more_vert</i>
       </md-button>
       <md-menu-content width="4">
         <md-menu-item>
