@@ -14,9 +14,10 @@
 
     httpTicketInterceptor.$inject = ['sessionService'];
 
-    function httpTicketInterceptor(sessionService) {
+    function httpTicketInterceptor($rootScope, sessionService) {
         var service = {
-            request: request
+            request: request,
+            responseError: responseError
         };
         return service;
 
@@ -27,11 +28,20 @@
             }
             return config;
         }
+        function responseError(response) {
+            console.log('response interceptor', response);
+            if (response.status === 401 || response.status === 403|| response.status === 404) {
+                sessionService.setUserInfo(null);
+                $rootScope.authenticatedUser =null;
+                console.log('In response interceptor: ', response);
+            }
+            return response;
+        }
     }
 
-    authService.$inject = ['$http', '$window', '$state', 'sessionService', 'userService'];
+    authService.$inject = ['$http', 'sessionService', 'userService'];
 
-    function authService($http, $window, $state, sessionService, userService) {
+    function authService($http, sessionService, userService) {
         var userInfo = {};
         var service = {
             login: login,
@@ -39,12 +49,8 @@
             loggedin: loggedin,
             isAuthenticated: isAuthenticated,
             isAuthorized: isAuthorized,
-            getUserInfo: getUserInfo,
-            revalidateTicket: revalidateTicket
+            getUserInfo: getUserInfo
         };
-
-        // Revalidate the ticket stored in the session on page load
-        angular.element($window).bind('load', revalidateTicket);
 
         return service;
 
@@ -97,24 +103,6 @@
             userInfo.user.capabilities.isAdmin;
 //            return (isAuthenticated() && authorizedRoles.indexOf(sessionService.))
             return true;
-        }
-
-        function revalidateTicket() {
-            // Re-validate the login ticket
-            var userInfo = sessionService.getUserInfo();
-            if (userInfo && 'ticket' in userInfo) {
-                return $http.get("/alfresco/service/api/login/ticket/" + userInfo.ticket).then(function (response) {
-                    if (response.status !== 200) {
-                        // The ticket is expired or not valid for this user,
-                        // Clear the session information
-                        sessionService.setUserInfo(null);
-                        $state.go('login');
-                    }
-                }, function (e) {
-                    sessionService.setUserInfo(null);
-                    $state.go('login');
-                });
-            }
         }
     }
 })();
