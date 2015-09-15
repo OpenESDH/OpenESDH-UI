@@ -1,38 +1,41 @@
-<md-toolbar layout="row" id="global-toolbar">
-      <div class="md-toolbar-tools">
+<md-toolbar id="global-toolbar">
+  <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
 
-        <a class="md-button" ui-sref="dashboard">{{ 'COMMON.HOME' | translate }}</a>
-        <a class="md-button" ui-sref="cases">{{ 'CASE.CASES' | translate }}</a>
-        <a class="md-button" ui-sref="tasks">{{ 'TASK.TASKS' | translate }}</a>
+    <div flex>
+      <a class="md-button" ui-sref="dashboard">{{ 'COMMON.HOME' | translate }}</a>
+      <a class="md-button" ui-sref="cases">{{ 'CASE.CASES' | translate }}</a>
+      <a class="md-button" ui-sref="tasks">{{ 'TASK.TASKS' | translate }}</a>
+    </div>
 
-        <md-input-container>
-          <label>{{ 'SEARCH.SEARCH' | translate }}</label>
-          <input type="text">
-        </md-input-container>
+    
+    <md-input-container flex id="global-search">
+      <label>{{ 'SEARCH.SEARCH' | translate }}</label>
+      <input type="text">
+    </md-input-container>
 
-        <md-menu ng-controller="AuthController as vm">
-          <md-button aria-label="{{ 'MENU.OPEN_MENU' | translate }}" ng-click="$mdOpenMenu($event)">
-            {{vm.getUserInfo().user.firstName}} {{vm.getUserInfo().user.lastName}}
+    <md-menu ng-controller="AuthController as vm" flex style="text-align: right;">
+      <md-button aria-label="{{ 'MENU.OPEN_MENU' | translate }}" ng-click="$mdOpenMenu($event)">
+        {{vm.getUserInfo().user.firstName}} {{vm.getUserInfo().user.lastName}}
+      </md-button>
+      <md-menu-content width="4">
+        <md-menu-item>
+          <md-button ng-disabled="true">
+            {{ 'MENU.VIEW_PROFILE' | translate }}
           </md-button>
-          <md-menu-content width="4">
-            <md-menu-item>
-              <md-button ng-disabled="true">
-                {{ 'MENU.VIEW_PROFILE' | translate }}
-              </md-button>
-            </md-menu-item>
-            <md-menu-item>
-              <md-button ui-sref="administration">
-                {{ 'ADMIN.ADMINISTRATION' | translate }}
-              </md-button>
-            </md-menu-item>
-            <md-menu-divider></md-menu-divider>
-            <md-menu-item>
-              <md-button ng-click="vm.logout()">
-                {{ 'MENU.LOGOUT' | translate }}
-              </md-button>
-            </md-menu-item>
-          </md-menu-content>
-        </md-menu>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ui-sref="administration">
+            {{ 'ADMIN.ADMINISTRATION' | translate }}
+          </md-button>
+        </md-menu-item>
+        <md-menu-divider></md-menu-divider>
+        <md-menu-item>
+          <md-button ng-click="vm.logout()">
+            {{ 'MENU.LOGOUT' | translate }}
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
 
-      </div>
-    </md-toolbar>
+  </div>
+</md-toolbar>

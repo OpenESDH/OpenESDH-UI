@@ -37,8 +37,9 @@ table th {
 }
 
 
-/* Specific style classes */
+/* Specific style classes and IDs */
 
+#global-search input,
 .sub-toolbar {
   background: #fff;
 }
