@@ -1,18 +1,18 @@
 <md-toolbar id="global-toolbar">
   <div class="md-toolbar-tools" layout="row">
 
-    <div flex layout="row" layout-align="start center">
+    <div flex flex-gt-md="40" layout="row" layout-align="start center">
       <a class="md-button" ui-sref="dashboard">{{ 'COMMON.HOME' | translate }}</a>
       <a class="md-button" ui-sref="cases">{{ 'CASE.CASES' | translate }}</a>
       <a class="md-button" ui-sref="tasks">{{ 'TASK.TASKS' | translate }}</a>
     </div>
 
-    <md-input-container flex="25" id="global-search">
-      <label>{{ 'SEARCH.SEARCH' | translate }}</label>
+    <md-input-container id="global-search" flex="25" flex-gt-md>
+      <label><i class="material-icons" style="vertical-align: bottom;">search</i>{{ 'SEARCH.SEARCH' | translate }}</label>
       <input type="text">
-    </md-input-container>
+    </md-input-container>  
 
-    <md-menu ng-controller="AuthController as vm" flex="25" layout="row" layout-align="end center" md-position-mode="target-right target">
+    <md-menu ng-controller="AuthController as vm" flex="25" flex-gt-md="40" layout="row" layout-align="end center" md-position-mode="target-right target">
       <md-button aria-label="{{ 'MENU.OPEN_MENU' | translate }}" ng-click="$mdOpenMenu($event)" style="text-transform: capitalize;">
         {{ vm.getUserInfo().user.firstName }} <span hide show-gt-md>{{ vm.getUserInfo().user.lastName }}</span> <i class="material-icons" style="vertical-align: middle;">more_vert</i>
       </md-button>
