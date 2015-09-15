@@ -69,7 +69,7 @@
           // TODO: Documents listing also needs to be reloaded
           notificationUtilsService.notify($translate.instant("CASE.STATUS_CHANGED_SUCCESS"));
         }, function (response) {
-          notificationUtilsService.notify(response.data.message);
+          notificationUtilsService.alert(response.data.message);
         });
       };
 

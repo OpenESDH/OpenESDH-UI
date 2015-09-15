@@ -5,33 +5,42 @@
         .module('openeApp')
         .factory('notificationUtilsService', notificationUtilsService);
 
-    notificationUtilsService.$inject = ['$mdToast'];
+    notificationUtilsService.$inject = ['$mdToast', '$translate'];
 
-    function notificationUtilsService($mdToast) {
+    function notificationUtilsService($mdToast, $translate) {
         var service = {
-            notify: notify
+            notify: notify,
+            alert: alert
         };
+
+        var defaultToastPosition = "bottom right";
+        var defaultAlertToastPosition = "top right";
+
         return service;
 
         function notify(message, toastPosition) {
             if (typeof toastPosition === 'undefined') {
-                toastPosition = {
-                    bottom: true,
-                    top: false,
-                    left: false,
-                    right: true
-                };
+                toastPosition = defaultToastPosition;
             }
-            var getToastPosition = function () {
-                return Object.keys(toastPosition)
-                    .filter(function(pos) { return toastPosition[pos]; })
-                    .join(' ');
-            };
             $mdToast.show(
                 $mdToast.simple()
                     .content(message)
-                    .position(getToastPosition())
+                    .position(toastPosition)
                     .hideDelay(3000)
+            );
+        }
+
+        function alert(message, toastPosition) {
+            if (typeof toastPosition === 'undefined') {
+                toastPosition = defaultAlertToastPosition;
+            }
+            $mdToast.show(
+                $mdToast.simple()
+                    .content(message)
+                    .action($translate.instant('COMMON.OK'))
+                    .highlightAction(true)
+                    .position(toastPosition)
+                    .hideDelay(0)
             );
         }
     }
