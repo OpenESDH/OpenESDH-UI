@@ -1,11 +1,12 @@
 <app-header></app-header>
 
-<section layout="row" layout-wrap>
+<section layout="row">
   
-  <div flex="50" ng-controller="TaskController">
-    <md-card>
+  <div flex="33">
+    
+    <md-card ng-controller="TaskController">
       <md-card-content>
-        <h3>{{ 'TASK.MY_TASKS' | translate }}</h3>
+        <h2 class="md-title">{{ 'TASK.MY_TASKS' | translate }}</h2>
         <md-list>
           <md-list-item class="md-2-line" ng-repeat="task in tasks">
             <div class="md-list-item-text">
@@ -15,16 +16,18 @@
           </md-list-item>
         </md-list>
       </md-card-content>
-      <div class="md-actions">
+      <div class="md-actions" layout="row">
         <md-button class="md-primary" ng-disabled="true">{{ 'TASK.CREATE_NEW_TASK' | translate }}</md-button>
       </div>
     </md-card>
+    
   </div>
   
-  <div flex="50" ng-controller="CaseController as caseController">
-    <md-card>
+  <div flex="66" layout="column">
+    
+    <md-card ng-controller="CaseController as caseController">
       <md-card-content>
-        <h3>{{ 'CASE.MY_CASES' | translate }}</h3>
+        <h2 class="md-title">{{ 'CASE.MY_CASES' | translate }}</h2>
         <table>
           <thead>
             <tr>
@@ -44,16 +47,14 @@
           </tbody>
         </table>
       </md-card-content>
-      <div class="md-actions">
+      <div class="md-actions" layout="row">
         <md-button class="md-primary" ng-click="caseController.createCase($event, 'standard')">{{ 'CASE.CREATE_NEW_CASE' | translate }}</md-button>
       </div>
     </md-card>
-  </div>
-  
-  <div flex="50" ng-controller="FileController as vm">
-    <md-card>
+    
+    <md-card ng-controller="FileController as vm">
       <md-card-content>
-        <h3>{{ 'DOCUMENT.MY_RECENT_DOCUMENTS' | translate }}</h3>
+        <h2 class="md-title">{{ 'DOCUMENT.MY_RECENT_DOCUMENTS' | translate }}</h2>
         <md-list>
           <md-list-item class="md-2-line" ng-repeat="document in vm.documents">
             <div class="md-list-item-text">
@@ -65,7 +66,9 @@
         </md-list>
       </md-card-content>
     </md-card>
+    
   </div>
+  
 </section>
 
 <app-footer></app-footer>

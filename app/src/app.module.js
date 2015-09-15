@@ -55,8 +55,14 @@
 
     function config($mdThemingProvider, $stateProvider, $urlRouterProvider, USER_ROLES) {
         $mdThemingProvider.theme('default')
-            .primaryPalette('blue')
-            .accentPalette('orange');
+            .primaryPalette('blue', {
+              'default': '600',
+              'hue-1': '400',
+              'hue-2': '800',
+              'hue-3': '900'
+            })
+            .accentPalette('amber')
+            .warnPalette('deep-orange');
 
         $urlRouterProvider.otherwise('/');
 

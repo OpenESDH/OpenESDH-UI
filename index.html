@@ -14,9 +14,9 @@
     <link rel="stylesheet" href="./app/assets/app.css">
   </head>
 
-  <body ng-app="openeApp">
+  <body ng-app="openeApp" layout="column">
  
-    <md-content id="content" ui-view="content" style="background-color:#ddd;"></md-content>
+    <md-content id="content" ui-view="content"></md-content>
 
     
     <!-- All the javascript -->
@@ -121,5 +121,6 @@
 
     <script src="./app/src/admin/admin.module.js"></script>
     <script src="./app/src/admin/AdminController.js"></script>
+    
   </body>
 </html>

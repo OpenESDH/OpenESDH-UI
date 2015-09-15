@@ -4,7 +4,6 @@
         <a class="md-button" ui-sref="dashboard">{{ 'COMMON.HOME' | translate }}</a>
         <a class="md-button" ui-sref="cases">{{ 'CASE.CASES' | translate }}</a>
         <a class="md-button" ui-sref="tasks">{{ 'TASK.TASKS' | translate }}</a>
-        <a class="md-button" ui-sref="administration">{{ 'ADMIN.ADMINISTRATION' | translate }}</a>
 
         <md-input-container>
           <label>{{ 'SEARCH.SEARCH' | translate }}</label>
@@ -19,6 +18,11 @@
             <md-menu-item>
               <md-button ng-disabled="true">
                 {{ 'MENU.VIEW_PROFILE' | translate }}
+              </md-button>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button ui-sref="administration">
+                {{ 'ADMIN.ADMINISTRATION' | translate }}
               </md-button>
             </md-menu-item>
             <md-menu-divider></md-menu-divider>

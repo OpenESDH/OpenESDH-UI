@@ -1,22 +1,24 @@
-<md-card style="max-width: 30em; margin: 1em auto;">
-  <md-card-content>
-    <h1>ESDH {{ 'LOGIN.LOGIN' | translate }}</h1>
-    <form name="form">
-      <md-input-container>
-        <label>{{ 'LOGIN.USER_NAME' | translate }}</label>
-        <input type="text" ng-model="vm.credentials.username" name="username" required autofocus>
-        <div ng-messages="form.username.$error" ng-show="form.username.$dirty">
-          <div ng-message>{{ vm.user.message }}</div>
-        </div>
-      </md-input-container>
-      <md-input-container>
-        <label>{{ 'LOGIN.PASSWORD' | translate }}</label>
-        <input type="password" ng-model="vm.credentials.password" name="password" required>
-      </md-input-container>
-      <md-checkbox aria-label="{{ 'LOGIN.SIGN_ME_IN_AUTOMATICALLY' | translate }}" ng-disabled="true">
-        {{ 'LOGIN.SIGN_ME_IN_AUTOMATICALLY' | translate }}
-      </md-checkbox>
-      <md-button type="submit" class="md-raised" ng-click="vm.login(vm.credentials)" ng-disabled="form.$invalid">{{ 'LOGIN.LOGIN' | translate }}</md-button>
-    </form>
-  </md-card-content>
-</md-card>
+<div layout="row" layout-align="center center" layout-padding>
+  <md-card>
+    <md-card-content>
+      <h1 class="md-headline">ESDH {{ 'LOGIN.LOGIN' | translate }}</h1>
+      <form name="form">
+        <md-input-container>
+          <label>{{ 'LOGIN.USER_NAME' | translate }}</label>
+          <input type="text" ng-model="vm.credentials.username" name="username" required autofocus>
+          <div ng-messages="form.username.$error" ng-show="form.username.$dirty">
+            <div ng-message>{{ vm.user.message }}</div>
+          </div>
+        </md-input-container>
+        <md-input-container>
+          <label>{{ 'LOGIN.PASSWORD' | translate }}</label>
+          <input type="password" ng-model="vm.credentials.password" name="password" required>
+        </md-input-container>
+        <md-checkbox aria-label="{{ 'LOGIN.SIGN_ME_IN_AUTOMATICALLY' | translate }}" ng-disabled="true">
+          {{ 'LOGIN.SIGN_ME_IN_AUTOMATICALLY' | translate }}
+        </md-checkbox>
+        <md-button type="submit" class="md-raised" ng-click="vm.login(vm.credentials)" ng-disabled="form.$invalid">{{ 'LOGIN.LOGIN' | translate }}</md-button>
+      </form>
+    </md-card-content>
+  </md-card>
+</div>

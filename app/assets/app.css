@@ -1,33 +1,15 @@
-body {
+body,
+md-content {
   background-color: #ddd;
 }
 
-.label {
-  background-color: #2196F3;
-  display: inline-block;
-  color: #fff;
-  width: 2em;
-  height: 2em;
-  border-radius: 1em;
-  vertical-align: middle;
-}
-
-.updated {
-  font-weight: bold;
-}
-
-md-menu-item > .md-button.current-choice {
-  font-weight: bold;
+footer {
+  padding: 1em;
+  background-color: rgba(0,0,0,0.15);
 }
 
 md-tabs md-tabs-wrapper {
   background-color: #fff;
-}
-
-.list-unstyled {
-  list-style: none;
-  margin: 0;
-  padding: 0;
 }
 
 dt {
