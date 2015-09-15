@@ -3,7 +3,7 @@
 <md-content layout="column">
   
   <div class="sub-toolbar" layout-padding>
-    <md-button ng-href="#/cases">{{ 'CASE.BACK_TO_CASES' | translate }}</md-button>
+    <md-button ng-href="#/cases"><md-icon md-svg-src="/app/assets/img/icons/ic_arrow_back_black.svg" aria-label="back"></md-icon> {{ 'CASE.CASES' | translate }}</md-button>
     <div layout="row" layout-padding layout-align="space-between end">
       <div>
         <h1 class="md-headline">{{ case["oe:id"].value }} {{ case["cm:title"].value }}
@@ -42,19 +42,19 @@
         
         <div layout="row" layout-wrap>
           
-          <div flex="25">
+          <div flex="100" flex-gt-md="25">
             <md-card>
               <md-card-content>
                 <h3 class="md-title">{{ 'COMMON.INFORMATION' | translate }}</h3>
                 <dl layout="row" layout-wrap>
-                  <dt flex="25">{{ 'COMMON.ID' | translate }}</dt><dd flex="75">{{ case["oe:id"].value }}</dd>
-                  <dt flex="25">{{ 'COMMON.TITLE' | translate }}</dt><dd flex="75">{{ case["cm:title"].value }}</dd>
-                  <dt flex="25">{{ 'COMMON.STATUS' | translate }}</dt><dd flex="75">{{ case["oe:status"].value | caseStatus }}</dd>
-                  <dt flex="25">{{ 'COMMON.CREATEDBY' | translate }}</dt><dd flex="75">{{ case["cm:creator"].fullname }}</dd>
-                  <dt flex="25">{{ 'COMMON.CREATED' | translate }}</dt><dd flex="75">{{ case["cm:created"].value | date: 'yyyy-MM-dd'}}</dd>
-                  <dt flex="25">{{ 'CASE.CASE_OWNER' | translate }}</dt><dd flex="75">{{ case["base:owners"].fullname }}</dd>
-                  <dt flex="25">{{ 'COMMON.MODIFIED' | translate }}</dt><dd flex="75">{{ case["cm:modified"].value  | date: 'yyyy-MM-dd'}}</dd>
-                  <dt flex="25">{{ 'COMMON.DESCRIPTION' | translate }}</dt><dd flex="75">{{ case["cm:description"].value }}</dd>
+                  <dt flex="33">{{ 'COMMON.ID' | translate }}</dt><dd flex="66">{{ case["oe:id"].value }}</dd>
+                  <dt flex="33">{{ 'COMMON.TITLE' | translate }}</dt><dd flex="66">{{ case["cm:title"].value }}</dd>
+                  <dt flex="33">{{ 'COMMON.STATUS' | translate }}</dt><dd flex="66">{{ case["oe:status"].value | caseStatus }}</dd>
+                  <dt flex="33">{{ 'COMMON.CREATEDBY' | translate }}</dt><dd flex="66">{{ case["cm:creator"].fullname }}</dd>
+                  <dt flex="33">{{ 'COMMON.CREATED' | translate }}</dt><dd flex="66">{{ case["cm:created"].value | date: 'yyyy-MM-dd'}}</dd>
+                  <dt flex="33">{{ 'CASE.CASE_OWNER' | translate }}</dt><dd flex="66">{{ case["base:owners"].fullname }}</dd>
+                  <dt flex="33">{{ 'COMMON.MODIFIED' | translate }}</dt><dd flex="66">{{ case["cm:modified"].value  | date: 'yyyy-MM-dd'}}</dd>
+                  <dt flex="33">{{ 'COMMON.DESCRIPTION' | translate }}</dt><dd flex="66">{{ case["cm:description"].value }}</dd>
                 </dl>
               </md-card-content>
               <div class="md-actions" layout="row" layout-wrap>
@@ -66,10 +66,10 @@
             </md-card>
           </div>
           
-          <div flex="75">
+          <div flex="100" flex-gt-md="75">
             <md-card ng-controller="DocumentController as docCtrl">
               <md-card-content>
-                <h3>{{ 'DOCUMENT.DOCUMENTS' | translate }}</h3>
+                <h3 class="md-title">{{ 'DOCUMENT.DOCUMENTS' | translate }}</h3>
                 <table>
                   <thead>
                     <tr>
@@ -88,24 +88,24 @@
                   <tbody>
                     <tr ng-repeat="doc in docCtrl.documents" class="{{ doc.isUpdated ? 'updated' : 'not-updated' }}">
                       <td>{{ doc["cm:name"] }}</td>
-                      <td>{{ doc.docNo }}</td>
-                      <td>{{ doc["oe:status"] | docStatus }}</td>
-                      <td>{{ doc["doc:type"] | docType }}</td>
-                      <td>{{ doc["doc:category"] | docCategory }}</td>
-                      <td>{{ doc["doc:state"] | docState }}</td>
-                      <td>
+                      <td class="muted">{{ doc.docNo }}</td>
+                      <td class="muted">{{ doc["oe:status"] | docStatus }}</td>
+                      <td class="muted">{{ doc["doc:type"] | docType }}</td>
+                      <td class="muted">{{ doc["doc:category"] | docCategory }}</td>
+                      <td class="muted">{{ doc["doc:state"] | docState }}</td>
+                      <td class="muted">
                           <span ng-repeat="owner in doc['doc:owner']">{{owner.fullname}}</span>
                       </td>
-                      <td>{{ doc["cm:created"] | date: 'yyyy-MM-dd' }}</td>
-                      <td>{{ doc["cm:modified"] | date: 'yyyy-MM-dd' }}</td>
-                      <td>
+                      <td class="muted">{{ doc["cm:created"] | date: 'yyyy-MM-dd' }}</td>
+                      <td class="muted">{{ doc["cm:modified"] | date: 'yyyy-MM-dd' }}</td>
+                      <td layout="row">
                           <md-button class="md-primary" href="#/cases/case/{{docCtrl.caseId}}/doc/{{doc.nodeRef | nodeRefUri}}">{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button> 
                           <md-button class="md-primary" ng-click="docCtrl.previewDocument(doc.mainDocNodeRef)">{{ 'COMMON.PREVIEW' | translate }}</md-button>
                       </td>
                     </tr>
                   </tbody>
                 </table>
-                {{ 'COMMON.PAGES' | translate }}: <button ng-repeat="page in docCtrl.pages" ng-click="docCtrl.loadDocuments(page)">{{page}}</button>
+                {{ 'COMMON.PAGES' | translate }}: <md-button ng-repeat="page in docCtrl.pages" ng-click="docCtrl.loadDocuments(page)">{{page}}</md-button>
               </md-card-content>
               <div class="md-actions" layout="row">
                 <md-button class="md-primary" ng-disabled="true">{{ 'DOCUMENT.CREATE_NEW_DOCUMENT' | translate }}</md-button>

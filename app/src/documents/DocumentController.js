@@ -19,7 +19,7 @@
         var caseId = $stateParams.caseId;
         var vm = this;
         vm.caseId = caseId;
-        vm.pageSize = 2;
+        vm.pageSize = 10;
         
         vm.loadDocuments = loadDocuments;
         vm.uploadDocument = uploadDocument;
