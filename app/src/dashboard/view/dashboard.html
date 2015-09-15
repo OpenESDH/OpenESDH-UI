@@ -2,24 +2,6 @@
 
 <section layout="row">
   
-  <div flex="33">
-    
-    <md-card ng-controller="TaskController">
-      <md-card-content>
-        <h2 class="md-title">{{ 'TASK.MY_TASKS' | translate }}</h2>
-        <md-list>
-          <md-list-item class="md-2-line" ng-repeat="task in tasks">
-            <div class="md-list-item-text">
-              <h3>{{task.title}}</h3>
-              <p>{{task.status}}</p>
-            </div>
-          </md-list-item>
-        </md-list>
-      </md-card-content>
-    </md-card>
-    
-  </div>
-  
   <div flex="66" layout="column">
     
     <md-card ng-controller="CaseController as caseController">
@@ -39,7 +21,7 @@
               <td>{{case["oe:id"]}}</td>
               <td>{{case["cm:title"]}}</td>
               <td>{{case["cm:modified"] | date: 'yyyy-MM-dd'}}</td>
-              <td><md-button href="#/cases/case" class="md-primary">{{ 'COMMON.VIEW' | translate }}</md-button></td>
+              <td><md-button href="#/cases/case/{{case['oe:id']}}" class="md-primary">{{ 'COMMON.VIEW' | translate }}</md-button></td>
             </tr>
           </tbody>
         </table>
@@ -58,6 +40,24 @@
               <!--<img ng-src="{{ file.icon }}">-->
               <h3>{{ document.displayName }}</h3>
               <p>{{ 'COMMON.MODIFIED' | translate }} {{ document.modifiedOn }} {{ 'COMMON.BY' | translate }} {{ document.modifiedBy }}</p>
+            </div>
+          </md-list-item>
+        </md-list>
+      </md-card-content>
+    </md-card>
+    
+  </div>
+  
+  <div flex="33">
+    
+    <md-card ng-controller="TaskController">
+      <md-card-content>
+        <h2 class="md-title">{{ 'TASK.MY_TASKS' | translate }}</h2>
+        <md-list>
+          <md-list-item class="md-2-line" ng-repeat="task in tasks">
+            <div class="md-list-item-text">
+              <h3>{{task.title}}</h3>
+              <p>{{task.status}}</p>
             </div>
           </md-list-item>
         </md-list>
