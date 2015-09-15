@@ -35,3 +35,10 @@ table td {
 table th {
   color: #999;
 }
+
+
+/* Specific style classes */
+
+.sub-toolbar {
+  background: #fff;
+}
