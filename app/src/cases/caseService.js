@@ -60,7 +60,8 @@
                 assoc_base_owners_added: caseData.owner,
                 prop_base_startDate: caseData.startDate,
                 prop_base_endDate: caseData.endDate,
-                prop_oe_journalKey: caseData.journalKey
+                prop_oe_journalKey: caseData.journalKey,
+                prop_oe_journalFacet: caseData.journalFacet
             };
             var type = 'simple:case';
             return userService.getHome().then(function (response) {

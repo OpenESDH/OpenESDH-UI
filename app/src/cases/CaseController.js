@@ -71,6 +71,7 @@
             // Data from the case creation form
             $scope.case = {};
             $scope.case.journalKey = [];
+            $scope.case.journalFacet = [];
             vm.cancel = cancel;
             vm.update = update;
 
@@ -82,6 +83,17 @@
                 var caseData = angular.copy(c);
                 console.log(caseData);
                 $mdDialog.cancel();
+
+                if (caseData.journalKey.length > 0) {
+                    caseData.journalKey = caseData.journalKey[0].nodeRef;
+                } else {
+                    delete caseData.journalKey;
+                }
+                if (caseData.journalFacet.length > 0) {
+                    caseData.journalFacet = caseData.journalFacet[0].nodeRef;
+                } else {
+                    delete caseData.journalFacet;
+                }
 
                 // When submitting, do something with the case data
                 caseService.createCase(caseData).then(function (caseId) {
