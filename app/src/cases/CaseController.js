@@ -106,38 +106,6 @@
                 return response;
             });
         }
-
-    /*
-      $scope.myUpdatedCases = countMyUpdatedCases();
-      
-      function countMyUpdatedCases() {
-        var i = 0;
-        for (var c in $scope.cases) {
-          if ($scope.cases[c].isUpdated) {
-            i++;
-          };
-        }
-        return i;
-      };
-      
-      $scope.unassignedCasesNum = countUnassignedCases();
-      
-      function countUnassignedCases() {
-        var i = 0;
-        for (var c in $scope.cases) {
-          if ($scope.cases[c].assignee === '') {
-            i++;
-          };
-        }
-        return i;
-      };
-      
-      $scope.casesNeedAction = countCasesNeedAction();
-      
-      function countCasesNeedAction() {
-        return countUnassignedCases() + countMyUpdatedCases();
-      };
-    */  
   
   };
   

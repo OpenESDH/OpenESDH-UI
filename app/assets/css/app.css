@@ -48,3 +48,10 @@ table th {
 #global-search input {
   border-radius: 0.25em;
 }
+
+
+/* Angular Material override styles */
+
+.md-datepicker-calendar-pane {
+  max-width: 339px;
+}

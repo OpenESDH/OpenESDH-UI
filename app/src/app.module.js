@@ -52,9 +52,9 @@
             });
         });
 
-    config.$inject = ['$mdThemingProvider', '$stateProvider', '$urlRouterProvider', 'USER_ROLES'];
+    config.$inject = ['$mdThemingProvider', '$stateProvider', '$urlRouterProvider', 'USER_ROLES', '$mdIconProvider'];
 
-    function config($mdThemingProvider, $stateProvider, $urlRouterProvider, USER_ROLES) {
+    function config($mdThemingProvider, $stateProvider, $urlRouterProvider, USER_ROLES, $mdIconProvider) {
         $mdThemingProvider.theme('default')
             .primaryPalette('blue', {
               'default': '600',
@@ -64,6 +64,8 @@
             })
             .accentPalette('amber')
             .warnPalette('deep-orange');
+            
+        $mdIconProvider.icon('md-calendar', '/app/assets/img/icons/today.svg');
 
         $urlRouterProvider.otherwise('/');
 

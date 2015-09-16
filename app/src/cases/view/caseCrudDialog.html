@@ -8,32 +8,20 @@
     <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;">
       
       <md-input-container>
-        <label>{{ 'CASE.TITLE' | translate }}</label>
+        <label><span class="md-warn">*</span> {{ 'CASE.TITLE' | translate }}</label>
         <input type="text" ng-model="case.title" required focus-me>
       </md-input-container>
 
       <md-input-container>
-        <label>{{ 'CASE.OWNER' | translate }}</label>
-        <md-select ng-model="case.owner" required ng-controller="CaseController as vm">
-          <md-option ng-value="auth.nodeRef" ng-repeat="auth in vm.authorities">{{ auth.name }}</md-option>
-        </md-select>
-      </md-input-container>
-      <md-input-container>
-        <label>{{ 'CASE.ASSIGNED_TO' | translate }}</label>
-        <md-select ng-model="case.assignedTo" required ng-controller="CaseController as vm">
+        <label><span class="md-warn">*</span> {{ 'CASE.OWNER' | translate }}</label>
+        <md-select ng-model="case.owner" ng-controller="CaseController as vm" required>
           <md-option ng-value="auth.nodeRef" ng-repeat="auth in vm.authorities">{{ auth.name }}</md-option>
         </md-select>
       </md-input-container>
       
-      <md-input-container>
-        <label>{{ 'CASE.START_DATE' | translate }}</label>
-        <input type="date" ng-model="case.startDate">
-      </md-input-container>
-      
-      <md-input-container>
-        <label>{{ 'CASE.END_DATE' | translate }}</label>
-        <input type="date" ng-model="case.endDate">
-      </md-input-container>
+      <md-datepicker ng-model="case.startDate" md-placeholder="{{ 'CASE.START_DATE' | translate }}"></md-datepicker>
+    
+      <md-datepicker ng-model="case.endDate" md-placeholder="{{ 'CASE.END_DATE' | translate }}"></md-datepicker>
       
       <md-input-container>
         <label>{{ 'CASE.DESCRIPTION' | translate }}</label>
