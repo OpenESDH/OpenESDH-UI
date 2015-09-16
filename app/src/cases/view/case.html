@@ -60,6 +60,8 @@
                   <dt flex="33">{{ 'COMMON.CREATED' | translate }}</dt><dd flex="66">{{ case["cm:created"].value | date: 'yyyy-MM-dd'}}</dd>
                   <dt flex="33">{{ 'CASE.CASE_OWNER' | translate }}</dt><dd flex="66">{{ case["base:owners"].fullname }}</dd>
                   <dt flex="33">{{ 'COMMON.MODIFIED' | translate }}</dt><dd flex="66">{{ case["cm:modified"].value  | date: 'yyyy-MM-dd'}}</dd>
+                  <dt flex="33">{{ 'CASE.JOURNAL_KEY' | translate }}</dt><dd flex="66">{{ case["oe:journalKey"].displayValue }}</dd>
+                  <dt flex="33" ng-hide="case['oe:journalFacet'] | isEmpty">{{ 'CASE.JOURNAL_FACET' | translate}}</dt><dd flex="66">{{ case["oe:journalFacet"].displayValue }}</dd>
                   <dt flex="33">{{ 'COMMON.DESCRIPTION' | translate }}</dt><dd flex="66">{{ case["cm:description"].value }}</dd>
                 </dl>
               </md-card-content>
