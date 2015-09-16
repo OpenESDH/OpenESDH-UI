@@ -4,9 +4,9 @@
             .module('openeApp.contacts')
             .controller('OrganizationController', OrganizationController);
 
-    OrganizationController.$inject = ['$scope', '$stateParams', '$mdDialog', 'contactsService'];
+    OrganizationController.$inject = ['$scope', '$stateParams', '$mdDialog', 'contactsService', 'countriesService'];
 
-    function OrganizationController($scope, $stateParams, $mdDialog, contactsService) {
+    function OrganizationController($scope, $stateParams, $mdDialog, contactsService, countriesService) {
         var vm = this;
         vm.doFilter = doFilter;
         vm.showOrganizationEdit = showOrganizationEdit;
@@ -94,6 +94,7 @@
 
         function DialogController($scope, $mdDialog, organization) {
             $scope.organization = organization;
+            $scope.countries = countriesService.getCountries();
 
             $scope.hide = function() {
                 $mdDialog.hide();
@@ -161,6 +162,7 @@
                 };
             }
             $scope.person = person;
+            $scope.countries = countriesService.getCountries();
             $scope.error = null;
             $scope.success = null;
 

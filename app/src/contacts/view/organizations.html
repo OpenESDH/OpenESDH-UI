@@ -25,7 +25,7 @@
                     <td>{{organization.address}}</td>
                     <td>{{organization.postCode}}</td>
                     <td>{{organization.cityName}}</td>
-                    <td>{{organization.countryCode}}</td>
+                    <td>{{organization.countryCode| countryCodeToName}}</td>
                     <td><a class="md-button md-primary" 
                            href="#/admin/organizations/{{organization.storeType}}/{{organization.storeId}}/{{organization.id}}">{{ 'COMMON.VIEW_DETAILS' | translate }}</a></td>
                 </tr>
