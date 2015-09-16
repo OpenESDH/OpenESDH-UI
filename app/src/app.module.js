@@ -14,6 +14,7 @@
             'openeApp.cases',
             'openeApp.cases.members',
             'openeApp.cases.parties',
+            'openeApp.classification',
             'openeApp.dashboard',
             'openeApp.files',
             'openeApp.tasks',
