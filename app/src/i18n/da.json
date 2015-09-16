@@ -31,6 +31,7 @@
         "OF": "af",
         "HISTORY": "Historik",
         "TIME": "Tidspunkt",
+        "NO_MATCHES": "Ingen match",
         "VIEW": "Vis",
         "SAVE": "Gem",
         "SHOW": "Vis",
@@ -56,6 +57,8 @@
         "CHANGE_STATUS": "Skift status",
         "CASE": "Sag",
         "CASE_OWNER": "Sags-ejer",
+        "JOURNAL_KEY": "Journalnøgle",
+        "JOURNAL_FACET": "Journalfacet",
         "EDIT_INFORMATION": "Redigér information",
         "PRINT_CASE": "Print sag",
         "START_WORKFLOW": "Start workflow",
@@ -63,7 +66,6 @@
         "CRUD_CASE": "Opret / redigér sag",
         "TITLE": "Titel",
         "OWNER": "Ejer",
-        "ASSIGNED_TO": "Tildelt til",
         "START_DATE": "Start-dato",
         "END_DATE": "Slut-dato",
         "DESCRIPTION": "Beskrivelse",
@@ -73,10 +75,7 @@
         "ENDDATE": "Slut-dato",
         "CREATE_NEW_CASE": "Opret ny sag",
         "CASETYPE_STANDARD": "Standard sag",
-        "CASETYPE_OTHER": "Anden sagstype",
-        "UNASSIGNED_CASES": "Utildelte sager",
-        "ASSIGN_TO": "Tildel til",
-        "VIEW_CASE_DETAILS": "Vis detaljer"
+        "CASETYPE_OTHER": "Anden sagstype"
     },
     "DOCUMENT": {
         "STATUS_CHANGED_SUCCESS": "Status er ændret",

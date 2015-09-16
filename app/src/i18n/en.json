@@ -31,6 +31,7 @@
         "OF": "of",
         "HISTORY": "History",
         "TIME": "Time",
+        "NO_MATCHES": "No matches",
         "VIEW": "View",
         "SAVE": "Save",
         "SHOW": "Show",
@@ -56,6 +57,8 @@
         "CHANGE_STATUS": "Change status",
         "CASE": "Case",
         "CASE_OWNER": "Case owner",
+        "JOURNAL_KEY": "Journal key",
+        "JOURNAL_FACET": "Journal facet",
         "EDIT_INFORMATION": "Edit information",
         "PRINT_CASE": "Print case",
         "START_WORKFLOW": "Start workflow",
@@ -63,7 +66,6 @@
         "CRUD_CASE": "Create / edit case",
         "TITLE": "Title",
         "OWNER": "Owner",
-        "ASSIGNED_TO": "Assigned to",
         "START_DATE": "Start date",
         "END_DATE": "End date",
         "DESCRIPTION": "Description",
@@ -73,10 +75,7 @@
         "ENDDATE": "End date",
         "CREATE_NEW_CASE": "Create new case",
         "CASETYPE_STANDARD": "Standard case",
-        "CASETYPE_OTHER": "Other type case",
-        "UNASSIGNED_CASES": "Unassigned cases",
-        "ASSIGN_TO": "Assign to",
-        "VIEW_CASE_DETAILS": "View case details"
+        "CASETYPE_OTHER": "Other type case"
     },
     "DOCUMENT": {
         "STATUS_CHANGED_SUCCESS": "Status has been changed successfully",
