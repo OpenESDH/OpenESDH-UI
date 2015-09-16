@@ -263,5 +263,10 @@
     },
     "OFFICE": {
         "SAVE_EMAIL_IN_OPENESDH": "SAVE E-mail in OpenESDH"
+    },
+    "COUNTRY": {
+        "DK" : "Denmark",
+        "LT" : "Lithuania",
+        "US" : "United states"
     }
 }
