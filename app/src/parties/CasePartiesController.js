@@ -1,7 +1,7 @@
 (function() {
 
     angular
-            .module('openeApp.parties')
+            .module('openeApp.cases.parties')
             .controller('CasePartiesController', CasePartiesController);
 
     CasePartiesController.$inject = ['$scope', '$stateParams', '$mdDialog', '$filter',

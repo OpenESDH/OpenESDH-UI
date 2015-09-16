@@ -1,0 +1,48 @@
+<md-dialog aria-label="Case members add dialog">
+  <form name="form">
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">
+        <h2>{{ 'MEMBER.ADD_MEMBERS' | translate }}</h2>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;min-height:300px;">
+
+      <md-input-container>
+        <label>{{ 'MEMBER.ROLE' | translate }}</label>
+        <md-select ng-model="cmcAdd.role" md-on-open="cmcAdd.loadRoles()" required>
+          <md-option ng-value="role" ng-repeat="role in cmcAdd.roles">{{role}}</md-option>
+        </md-select>
+      </md-input-container>
+
+      {{ 'MEMBER.CHOOSE_AUTHORITIES' | translate }}
+      <md-chips ng-model="cmcAdd.selectedAuthorities" md-autocomplete-snap md-require-match="true">
+        <md-autocomplete
+            md-selected-item="cmcAdd.selectedItem"
+            md-search-text="cmcAdd.searchText"
+            md-items="item in cmcAdd.querySearch(cmcAdd.searchText)"
+            md-item-text="item.name"
+            md-no-cache="true"
+            md-icon=""
+            placeholder="{{ 'MEMBER.CHOOSE_AUTHORITIES'| translate }}">
+          <span md-highlight-text="ctrl.searchText">{{item.name}}</span>
+        </md-autocomplete>
+        <md-chip-template>
+          <span>
+            <strong>{{$chip.name}}</strong>
+<!--            <em>({{$chip.email}})</em>-->
+          </span>
+        </md-chip-template>
+      </md-chips>
+
+     
+    </md-dialog-content>
+    <div class="md-actions" layout="row">
+      <md-button class="md-primary" ng-click="cmcAdd.save()" ng-disabled="form.$invalid">
+        {{ 'COMMON.ADD' | translate }}
+      </md-button>
+      <md-button ng-click="cmcAdd.cancel()">
+        {{ 'COMMON.CANCEL' | translate }}
+      </md-button>
+    </div>
+  </form>
+</md-dialog>

@@ -1,0 +1,28 @@
+<md-card ng-controller="CaseMembersController as cmc">
+    <md-card-content>
+        <h3>{{'MEMBER.MEMBERS'| translate}}</h3>
+        <div ng-bind="cmc.status" ng-show="cmc.status"></div>
+        <table>
+            <thead>
+                <tr>
+                    <th>{{'MEMBER.NAME'| translate}}</th>
+                    <th>{{'MEMBER.TYPE'| translate}}</th>
+                    <th>{{'MEMBER.ROLE'| translate}}</th>
+                    <th>{{'COMMON.ACTIONS'| translate }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="member in cmc.members">
+                    <td>{{member.displayName}}</td> 
+                    <td>{{member.authorityType}}</td>
+                    <td>{{member.role}}</td>
+                    <td>
+                        <md-button class="md-primary" ng-click="cmc.showChangeDialog($event, member)">{{'MEMBER.CHANGE'| translate }}</md-button>
+                        <md-button class="md-primary" ng-click="cmc.removeMember(member)">{{'COMMON.REMOVE'| translate }}</md-button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <md-button class="md-primary" ng-click="cmc.showNewDialog($event)">{{ 'COMMON.ADD_NEW' | translate }}</md-button>
+    </md-card-content>
+</md-card>
