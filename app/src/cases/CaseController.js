@@ -69,7 +69,8 @@
             var vm = this;
           
             // Data from the case creation form
-            vm.caseData = {};
+            $scope.case = {};
+            $scope.case.journalKey = [];
             vm.cancel = cancel;
             vm.update = update;
 
@@ -78,16 +79,16 @@
                 $mdDialog.cancel();
             }
             function update(c) {
-                vm.caseData = angular.copy(c);
-                console.log(vm.caseData);
+                var caseData = angular.copy(c);
+                console.log(caseData);
                 $mdDialog.cancel();
 
                 // When submitting, do something with the case data
-                caseService.createCase(vm.caseData).then(function (caseId) {
+                caseService.createCase(caseData).then(function (caseId) {
                     //cases/case/20150908-865
                     $location.path("/cases/case/" + caseId);
                     // When the form is submitted, show a notification:
-                    notificationUtilsService.notify('Case ' + vm.caseData.title + ' created');
+                    notificationUtilsService.notify('Case ' + caseData.title + ' created');
                 }, function (response) {
                     notificationUtilsService.alert('Error creating case: ' + response.data.message);
                 });
