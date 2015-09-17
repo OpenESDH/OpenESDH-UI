@@ -40,7 +40,10 @@
     <div class="md-actions">
       
       <md-menu>
-        <md-button class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="{{ 'CASE.CREATE_NEW_CASE' | translate }}">
+        <md-button class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="{{ 'CASE.CREATE_NEW_CASE' | translate }}" accesskey="c">
+          <md-tooltip>
+            alt + c
+          </md-tooltip>
           {{ 'CASE.CREATE_NEW_CASE' | translate }}
         </md-button>
         <md-menu-content>

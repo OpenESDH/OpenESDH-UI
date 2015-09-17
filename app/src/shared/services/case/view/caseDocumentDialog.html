@@ -1,4 +1,4 @@
-<md-dialog aria-label="Case edit dialog">
+<md-dialog aria-label="">
   <form>
     <md-toolbar layout="row">
       <div class="md-toolbar-tools">
@@ -9,29 +9,25 @@
     </md-toolbar>
     <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em">
       
-      <table ng-hide="isEditProperties">
-        <tr>
-            <td>
-              <md-input-container>
-                <label>{{ 'DOCUMENT.DOCUMENT_TO_UPLOAD' | translate }}</label>
-                <input type="file" file-model="fileToUpload"/>
-              </md-input-container>
-            </td>
-            <td>
-                  <md-input-container ng-show="newDocumentVersion">
-                    <label>{{ 'DOCUMENT.VERSIONTYPE' | translate }}</label>
-                    <md-select ng-model="documentProperties.majorVersion">
-                      <md-option ng-value="false">
-                        {{ 'DOCUMENT.MINOR_VERSION' | translate }}
-                      </md-option>
-                      <md-option ng-value="true">
-                        {{ 'DOCUMENT.MAJOR_VERSION' | translate }}
-                      </md-option>
-                    </md-select>
-                  </md-input-container>
-            </td>
-        </tr>
-      </table>
+      <div ng-hide="isEditProperties" layout="row">
+        <div flex>
+          <label class="label" for="doc-upload">{{ 'DOCUMENT.DOCUMENT_TO_UPLOAD' | translate }}</label>
+          <input type="file" file-model="fileToUpload" id="doc-upload">
+        </div>
+        <div flex>
+          <md-input-container ng-show="newDocumentVersion">
+            <label>{{ 'DOCUMENT.VERSIONTYPE' | translate }}</label>
+            <md-select ng-model="documentProperties.majorVersion">
+              <md-option ng-value="false">
+                {{ 'DOCUMENT.MINOR_VERSION' | translate }}
+              </md-option>
+              <md-option ng-value="true">
+                {{ 'DOCUMENT.MAJOR_VERSION' | translate }}
+              </md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+      </div>
 
       <md-input-container ng-hide="isAttachment">
         <label>{{ 'COMMON.STATE' | translate }}</label>
@@ -58,11 +54,6 @@
             {{ category.value | docCategory }}
           </md-option>
         </md-select>
-      </md-input-container>
-      
-      <md-input-container ng-hide="isEditProperties">
-        <label>{{ 'COMMON.DESCRIPTION' | translate }}</label>
-        <textarea ng-model="documentProperties.description"></textarea>
       </md-input-container>
       
     </md-dialog-content>

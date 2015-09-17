@@ -33,8 +33,13 @@ table th {
 
 dt,
 .muted,
-table th {
+table th,
+.label {
   color: rgba(0,0,0,0.53);
+}
+
+input[type="file"] {
+  margin: 0 0 1em;
 }
 
 
@@ -47,6 +52,12 @@ table th {
 
 #global-search input {
   border-radius: 0.25em;
+}
+
+.label {
+  display: block;
+  margin: 1em 0 0.75em;
+  font-size: 0.8em;
 }
 
 
