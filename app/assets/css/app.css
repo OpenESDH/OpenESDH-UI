@@ -24,7 +24,7 @@ table th,
 table td {
   border-bottom: solid 1px #ddd;
   text-align: left;
-  padding: 0 0.5em 0 0;
+  padding: 0.25em 0.5em 0.25em 0;
 }
 
 table th {
@@ -47,4 +47,15 @@ table th {
 
 #global-search input {
   border-radius: 0.25em;
+}
+
+
+/* Angular Material override styles */
+
+.md-datepicker-calendar-pane {
+  max-width: 339px;
+}
+
+td .md-button {
+  margin: 0;
 }

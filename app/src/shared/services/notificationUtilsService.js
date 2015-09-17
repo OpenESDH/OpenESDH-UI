@@ -13,7 +13,7 @@
             alert: alert
         };
 
-        var defaultToastPosition = "bottom right";
+        var defaultToastPosition = "top right";
         var defaultAlertToastPosition = "top right";
 
         return service;

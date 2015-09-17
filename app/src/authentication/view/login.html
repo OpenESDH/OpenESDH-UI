@@ -1,7 +1,9 @@
 <div layout="row" layout-align="center center" layout-padding>
   <md-card>
-    <md-card-content>
+    <md-toolbar layout-padding>
       <h1 class="md-headline">ESDH {{ 'LOGIN.LOGIN' | translate }}</h1>
+    </md-toolbar>
+    <md-card-content>
       <form name="form">
         <md-input-container>
           <label>{{ 'LOGIN.USER_NAME' | translate }}</label>
@@ -14,9 +16,6 @@
           <label>{{ 'LOGIN.PASSWORD' | translate }}</label>
           <input type="password" ng-model="vm.credentials.password" name="password" required>
         </md-input-container>
-        <md-checkbox aria-label="{{ 'LOGIN.SIGN_ME_IN_AUTOMATICALLY' | translate }}" ng-disabled="true">
-          {{ 'LOGIN.SIGN_ME_IN_AUTOMATICALLY' | translate }}
-        </md-checkbox>
         <md-button type="submit" class="md-raised" ng-click="vm.login(vm.credentials)" ng-disabled="form.$invalid">{{ 'LOGIN.LOGIN' | translate }}</md-button>
       </form>
     </md-card-content>

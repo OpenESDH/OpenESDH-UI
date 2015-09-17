@@ -37,7 +37,9 @@
             </md-input-container>
             <md-input-container>
                 <label>{{ 'ORG.COUNTRY' | translate }}</label>
-                <input type="text" ng-model="organization.countryCode" required>
+                <md-select ng-model="organization.countryCode" required>
+                  <md-option ng-value="countryCode" ng-repeat="countryCode in countries">{{ countryCode| countryCodeToName }}</md-option>
+                </md-select>
             </md-input-container>
             <md-input-container>
                 <label>{{ 'ORG.VAT_NO' | translate }}</label>

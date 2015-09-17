@@ -8,33 +8,77 @@
     <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;">
       
       <md-input-container>
-        <label>{{ 'CASE.TITLE' | translate }}</label>
+        <label><span class="md-warn">*</span> {{ 'CASE.TITLE' | translate }}</label>
         <input type="text" ng-model="case.title" required focus-me>
       </md-input-container>
 
       <md-input-container>
-        <label>{{ 'CASE.OWNER' | translate }}</label>
-        <md-select ng-model="case.owner" required ng-controller="CaseController as vm">
+        <label><span class="md-warn">*</span> {{ 'CASE.OWNER' | translate }}</label>
+        <md-select ng-model="case.owner" ng-controller="CaseController as vm" required>
           <md-option ng-value="auth.nodeRef" ng-repeat="auth in vm.authorities">{{ auth.name }}</md-option>
         </md-select>
       </md-input-container>
-      <md-input-container>
-        <label>{{ 'CASE.ASSIGNED_TO' | translate }}</label>
-        <md-select ng-model="case.assignedTo" required ng-controller="CaseController as vm">
-          <md-option ng-value="auth.nodeRef" ng-repeat="auth in vm.authorities">{{ auth.name }}</md-option>
-        </md-select>
-      </md-input-container>
+
+      <div ng-controller="ClassificationController as classCtrl">
+        <md-chips ng-model="case.journalKey" md-autocomplete-snap
+                    md-require-match="true" required>
+          <md-autocomplete
+                  ng-show="case.journalKey.length === 0"
+                   md-input-name="autocompleteField"
+                   md-input-minlength="2"
+                   md-selected-item="selectedItem"
+                   md-search-text="searchText"
+                   md-items="item in classCtrl.search(searchText, 'oe:journalKey')"
+                   md-item-text="item.name + ' ' + item.title"
+                   md-floating-label="{{'CASE.JOURNAL_KEY' | translate}}">
+            <md-item-template>
+              <span md-highlight-text="searchText">{{item.name}}</span>
+              <span md-highlight-text="searchText" class="muted">{{item.title}}</span>
+            </md-item-template>
+            <md-not-found>
+              {{ 'COMMON.NO_MATCHES' | translate }}
+            </md-not-found>
+          </md-autocomplete>
+            <md-chip-template>
+                <span>
+                  <strong>{{$chip.name}}</strong>
+                  <em>({{$chip.title}})</em>
+                </span>
+            </md-chip-template>
+        </md-chips>
+
+        <md-chips ng-model="case.journalFacet" md-autocomplete-snap
+                  md-require-match="true">
+          <md-autocomplete
+                  ng-show="case.journalFacet.length === 0"
+                  md-input-name="autocompleteField"
+                  md-input-minlength="2"
+                  md-selected-item="selectedItem"
+                  md-search-text="searchText"
+                  md-items="item in classCtrl.search(searchText, 'oe:journalFacet')"
+                  md-item-text="item.name + ' ' + item.title"
+                  md-floating-label="{{'CASE.JOURNAL_FACET' | translate}}">
+            <md-item-template>
+              <span md-highlight-text="searchText">{{item.name}}</span>
+              <span md-highlight-text="searchText" class="muted">{{item.title}}</span>
+            </md-item-template>
+            <md-not-found>
+              {{ 'COMMON.NO_MATCHES' | translate }}
+            </md-not-found>
+          </md-autocomplete>
+            <md-chip-template>
+                <span>
+                  <strong>{{$chip.name}}</strong>
+                  <em>({{$chip.title}})</em>
+                </span>
+            </md-chip-template>
+        </md-chips>
+      </div>
       
-      <md-input-container>
-        <label>{{ 'CASE.START_DATE' | translate }}</label>
-        <input type="date" ng-model="case.startDate">
-      </md-input-container>
-      
-      <md-input-container>
-        <label>{{ 'CASE.END_DATE' | translate }}</label>
-        <input type="date" ng-model="case.endDate">
-      </md-input-container>
-      
+      <md-datepicker ng-model="case.startDate" md-placeholder="{{ 'CASE.START_DATE' | translate }}"></md-datepicker>
+    
+      <md-datepicker ng-model="case.endDate" md-placeholder="{{ 'CASE.END_DATE' | translate }}"></md-datepicker>
+
       <md-input-container>
         <label>{{ 'CASE.DESCRIPTION' | translate }}</label>
         <textarea ng-model="case.desc"></textarea>

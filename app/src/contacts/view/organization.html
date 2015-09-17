@@ -22,7 +22,7 @@
                             <dt>{{ 'ORG.ADDRESS_2' | translate }}</dt><dd ng-bind="vm.organization.addressLine2 || '&nbsp;'"></dd>
                             <dt>{{ 'ORG.POSTAL_CODE' | translate }}</dt><dd ng-bind="vm.organization.postCode || '&nbsp;'"></dd>
                             <dt>{{ 'ORG.CITY' | translate }}</dt><dd ng-bind="vm.organization.cityName || '&nbsp;'"></dd>
-                            <dt>{{ 'ORG.COUNTRY' | translate }}</dt><dd ng-bind="vm.organization.countryCode || '&nbsp;'"></dd>
+                            <dt>{{ 'ORG.COUNTRY' | translate }}</dt><dd ng-bind="vm.organization.countryCode| countryCodeToName"></dd>
                             <dt>{{ 'ORG.VAT_NO' | translate }}</dt><dd ng-bind="vm.organization.cvrNumber"></dd>
                             <dt>{{ 'COMMON.EMAIL' | translate }}</dt><dd ng-bind="vm.organization.email || '&nbsp;'"></dd>
                             <dt>{{ 'ORG.PHONE' | translate }}</dt><dd ng-bind="vm.organization.phone || '&nbsp;'"></dd>

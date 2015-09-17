@@ -69,7 +69,9 @@
             var vm = this;
           
             // Data from the case creation form
-            vm.caseData = {};
+            $scope.case = {};
+            $scope.case.journalKey = [];
+            $scope.case.journalFacet = [];
             vm.cancel = cancel;
             vm.update = update;
 
@@ -78,16 +80,27 @@
                 $mdDialog.cancel();
             }
             function update(c) {
-                vm.caseData = angular.copy(c);
-                console.log(vm.caseData);
+                var caseData = angular.copy(c);
+                console.log(caseData);
                 $mdDialog.cancel();
 
+                if (caseData.journalKey.length > 0) {
+                    caseData.journalKey = caseData.journalKey[0].nodeRef;
+                } else {
+                    delete caseData.journalKey;
+                }
+                if (caseData.journalFacet.length > 0) {
+                    caseData.journalFacet = caseData.journalFacet[0].nodeRef;
+                } else {
+                    delete caseData.journalFacet;
+                }
+
                 // When submitting, do something with the case data
-                caseService.createCase(vm.caseData).then(function (caseId) {
+                caseService.createCase(caseData).then(function (caseId) {
                     //cases/case/20150908-865
                     $location.path("/cases/case/" + caseId);
                     // When the form is submitted, show a notification:
-                    notificationUtilsService.notify('Case ' + vm.caseData.title + ' created');
+                    notificationUtilsService.notify('Case ' + caseData.title + ' created');
                 }, function (response) {
                     notificationUtilsService.alert('Error creating case: ' + response.data.message);
                 });
@@ -106,38 +119,6 @@
                 return response;
             });
         }
-
-    /*
-      $scope.myUpdatedCases = countMyUpdatedCases();
-      
-      function countMyUpdatedCases() {
-        var i = 0;
-        for (var c in $scope.cases) {
-          if ($scope.cases[c].isUpdated) {
-            i++;
-          };
-        }
-        return i;
-      };
-      
-      $scope.unassignedCasesNum = countUnassignedCases();
-      
-      function countUnassignedCases() {
-        var i = 0;
-        for (var c in $scope.cases) {
-          if ($scope.cases[c].assignee === '') {
-            i++;
-          };
-        }
-        return i;
-      };
-      
-      $scope.casesNeedAction = countCasesNeedAction();
-      
-      function countCasesNeedAction() {
-        return countUnassignedCases() + countMyUpdatedCases();
-      };
-    */  
   
   };
   
