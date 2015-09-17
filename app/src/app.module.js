@@ -22,7 +22,8 @@
             'openeApp.notes',
             'openeApp.contacts',
             'openeApp.administration',
-            'openeApp.office'
+            'openeApp.office',
+            'openeApp.groups'
         ])
         .constant('USER_ROLES', {
             admin: 'admin',
@@ -159,7 +160,7 @@
                 'content@': {
                     templateUrl : '/app/src/admin/view/admin.html',
                     controller : 'AdminController',
-                    controllerAs: 'vm'
+                    controllerAs: 'vm',
                 }
             },
             data: {
@@ -205,6 +206,34 @@
             },
             data: {
                 authorizedRoles: [USER_ROLES.user]
+            }
+        }).state('administration.groups', {
+            parent: 'administration',
+            url: '/groups',
+            views: {
+                'content@': {
+                    templateUrl: '/app/src/groups/view/groups.html',
+                    controller: 'GroupController',
+                    controllerAs: 'vm'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user],
+                selectedTab: 1
+            }
+        }).state('administration.groups.group', {
+            parent: 'administration',
+            url: '/groups/group',
+            views: {
+                'content@': {
+                    templateUrl: '/app/src/groups/view/group.html',
+                    controller: 'GroupController',
+                    controllerAs: 'vm'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user],
+                selectedTab: 1
             }
         });
     }
