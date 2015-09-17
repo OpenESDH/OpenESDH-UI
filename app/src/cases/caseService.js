@@ -14,7 +14,8 @@
             getMyCases: getMyCases,
             createCase: createCase,
             getCaseInfo: getCaseInfo,
-            changeCaseStatus: changeCaseStatus
+            changeCaseStatus: changeCaseStatus,
+            sendEmail: sendEmail
         };
         return service;
 
@@ -91,6 +92,13 @@
 
         function changeCaseStatus(caseId, status) {
             return $http.post('/alfresco/service/api/openesdh/case/' + caseId + '/status', {status: status}).then(function (response) {
+                return response.data;
+            });
+        }
+
+        function sendEmail(caseId, message) {
+            console.log(message);
+            return $http.post('/alfresco/service/api/openesdh/case/' + caseId + '/email', message).then(function (response) {
                 return response.data;
             });
         }
