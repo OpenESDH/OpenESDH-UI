@@ -11,10 +11,11 @@
         'caseDocumentsService',
         'documentPreviewService',
         'caseDocumentFileDialogService',
-        'casePartiesService'
+        'casePartiesService',
+        'caseService'
     ];
     
-    function DocumentController($scope, $stateParams, $mdDialog, caseDocumentsService, documentPreviewService, caseDocumentFileDialogService, casePartiesService) {
+    function DocumentController($scope, $stateParams, $mdDialog, caseDocumentsService, documentPreviewService, caseDocumentFileDialogService, casePartiesService, caseService) {
 
         var caseId = $stateParams.caseId;
         var vm = this;
@@ -66,18 +67,20 @@
                     controllerAs: 'vm',
                     clickOutsideToClose: true,
                     locals: {
-                        docs: vm.docs
+                        docs: vm.docs,
+                        caseId: vm.caseId
                     }
                 });
             });
         }
 
-        EmailDocumentsDialogController.$inject = ['$mdDialog', 'docs'];
+        EmailDocumentsDialogController.$inject = ['$mdDialog', 'docs', 'caseId'];
 
-        function EmailDocumentsDialogController($mdDialog, docs) {
+        function EmailDocumentsDialogController($mdDialog, docs, caseId) {
             var vm = this;
 
             vm.documents = docs;
+            vm.caseId = caseId;
             vm.emailDocuments = emailDocuments;
             vm.cancel = cancel;
             vm.querySearch = querySearch;
@@ -105,6 +108,16 @@
             }
             function emailDocuments() {
                 // Send the email
+                console.log('to', vm.to);
+
+                caseService.sendEmail(caseId, {
+                    'to': vm.to,
+                    'subject': vm.subject,
+                    'message': vm.message,
+                    'documents': vm.documents.filter(function(document) {
+                        return document.selected;
+                    })
+                });
                 $mdDialog.hide();
             }
 
