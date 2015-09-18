@@ -1,0 +1,27 @@
+<md-card>
+  <md-card-content>
+    <h3>{{ 'GROUP.GROUPS' | translate }}</h3>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>{{ 'COMMON.NAME' | translate }}</th>
+          <th>{{ 'COMMON.ACTIONS' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Group display name goes here</td>
+          <td><md-button ui-sref="administration.groups.group">{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button></td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </md-card-content>
+  <md-card-footer>
+    <md-button aria-label="Create new group" class="md-primary">
+      <i class="material-icons">group_add</i>
+      Create new group
+    </md-button>
+  </md-card-footer>
+</md-card>

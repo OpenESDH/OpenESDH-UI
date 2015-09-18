@@ -12,6 +12,9 @@
             'isteven-multi-select',
             'openeApp.translations',
             'openeApp.cases',
+            'openeApp.cases.members',
+            'openeApp.cases.parties',
+            'openeApp.classification',
             'openeApp.dashboard',
             'openeApp.files',
             'openeApp.tasks',
@@ -20,14 +23,14 @@
             'openeApp.contacts',
             'openeApp.administration',
             'openeApp.office',
-            'openeApp.parties'
+            'openeApp.groups'
         ])
-        .config(config)
         .constant('USER_ROLES', {
             admin: 'admin',
             user: 'user',
             guest: 'guest'
         })
+        .config(config)
         .run(function($rootScope, $state, $stateParams, authService) {
             $rootScope.$on('$stateChangeStart', function(event, next, params) {
                 $rootScope.toState = next;
@@ -51,12 +54,20 @@
             });
         });
 
-    config.$inject = ['$mdThemingProvider', '$stateProvider', '$urlRouterProvider', 'USER_ROLES'];
+    config.$inject = ['$mdThemingProvider', '$stateProvider', '$urlRouterProvider', 'USER_ROLES', '$mdIconProvider'];
 
-    function config($mdThemingProvider, $stateProvider, $urlRouterProvider, USER_ROLES) {
+    function config($mdThemingProvider, $stateProvider, $urlRouterProvider, USER_ROLES, $mdIconProvider) {
         $mdThemingProvider.theme('default')
-            .primaryPalette('blue')
-            .accentPalette('orange');
+            .primaryPalette('blue', {
+              'default': '600',
+              'hue-1': '400',
+              'hue-2': '800',
+              'hue-3': '900'
+            })
+            .accentPalette('amber')
+            .warnPalette('deep-orange');
+            
+        $mdIconProvider.icon('md-calendar', '/app/assets/img/icons/today.svg');
 
         $urlRouterProvider.otherwise('/');
 
@@ -149,7 +160,7 @@
                 'content@': {
                     templateUrl : '/app/src/admin/view/admin.html',
                     controller : 'AdminController',
-                    controllerAs: 'vm'
+                    controllerAs: 'vm',
                 }
             },
             data: {
@@ -195,6 +206,34 @@
             },
             data: {
                 authorizedRoles: [USER_ROLES.user]
+            }
+        }).state('administration.groups', {
+            parent: 'administration',
+            url: '/groups',
+            views: {
+                'content@': {
+                    templateUrl: '/app/src/groups/view/groups.html',
+                    controller: 'GroupController',
+                    controllerAs: 'vm'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user],
+                selectedTab: 1
+            }
+        }).state('administration.groups.group', {
+            parent: 'administration',
+            url: '/groups/group',
+            views: {
+                'content@': {
+                    templateUrl: '/app/src/groups/view/group.html',
+                    controller: 'GroupController',
+                    controllerAs: 'vm'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user],
+                selectedTab: 1
             }
         });
     }

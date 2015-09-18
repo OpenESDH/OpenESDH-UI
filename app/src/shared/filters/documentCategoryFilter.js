@@ -9,7 +9,7 @@
     
     function docCategoryFilterFactory($translate){
         function docCategoryFilter(docCategoryValue) {
-            return $translate.instant('document.category.' + docCategoryValue);
+            return $translate.instant('DOCUMENT.CATEGORY.' + docCategoryValue);
         }
         return docCategoryFilter;
     }

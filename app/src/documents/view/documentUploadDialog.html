@@ -1,8 +1,8 @@
-<md-dialog aria-label="Case edit dialog">
+<md-dialog aria-label="{{ 'DOCUMENT.UPLOAD_DOCUMENT' | translate }}">
   <form>
     <md-toolbar layout="row">
       <div class="md-toolbar-tools">
-        <h2>Upload document</h2>
+        <h2>{{ 'DOCUMENT.UPLOAD_DOCUMENT' | translate }}</h2>
       </div>
     </md-toolbar>
     <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em">
@@ -10,10 +10,10 @@
     </md-dialog-content>
     <div class="md-actions" layout="row">
       <md-button class="md-primary" ng-click="upload()">
-        Upload
+        {{ 'COMMON.UPLOAD' | translate }}
       </md-button>
       <md-button ng-click="cancel()">
-        Cancel
+        {{ 'COMMON.CANCEL' | translate }}
       </md-button>
     </div>
   </form>

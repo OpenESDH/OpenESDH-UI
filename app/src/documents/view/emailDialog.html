@@ -1,0 +1,40 @@
+<md-dialog aria-label="Email documents">
+    <form name="form">
+        <md-toolbar layout="row">
+            <div class="md-toolbar-tools">
+                <h2>Email documents</h2>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;">
+            <md-input-container>
+                <label>To</label>
+                <!--<input type="text" ng-model="vm.to">-->
+                <md-contact-chips ng-model="vm.to" md-contacts="vm.querySearch($query)" md-contact-name="displayName" md-contact-email="contactId" filter-selected="vm.filterSelected"></md-contact-chips>
+            </md-input-container>
+            <md-input-container>
+                <label>Cc</label>
+                <input type="text" ng-model="vm.cc">
+            </md-input-container>
+            <md-input-container>
+                <label>Subject</label>
+                <input type="text" ng-model="vm.subject" required>
+            </md-input-container>
+            <md-input-container>
+                <label>Message</label>
+                <textarea ng-model="vm.message"></textarea>
+            </md-input-container>
+            <md-list-item ng-repeat="document in vm.documents">
+                <md-checkbox ng-model="document.selected"></md-checkbox>
+                <p>{{document['cm:name']}}</p>
+            </md-list-item>
+        </md-dialog-content>
+        <div class="md-actions" layout="row">
+            <md-button type="submit" class="md-primary" ng-click="vm.emailDocuments()" ng-disabled="form.$invalid">
+                Email documents
+            </md-button>
+            <md-button type="button" ng-click="vm.cancel(form)">
+                Cancel
+            </md-button>
+        </div>
+    </form>
+</md-dialog>

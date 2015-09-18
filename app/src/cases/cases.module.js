@@ -1,12 +1,6 @@
 (function(){
     'use strict';
 
-    angular.module('openeApp.cases', [ 'ngMaterial', 'pascalprecht.translate'])
-        .config(config);
+    angular.module('openeApp.cases', [ 'ngMaterial', 'pascalprecht.translate']);
     
-    config.$inject = ['$translatePartialLoaderProvider'];
-    
-    function config($translatePartialLoaderProvider){
-        $translatePartialLoaderProvider.addPart('case.info');
-    }
 })();

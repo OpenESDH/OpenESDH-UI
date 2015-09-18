@@ -2,19 +2,19 @@
   <form name="form">
     <md-toolbar layout="row">
       <div class="md-toolbar-tools">
-        <h2>{{'party.ADD_PARTIES_TITLE'| translate}}</h2>
+        <h2>{{ 'PARTY.ADD_PARTIES' | translate }}</h2>
       </div>
     </md-toolbar>
     <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;min-height:300px;">
 
       <md-input-container>
-        <label>{{'party.ROLE'| translate}}</label>
+        <label>{{ 'PARTY.ROLE' | translate }}</label>
         <md-select ng-model="ctrl.role" md-on-open="ctrl.loadRoles()" required>
           <md-option ng-value="role" ng-repeat="role in ctrl.roles">{{role}}</md-option>
         </md-select>
       </md-input-container>
 
-      {{'party.ORGANIZATIONS'| translate}}
+      {{ 'PARTY.ORGANIZATIONS' | translate }}
       <md-chips ng-model="ctrl.selectedOrganizations" md-autocomplete-snap md-require-match="true">
         <md-autocomplete
             md-selected-item="ctrl.selectedItem"
@@ -23,7 +23,7 @@
             md-item-text="item.name"
             md-no-cache="true"
             md-icon=""
-            placeholder="{{'party.CHOOSE_ORG_CONTACTS'| translate}}">
+            placeholder="{{ 'PARTY.CHOOSE_ORG_CONTACTS'| translate }}">
           <span md-highlight-text="ctrl.searchText">{{item.organizationName}} ({{item.email}})</span>
         </md-autocomplete>
         <md-chip-template>
@@ -34,7 +34,7 @@
         </md-chip-template>
       </md-chips>
 
-      {{'party.PERSONS'| translate}}
+      {{ 'PARTY.PERSONS' | translate }}
       <md-chips ng-model="ctrl.selectedContacts" md-autocomplete-snap md-require-match="true">
         <md-autocomplete
             md-selected-item="ctrl.selectedItemP"
@@ -42,7 +42,7 @@
             md-items="item in ctrl.querySearchP(ctrl.searchTextP)"
             md-item-text="item.name"
             md-no-cache="true"
-            placeholder="{{'party.CHOOSE_PER_CONTACTS'| translate}}">
+            placeholder="{{ 'PARTY.CHOOSE_PERSON_CONTACTS'| translate }}">
           <span md-highlight-text="ctrl.searchTextP">{{item.firstName}} {{item.lastName}} ({{item.email}})</span>
         </md-autocomplete>
         <md-chip-template>
@@ -56,10 +56,10 @@
     </md-dialog-content>
     <div class="md-actions" layout="row">
       <md-button class="md-primary" ng-click="ctrl.save(ctrl.role, ctrl.selectedOrganizations, ctrl.selectedContacts)" ng-disabled="form.$invalid">
-        {{'party.ADD'| translate}}
+        {{ 'COMMON.ADD' | translate }}
       </md-button>
       <md-button ng-click="ctrl.cancel()">
-        {{'common.CANCEL'| translate}}
+        {{ 'COMMON.CANCEL' | translate }}
       </md-button>
     </div>
   </form>

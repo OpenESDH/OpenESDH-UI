@@ -1,14 +1,14 @@
 <md-card ng-controller="CasePartiesController as cmCPC">
     <md-card-content>
-        <h3>{{'party.TITLE'| translate}}</h3>
+        <h3>{{ 'PARTY.PARTIES' | translate }}</h3>
         <table>
             <thead>
                 <tr>
-                    <th>{{'party.NAME'| translate}}</th>
-                    <th>{{'party.EMAIL'| translate}}</th>
-                    <th>{{'party.TYPE'| translate}}</th>
-                    <th>{{'party.ROLE'| translate}}</th>
-                    <th>{{'common.ACTIONS'| translate}}</th>
+                    <th>{{ 'COMMON.NAME' | translate }}</th>
+                    <th>{{ 'COMMON.EMAIL' | translate }}</th>
+                    <th>{{ 'COMMON.TYPE' | translate }}</th>
+                    <th>{{ 'PARTY.ROLE' | translate }}</th>
+                    <th>{{ 'COMMON.ACTIONS' | translate }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -18,12 +18,12 @@
                     <td>{{party.contactType}}</td>
                     <td>{{party.role}}</td>
                     <td>
-                        <md-button class="md-primary" ng-click="cmCPC.showChangePartyDialog($event, party)">{{'party.CHANGE'| translate}}</md-button>
-                        <md-button class="md-primary" ng-click="cmCPC.removeParty(party)">{{'common.REMOVE'| translate}}</md-button>
+                        <md-button class="md-primary" ng-click="cmCPC.showChangePartyDialog($event, party)">{{ 'PARTY.CHANGE' | translate }}</md-button>
+                        <md-button class="md-primary" ng-click="cmCPC.removeParty(party)">{{ 'COMMON.REMOVE' | translate }}</md-button>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <md-button class="md-primary" ng-click="cmCPC.showAddPartiesDialog($event)">{{'party.ADD_NEW'| translate}}</md-button>
+        <md-button class="md-primary" ng-click="cmCPC.showAddPartiesDialog($event)">{{ 'COMMON.ADD_NEW' | translate }}</md-button>
     </md-card-content>
 </md-card>

@@ -17,7 +17,8 @@
             uploadDocumentAttachment: uploadDocumentAttachment,
             uploadAttachmentNewVersion: uploadAttachmentNewVersion,
             downloadAttachment: downloadAttachment,
-            updateDocumentProperties: updateDocumentProperties
+            updateDocumentProperties: updateDocumentProperties,
+            changeDocumentStatus: changeDocumentStatus
         };
         return service;
         
@@ -95,6 +96,12 @@
             var url = "/alfresco/service/api/openesdh/case/document/properties";
             return $http.post(url, document).then(function(response){
                 return response;
+            });
+        }
+
+        function changeDocumentStatus(documentNodeRef, status) {
+            return $http.post('/alfresco/service/api/openesdh/documents/' + alfrescoNodeUtils.processNodeRef(documentNodeRef).uri + '/status', {status: status}).then(function (response) {
+                return response.data;
             });
         }
     }

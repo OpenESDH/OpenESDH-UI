@@ -1,0 +1,76 @@
+body,
+md-content {
+  background-color: #ddd;
+}
+
+footer {
+  padding: 1em;
+}
+
+md-tabs md-tabs-wrapper {
+  background-color: #fff;
+}
+
+dt,
+dd {
+  margin: 0 0 1em 0;
+}
+
+table {
+  width: 100%;
+}
+
+table th,
+table td {
+  border-bottom: solid 1px #ddd;
+  text-align: left;
+  padding: 0.25em 0.5em 0.25em 0;
+}
+
+table th {
+  padding-bottom: 0.5em;
+}
+
+dt,
+.muted,
+table th,
+.label {
+  color: rgba(0,0,0,0.53);
+}
+
+input[type="file"] {
+  margin: 0 0 1em;
+}
+
+
+/* Specific style classes and IDs */
+
+#global-search input,
+.sub-toolbar {
+  background: #fff;
+}
+
+#global-search input {
+  border-radius: 0.25em;
+}
+
+.label {
+  display: block;
+  margin: 1em 0 0.75em;
+  font-size: 0.8em;
+}
+
+
+/* Angular Material override styles */
+
+.md-datepicker-calendar-pane {
+  max-width: 339px;
+}
+
+td .md-button {
+  margin: 0;
+}
+
+.material-icons {
+  vertical-align: middle;
+}

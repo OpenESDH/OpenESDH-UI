@@ -4,7 +4,7 @@
        .module('openeApp.cases')
        .controller('CaseInfoController', CaseInfoController);
 
-  CaseInfoController.$inject = ['$scope', '$stateParams', '$mdDialog', '$translate', 'caseService'];
+  CaseInfoController.$inject = ['$scope', '$stateParams', '$mdDialog', '$translate', 'caseService', 'notificationUtilsService'];
   
   /**
    * Main CaseInfoController for the Cases module
@@ -15,7 +15,7 @@
    * @param caseService
    * @constructor
    */
-  function CaseInfoController($scope, $stateParams, $mdDialog, $translate, caseService) {
+  function CaseInfoController($scope, $stateParams, $mdDialog, $translate, caseService, notificationUtilsService) {
     var vm = this;
 
     vm.editCase = editCase;
@@ -25,6 +25,7 @@
     loadCaseInfo();
     
     function loadCaseInfo(){
+        console.log($stateParams);
         caseService.getCaseInfo($stateParams.caseId).then(function(result){
             $scope.case = result.properties;
             $scope.caseIsLocked = result.isLocked;
@@ -48,24 +49,27 @@
       });
     }
 
-    function changeCaseStatus(ev, status) {
+    function changeCaseStatus(status) {
       function confirmCloseCase() {
         // TODO: Check if there are any unlocked documents in the case and
         // notify the user in the confirmation dialog.
 
         var confirm = $mdDialog.confirm()
-            .title($translate.instant("common.CONFIRM"))
-            .content($translate.instant("CASEINFO.CONFIRM_CLOSE_CASE"))
-            .ariaLabel($translate.instant("CASEINFO.CONFIRM_CLOSE_CASE"))
-            .ok($translate.instant("common.OK"))
-            .cancel($translate.instant("common.CANCEL"));
+            .title($translate.instant("COMMON.CONFIRM"))
+            .content($translate.instant("CASE.CONFIRM_CLOSE_CASE"))
+            .ariaLabel($translate.instant("CASE.CONFIRM_CLOSE_CASE"))
+            .ok($translate.instant("COMMON.OK"))
+            .cancel($translate.instant("COMMON.CANCEL"));
         return $mdDialog.show(confirm);
       }
 
       var changeCaseStatusImpl = function () {
         caseService.changeCaseStatus($stateParams.caseId, status).then(function (json) {
           loadCaseInfo();
-          // TODO: Display a toast message?
+          // TODO: Documents listing also needs to be reloaded
+          notificationUtilsService.notify($translate.instant("CASE.STATUS_CHANGED_SUCCESS"));
+        }, function (response) {
+          notificationUtilsService.alert(response.data.message);
         });
       };
 

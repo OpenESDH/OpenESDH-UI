@@ -7,12 +7,12 @@
 
     var email;
 
-    OfficeController.$inject = ['$window', 'officeService', 'caseService', '$q'];
+    OfficeController.$inject = ['$window', 'officeService', 'caseService', 'sessionService', '$q'];
 
-    function OfficeController($window, officeService, caseService, $q) {
+    function OfficeController($window, officeService, caseService, sessionService, $q) {
         var vm = this;
         vm.email = email;
-        vm.from = email.From.EMail;
+//        vm.from = email.From;
         vm.subject = email.Subject;
         vm.caseId;
         vm.attachments = email.Attachments;
@@ -26,11 +26,11 @@
                 name: vm.subject,
                 email: vm.email
             }).then(function(response) {
-                alert(JSON.stringify(response));
                 var metadata = {
                     caseId: vm.caseId,
                     documentName: vm.subject,
-                    nodeRef: response.nodeRef
+                    nodeRef: response.nodeRef,
+                    ticket: sessionService.getUserData().ticket
                 };
                 $window.external.SaveAsOpenEsdh(JSON.stringify(metadata), JSON.stringify(vm.attachments.filter(function(attachment) {
                     return attachment.selected;

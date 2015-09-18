@@ -1,11 +1,58 @@
 <app-header></app-header>
 
-<section layout="row" layout-wrap>
+<section layout="row">
   
-  <div flex="50" ng-controller="TaskController">
-    <md-card>
+  <div flex="66" layout="column">
+    
+    <md-card ng-controller="CaseController as caseController">
       <md-card-content>
-        <h3>My Tasks</h3>
+        <h2 class="md-title">{{ 'CASE.MY_CASES' | translate }}</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>{{ 'COMMON.ID' | translate }}</th>
+              <th>{{ 'COMMON.TITLE' | translate }}</th>
+              <th>{{ 'COMMON.MODIFIED' | translate }}</th>
+              <th>{{ 'COMMON.ACTION' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="case in caseController.cases" class="{{ case.isUpdated ? 'updated' : 'not-updated' }}">
+              <td>{{case["oe:id"]}}</td>
+              <td>{{case["cm:title"]}}</td>
+              <td>{{case["cm:modified"] | date: 'yyyy-MM-dd'}}</td>
+              <td><md-button href="#/cases/case/{{case['oe:id']}}" class="md-primary">{{ 'COMMON.VIEW' | translate }}</md-button></td>
+            </tr>
+          </tbody>
+        </table>
+      </md-card-content>
+      <div class="md-actions" layout="row">
+        <md-button class="md-primary" ng-click="caseController.createCase($event, 'standard')">{{ 'CASE.CREATE_NEW_CASE' | translate }}</md-button>
+      </div>
+    </md-card>
+    
+    <md-card ng-controller="FileController as vm">
+      <md-card-content>
+        <h2 class="md-title">{{ 'DOCUMENT.MY_RECENT_DOCUMENTS' | translate }}</h2>
+        <md-list>
+          <md-list-item class="md-2-line" ng-repeat="document in vm.documents">
+            <div class="md-list-item-text">
+              <!--<img ng-src="{{ file.icon }}">-->
+              <h3>{{ document.displayName }}</h3>
+              <p>{{ 'COMMON.MODIFIED' | translate }} {{ document.modifiedOn }} {{ 'COMMON.BY' | translate }} {{ document.modifiedBy }}</p>
+            </div>
+          </md-list-item>
+        </md-list>
+      </md-card-content>
+    </md-card>
+    
+  </div>
+  
+  <div flex="33">
+    
+    <md-card ng-controller="TaskController">
+      <md-card-content>
+        <h2 class="md-title">{{ 'TASK.MY_TASKS' | translate }}</h2>
         <md-list>
           <md-list-item class="md-2-line" ng-repeat="task in tasks">
             <div class="md-list-item-text">
@@ -15,57 +62,10 @@
           </md-list-item>
         </md-list>
       </md-card-content>
-      <div class="md-actions">
-        <md-button class="md-primary" ng-disabled="true">Create new task</md-button>
-      </div>
     </md-card>
+    
   </div>
   
-  <div flex="50" ng-controller="CaseController as caseController">
-    <md-card>
-      <md-card-content>
-        <h3>My cases</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Title</th>
-              <th>Changed</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="case in caseController.cases" class="{{ case.isUpdated ? 'updated' : 'not-updated' }}">
-              <td>{{case["oe:id"]}}</td>
-              <td>{{case["cm:title"]}}</td>
-              <td>{{case["cm:modified"] | date: 'yyyy-MM-dd'}}</td>
-              <td><md-button href="#/cases/case" class="md-primary">View</md-button></td>
-            </tr>
-          </tbody>
-        </table>
-      </md-card-content>
-      <div class="md-actions">
-        <md-button class="md-primary" ng-click="caseController.createCase($event, 'standard')">Create new case</md-button>
-      </div>
-    </md-card>
-  </div>
-  
-  <div flex="50" ng-controller="FileController as vm">
-    <md-card>
-      <md-card-content>
-        <h3>My recent documents</h3>
-        <md-list>
-          <md-list-item class="md-2-line" ng-repeat="document in vm.documents">
-            <div class="md-list-item-text">
-              <!--<img ng-src="{{ file.icon }}">-->
-              <h3>{{ document.displayName }}</h3>
-              <p>Modified {{ document.modifiedOn }} by {{ document.modifiedBy }}</p>
-            </div>
-          </md-list-item>
-        </md-list>
-      </md-card-content>
-    </md-card>
-  </div>
 </section>
 
 <app-footer></app-footer>

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-            .module('openeApp.parties')
+            .module('openeApp.cases.parties')
             .factory('casePartiesService', CasePartiesService);
 
     CasePartiesService.$inject = ['$http', '$q'];

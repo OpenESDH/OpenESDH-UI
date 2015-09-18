@@ -18,11 +18,12 @@
     vm.loadPreviousPage = loadPreviousPage;
     vm.loadNextPage = loadNextPage;
     
-    init();
-    
-    function init(){
-        loadHistory();
-    }
+    //lets init only when tab is selected
+    $scope.$on('tabSelectEvent', function(event, args) {
+        if (args.tab === 'history') {
+            loadHistory();
+        }
+    });
     
     function loadHistory(page){
         if(!page){
@@ -38,14 +39,14 @@
                 vm.endIndex = vm.totalItems;
             }
             
-            vm.previousPage = (page != 1);
+            vm.previousPage = (page !== 1);
             var pagesCount = Math.ceil(response.contentRange.totalItems / vm.pageSize);
-            vm.nextPage = (page != pagesCount);
+            vm.nextPage = (page !== pagesCount);
         });
     }
     
     function loadPreviousPage(){
-        if(vm.currentPage == 1){
+        if(vm.currentPage === 1){
             return;
         }
         loadHistory(vm.currentPage - 1);
@@ -53,7 +54,7 @@
     
     function loadNextPage(){
         var pagesCount = Math.ceil(vm.totalItems / vm.pageSize);
-        if(vm.currentPage == pagesCount){
+        if(vm.currentPage === pagesCount){
             return;
         }
         loadHistory(vm.currentPage + 1);
