@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular.module('openeApp.cases.parties').factory('groupService', GroupService);
@@ -13,6 +13,7 @@
             getGroup: getGroup,
             getGroupMembers: getGroupMembers,
             addUserToGroup: addUserToGroup,
+            removeUserFromGroup: removeUserFromGroup,
             createGroup: createGroup,
             deleteGroup: deleteGroup
         };
@@ -24,7 +25,7 @@
         function listAllSystemGroups() {
             //limit maximum results to 100 
             return $http.get(GROUP_PROXY_URI + '?shortNameFilter=*&maxItems=100')
-                    .then(successOrReject);
+                .then(successOrReject);
         }
 
         /**
@@ -34,7 +35,7 @@
          * @returns boolean
          */
         function isGroupMember(userName, groupShortName) {
-            return $http.get(GROUP_PROXY_URI + groupShortName + '/member/'+ userName).then(function(response) {
+            return $http.get(GROUP_PROXY_URI + groupShortName + '/member/' + userName).then(function (response) {
                 return response.isMember;
             });
         }
@@ -45,7 +46,7 @@
          * @returns {*}
          */
         function getGroup(groupShortName) {
-            return $http.get(GROUP_PROXY_URI+ groupShortName).then(successOrReject);
+            return $http.get(GROUP_PROXY_URI + groupShortName).then(successOrReject);
         }
 
         /**
@@ -64,8 +65,18 @@
          * @returns {} empty object if successful
          */
         function addUserToGroup(userName, groupShortName) {
-            return $http.post(GROUP_PROXY_URI + groupShortName+ '/children/'+ userName)
+            return $http.post(GROUP_PROXY_URI + groupShortName + '/children/' + userName)
                 .then(successOrReject);
+        }
+
+        /**
+         * Deletes a user from a group (Does not delete the user from system)
+         * @param groupShortName
+         * @param userName
+         * @returns {*} an empty object
+         */
+        function removeUserFromGroup(groupShortName, userName) {
+            return $http.delete(GROUP_PROXY_URI + groupShortName + '/' + userName).then(successOrReject);
         }
 
         /**
@@ -75,7 +86,7 @@
          * @returns {*} Newly created group object
          */
         function createGroup(groupShortName, displayName) {
-            return $http.post(ALFRESCO_URI.apiProxy + 'rootgroups/'+ groupShortName, { params: {displayName: displayName}})
+            return $http.post(ALFRESCO_URI.apiProxy + 'rootgroups/' + groupShortName, {params: {displayName: displayName}})
                 .then(successOrReject);
         }
 
@@ -85,14 +96,14 @@
          * @returns {*} empty obj
          */
         function deleteGroup(groupShortName) {
-            return $http.delete(GROUP_PROXY_URI+ groupShortName).then(successOrReject);
+            return $http.delete(GROUP_PROXY_URI + groupShortName).then(successOrReject);
         }
 
         function successOrReject(response) {
             if (response.status && response.status !== 200) {
                 return $q.reject(response);
             }
-            return response.data;
+            return response.data || response;
         }
     }
 })();

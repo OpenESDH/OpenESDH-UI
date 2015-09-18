@@ -26,7 +26,7 @@
         initList();
 
         function initList() {
-            vm.persons.lenght = 0;
+            vm.persons.length = 0;
             contactsService.getPersons(vm.searchQuery).then(function(response) {
                 vm.persons = response;
                 initPages(response);
