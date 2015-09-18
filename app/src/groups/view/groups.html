@@ -12,9 +12,9 @@
           <th>{{ 'COMMON.ACTIONS' | translate }}</th>
         </tr>
       </thead>
-      <tbody ng-controller="GroupController">
-        <tr ng-repeat="group in vm.groups">
-          <td>{{ group.displayName }}</td>
+      <tbody>
+        <tr ng-repeat="g in vm.groups">
+          <td>{{ g.displayName }}</td>
           <td class="muted">some_group_short_name</td>
           <td layout="row">
             <md-button ui-sref="administration.groups.group">{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button>
