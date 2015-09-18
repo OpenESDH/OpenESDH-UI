@@ -5,17 +5,20 @@
   
   <div class="sub-toolbar">
     
-    <md-button ng-href="#/cases"><i class="material-icons" style="vertical-align: middle;">arrow_back</i> {{ 'CASE.CASES' | translate }}</md-button>    
-    
     <div layout="row" layout-align="space-between center" layout-padding layout-margin>
-      
-      <h1 class="md-headline">
-        {{ case["oe:id"].value }} {{ case["cm:title"].value }}
-        <span class="muted" ng-hide="case['oe:status'].value === 'active'">
-          ({{case['oe:status'].value | caseStatus}})
-        </span>
-      </h1>
     
+      <div layout="row" layout-align="start center">
+        <md-button ng-href="#/cases" ng-aria="{{ 'CASE.CASES' | translate }}">
+          <i class="material-icons" style="vertical-align: middle;">arrow_back</i>
+        </md-button>
+        <h1 class="md-headline">
+          {{ case["oe:id"].value }} {{ case["cm:title"].value }}
+          <span class="muted" ng-hide="case['oe:status'].value === 'active'">
+            ({{case['oe:status'].value | caseStatus}})
+          </span>
+        </h1>
+      </div>
+      
       <md-menu>
         <md-button class="md-primary" ng-click="$mdOpenMenu($event)"
                    aria-label="{{ 'CASE.CHANGE_STATUS' | translate }}"
@@ -30,7 +33,6 @@
                     aria-label="{{ choiceName | caseStatus }}"
                     ng-click="vm.changeCaseStatus(choiceName)">{{ choiceName | caseStatus }}</md-button>
           </md-menu-item>
-  
         </md-menu-content>
       </md-menu>
       
@@ -123,7 +125,19 @@
                            ng-disabled="caseIsLocked">
                   {{ 'DOCUMENT.UPLOAD_NEW_DOCUMENTS' | translate }}
                 </md-button>
-                <md-button class="md-primary" ng-disabled="docCtrl.noDocuments()" ng-click="docCtrl.emailDocuments()">{{'DOCUMENT.EMAIL_DOCUMENTS' | translate}}</md-button>
+                <md-menu>
+                  <md-button ng-click="$mdOpenMenu($event)" class="md-primary" aria-label="{{ 'DOCUMENT.SEND_DOCUMENTS' | translate }}">
+                    {{ 'DOCUMENT.SEND_DOCUMENTS' | translate }}
+                  </md-button>
+                  <md-menu-content>
+                    <md-menu-item>
+                      <md-button ng-disabled="true" ng-click="doSomething()">{{ 'DOCUMENT.DIGITAL_POST_DOCUMENTS' | translate }}</md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                      <md-button ng-disabled="docCtrl.noDocuments()" ng-click="docCtrl.emailDocuments()">{{ 'DOCUMENT.EMAIL_DOCUMENTS' | translate }}</md-button>
+                    </md-menu-item>
+                  </md-menu-content>
+                </md-menu>
               </div>
             </md-card>
           </div>
