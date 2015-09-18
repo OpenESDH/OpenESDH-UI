@@ -4,19 +4,20 @@
             .module('openeApp.contacts')
             .controller('OrganizationController', OrganizationController);
 
-    OrganizationController.$inject = ['$scope', '$stateParams', '$mdDialog', 'contactsService', 'countriesService'];
+    OrganizationController.$inject = ['$scope', '$stateParams', '$mdDialog', '$location', 'contactsService', 'countriesService'];
 
-    function OrganizationController($scope, $stateParams, $mdDialog, contactsService, countriesService) {
+    function OrganizationController($scope, $stateParams, $mdDialog, $location, contactsService, countriesService) {
         var vm = this;
         vm.doFilter = doFilter;
         vm.showOrganizationEdit = showOrganizationEdit;
+        vm.deleteOrganization = deleteOrganization;
         vm.showPersonEdit = showPersonEdit;
         vm.initPersons = initPersons;
         vm.searchQuery = null;
         vm.organizations = [];
         vm.pages = [];
         vm.pagingParams = {
-            pageSize: 5,//default 25
+            pageSize: 5, //default 25
             page: 1,
             totalRecords: 0,
             sortField: null,
@@ -68,8 +69,26 @@
         }
 
         function doFilter(page) {
-            vm.pagingParams.page = page || 1; 
+            vm.pagingParams.page = page || 1;
             initList();
+        }
+
+        function deleteOrganization(ev, organization) {
+            var confirm = $mdDialog.confirm()
+                    .title('Confirmation')
+                    .content('Are you sure you want to delete organization?')
+                    .ariaLabel('Organization delete confirmation')
+                    .targetEvent(ev)
+                    .ok('Yes')
+                    .cancel('Cancel');
+            $mdDialog.show(confirm).then(function() {
+                contactsService.deletePerson(organization).then(function() {
+                    $location.path('/admin/organizations');
+                }, function(response) {
+                    console.log(response);
+                    $scope.status = "Cannot delete";
+                });
+            });
         }
 
         function showOrganizationEdit(ev) {
@@ -174,9 +193,18 @@
                 $mdDialog.cancel();
             };
 
-            $scope.delete = function() {
-                contactsService.deletePerson($scope.person)
+            $scope.delete = function(ev, person) {
+                var confirm = $mdDialog.confirm()
+                        .title('Confirmation')
+                        .content('Are you sure you want to delete person contact?')
+                        .ariaLabel('Person delete confirmation')
+                        .targetEvent(ev)
+                        .ok('Yes')
+                        .cancel('Cancel');
+                $mdDialog.show(confirm).then(function() {
+                    contactsService.deletePerson(person)
                         .then(refreshInfoAfterSuccess, saveError);
+                });
             };
 
             $scope.save = function(personForm) {

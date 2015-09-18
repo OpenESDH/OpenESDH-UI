@@ -15,6 +15,7 @@
             updateOrganization: updateContact,
             createOrganization: createOrganization,
             getAssociations: getAssociations,
+            deleteOrganization: deleteContact,
             //persons
             getPersons: getPersons,
             getPerson: getContact,
