@@ -1,9 +1,21 @@
 <app-header></app-header>
 
-<md-card>
+<md-card ng-repeat="task in tasksCtrl.tasks">
   <md-card-content>
-    <h1>{{ 'TASK.TASKS' | translate }}</h1>
+    <div style="float: right;font-size: 14px;">
+        {{'COMMON.CREATED_ON' | translate}} {{task.properties.cm_created | date}} {{'COMMON.BY' | translate}} {{task.owner.firstName + ' ' + task.owner.lastName}}
+    </div>
+    <h3>{{ task.properties.bpm_description }}</h4>
+    <dl layout="row" layout-wrap>
+      <dt flex="20">{{ 'COMMON.STATUS' | translate }}</dt><dd flex="66">{{ task.properties.bpm_status | workflowTaskStatus}}</dd>
+      <dt flex="20">{{ 'COMMON.DUE_DATE' | translate }}</dt><dd flex="66">{{ task.properties.bpm_dueDate | date }}</dd>
+      <dt flex="20">{{ 'COMMON.PRIORITY' | translate }}</dt><dd flex="66">{{ task.properties.bpm_priority | workflowTaskPriority}}</dd>
+      <dt flex="20">{{ 'COMMON.DESCRIPTION' | translate }}</dt><dd flex="66">{{ task.description }}</dd>
+    </dl>
   </md-card-content>
+  <div class="md-actions" layout="row">
+    <md-button class="md-primary" ng-disabled="true">{{ 'TASK.VIEW_TASK_DETAILS' | translate }}</md-button>
+  </div>              
 </md-card>
 
 <app-footer></app-footer>

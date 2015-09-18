@@ -269,5 +269,21 @@
     },
     "OFFICE": {
         "SAVE_EMAIL_IN_OPENESDH": "SAVE E-mail in OpenESDH"
+    },
+    "WORKFLOW":{
+        "TASK":{
+            "STATUS":{
+                "NotYetStarted": "Not Yet Started",
+                "OnHold": "On Hold",
+                "InProgress": "In Progress",
+                "Cancelled": "Cancelled",
+                "Completed": "Completed"
+            },
+            "PRIORITY":{
+                "1": "High",
+                "2": "Medium",
+                "3": "Low"
+            }
+        }
     }
 }
