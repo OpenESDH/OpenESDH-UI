@@ -79,7 +79,7 @@
         $stateProvider.state('site', {
             abstract: true,
             resolve: {
-                authorize: ['authService', function(authService) {
+                authorize: ['authService', function (authService) {
                 }]
             }
         }).state('dashboard', {
@@ -122,11 +122,11 @@
             }
         }).state('docDetails', {
             parent: 'site',
-            url: '/cases/case/:caseId/doc/:storeType/:storeId/:id', 
+            url: '/cases/case/:caseId/doc/:storeType/:storeId/:id',
             views: {
                 'content@': {
-                    controller : 'DocumentDetailsController',
-                    templateUrl : 'app/src/documents/view/document.html',
+                    controller: 'DocumentDetailsController',
+                    templateUrl: 'app/src/documents/view/document.html',
                     controllerAs: 'docCtrl'
                 }
             },
@@ -164,17 +164,17 @@
             url: '/admin',
             views: {
                 'content@': {
-                    templateUrl : '/app/src/admin/view/admin.html',
-                    controller : 'AdminController',
-                    controllerAs: 'vm',
+                    templateUrl: '/app/src/admin/view/admin.html',
+                    controller: 'AdminController',
+                    controllerAs: 'vm'
                 }
             },
             data: {
                 authorizedRoles: [USER_ROLES.user]
             }
-        }).state('administration.organizations', {
+        }).state('administration.groups', {
             parent: 'site',
-            url: '/admin/organizations',
+            url: '/admin/groups',
             views: {
                 'content@': {
                     templateUrl: '/app/src/admin/view/admin.html',
@@ -186,50 +186,9 @@
                 authorizedRoles: [USER_ROLES.user],
                 selectedTab: 2
             }
-        }).state('administration.contacts', {
-            parent: 'site',
-            url: '/admin/contacts',
-            views: {
-                'content@': {
-                    templateUrl: '/app/src/admin/view/admin.html',
-                    controller: 'AdminController',
-                    controllerAs: 'vm'
-                }
-            },
-            data: {
-                authorizedRoles: [USER_ROLES.user],
-                selectedTab: 3
-            }
-        }).state('administration.organizations.organization', {
-            parent: 'site',
-            url: '/admin/organizations/:storeProtocol/:storeIdentifier/:uuid',
-            views: {
-                'content@': {
-                    templateUrl: '/app/src/contacts/view/organization.html',
-                    controller: 'OrganizationController',
-                    controllerAs: 'vm'
-                }
-            },
-            data: {
-                authorizedRoles: [USER_ROLES.user]
-            }
-        }).state('administration.groups', {
-            parent: 'administration',
-            url: '/groups',
-            views: {
-                'content@': {
-                    templateUrl: '/app/src/groups/view/groups.html',
-                    controller: 'GroupController',
-                    controllerAs: 'vm'
-                }
-            },
-            data: {
-                authorizedRoles: [USER_ROLES.user],
-                selectedTab: 1
-            }
         }).state('administration.groups.group', {
-            parent: 'administration',
-            url: '/groups/group',
+            parent: 'site',
+            url: '/groups/group/{shortName}',
             views: {
                 'content@': {
                     templateUrl: '/app/src/groups/view/group.html',
@@ -239,9 +198,49 @@
             },
             data: {
                 authorizedRoles: [USER_ROLES.user],
-                selectedTab: 1
             }
-        });
+        }).state('administration.organizations', {
+                parent: 'site',
+                url: '/admin/organizations',
+                views: {
+                    'content@': {
+                        templateUrl: '/app/src/admin/view/admin.html',
+                        controller: 'AdminController',
+                        controllerAs: 'vm'
+                    }
+                },
+                data: {
+                    authorizedRoles: [USER_ROLES.user],
+                    selectedTab: 3
+                }
+        }).state('administration.contacts', {
+                parent: 'site',
+                url: '/admin/contacts',
+                views: {
+                    'content@': {
+                        templateUrl: '/app/src/admin/view/admin.html',
+                        controller: 'AdminController',
+                        controllerAs: 'vm'
+                    }
+                },
+                data: {
+                    authorizedRoles: [USER_ROLES.user],
+                    selectedTab: 4
+                }
+        }).state('administration.organizations.organization', {
+                parent: 'site',
+                url: '/admin/organizations/:storeProtocol/:storeIdentifier/:uuid',
+                views: {
+                    'content@': {
+                        templateUrl: '/app/src/contacts/view/organization.html',
+                        controller: 'OrganizationController',
+                        controllerAs: 'vm'
+                    }
+                },
+                data: {
+                    authorizedRoles: [USER_ROLES.user]
+                }
+            });
     }
-    
+
 })();
