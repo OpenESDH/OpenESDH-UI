@@ -48,3 +48,10 @@ table th {
 #global-search input {
   border-radius: 0.25em;
 }
+
+.workflowWizardStep {
+	max-width:800px;
+	max-height:531px;
+	min-width:800px;
+	min-height:531px;
+}

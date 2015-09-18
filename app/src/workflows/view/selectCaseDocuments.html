@@ -1,0 +1,42 @@
+<table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>{{'COMMON.TITLE' | translate}}</th>
+        <th>{{'COMMON.NO' | translate}}</th>
+        <th>{{'COMMON.TYPE' | translate}}</th>
+        <th>{{'COMMON.CATEGORY' | translate}}</th>
+        <th>{{'COMMON.STATE' | translate}}</th>
+        <th>{{'COMMON.OWNER' | translate}}</th>
+        <th>{{'COMMON.CREATED' | translate}}</th>
+        <th>{{'COMMON.MODIFIED' | translate}}</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat-start="doc in dlg.documents">
+            <td></td>
+            <td>
+                <div style="display: inline-flex;">
+                    <md-checkbox ng-model="doc.selected"" aria-label="checkbox"></md-checkbox>
+                    <span style="margin-top: 12px;">{{doc.title}}</span>
+                </div>
+            </td>
+            <td></td>
+            <td>{{doc.category | docType}}</td>
+            <td>{{doc.category | docCategory}}</td>
+            <td>{{doc.state | docState}}</td>
+            <td>{{doc.owner.firstName + " " + doc.owner.lastName}}</td>
+            <td>{{doc.created | date}}</td>
+            <td>{{doc.modified | date}}</td>
+        </tr>
+            <tr ng-repeat="attachment in doc.attachments">
+                <td style="padding-left: 50px;" colspan="9">
+                    <div style="display: inline-flex;">
+                        <md-checkbox ng-model="attachment.selected"  aria-label="checkbox"></md-checkbox>
+                        <span style="margin-top: 12px;">{{attachment.name}}</span>
+                    </div>
+                </td>
+            </tr>
+        <tr style="display:none" ng-repeat-end></tr>
+    </tbody>
+</table>
