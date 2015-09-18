@@ -20,7 +20,7 @@
           <td>{{ g.displayName }}</td>
           <td class="muted">{{ g.shortName }}</td>
           <td layout="row">
-            <md-button ui-sref="administration.groups.group({'shortName': g.shortName})">{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button>
+            <md-button ui-sref="administration.groups.group({'shortName': g.shortName })">{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button>
             <md-button ng-disabled="true">{{ 'COMMON.REMOVE' | translate }}</md-button>
           </td>
         </tr>
