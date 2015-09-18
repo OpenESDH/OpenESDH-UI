@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -30,9 +30,15 @@
             user: 'user',
             guest: 'guest'
         })
+        .constant('ALFRESCO_URI', {
+            apiProxy: '/alfresco/api/',
+            serviceApiProxy: '/alfresco/service/api/',
+            serviceSlingshotProxy: '/alfresco/service/slingshot/'
+
+        })
         .config(config)
-        .run(function($rootScope, $state, $stateParams, authService) {
-            $rootScope.$on('$stateChangeStart', function(event, next, params) {
+        .run(function ($rootScope, $state, $stateParams, authService) {
+            $rootScope.$on('$stateChangeStart', function (event, next, params) {
                 $rootScope.toState = next;
                 $rootScope.toStateParams = params;
                 if (next.data.authorizedRoles.length == 0) {
@@ -59,14 +65,14 @@
     function config($mdThemingProvider, $stateProvider, $urlRouterProvider, USER_ROLES, $mdIconProvider) {
         $mdThemingProvider.theme('default')
             .primaryPalette('blue', {
-              'default': '600',
-              'hue-1': '400',
-              'hue-2': '800',
-              'hue-3': '900'
+                'default': '600',
+                'hue-1': '400',
+                'hue-2': '800',
+                'hue-3': '900'
             })
             .accentPalette('amber')
             .warnPalette('deep-orange');
-            
+
         $mdIconProvider.icon('md-calendar', '/app/assets/img/icons/today.svg');
 
         $urlRouterProvider.otherwise('/');
@@ -74,7 +80,7 @@
         $stateProvider.state('site', {
             abstract: true,
             resolve: {
-                authorize: ['authService', function(authService) {
+                authorize: ['authService', function (authService) {
                 }]
             }
         }).state('dashboard', {
@@ -117,11 +123,11 @@
             }
         }).state('docDetails', {
             parent: 'site',
-            url: '/cases/case/:caseId/doc/:storeType/:storeId/:id', 
+            url: '/cases/case/:caseId/doc/:storeType/:storeId/:id',
             views: {
                 'content@': {
-                    controller : 'DocumentDetailsController',
-                    templateUrl : 'app/src/documents/view/document.html',
+                    controller: 'DocumentDetailsController',
+                    templateUrl: 'app/src/documents/view/document.html',
                     controllerAs: 'docCtrl'
                 }
             },
@@ -146,8 +152,8 @@
             url: '/tasks',
             views: {
                 'content@': {
-                    templateUrl : '/app/src/tasks/view/tasks.html',
-                    controller : 'TaskController'
+                    templateUrl: '/app/src/tasks/view/tasks.html',
+                    controller: 'TaskController'
                 }
             },
             data: {
@@ -158,8 +164,8 @@
             url: '/admin',
             views: {
                 'content@': {
-                    templateUrl : '/app/src/admin/view/admin.html',
-                    controller : 'AdminController',
+                    templateUrl: '/app/src/admin/view/admin.html',
+                    controller: 'AdminController',
                     controllerAs: 'vm',
                 }
             },
@@ -237,5 +243,5 @@
             }
         });
     }
-    
+
 })();
