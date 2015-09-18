@@ -188,7 +188,7 @@
             }
         }).state('administration.groups.group', {
             parent: 'site',
-            url: '/admin/groups/group',
+            url: '/groups/group/{shortName}',
             views: {
                 'content@': {
                     templateUrl: '/app/src/groups/view/group.html',

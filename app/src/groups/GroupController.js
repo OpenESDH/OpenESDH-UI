@@ -5,17 +5,21 @@
         .module('openeApp.groups')
         .controller('GroupController', GroupController);
 
-    GroupController.$inject = ['$scope', '$mdDialog', 'groupService'];
+    GroupController.$inject = ['$scope', '$mdDialog', 'groupService', '$stateParams'];
 
     /**
      * Main Controller for the Groups module
      * @param $scope
      * @constructor
      */
-    function GroupController($scope, $mdDialog, groupService) {
+    function GroupController($scope, $mdDialog, groupService, $stateParams) {
         var vm = this;
         vm.group = {};
         vm.groups = [];
+        
+        if ($stateParams) {
+          showGroup($stateParams.shortName);
+        };
 
         initList();
 
@@ -42,7 +46,7 @@
         function showGroup(group_shortName) {
             groupService.getGroup(group_shortName).then(
                 function (response) {
-                    vm.group = response;
+                    vm.group = response.data;
                 },
                 function (error) {
                     console.log(error)
