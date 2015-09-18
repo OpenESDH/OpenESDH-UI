@@ -22,7 +22,7 @@
         function initList() {
             vm.groups.length = [];
             groupService.listAllSystemGroups().then(function (response) {
-                vm.groups = response;
+                vm.groups = response.data;
             }, function (error) {
                 console.log(error);
             });

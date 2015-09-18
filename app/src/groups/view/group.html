@@ -5,7 +5,7 @@
       <md-button ui-sref="administration.groups">
         <i class="material-icons">arrow_back</i>
       </md-button>
-      <h3>{{ 'GROUP.GROUP' | translate }}</h3>
+      <h3>{{ 'GROUP.GROUP' | translate }}: {{ vm.groups[0].displayName }}</h3>
     </div>
     
     <table>
@@ -17,11 +17,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr ng-repeat="member in vm.groups[0].members">
           <td><i class="material-icons">person</i></td>
-          <td>User display name goes here</td>
+          <td>{{ member.displayName }}</td>
           <td><md-button>{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button></td>
         </tr>
+        
         <tr>
           <td><i class="material-icons">group</i></td>
           <td>Subgroup display name goes here</td>

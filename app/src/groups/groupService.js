@@ -24,7 +24,7 @@
          */
         function listAllSystemGroups() {
             //limit maximum results to 100 
-            return $http.get(GROUP_PROXY_URI + '?shortNameFilter=*&maxItems=100')
+            return $http.get(ALFRESCO_URI.serviceApiProxy + 'groups?filter=*&maxItems=100')
                 .then(successOrReject);
         }
 
