@@ -214,7 +214,7 @@
                 authorizedRoles: [USER_ROLES.user]
             }
         }).state('administration.groups', {
-            parent: 'administration',
+            parent: 'site',
             url: '/groups',
             views: {
                 'content@': {
@@ -228,8 +228,8 @@
                 selectedTab: 1
             }
         }).state('administration.groups.group', {
-            parent: 'administration',
-            url: '/groups/group',
+            parent: 'site',
+            url: '/groups/group/{shortName}',
             views: {
                 'content@': {
                     templateUrl: '/app/src/groups/view/group.html',

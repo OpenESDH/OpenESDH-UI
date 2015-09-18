@@ -1,9 +1,12 @@
 <md-card>
   <md-card-content>
-    <h3>{{ 'GROUP.GROUPS' | translate }}</h3>
-    
-    {{ vm.groups[0].displayName }}
-    
+    <div layout="row" layout-align="space-between center">
+      <h3>{{ 'GROUP.GROUPS' | translate }}</h3>
+      <md-button aria-label="Create new group" class="md-primary">
+        <i class="material-icons">group_add</i>
+        Create new group
+      </md-button>
+    </div>
     <table>
       <thead>
         <tr>
@@ -12,23 +15,20 @@
           <th>{{ 'COMMON.ACTIONS' | translate }}</th>
         </tr>
       </thead>
-      <tbody ng-controller="GroupController">
-        <tr ng-repeat="group in vm.groups">
-          <td>{{ group.displayName }}</td>
-          <td class="muted">some_group_short_name</td>
+      <tbody>
+        <tr ng-repeat="g in vm.groups">
+          <td>{{ g.displayName }}</td>
+          <td class="muted">{{ g.shortName }}</td>
           <td layout="row">
-            <md-button ui-sref="administration.groups.group">{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button>
+            <md-button ui-sref="administration.groups.group({'shortName': g.shortName})">{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button>
             <md-button ng-disabled="true">{{ 'COMMON.REMOVE' | translate }}</md-button>
           </td>
         </tr>
       </tbody>
     </table>
-    
-  </md-card-content>
-  <md-card-footer>
     <md-button aria-label="Create new group" class="md-primary">
       <i class="material-icons">group_add</i>
       Create new group
     </md-button>
-  </md-card-footer>
+  </md-card-content>
 </md-card>
