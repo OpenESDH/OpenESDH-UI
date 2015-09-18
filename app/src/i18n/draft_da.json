@@ -54,7 +54,7 @@
             "archived": "Arkiveret"
         },
         "CASES": "Sager",
-        "CHANGE_STATUS": "Skift status",
+        "CHANGE_STATUS": "Skift sagsstatus",
         "CASE": "Sag",
         "CASE_OWNER": "Sags-ejer",
         "JOURNAL_KEY": "Journalnøgle",
@@ -67,7 +67,6 @@
         "TITLE": "Titel",
         "OWNER": "Ejer",
         "START_DATE": "Start-dato",
-        "END_DATE": "Slut-dato",
         "DESCRIPTION": "Beskrivelse",
         "CREATE_SAVE_CASE": "Opret / gem sag",
         "MY_CASES": "Mine sager",
@@ -100,7 +99,7 @@
             "received": "Modtaget",
             "distributed": "Distribueret",
             "under-review": "Under gennemlæsning",
-            "published": "Publiseret",
+            "published": "Publiceret",
             "finalised": "Færdiggjort",
             "submitted": "Indmeldt"
         },
@@ -119,6 +118,8 @@
         "DOCUMENTS": "Dokumenter",
         "CREATE_NEW_DOCUMENT": "Opret nyt dokument",
         "UPLOAD_NEW_DOCUMENTS": "Upload nyt dokument",
+        "SEND_DOCUMENTS": "Send dokumenter",
+        "DIGITAL_POST_DOCUMENTS": "Til Digital Post",
         "EMAIL_DOCUMENTS": "Email dokument",
         "MY_RECENT_DOCUMENTS": "Senest redigérede dokumenter",
         "CHANGE_STATUS": "Skift status",
@@ -163,7 +164,8 @@
         "USER": "Bruger"
     },
     "GROUP": {
-        "GROUPS": "Grupper"
+        "GROUPS": "Grupper",
+        "GROUP": "Gruppe"
     },
     "ORG": {
         "ORGANIZATIONS": "Organisationer",
@@ -215,8 +217,7 @@
         "USER_NAME": "Brugernavn",
         "PASSWORD": "Kodeord",
         "VERIFY_PASSWORD": "Gentag kodeord",
-        "LOGIN": "Log ind",
-        "SIGN_ME_IN_AUTOMATICALLY": "Log mig ind automatisk"
+        "LOGIN": "Log ind"
     },
     "MEMBER": {
         "MEMBERS": "Medlemmer",
