@@ -16,7 +16,8 @@
             getPreferences: getPreferences,
             setPreferences: setPreferences,
             createUser: createUser,
-            updateUser: updateUser
+            updateUser: updateUser,
+            changePassword: changePassword
         };
         return service;
 
@@ -69,6 +70,15 @@
                userObj
             ).then(function(response) {
                 console.log("Return success");
+                return response.data;
+            });
+        }
+
+        function changePassword(user) {
+            return $http.put("/api/person/changepassword/" + encodeURIComponent(user.userName),
+               user
+            ).then(function(response) {
+                console.log("Changing Password");
                 return response.data;
             });
         }

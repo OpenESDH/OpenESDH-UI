@@ -26,8 +26,9 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="user in vm.allSystemUsers">
-                                <td>{{user.userName}}</td>
+
+                            <tr ng-repeat="user in vm.allSystemUsers" ng-if="user.userName!='guest'" class="{{user.enabled ? 'enabled' : 'muted'}}">
+                            <td>{{user.userName}}</td>
                                 <td>{{user.firstName}}</td>
                                 <td>{{user.lastName}}</td>
                                 <td>
