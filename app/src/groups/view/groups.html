@@ -23,7 +23,7 @@
           <td class="muted">{{ g.shortName }}</td>
           <td layout="row">
             <md-button ui-sref="administration.group({'shortName': g.shortName })">{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button>
-            <md-button ng-disabled="false" ng-click="vm.deleteGroup(g.shortName)" >{{ 'COMMON.REMOVE' | translate }}</md-button>
+            <md-button ng-disabled="false" ng-click="vm.deleteGroup(g.shortName, $event)" >{{ 'COMMON.REMOVE' | translate }}</md-button>
           </td>
         </tr>
       </tbody>
