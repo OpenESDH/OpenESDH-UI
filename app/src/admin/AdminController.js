@@ -27,6 +27,7 @@
         function initTab() {
             $scope.$on('$stateChangeSuccess', function(event, toState) {
                 $scope.currentTab = toState.data.selectedTab;
+                $scope.searchContext = toState.data.searchContext;
             });
         }
       
@@ -79,7 +80,7 @@
             function update(u) {
                 ucd.userData = angular.copy(u);
                 ucd.userData.disableAccount = u.enabled;
-                var createSuccess = (ucd.dialogMode == "Create") ? userService.createUser(ucd.userData) : userService.updateUser(ucd.userData);
+                var createSuccess = (ucd.userExists) ? userService.updateUser(ucd.userData) : userService.createUser(ucd.userData);
                 console.log(ucd.userData);
                 $mdDialog.cancel();
                 notifyUserSaved(createSuccess);
