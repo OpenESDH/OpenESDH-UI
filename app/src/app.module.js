@@ -173,6 +173,7 @@
             },
             data: {
                 authorizedRoles: [USER_ROLES.user],
+                searchContext: 'USERS',
                 selectedTab: 0
             }
         }).state('administration.groups', {
@@ -187,6 +188,7 @@
             },
             data: {
                 authorizedRoles: [USER_ROLES.user],
+                searchContext: 'GROUPS',
                 selectedTab: 1
             }
         }).state('administration.organizations', {
@@ -201,6 +203,7 @@
                 },
                 data: {
                     authorizedRoles: [USER_ROLES.user],
+                    searchContext: 'CONTACT_ORGANISATIONS',
                     selectedTab: 2
                 }
         }).state('administration.contacts', {
@@ -215,6 +218,7 @@
                 },
                 data: {
                     authorizedRoles: [USER_ROLES.user],
+                    searchContext: 'CONTACT_USERS',
                     selectedTab: 3
                 }
         }).state('administration.organizations.organization', {
