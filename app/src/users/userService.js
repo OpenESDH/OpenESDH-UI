@@ -17,6 +17,8 @@
             setPreferences: setPreferences,
             createUser: createUser,
             updateUser: updateUser,
+            getPersons: getPersons,
+            getGroups: getGroups,
             changePassword: changePassword
         };
         return service;
@@ -94,6 +96,26 @@
                 params: {pf : 'org.alfresco.share.documents.favourites'}
             }).then(function(response) {
                 return response.data;
+            });
+        }
+        
+        function getPersons(searchTerm){
+            var url = '/alfresco/s/api/forms/picker/authority/children?selectableType=cm:person';
+            if(searchTerm && searchTerm.length > 0){
+                url += '&searchTerm=' + searchTerm;
+            }
+            return $http.get(url).then(function(result){
+                return result.data.data.items;
+            });
+        }
+        
+        function getGroups(searchTerm){
+            var url = '/alfresco/s/api/forms/picker/authority/children?selectableType=cm:authorityContainer';
+            if(searchTerm && searchTerm.length > 0){
+                url += '&searchTerm=' + searchTerm;
+            }
+            return $http.get(url).then(function(result){
+                return result.data.data.items;
             });
         }
     }

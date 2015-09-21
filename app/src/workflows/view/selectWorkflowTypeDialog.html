@@ -1,0 +1,26 @@
+<md-dialog aria-label="">
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">
+        <h2>{{ 'WORKFLOW.SELECT_WORKFLOW_TYPE' | translate }}</h2>
+      </div>
+    </md-toolbar>
+    <md-dialog-content class="workflowWizardStep">
+        <md-list>
+            <md-list-item class="md-3-line" ng-repeat="workflowDef in dlg.workflowDefs">
+                <md-checkbox ng-model="workflowDef.selected" ng-change="dlg.workflowSelected(workflowDef)"></md-checkbox>
+                <div class="md-list-item-text">
+                    <h3> {{ workflowDef.title }} </h3>
+                    <p> {{ workflowDef.description }} </p>
+                </div>
+            </md-list-item>
+        </md-list>
+    </md-dialog-content>
+    <div class="md-actions" layout="row">
+      <md-button ng-click="dlg.cancel()">
+        {{ 'COMMON.CANCEL' | translate }}
+      </md-button>
+      <md-button class="md-primary" ng-click="dlg.submit()" ng-disabled="dlg.selectedWorkflow == null">
+        {{ 'COMMON.NEXT' | translate }}
+      </md-button>
+    </div>
+</md-dialog>

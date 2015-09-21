@@ -33,6 +33,7 @@
     <script src="./bower_components/angular-animate/angular-animate.js"></script>
     <script src="./bower_components/angular-aria/angular-aria.js"></script>
     <script src="./bower_components/angular-material/angular-material.js"></script>
+    <script src="./bower_components/material-wizard/dist/material-wizard.js"></script>
     <script src="./bower_components/angular-translate/angular-translate.js"></script>
     <script src="./bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
     <script src="./bower_components/isteven-angular-multiselect/isteven-multi-select.js"></script>
@@ -63,6 +64,8 @@
     <script src="./app/src/shared/services/document/preview/documentPreviewService.js"></script>
 
     <script src="./app/src/shared/filters/isEmptyFilter.js"></script>
+    <script src="./app/src/shared/services/workflow/workflowService.js"></script>
+    
     <script src="./app/src/shared/filters/documentTypeFilter.js"></script>
     <script src="./app/src/shared/filters/documentCategoryFilter.js"></script>
     <script src="./app/src/shared/filters/documentStateFilter.js"></script>
@@ -142,5 +145,12 @@
     <script src="./app/src/groups/GroupController.js"></script>
     <script src="./app/src/groups/groupService.js"></script>
     
+    <script src="./app/src/workflows/workflows.module.js"></script>
+    <script src="./app/src/workflows/startCaseWorkflowService.js"></script>
+    <script src="./app/src/workflows/baseStartCaseWorkflowController.js"></script>
+    <script src="./app/src/workflows/startSingleRecipientWorkflowController.js"></script>
+    <script src="./app/src/workflows/startParallelGroupReviewWorkflowController.js"></script>
+    <script src="./app/src/workflows/startParallelReviewWorkflowController.js"></script>
+    <script src="./app/src/workflows/startPooledReviewWorkflowController.js"></script>
   </body>
 </html>

@@ -78,3 +78,10 @@ td .md-button {
 md-chips-wrap {
   margin-bottom: 1em;
 }
+
+.workflowWizardStep {
+	max-width:800px;
+	max-height:531px;
+	min-width:800px;
+	min-height:531px;
+}

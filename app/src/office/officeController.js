@@ -7,22 +7,25 @@
 
     var email;
 
-    OfficeController.$inject = ['$window', 'officeService', 'caseService', 'sessionService', '$q'];
+    OfficeController.$inject = ['$stateParams', '$window', 'officeService', 'caseService', 'sessionService', '$q'];
 
-    function OfficeController($window, officeService, caseService, sessionService, $q) {
+    function OfficeController($stateParams, $window, officeService, caseService, sessionService, $q) {
         var vm = this;
         vm.email = email;
 //        vm.from = email.From;
         vm.subject = email.Subject;
-        vm.caseId;
+        vm.selectedCase;
         vm.attachments = email.Attachments;
         
         vm.save = save;
         vm.cancel = cancel;
 
+        if ($stateParams.alf_ticket) {
+            $window.sessionStorage.userInfo = JSON.stringify({ticket: $stateParams.alf_ticket});
+        }
         function save() {
             officeService.saveEmail({
-                caseId: vm.caseId,
+                caseId: vm.selectedCase['oe:id'],
                 name: vm.subject,
                 email: vm.email
             }).then(function(response) {
@@ -49,16 +52,17 @@
         
         vm.querySearch = querySearch;
         function querySearch (query) {
-          var allTheCases =  [
-            { title: 'Case 1', id: '2342' },
-            { title: 'Case 2', id: '52' },
-            { title: 'Case 3', id: '74' },
-            { title: 'Case 4', id: '97663' },
-            { title: 'Case 5', id: '35751' }
-          ];
-          return allTheCases;
+            return caseService.getCases('base:case').then(function(response) {
+                return query ? response.filter(createFilterFor(query)) : [];
+            });
         }
-        
+        function createFilterFor(query) {
+            var lowercaseQuery = angular.lowercase(query);
+            return function filterFn(item) {
+                return (item['oe:id'].indexOf(query) != -1 || item['cm:title'].indexOf(query) != -1);
+            };
+        }
+
     }
 
     // This function is called from the Office Add-In
