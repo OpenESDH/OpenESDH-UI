@@ -172,7 +172,8 @@
                 }
             },
             data: {
-                authorizedRoles: [USER_ROLES.user]
+                authorizedRoles: [USER_ROLES.user],
+                selectedTab: 0
             }
         }).state('administration.groups', {
             parent: 'site',
@@ -186,7 +187,7 @@
             },
             data: {
                 authorizedRoles: [USER_ROLES.user],
-                selectedTab: 2
+                selectedTab: 1
             }
         }).state('administration.organizations', {
                 parent: 'site',
@@ -200,7 +201,7 @@
                 },
                 data: {
                     authorizedRoles: [USER_ROLES.user],
-                    selectedTab: 3
+                    selectedTab: 2
                 }
         }).state('administration.contacts', {
                 parent: 'site',
@@ -214,7 +215,7 @@
                 },
                 data: {
                     authorizedRoles: [USER_ROLES.user],
-                    selectedTab: 4
+                    selectedTab: 3
                 }
         }).state('administration.organizations.organization', {
                 parent: 'site',

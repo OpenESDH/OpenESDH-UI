@@ -17,7 +17,8 @@
         vm.group = {};
         vm.groups = [];
         vm.createGroup = createGroup;
-        
+        vm.deleteGroup = deleteGroup;
+
         if ($stateParams && $stateParams.shortName && $stateParams.shortName != 'ALL') {
           listMembers($stateParams.shortName);
             console.log("re-listing groups" + vm.groups);
