@@ -12,7 +12,7 @@
 
         $stateProvider.state('outlook', {
             parent: 'site',
-            url: '/outlook',
+            url: '/outlook?alf_ticket',
             views: {
                 'content@': {
                     templateUrl: '/app/src/office/view/outlook.html',
@@ -22,7 +22,8 @@
             },
             data: {
 //                authorizedRoles: [USER_ROLES.user]
-                authorizedRoles: ['user']
+//                authorizedRoles: ['user']
+                authorizedRoles: []
             }
         }).state('outlook.caseinfo', {
             parent: 'site',

@@ -17,7 +17,6 @@
             return $http.post('/alfresco/service/dk-openesdh-case-email', data).then(function(response) {
                 return response.data;
             }, function(error) {
-                window.alert('ERROR');
             })
         }
     }
