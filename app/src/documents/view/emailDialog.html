@@ -6,11 +6,10 @@
             </div>
         </md-toolbar>
         <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;">
-            <md-input-container>
-                <label>To</label>
-                <!--<input type="text" ng-model="vm.to">-->
-                <md-contact-chips ng-model="vm.to" md-contacts="vm.querySearch($query)" md-contact-name="displayName" md-contact-email="contactId" filter-selected="vm.filterSelected"></md-contact-chips>
-            </md-input-container>
+            
+            <label class="label">To</label>
+            <md-contact-chips ng-model="vm.to" md-contacts="vm.querySearch($query)" md-contact-name="displayName" md-contact-email="contactId" filter-selected="vm.filterSelected"></md-contact-chips>
+            
             <md-input-container>
                 <label>Cc</label>
                 <input type="text" ng-model="vm.cc">

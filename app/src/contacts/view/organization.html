@@ -35,7 +35,7 @@
                     </md-card-content>
                     <div class="md-actions" layout="row">
                         <md-button class="md-primary" ng-click="vm.showOrganizationEdit($event)">{{ 'ORG.EDIT_ORG' | translate }}</md-button>
-                        <md-button class="md-primary" ng-disabled="true">{{ 'ORG.DELETE_ORG' | translate }}</md-button>
+                        <md-button class="md-primary" ng-click="vm.deleteOrganization($event, vm.organization)">{{ 'ORG.DELETE_ORG' | translate }}</md-button>
                     </div>
                 </md-card>
             </div>

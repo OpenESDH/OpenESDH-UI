@@ -82,7 +82,7 @@
             <md-button class="md-primary" ng-click="save(personForm)">
                 {{ 'COMMON.SAVE' | translate }}
             </md-button>
-            <md-button ng-click="delete(person)">
+          <md-button ng-click="delete($event, person)" ng-show="person.id">
                 {{ 'COMMON.DELETE' | translate }}
             </md-button>
             <md-button ng-click="cancel()">

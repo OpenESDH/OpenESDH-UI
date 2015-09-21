@@ -70,3 +70,18 @@ input[type="file"] {
 td .md-button {
   margin: 0;
 }
+
+.material-icons {
+  vertical-align: middle;
+}
+
+md-chips-wrap {
+  margin-bottom: 1em;
+}
+
+.workflowWizardStep {
+	max-width:800px;
+	max-height:531px;
+	min-width:800px;
+	min-height:531px;
+}
