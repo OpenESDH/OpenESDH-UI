@@ -15,6 +15,7 @@
             addUserToGroup: addUserToGroup,
             removeUserFromGroup: removeUserFromGroup,
             createGroup: createGroup,
+            updateGroup: updateGroup,
             deleteGroup: deleteGroup
         };
 
@@ -86,7 +87,17 @@
          * @returns {*} Newly created group object
          */
         function createGroup(groupShortName, displayName) {
-            return $http.post(ALFRESCO_URI.apiProxy + 'rootgroups/' + groupShortName, {params: {displayName: displayName}})
+            return $http.post(ALFRESCO_URI.serviceApiProxy + 'rootgroups/' + groupShortName, {params: {displayName: displayName}})
+                .then(successOrReject);
+        }
+
+        /**
+         * Updates a group displayName.
+         * @param displayName
+         * @returns {*} Newly created group object
+         */
+        function updateGroup(groupShortName, displayName) {
+            return $http.post(GROUP_PROXY_URI + groupShortName, {params: {displayName: displayName}})
                 .then(successOrReject);
         }
 

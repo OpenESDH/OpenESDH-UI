@@ -16,12 +16,14 @@
         var vm = this;
         vm.group = {};
         vm.groups = [];
+        vm.createGroup = createGroup;
         
-        if ($stateParams) {
-          showGroup($stateParams.shortName);
-        };
-
-        initList();
+        if ($stateParams && $stateParams.shortName && $stateParams.shortName != 'ALL') {
+          listMembers($stateParams.shortName);
+            console.log("re-listing groups" + vm.groups);
+        }
+        else
+            initList();
 
         function initList() {
             vm.groups.length = [];
@@ -55,10 +57,8 @@
 
         // Return an array of user and group objects belonging to this group
         function listMembers(group_shortName) {
-            showGroup(group_shortName).then( function(){
-                groupService.getGroupMembers(group_shortName).then(function(response){
-                    vm.group.members = response;
-                });
+            groupService.getGroupMembers(group_shortName).then(function(response){
+                vm.groups = response.data;
             });
         }
 
@@ -80,13 +80,20 @@
             });
         }
 
-        function createGroup(shortName, displayName) {
-            groupService.createGroup(shortName, displayName).then(function (response) {
-                vm.group = response;
-                //TODO goto view
+        function createGroup(ev) {
+            console.log('Creating a new group');
+            vm.groupExists = false;
+            vm.group = {};
+
+            $mdDialog.show({
+                controller: GroupDialogController,
+                controllerAs: 'vm',
+                templateUrl: 'app/src/groups/view/groupCuDialog.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true
             });
         }
-
 
         function deleteGroup(shortName) {
             groupService.deleteGroup(shortName).then(function (response) {
@@ -104,6 +111,66 @@
             return Object.keys(obj).length === 0;
         }
 
-    };
+        /**
+         * THe controller for the cu (create/update) dialog(s)
+         * @param $scope
+         * @param $mdDialog
+         * @param $mdToast
+         * @param $animate
+         * @param groupService
+         * @constructor
+         */
+        function GroupDialogController($scope, $mdDialog, $mdToast, $animate, groupService) {
+            var gdc = this;
+
+            // Data from the user creation form
+            $scope.group = vm.group;
+            gdc.groupExists = vm.groupExists;
+            gdc.cancel = cancel;
+            gdc.update = update;
+            gdc.getToastPosition = getToastPosition;
+
+            // Cancel or submit form in dialog
+            function cancel(form) {
+                $mdDialog.cancel();
+            }
+
+            function update(u) {
+                gdc.groupData = angular.copy(u);
+                var createSuccess = (gdc.groupExists) ? groupService.updateGroup(gdc.groupData.shortName, gdc.groupData.displayName) : groupService.createGroup(gdc.groupData.shortName, gdc.groupData.displayName);
+                console.log("Group created and returned:"+ createSuccess);
+                debugger;
+                $mdDialog.cancel();
+                notifyUserSaved(createSuccess);
+            }
+
+            // When the form is submitted, show a notification:
+            gdc.toastPosition = {
+                bottom: false,
+                top: true,
+                left: false,
+                right: true
+            };
+
+            function getToastPosition() {
+                return Object.keys(gdc.toastPosition)
+                    .filter(function (pos) {
+                        return gdc.toastPosition[pos];
+                    })
+                    .join(' ');
+            }
+
+            function notifyUserSaved(cuSuccess) {
+                $mdToast.show(
+                    $mdToast.simple()
+                        .content(cuSuccess.message)
+                        .position(gdc.getToastPosition())
+                        .hideDelay(3000)
+                );
+                getAllSystemUsers();
+            }
+        }
+
+    }
 
 })();

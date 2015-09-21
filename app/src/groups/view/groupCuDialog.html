@@ -1,0 +1,29 @@
+<md-dialog aria-label="Case edit dialog">
+    <form name="form">
+        <md-toolbar layout="row">
+            <div class="md-toolbar-tools">
+                <h2>{{vm.dialogMode}} {{ 'GROUP.GROUP' | translate }}</h2>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;">
+
+            <md-input-container>
+                <label>{{ 'GROUP.DISPLAY_NAME' | translate }}</label>
+                <input type="text" ng-model="group.displayName" required focus-me="true">
+            </md-input-container>
+            <md-input-container>
+                <label>{{ 'GROUP.SHORT_NAME' | translate }}</label>
+                <input type="text" ng-model="group.shortName" required focus-me="false">
+            </md-input-container>
+
+        </md-dialog-content>
+        <div class="md-actions" layout="row">
+            <md-button type="submit" class="md-primary" ng-click="vm.update(group)" ng-disabled="form.$invalid">
+                {{vm.dialogMode}} {{ 'GROUP.GROUP' | translate }}
+            </md-button>
+            <md-button type="button" ng-click="vm.cancel(form)">
+                {{ 'COMMON.CANCEL' | translate }}
+            </md-button>
+        </div>
+    </form>
+</md-dialog>

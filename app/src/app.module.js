@@ -174,7 +174,7 @@
             }
         }).state('administration.groups', {
             parent: 'site',
-            url: '/admin/groups',
+            url: '/admin/groups/{shortName}',
             views: {
                 'content@': {
                     templateUrl: '/app/src/admin/view/admin.html',
@@ -185,19 +185,6 @@
             data: {
                 authorizedRoles: [USER_ROLES.user],
                 selectedTab: 2
-            }
-        }).state('administration.groups.group', {
-            parent: 'site',
-            url: '/groups/group/{shortName}',
-            views: {
-                'content@': {
-                    templateUrl: '/app/src/groups/view/group.html',
-                    controller: 'GroupController',
-                    controllerAs: 'vm'
-                }
-            },
-            data: {
-                authorizedRoles: [USER_ROLES.user],
             }
         }).state('administration.organizations', {
                 parent: 'site',
