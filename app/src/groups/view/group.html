@@ -6,9 +6,6 @@
       </md-button>
       <h3>{{ 'GROUP.GROUP' | translate }}: {{ vm.group.displayName }}</h3>
     </div>
-     
-     This is a group
-     
     <table>
       <thead>
         <tr>
@@ -19,9 +16,11 @@
       </thead>
       <tbody>
         <tr ng-repeat="m in vm.groups">
-          <td><i class="material-icons">person</i></td>
+          <td><i class="material-icons">{{ m.authorityType == 'USER' ? "person" : "group" }}</i></td>
           <td>{{ m.displayName }}</td>
-          <td><md-button>{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button></td>
+          <td>
+            <md-button ng-show="{{ m.authorityType == 'GROUP' }}" ui-sref="administration.group({'shortName': m.shortName })">{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button>
+          </td>
         </tr>
       </tbody>
     </table>
