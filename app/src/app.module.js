@@ -24,7 +24,7 @@
             'openeApp.contacts',
             'openeApp.administration',
             'openeApp.office',
-            'openeApp.groups'
+            'openeApp.groups',
             'openeApp.workflows'
         ])
         .constant('USER_ROLES', {
