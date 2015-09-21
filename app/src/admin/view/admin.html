@@ -50,14 +50,12 @@
             </md-tab-body>
         </md-tab>
 
-        <md-tab>
+        <md-tab ui-sref="administration.groups">
             <md-tab-label>
                 <span><i class="material-icons">group</i> {{ 'GROUP.GROUPS' | translate }}</span>
             </md-tab-label>
             <md-tab-body layout="column">
-                <div ng-controller="GroupController as vm">
-                    <div ng-include="'app/src/groups/view/groups.html'"></div>
-                </div>
+                <div ui-view="groups"></div>
             </md-tab-body>
         </md-tab>
 

@@ -20,14 +20,18 @@
         vm.deleteGroup = deleteGroup;
 
         if ($stateParams && $stateParams.shortName && $stateParams.shortName != 'ALL') {
-          listMembers($stateParams.shortName);
-            console.log("re-listing groups" + vm.groups);
+            showGroup($stateParams.shortName);
+            listMembers($stateParams.shortName);
+            console.log("re-listing groups");
+            console.log(vm.groups);
+            console.log(vm.group);
+            console.log($stateParams.shortName);
         }
         else
             initList();
 
         function initList() {
-            vm.groups.length = [];
+            //vm.groups.length = [];
             groupService.listAllSystemGroups().then(function (response) {
                 vm.groups = response.data;
             }, function (error) {

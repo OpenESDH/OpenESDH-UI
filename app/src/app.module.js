@@ -176,18 +176,26 @@
                 selectedTab: 0
             }
         }).state('administration.groups', {
-            parent: 'site',
-            url: '/admin/groups/{shortName}',
-            views: {
-                'content@': {
-                    templateUrl: '/app/src/admin/view/admin.html',
-                    controller: 'AdminController',
-                    controllerAs: 'vm'
-                }
-            },
+            url: '/groups',
             data: {
                 authorizedRoles: [USER_ROLES.user],
                 selectedTab: 1
+            },
+            views: {
+                'groups': {
+                    templateUrl: '/app/src/groups/view/groups.html'
+                }
+            }
+        }).state('administration.group', {
+            url: '/group/:shortName',
+            data: {
+                authorizedRoles: [USER_ROLES.user],
+                selectedTab: 1
+            },
+            views: {
+                'groups': {
+                    templateUrl: '/app/src/groups/view/group.html'
+                }
             }
         }).state('administration.organizations', {
                 parent: 'site',

@@ -1,13 +1,14 @@
-<md-card>
+<md-card ng-controller="GroupController as vm">
   <md-card-content>
-    
     <div layout="row">
       <md-button ui-sref="administration.groups">
         <i class="material-icons">arrow_back</i>
       </md-button>
       <h3>{{ 'GROUP.GROUP' | translate }}: {{ vm.group.displayName }}</h3>
     </div>
-    
+     
+     This is a group
+     
     <table>
       <thead>
         <tr>
@@ -17,15 +18,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="m in vm.group.members">
+        <tr ng-repeat="m in vm.groups">
           <td><i class="material-icons">person</i></td>
           <td>{{ m.displayName }}</td>
           <td><md-button>{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button></td>
-        </tr>
-        <tr>
-          <td><i class="material-icons">group</i></td>
-          <td>Subgroup display name goes here</td>
-          <td><md-button ui-sref="administration.groups.group">{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button></td>
         </tr>
       </tbody>
     </table>
