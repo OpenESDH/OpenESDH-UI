@@ -23,9 +23,6 @@
             showGroup($stateParams.shortName);
             listMembers($stateParams.shortName);
             console.log("re-listing groups");
-            console.log(vm.groups);
-            console.log(vm.group);
-            console.log($stateParams.shortName);
         }
         else
             initList();
@@ -100,10 +97,22 @@
             });
         }
 
-        function deleteGroup(shortName) {
-            groupService.deleteGroup(shortName).then(function (response) {
-                vm.group = response;
-                //TODO goto view
+        function deleteGroup(shortName, ev) {
+            var confirmDel = $mdDialog.confirm()
+                .title('Delete group')
+                .content('Delete ' + shortName + '?')
+                .ariaLabel('Delete group')
+                .targetEvent(ev)
+                .ok('Delete')
+                .cancel('Cancel');
+            $mdDialog.show(confirmDel).then(function() {
+                groupService.deleteGroup(shortName).then(function (response) {
+                    vm.group = response;
+                    //TODO goto view
+                });
+                console.log('Deleted');
+            }, function() {
+                console.log('Cancelled');
             });
         }
 
