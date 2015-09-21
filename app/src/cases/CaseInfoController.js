@@ -4,7 +4,7 @@
        .module('openeApp.cases')
        .controller('CaseInfoController', CaseInfoController);
 
-  CaseInfoController.$inject = ['$scope', '$stateParams', '$mdDialog', '$translate', 'caseService', 'notificationUtilsService'];
+  CaseInfoController.$inject = ['$scope', '$stateParams', '$mdDialog', '$translate', 'caseService', 'notificationUtilsService', 'startCaseWorkflowService'];
   
   /**
    * Main CaseInfoController for the Cases module
@@ -15,12 +15,13 @@
    * @param caseService
    * @constructor
    */
-  function CaseInfoController($scope, $stateParams, $mdDialog, $translate, caseService, notificationUtilsService) {
+  function CaseInfoController($scope, $stateParams, $mdDialog, $translate, caseService, notificationUtilsService, startCaseWorkflowService) {
     var vm = this;
 
     vm.editCase = editCase;
     vm.changeCaseStatus = changeCaseStatus;
     vm.onTabChange = onTabChange;
+    vm.startWorklfow = startWorklfow;
 
     loadCaseInfo();
     
@@ -97,6 +98,10 @@
     
     function onTabChange(tabName){
         $scope.$broadcast('tabSelectEvent', { tab: tabName});
+    }
+    
+    function startWorklfow(){
+        startCaseWorkflowService.startWorkflow();
     }
     
   };

@@ -5,6 +5,7 @@
         .module('openeApp', [
             'ngSanitize',
             'ngMaterial',
+            'material.wizard',
             'ui.router',
             'ngResource',
             'ngPDFViewer',
@@ -24,6 +25,7 @@
             'openeApp.administration',
             'openeApp.office',
             'openeApp.groups'
+            'openeApp.workflows'
         ])
         .constant('USER_ROLES', {
             admin: 'admin',
