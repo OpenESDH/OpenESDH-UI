@@ -10,14 +10,14 @@
         <md-autocomplete required
             md-input-name="autocompleteField"
             md-input-minlength="2"
-            md-selected-item="selectedItem"
+            md-selected-item="vm.selectedCase"
             md-search-text="searchText"
             md-items="item in vm.querySearch(searchText)"
-            md-item-text="item.title"
+            md-item-text="item['oe:id']"
             md-floating-label="Case">
           <md-item-template>
-            <span md-highlight-text="searchText">{{item.title}}</span>
-            <span md-highlight-text="searchText" class="muted">(ID: {{item.id}})</span>
+            <span md-highlight-text="searchText">{{item['oe:id'] }} {{item['cm:title']}}</span>
+            <!--<span md-highlight-text="searchText" class="muted">(ID: {{item.id}})</span>-->
           </md-item-template>
         </md-autocomplete>
         <div ng-show="vm.attachments.length > 0">

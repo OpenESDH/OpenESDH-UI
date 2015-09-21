@@ -54,7 +54,7 @@
             "archived": "Archived"  
         },
         "CASES": "Cases",
-        "CHANGE_STATUS": "Change status",
+        "CHANGE_STATUS": "Change case status",
         "CASE": "Case",
         "CASE_OWNER": "Case owner",
         "JOURNAL_KEY": "Journal key",
@@ -67,7 +67,6 @@
         "TITLE": "Title",
         "OWNER": "Owner",
         "START_DATE": "Start date",
-        "END_DATE": "End date",
         "DESCRIPTION": "Description",
         "CREATE_SAVE_CASE": "Create / save case",
         "MY_CASES": "My cases",
@@ -119,6 +118,8 @@
         "DOCUMENTS": "Documents",
         "CREATE_NEW_DOCUMENT": "Create new document",
         "UPLOAD_NEW_DOCUMENTS": "Upload new document",
+        "SEND_DOCUMENTS": "Send documents",
+        "DIGITAL_POST_DOCUMENTS": "Digital Post",
         "EMAIL_DOCUMENTS": "Email documents",
         "MY_RECENT_DOCUMENTS": "My recent documents",
         "CHANGE_STATUS": "Change status",
@@ -163,7 +164,8 @@
         "USER": "User"
     },
     "GROUP": {
-        "GROUPS": "Groups"
+        "GROUPS": "Groups",
+        "GROUP": "Group"
     },
     "ORG": {
         "ORGANIZATIONS": "Organisations",
@@ -215,8 +217,7 @@
         "USER_NAME": "Username",
         "PASSWORD": "Password",
         "VERIFY_PASSWORD": "Verify password",
-        "LOGIN": "Login",
-        "SIGN_ME_IN_AUTOMATICALLY": "Sign me in automatically"
+        "LOGIN": "Login"
     },
     "MEMBER": {
         "MEMBERS": "Members",
@@ -268,5 +269,21 @@
     },
     "OFFICE": {
         "SAVE_EMAIL_IN_OPENESDH": "SAVE E-mail in OpenESDH"
+    },
+    "WORKFLOW":{
+        "TASK":{
+            "STATUS":{
+                "NotYetStarted": "Not Yet Started",
+                "OnHold": "On Hold",
+                "InProgress": "In Progress",
+                "Cancelled": "Cancelled",
+                "Completed": "Completed"
+            },
+            "PRIORITY":{
+                "1": "High",
+                "2": "Medium",
+                "3": "Low"
+            }
+        }
     }
 }

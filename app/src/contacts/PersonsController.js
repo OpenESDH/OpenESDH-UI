@@ -5,7 +5,7 @@
             .controller('PersonsController', PersonsController);
 
     PersonsController.$inject = ['$mdDialog', 'contactsService', 'countriesService'];
-    
+
     var DEFAULT_PAGE_SIZE = 5;
 
     function PersonsController($mdDialog, contactsService, countriesService) {
@@ -34,7 +34,7 @@
                 console.log(error);
             });
         }
-        
+
         function initPages(response) {
             vm.pages.length = 0;
             vm.pagingParams.totalRecords = response.totalRecords;
@@ -45,7 +45,7 @@
         }
 
         function doFilter(page) {
-            vm.pagingParams.page = page || 1; 
+            vm.pagingParams.page = page || 1;
             initList();
         }
 
@@ -82,9 +82,19 @@
                 $mdDialog.cancel();
             };
 
-            $scope.delete = function() {
-                contactsService.deletePerson($scope.person)
+            $scope.delete = function(ev, person) {
+                var confirm = $mdDialog.confirm()
+                        .title('Confirmation')
+                        .content('Are you sure you want to delete person contact?')
+                        .ariaLabel('Person delete confirmation')
+                        .targetEvent(ev)
+                        .ok('Yes')
+                        .cancel('Cancel');
+                $mdDialog.show(confirm).then(function() {
+                    contactsService.deletePerson(person)
                         .then(refreshInfoAfterSuccess, saveError);
+                });
+                
             };
 
             $scope.save = function(personForm) {
