@@ -1,14 +1,10 @@
-<app-header></app-header>
-
-<md-content layout-padding>
-    <h2>{{vm.organization.organizationName}}</h2>
-</md-content>
-
-<md-card>
+<md-card ng-controller="OrganizationController as vm">
     <md-card-content>
 
         <a class="md-button md-primary" href="#/admin/organizations">{{ 'ORG.BACK_TO_ORGS' | translate }}</a>
 
+        <h2>{{vm.organization.organizationName}}</h2>
+        
         <div layout="row" layout-wrap>
             <div flex="50">
                 <md-card>

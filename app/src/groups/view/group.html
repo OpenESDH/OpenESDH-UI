@@ -1,13 +1,11 @@
-<md-card>
+<md-card ng-controller="GroupController as vm">
   <md-card-content>
-    
     <div layout="row">
       <md-button ui-sref="administration.groups">
         <i class="material-icons">arrow_back</i>
       </md-button>
       <h3>{{ 'GROUP.GROUP' | translate }}: {{ vm.group.displayName }}</h3>
     </div>
-    
     <table>
       <thead>
         <tr>
@@ -17,15 +15,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="m in vm.group.members">
-          <td><i class="material-icons">person</i></td>
+        <tr ng-repeat="m in vm.groups">
+          <td><i class="material-icons">{{ m.authorityType == 'USER' ? "person" : "group" }}</i></td>
           <td>{{ m.displayName }}</td>
-          <td><md-button>{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button></td>
-        </tr>
-        <tr>
-          <td><i class="material-icons">group</i></td>
-          <td>Subgroup display name goes here</td>
-          <td><md-button ui-sref="administration.groups.group">{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button></td>
+          <td>
+            <md-button ng-show="{{ m.authorityType == 'GROUP' }}" ui-sref="administration.group({'shortName': m.shortName })">{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -33,9 +28,9 @@
   </md-card-content>
   <md-card-footer>
     
-    <md-button aria-label="Create new group" class="md-primary">
+    <md-button aria-label="{{ 'GROUP.ADD_USERS' | translate }}" class="md-primary">
       <i class="material-icons">person_add</i>
-      Add users/groups
+      {{ 'GROUP.ADD_USERS' | translate }}
     </md-button>
     
   </md-card-footer>
