@@ -1,54 +1,46 @@
 <app-header></app-header>
 
 <md-content layout="column">
-    <div class="sub-toolbar">
-        <div layout-padding>
-            <h1 class="md-headline">{{ 'ADMIN.ADMINISTRATION_PAGES' | translate }}</h1>
-        </div>
 
+    <div class="sub-toolbar" layout-padding>
+        <h1 class="md-headline">{{ 'ADMIN.ADMINISTRATION_PAGES' | translate }}</h1>
     </div>
 
     <md-tabs md-dynamic-height md-selected="currentTab">
 
-        <md-tab>
+        <md-tab ui-sref="administration.users">
             <md-tab-label>
                 <span><i class="material-icons">person</i> {{ 'USER.USERS' | translate }}</span>
             </md-tab-label>
-            <md-tab-body>
-                <div ng-controller="UsersController as vm">
-                    <div ng-include="'app/src/users/view/users.html'"></div>
-                </div>
+            <md-tab-body layout="column">
+                <div ui-view="users"></div>
             </md-tab-body>
         </md-tab>
 
-        <md-tab>
+        <md-tab ui-sref="administration.groups">
             <md-tab-label>
                 <span><i class="material-icons">group</i> {{ 'GROUP.GROUPS' | translate }}</span>
             </md-tab-label>
             <md-tab-body layout="column">
-                <div ng-controller="GroupController as vm">
-                    <div ng-include="'app/src/groups/view/groups.html'"></div>
-                </div>
+                <div ui-view="groups"></div>
             </md-tab-body>
         </md-tab>
 
-        <md-tab>
+        <md-tab ui-sref="administration.organizations">
             <md-tab-label>
                 <span><i class="material-icons">account_balance</i> {{ 'ORG.ORGANIZATIONS' | translate }}</span>
             </md-tab-label>
             <md-tab-body layout="column">
-                <div ng-include="'app/src/contacts/view/organizations.html'"></div>
+                <div ui-view="organizations"></div>
             </md-tab-body>
         </md-tab>
 
-        <md-tab>
+        <md-tab ui-sref="administration.contacts">
             <md-tab-label>
                 <span><i class="material-icons">perm_contact_calendar</i> {{ 'CONTACT.CONTACTS' | translate }}</span>
             </md-tab-label>
             <md-tab-body layout="column">
-                <div ng-controller="PersonsController as vm">
-                    <div ng-include="'app/src/contacts/view/persons.html'"></div>
-                </div>
+                <div ui-view="contacts"></div>
             </md-tab-body>
         </md-tab>
 

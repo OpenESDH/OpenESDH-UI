@@ -21,7 +21,8 @@
         vm.cancel = cancel;
 
         if ($stateParams.alf_ticket) {
-            $window.sessionStorage.userInfo = JSON.stringify({ticket: $stateParams.alf_ticket});
+            sessionService.setUserInfo({ticket: $stateParams.alf_ticket});
+//            $window.sessionStorage.userInfo = JSON.stringify({ticket: $stateParams.alf_ticket});
         }
         function save() {
             officeService.saveEmail({
@@ -30,14 +31,15 @@
                 email: vm.email
             }).then(function(response) {
                 var metadata = {
-                    caseId: vm.caseId,
+                    caseId: vm.selectedCase['oe:id'],
                     documentName: vm.subject,
-                    nodeRef: response.nodeRef,
-                    ticket: sessionService.getUserData().ticket
+                    nodeRef: response.nodeRef
                 };
-                $window.external.SaveAsOpenEsdh(JSON.stringify(metadata), JSON.stringify(vm.attachments.filter(function(attachment) {
+                var atms = vm.attachments.filter(function(attachment) {
                     return attachment.selected;
-                })));
+                });
+                $window.external.SaveAsOpenEsdh(JSON.stringify(metadata), JSON.stringify(atms));
+            }, function(error) {
             });
         }
 

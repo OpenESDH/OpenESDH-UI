@@ -20,14 +20,15 @@
         vm.deleteGroup = deleteGroup;
 
         if ($stateParams && $stateParams.shortName && $stateParams.shortName != 'ALL') {
-          listMembers($stateParams.shortName);
-            console.log("re-listing groups" + vm.groups);
+            showGroup($stateParams.shortName);
+            listMembers($stateParams.shortName);
+            console.log("re-listing groups");
         }
         else
             initList();
 
         function initList() {
-            vm.groups.length = [];
+            //vm.groups.length = [];
             groupService.listAllSystemGroups().then(function (response) {
                 vm.groups = response.data;
             }, function (error) {
@@ -96,10 +97,22 @@
             });
         }
 
-        function deleteGroup(shortName) {
-            groupService.deleteGroup(shortName).then(function (response) {
-                vm.group = response;
-                //TODO goto view
+        function deleteGroup(shortName, ev) {
+            var confirmDel = $mdDialog.confirm()
+                .title('Delete group')
+                .content('Delete ' + shortName + '?')
+                .ariaLabel('Delete group')
+                .targetEvent(ev)
+                .ok('Delete')
+                .cancel('Cancel');
+            $mdDialog.show(confirmDel).then(function() {
+                groupService.deleteGroup(shortName).then(function (response) {
+                    vm.group = response;
+                    //TODO goto view
+                });
+                console.log('Deleted');
+            }, function() {
+                console.log('Cancelled');
             });
         }
 

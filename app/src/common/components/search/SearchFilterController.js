@@ -4,7 +4,7 @@
     angular.module('openeApp.search.component.filter')
         .controller('SearchFilterComponent', SearchFilterComponent);
 
-    SearchFilterComponent.$inject = ['$scope', 'searchService'];
+    SearchFilterComponent.$inject = ['$scope'];
 
     /**
      * This controller is a component controller for selecting a search filter for now it contains a select options
@@ -26,7 +26,7 @@
      * @param $scope
      * @constructor
      */
-    function SearchFilterComponent($scope, searchService) {
+    function SearchFilterComponent($scope) {
 
         var cb;
         
@@ -38,7 +38,7 @@
                 selectOptions : options,
                 searchFilter : "userName",
                 searchTerm : "*"
-            }
+            };
 
             cb = callback;
         };
@@ -46,7 +46,7 @@
         $scope.sfc = {};
         $scope.sfc.constructQuery = function constructQuery() {
             
-            var query ="sortBy="+$scope.values.searchFilter+"&dir=asc&filter="+encodeURIComponent($scope.values.searchTerm)+"&maxResults=250";
+            var query ="sortBy="+$scope.values.searchFilter+"&dir=asc&filter="+encodeURIComponent($scope.values.searchTerm)+"*&maxResults=250";
 
             return cb(query);
         }

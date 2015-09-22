@@ -2,9 +2,9 @@
   <div class="md-toolbar-tools" layout="row">
 
     <div flex flex-gt-md="40" layout="row" layout-align="start center">
-      <a class="md-button" ui-sref="dashboard">{{ 'COMMON.HOME' | translate }}</a>
-      <a class="md-button" ui-sref="cases">{{ 'CASE.CASES' | translate }}</a>
-      <a class="md-button" ui-sref="tasks">{{ 'TASK.TASKS' | translate }}</a>
+      <a class="md-button" ui-sref="dashboard"><i class="material-icons">dashboard</i> {{ 'COMMON.HOME' | translate }}</a>
+      <a class="md-button" ui-sref="cases"><i class="material-icons">folder_open</i> {{ 'CASE.CASES' | translate }}</a>
+      <a class="md-button" ui-sref="tasks"><i class="material-icons">assignment</i> {{ 'TASK.TASKS' | translate }}</a>
     </div>
 
     <md-input-container id="global-search" flex="25" flex-gt-md>
@@ -23,7 +23,7 @@
           </md-button>
         </md-menu-item>
         <md-menu-item>
-          <md-button ui-sref="administration">
+          <md-button ui-sref="administration.users">
             {{ 'ADMIN.ADMINISTRATION' | translate }}
           </md-button>
         </md-menu-item>

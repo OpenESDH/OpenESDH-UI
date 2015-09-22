@@ -3,10 +3,6 @@
     <h2>{{ 'OFFICE.SAVE_EMAIL_IN_OPENESDH' | translate }}</h2>
 
     <form name="form">
-        <md-input-container>
-            <label>{{ 'COMMON.TITLE' | translate }}</label>
-            <input type="text" ng-model="vm.subject" required>
-        </md-input-container>
         <md-autocomplete required
             md-input-name="autocompleteField"
             md-input-minlength="2"
@@ -20,6 +16,10 @@
             <!--<span md-highlight-text="searchText" class="muted">(ID: {{item.id}})</span>-->
           </md-item-template>
         </md-autocomplete>
+        <md-input-container>
+            <label>{{ 'COMMON.TITLE' | translate }}</label>
+            <input type="text" ng-model="vm.subject" required>
+        </md-input-container>
         <div ng-show="vm.attachments.length > 0">
             <md-subheader class="md-no-sticky">{{ 'DOCUMENT.ATTACHMENTS' | translate }}:</md-subheader>
             <md-list-item ng-repeat="attachment in vm.attachments">

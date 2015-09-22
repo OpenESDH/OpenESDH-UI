@@ -1,15 +1,16 @@
-<md-card>
+<md-card ng-controller="GroupController as vm">
   <md-card-content>
     <div layout="row" layout-align="space-between center">
-      <h3>{{ 'GROUP.GROUPS' | translate }}</h3>
+      <h3 class="md-title">{{ 'GROUP.GROUPS' | translate }}</h3>
       <md-button aria-label="Create new group" class="md-primary" ng-click="vm.createGroup($event)">
         <i class="material-icons">group_add</i>
-        Create new group
+        {{ 'GROUP.CREATE_NEW_GROUP' | translate }}
       </md-button>
     </div>
     <table>
       <thead>
         <tr>
+          <th></th>
           <th>{{ 'COMMON.NAME' | translate }}</th>
           <th></th>
           <th>{{ 'COMMON.ACTIONS' | translate }}</th>
@@ -17,18 +18,19 @@
       </thead>
       <tbody>
         <tr ng-repeat="g in vm.groups">
-          <td><i class="material-icons">{{g.authorityType == 'USER' ? "person" : "group"}}</i> {{ g.displayName }}</td>
+          <td><i class="material-icons">{{ g.authorityType == 'USER' ? "person" : "group" }}</i></td>
+          <td>{{ g.displayName }}</td>
           <td class="muted">{{ g.shortName }}</td>
           <td layout="row">
-            <md-button ui-sref="administration.groups({'shortName': g.shortName })">{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button>
-            <md-button ng-disabled="false" ng-click="vm.deleteGroup(g.shortName)" >{{ 'COMMON.REMOVE' | translate }}</md-button>
+            <md-button ui-sref="administration.group({'shortName': g.shortName })">{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button>
+            <md-button ng-disabled="false" ng-click="vm.deleteGroup(g.shortName, $event)" >{{ 'COMMON.REMOVE' | translate }}</md-button>
           </td>
         </tr>
       </tbody>
     </table>
-    <md-button aria-label="Create new group" class="md-primary" ng-click="vm.createGroup($event)" >
+    <md-button aria-label="Create new group" class="md-primary" ng-click="vm.createGroup($event)">
       <i class="material-icons">group_add</i>
-      Create new group
+      {{ 'GROUP.CREATE_NEW_GROUP' | translate }}
     </md-button>
   </md-card-content>
 </md-card>
