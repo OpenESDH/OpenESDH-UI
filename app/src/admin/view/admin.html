@@ -12,10 +12,6 @@
             <md-tab-label>
                 <span><i class="material-icons">person</i> {{ 'USER.USERS' | translate }}</span>
             </md-tab-label>
-            <!--<md-tab-body>
-                <div ng-controller="UsersController as vm">
-                    <div ng-include="'app/src/users/view/users.html'"></div>
-                </div>-->
             <md-tab-body layout="column">
                 <div ui-view="users"></div>
             </md-tab-body>

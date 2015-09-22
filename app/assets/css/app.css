@@ -18,17 +18,35 @@ dd {
 
 table {
   width: 100%;
+  border-collapse: collapse;
 }
 
 table th,
 table td {
   border-bottom: solid 1px #ddd;
   text-align: left;
-  padding: 0.25em 0.5em 0.25em 0;
+  padding: 0.5em;
 }
 
 table th {
   padding-bottom: 0.5em;
+}
+
+tr.muted {
+  background-color: #eee;
+}
+
+.clickable-row {
+  cursor: pointer;
+}
+
+.clickable-row:hover,
+.clickable-row:focus {
+  background-color: #eee;
+}
+
+.clickable-row:active {
+  background-color: #ddd;
 }
 
 dt,

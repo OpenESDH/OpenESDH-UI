@@ -1,4 +1,4 @@
-<md-card ng-controller="">
+<md-card ng-controller="UsersController as vm">
     <md-card-content>
         <div layout="row" layout-align="space-between center">
             <h2 class="md-title" flex>{{ 'USER.USERS' | translate }}</h2>
@@ -18,9 +18,8 @@
             </thead>
             <tbody>
 
-            <tr ng-repeat="user in vm.allSystemUsers" ng-if="user.userName!='guest'"
-                class="{{user.enabled ? 'enabled' : 'muted'}}">
-                <td>{{user.userName}}</td>
+            <tr ng-repeat="user in vm.allSystemUsers" ng-if="user.userName!='guest'" class="{{user.enabled ? 'enabled' : 'muted'}}">
+            <td>{{user.userName}}</td>
                 <td>{{user.firstName}}</td>
                 <td>{{user.lastName}}</td>
                 <td>
