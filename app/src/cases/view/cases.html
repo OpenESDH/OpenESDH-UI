@@ -25,6 +25,7 @@
         <table>
             <thead>
                 <tr>
+                    <th></th>
                     <th>{{ 'COMMON.ID' | translate }}</th>
                     <th>{{ 'COMMON.TYPE' | translate }}</th>
                     <th>{{ 'COMMON.TITLE' | translate }}</th>
@@ -37,6 +38,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="case in vm.cases" class="clickable-row {{ case['oe:status'] == 'passive' ? 'muted' : '' }}" ui-sref="caseinfo({'caseId': case['oe:id']})">
+                    <td><i class="material-icons">folder_open</i></td>
                     <td>{{case["oe:id"]}}</td>
                     <td class="muted">{{case["TYPE"]}}</td>
                     <td>{{case["cm:title"]}}</td>

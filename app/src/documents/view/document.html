@@ -68,12 +68,11 @@
                       </tr>
                   </table>
               </md-card-content>
-              <div class="md-actions" layout="row">
-                <md-button class="md-primary" ng-disabled="true">{{ 'DOCUMENT.EDIT_DOCUMENT' | translate }}</md-button>
+              <div class="md-actions" layout="row" layout-padding>
+                <md-button class="md-primary" ng-click="docCtrl.editDocumentProperties()">{{ 'DOCUMENT.EDIT_PROPERTIES' | translate }}</md-button>
                 <md-button class="md-primary" ng-click="docCtrl.uploadDocNewVersion()">{{ 'DOCUMENT.UPLOAD_NEW_VERSION' | translate }}</md-button>
                 <md-button class="md-primary" ng-click="docCtrl.downloadDocument()">{{ 'COMMON.DOWNLOAD' | translate }}</md-button>
                 <md-button class="md-primary" ng-click="docCtrl.previewDocument()">{{ 'DOCUMENT.OPEN_PREVIEW' | translate }}</md-button>
-                <md-button class="md-primary" ng-click="docCtrl.editDocumentProperties()">{{ 'DOCUMENT.EDIT_PROPERTIES' | translate }}</md-button>
               </div>
           </md-card>
        </div>

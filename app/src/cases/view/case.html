@@ -84,26 +84,23 @@
                 <table>
                   <thead>
                     <tr>
+                      <th></th>
                       <th>{{ 'COMMON.TITLE' | translate }}</th>
-                      <th>{{ 'COMMON.NO' | translate }}</th>
-                      <th>{{ 'COMMON.STATUS' | translate }}</th>
                       <th>{{ 'COMMON.TYPE' | translate }}</th>
                       <th>{{ 'COMMON.CATEGORY' | translate }}</th>
-                      <th>{{ 'COMMON.STATE' | translate }}</th>
-                      <th>{{ 'COMMON.OWNER' | translate }}</th>
+                      <th>{{ 'COMMON.CREATEDBY' | translate }}</th>
                       <th>{{ 'COMMON.CREATED' | translate }}</th>
                       <th>{{ 'COMMON.MODIFIED' | translate }}</th>
-                      <th>{{ 'COMMON.ACTION' | translate }}</th>
+                      <th>{{ 'COMMON.ACTIONS' | translate }}</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr ng-repeat="doc in docCtrl.documents" class="{{ doc.isUpdated ? 'updated' : 'not-updated' }}">
+                    <tr ng-repeat="doc in docCtrl.documents">
+                      <td><i class="material-icons">insert_drive_file</i></td>
                       <td>{{ doc["cm:title"] }}</td>
-                      <td class="muted">{{ doc.docNo }}</td>
-                      <td class="muted">{{ doc["oe:status"] | docStatus }}</td>
                       <td class="muted">{{ doc["doc:type"] | docType }}</td>
                       <td class="muted">{{ doc["doc:category"] | docCategory }}</td>
-                      <td class="muted">{{ doc["doc:state"] | docState }}</td>
+                      
                       <td class="muted">
                           <span ng-repeat="owner in doc['doc:owner']">{{owner.fullname}}</span>
                       </td>
@@ -119,7 +116,6 @@
                 {{ 'COMMON.PAGES' | translate }}: <md-button ng-repeat="page in docCtrl.pages" ng-click="docCtrl.loadDocuments(page)">{{page}}</md-button>
               </md-card-content>
               <div class="md-actions" layout="row">
-                <md-button class="md-primary" ng-disabled="true">{{ 'DOCUMENT.CREATE_NEW_DOCUMENT' | translate }}</md-button>
                 <md-button class="md-primary"
                            ng-click="docCtrl.uploadDocument()"
                            ng-disabled="caseIsLocked">

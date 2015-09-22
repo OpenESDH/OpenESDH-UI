@@ -12,6 +12,7 @@
             <table>
               <thead>
                 <tr>
+                  <th></th>
                   <th>{{ 'COMMON.ID' | translate }}</th>
                   <th>{{ 'COMMON.TITLE' | translate }}</th>
                   <th>{{ 'COMMON.MODIFIED' | translate }}</th>
@@ -19,6 +20,7 @@
               </thead>
               <tbody>
                 <tr ng-repeat="case in caseController.cases" class="clickable-row" ui-sref="caseinfo({'caseId': case['oe:id']})">
+                  <td><i class="material-icons">folder_open</i></td>
                   <td>{{case["oe:id"]}}</td>
                   <td>{{case["cm:title"]}}</td>
                   <td class="muted">{{case["cm:modified"] | date: 'yyyy-MM-dd'}}</td>
@@ -51,29 +53,21 @@
             <table>
               <thead>
                 <tr>
-                  <th>{{ 'COMMON.ID' | translate }}</th>
+                  <th></th>
                   <th>{{ 'COMMON.TITLE' | translate }}</th>
                   <th>{{ 'COMMON.MODIFIED' | translate }}</th>
+                  <th>{{ 'COMMON.MODIFIED_BY' | translate }}</th>
                 </tr>
               </thead>
               <tbody>
-                <tr ng-repeat="document in vm.documents" class="clickable-row">
-                  <td>{{case["oe:id"]}}</td>
-                  <td>{{case["cm:title"]}}</td>
-                  <td class="muted">{{case["cm:modified"] | date: 'yyyy-MM-dd'}}</td>
+                <tr ng-repeat="document in vm.documents">
+                  <td><i class="material-icons">insert_drive_file</i></td>
+                  <td>{{ document.displayName }}</td>
+                  <td class="muted">{{ document.modifiedOn }}</td>
+                  <td class="muted">{{ document.modifiedBy }}</td>
                 </tr>
               </tbody>
             </table>
-            
-            <md-list>
-              <md-list-item class="md-2-line" ng-repeat="document in vm.documents">
-                <div class="md-list-item-text">
-                  <!--<img ng-src="{{ file.icon }}">-->
-                  <h3>{{ document.displayName }}</h3>
-                  <p>{{ 'COMMON.MODIFIED' | translate }} {{ document.modifiedOn }} {{ 'COMMON.BY' | translate }} {{ document.modifiedBy }}</p>
-                </div>
-              </md-list-item>
-            </md-list>
             
           </md-card-content>
         </md-card>
