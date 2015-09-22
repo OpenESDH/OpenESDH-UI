@@ -17,7 +17,6 @@
             setPreferences: setPreferences,
             createUser: createUser,
             updateUser: updateUser,
-            findPersons: findPersons,
             getPersons: getPersons,
             getGroups: getGroups,
             changePassword: changePassword

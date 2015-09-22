@@ -32,7 +32,7 @@
         vm.filterCallback = function (query) {
             console.log(query);
             getAllSystemUsers(query);
-        }
+        };
     
         populateUsersList();
         function populateUsersList() {
