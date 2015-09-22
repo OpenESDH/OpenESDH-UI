@@ -108,18 +108,6 @@
                 return result.data.data.items;
             });
         }
-
-        function findPersons(searchTerm){
-            var url =  ALFRESCO_URI+'/people';
-            if(searchTerm && searchTerm.length > 0){
-                url += searchTerm;
-            }
-            url +="?sortBy=lastName&dir=asc&filter=*&maxResults=250";
-
-            return $http.get(url).then(function(result){
-                return result.data.people;
-            });
-        }
         
         function getGroups(searchTerm){
             var url = '/alfresco/s/api/forms/picker/authority/children?selectableType=cm:authorityContainer';

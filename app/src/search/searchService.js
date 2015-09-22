@@ -17,10 +17,10 @@
             getConfiguredFacets: getConfiguredFacets,
             liveSearchCaseDoc: liveSearchCaseDocs,
             liveSearchCase: liveSearchCases,
+            findPerson: findPersons,
             search: search
         };
         return service;
-
 
         //<editor-fold desc="liveSearch results">
         function liveSearchCaseDocs(term) {
@@ -83,6 +83,18 @@
                 searchTerm = encodeURIComponent("(" + terms + ") ");
 
             return searchTerm;
+        }
+
+        function findPersons(searchTerm){
+            var url =  ALFRESCO_URI+'/people';
+            if(searchTerm && searchTerm.length > 0){
+                url += searchTerm;
+            }
+            url +="?sortBy=lastName&dir=asc&filter=*&maxResults=250";
+
+            return $http.get(url).then(function(result){
+                return result.data.people;
+            });
         }
     }
 })();

@@ -22,6 +22,11 @@
           <input type="text" ng-model="user.email" required focus-me="false">
         </md-input-container>
 
+        <div ng-show="vm.userExists">
+            <label>Disable Account</label>
+            <input type="checkbox" ng-model="user.enabled" ng-checked="!user.enabled" focus-me="false">
+        </div>
+
         <md-input-container>
           <label>{{ 'LOGIN.USER_NAME' | translate }}</label>
           <input type="text" ng-model="user.userName" required focus-me="false" ng-disabled="vm.userExists">
