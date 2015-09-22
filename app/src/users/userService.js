@@ -5,10 +5,10 @@
         .module('openeApp')
         .factory('userService', userService);
 
-    userService.$inject = ['$http', '$resource'];
+    userService.$inject = ['ALFRESCO_URI', '$http', '$resource'];
 
-    function userService($http, $resource) {
-        var service = {
+    function userService(ALFRESCO_URI, $http, $resource) {
+        return {
             getPerson: getPerson,
             getPeople: getPeople,
             getHome: getHome,
@@ -17,11 +17,11 @@
             setPreferences: setPreferences,
             createUser: createUser,
             updateUser: updateUser,
+            findPersons: findPersons,
             getPersons: getPersons,
             getGroups: getGroups,
             changePassword: changePassword
         };
-        return service;
 
         function getPerson(username) {
             return $http.get('/alfresco/service/api/people/' + username).then(function(response) {
@@ -106,6 +106,18 @@
             }
             return $http.get(url).then(function(result){
                 return result.data.data.items;
+            });
+        }
+
+        function findPersons(searchTerm){
+            var url =  ALFRESCO_URI+'/people';
+            if(searchTerm && searchTerm.length > 0){
+                url += searchTerm;
+            }
+            url +="?sortBy=lastName&dir=asc&filter=*&maxResults=250";
+
+            return $http.get(url).then(function(result){
+                return result.data.people;
             });
         }
         

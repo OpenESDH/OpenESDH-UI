@@ -1,6 +1,12 @@
 <md-card>
     <md-card-content>
-        <h2 class="md-title">{{ 'USER.USERS' | translate }}</h2>
+        <div layout="row" layout-align="space-between center">
+            <h2 class="md-title" flex>{{ 'USER.USERS' | translate }}</h2>
+
+            <div flex="15" ng-controller="SearchFilterComponent as sfc" ng-init="init(vm.optionLabel, vm.optionValue, vm.selectOptions)">
+                <div ng-include="'/app/src/common/components/search/view/SearchFilterComponent.html'"></div>
+            </div>
+        </div>
         <table>
             <thead>
             <tr>
@@ -12,7 +18,8 @@
             </thead>
             <tbody>
 
-            <tr ng-repeat="user in vm.allSystemUsers" ng-if="user.userName!='guest'" class="{{user.enabled ? 'enabled' : 'muted'}}">
+            <tr ng-repeat="user in vm.allSystemUsers" ng-if="user.userName!='guest'"
+                class="{{user.enabled ? 'enabled' : 'muted'}}">
                 <td>{{user.userName}}</td>
                 <td>{{user.firstName}}</td>
                 <td>{{user.lastName}}</td>

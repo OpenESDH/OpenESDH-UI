@@ -14,10 +14,21 @@
      */
     function UsersController($scope, $mdDialog, userService) {
         var vm = this;
+
         vm.createUser = createUser;
         vm.editUser = editUser;
         vm.userExists = false;
 
+        //For the search control filter
+        vm.userSearchFilters = [
+            {optionLabel:"First name", optionValue:"firstName"},
+            {optionLabel:"Last name", optionValue:"lastName"},
+            {optionLabel:"User name", optionValue:"userName"}
+        ];
+        vm.optionLabel = "optionLabel";
+        vm.optionValue = "optionValue";
+        vm.selectOptions = vm.userSearchFilters;
+        
         populateUsersList();
         function populateUsersList() {
             getAllSystemUsers();

@@ -1,14 +1,11 @@
 <app-header></app-header>
 
 <md-content layout="column">
-    <div layout="row" layout-align="space-between centre">
-        <div class="sub-toolbar" layout-padding>
+    <div class="sub-toolbar">
+        <div layout-padding>
             <h1 class="md-headline">{{ 'ADMIN.ADMINISTRATION_PAGES' | translate }}</h1>
         </div>
 
-        <div>
-            <div ng-include="'/app/src/common/components/search/view/SearchFilterComponent.html'"></div>
-        </div>
     </div>
 
     <md-tabs md-dynamic-height md-selected="currentTab">
