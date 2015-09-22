@@ -3,7 +3,7 @@
         <div layout="row" layout-align="space-between center">
             <h2 class="md-title" flex>{{ 'USER.USERS' | translate }}</h2>
 
-            <div flex="15" ng-controller="SearchFilterComponent as sfc" ng-init="init(vm.optionLabel, vm.optionValue, vm.selectOptions)">
+            <div flex="15" ng-controller="SearchFilterComponent as sfc" ng-init="init(vm.optionLabel, vm.optionValue, vm.selectOptions, vm.searchFilterCallback)">
                 <div ng-include="'/app/src/common/components/search/view/SearchFilterComponent.html'"></div>
             </div>
         </div>

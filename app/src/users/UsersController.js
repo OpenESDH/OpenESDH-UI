@@ -28,7 +28,8 @@
         vm.optionLabel = "optionLabel";
         vm.optionValue = "optionValue";
         vm.selectOptions = vm.userSearchFilters;
-        
+        vm.searchFilterCallback = "findPersons";
+
         populateUsersList();
         function populateUsersList() {
             getAllSystemUsers();

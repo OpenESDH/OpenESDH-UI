@@ -33,17 +33,18 @@
             $scope.selectOptions = options;
             $scope.searchFilter ="userName";
             $scope.searchTerm = "*";
+            $scope.callback = callback;
         };
 
         var sfc = this;
         sfc.constructQuery = constructQuery;
 
-        debugger;
+        //debugger;
 
-        function constructQuery(callback){
+        function constructQuery(){
             var query ="sortBy="+$scope.searchFilter+"&dir=asc&filter="+encodeURIComponent($scope.searchTerm)+"&maxResults=250";
             debugger;
-            return searchService[callback](query);
+            return searchService[$scope.callback](query);
         }
     }
 })();
