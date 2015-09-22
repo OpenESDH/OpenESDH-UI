@@ -16,17 +16,26 @@
         initTab();
         var vm = this;
         vm.createUser = createUser;
+        vm.editUser = editUser;
+        vm.userExists = false;
+
+        populateUsersList();
+        function populateUsersList(){
+            getAllSystemUsers();
+        }
 
         function initTab() {
             $scope.$on('$stateChangeSuccess', function(event, toState) {
                 $scope.currentTab = toState.data.selectedTab;
+                $scope.searchContext = toState.data.searchContext;
             });
         }
 
         function createUser(ev) {
             console.log('Creating a new user');
+            vm.userExists = false;
+            vm.user = {};
 
-            vm.userDialogMode = "Create";
             $mdDialog.show({
                 controller: UserDialogController,
                 controllerAs: 'vm',
@@ -39,7 +48,7 @@
 
         function editUser(ev, user) {
             console.log('Editing user');
-            vm.userDialogMode = "Update";
+            vm.userExists = true;
             vm.user = user;
 
             $mdDialog.show({
@@ -58,7 +67,7 @@
             // Data from the user creation form
             $scope.user = vm.user;
             ucd.userData = {};
-            ucd.dialogMode = vm.userDialogMode;
+            ucd.userExists = vm.userExists;
             ucd.cancel = cancel;
             ucd.update = update;
             ucd.getToastPosition = getToastPosition;
@@ -70,7 +79,8 @@
 
             function update(u) {
                 ucd.userData = angular.copy(u);
-                var createSuccess = (ucd.dialogMode == "Create") ? userService.createUser(ucd.userData) : userService.updateUser(ucd.userData);
+                ucd.userData.disableAccount = u.enabled;
+                var createSuccess = (ucd.userExists) ? userService.updateUser(ucd.userData) : userService.createUser(ucd.userData);
                 console.log(ucd.userData);
                 $mdDialog.cancel();
                 notifyUserSaved(createSuccess);

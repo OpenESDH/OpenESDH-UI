@@ -24,18 +24,19 @@
 
         <md-input-container>
           <label>{{ 'LOGIN.USER_NAME' | translate }}</label>
-          <input type="text" ng-model="user.userName" required focus-me="false">
+          <input type="text" ng-model="user.userName" required focus-me="false" ng-disabled="vm.userExists">
         </md-input-container>
 
         <!--TODO Need to make sure that the password fields match before allowing form submission-->
       <div layout="row">
         <md-input-container>
           <label>{{ 'LOGIN.PASSWORD' | translate }}</label>
-          <input type="password" ng-model="user.password" required focus-me="false">
+          <input type="password" ng-model="user.password" ng-required="!vm.userExists || undefined" focus-me="false">
         </md-input-container>
+
         <md-input-container>
           <label>{{ 'LOGIN.VERIFY_PASSWORD' | translate }}</label>
-          <input type="password" ng-model="user.verifypassword" required focus-me="false">
+          <input type="verifypassword" ng-model="user.verifypassword" ng-required="!vm.userExists || undefined" focus-me="false">
         </md-input-container>
       </div>
       

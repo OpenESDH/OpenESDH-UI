@@ -18,7 +18,8 @@
             createUser: createUser,
             updateUser: updateUser,
             getPersons: getPersons,
-            getGroups: getGroups
+            getGroups: getGroups,
+            changePassword: changePassword
         };
         return service;
 
@@ -71,6 +72,15 @@
                userObj
             ).then(function(response) {
                 console.log("Return success");
+                return response.data;
+            });
+        }
+
+        function changePassword(user) {
+            return $http.put("/api/person/changepassword/" + encodeURIComponent(user.userName),
+               user
+            ).then(function(response) {
+                console.log("Changing Password");
                 return response.data;
             });
         }
