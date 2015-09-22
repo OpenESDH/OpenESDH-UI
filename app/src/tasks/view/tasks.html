@@ -5,7 +5,7 @@
     <div style="float: right;font-size: 14px;">
         {{'COMMON.CREATED_ON' | translate}} {{task.properties.cm_created | date}} {{'COMMON.BY' | translate}} {{task.owner.firstName + ' ' + task.owner.lastName}}
     </div>
-    <h3>{{ task.properties.bpm_description }}</h4>
+    <h3>{{ task.properties.bpm_description }}</h3>
     <dl layout="row" layout-wrap>
       <dt flex="20">{{ 'COMMON.STATUS' | translate }}</dt><dd flex="66">{{ task.properties.bpm_status | workflowTaskStatus}}</dd>
       <dt flex="20">{{ 'COMMON.DUE_DATE' | translate }}</dt><dd flex="66">{{ task.properties.bpm_dueDate | date }}</dd>

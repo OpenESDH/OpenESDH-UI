@@ -1,0 +1,9 @@
+<div ng-controller="SearchFilterComponent as sfc">
+    <!--<p>search term is : {{searchTerm}}</p>-->
+    <md-input-container>
+        <select ng-model="searchFilter" >
+            <option ng-repeat="item in selectOptions" value="{{item[optionValue]}}">{{item[optionLabel]}}</option>
+        </select>
+        <input type="text" ng-model="searchTerm" focus-me="false" ng-keypress="($event.which === 13)?sfc.performSearch():0">
+    </md-input-container>
+</div>

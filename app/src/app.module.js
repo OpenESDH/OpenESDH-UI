@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -25,7 +25,10 @@
             'openeApp.administration',
             'openeApp.office',
             'openeApp.groups',
-            'openeApp.workflows'
+            'openeApp.users',
+            'openeApp.workflows',
+            'openeApp.search',
+            'openeApp.search.component.filter'
         ])
         .constant('USER_ROLES', {
             admin: 'admin',
@@ -38,8 +41,8 @@
             serviceSlingshotProxy: '/alfresco/service/slingshot/'
         })
         .config(config)
-        .run(function($rootScope, $state, $stateParams, authService) {
-            $rootScope.$on('$stateChangeStart', function(event, next, params) {
+        .run(function ($rootScope, $state, $stateParams, authService) {
+            $rootScope.$on('$stateChangeStart', function (event, next, params) {
                 $rootScope.toState = next;
                 $rootScope.toStateParams = params;
                 if (next.data.authorizedRoles.length == 0) {
@@ -53,11 +56,6 @@
                     $rootScope.returnToStateParams = $rootScope.toStateParams;
                     $state.go('login');
                 }
-//                console.log('authenticated? ', authService.isAuthenticated());
-//                if (!authService.isAuthenticated()) {
-//                    event.preventDefault();
-//                    $state.go('login');
-//                }
             });
         });
 
@@ -66,14 +64,14 @@
     function config($mdThemingProvider, $stateProvider, $urlRouterProvider, USER_ROLES, $mdIconProvider) {
         $mdThemingProvider.theme('default')
             .primaryPalette('blue', {
-              'default': '600',
-              'hue-1': '400',
-              'hue-2': '800',
-              'hue-3': '900'
+                'default': '600',
+                'hue-1': '400',
+                'hue-2': '800',
+                'hue-3': '900'
             })
             .accentPalette('amber')
             .warnPalette('deep-orange');
-            
+
         $mdIconProvider.icon('md-calendar', '/app/assets/img/icons/today.svg');
 
         $urlRouterProvider.otherwise('/');
@@ -153,8 +151,8 @@
             url: '/tasks',
             views: {
                 'content@': {
-                    templateUrl : '/app/src/tasks/view/tasks.html',
-                    controller : 'tasksOverviewController',
+                    templateUrl: '/app/src/tasks/view/tasks.html',
+                    controller: 'tasksOverviewController',
                     controllerAs: 'tasksCtrl'
                 }
             },
@@ -192,49 +190,49 @@
                 selectedTab: 1
             }
         }).state('administration.organizations', {
-                parent: 'site',
-                url: '/admin/organizations',
-                views: {
-                    'content@': {
-                        templateUrl: '/app/src/admin/view/admin.html',
-                        controller: 'AdminController',
-                        controllerAs: 'vm'
-                    }
-                },
-                data: {
-                    authorizedRoles: [USER_ROLES.user],
-                    searchContext: 'CONTACT_ORGANISATIONS',
-                    selectedTab: 2
+            parent: 'site',
+            url: '/admin/organizations',
+            views: {
+                'content@': {
+                    templateUrl: '/app/src/admin/view/admin.html',
+                    controller: 'AdminController',
+                    controllerAs: 'vm'
                 }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user],
+                searchContext: 'CONTACT_ORGANISATIONS',
+                selectedTab: 2
+            }
         }).state('administration.contacts', {
-                parent: 'site',
-                url: '/admin/contacts',
-                views: {
-                    'content@': {
-                        templateUrl: '/app/src/admin/view/admin.html',
-                        controller: 'AdminController',
-                        controllerAs: 'vm'
-                    }
-                },
-                data: {
-                    authorizedRoles: [USER_ROLES.user],
-                    searchContext: 'CONTACT_USERS',
-                    selectedTab: 3
+            parent: 'site',
+            url: '/admin/contacts',
+            views: {
+                'content@': {
+                    templateUrl: '/app/src/admin/view/admin.html',
+                    controller: 'AdminController',
+                    controllerAs: 'vm'
                 }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user],
+                searchContext: 'CONTACT_USERS',
+                selectedTab: 3
+            }
         }).state('administration.organizations.organization', {
-                parent: 'site',
-                url: '/admin/organizations/:storeProtocol/:storeIdentifier/:uuid',
-                views: {
-                    'content@': {
-                        templateUrl: '/app/src/contacts/view/organization.html',
-                        controller: 'OrganizationController',
-                        controllerAs: 'vm'
-                    }
-                },
-                data: {
-                    authorizedRoles: [USER_ROLES.user]
+            parent: 'site',
+            url: '/admin/organizations/:storeProtocol/:storeIdentifier/:uuid',
+            views: {
+                'content@': {
+                    templateUrl: '/app/src/contacts/view/organization.html',
+                    controller: 'OrganizationController',
+                    controllerAs: 'vm'
                 }
-            });
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
+            }
+        });
     }
 
 })();

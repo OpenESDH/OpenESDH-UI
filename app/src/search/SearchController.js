@@ -1,6 +1,6 @@
 (function(){
   'use strict';
-   angular.module('openeApp.cases')
+   angular.module('openeApp.search')
           .controller('SearchController', SearchController);
 
     SearchController.$inject = ['$scope','$state', '$mdDialog', 'searchService'];
