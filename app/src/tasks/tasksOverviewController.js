@@ -13,7 +13,6 @@
         
         function init(){
             taskService.getCurrentUserWorkflowTasks().then(function(result){
-                console.log("tasks", result);
                 vm.tasks = result;
             });
         }

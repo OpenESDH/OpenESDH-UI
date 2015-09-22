@@ -27,7 +27,9 @@
             var wi = vm.BaseStartCaseWorkflowController_getWorkflowInfo();
             angular.extend(wi, {
                 assignToGroup: vm.selectedRecipient,
-                requiredApprovalPercentage: vm.requiredApprovalPercentage
+                properties: {
+                    wf_requiredApprovePercent: vm.requiredApprovalPercentage
+                }
             });
             return wi;
         }

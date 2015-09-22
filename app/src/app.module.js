@@ -7,6 +7,7 @@
             'ngMaterial',
             'material.wizard',
             'ui.router',
+            'rt.encodeuri',
             'ngResource',
             'ngPDFViewer',
             'swfobject',
@@ -24,7 +25,7 @@
             'openeApp.contacts',
             'openeApp.administration',
             'openeApp.office',
-            'openeApp.groups'
+            'openeApp.groups',
             'openeApp.workflows'
         ])
         .constant('USER_ROLES', {
@@ -151,6 +152,19 @@
                     templateUrl : '/app/src/tasks/view/tasks.html',
                     controller : 'tasksOverviewController',
                     controllerAs: 'tasksCtrl'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
+            }
+        }).state('workflowtask', {
+            parent: 'site',
+            url: '/tasks/task/:taskName/:taskId',
+            views: {
+                'content@': {
+                    templateUrl : '/app/src/tasks/common/view/taskContainer.html',
+                    controller : 'taskFormLoaderController',
+                    controllerAs: 'ctrl'
                 }
             },
             data: {
