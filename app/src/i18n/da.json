@@ -47,7 +47,8 @@
         "CLOSE": "Luk",
         "CREATED_ON": "Oprettet d.",
         "DUE_DATE": "Forfaldsdato",
-        "PRIORITY": "Prioritet"
+        "PRIORITY": "Prioritet",
+        "EDIT": "Redigér"
     },
     "CASE": {
         "CONFIRM_CLOSE_CASE": "Vil du lukke denne sag?",

@@ -47,7 +47,8 @@
         "CLOSE": "Close",
         "CREATED_ON": "Created on",
         "DUE_DATE": "Due date",
-        "PRIORITY": "Priority"
+        "PRIORITY": "Priority",
+        "EDIT": "Edit"
     },
     "CASE": {
         "CONFIRM_CLOSE_CASE": "Do you want to close this case?",
