@@ -17,6 +17,8 @@
             return this;
         }
 
+        StartCaseWorkflowService.$inject = ['$mdDialog', '$stateParams', 'workflowService'];
+        
         function StartCaseWorkflowService($mdDialog, $stateParams, workflowService) {
             
             var service = {
