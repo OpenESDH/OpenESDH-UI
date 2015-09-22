@@ -21,7 +21,6 @@
         function init(){
             var vm = this;
             taskService.getTaskDetails(vm.taskId).then(function(result){
-                console.log("got task", result);
                 vm.task = result;
                 vm.taskProperties = angular.extend({}, result.properties);
             });
