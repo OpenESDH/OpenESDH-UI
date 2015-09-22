@@ -28,7 +28,8 @@
             'openeApp.users',
             'openeApp.workflows',
             'openeApp.search',
-            'openeApp.search.component.filter'
+            'openeApp.search.component.filter',
+            'openeApp.common.directives.filter'
         ])
         .constant('USER_ROLES', {
             admin: 'admin',
