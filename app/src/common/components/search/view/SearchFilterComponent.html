@@ -1,7 +1,7 @@
-<!--<p>search term is : {{searchTerm}}</p>-->
+<p>search term is : {{values.searchTerm}}</p>
 <md-input-container layout="row">
-    <select ng-model="searchFilter" flex>
-        <option ng-repeat="item in selectOptions" value="{{item[optionValue]}}">{{item[optionLabel]}}</option>
+    <select ng-model="values.searchFilter" flex>
+        <option ng-repeat="item in values.selectOptions" value="{{item[values.optionValue]}}">{{item[values.optionLabel]}}</option>
     </select>
-    <input flex type="text" ng-model="searchTerm" focus-me="false" ng-keypress="($event.which === 13)?sfc.constructQuery():0">
+    <input flex type="text" ng-model="values.searchTerm" focus-me="false" ng-keypress="($event.which === 13)?sfc.constructQuery():0">
 </md-input-container>

@@ -28,6 +28,11 @@
         vm.optionLabel = "optionLabel";
         vm.optionValue = "optionValue";
         vm.selectOptions = vm.userSearchFilters;
+
+        vm.filterCallback = function (query) {
+            console.log(query);
+            getAllSystemUsers(query);
+        }
         
         populateUsersList();
         function populateUsersList() {
@@ -116,12 +121,14 @@
             }
         }
 
-        function getAllSystemUsers() {
-            return userService.getPeople("*").then(function (response) {
+        function getAllSystemUsers(query) {
+            var filter = query ? query : "*";
+            return userService.getPeople(filter).then(function (response) {
                 vm.allSystemUsers = response.people;
                 return response;
             });
         }
+
     }
 
 })();

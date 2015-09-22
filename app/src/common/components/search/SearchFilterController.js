@@ -27,23 +27,28 @@
      * @constructor
      */
     function SearchFilterComponent($scope, searchService) {
+
+        var cb;
+        
         $scope.init = function(label, value, options, callback ){
-            $scope.optionLabel = label;
-            $scope.optionValue = value;
-            $scope.selectOptions = options;
-            $scope.searchFilter ="userName";
-            $scope.searchTerm = "*";
+            
+            $scope.values = {
+                optionLabel : label,
+                optionValue : value,
+                selectOptions : options,
+                searchFilter : "userName",
+                searchTerm : "*"
+            }
+
+            cb = callback;
         };
 
-        var sfc = this;
-        sfc.constructQuery = constructQuery;
+        $scope.sfc = {};
+        $scope.sfc.constructQuery = function constructQuery() {
+            
+            var query ="sortBy="+$scope.values.searchFilter+"&dir=asc&filter="+encodeURIComponent($scope.values.searchTerm)+"&maxResults=250";
 
-        debugger;
-
-        function constructQuery(callback){
-            var query ="sortBy="+$scope.searchFilter+"&dir=asc&filter="+encodeURIComponent($scope.searchTerm)+"&maxResults=250";
-            debugger;
-            return searchService[callback](query);
+            return cb(query);
         }
     }
 })();

@@ -86,7 +86,7 @@
         }
 
         function getPeople(filter) {
-            return $http.get('/alfresco/s/api/people?filter='+filter).then(function(response) {
+            return $http.get('/alfresco/s/api/people?'+filter).then(function(response) {
                 return response.data;
             });
         }
