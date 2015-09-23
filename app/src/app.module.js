@@ -244,6 +244,16 @@
                     templateUrl: '/app/src/contacts/view/persons.html',
                 }
             }
+        }).state('search', {
+            url: '/search',
+            views: {
+                'content@': {
+                    templateUrl: '/app/src/search/view/search.html'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
+            }
         });
     }
 

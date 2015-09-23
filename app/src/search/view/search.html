@@ -1,0 +1,65 @@
+<app-header></app-header>
+
+<md-content layout="column">
+  
+    <div class="sub-toolbar" layout-padding>
+        <h1 class="md-headline" layout-margin>{{ 'SEARCH.SEARCH' | translate }}</h1>
+    </div>
+
+    <div layout="row" layout-padding>
+        
+        <div flex="25" layout-margin>
+            <form name="facets">
+                <fieldset>
+                    <legend><i class="material-icons">arrow_drop_down</i> Filters A</legend>
+                    <md-checkbox ng-model="useFacetA1" aria-label="Facet A1" class="md-primary">
+                        Facet A1 <span class="search-hits">2</span>
+                    </md-checkbox>
+                    <md-checkbox ng-model="useFacetA2" aria-label="Facet A2" class="md-primary">
+                        Facet A2 <span class="search-hits">468</span>
+                    </md-checkbox>
+                    <md-checkbox ng-model="useFacetA3" aria-label="Facet A3" class="md-primary">
+                        Facet A3 <span class="search-hits">5</span>
+                    </md-checkbox>
+                </fieldset>
+                <fieldset>
+                    <legend><i class="material-icons">arrow_drop_down</i> Filters B</legend>
+                    <md-checkbox ng-model="useFacetB1" aria-label="Facet B1" class="md-primary">
+                        Facet B1 <span class="search-hits">23</span>
+                    </md-checkbox>
+                    <md-checkbox ng-model="useFacetB2" aria-label="Facet B2" class="md-primary">
+                        Facet B2 <span class="search-hits">7</span>
+                    </md-checkbox>
+                    <md-checkbox ng-model="useFacetB3" aria-label="Facet B3" class="md-primary">
+                        Facet B3 <span class="search-hits">13</span>
+                    </md-checkbox>
+                </fieldset>
+            </form>
+        </div>
+        
+        <div flex="75">
+            
+            <md-card>
+                <md-card-content>
+                    <h2 class="md-title">Some search result</h2>
+                    <p>Some description</p>
+                    <a class="md-button md-primary">Some link</a>
+                </md-card-content>
+            </md-card>
+            
+            <md-card>
+                <md-card-content>
+                    <h2 class="md-title">Some other search result</h2>
+                    <p>Some description</p>
+                    <a class="md-button md-primary">Some link</a>
+                </md-card-content>
+            </md-card>
+            
+        </div>
+        
+    </div> 
+    
+
+</md-content>
+  
+<app-footer></app-footer>
