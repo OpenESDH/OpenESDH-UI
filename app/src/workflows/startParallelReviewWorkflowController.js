@@ -31,7 +31,9 @@
             });
             angular.extend(wi, {
                 assignees: assignees,
-                requiredApprovalPercentage: vm.requiredApprovalPercentage
+                properties: {
+                    wf_requiredApprovePercent: vm.requiredApprovalPercentage
+                }
             });
             return wi;
         }
