@@ -12,7 +12,6 @@
                     <i class="material-icons" style="vertical-align: middle;">arrow_back</i>
                 </md-button>
                 <h1 class="md-headline" layout-margin>
-                    <i class="material-icons">folder_open</i>
                     {{ case["oe:id"].value }} {{ case["cm:title"].value }}
                     <span class="muted" ng-hide="case['oe:status'].value === 'active'">
                         ({{case['oe:status'].value | caseStatus}})
@@ -97,6 +96,7 @@
                     </tr>
                   </thead>
                   <tbody>
+                    
                     <tr ng-repeat="doc in docCtrl.documents">
                       <td><i class="material-icons">insert_drive_file</i></td>
                       <td>{{ doc["cm:title"] }}</td>
