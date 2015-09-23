@@ -90,9 +90,9 @@
             return $q(function(resolve, reject){
                 caseDocumentDetailsService.getCaseDocument(documentNodeRef).then(function(document){
                     showDialog(CaseDocumentEditPropertiesDialogController, {document: document}).then(function(formData) {
-                        
                         var updatedDocument = {
                                 nodeRef: documentNodeRef,
+                                title: formData.title,
                                 type: formData.doc_type,
                                 category: formData.doc_category,
                                 state: formData.doc_state
@@ -117,7 +117,8 @@
                 parent: angular.element(document.body),
                 targetEvent: null,
                 clickOutsideToClose: true,
-                locals: locals
+                locals: locals,
+                focusOnOpen: false
             });
         }
         
@@ -173,6 +174,7 @@
             $scope.isEditProperties = true;
             
             $scope.documentProperties = {
+                    title: document.title,
                     doc_type: document.type,
                     doc_state: document.state,
                     doc_category: document.category

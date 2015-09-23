@@ -9,7 +9,7 @@
     <div layout="row" layout-align="space-between center" layout-padding layout-margin>
   
       <h1 class="md-headline">
-        {{ docCtrl.doc.name }}
+        {{ docCtrl.doc.title }}
         <span class="muted">({{docCtrl.doc.status | docStatus}})</span>
       </h1>
       
@@ -45,7 +45,7 @@
                       <tr>
                           <td>
                               <dl>
-                                  <dt>{{ 'COMMON.TITLE' | translate }}</dt><dd>{{ docCtrl.doc.name }}</dd>
+                                  <dt>{{ 'COMMON.TITLE' | translate }}</dt><dd>{{ docCtrl.doc.title }}</dd>
                                   <dt>{{ 'COMMON.STATUS' | translate }}</dt><dd>{{docCtrl.doc.status | docStatus}}</dd>
                                   <dt>{{ 'COMMON.STATE' | translate }}</dt><dd>{{ docCtrl.doc.state | docState}}</dd>
                                   <dt>{{ 'COMMON.TYPE' | translate }}</dt><dd>{{ docCtrl.doc.type | docType}}</dd>
