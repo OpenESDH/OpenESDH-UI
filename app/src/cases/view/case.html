@@ -3,48 +3,50 @@
 <md-content layout="column">
   
   
-  <div class="sub-toolbar">
+    <div class="sub-toolbar">
     
-    <div layout="row" layout-align="space-between center" layout-padding layout-margin>
+        <div layout="row" layout-align="space-between center" layout-padding>
     
-      <div layout="row" layout-align="start center">
-        <md-button ng-href="#/cases" ng-aria="{{ 'CASE.CASES' | translate }}">
-          <i class="material-icons" style="vertical-align: middle;">arrow_back</i>
-        </md-button>
-        <h1 class="md-headline">
-          {{ case["oe:id"].value }} {{ case["cm:title"].value }}
-          <span class="muted" ng-hide="case['oe:status'].value === 'active'">
-            ({{case['oe:status'].value | caseStatus}})
-          </span>
-        </h1>
-      </div>
+            <div layout="row" layout-align="start center">
+                <md-button ng-href="#/cases" ng-aria="{{ 'CASE.CASES' | translate }}">
+                    <i class="material-icons" style="vertical-align: middle;">arrow_back</i>
+                </md-button>
+                <h1 class="md-headline" layout-margin>
+                    <i class="material-icons">folder_open</i>
+                    {{ case["oe:id"].value }} {{ case["cm:title"].value }}
+                    <span class="muted" ng-hide="case['oe:status'].value === 'active'">
+                        ({{case['oe:status'].value | caseStatus}})
+                    </span>
+                </h1>
+            </div>
       
-      <md-menu>
-        <md-button class="md-primary" ng-click="$mdOpenMenu($event)"
-                   aria-label="{{ 'CASE.CHANGE_STATUS' | translate }}"
-                   ng-disabled="caseStatusChoices.length == 0">
-          {{ 'CASE.CHANGE_STATUS' | translate }}
-        </md-button>
-        <md-menu-content>
-          <md-menu-item ng-repeat="choiceName in caseStatusChoices">
-            <md-button
-                    ng-class="{'current-choice': choiceName === case['oe:status'].value}"
-                    ng-disabled="choiceName === case['oe:status'].value"
-                    aria-label="{{ choiceName | caseStatus }}"
-                    ng-click="vm.changeCaseStatus(choiceName)">{{ choiceName | caseStatus }}</md-button>
-          </md-menu-item>
-        </md-menu-content>
-      </md-menu>
+            <md-menu>
+                <md-button class="md-primary" ng-click="$mdOpenMenu($event)"
+                           aria-label="{{ 'CASE.CHANGE_STATUS' | translate }}"
+                           ng-disabled="caseStatusChoices.length == 0">
+                    {{ 'CASE.CHANGE_STATUS' | translate }}
+                </md-button>
+                    <md-menu-content>
+                        <md-menu-item ng-repeat="choiceName in caseStatusChoices">
+                        <md-button ng-class="{'current-choice': choiceName === case['oe:status'].value}"
+                                   ng-disabled="choiceName === case['oe:status'].value"
+                                   aria-label="{{ choiceName | caseStatus }}"
+                                   ng-click="vm.changeCaseStatus(choiceName)">
+                            {{ choiceName | caseStatus }}
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
       
+        </div>
+    
     </div>
-    
-  </div>
   
   <md-tabs md-dynamic-height>
     
     <md-tab md-on-select="vm.onTabChange('case')">
       <md-tab-label>
-        <span>{{ 'CASE.CASE' | translate }}</span>
+        <span><i class="material-icons">folder_open</i> {{ 'CASE.CASE' | translate }}</span>
       </md-tab-label>
       <md-tab-body>
         
@@ -68,7 +70,7 @@
                   <dt flex="33">{{ 'COMMON.DESCRIPTION' | translate }}</dt><dd flex="66">{{ case["cm:description"].value }}</dd>
                 </dl>
               </md-card-content>
-              <div class="md-actions" layout="row" layout-wrap>
+              <div class="md-actions" layout="column" layout-padding layout-align="start start">
                 <md-button class="md-primary" ng-click="vm.editCase($event)"
                            ng-disabled="caseIsLocked">{{ 'CASE.EDIT_INFORMATION' | translate }}</md-button>
                 <md-button class="md-primary" ng-disabled="true">{{ 'CASE.PRINT_CASE' | translate }}</md-button>
@@ -115,10 +117,11 @@
                 </table>
                 {{ 'COMMON.PAGES' | translate }}: <md-button ng-repeat="page in docCtrl.pages" ng-click="docCtrl.loadDocuments(page)">{{page}}</md-button>
               </md-card-content>
-              <div class="md-actions" layout="row">
+              <div class="md-actions" layout="row" layout-padding>
                 <md-button class="md-primary"
                            ng-click="docCtrl.uploadDocument()"
                            ng-disabled="caseIsLocked">
+                  <i class="material-icons">file_upload</i>
                   {{ 'DOCUMENT.UPLOAD_NEW_DOCUMENTS' | translate }}
                 </md-button>
                 <md-menu>
@@ -145,7 +148,7 @@
     
     <md-tab>
       <md-tab-label>
-        <span>{{ 'NOTE.NOTES' | translate }}</span>
+        <span><i class="material-icons">library_books</i> {{ 'NOTE.NOTES' | translate }}</span>
       </md-tab-label>
       <md-tab-body layout="column">
         <md-card ng-controller="NoteController as caseNotes">
@@ -177,7 +180,7 @@
     
     <md-tab md-on-select="vm.onTabChange('members')">
       <md-tab-label>
-        <span>{{ 'MEMBER.MEMBERS' | translate }}</span>
+        <span><i class="material-icons">people</i> {{ 'MEMBER.MEMBERS' | translate }}</span>
       </md-tab-label>
       <md-tab-body layout="column">
         <div ng-include="'app/src/case_members/view/caseMembers.html'"></div>
@@ -186,7 +189,7 @@
     
     <md-tab md-on-select="vm.onTabChange('parties')">
       <md-tab-label>
-        <span>{{ 'PARTY.PARTIES'| translate }}</span>
+        <span><i class="material-icons">people_outline</i> {{ 'PARTY.PARTIES'| translate }}</span>
       </md-tab-label>
       <md-tab-body layout="column">
         <div ng-include="'app/src/parties/view/caseParties.html'"></div>
@@ -195,7 +198,7 @@
       
     <md-tab md-on-select="vm.onTabChange('history')">
       <md-tab-label>
-        <span>{{ 'COMMON.HISTORY' | translate }}</span>
+        <span><i class="material-icons">history</i> {{ 'COMMON.HISTORY' | translate }}</span>
       </md-tab-label>
       <md-tab-body layout="column">
         <md-card ng-controller="CaseHistoryController as historyCtrl">

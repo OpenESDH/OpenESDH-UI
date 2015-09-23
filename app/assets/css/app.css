@@ -60,6 +60,18 @@ input[type="file"] {
   margin: 0 0 1em;
 }
 
+fieldset {
+  border: none;
+  border-top: solid 1px rgba(0,0,0,0.2);
+  padding: 0;
+  margin: 0 0 1em;
+}
+
+legend {
+  margin: 0;
+  padding: 0;
+}
+
 
 /* Specific style classes and IDs */
 
@@ -76,6 +88,11 @@ input[type="file"] {
   display: block;
   margin: 1em 0 0.75em;
   font-size: 0.8em;
+}
+
+.search-hits {
+  color: rgba(0,0,0,0.54);
+  padding: 0 0.25em;
 }
 
 
@@ -102,4 +119,8 @@ md-chips-wrap {
 	max-height:531px;
 	min-width:800px;
 	min-height:531px;
+}
+
+.md-checked .md-label {
+  font-weight: 700;
 }
