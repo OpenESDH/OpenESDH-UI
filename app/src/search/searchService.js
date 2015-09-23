@@ -8,32 +8,26 @@
     searchService.$inject = ['$http', '$resource'];
 
     function searchService($http, $resource) {
+
+        var service = {};
+
         var Alfresco = {
             apiProxyUrl : '/alfresco/service/api/',
             slingshotProxyUrl : '/alfresco/service/slingshot/'
-
         };
-        var service = {
-            getConfiguredFacets: getConfiguredFacets,
-            liveSearchCaseDoc: liveSearchCaseDocs,
-            liveSearchCase: liveSearchCases,
-            findPerson: findPersons,
-            search: search
-        };
-        return service;
 
         //<editor-fold desc="liveSearch results">
-        function liveSearchCaseDocs(term) {
+        service.liveSearchCaseDocs = function (term) {
             return $http.get('/alfresco/service/openesdh/live-search-caseDocs?t=' + term).then(function(response) {
-                return response.documents;
+                return response.data.documents;
             });
-        }
+        };
 
-        function liveSearchCases(term) {
+        service.liveSearchCases = function (term) {
             return $http.get('/alfresco/service/openesdh/live-search-cases?t='+ term).then(function(response) {
-                return response.cases;
+                return response.data.cases;
             });
-        }
+        };
         //</editor-fold>
 
         /**
@@ -43,19 +37,19 @@
          * @param term
          * @returns {*}
          */
-        function search(term) {
+        service.search = function (term) {
             var encTerm = encodeURIComponent(JSON.stringify(term) );
             return $http.get(Alfresco.slingshotProxyUrl+'search?'+ encTerm).then(function(response) {
                 return response.data;
             });
-        }
+        };
 
         /**
          * This returns the list of facets configured in the repository for use with the returned results
          */
-        function getConfiguredFacets(){
+        service.getConfiguredFacets = function () {
              $http.get(Alfresco.apiProxyUrl+"facet/facet-config").then(function(response){
-                var rawFacets = JSON.parse(response).facets;
+                 var rawFacets = JSON.parse(response).facets;
                  var facets=[];
                  rawFacets.forEach(function(facet){
                      if (facet.isEnabled()){
@@ -65,7 +59,7 @@
 
                  return rawFacets;
             });
-        }
+        };
 
         /**
          * This function is used to construct the search terms that are passed to a search service. The
@@ -85,8 +79,8 @@
             return searchTerm;
         }
 
-        function findPersons(searchTerm){
-            var url =  ALFRESCO_URI+'/people';
+        service.findPersons = function (searchTerm) {
+            var url = ALFRESCO_URI + '/people';
             if(searchTerm && searchTerm.length > 0){
                 url += searchTerm;
             }
@@ -95,6 +89,8 @@
             return $http.get(url).then(function(result){
                 return result.data.people;
             });
-        }
+        };
+
+        return service;
     }
 })();

@@ -1,9 +1,15 @@
 (function(){
   'use strict';
-   angular.module('openeApp.search')
-          .controller('SearchController', SearchController);
+   angular
+       .module('openeApp.search')
+       .controller('SearchController', SearchController);
 
-    SearchController.$inject = ['$scope','$state', '$mdDialog', 'searchService'];
+    SearchController.$inject = [
+        '$scope',
+        '$state',
+        '$mdDialog',
+        'searchService'
+    ];
 
   /**
    * Main Controller for the Search module
@@ -11,25 +17,27 @@
    * @constructor
    */
   function SearchController($scope, $state, $mdDialog, searchService) {
+
       var vm = this;
-      vm.liveSearcResults ={
+      vm.liveSearchResults = {
           cases:null,
           documents:null
       };
       vm.fullSearchResults = null;
 
       //<editor-fold desc="Live search methods">
-      function getLiveSearchResults (term){
-          vm.liveSearcResults.cases = casesLiveSearch(term);
-          vm.liveSearcResults.documents = caseDocsLiveSearch(term);
+      vm.getLiveSearchResults = function(term) {
+          if (term.length === 0) return;
+          vm.liveSearchResults.cases = casesLiveSearch(term);
+          vm.liveSearchResults.documents = caseDocsLiveSearch(term);
+      };
+
+      function caseDocsLiveSearch (term) {
+          return searchService.liveSearchCaseDocs(term);
       }
 
-      function caseDocsLiveSearch (term){
-          return searchService.liveSearchCaseDoc(term);
-      }
-
-      function casesLiveSearch (term){
-          return searchService.liveSearchCase(term);
+      function casesLiveSearch (term) {
+          return searchService.liveSearchCases(term);
       }
       //</editor-fold>
 
@@ -46,7 +54,7 @@
        */
       function executeSearch(term){
 
-          var queryObj ={
+          var queryObj = {
               facetFields: searchService.getConfiguredFacets(),
               filters: "",
               maxResults: 0,
@@ -63,6 +71,7 @@
               term: term
           };
           var searchResults = searchService.search(queryObj);
+
           if(searchResults.numberFound > 0)
             vm.fullSearchResults = {
               results: searchResults.items, //An array of objects
@@ -74,4 +83,4 @@
       }
   }
 
-});
+})();
