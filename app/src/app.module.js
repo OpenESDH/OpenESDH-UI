@@ -29,7 +29,8 @@
             'openeApp.users',
             'openeApp.workflows',
             'openeApp.search',
-            'openeApp.search.component.filter'
+            'openeApp.search.component.filter',
+            'openeApp.common.directives.filter'
         ])
         .constant('USER_ROLES', {
             admin: 'admin',
@@ -256,6 +257,16 @@
                 'contacts': {
                     templateUrl: '/app/src/contacts/view/persons.html',
                 }
+            }
+        }).state('search', {
+            url: '/search',
+            views: {
+                'content@': {
+                    templateUrl: '/app/src/search/view/search.html'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
             }
         });
     }

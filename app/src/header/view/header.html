@@ -7,10 +7,21 @@
       <a class="md-button" ui-sref="tasks"><i class="material-icons">assignment</i> {{ 'TASK.TASKS' | translate }}</a>
     </div>
 
-    <md-input-container id="global-search" flex="25" flex-gt-md>
-      <label title="{{ 'SEARCH.SEARCH' | translate }}"><i class="material-icons" style="vertical-align: bottom;">search</i></label>
-      <input type="text">
-    </md-input-container>  
+    <div id="global-search" flex="25" flex-gt-md ng-controller="SearchController as sctrl">
+      <md-autocomplete md-selected-item="selectedItem"
+                       md-search-text-change="sctrl.getLiveSearchResults(searchText)"
+                       md-search-text="searchText"
+                       md-min-length="1"
+                       md-items="item in sctrl.liveSearchResults.documents"
+                       md-item-text="item.name">
+        <md-item-template>
+          <span md-highlight-text="searchText">{{item.name}} - v{{item.version}}</span>
+        </md-item-template>
+        <md-not-found>
+          No matches found.
+        </md-not-found>
+      </md-autocomplete>
+    </div>
 
     <md-menu ng-controller="AuthController as vm" flex="25" flex-gt-md="40" layout="row" layout-align="end center" md-position-mode="target-right target">
       <md-button aria-label="{{ 'MENU.OPEN_MENU' | translate }}" ng-click="$mdOpenMenu($event)" style="text-transform: capitalize;">
