@@ -34,8 +34,8 @@
         ])
         .constant('USER_ROLES', {
             admin: 'admin',
-            user: 'user',
-            guest: 'guest'
+            user: 'user'
+            //guest: 'guest' we don't want this type of user as of yet
         })
         .constant('ALFRESCO_URI', {
             apiProxy: '/alfresco/api/',
@@ -50,12 +50,10 @@
                 if (next.data.authorizedRoles.length == 0) {
                     return;
                 }
-                if (authService.isAuthenticated()) {
-
+                if (authService.isAuthenticated() && authService.isAuthorized(next.data.authorizedRoles)) {
+                    //We do nothing. Attempting to transition to the actual state results in call stack exception
                 } else {
                     event.preventDefault();
-                    $rootScope.returnToState = $rootScope.toState;
-                    $rootScope.returnToStateParams = $rootScope.toStateParams;
                     $state.go('login');
                 }
             });
@@ -185,14 +183,13 @@
                 }
             },
             data: {
-                authorizedRoles: [USER_ROLES.user],
-                searchContext: 'USERS',
+                authorizedRoles: [USER_ROLES.admin],
                 selectedTab: 0
             }
         }).state('administration.users', {
             url: '/users',
             data: {
-                authorizedRoles: [USER_ROLES.user],
+                authorizedRoles: [USER_ROLES.admin],
                 selectedTab: 0
             },
             views: {
@@ -203,7 +200,7 @@
         }).state('administration.groups', {
             url: '/groups',
             data: {
-                authorizedRoles: [USER_ROLES.user],
+                authorizedRoles: [USER_ROLES.admin],
                 selectedTab: 1
             },
             views: {
@@ -214,7 +211,7 @@
         }).state('administration.group', {
             url: '/group/:shortName',
             data: {
-                authorizedRoles: [USER_ROLES.user],
+                authorizedRoles: [USER_ROLES.admin],
                 searchContext: 'GROUPS',
                 selectedTab: 1
             },
@@ -226,7 +223,7 @@
         }).state('administration.organizations', {
             url: '/organizations',
             data: {
-                authorizedRoles: [USER_ROLES.user],
+                authorizedRoles: [USER_ROLES.admin],
                 searchContext: 'CONTACT_ORGANISATIONS',
                 selectedTab: 2
             },
@@ -238,7 +235,7 @@
         }).state('administration.organization', {
             url: '/organization/:storeProtocol/:storeIdentifier/:uuid',
             data: {
-                authorizedRoles: [USER_ROLES.user],
+                authorizedRoles: [USER_ROLES.admin],
                 selectedTab: 2
             },
             views: {
@@ -249,7 +246,7 @@
         }).state('administration.contacts', {
             url: '/contacts',
             data: {
-                authorizedRoles: [USER_ROLES.user],
+                authorizedRoles: [USER_ROLES.admin],
                 searchContext: 'CONTACT_USERS',
                 selectedTab: 3
             },

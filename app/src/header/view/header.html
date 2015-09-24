@@ -33,7 +33,7 @@
             {{ 'MENU.VIEW_PROFILE' | translate }}
           </md-button>
         </md-menu-item>
-        <md-menu-item>
+        <md-menu-item ng-show="vm.getUserInfo().user.capabilities.isAdmin">
           <md-button ui-sref="administration.users">
             {{ 'ADMIN.ADMINISTRATION' | translate }}
           </md-button>
