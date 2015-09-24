@@ -19,7 +19,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr ng-repeat="case in caseController.cases" class="clickable-row" ui-sref="caseinfo({'caseId': case['oe:id']})">
+                <tr ng-repeat="case in caseController.myCases" class="clickable-row" ui-sref="caseinfo({'caseId': case['oe:id']})">
                   <td><i class="material-icons">folder_open</i></td>
                   <td>{{case["cm:title"]}}</td>
                   <td>{{case["oe:id"]}}</td>
@@ -30,16 +30,18 @@
             
           </md-card-content>
           <div class="md-actions" layout="row" layout-padding>
-              <md-menu ng-controller="CaseController as vm">
-                  <md-button class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="{{ 'CASE.CREATE_NEW_CASE' | translate }}">
-                      <i class="material-icons">add</i>
-                      {{ 'CASE.CREATE_NEW_CASE' | translate }}
-                  </md-button>
-                  <md-menu-content>
-                      <md-menu-item><md-button ng-click="vm.createCase($event, 'standard')">{{ 'CASE.CASETYPE_STANDARD' | translate }}</md-button></md-menu-item>
-                      <md-menu-item><md-button ng-disabled="true">{{ 'CASE.CASETYPE_OTHER' | translate }}</md-button></md-menu-item>
-                  </md-menu-content>
-              </md-menu>
+
+            <md-menu>
+                <md-button class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="{{ 'CASE.CREATE_NEW_CASE' | translate }}">
+                    <i class="material-icons">add</i>
+                    {{ 'CASE.CREATE_NEW_CASE' | translate }}
+                </md-button>
+                <md-menu-content>
+                    <md-menu-item><md-button ng-click="caseController.createCase($event, 'standard')">{{ 'CASE.CASETYPE_STANDARD' | translate }}</md-button></md-menu-item>
+                    <md-menu-item><md-button ng-disabled="true">{{ 'CASE.CASETYPE_OTHER' | translate }}</md-button></md-menu-item>
+                </md-menu-content>
+            </md-menu>
+            
           </div>
         </md-card>
         

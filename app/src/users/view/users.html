@@ -3,9 +3,17 @@
         <div layout="row" layout-align="space-between center">
             <h2 class="md-title" flex>{{ 'USER.USERS' | translate }}</h2>
 
-            <div flex="15" ng-controller="SearchFilterComponent as sfc" ng-init="init(vm.optionLabel, vm.optionValue, vm.selectOptions, vm.filterCallback)">
+            <opene-filter-search flex="15" 
+                option-label="vm.optionLabel"
+                option-value="vm.optionValue"
+                select-options="vm.selectOptions"
+                finished="vm.filterCallback">
+            </opene-filter-search>
+
+            <!-- <div flex="15" ng-controller="SearchFilterComponent as sfc" ng-init="init(vm.optionLabel, vm.optionValue, vm.selectOptions, vm.filterCallback)">
                 <div ng-include="'/app/src/common/components/search/view/SearchFilterComponent.html'"></div>
-            </div>
+            </div> -->
+            
         </div>
         <table>
             <thead>

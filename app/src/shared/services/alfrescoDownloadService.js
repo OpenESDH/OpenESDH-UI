@@ -5,9 +5,9 @@
         .module('openeApp')
         .factory('alfrescoDownloadService', AlfrescoDownloadService);
 
-    AlfrescoDownloadService.$inject = ['alfrescoNodeUtils'];
+    AlfrescoDownloadService.$inject = ['alfrescoNodeUtils', 'sessionService'];
 
-    function AlfrescoDownloadService(alfrescoNodeUtils) {
+    function AlfrescoDownloadService(alfrescoNodeUtils, sessionService) {
         
         var service = {
             downloadFile: downloadFile
@@ -16,7 +16,7 @@
         
         function downloadFile(nodeRef, fileName){
             
-            var url = "/alfresco/service/api/node/content/" + alfrescoNodeUtils.processNodeRef(nodeRef).uri + "/" + fileName + "?a=true";
+            var url = "/alfresco/service/api/node/content/" + alfrescoNodeUtils.processNodeRef(nodeRef).uri + "/" + fileName + "?a=true&alf_ticket=" + sessionService.getUserInfo().ticket;
             
             var iframe = document.querySelector("#downloadFrame");
             if(iframe === null){
