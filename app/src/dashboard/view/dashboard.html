@@ -19,7 +19,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr ng-repeat="case in caseController.cases" class="clickable-row" ui-sref="caseinfo({'caseId': case['oe:id']})">
+                <tr ng-repeat="case in caseController.myCases" class="clickable-row" ui-sref="caseinfo({'caseId': case['oe:id']})">
                   <td><i class="material-icons">folder_open</i></td>
                   <td>{{case["oe:id"]}}</td>
                   <td>{{case["cm:title"]}}</td>
