@@ -27,8 +27,14 @@
             }
         }
 
-        function getCases(baseType) {
-            return $http.get('/alfresco/service/api/openesdh/search', {params: {baseType: baseType}}).then(getCasesComplete, getCasesFailed);
+        function getCases(baseType, filters) {
+            var params = {
+                baseType: baseType 
+            };
+            if(filters != null && filters != undefined){
+                params.filters = filters;
+            }
+            return $http.get('/alfresco/service/api/openesdh/search?sortBy=-cm:modified', {params: params}).then(getCasesComplete, getCasesFailed);
 
             function getCasesComplete(response) {
                 return response.data;
