@@ -13,16 +13,16 @@
               <thead>
                 <tr>
                   <th></th>
-                  <th>{{ 'COMMON.ID' | translate }}</th>
                   <th>{{ 'COMMON.TITLE' | translate }}</th>
+                  <th>{{ 'COMMON.ID' | translate }}</th>
                   <th>{{ 'COMMON.MODIFIED' | translate }}</th>
                 </tr>
               </thead>
               <tbody>
                 <tr ng-repeat="case in caseController.cases" class="clickable-row" ui-sref="caseinfo({'caseId': case['oe:id']})">
                   <td><i class="material-icons">folder_open</i></td>
-                  <td>{{case["oe:id"]}}</td>
                   <td>{{case["cm:title"]}}</td>
+                  <td>{{case["oe:id"]}}</td>
                   <td class="muted">{{case["cm:modified"] | date: 'yyyy-MM-dd'}}</td>
                 </tr>
               </tbody>
@@ -30,18 +30,16 @@
             
           </md-card-content>
           <div class="md-actions" layout="row" layout-padding>
-            
-            <md-menu>
-                <md-button class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="{{ 'CASE.CREATE_NEW_CASE' | translate }}">
-                    <i class="material-icons">add</i>
-                    {{ 'CASE.CREATE_NEW_CASE' | translate }}
-                </md-button>
-                <md-menu-content>
-                    <md-menu-item><md-button ng-click="vm.createCase($event, 'standard')">{{ 'CASE.CASETYPE_STANDARD' | translate }}</md-button></md-menu-item>
-                    <md-menu-item><md-button ng-disabled="true">{{ 'CASE.CASETYPE_OTHER' | translate }}</md-button></md-menu-item>
-                </md-menu-content>
-            </md-menu>
-            
+              <md-menu ng-controller="CaseController as vm">
+                  <md-button class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="{{ 'CASE.CREATE_NEW_CASE' | translate }}">
+                      <i class="material-icons">add</i>
+                      {{ 'CASE.CREATE_NEW_CASE' | translate }}
+                  </md-button>
+                  <md-menu-content>
+                      <md-menu-item><md-button ng-click="vm.createCase($event, 'standard')">{{ 'CASE.CASETYPE_STANDARD' | translate }}</md-button></md-menu-item>
+                      <md-menu-item><md-button ng-disabled="true">{{ 'CASE.CASETYPE_OTHER' | translate }}</md-button></md-menu-item>
+                  </md-menu-content>
+              </md-menu>
           </div>
         </md-card>
         
@@ -57,6 +55,7 @@
                   <th>{{ 'COMMON.TITLE' | translate }}</th>
                   <th>{{ 'COMMON.MODIFIED' | translate }}</th>
                   <th>{{ 'COMMON.MODIFIED_BY' | translate }}</th>
+                  <th>{{ 'COMMON.ACTION' | translate }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -65,6 +64,7 @@
                   <td>{{ document.displayName }}</td>
                   <td class="muted">{{ document.modifiedOn }}</td>
                   <td class="muted">{{ document.modifiedBy }}</td>
+                  <td><md-button class="md-primary" href="#/cases/case/{{document.caseId}}/doc/{{document.location.parent.nodeRef | nodeRefUri}}">{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button></td>
                 </tr>
               </tbody>
             </table>

@@ -26,9 +26,9 @@
             <thead>
                 <tr>
                     <th></th>
+                    <th>{{ 'COMMON.TITLE' | translate }}</th>
                     <th>{{ 'COMMON.ID' | translate }}</th>
                     <th>{{ 'COMMON.TYPE' | translate }}</th>
-                    <th>{{ 'COMMON.TITLE' | translate }}</th>
                     <th>{{ 'COMMON.CREATED' | translate }}</th>
                     <th>{{ 'CASE.STARTDATE' | translate }}</th>
                     <th>{{ 'CASE.ENDDATE' | translate }}</th>
@@ -39,9 +39,9 @@
             <tbody>
                 <tr ng-repeat="case in vm.cases" class="clickable-row {{ case['oe:status'] == 'passive' ? 'muted' : '' }}" ui-sref="caseinfo({'caseId': case['oe:id']})">
                     <td><i class="material-icons">folder_open</i></td>
+                    <td>{{case["cm:title"]}}</td>
                     <td>{{case["oe:id"]}}</td>
                     <td class="muted">{{case["TYPE"]}}</td>
-                    <td>{{case["cm:title"]}}</td>
                     <td class="muted">{{case["cm:created"] | date: 'yyyy-MM-dd'}}</td>
                     <td class="muted">{{case["base:startDate"] | date: 'yyyy-MM-dd'}}</td>
                     <td class="muted">{{case["base:endDate"] | date: 'yyyy-MM-dd'}}</td>
