@@ -7,7 +7,7 @@
 
     AuthController.$inject = ['$scope', '$state', 'authService', 'userService'];
 
-    function AuthController($rootScope, $scope, $state, authService, userService) {
+    function AuthController($scope, $state, authService, userService) {
         var vm = this;
 
         vm.login = login;
@@ -19,7 +19,6 @@
             authService.login(credentials.username, credentials.password).then(function(response) {
                 userService.getPerson(credentials.username).then(function(response) {
                     vm.user = response;
-                    $rootScope.authenticatedUser = response;
                     console.log(vm.user);
                 });
                 console.log('tostate: ' + $scope.returnToState);
@@ -34,7 +33,6 @@
         function logout() {
             authService.logout().then(function(response) {
                 delete vm.user;
-                delete $rootScope.authenticatedUser;
                 $state.go('login');
             });
         }
