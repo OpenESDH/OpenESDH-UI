@@ -72,7 +72,7 @@
         }
         
         function previewDocument(){
-            documentPreviewService.previewDocument(vm.docVersion.nodeRef);
+            documentPreviewService.previewDocument(caseDocument.mainDocNodeRef);
         }
         
         function uploadDocNewVersion(){
