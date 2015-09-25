@@ -241,11 +241,11 @@
             },
             views: {
                 'contacts': {
-                    templateUrl: '/app/src/contacts/view/persons.html',
+                    templateUrl: '/app/src/contacts/view/persons.html'
                 }
             }
         }).state('search', {
-            url: '/search',
+            url: '/search/:searchTerm',
             views: {
                 'content@': {
                     templateUrl: '/app/src/search/view/search.html'

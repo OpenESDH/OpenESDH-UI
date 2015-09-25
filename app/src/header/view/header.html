@@ -14,49 +14,58 @@
         </div>
 
         <div id="global-search" flex="25" flex-gt-md ng-controller="AutosuggestController as asctrl">
-            <md-input-container md-no-float>
-                <!--<i class="material-icons" style="vertical-align: bottom;">search</i>-->
-                <input ng-model="asctrl.searchTerm" ng-change="asctrl.getLiveSearchResults(asctrl.searchTerm)"
-                       ng-model-options="{ debounce: 250 }"
-                       type="text"
-                       placeholder="{{ 'SEARCH.SEARCH' | translate }}">
-            </md-input-container>
+            <form ng-submit="asctrl.gotoSearchPage()">
+                <md-input-container md-no-float>
+                    <!--<i class="material-icons" style="vertical-align: bottom;">search</i>-->
+                    <input ng-model="asctrl.searchTerm" ng-change="asctrl.getLiveSearchResults(asctrl.searchTerm)"
+                           ng-model-options="{ debounce: 250 }"
+                           type="text"
+                           placeholder="{{ 'SEARCH.SEARCH' | translate }}">
+                </md-input-container>
 
-            <!-- Autocomplete dropdown -->
-            <md-whiteframe class="md-whiteframe-z2" ng-if="asctrl.showSuggestions()">
-                <md-list>
-                    <md-subheader class="md-no-sticky" ng-if="asctrl.liveSearchResults.documents.length">Documents</md-subheader>
-                    <md-list-item class="md-2-line" 
-                        ng-if="asctrl.liveSearchResults.documents.length" 
-                        ng-repeat="item in asctrl.liveSearchResults.documents">
-                        <img class="md-avatar" />
-                        <div class="md-list-item-text" layout="column">
-                            <h3>{{ item.name }}</h3>
-                            <p><b>Case:</b> {{ item.case.caseTitle }}</p>
-                        </div>
-                    </md-list-item>
+                <!-- Autocomplete dropdown -->
+                <md-whiteframe class="md-whiteframe-z2" ng-if="asctrl.showSuggestions()">
+                    <md-list>
+                        <md-subheader class="md-no-sticky" ng-if="asctrl.liveSearchResults.documents.length">Documents
+                        </md-subheader>
+                        <md-list-item class="md-2-line"
+                                      ng-if="asctrl.liveSearchResults.documents.length"
+                                      ng-repeat="item in asctrl.liveSearchResults.documents">
+                            <img class="md-avatar"/>
 
-                    <md-divider ng-if="asctrl.liveSearchResults.documents.length > 0 && asctrl.liveSearchResults.cases.length > 0"></md-divider>
+                            <div class="md-list-item-text" layout="column">
+                                <h3>{{ item.name }}</h3>
 
-                    <md-subheader class="md-no-sticky" ng-if="asctrl.liveSearchResults.cases.length">Cases</md-subheader>
-                    <md-list-item class="md-2-line" ng-if="asctrl.liveSearchResults.cases.length" 
-                        ng-repeat="item in asctrl.liveSearchResults.cases">
-                        <img class="md-avatar" />
-                        <div class="md-list-item-text">
-                            <h3>{{ item.caseTitle }}</h3>
-                            <p>Secondary text</p>
-                        </div>
-                    </md-list-item>
+                                <p><b>Case:</b> {{ item.case.caseTitle }}</p>
+                            </div>
+                        </md-list-item>
 
-                    <md-list-item class="md-2-line" 
-                        ng-show="asctrl.liveSearchResults.documents.length == 0 && asctrl.liveSearchResults.cases.length == 0">
-                        <div class="md-list-item-text">
-                            <p>No matches found.</p>
-                        </div>
-                    </md-list-item>
-                </md-list>
+                        <md-divider
+                                ng-if="asctrl.liveSearchResults.documents.length > 0 && asctrl.liveSearchResults.cases.length > 0"></md-divider>
 
-            </md-whiteframe>
+                        <md-subheader class="md-no-sticky" ng-if="asctrl.liveSearchResults.cases.length">Cases
+                        </md-subheader>
+                        <md-list-item class="md-2-line" ng-if="asctrl.liveSearchResults.cases.length"
+                                      ng-repeat="item in asctrl.liveSearchResults.cases">
+                            <img class="md-avatar"/>
+
+                            <div class="md-list-item-text">
+                                <h3>{{ item.caseTitle }}</h3>
+
+                                <p>Secondary text</p>
+                            </div>
+                        </md-list-item>
+
+                        <md-list-item class="md-2-line"
+                                      ng-show="asctrl.liveSearchResults.documents.length == 0 && asctrl.liveSearchResults.cases.length == 0">
+                            <div class="md-list-item-text">
+                                <p>No matches found.</p>
+                            </div>
+                        </md-list-item>
+                    </md-list>
+
+                </md-whiteframe>
+            </form>
         </div>
 
 

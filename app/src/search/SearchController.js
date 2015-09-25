@@ -4,44 +4,34 @@
         .module('openeApp.search')
         .controller('SearchController', SearchController);
 
-    SearchController.$inject = [
-        '$scope',
-        '$state',
-        'searchService'
-    ];
+    SearchController.$inject = ['$scope', '$stateParams', 'searchService'];
 
     /**
      * Main Controller for the Search module
      * @param $scope
      * @constructor
      */
-    function SearchController($scope, $state, searchService) {
-
+    function SearchController($scope, $stateParams, searchService) {
         var sctrl = this;
-        $scope.fullSearchResults = null;
-        sctrl.queryResult = null;
-        sctrl.executeSearch = executeSearch;
-        sctrl.searchTerm = "";
-        sctrl.definedFacets = null;
+        sctrl.searchTerm = $stateParams.searchTerm;
+        sctrl.definedFacets = searchService.getConfiguredFacets();
 
-        //</editor-fold>
-
-        /**
-         * This function is meant to be called to redirect user to the search page
-         */
-        function gotoSearchPage() {
-            $state.go('search');
+        function initFacets(){
+            searchService.getConfiguredFacets().then(function(data){
+                sctrl.definedFacets = data;
+                executeSearch();
+            });
         }
+        initFacets();
 
         /**
          * Executes the main search function to search for cases and case documents in the repository
          * @param term
          */
-        function executeSearch(term) {
-            sctrl.definedFacets = searchService.getConfiguredFacets();//executes query out of step
+        function executeSearch() {
 
             var queryObj = {
-                facetFields: sctrl.definedFacets,
+                facetFields: parseFacetsForQuery(),
                 filters: "",
                 maxResults: 0,
                 noCache: new Date().getTime(),
@@ -54,25 +44,27 @@
                 spellcheck: true,
                 startIndex: 0,
                 tag: "",
-                term: term
+                term: sctrl.searchTerm+'*'
             };
             var objQuerified = objectToQuery(queryObj);
 
-            sctrl.queryResult = getSearchQuery(objQuerified);
+            getSearchQuery(objQuerified);
 
-            if (sctrl.queryResult.numberFound > 0)
-                $scope.fullSearchResults = {
-                    results: sctrl.queryResult.items, //An array of objects
-                    facets: sctrl.queryResult.facets,//An array of objects
-                    totalRecords: sctrl.queryResult.totalRecords, //Rest of these are integer values
-                    totalRecordsUpper: sctrl.queryResult.totalRecordsUpper,
-                    numberFound: sctrl.queryResult.numberFound
-                };
-            gotoSearchPage();
         }
 
         function getSearchQuery(query){
-            return searchService.search(query);
+
+            searchService.search(query).then(function(response){
+                sctrl.queryResult = response;
+                if (response.numberFound > 0)
+                    sctrl.fullSearchResults = {
+                        results: response.items, //An array of objects
+                        facets: response.facets,//An array of objects
+                        totalRecords: response.totalRecords, //Rest of these are integer values
+                        totalRecordsUpper: response.totalRecordsUpper,
+                        numberFound: response.numberFound
+                    };
+            });
         }
 
         /**
@@ -111,6 +103,20 @@
             }
             return pairs.join("&"); // String
         }
+
+        /**
+         * Extracts the QName from each defined facet and 'stringifies' them for the query object
+         * @returns {string}
+         */
+        function parseFacetsForQuery(){
+            var stringFacet="";
+            sctrl.definedFacets.forEach(function(item){stringFacet ==""? stringFacet+= item.facetQName : stringFacet = stringFacet+','+item.facetQName});
+            return stringFacet;
+        }
+
+
+
+        //executeSearch();
     }
 
 })();

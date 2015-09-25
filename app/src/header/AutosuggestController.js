@@ -25,6 +25,7 @@
         };
         asctrl.searchTerm = "";
         asctrl.definedFacets = null;
+        asctrl.gotoSearchPage = gotoSearchPage;
 
         asctrl.getLiveSearchResults = function (term) {
             if (term.length === 0) return;
@@ -57,7 +58,7 @@
          * This function is meant to be called to redirect user to the search page
          */
         function gotoSearchPage() {
-            $state.go('search');
+            $state.go('search', {'searchTerm': asctrl.searchTerm});
         }
 
     }

@@ -43,7 +43,7 @@
          * This returns the list of facets configured in the repository for use with the returned results
          */
         service.getConfiguredFacets = function () {
-             $http.get(Alfresco.apiProxyUrl+"facet/facet-config").then(function(response){
+            return $http.get(Alfresco.apiProxyUrl+"facet/facet-config").then(function(response){
                  var rawFacets = response.data.facets;
                  var facets=[];
                  rawFacets.forEach(function(facet){
