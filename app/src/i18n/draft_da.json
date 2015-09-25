@@ -45,9 +45,9 @@
 		"UPLOAD": "Upload",
 		"HOME": "Min side",
 		"CLOSE": "Luk",
-		"CREATED_ON": "Oprettet d.",
 		"DUE_DATE": "Forfaldsdato",
 		"PRIORITY": "Prioritet",
+		"CREATED_ON": "Oprettet d.",
 		"NO": "Nr"
 	},
 	"CASE": {
@@ -124,8 +124,8 @@
 		"DOCUMENTS": "Dokumenter",
 		"UPLOAD_NEW_DOCUMENTS": "Upload nyt dokument",
 		"SEND_DOCUMENTS": "Send dokumenter",
-		"DIGITAL_POST_DOCUMENTS": "Til Digital Post",
 		"EMAIL_DOCUMENTS": "Email dokumenter",
+		"DIGITAL_POST_DOCUMENTS": "Til Digital Post",
 		"MY_DOCUMENTS": "Mine dokumenter",
 		"CHANGE_STATUS": "Skift status",
 		"VERSION": "Version",
@@ -403,12 +403,18 @@
 	},
 	"WORKFLOW": {
 		"TASK": {
-			"PRIORITY": [
-				""
-			],
-			"STATUS": [
-				""
-			]
+			"PRIORITY": {
+				"1": "Høj",
+				"2": "Middel",
+				"3": "Lav"
+			},
+			"STATUS": {
+				"NotYetStarted": "Ikke begyndt",
+				"InProgres": "Igangværende",
+				"OnHold": "Sat på pause",
+				"Cancelled": "Annulleret",
+				"Completed": "Færdiggjort"
+			}
 		},
 		"DUE_DATE": "Forfaldsdato",
 		"PRIORITY": {
@@ -539,20 +545,14 @@
 		"OLD_ROLE": "Gammel rolle",
 		"TO_ROLE": "Ny rolle"
 	},
-	"{{ 'CASE": {
-		"CHANGE_STATUS' | translate }}": ""
-	},
-	"{{ 'DOCUMENT": {
-		"SEND_DOCUMENTS' | translate }}": "",
-		"CHANGE_STATUS' | translate }}": ""
-	},
 	"TASK": {
 		"MY_TASKS": "Mine opgaver",
 		"TASKS": "Opgaver",
+		"SAVE_AND_CLOSE": "Gem og luk",
+		"TASK_DONE": "Opgave færdig",
+		"APPROVE": "Godkend",
+		"REJECT": "Afvis",
 		"VIEW_TASK_DETAILS": "Vis opgave-detaljer"
-	},
-	"SEARCH": {
-		"SEARCH": "Søg"
 	},
 	"MENU": {
 		"OPEN_MENU": "Åben menu",
@@ -561,5 +561,8 @@
 	},
 	"OFFICE": {
 		"SAVE_EMAIL_IN_OPENESDH": "Gem Email i OpenESDH"
+	},
+	"SEARCH": {
+		"SEARCH": "Søg"
 	}
 }

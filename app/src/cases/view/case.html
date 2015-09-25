@@ -130,10 +130,10 @@
                   </md-button>
                   <md-menu-content>
                     <md-menu-item>
-                      <md-button ng-disabled="true" ng-click="doSomething()">{{ 'DOCUMENT.DIGITAL_POST_DOCUMENTS' | translate }}</md-button>
+                      <md-button ng-disabled="docCtrl.noDocuments()" ng-click="docCtrl.emailDocuments()">{{ 'DOCUMENT.EMAIL_DOCUMENTS' | translate }}</md-button>
                     </md-menu-item>
                     <md-menu-item>
-                      <md-button ng-disabled="docCtrl.noDocuments()" ng-click="docCtrl.emailDocuments()">{{ 'DOCUMENT.EMAIL_DOCUMENTS' | translate }}</md-button>
+                      <md-button ng-disabled="true" ng-click="doSomething()">{{ 'DOCUMENT.DIGITAL_POST_DOCUMENTS' | translate }}</md-button>
                     </md-menu-item>
                   </md-menu-content>
                 </md-menu>

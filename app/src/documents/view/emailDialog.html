@@ -22,10 +22,12 @@
                 <label>Message</label>
                 <textarea ng-model="vm.message"></textarea>
             </md-input-container>
-            <md-list-item ng-repeat="document in vm.documents">
-                <md-checkbox ng-model="document.selected"></md-checkbox>
-                <p>{{document['cm:title']}}</p>
-            </md-list-item>
+            <md-list>
+                <md-list-item ng-repeat="document in vm.documents">
+                    <md-checkbox ng-model="document.selected" aria-label="{{document['cm:title']}}"></md-checkbox>
+                    <label>{{document['cm:title']}}</label>
+                </md-list-item>
+            <md-list>
         </md-dialog-content>
         <div class="md-actions" layout="row">
             <md-button type="submit" class="md-primary" ng-click="vm.emailDocuments()" ng-disabled="form.$invalid">
