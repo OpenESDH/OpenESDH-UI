@@ -1,51 +1,60 @@
 <md-toolbar id="global-toolbar">
-  <div class="md-toolbar-tools" layout="row">
+    <div class="md-toolbar-tools" layout="row">
 
-    <div flex flex-gt-md="40" layout="row" layout-align="start center">
-      <a class="md-button" ui-sref="dashboard"><i class="material-icons">dashboard</i> {{ 'COMMON.HOME' | translate }}</a>
-      <a class="md-button" ui-sref="cases"><i class="material-icons">folder_open</i> {{ 'CASE.CASES' | translate }}</a>
-      <a class="md-button" ui-sref="tasks"><i class="material-icons">assignment</i> {{ 'TASK.TASKS' | translate }}</a>
+        <div flex flex-gt-md="40" layout="row" layout-align="start center">
+            <a class="md-button" ui-sref="dashboard"><i class="material-icons">dashboard</i> {{ 'COMMON.HOME' |
+                translate }}</a>
+            <a class="md-button" ui-sref="cases"><i class="material-icons">folder_open</i> {{ 'CASE.CASES' | translate
+                }}</a>
+            <a class="md-button" ui-sref="tasks"><i class="material-icons">assignment</i> {{ 'TASK.TASKS' | translate }}</a>
+        </div>
+
+
+        <div id="global-search" flex="25" flex-gt-md ng-controller="SearchController as sctrl">
+            <form ng-submit="sctrl.executeSearch(searchText)">
+                <md-autocomplete md-selected-item="selectedItem"
+                                 md-search-text-change="sctrl.getLiveSearchResults(searchText)"
+                                 md-search-text="searchText"
+                                 md-min-length="3"
+                                 md-delay="700"
+                                 md-items="item in sctrl.liveSearchResults.documents"
+                                 md-item-text="item.name">
+                    <md-item-template>
+                        <span md-highlight-text="searchText">{{item.name}} - v{{item.version}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        No matches found.
+                    </md-not-found>
+                </md-autocomplete>
+            </form>
+        </div>
+
+        <md-menu ng-controller="AuthController as vm" flex="25" flex-gt-md="40" layout="row" layout-align="end center"
+                 md-position-mode="target-right target">
+            <md-button aria-label="{{ 'MENU.OPEN_MENU' | translate }}" ng-click="$mdOpenMenu($event)"
+                       style="text-transform: capitalize;">
+                {{ vm.getUserInfo().user.firstName }} <span hide show-gt-md>{{ vm.getUserInfo().user.lastName }}</span>
+                <i class="material-icons" style="vertical-align: middle;">more_vert</i>
+            </md-button>
+            <md-menu-content width="4">
+                <md-menu-item>
+                    <md-button ng-disabled="true">
+                        {{ 'MENU.VIEW_PROFILE' | translate }}
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ui-sref="administration.users">
+                        {{ 'ADMIN.ADMINISTRATION' | translate }}
+                    </md-button>
+                </md-menu-item>
+                <md-menu-divider></md-menu-divider>
+                <md-menu-item>
+                    <md-button ng-click="vm.logout()">
+                        {{ 'MENU.LOGOUT' | translate }}
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+
     </div>
-
-    <div id="global-search" flex="25" flex-gt-md ng-controller="SearchController as sctrl">
-      <md-autocomplete md-selected-item="selectedItem"
-                       md-search-text-change="sctrl.getLiveSearchResults(searchText)"
-                       md-search-text="searchText"
-                       md-min-length="1"
-                       md-items="item in sctrl.liveSearchResults.documents"
-                       md-item-text="item.name">
-        <md-item-template>
-          <span md-highlight-text="searchText">{{item.name}} - v{{item.version}}</span>
-        </md-item-template>
-        <md-not-found>
-          No matches found.
-        </md-not-found>
-      </md-autocomplete>
-    </div>
-
-    <md-menu ng-controller="AuthController as vm" flex="25" flex-gt-md="40" layout="row" layout-align="end center" md-position-mode="target-right target">
-      <md-button aria-label="{{ 'MENU.OPEN_MENU' | translate }}" ng-click="$mdOpenMenu($event)" style="text-transform: capitalize;">
-        {{ vm.getUserInfo().user.firstName }} <span hide show-gt-md>{{ vm.getUserInfo().user.lastName }}</span> <i class="material-icons" style="vertical-align: middle;">more_vert</i>
-      </md-button>
-      <md-menu-content width="4">
-        <md-menu-item>
-          <md-button ng-disabled="true">
-            {{ 'MENU.VIEW_PROFILE' | translate }}
-          </md-button>
-        </md-menu-item>
-        <md-menu-item>
-          <md-button ui-sref="administration.users">
-            {{ 'ADMIN.ADMINISTRATION' | translate }}
-          </md-button>
-        </md-menu-item>
-        <md-menu-divider></md-menu-divider>
-        <md-menu-item>
-          <md-button ng-click="vm.logout()">
-            {{ 'MENU.LOGOUT' | translate }}
-          </md-button>
-        </md-menu-item>
-      </md-menu-content>
-    </md-menu>
-
-  </div>
 </md-toolbar>

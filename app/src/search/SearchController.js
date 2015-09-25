@@ -11,76 +11,126 @@
         'searchService'
     ];
 
-  /**
-   * Main Controller for the Search module
-   * @param $scope
-   * @constructor
-   */
-  function SearchController($scope, $state, $mdDialog, searchService) {
+    /**
+     * Main Controller for the Search module
+     * @param $scope
+     * @constructor
+     */
+    function SearchController($scope, $state, $mdDialog, searchService) {
 
-      var vm = this;
-      vm.liveSearchResults = {
-          cases:null,
-          documents:null
-      };
-      vm.fullSearchResults = null;
+        var sctrl = this;
+        sctrl.liveSearchResults = {
+            cases: null,
+            documents: null
+        };
+        $scope.fullSearchResults = null;
+        sctrl.queryResult = null;
+        sctrl.executeSearch = executeSearch;
+        sctrl.searchTerm = "";
+        sctrl.definedFacets = null;
 
-      //<editor-fold desc="Live search methods">
-      vm.getLiveSearchResults = function(term) {
-          if (term.length === 0) return;
-          vm.liveSearchResults.cases = casesLiveSearch(term);
-          vm.liveSearchResults.documents = caseDocsLiveSearch(term);
-      };
+        //<editor-fold desc="Live search methods">
+        sctrl.getLiveSearchResults = function (term) {
+            if (term.length === 0) return;
+            sctrl.liveSearchResults.cases = casesLiveSearch(term);
+            sctrl.liveSearchResults.documents = caseDocsLiveSearch(term);
+        };
 
-      function caseDocsLiveSearch (term) {
-          return searchService.liveSearchCaseDocs(term);
-      }
+        function caseDocsLiveSearch(term) {
+            return searchService.liveSearchCaseDocs(term);
+        }
 
-      function casesLiveSearch (term) {
-          return searchService.liveSearchCases(term);
-      }
-      //</editor-fold>
+        function casesLiveSearch(term) {
+            return searchService.liveSearchCases(term);
+        }
 
-      /**
-       * This function is meant to be called to redirect user to the search page
-       */
-      function gotoSearchPage(){
-          $state.go('searchPage');
-      }
+        //</editor-fold>
 
-      /**
-       * Executes the main search function to search for cases and case documents in the repository
-       * @param term
-       */
-      function executeSearch(term){
+        /**
+         * This function is meant to be called to redirect user to the search page
+         */
+        function gotoSearchPage() {
+            $state.go('search');
+        }
 
-          var queryObj = {
-              facetFields: searchService.getConfiguredFacets(),
-              filters: "",
-              maxResults: 0,
-              noCache: new Date().getTime(),
-              pageSize: 25,
-              query: "",
-              repo: true,
-              rootNode: "openesdh://cases/home",
-              site: "",
-              sort: "",
-              spellcheck: true,
-              startIndex: 0,
-              tag: "",
-              term: term
-          };
-          var searchResults = searchService.search(queryObj);
+        /**
+         * Executes the main search function to search for cases and case documents in the repository
+         * @param term
+         */
+        function executeSearch(term) {
+            sctrl.definedFacets = searchService.getConfiguredFacets();//executes query out of step
 
-          if(searchResults.numberFound > 0)
-            vm.fullSearchResults = {
-              results: searchResults.items, //An array of objects
-              facets : searchResults.facets,//An array of objects
-              totalRecords: searchResults.totalRecords, //Rest of these are integer values
-              totalRecordsUpper: searchResults.totalRecordsUpper,
-              numberFound: searchResults.numberFound
-          }
-      }
-  }
+            var queryObj = {
+                facetFields: sctrl.definedFacets,
+                filters: "",
+                maxResults: 0,
+                noCache: new Date().getTime(),
+                pageSize: 25,
+                query: "",
+                repo: true,
+                rootNode: "openesdh://cases/home",
+                site: "",
+                sort: "",
+                spellcheck: true,
+                startIndex: 0,
+                tag: "",
+                term: term
+            };
+            var objQuerified = objectToQuery(queryObj);
+
+            sctrl.queryResult = getSearchQuery(objQuerified);
+
+            if (sctrl.queryResult.numberFound > 0)
+                $scope.fullSearchResults = {
+                    results: sctrl.queryResult.items, //An array of objects
+                    facets: sctrl.queryResult.facets,//An array of objects
+                    totalRecords: sctrl.queryResult.totalRecords, //Rest of these are integer values
+                    totalRecordsUpper: sctrl.queryResult.totalRecordsUpper,
+                    numberFound: sctrl.queryResult.numberFound
+                };
+            gotoSearchPage();
+        }
+
+        function getSearchQuery(query){
+            return searchService.search(query);
+        }
+
+        /**
+         * summary:
+         *		takes a name/value mapping object and returns a string representing
+         *		a URL-encoded version of that object.
+         * example:
+         *		this object:
+         *	{
+         *		blah: "blah",
+         *		multi: [
+         *			"thud",
+         *			"thonk"
+         *	    ]
+         *	};
+         *
+         *	yields the following query string: "blah=blah&multi=thud&multi=thonk"
+         *
+         * credit to alfresco Aikau developers.
+         * @param map
+         * @returns {string}
+         */
+        function objectToQuery(map) {
+            // FIXME: need to implement encodeAscii!!
+            var enc = encodeURIComponent, pairs = [];
+            for (var name in map) {
+                var value = map[name];
+                var assign = enc(name) + "=";
+                if (Array.isArray(value)) {
+                    for (var i = 0, l = value.length; i < l; ++i) {
+                        pairs.push(assign + enc(value[i]));
+                    }
+                } else {
+                    pairs.push(assign + enc(value));
+                }
+            }
+            return pairs.join("&"); // String
+        }
+    }
 
 })();
