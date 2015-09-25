@@ -1,0 +1,21 @@
+#global-search {
+	position: relative;
+}
+
+#global-search md-input-container {
+	position: relative; 
+	top: 12px;
+}
+
+#global-search md-whiteframe {
+	width: 350px; 
+	position: absolute; 
+	top: 61px;
+    left: -16px; 
+    background-color: white; 
+    color: #000;
+}
+
+#global-search .md-subheader .md-subheader-inner {
+    padding: 8px 0px 8px 16px;
+}

@@ -5,9 +5,9 @@
         .module('openeApp')
         .factory('searchService', searchService);
 
-    searchService.$inject = ['$http', '$resource'];
+    searchService.$inject = ['$http'];
 
-    function searchService($http, $resource) {
+    function searchService($http) {
 
         var service = {};
 
@@ -18,15 +18,11 @@
 
         //<editor-fold desc="liveSearch results">
         service.liveSearchCaseDocs = function (term) {
-            return $http.get('/alfresco/service/openesdh/live-search-caseDocs?t=' + term).then(function(response) {
-                return response.data.documents;
-            });
+            return $http.get('/alfresco/service/openesdh/live-search-caseDocs?t=' + term);
         };
 
         service.liveSearchCases = function (term) {
-            return $http.get('/alfresco/service/openesdh/live-search-cases?t='+ term).then(function(response) {
-                return response.data.cases;
-            });
+            return $http.get('/alfresco/service/openesdh/live-search-cases?t='+ term);
         };
         //</editor-fold>
 
