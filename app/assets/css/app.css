@@ -99,6 +99,24 @@ legend {
   border-bottom: dotted 1px #000;
 }
 
+/* Workflow */
+table tr .collapse,
+table tr .expand {
+  display: block;
+}
+table tr .collapse:after {
+    content: "\0025BC";
+    display: block;
+    color: #999;
+    cursor: pointer;
+}
+table tr .expand:after {
+    content: "\0025BA";
+    display: block;
+    color: #999;
+    cursor: pointer;
+}
+
 
 /* Angular Material override styles */
 
@@ -119,10 +137,16 @@ md-chips-wrap {
 }
 
 .workflowWizardStep {
-	max-width:800px;
+	max-width:1000px;
 	max-height:531px;
-	min-width:800px;
-	min-height:531px;
+	min-width:400px;
+	min-height:331px;
+/*
+  max-width:800px;
+  max-height:531px;
+  min-width:800px;
+  min-height:531px;
+  */
 }
 
 .md-checked .md-label {
