@@ -149,7 +149,7 @@
             $scope.newDocumentVersion = true;
             
             $scope.documentProperties = {
-                    doc_type: document.type,
+                    doc_type: document.typeId,
                     doc_state: document.state,
                     doc_category: document.category,
                     majorVersion: "false"
@@ -175,7 +175,7 @@
             
             $scope.documentProperties = {
                     title: document.title,
-                    doc_type: document.type,
+                    doc_type: document.typeId,
                     doc_state: document.state,
                     doc_category: document.category
             };

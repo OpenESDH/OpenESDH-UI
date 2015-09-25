@@ -1,0 +1,32 @@
+<app-header></app-header>
+
+<md-content layout="column">
+  <div class="sub-toolbar" layout-padding>
+    <h1 class="md-headline">{{ 'DOCUMENT_TYPES.DOCUMENT_TYPES' | translate }}</h1>
+  </div>
+
+  <md-card>
+    <md-card-content>
+      <table>
+        <thead>
+          <tr>
+            <th>{{ 'DOCUMENT_TYPES.NAME' | translate }}</th>
+            <th>{{ 'DOCUMENT_TYPES.DISPLAY_NAME' | translate }}</th>
+            <th>{{ 'COMMON.ACTIONS' | translate }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="documentType in vm.documentTypes" class="clickable-row" ng-click="vm.showEdit($event, documentType)">
+            <td>{{documentType["name"]}}</td>
+            <td>{{documentType["displayName"]}}</td>
+            
+            <td><md-button class="md-primary" ng-click="vm.doDelete($event, documentType)" ng-disabled="{{documentType.systemType}}">{{ 'COMMON.DELETE' | translate }}</md-button></td>
+          </tr>
+        </tbody>
+      </table>
+      <md-button class="md-primary" ng-click="vm.showEdit($event)">{{ 'DOCUMENT_TYPES.CREATE_NEW_DOC_TYPE' | translate }}</md-button>
+    </md-card-content>
+  </md-card>
+</md-content>
+
+<app-footer></app-footer>
