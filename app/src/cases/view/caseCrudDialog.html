@@ -49,20 +49,18 @@
 
         <md-chips ng-model="case.journalFacet" md-autocomplete-snap
                   md-require-match="true">
-          <md-autocomplete
-                  ng-show="case.journalFacet.length === 0"
-                  md-input-name="autocompleteField"
-                  md-input-minlength="2"
-                  md-selected-item="selectedItem"
-                  md-search-text="searchText"
-                  md-items="item in classCtrl.search(searchText, 'oe:journalFacet')"
-                  md-item-text="item.name + ' ' + item.title"
-                  md-floating-label="{{'CASE.JOURNAL_FACET' | translate}}">
+          <md-autocomplete style="width: 20em;"
+                           ng-show="case.journalFacet.length === 0"
+                           md-input-name="autocompleteField"
+                           md-input-minlength="2"
+                           md-selected-item="selectedItem"
+                           md-search-text="searchText"
+                           md-items="item in classCtrl.search(searchText, 'oe:journalFacet')"
+                           md-item-text="item.name + ' ' + item.title"
+                           md-floating-label="{{'CASE.JOURNAL_FACET' | translate}}">
             <md-item-template>
-              <div style="width: 300px">
-              <div md-highlight-text="searchText">{{item.name}}</div>
-              <div md-highlight-text="searchText" class="muted">{{item.title}}</div>
-              </div>
+                <span md-highlight-text="searchText">{{item.name}}</span>
+                <span md-highlight-text="searchText" class="muted">{{item.title}}</span>
             </md-item-template>
             <md-not-found>
               {{ 'COMMON.NO_MATCHES' | translate }}
