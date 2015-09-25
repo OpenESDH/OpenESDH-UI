@@ -132,8 +132,18 @@ td .md-button {
   vertical-align: middle;
 }
 
-md-chips-wrap {
+.md-chips {
+  padding-bottom: 0;
   margin-bottom: 1em;
+}
+
+.md-chips .md-chip-input-container {
+  padding-left: 0;
+}
+
+.md-contact-avatar,
+.md-contact-suggestion img {
+  display: none;
 }
 
 .workflowWizardStep {
