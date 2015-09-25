@@ -69,7 +69,8 @@
                            imageViewer(),
                            videoViewer(),
                            strobeMediaPlayback(),
-                           webViewer()
+                           webViewer(),
+                           cannotPreviewPlugin()
                        ];
             return plugins;
         }
@@ -79,17 +80,10 @@
             for(var i in this.plugins){
                 var plugin = this.plugins[i];
                 if(plugin.acceptsItem(item)){
-                    resultPlugin = plugin;
-                    break;
+                    plugin.initPlugin(item);
+                    return plugin;
                 }
             }
-            
-            if(resultPlugin == null){
-                resultPlugin = cannotPreviewPlugin();
-            }
-            
-            resultPlugin.initPlugin(item);
-            return resultPlugin;
         }
         
         function audioViewer(){
