@@ -40,10 +40,22 @@
         <div flex="75">
             <md-card ng-repeat="item in sctrl.queryResult.items">
                 <md-card-content>
-                    <h2 class="md-title">{{item.displayName}}</h2>
-                    <p>Some description</p>
-                    <a class="md-button md-primary">Some link</a>
+                    <div layout="row" layout-align="space-between start" class="muted" style="font-size: 0.9em;">
+                        <span style="text-transform: capitalize;">{{ item.type }}</span>
+                        <span>
+                            {{ "COMMON.MODIFIED_BY" | translate }} {{ item.modifiedBy }} {{ item.modifiedOn | date }}
+                        </span>
+                    </div>
+                    <h2 class="md-title">{{ item.displayName }}</h2>
+                    <p>{{ item.description }}</p>
                 </md-card-content>
+                <md-actions ng-if="item.type == 'case'">
+                    <a class="md-button md-primary" href="#/cases/case/{{ item.case.caseId }}">{{ "CASE.VIEW_CASE_DETAILS" | translate }}</a>
+                </md-actions>
+                <md-actions ng-if="item.type == 'document' && item.case">
+                    <a class="md-button md-primary" ng-disabled="true">{{ "DOCUMENT.VIEW_DOCUMENT_DETAILS" | translate }}</a>
+                    <a class="md-button" ng-disabled="true">{{ "COMMON.DOWNLOAD" | translate }}</a>
+                </md-actions>
             </md-card>
             
         </div>
