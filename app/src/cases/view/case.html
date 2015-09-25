@@ -12,7 +12,7 @@
                     <i class="material-icons" style="vertical-align: middle;">arrow_back</i>
                 </md-button>
                 <h1 class="md-headline" layout-margin>
-                    {{ case["oe:id"].value }} {{ case["cm:title"].value }}
+                    {{ case["cm:title"].value }} <span class="muted">{{ case["oe:id"].value }}</span>
                     <span class="muted" ng-hide="case['oe:status'].value === 'active'">
                         ({{case['oe:status'].value | caseStatus}})
                     </span>
