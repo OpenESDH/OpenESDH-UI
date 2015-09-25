@@ -42,10 +42,10 @@
                     <td>{{case["cm:title"]}}</td>
                     <td>{{case["oe:id"]}}</td>
                     <td class="muted">{{case["TYPE"]}}</td>
-                    <td class="muted">{{case["cm:created"] | date: 'yyyy-MM-dd'}}</td>
-                    <td class="muted">{{case["base:startDate"] | date: 'yyyy-MM-dd'}}</td>
-                    <td class="muted">{{case["base:endDate"] | date: 'yyyy-MM-dd'}}</td>
-                    <td class="muted">{{case["cm:modified"] | date: 'yyyy-MM-dd'}}</td>
+                    <td class="muted">{{case["cm:created"] | openeDate}}</td>
+                    <td class="muted">{{case["base:startDate"] | openeDate}}</td>
+                    <td class="muted">{{case["base:endDate"] | openeDate}}</td>
+                    <td class="muted">{{case["cm:modified"] | openeDate}}</td>
                     <td class="muted">{{ case["oe:status"] | caseStatus }}</td>
                 </tr>
             </tbody>

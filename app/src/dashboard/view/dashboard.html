@@ -23,7 +23,7 @@
                   <td><i class="material-icons">folder_open</i></td>
                   <td>{{case["cm:title"]}}</td>
                   <td>{{case["oe:id"]}}</td>
-                  <td class="muted">{{case["cm:modified"] | date: 'yyyy-MM-dd'}}</td>
+                  <td class="muted">{{case["cm:modified"] | openeDate}}</td>
                 </tr>
               </tbody>
             </table>
@@ -64,7 +64,7 @@
                 <tr ng-repeat="document in vm.documents">
                   <td><i class="material-icons">insert_drive_file</i></td>
                   <td>{{ document.displayName }}</td>
-                  <td class="muted">{{ document.modifiedOn }}</td>
+                  <td class="muted">{{ document.modifiedOn | openeDate}}</td>
                   <td class="muted">{{ document.modifiedBy }}</td>
                   <td><md-button class="md-primary" href="#/cases/case/{{document.caseId}}/doc/{{document.location.parent.nodeRef | nodeRefUri}}">{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button></td>
                 </tr>

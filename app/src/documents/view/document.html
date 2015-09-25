@@ -51,7 +51,7 @@
                                   <dt>{{ 'COMMON.TYPE' | translate }}</dt><dd>{{ docCtrl.doc.type | docType}}</dd>
                                   <dt>{{ 'COMMON.CATEGORY' | translate }}</dt><dd>{{ docCtrl.doc.category | docCategory}}</dd>
                                   <dt>{{ 'COMMON.OWNER' | translate }}</dt><dd>{{ docCtrl.doc.owner }}</dd>
-                                  <dt>{{ 'COMMON.CREATED' | translate }}</dt><dd>{{ docCtrl.doc.created | date }}</dd>
+                                  <dt>{{ 'COMMON.CREATED' | translate }}</dt><dd>{{ docCtrl.doc.created | openeDate }}</dd>
                               </dl>
                           </td>
                           <td>
@@ -60,7 +60,7 @@
                                       <dd>
                                           <select ng-model="docCtrl.docVersion" ng-options="version.label for version in docCtrl.documentVersions"></select>
                                       </dd>
-                                  <dt>{{ 'DOCUMENT.VERSION_ADDED' | translate }}</dt><dd>{{docCtrl.docVersion.createdDateISO | date: 'yyyy-MM-dd'}}</dd>
+                                  <dt>{{ 'DOCUMENT.VERSION_ADDED' | translate }}</dt><dd>{{docCtrl.docVersion.createdDateISO | openeDate}}</dd>
                                   <dt>{{ 'DOCUMENT.DOCUMENT_NAME' | translate }}</dt><dd>{{ docCtrl.docVersion.name}}</dd>
                                   <dt>{{ 'DOCUMENT.VERSION_DESCRIPTION' | translate }}</dt><dd>{{ docCtrl.docVersion.description }}</dd>
                               </dl>
@@ -93,7 +93,7 @@
                       <tbody>
                           <tr ng-repeat-start="attachment in docCtrl.attachments">
                               <td>{{attachment.name}}</td>
-                              <td>{{attachment.created | date: 'yyyy-MM-dd'}}</td>
+                              <td>{{attachment.created | openeDate}}</td>
                               <td>{{attachment.creator.firstName + ' ' + attachment.creator.lastName}}</td>
                               <td>{{attachment.versionLabel}}</td>
                               <td>
@@ -112,7 +112,7 @@
                           </tr>
                               <tr ng-repeat="attachmentVersion in attachment.versions" style="color: rgba(0,0,0,0.26);">
                                   <td style="padding-left: 50px;">{{attachmentVersion.name}}</td>
-                                  <td>{{attachmentVersion.created | date: 'yyyy-MM-dd'}}</td>
+                                  <td>{{attachmentVersion.created | openeDate}}</td>
                                   <td>{{attachmentVersion.creator.firstName + ' ' + attachmentVersion.creator.lastName}}</td>
                                   <td>{{attachmentVersion.versionLabel}}</td>
                                   <td>
