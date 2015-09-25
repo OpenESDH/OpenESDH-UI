@@ -1,10 +1,10 @@
-<div style="width: 200px">
-    <md-input-container>
+<div layout="row">
+    <md-input-container flex="50">
         <label>{{'WORKFLOW.DUE_DATE' | translate}}</label>
         <input type="date" ng-model="dlg.selectedDueDate" />
     </md-input-container>
     
-    <md-input-container>
+    <md-input-container flex="50">
         <label>{{'WORKFLOW.PRIORITY.PRIORITY' | translate}}</label>
         <md-select ng-model="dlg.selectedPriority">
           <md-option value="1">{{'WORKFLOW.PRIORITY.HIGH' | translate}}</md-option>
