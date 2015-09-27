@@ -17,25 +17,29 @@
             <form ng-submit="asctrl.gotoSearchPage()">
                 <md-input-container md-no-float>
                     <!--<i class="material-icons" style="vertical-align: bottom;">search</i>-->
-                    <input ng-model="asctrl.searchTerm" ng-change="asctrl.getLiveSearchResults(asctrl.searchTerm)"
-                           ng-model-options="{ debounce: 250 }"
-                           type="text"
-                           placeholder="{{ 'SEARCH.SEARCH' | translate }}">
+                    <input type="text" 
+                            ng-model="asctrl.searchTerm" 
+                            ng-change="asctrl.getLiveSearchResults(asctrl.searchTerm)"
+                            ng-keydown="asctrl.keydown($event)"
+                            ng-model-options="{ debounce: 250 }"
+                            placeholder="{{ 'SEARCH.SEARCH' | translate }}">
                 </md-input-container>
 
                 <!-- Autocomplete dropdown -->
-                <md-whiteframe class="md-whiteframe-z2" ng-if="asctrl.showSuggestions()">
+                <md-whiteframe class="md-whiteframe-z2" ng-if="asctrl.suggestionVisible()">
                     <md-list>
-                        <md-subheader class="md-no-sticky" ng-if="asctrl.liveSearchResults.documents.length">Documents
+                        <md-subheader class="md-no-sticky" ng-if="asctrl.liveSearchResults.documents.length">
+                            {{ 'DOCUMENT.DOCUMENTS' | translate}}
                         </md-subheader>
                         <md-list-item class="md-2-line"
                                       ng-if="asctrl.liveSearchResults.documents.length"
-                                      ng-repeat="item in asctrl.liveSearchResults.documents">
+                                      ng-repeat="item in asctrl.liveSearchResults.documents"
+                                      ng-mousedown="asctrl.goToSuggestion(item)"
+                                      ng-class="{'activeSuggestion' : asctrl.selectedIndex == $index}">
                             <img class="md-avatar"/>
 
                             <div class="md-list-item-text" layout="column">
-                                <h3>{{ item.name }}</h3>
-
+                                <h3 ng-bind="item.name"></h3>
                                 <p><b>Case:</b> {{ item.case.caseTitle }}</p>
                             </div>
                         </md-list-item>
@@ -43,24 +47,30 @@
                         <md-divider
                                 ng-if="asctrl.liveSearchResults.documents.length > 0 && asctrl.liveSearchResults.cases.length > 0"></md-divider>
 
-                        <md-subheader class="md-no-sticky" ng-if="asctrl.liveSearchResults.cases.length">Cases
+                        <md-subheader class="md-no-sticky" ng-if="asctrl.liveSearchResults.cases.length">
+                            {{ 'CASE.CASES' | translate}}
                         </md-subheader>
                         <md-list-item class="md-2-line" ng-if="asctrl.liveSearchResults.cases.length"
-                                      ng-repeat="item in asctrl.liveSearchResults.cases">
+                                      ng-repeat="item in asctrl.liveSearchResults.cases"
+                                      ng-mousedown="asctrl.goToSuggestion(item)"
+                                      ng-class="{'activeSuggestion' : asctrl.selectedIndex == $index + asctrl.liveSearchResults.documents.length}">
                             <img class="md-avatar"/>
 
                             <div class="md-list-item-text">
-                                <h3>{{ item.caseTitle }}</h3>
-
-                                <p>Secondary text</p>
+                                <h3 ng-bind="item.caseTitle"></h3>
+                                <p ng-bind="item.caseCreatedDate"></p>
                             </div>
                         </md-list-item>
 
                         <md-list-item class="md-2-line"
                                       ng-show="asctrl.liveSearchResults.documents.length == 0 && asctrl.liveSearchResults.cases.length == 0">
                             <div class="md-list-item-text">
-                                <p>No matches found.</p>
+                                <p ng-bind="'SEARCH.NO_MATCHES' | translate"></p>
                             </div>
+                        </md-list-item>
+
+                        <md-list-item layout-align="center center" ng-if="asctrl.loading">
+                            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
                         </md-list-item>
                     </md-list>
 

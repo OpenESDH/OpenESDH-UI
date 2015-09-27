@@ -19,3 +19,16 @@
 #global-search .md-subheader .md-subheader-inner {
     padding: 8px 0px 8px 16px;
 }
+
+#global-search .activeSuggestion, 
+#global-search md-list-item:hover {
+	cursor: pointer;
+	background-color: #1E88E5;
+}
+
+#global-search .activeSuggestion h3,
+#global-search md-list-item:hover h3,
+#global-search .activeSuggestion p,
+#global-search md-list-item:hover p {
+	color: #FFFFFF;
+}

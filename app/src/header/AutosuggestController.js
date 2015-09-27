@@ -8,7 +8,9 @@
         '$scope',
         '$state',
         '$q',
-        'searchService'
+        '$mdConstant',
+        'searchService',
+        'alfrescoNodeUtils'
     ];
 
     /**
@@ -16,7 +18,7 @@
      * @param $scope
      * @constructor
      */
-    function AutosuggestController($scope, $state, $q, searchService) {
+    function AutosuggestController($scope, $state, $q, $mdConstant, searchService, alfrescoNodeUtils) {
 
         var asctrl = this;
         asctrl.liveSearchResults = {
@@ -24,25 +26,35 @@
             documents: null
         };
         asctrl.searchTerm = "";
-        asctrl.definedFacets = null;
-        asctrl.gotoSearchPage = gotoSearchPage;
+        asctrl.selectedIndex = -1;
+        asctrl.totalSuggestion = 0;
+        asctrl.loading = false;
+        asctrl.hidden = false;
 
         asctrl.getLiveSearchResults = function (term) {
-            if (term.length === 0) return;
+            if (term.length === 0 || asctrl.loading) return;
+            asctrl.loading = true;
+            clearResult();
 
-            searchService.liveSearchCaseDocs(term).then(function (res) {
-                asctrl.liveSearchResults.documents = res.data.documents;
-            });
-            searchService.liveSearchCases(term).then(function (res) {
-                asctrl.liveSearchResults.cases = res.data.cases;
+            $q.all([
+                searchService.liveSearchCaseDocs(term),
+                searchService.liveSearchCases(term)
+            ]).then(function (res) {
+                asctrl.liveSearchResults.documents = res[0].data.documents;
+                asctrl.liveSearchResults.cases = res[1].data.cases;
+
+                console.log(asctrl.liveSearchResults)
+
+                asctrl.totalSuggestion = asctrl.liveSearchResults.documents.length + asctrl.liveSearchResults.cases.length - 1;
+                asctrl.loading = false;
             });
         };
 
         /**
          * Returns a bool, if the suggestion box should be visible
          */
-        asctrl.showSuggestions = function () {
-            if (asctrl.searchTerm.length > 0) return true;
+        asctrl.suggestionVisible = function () {
+            if (asctrl.searchTerm.length > 0 && !asctrl.hidden) return true;
             return false;
         };
 
@@ -57,9 +69,107 @@
         /**
          * This function is meant to be called to redirect user to the search page
          */
-        function gotoSearchPage() {
+        asctrl.gotoSearchPage = function() {
             $state.go('search', {'searchTerm': asctrl.searchTerm});
         }
+
+        asctrl.goToSuggestion = function(item) {
+            if(asctrl.isDocument(item)) {
+                var ref = alfrescoNodeUtils.processNodeRef(item.nodeRef);
+                $state.go('docDetails', {
+                    'caseId': item.case.caseId,
+                    'storeType' : ref.storeType,
+                    'storeId': ref.storeId,
+                    'id': ref.id
+                })
+            } else {
+                $state.go('caseinfo', {'caseId': item.caseId})
+            }
+        };
+
+        /**
+         * If an element in the suggestions-list is selected, go to selected element
+         * If not, redirect to search page with given query
+         */
+        // function selectItem(index) {
+        //     if(index > -1) {
+                
+        //     } else {
+        //         asctrl.gotoSearchPage();
+        //     }
+        // }
+
+        /**
+         * Since we got to sources (two result-arrays), we need to find the correct selected
+         */
+        function getSelectedItemByIndex (index) {
+
+            var totalDocs = asctrl.liveSearchResults.documents.length;
+            var totalCases = asctrl.liveSearchResults.cases.length;
+            
+            // Documents (first array)
+            if(index <= (totalDocs - 1)) {
+                return asctrl.liveSearchResults.documents[index];
+            } else {
+                var caseIndex = index - totalDocs;
+                //console.log("caseindex: ", caseIndex)
+                return asctrl.liveSearchResults.cases[caseIndex];
+            }
+        }
+
+        function stopAndPrevent(e) {
+            e.stopPropagation();
+            e.preventDefault();
+        }
+
+        function clearResult(argument) {
+            asctrl.liveSearchResults = {
+                cases: null,
+                documents: null
+            };
+            asctrl.totalSuggestion = 0;
+            asctrl.selectedIndex = -1;
+        }
+
+        /**
+        * Clears the searchText value and selected item.
+        */
+        function clearValue () {
+            asctrl.searchTerm = '';
+            clearResult();
+        }
+
+        /**
+         * Handling keyboard input
+         */
+         asctrl.keydown = function(event) {
+            switch (event.keyCode) {
+                case $mdConstant.KEY_CODE.DOWN_ARROW:
+                    if (asctrl.loading) return;
+                    stopAndPrevent(event);
+                    if(asctrl.selectedIndex < asctrl.totalSuggestion) asctrl.selectedIndex++;
+                    //console.log("Selected index: ", asctrl.selectedIndex);
+                    break;
+                case $mdConstant.KEY_CODE.UP_ARROW:
+                    if (asctrl.loading) return;
+                    stopAndPrevent(event);
+                    if(asctrl.selectedIndex > -1) asctrl.selectedIndex--;
+                    //console.log("Selected index: ", asctrl.selectedIndex);
+                    break;
+                case $mdConstant.KEY_CODE.TAB:
+                case $mdConstant.KEY_CODE.ENTER:
+                    if(asctrl.selectedIndex === -1) return;
+                    stopAndPrevent(event);
+                    var selected = getSelectedItemByIndex(asctrl.selectedIndex);
+                    asctrl.goToSuggestion(selected);
+                    break;
+                case $mdConstant.KEY_CODE.ESCAPE:
+                    stopAndPrevent(event);
+                    clearValue();
+                    break;
+                default:
+          }
+      }
 
     }
 
