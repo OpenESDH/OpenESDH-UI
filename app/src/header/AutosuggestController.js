@@ -43,8 +43,6 @@
                 asctrl.liveSearchResults.documents = res[0].data.documents;
                 asctrl.liveSearchResults.cases = res[1].data.cases;
 
-                console.log(asctrl.liveSearchResults)
-
                 asctrl.totalSuggestion = asctrl.liveSearchResults.documents.length + asctrl.liveSearchResults.cases.length - 1;
                 asctrl.loading = false;
             });
@@ -86,18 +84,6 @@
                 $state.go('caseinfo', {'caseId': item.caseId})
             }
         };
-
-        /**
-         * If an element in the suggestions-list is selected, go to selected element
-         * If not, redirect to search page with given query
-         */
-        // function selectItem(index) {
-        //     if(index > -1) {
-                
-        //     } else {
-        //         asctrl.gotoSearchPage();
-        //     }
-        // }
 
         /**
          * Since we got to sources (two result-arrays), we need to find the correct selected
