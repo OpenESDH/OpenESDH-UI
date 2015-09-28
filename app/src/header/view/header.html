@@ -47,7 +47,8 @@
                                       ng-repeat="item in asctrl.liveSearchResults.cases"
                                       ng-mousedown="asctrl.goToSuggestion(item)"
                                       ng-class="{'activeSuggestion' : asctrl.selectedIndex == $index + asctrl.liveSearchResults.documents.length}">
-                            <img class="md-avatar"/>
+                            <!-- <i class="material-icons">folder_open</i> -->
+                            <md-icon class="material-icons">folder_open</md-icon>
 
                             <div class="md-list-item-text">
                                 <h3 ng-bind="item.caseTitle"></h3>
