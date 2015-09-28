@@ -26,6 +26,10 @@
         </md-dialog-content>
         <div class="md-actions" layout="row">
             <md-button type="submit" class="md-primary"
+                       ng-click="vm.fillAndSaveToCase(vm.template, vm.fieldData)" ng-disabled="form.$invalid">
+                {{ 'DOCUMENT.SAVE_RENDERED_TEMPLATE_TO_CASE' | translate }}
+            </md-button>
+            <md-button type="submit" class="md-primary"
                        ng-click="tempCtrl.fillTemplate(vm.template, vm.fieldData)" ng-disabled="form.$invalid">
                 {{ 'DOCUMENT.DOWNLOAD_RENDERED_FROM_TEMPLATE' | translate }}
             </md-button>

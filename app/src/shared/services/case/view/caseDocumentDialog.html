@@ -9,7 +9,7 @@
     </md-toolbar>
     <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em">
       
-      <div ng-hide="isEditProperties" layout="row">
+      <div ng-hide="isEditProperties || fromFileObject" layout="row">
         <div flex>
           <label class="label" for="doc-upload">{{ 'DOCUMENT.DOCUMENT_TO_UPLOAD' | translate }}</label>
           <input type="file" file-model="fileToUpload" id="doc-upload" focus-me>
@@ -29,7 +29,7 @@
         </div>
       </div>
 
-      <md-input-container ng-show="isEditProperties && !isAttachment">
+      <md-input-container ng-show="(isEditProperties || fromFileObject) && !isAttachment">
         <label><span class="md-warn">*</span> {{ 'COMMON.NAME' | translate }}</label>
         <input type="text" ng-model="documentProperties.title" required focus-me>
       </md-input-container>

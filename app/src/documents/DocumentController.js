@@ -158,6 +158,7 @@
             vm.caseId = caseId;
             vm.template = null;
             vm.cancel = cancel;
+            vm.fillAndSaveToCase = fillAndSaveToCase;
             vm.fieldData = {};
 
             activate();
@@ -237,6 +238,22 @@
                     vm.fieldData["user." + prop] = user[prop];
                 }
                 vm.fieldData["user.name"] = user.firstName + " " + user.lastName;
+            }
+
+            function fillAndSaveToCase(template, fieldData) {
+                var documentProperties = {};
+                officeTemplateService.fillTemplate(template.nodeRef, fieldData).then(function (blob) {
+                    var uniqueStr = new Date().getTime();
+
+                    // Convert the Blob to a File
+                    // (http://stackoverflow.com/a/29390393)
+                    blob.lastModifiedDate = new Date();
+                    blob.name = template.name.split('.').slice(0, -1).join(".") + "-" + uniqueStr + ".pdf";
+
+                    caseDocumentFileDialogService.uploadCaseDocument(caseId, blob).then(function (result) {
+                        loadDocuments(1);
+                    });
+                });
             }
 
             function cancel(form) {
