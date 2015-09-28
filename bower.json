@@ -22,7 +22,8 @@
     "pdfjs-dist": "",
     "ng-pdfviewer": "",
     "angular-swfobject": "",
-    "material-wizard": ""
+    "material-wizard": "",
+    "angular-file-saver": ""
   },
   "devDependencies": {
     "angular-mocks": "^1.4.x"

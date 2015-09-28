@@ -18,12 +18,19 @@
         
         return service;
         
-        function uploadCaseDocument(caseId){
+        function uploadCaseDocument(caseId, fileObject){
             return $q(function(resolve, reject){
-                showDialog(NewCaseDocumentDialogController).then(function(formData) {
+                var fromFileObject = typeof fileObject !== "undefined" && fileObject instanceof Blob;
+                showDialog(NewCaseDocumentDialogController, {
+                    fromFileObject: fromFileObject
+                }).then(function(formData) {
                     
-                    if(!formData.fileToUpload){
+                    if(!formData.fileToUpload && !fromFileObject){
                         return;
+                    }
+
+                    if (fromFileObject) {
+                        formData.fileToUpload = fileObject;
                     }
                     
                     caseDocumentsService.getDocumentsFolderNodeRef(caseId).then(function(res){
@@ -121,10 +128,12 @@
             });
         }
         
-        function NewCaseDocumentDialogController($scope, $mdDialog) {
+        function NewCaseDocumentDialogController($scope, $mdDialog, fromFileObject) {
             
             loadDocumentConstraints($scope);
-            
+
+            $scope.fromFileObject = fromFileObject;
+
             $scope.documentProperties = {
                     majorVersion: "false"
             };

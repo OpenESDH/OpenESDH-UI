@@ -7,26 +7,26 @@
         <md-card ng-controller="CaseController as caseController">
           <md-card-content>
             
-            <h2 class="md-title">{{ 'CASE.MY_CASES' | translate }}</h2>
-            
-            <table>
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>{{ 'COMMON.TITLE' | translate }}</th>
-                  <th>{{ 'COMMON.ID' | translate }}</th>
-                  <th>{{ 'COMMON.MODIFIED' | translate }}</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr ng-repeat="case in caseController.myCases" class="clickable-row" ui-sref="caseinfo({'caseId': case['oe:id']})">
-                  <td><i class="material-icons">folder_open</i></td>
-                  <td>{{case["cm:title"]}}</td>
-                  <td>{{case["oe:id"]}}</td>
-                  <td class="muted">{{case["cm:modified"] | openeDate}}</td>
-                </tr>
-              </tbody>
-            </table>
+              <h2 class="md-title">{{ 'CASE.MY_CASES' | translate }}</h2>
+              
+              <div class="repeat-table">
+                  <div class="repeat-header" layout="row">
+                      <span class="r" flex="10"></span>
+                      <span class="r" flex="30">{{ 'COMMON.TITLE' | translate }}</span>
+                      <span class="r" flex="30">{{ 'COMMON.ID' | translate }}</span>
+                      <span class="r" flex="30">{{ 'COMMON.MODIFIED' | translate }}</span>
+                  </div>
+                  <md-virtual-repeat-container md-auto-shrink>
+                      <div md-virtual-repeat="case in caseController.myCases" class="repeat-item">
+                          <a class="r-rowlink" ui-sref="caseinfo({'caseId': case['oe:id']})" layout="row">
+                              <span class="r" flex="10"><i class="material-icons">folder_open</i></span>
+                              <span class="r" flex="30">{{case["cm:title"]}}</span>
+                              <span class="r muted" flex="30">{{case["oe:id"]}}</span>
+                              <span class="r muted" flex="30">{{case["cm:modified"] | openeDate}}</span>
+                          </a>
+                      </div>
+                  </md-virtual-repeat-container>
+              </div>
             
           </md-card-content>
           <div class="md-actions" layout="row" layout-padding>
@@ -44,40 +44,39 @@
             
           </div>
         </md-card>
-        
+
         <md-card ng-controller="FileController as vm">
           <md-card-content>
             
             <h2 class="md-title">{{ 'DOCUMENT.MY_DOCUMENTS' | translate }}</h2>
             
-            <table>
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>{{ 'COMMON.TITLE' | translate }}</th>
-                  <th>{{ 'COMMON.MODIFIED' | translate }}</th>
-                  <th>{{ 'COMMON.MODIFIED_BY' | translate }}</th>
-                  <th>{{ 'COMMON.ACTION' | translate }}</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr ng-repeat="document in vm.documents">
-                  <td><i class="material-icons">insert_drive_file</i></td>
-                  <td>{{ document.displayName }}</td>
-                  <td class="muted">{{ document.modifiedOn | openeDate}}</td>
-                  <td class="muted">{{ document.modifiedBy }}</td>
-                  <td><md-button class="md-primary" href="#/cases/case/{{document.caseId}}/doc/{{document.location.parent.nodeRef | nodeRefUri}}">{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button></td>
-                </tr>
-              </tbody>
-            </table>
-            
+            <div class="repeat-table">
+                  <div class="repeat-header" layout="row">
+                      <span class="r" flex="10"></span>
+                      <span class="r" flex="30">{{ 'COMMON.TITLE' | translate }}</span>
+                      <span class="r" flex="30">{{ 'COMMON.MODIFIED' | translate }}</span>
+                      <span class="r" flex="30">{{ 'COMMON.MODIFIED_BY' | translate }}</span>
+                  </div>
+                  <md-virtual-repeat-container md-auto-shrink>
+                      <div md-virtual-repeat="document in vm.documents" class="repeat-item">
+                          <a class="r-rowlink" href="#/cases/case/{{ document.caseId }}/doc/{{ document.location.parent.nodeRef | nodeRefUri }}" layout="row">
+                              <span class="r" flex="10"><i class="material-icons">insert_drive_file</i></span>
+                              <span class="r" flex="30">{{ document.displayName }}</span>
+                              <span class="r muted" flex="30">{{ document.modifiedOn | openeDate}}</span>
+                              <span class="r muted" flex="30">{{ document.modifiedBy }}</span>
+                              
+                          </a>
+                      </div>
+                  </md-virtual-repeat-container>
+              </div>
+
           </md-card-content>
         </md-card>
       
     </div>
   
     <div flex="33">
-    
+
         <md-card ng-controller="tasksOverviewController as tasksCtrl">
           <md-card-content>
             <h2 class="md-title">{{ 'TASK.MY_TASKS' | translate }}</h2>
@@ -91,7 +90,7 @@
             </md-list>
           </md-card-content>
         </md-card>
-    
+
     </div>
   
 </section>
