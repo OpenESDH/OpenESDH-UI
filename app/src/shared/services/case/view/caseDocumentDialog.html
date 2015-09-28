@@ -33,21 +33,12 @@
         <label><span class="md-warn">*</span> {{ 'COMMON.NAME' | translate }}</label>
         <input type="text" ng-model="documentProperties.title" required focus-me>
       </md-input-container>
-
-      <md-input-container ng-hide="isAttachment">
-        <label>{{ 'COMMON.STATE' | translate }}</label>
-        <md-select ng-model="documentProperties.doc_state" ng-disabled="newDocumentVersion">
-          <md-option ng-repeat="state in documentConstraints.stateConstraint" ng-value="state.value">
-            {{ state.value | docState }}
-          </md-option>
-        </md-select>
-      </md-input-container>
       
       <md-input-container ng-hide="isAttachment">
         <label>{{ 'COMMON.TYPE' | translate }}</label>
         <md-select ng-model="documentProperties.doc_type" ng-disabled="newDocumentVersion">
-          <md-option ng-repeat="type in documentConstraints.typeConstraint" ng-value="type.value">
-            {{ type.value | docType }}
+          <md-option ng-repeat="type in documentConstraints.documentTypes" ng-value="type.nodeRef">
+            {{ type.displayName }}
           </md-option>
         </md-select>
       </md-input-container>

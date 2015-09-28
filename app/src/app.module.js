@@ -30,7 +30,8 @@
             'openeApp.workflows',
             'openeApp.search',
             'openeApp.search.component.filter',
-            'openeApp.common.directives.filter'
+            'openeApp.common.directives.filter',
+            'openeApp.documentTypes'
         ])
         .constant('USER_ROLES', {
             admin: 'admin',
@@ -252,8 +253,20 @@
             },
             views: {
                 'contacts': {
-                    templateUrl: '/app/src/contacts/view/persons.html',
+                    templateUrl: '/app/src/contacts/view/persons.html'
                 }
+            }
+        }).state('documenttypes', {
+            url: '/documenttypes',
+            views: {
+                'content@': {
+                    templateUrl: '/app/src/other/document_types/view/documentTypes.html',
+                    controller: 'DocumentTypesController',
+                    controllerAs: 'vm'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.admin]
             }
         }).state('search', {
             url: '/search',

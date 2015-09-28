@@ -96,11 +96,11 @@
                     </tr>
                   </thead>
                   <tbody>
-                    
+
                     <tr ng-repeat="doc in docCtrl.documents">
                       <td><i class="material-icons">insert_drive_file</i></td>
                       <td>{{ doc["cm:title"] }}</td>
-                      <td class="muted">{{ doc["doc:type"] | docType }}</td>
+                      <td class="muted">{{ doc["doc:type"] }}</td>
                       <td class="muted">{{ doc["doc:category"] | docCategory }}</td>
                       
                       <td class="muted">
