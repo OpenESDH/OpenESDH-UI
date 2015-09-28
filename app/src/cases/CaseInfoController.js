@@ -39,7 +39,7 @@
         var c = $scope.case;
         var caseObj = {
             title: c['cm:title'].displayValue,
-            owner: c['base:owners'].nodeRef.split(",")[0],
+            owner: c['base:owners'].nodeRef[0],
             journalKey: [],
             journalFacet: [],
             startDate: new Date(c['base:startDate'].value),
