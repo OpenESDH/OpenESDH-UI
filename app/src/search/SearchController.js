@@ -115,8 +115,8 @@
             return stringFacet;
         }
 
-        function filterResults(filter){
-            console.log("The filter value : "+ filter);
+        function filterResults(filterKey, filterValue){
+            console.log("The filter value : "+ filterKey +" ==> "+filterValue);
         }
 
     }

@@ -12,7 +12,7 @@
             <form name="facets">
                 <fieldset ng-repeat="(key, facet) in sctrl.fullSearchResults.facets">
                     <legend><i class="material-icons">arrow_drop_down</i> {{key | translate}}</legend>
-                    <md-checkbox ng-repeat="hit in facet" ng-change='sctrl.filterResults(hit.value)' aria-label="{{hit.value}}" class="md-primary">
+                    <md-checkbox ng-repeat="hit in facet" aria-label="{{hit.value}}" class="md-primary">
                         <span class="search-hits">{{ hit.label | translate }}</span>
                     </md-checkbox>
                 </fieldset>
