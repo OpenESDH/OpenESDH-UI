@@ -80,7 +80,9 @@
 		"CASETYPE_OTHER": "Other type case",
 		"STARTDATE": "Start date",
 		"ENDDATE": "End date",
-		"MY_CASES": "My cases"
+		"MY_CASES": "My cases",
+		"CREATE_CASE": "Create case",
+		"EDIT_PROPERTIES": "Edit properties"
 	},
 	"DOCUMENT": {
 		"STATUS_CHANGED_SUCCESS": "Status has been changed successfully",
