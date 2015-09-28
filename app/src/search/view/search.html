@@ -65,7 +65,7 @@
                     <p>{{ item.description }}</p>
                 </md-card-content>
                 <md-actions ng-if="item.type == 'document' && item.case">
-                    <a class="md-button md-primary" ng-disabled="true">{{ "DOCUMENT.VIEW_DOCUMENT_DETAILS" | translate }}</a>
+                    <a class="md-button md-primary" href="#/cases/case/{{ item.case.caseId }}/doc/{{ item.docRecordNodeRef | nodeRefUri }}">{{ "DOCUMENT.VIEW_DOCUMENT_DETAILS" | translate }}</a>
                     <a class="md-button" ng-disabled="true">{{ "COMMON.DOWNLOAD" | translate }}</a>
                 </md-actions>
             
