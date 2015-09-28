@@ -46,8 +46,8 @@
       <md-input-container ng-hide="isAttachment">
         <label>{{ 'COMMON.CATEGORY' | translate }}</label>
         <md-select ng-model="documentProperties.doc_category" ng-disabled="newDocumentVersion">
-          <md-option ng-repeat="category in documentConstraints.categoryConstraint" ng-value="category.value">
-            {{ category.value | docCategory }}
+          <md-option ng-repeat="category in documentConstraints.documentCategories" ng-value="category.nodeRef">
+            {{ category.displayName }}
           </md-option>
         </md-select>
       </md-input-container>

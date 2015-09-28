@@ -149,7 +149,7 @@
             
             $scope.documentProperties = {
                     doc_type: document.typeId,
-                    doc_category: document.category,
+                    doc_category: document.categoryId,
                     majorVersion: "false"
             };
             
@@ -174,7 +174,7 @@
             $scope.documentProperties = {
                     title: document.title,
                     doc_type: document.typeId,
-                    doc_category: document.category
+                    doc_category: document.categoryId
             };
             
             $scope.cancel = function() {
