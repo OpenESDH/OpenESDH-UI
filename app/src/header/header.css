@@ -7,11 +7,14 @@
 	top: 12px;
 }
 
+#global-search md-input-container .md-input {
+	font-size: 16px;
+}
+
 #global-search md-whiteframe {
-	width: 350px; 
+	width: 100%; 
 	position: absolute; 
 	top: 61px;
-    left: -16px; 
     background-color: white; 
     color: #000;
 }
