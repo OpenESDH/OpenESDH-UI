@@ -110,6 +110,9 @@ legend {
 .repeat-table .repeat-item {
   border-bottom: 1px solid #ddd;
 }
+.repeat-table .repeat-header {
+  margin-right: 1em; /* Offsets header to align with container content - because of scrollbar in container */
+}
 .repeat-table .r {
   padding: 0.5em 1em;
   display: block;

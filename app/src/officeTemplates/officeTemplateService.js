@@ -26,11 +26,24 @@
             });
         }
 
+        /**
+         * Fill the given template with the field data.
+         *
+         * The return value is a promise which returns a Blob containing
+         * the filled in template.
+         * @param nodeRef
+         * @param fieldData
+         * @returns {*}
+         */
         function fillTemplate(nodeRef, fieldData) {
             return $http.post('/alfresco/service/api/openesdh/officetemplates/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri + "/fill",
                 {fieldData: fieldData},
                 {responseType: 'arraybuffer'}
-            );
+            ).then(function (response) {
+                return new Blob([response.data], {
+                    type: response.headers('Content-Type')
+                });
+            });
         }
     }
 })();

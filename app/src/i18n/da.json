@@ -21,23 +21,22 @@
 		"DESCRIPTION": "Beskrivelse",
 		"TYPE": "Type",
 		"CATEGORY": "Kategori",
-		"VIEW_DETAILS": "Vis detaljer",
 		"PREVIEW": "Preview",
-		"PAGES": "Sider",
 		"BY": "af",
 		"SHOWING": "Viser",
 		"OF": "af",
+		"PAGES": "Sider",
 		"HISTORY": "Historik",
 		"ACTION": "Handling",
 		"TIME": "Tidspunkt",
 		"NO_MATCHES": "Ingen match",
 		"EMAIL": "Email",
 		"SAVE": "Gem",
+		"VIEW_DETAILS": "Vis detaljer",
 		"SHOW": "Vis",
 		"DELETE": "Slet",
 		"EDIT": "Redigér",
 		"MODIFIED_BY": "Ændret af",
-		"STATE": "Status",
 		"OWNER": "Ejer",
 		"DOWNLOAD": "Download",
 		"ADDED": "Tilføjet",
@@ -48,11 +47,13 @@
 		"DUE_DATE": "Forfaldsdato",
 		"PRIORITY": "Prioritet",
 		"CREATED_ON": "Oprettet d.",
-		"NO": "Nr"
+		"NO": "Nr",
+		"STATE": "Status"
 	},
 	"CASE": {
 		"CONFIRM_CLOSE_CASE": "Vil du lukke denne sag?",
 		"STATUS_CHANGED_SUCCESS": "Status er ændret",
+		"CASETYPE_STANDARD": "Standard sag",
 		"STATUS": {
 			"active": "Aktiv",
 			"passive": "Passiv",
@@ -69,20 +70,17 @@
 		"PRINT_CASE": "Print sag",
 		"START_WORKFLOW": "Start workflow",
 		"CASE_HISTORY": "Sags-historik",
-		"CRUD_CASE": "Opret / redigér sag",
+		"CREATE_CASE": "Opret sag",
+		"EDIT_PROPERTIES": "Redigér sag",
 		"TITLE": "Titel",
 		"OWNER": "Ejer",
 		"START_DATE": "Start-dato",
 		"DESCRIPTION": "Beskrivelse",
-		"CREATE_SAVE_CASE": "Opret / gem sag",
 		"CREATE_NEW_CASE": "Opret ny sag",
-		"CASETYPE_STANDARD": "Standard sag",
 		"CASETYPE_OTHER": "Anden sagstype",
-		"STARTDATE": "Stat-dato",
+		"STARTDATE": "Start-dato",
 		"ENDDATE": "Slut-dato",
-		"MY_CASES": "Mine sager",
-        "CREATE_CASE": "Opret sag",
-        "EDIT_PROPERTIES": "Redigér information"
+		"MY_CASES": "Mine sager"
 	},
 	"DOCUMENT": {
 		"STATUS_CHANGED_SUCCESS": "Status er ændret",
@@ -115,20 +113,18 @@
 			"draft": "Kladde",
 			"final": "Endelig"
 		},
-		"TYPE": {
-			"invoice": "Faktura",
-			"letter": "Brev",
-			"note": "Note",
-			"report": "Rapport",
-			"agenda": "Agenda",
-			"other": "Andet"
-		},
 		"DOCUMENTS": "Dokumenter",
 		"UPLOAD_NEW_DOCUMENTS": "Upload nyt dokument",
 		"SEND_DOCUMENTS": "Send dokumenter",
 		"EMAIL_DOCUMENTS": "Email dokumenter",
 		"DIGITAL_POST_DOCUMENTS": "Til Digital Post",
+		"CREATE_FROM_TEMPLATE": "Opret fra skabelon",
 		"MY_DOCUMENTS": "Mine dokumenter",
+		"CHOOSE_TEMPLATE": "Vælg skabelon",
+		"TEMPLATE": {
+			"RECEIVER": "Modtager"
+		},
+		"DOWNLOAD_RENDERED_FROM_TEMPLATE": "Download fra skabelon",
 		"CHANGE_STATUS": "Skift status",
 		"VERSION": "Version",
 		"VERSION_ADDED": "Version tilføjet",
@@ -136,12 +132,13 @@
 		"VERSION_DESCRIPTION": "Versionsbeskrivelse",
 		"EDIT_PROPERTIES": "Redigér information",
 		"UPLOAD_NEW_VERSION": "Upload ny version",
-		"OPEN_PREVIEW": "Åben preview",
+		"PREVIEW": "Preview",
 		"ATTACHMENTS": {
 			"CURRENT_VERSION": "Nuværende version",
 			"EDIT_ATTACHMENT": "Redigér vedhæftning",
 			"UPLOAD_NEW_ATTACHMENT": "Upload ny vedhæftning"
 		},
+		"OPEN_PREVIEW": "Åben preview",
 		"UPLOAD_DOCUMENT": "Upload version",
 		"UPLOAD_ATTACHMENT": "Upload vedhæftning",
 		"DOCUMENT_TO_UPLOAD": "Dokument til upload",
@@ -563,6 +560,17 @@
 	},
 	"OFFICE": {
 		"SAVE_EMAIL_IN_OPENESDH": "Gem Email i OpenESDH"
+	},
+	"DOCUMENT_TYPE": {
+		"CREATE_EDIT_DOC_TYPE": "Opret / redigér dokumenttype",
+		"NAME": "Navn",
+		"DISPLAY_NAME": "Titel"
+	},
+	"DOCUMENT_TYPES": {
+		"DOCUMENT_TYPES": "Dokumenttyper",
+		"NAME": "Navn",
+		"DISPLAY_NAME": "Titel",
+		"CREATE_NEW_DOC_TYPE": "Opret ny dokumenttype"
 	},
 	"SEARCH": {
 		"SEARCH": "Søg"

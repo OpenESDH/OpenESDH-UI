@@ -75,13 +75,16 @@
           </md-card>
        </div>
        <div flex="50">
-           <md-card style="height: 614px; overflow: scroll;">
-               <md-card-content>
+           <md-card>
+               <md-card-content style="height: 514px; overflow: scroll;">
                    <h3>{{ 'DOCUMENT.PREVIEW' | translate }}</h3>
                    <div ng-controller="docCtrl.docPreviewController">
                        <ng-include src="viewerTemplateUrl"></ng-include>
                    </div>
                </md-card-content>
+               <div class="md-actions" layout="row" layout-padding>
+                <md-button class="md-primary" ng-click="docCtrl.refreshDocumentPreview()">{{ 'COMMON.REFRESH' | translate }}</md-button>
+              </div>
            </md-card>
        </div>
        <div flex="100">

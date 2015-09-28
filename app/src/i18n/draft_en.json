@@ -21,23 +21,22 @@
 		"DESCRIPTION": "Description",
 		"TYPE": "Type",
 		"CATEGORY": "Category",
-		"VIEW_DETAILS": "View details",
 		"PREVIEW": "Preview",
-		"PAGES": "Pages",
 		"BY": "by",
 		"SHOWING": "Showing",
 		"OF": "of",
+		"PAGES": "Pages",
 		"HISTORY": "History",
 		"ACTION": "Action",
 		"TIME": "Time",
 		"NO_MATCHES": "No matches",
 		"EMAIL": "Email",
 		"SAVE": "Save",
+		"VIEW_DETAILS": "View details",
 		"SHOW": "Show",
 		"DELETE": "Delete",
 		"EDIT": "Edit",
 		"MODIFIED_BY": "Modified by",
-		"STATE": "State",
 		"OWNER": "Owner",
 		"DOWNLOAD": "Download",
 		"ADDED": "Added",
@@ -48,11 +47,13 @@
 		"DUE_DATE": "Due date",
 		"PRIORITY": "Priority",
 		"CREATED_ON": "Created on",
-		"NO": "No"
+		"NO": "No",
+		"STATE": "State"
 	},
 	"CASE": {
 		"CONFIRM_CLOSE_CASE": "Do you want to close this case?",
 		"STATUS_CHANGED_SUCCESS": "Status has been changed successfully",
+		"CASETYPE_STANDARD": "Standard case",
 		"STATUS": {
 			"active": "Active",
 			"passive": "Passive",
@@ -69,14 +70,13 @@
 		"PRINT_CASE": "Print case",
 		"START_WORKFLOW": "Start workflow",
 		"CASE_HISTORY": "Case history",
-		"CRUD_CASE": "Create / edit case",
+		"CREATE_CASE": "Create case",
+		"EDIT_PROPERTIES": "Edit properties",
 		"TITLE": "Title",
 		"OWNER": "Owner",
 		"START_DATE": "Start date",
 		"DESCRIPTION": "Description",
-		"CREATE_SAVE_CASE": "Create / save case",
 		"CREATE_NEW_CASE": "Create new case",
-		"CASETYPE_STANDARD": "Standard case",
 		"CASETYPE_OTHER": "Other type case",
 		"STARTDATE": "Start date",
 		"ENDDATE": "End date",
@@ -113,20 +113,18 @@
 			"draft": "Draft",
 			"final": "Final"
 		},
-		"TYPE": {
-			"invoice": "Invoice",
-			"letter": "Letter",
-			"note": "Note",
-			"report": "Report",
-			"agenda": "Agenda",
-			"other": "Other"
-		},
 		"DOCUMENTS": "Documents",
 		"UPLOAD_NEW_DOCUMENTS": "Upload new document",
 		"SEND_DOCUMENTS": "Send documents",
 		"EMAIL_DOCUMENTS": "Email documents",
 		"DIGITAL_POST_DOCUMENTS": "Digital Post",
+		"CREATE_FROM_TEMPLATE": "Create from template",
 		"MY_DOCUMENTS": "My documents",
+		"CHOOSE_TEMPLATE": "Choose template",
+		"TEMPLATE": {
+			"RECEIVER": "Reciever"
+		},
+		"DOWNLOAD_RENDERED_FROM_TEMPLATE": "Download rendered from template",
 		"CHANGE_STATUS": "Change status",
 		"VERSION": "Version",
 		"VERSION_ADDED": "Version added",
@@ -134,12 +132,13 @@
 		"VERSION_DESCRIPTION": "Version description",
 		"EDIT_PROPERTIES": "Edit information",
 		"UPLOAD_NEW_VERSION": "Upload new version",
-		"OPEN_PREVIEW": "Open preview",
+		"PREVIEW": "Preview",
 		"ATTACHMENTS": {
 			"CURRENT_VERSION": "Current version",
 			"EDIT_ATTACHMENT": "Edit attachment",
 			"UPLOAD_NEW_ATTACHMENT": "Upload new attachment"
 		},
+		"OPEN_PREVIEW": "Open preview",
 		"UPLOAD_DOCUMENT": "Upload document",
 		"UPLOAD_ATTACHMENT": "Upload attachment",
 		"DOCUMENT_TO_UPLOAD": "Document to upload",
@@ -577,6 +576,17 @@
 	},
 	"OFFICE": {
 		"SAVE_EMAIL_IN_OPENESDH": "SAVE E-mail in OpenESDH"
+	},
+	"DOCUMENT_TYPE": {
+		"CREATE_EDIT_DOC_TYPE": "Create / edit document type",
+		"NAME": "Name",
+		"DISPLAY_NAME": "Display name"
+	},
+	"DOCUMENT_TYPES": {
+		"DOCUMENT_TYPES": "Document types",
+		"NAME": "Name",
+		"DISPLAY_NAME": "Display name",
+		"CREATE_NEW_DOC_TYPE": "Create new document type"
 	},
 	"SEARCH": {
 		"SEARCH": "Search"
