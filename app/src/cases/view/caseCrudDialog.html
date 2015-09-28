@@ -22,18 +22,18 @@
       <div ng-controller="ClassificationController as classCtrl">
         <md-chips ng-model="case.journalKey" md-autocomplete-snap
                     md-require-match="true" required>
-          <md-autocomplete
-                  ng-show="case.journalKey.length === 0"
-                   md-input-name="autocompleteField"
-                   md-input-minlength="2"
-                   md-selected-item="selectedItem"
-                   md-search-text="searchText"
-                   md-items="item in classCtrl.search(searchText, 'oe:journalKey')"
-                   md-item-text="item.name + ' ' + item.title"
-                   md-floating-label="{{'CASE.JOURNAL_KEY' | translate}}">
+          <md-autocomplete style="width: 20em;"
+                           ng-show="case.journalKey.length === 0"
+                           md-input-name="autocompleteField"
+                           md-input-minlength="2"
+                           md-selected-item="selectedItem"
+                           md-search-text="searchText"
+                           md-items="item in classCtrl.search(searchText, 'oe:journalKey')"
+                           md-item-text="item.name + ' ' + item.title"
+                           md-floating-label="{{'CASE.JOURNAL_KEY' | translate}}">
             <md-item-template>
-              <span md-highlight-text="searchText">{{item.name}}</span>
-              <span md-highlight-text="searchText" class="muted">{{item.title}}</span>
+                <span md-highlight-text="searchText">{{item.name}}</span>
+                <span md-highlight-text="searchText" class="muted">{{item.title}}</span>
             </md-item-template>
             <md-not-found>
               {{ 'COMMON.NO_MATCHES' | translate }}
@@ -49,18 +49,18 @@
 
         <md-chips ng-model="case.journalFacet" md-autocomplete-snap
                   md-require-match="true">
-          <md-autocomplete
-                  ng-show="case.journalFacet.length === 0"
-                  md-input-name="autocompleteField"
-                  md-input-minlength="2"
-                  md-selected-item="selectedItem"
-                  md-search-text="searchText"
-                  md-items="item in classCtrl.search(searchText, 'oe:journalFacet')"
-                  md-item-text="item.name + ' ' + item.title"
-                  md-floating-label="{{'CASE.JOURNAL_FACET' | translate}}">
+          <md-autocomplete style="width: 20em;"
+                           ng-show="case.journalFacet.length === 0"
+                           md-input-name="autocompleteField"
+                           md-input-minlength="2"
+                           md-selected-item="selectedItem"
+                           md-search-text="searchText"
+                           md-items="item in classCtrl.search(searchText, 'oe:journalFacet')"
+                           md-item-text="item.name + ' ' + item.title"
+                           md-floating-label="{{'CASE.JOURNAL_FACET' | translate}}">
             <md-item-template>
-              <span md-highlight-text="searchText">{{item.name}}</span>
-              <span md-highlight-text="searchText" class="muted">{{item.title}}</span>
+                <span md-highlight-text="searchText">{{item.name}}</span>
+                <span md-highlight-text="searchText" class="muted">{{item.title}}</span>
             </md-item-template>
             <md-not-found>
               {{ 'COMMON.NO_MATCHES' | translate }}
@@ -79,7 +79,7 @@
 
       <md-input-container>
         <label>{{ 'CASE.DESCRIPTION' | translate }}</label>
-        <textarea ng-model="case.desc"></textarea>
+        <textarea ng-model="case.description"></textarea>
       </md-input-container>
       
     </md-dialog-content>

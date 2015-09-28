@@ -52,8 +52,8 @@
          * Returns a bool, if the suggestion box should be visible
          */
         asctrl.suggestionVisible = function () {
-            if (asctrl.searchTerm.length > 0 && !asctrl.hidden) return true;
-            return false;
+            return !!(asctrl.searchTerm.length > 0 && !asctrl.hidden);
+
         };
 
         /**
@@ -69,11 +69,11 @@
          */
         asctrl.gotoSearchPage = function() {
             $state.go('search', {'searchTerm': asctrl.searchTerm});
-        }
+        };
 
         asctrl.goToSuggestion = function(item) {
             if(asctrl.isDocument(item)) {
-                var ref = alfrescoNodeUtils.processNodeRef(item.nodeRef);
+                var ref = alfrescoNodeUtils.processNodeRef(item.docRecordNodeRef);
                 $state.go('docDetails', {
                     'caseId': item.case.caseId,
                     'storeType' : ref.storeType,

@@ -4,9 +4,11 @@
         .module('openeApp.documents')
         .controller('DocumentDetailsController', DocumentDetailsController);
     
-    DocumentDetailsController.$inject = [ '$scope', '$stateParams', '$mdDialog', '$translate', 'caseDocumentDetailsService', 'documentPreviewService', 'caseDocumentFileDialogService', 'notificationUtilsService' ];
+    DocumentDetailsController.$inject = [ '$scope', '$stateParams', '$mdDialog', '$translate', 'caseDocumentDetailsService', 
+                                          'documentPreviewService', 'caseDocumentFileDialogService', 'notificationUtilsService', 'alfrescoDownloadService'];
     
-    function DocumentDetailsController($scope, $stateParams, $mdDialog, $translate, caseDocumentDetailsService, documentPreviewService, caseDocumentFileDialogService, notificationUtilsService) {
+    function DocumentDetailsController($scope, $stateParams, $mdDialog, $translate, caseDocumentDetailsService, 
+                documentPreviewService, caseDocumentFileDialogService, notificationUtilsService, alfrescoDownloadService) {
         
         var caseId = $stateParams.caseId;
         var documentNodeRef = $stateParams.storeType + "://" + $stateParams.storeId + "/" + $stateParams.id;
@@ -27,7 +29,7 @@
         vm.previewAttachment = previewAttachment;
         vm.editDocumentProperties = editDocumentProperties;
         vm.changeDocumentStatus = changeDocumentStatus;
-        
+        vm.docPreviewController = DocPreviewController;
         activate();
         
         function activate(){
@@ -39,6 +41,7 @@
                 caseDocument = document;                
                 vm.doc = document;
                 loadVersionDetails();
+                loadDocumentPreview();
                 loadAttachments();
             });
         }
@@ -48,6 +51,30 @@
                 documentVersions = versions;
                 vm.documentVersions = versions;
                 vm.docVersion = versions[0];
+            });
+        }
+        
+        function DocPreviewController($scope){
+            vm.docPreviewControllerObj = this;
+            this.setPreviewPlugin = function(plugin){
+                
+                $scope.config = plugin;
+                
+                $scope.viewerTemplateUrl = documentPreviewService.templatesUrl + plugin.templateUrl;
+                
+                $scope.download = function(){
+                    alfrescoDownloadService.downloadFile($scope.config.nodeRef, $scope.config.fileName);
+                };
+                
+                if(plugin.initScope){
+                    plugin.initScope($scope);
+                }
+            };
+        };
+        
+        function loadDocumentPreview(){
+            documentPreviewService.previewDocumentPlugin(caseDocument.mainDocNodeRef).then(function(plugin){
+                vm.docPreviewControllerObj.setPreviewPlugin(plugin);
             });
         }
         
@@ -72,7 +99,7 @@
         }
         
         function previewDocument(){
-            documentPreviewService.previewDocument(vm.docVersion.nodeRef);
+            documentPreviewService.previewDocument(caseDocument.mainDocNodeRef);
         }
         
         function uploadDocNewVersion(){

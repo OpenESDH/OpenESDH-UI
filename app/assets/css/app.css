@@ -95,6 +95,28 @@ legend {
   padding: 0 0.25em;
 }
 
+.highlight {
+  border-bottom: dotted 1px #000;
+}
+
+/* Workflow */
+table tr .collapse,
+table tr .expand {
+  display: block;
+}
+table tr .collapse:after {
+    content: "\0025BC";
+    display: block;
+    color: #999;
+    cursor: pointer;
+}
+table tr .expand:after {
+    content: "\0025BA";
+    display: block;
+    color: #999;
+    cursor: pointer;
+}
+
 
 /* Angular Material override styles */
 
@@ -110,15 +132,31 @@ td .md-button {
   vertical-align: middle;
 }
 
-md-chips-wrap {
+.md-chips {
+  padding-bottom: 0;
   margin-bottom: 1em;
 }
 
+.md-chips .md-chip-input-container {
+  padding-left: 0;
+}
+
+.md-contact-avatar,
+.md-contact-suggestion img {
+  display: none;
+}
+
 .workflowWizardStep {
-	max-width:800px;
+	max-width:1000px;
 	max-height:531px;
-	min-width:800px;
-	min-height:531px;
+	min-width:400px;
+	min-height:331px;
+/*
+  max-width:800px;
+  max-height:531px;
+  min-width:800px;
+  min-height:531px;
+  */
 }
 
 .md-checked .md-label {
