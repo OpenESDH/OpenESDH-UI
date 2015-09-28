@@ -29,7 +29,7 @@
         </div>
       </div>
 
-      <md-input-container ng-show="(isEditProperties || fromFileObject) && !isAttachment">
+      <md-input-container ng-show="!isAttachment">
         <label><span class="md-warn">*</span> {{ 'COMMON.NAME' | translate }}</label>
         <input type="text" ng-model="documentProperties.title" required focus-me>
       </md-input-container>
