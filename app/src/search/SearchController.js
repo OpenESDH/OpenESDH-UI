@@ -14,7 +14,10 @@
     function SearchController($scope, $stateParams, searchService) {
         var sctrl = this;
         sctrl.searchTerm = $stateParams.searchTerm;
+        sctrl.selectedFilters=[];//Keep track of the selected filters
+        sctrl.filtersQueryString=""; // the selected filters as query string
         sctrl.definedFacets = searchService.getConfiguredFacets();
+        sctrl.filterResults = filterResults();
 
         function initFacets(){
             searchService.getConfiguredFacets().then(function(data){
@@ -31,8 +34,8 @@
         function executeSearch() {
 
             var queryObj = {
-                facetFields: parseFacetsForQuery(),
-                filters: "",
+                facetFields: parseFacetsForQueryFilter(),
+                filters: "", //"{http://www.alfresco.org/model/content/1.0}creator|abeecher"
                 maxResults: 0,
                 noCache: new Date().getTime(),
                 pageSize: 25,
@@ -46,10 +49,8 @@
                 tag: "",
                 term: sctrl.searchTerm+'*'
             };
-            var objQuerified = objectToQuery(queryObj);
-
+            var objQuerified = objectToQueryString(queryObj);
             getSearchQuery(objQuerified);
-
         }
 
         function getSearchQuery(query){
@@ -87,7 +88,7 @@
          * @param map
          * @returns {string}
          */
-        function objectToQuery(map) {
+        function objectToQueryString(map) {
             // FIXME: need to implement encodeAscii!!
             var enc = encodeURIComponent, pairs = [];
             for (var name in map) {
@@ -108,15 +109,16 @@
          * Extracts the QName from each defined facet and 'stringifies' them for the query object
          * @returns {string}
          */
-        function parseFacetsForQuery(){
+        function parseFacetsForQueryFilter(){
             var stringFacet="";
             sctrl.definedFacets.forEach(function(item){stringFacet ==""? stringFacet+= item.facetQName : stringFacet = stringFacet+','+item.facetQName});
             return stringFacet;
         }
 
+        function filterResults(filter){
+            console.log("The filter value : "+ filter);
+        }
 
-
-        //executeSearch();
     }
 
 })();

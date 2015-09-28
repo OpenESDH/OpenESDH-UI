@@ -10,35 +10,17 @@
         
         <div flex="25" layout-margin>
             <form name="facets">
-                <fieldset>
-                    <legend><i class="material-icons">arrow_drop_down</i> Filters A</legend>
-                    <md-checkbox ng-model="useFacetA1" aria-label="Facet A1" class="md-primary">
-                        Facet A1 <span class="search-hits">2</span>
-                    </md-checkbox>
-                    <md-checkbox ng-model="useFacetA2" aria-label="Facet A2" class="md-primary">
-                        Facet A2 <span class="search-hits">468</span>
-                    </md-checkbox>
-                    <md-checkbox ng-model="useFacetA3" aria-label="Facet A3" class="md-primary">
-                        Facet A3 <span class="search-hits">5</span>
-                    </md-checkbox>
-                </fieldset>
-                <fieldset>
-                    <legend><i class="material-icons">arrow_drop_down</i> Filters B</legend>
-                    <md-checkbox ng-model="useFacetB1" aria-label="Facet B1" class="md-primary">
-                        Facet B1 <span class="search-hits">23</span>
-                    </md-checkbox>
-                    <md-checkbox ng-model="useFacetB2" aria-label="Facet B2" class="md-primary">
-                        Facet B2 <span class="search-hits">7</span>
-                    </md-checkbox>
-                    <md-checkbox ng-model="useFacetB3" aria-label="Facet B3" class="md-primary">
-                        Facet B3 <span class="search-hits">13</span>
+                <fieldset ng-repeat="(key, facet) in sctrl.fullSearchResults.facets">
+                    <legend><i class="material-icons">arrow_drop_down</i> {{key | translate}}</legend>
+                    <md-checkbox ng-repeat="hit in facet" ng-change='sctrl.filterResults(hit.value)' aria-label="{{hit.value}}" class="md-primary">
+                        <span class="search-hits">{{ hit.label | translate }}</span>
                     </md-checkbox>
                 </fieldset>
             </form>
         </div>
         
         <div flex="75">
-            <md-card ng-repeat="item in sctrl.queryResult.items">
+            <md-card ng-repeat="item in sctrl.fullSearchResults.results">
                 
                 <md-card-content ng-if="item.type == 'case'">
                     <div layout="row" layout-align="space-between start" class="muted" style="font-size: 0.9em;">
