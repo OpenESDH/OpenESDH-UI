@@ -48,15 +48,11 @@
             if(!documentProps){
                 documentProps = {
                         doc_category: "annex",
-                        doc_state: "received",
                         doc_type: "invoice"
                 };
             }else{
                 if(!documentProps.doc_category){
                     documentProps.doc_category = "annex";                    
-                }
-                if(!documentProps.doc_state){
-                    documentProps.doc_state = "received";                    
                 }
                 if(!documentProps.doc_type){
                     documentProps.doc_type = "invoice";                    

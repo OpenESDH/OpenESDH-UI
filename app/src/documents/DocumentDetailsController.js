@@ -106,7 +106,7 @@
         function uploadDocNewVersion(){
             caseDocumentFileDialogService.uploadCaseDocumentNewVersion(documentNodeRef).then(function(result){
                 loadVersionDetails();
-                loadDocumentPreview();
+                setTimeout(loadDocumentPreview, 500);
             });
         }
         
