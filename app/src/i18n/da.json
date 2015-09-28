@@ -78,7 +78,7 @@
 		"CREATE_NEW_CASE": "Opret ny sag",
 		"CASETYPE_STANDARD": "Standard sag",
 		"CASETYPE_OTHER": "Anden sagstype",
-		"STARTDATE": "Stat-dato",
+		"STARTDATE": "Start-dato",
 		"ENDDATE": "Slut-dato",
 		"MY_CASES": "Mine sager"
 	},
