@@ -99,7 +99,42 @@ legend {
   border-bottom: dotted 1px #000;
 }
 
+
+/* Virtual repeat lists */
+
+.repeat-table md-virtual-repeat-container {
+  height: 300px;
+}
+.repeat-table md-virtual-repeat-container,
+.repeat-table .repeat-header,
+.repeat-table .repeat-item {
+  border-bottom: 1px solid #ddd;
+}
+.repeat-table .r {
+  padding: 0.5em 1em;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  
+}
+.repeat-table .repeat-header .r {
+  color: rgba(0,0,0,0.54);
+  font-weight: 700;
+}
+.repeat-table .r-rowlink {
+  text-decoration: none;
+  color: #000;
+}
+.repeat-table .r-rowlink:hover,
+.repeat-table .r-rowlink:focus,
+.repeat-table .r-rowlink:active {
+  background-color: #eee;
+}
+
+
 /* Workflow */
+
 table tr .collapse,
 table tr .expand {
   display: block;
