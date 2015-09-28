@@ -574,5 +574,18 @@
 	},
 	"SEARCH": {
 		"SEARCH": "Søg"
-	}
+	},
+  "faceted-search.date.one-week.label": "Sidste uge",
+  "faceted-search.date.one-month.label": "Sidste måned",
+  "faceted-search.date.six-months.label": "Sidste seks måneder",
+  "faceted-search.date.one-year.label": "Sidste år",
+  "faceted-search.size.100KB-1MB.label": "100kb - 1Mb",
+  "@{http://www.alfresco.org/model/content/1.0}content.size": "Størrelse",
+  "@{http://www.alfresco.org/model/content/1.0}modifier": "Modifikator",
+  "@{http://www.alfresco.org/model/content/1.0}modified": "Modificeret",
+  "@{http://www.alfresco.org/model/content/1.0}creator": "Skaberen",
+  "@{http://www.alfresco.org/model/content/1.0}created": "Oprettet",
+  "@{http://www.alfresco.org/model/content/1.0}content.mimetype": "Filtype",
+  "@{http://openesdh.dk/model/case/base/1.0}startDate": "Start Dato",
+  "@{http://openesdh.dk/model/case/base/1.0}endDate": "Slutdato"
 }

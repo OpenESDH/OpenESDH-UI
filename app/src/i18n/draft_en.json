@@ -590,5 +590,18 @@
 	},
 	"SEARCH": {
 		"SEARCH": "Search"
-	}
+	},
+  "faceted-search.date.one-week.label": "Last week",
+  "faceted-search.date.one-month.label": "Last month",
+  "faceted-search.date.six-months.label": "Last six months",
+  "faceted-search.date.one-year.label": "Last year",
+  "faceted-search.size.100KB-1MB.label": "100kb - 1Mb",
+  "@{http://www.alfresco.org/model/content/1.0}content.size": "Size",
+  "@{http://www.alfresco.org/model/content/1.0}modifier": "Modifier",
+  "@{http://www.alfresco.org/model/content/1.0}modified": "Modified",
+  "@{http://www.alfresco.org/model/content/1.0}creator": "Creator",
+  "@{http://www.alfresco.org/model/content/1.0}created": "Created",
+  "@{http://www.alfresco.org/model/content/1.0}content.mimetype": "File Type",
+  "@{http://openesdh.dk/model/case/base/1.0}startDate": "Start Date",
+  "@{http://openesdh.dk/model/case/base/1.0}endDate": "End Date"
 }

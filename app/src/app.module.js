@@ -270,7 +270,7 @@
                 authorizedRoles: [USER_ROLES.admin]
             }
         }).state('search', {
-            url: '/search',
+            url: '/search/:searchTerm',
             views: {
                 'content@': {
                     templateUrl: '/app/src/search/view/search.html'
