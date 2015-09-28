@@ -32,7 +32,8 @@
             'openeApp.search',
             'openeApp.search.component.filter',
             'openeApp.common.directives.filter',
-            'openeApp.documentTypes'
+            'openeApp.documentTypes',
+            'openeApp.documentCategories'
         ])
         .constant('USER_ROLES', {
             admin: 'admin',
@@ -263,6 +264,18 @@
                 'content@': {
                     templateUrl: '/app/src/other/document_types/view/documentTypes.html',
                     controller: 'DocumentTypesController',
+                    controllerAs: 'vm'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.admin]
+            }
+        }).state('documentcategories', {
+            url: '/documentcategories',
+            views: {
+                'content@': {
+                    templateUrl: '/app/src/other/document_categories/view/documentCategories.html',
+                    controller: 'DocumentCategoriesController',
                     controllerAs: 'vm'
                 }
             },

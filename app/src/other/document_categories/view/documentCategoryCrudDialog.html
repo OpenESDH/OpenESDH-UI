@@ -1,0 +1,33 @@
+<md-dialog aria-label="{{ 'DOCUMENT_CATEGORIES.CREATE_EDIT_DOC_CATEGORY' | translate }}">
+  <form name="docCategoryForm">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h1>{{ 'DOCUMENT_CATEGORIES.CREATE_EDIT_DOC_CATEGORY' | translate }}</h1>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="dc.cancel()">
+          <md-icon aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content style="max-width:40em;max-height:410px; ">
+      <md-input-container>
+        <label>{{ 'DOCUMENT_CATEGORIES.NAME' | translate }}</label>
+        <input type="text" ng-model="dc.documentCategory.name" required ng-pattern="/^[a-zA-Z0-9_\-,!@#$%^&()=+ ]+$/" ng-disabled="dc.documentCategory.systemType">
+      </md-input-container>
+      <md-input-container>
+        <label>{{ 'DOCUMENT_CATEGORIES.DISPLAY_NAME' | translate }}</label>
+        <input type="text" ng-model="dc.documentCategory.displayName" required ng-maxlength="150">
+      </md-input-container>
+    </md-dialog-content>
+
+    <div class="md-actions" layout="row">
+      <md-button class="md-primary" ng-click="dc.save(docCategoryForm)">
+        {{ 'COMMON.SAVE' | translate }}
+      </md-button>
+      <md-button ng-click="dc.cancel()">
+        {{ 'COMMON.CANCEL' | translate }}
+      </md-button>
+    </div>
+  </form>
+</md-dialog>
