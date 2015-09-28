@@ -6,6 +6,7 @@
 
     AutosuggestController.$inject = [
         '$scope',
+        'ALFRESCO_URI',
         '$state',
         '$q',
         '$mdConstant',
@@ -18,7 +19,7 @@
      * @param $scope
      * @constructor
      */
-    function AutosuggestController($scope, $state, $q, $mdConstant, searchService, alfrescoNodeUtils) {
+    function AutosuggestController($scope, ALFRESCO_URI, $state, $q, $mdConstant, searchService, alfrescoNodeUtils) {
 
         var asctrl = this;
         asctrl.liveSearchResults = {
@@ -41,6 +42,9 @@
                 searchService.liveSearchCases(term)
             ]).then(function (res) {
                 asctrl.liveSearchResults.documents = res[0].data.documents;
+                asctrl.liveSearchResults.documents.forEach(function(document){
+                    document.thumbNailURL = ALFRESCO_URI.serviceApiProxy +"node/"+document.nodeRef.replace(":/", "")+"/content/thumbnails/doclib?c=queue&ph=true&lastModified=" + document.lastThumbnailModification || 1
+                });
                 asctrl.liveSearchResults.cases = res[1].data.cases;
 
                 asctrl.totalSuggestion = asctrl.liveSearchResults.documents.length + asctrl.liveSearchResults.cases.length - 1;
