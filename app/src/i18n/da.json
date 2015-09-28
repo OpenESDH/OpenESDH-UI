@@ -80,7 +80,9 @@
 		"CASETYPE_OTHER": "Anden sagstype",
 		"STARTDATE": "Start-dato",
 		"ENDDATE": "Slut-dato",
-		"MY_CASES": "Mine sager"
+		"MY_CASES": "Mine sager",
+        "CREATE_CASE": "Opret sag",
+        "EDIT_PROPERTIES": "Redigér information"
 	},
 	"DOCUMENT": {
 		"STATUS_CHANGED_SUCCESS": "Status er ændret",
