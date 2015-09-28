@@ -130,7 +130,7 @@
         }
 
         sctrl.filterResults = function(filterKey, filterValue) {
-            console.log("The filter value : "+ filterKey +" ==> "+filterValue);
+            //console.log("The filter value : "+ filterKey +" ==> "+filterValue);
             //selectedFilters is to be used to track what is checked then on every addition or removal, we rebuild the
             //filter query string and re-execute the search
             if(sctrl.selectedFilters[filterKey])
@@ -142,7 +142,7 @@
         }
 
         function rebuildFilterQueryString(){
-            console.log("Rebuilding filter Query string");
+            //console.log("Rebuilding filter Query string");
             var filterQueryStringArr  = [];
             Object.keys(sctrl.selectedFilters).forEach(function(key){
                 var bufStr = "";
