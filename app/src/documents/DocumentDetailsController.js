@@ -30,6 +30,7 @@
         vm.editDocumentProperties = editDocumentProperties;
         vm.changeDocumentStatus = changeDocumentStatus;
         vm.docPreviewController = DocPreviewController;
+        vm.refreshDocumentPreview = loadDocumentPreview;
         activate();
         
         function activate(){
@@ -105,6 +106,7 @@
         function uploadDocNewVersion(){
             caseDocumentFileDialogService.uploadCaseDocumentNewVersion(documentNodeRef).then(function(result){
                 loadVersionDetails();
+                loadDocumentPreview();
             });
         }
         
