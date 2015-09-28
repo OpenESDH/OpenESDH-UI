@@ -70,19 +70,17 @@
 		"PRINT_CASE": "Print case",
 		"START_WORKFLOW": "Start workflow",
 		"CASE_HISTORY": "Case history",
-		"CRUD_CASE": "Create / edit case",
+		"CREATE_CASE": "Create case",
+		"EDIT_PROPERTIES": "Edit properties",
 		"TITLE": "Title",
 		"OWNER": "Owner",
 		"START_DATE": "Start date",
 		"DESCRIPTION": "Description",
-		"CREATE_SAVE_CASE": "Create / save case",
 		"CREATE_NEW_CASE": "Create new case",
 		"CASETYPE_OTHER": "Other type case",
 		"STARTDATE": "Start date",
 		"ENDDATE": "End date",
-		"MY_CASES": "My cases",
-		"CREATE_CASE": "Create case",
-		"EDIT_PROPERTIES": "Edit properties"
+		"MY_CASES": "My cases"
 	},
 	"DOCUMENT": {
 		"STATUS_CHANGED_SUCCESS": "Status has been changed successfully",
