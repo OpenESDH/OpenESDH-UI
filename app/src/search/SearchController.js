@@ -139,7 +139,7 @@
                 sctrl.selectedFilters[filterKey] = filterValue;
 
             rebuildFilterQueryString();
-        }
+        };
 
         function rebuildFilterQueryString(){
             console.log("Rebuilding filter Query string");
@@ -156,7 +156,7 @@
                 filterQueryStringArr.push(bufStr);
             });
 
-            sctrl.filtersQueryString = filterQueryStringArr.valueOf()[0];
+            sctrl.filtersQueryString = filterQueryStringArr.toString();
             executeSearch();
         }
 

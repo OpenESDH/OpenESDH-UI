@@ -37,8 +37,7 @@
                             </div>
                         </md-list-item>
 
-                        <md-divider
-                                ng-if="asctrl.liveSearchResults.documents.length > 0 && asctrl.liveSearchResults.cases.length > 0"></md-divider>
+                        <md-divider ng-if="asctrl.liveSearchResults.documents.length > 0 && asctrl.liveSearchResults.cases.length > 0"></md-divider>
 
                         <md-subheader class="md-no-sticky" ng-if="asctrl.liveSearchResults.cases.length">
                             {{ 'CASE.CASES' | translate}}
