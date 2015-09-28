@@ -4,7 +4,8 @@
        .module('openeApp.cases')
        .controller('CaseInfoController', CaseInfoController);
 
-  CaseInfoController.$inject = ['$scope', '$stateParams', '$mdDialog', '$translate', 'caseService', 'notificationUtilsService', 'startCaseWorkflowService'];
+  CaseInfoController.$inject = ['$scope', '$stateParams', '$mdDialog', '$translate', 'caseService', 
+                                'notificationUtilsService', 'startCaseWorkflowService', 'caseCrudDialogService'];
   
   /**
    * Main CaseInfoController for the Cases module
@@ -15,7 +16,8 @@
    * @param caseService
    * @constructor
    */
-  function CaseInfoController($scope, $stateParams, $mdDialog, $translate, caseService, notificationUtilsService, startCaseWorkflowService) {
+  function CaseInfoController($scope, $stateParams, $mdDialog, $translate, caseService, 
+              notificationUtilsService, startCaseWorkflowService, caseCrudDialogService) {
     var vm = this;
 
     vm.editCase = editCase;
@@ -26,7 +28,6 @@
     loadCaseInfo();
     
     function loadCaseInfo(){
-        console.log($stateParams);
         caseService.getCaseInfo($stateParams.caseId).then(function(result){
             $scope.case = result.properties;
             $scope.caseIsLocked = result.isLocked;
@@ -35,19 +36,26 @@
     }
     
     function editCase(ev) {
-      $mdDialog.show({
-        controller: DialogController,
-        controllerAs: 'vm',
-        templateUrl: 'app/src/cases/view/caseCrudDialog.html',
-        parent: angular.element(document.body),
-        targetEvent: ev,
-        clickOutsideToClose:true
-      })
-      .then(function(answer) {
-        $scope.status = 'You said the information was "' + answer + '".';
-      }, function() {
-        $scope.status = 'You cancelled the dialog.';
-      });
+        var c = $scope.case;
+        var caseObj = {
+            title: c['cm:title'].displayValue,
+            owner: c['base:owners'].nodeRef[0],
+            journalKey: [],
+            journalFacet: [],
+            startDate: new Date(c['base:startDate'].value),
+            description: c['cm:description'].displayValue,
+            nodeRef: c.nodeRef
+        };
+        if(c['oe:journalKey'].value){
+            caseObj.journalKey.push(c['oe:journalKey'].value);    
+        }
+        if(c['oe:journalFacet'].value){
+            caseObj.journalFacet.push(c['oe:journalFacet'].value);
+        }
+        
+        caseCrudDialogService.editCase(caseObj).then(function(result){
+            loadCaseInfo();
+        });
     }
 
     function changeCaseStatus(status) {
@@ -81,19 +89,6 @@
       } else {
         changeCaseStatusImpl();
       }
-    }
-    
-    function DialogController($scope, $mdDialog) {
-      var vm = this;
-      vm.cancel = cancel;
-      vm.hide = hide;
-
-      function hide() {
-        $mdDialog.hide();
-      };
-      function cancel() {
-        $mdDialog.cancel();
-      };
     }
     
     function onTabChange(tabName){

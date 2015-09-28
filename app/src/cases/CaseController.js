@@ -5,7 +5,7 @@
         .module('openeApp.cases')
         .controller('CaseController', CaseController);
 
-    CaseController.$inject = ['$scope', '$mdDialog', '$location', 'caseService', 'userService'];
+    CaseController.$inject = ['$scope', '$mdDialog', '$location', 'caseService', 'userService', 'caseCrudDialogService'];
 
     /**
      * Main Controller for the Cases module
@@ -13,7 +13,7 @@
      * @param cases
      * @constructor
      */
-    function CaseController($scope, $mdDialog, $location, caseService, userService) {
+    function CaseController($scope, $mdDialog, $location, caseService, userService, caseCrudDialogService) {
         var vm = this;
         vm.cases = [];
 
@@ -48,65 +48,8 @@
             });
         }
 
-
-//        $scope.authorities = ['person one', 'person two', 'person three'];
-
         function createCase(ev, caseType) {
-            // In the future, we'll need the ability to create other types of cases
-            console.log('Creating a new case of type ' + caseType);
-
-            $mdDialog.show({
-                controller: CaseCreateDialogController,
-                controllerAs: 'vm',
-                templateUrl: 'app/src/cases/view/caseCrudDialog.html',
-                parent: angular.element(document.body),
-                targetEvent: ev,
-                clickOutsideToClose: true,
-                focusOnOpen: false
-            });
-        };
-
-        CaseCreateDialogController.$inject = ['$scope', '$mdDialog', '$animate', 'notificationUtilsService'];
-        function CaseCreateDialogController($scope, $mdDialog, $animate, notificationUtilsService) {
-            var vm = this;
-          
-            // Data from the case creation form
-            $scope.case = {};
-            $scope.case.journalKey = [];
-            $scope.case.journalFacet = [];
-            vm.cancel = cancel;
-            vm.update = update;
-
-            // Cancel or submit form in dialog
-            function cancel(form) {
-                $mdDialog.cancel();
-            }
-            function update(c) {
-                var caseData = angular.copy(c);
-                console.log(caseData);
-                $mdDialog.cancel();
-
-                if (caseData.journalKey.length > 0) {
-                    caseData.journalKey = caseData.journalKey[0].nodeRef;
-                } else {
-                    delete caseData.journalKey;
-                }
-                if (caseData.journalFacet.length > 0) {
-                    caseData.journalFacet = caseData.journalFacet[0].nodeRef;
-                } else {
-                    delete caseData.journalFacet;
-                }
-
-                // When submitting, do something with the case data
-                caseService.createCase(caseData).then(function (caseId) {
-                    //cases/case/20150908-865
-                    $location.path("/cases/case/" + caseId);
-                    // When the form is submitted, show a notification:
-                    notificationUtilsService.notify('Case ' + caseData.title + ' created');
-                }, function (response) {
-                    notificationUtilsService.alert('Error creating case: ' + response.data.message);
-                });
-            }
+            caseCrudDialogService.createCase(caseType);
         }
 
         function getAuthorities() {
