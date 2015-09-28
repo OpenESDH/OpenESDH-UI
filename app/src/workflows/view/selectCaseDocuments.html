@@ -14,29 +14,34 @@
     </thead>
     <tbody>
         <tr ng-repeat-start="doc in dlg.documents">
-            <td></td>
+            <td>
+                <span ng-if="doc.attachments.length > 0 && doc.expanded" ng-click="doc.expanded = false" class="collapse"></span>
+                <span ng-if="doc.attachments.length > 0 && !doc.expanded" ng-click="doc.expanded = true" class="expand"></span>
+            </td>
             <td>
                 <div style="display: inline-flex;">
-                    <md-checkbox ng-model="doc.selected"" aria-label="checkbox"></md-checkbox>
-                    <span style="margin-top: 12px;">{{doc.title}}</span>
+                    <md-checkbox ng-model="doc.selected" aria-label="checkbox">{{doc.title}}</md-checkbox>
+                    <!-- <span style="margin-top: 12px;">{{doc.title}}</span> -->
                 </div>
             </td>
             <td></td>
-            <td>{{doc.category | docType}}</td>
+            <td>{{doc.typeName}}</td>
             <td>{{doc.category | docCategory}}</td>
             <td>{{doc.state | docState}}</td>
             <td>{{doc.owner.firstName + " " + doc.owner.lastName}}</td>
             <td>{{doc.created | date}}</td>
             <td>{{doc.modified | date}}</td>
         </tr>
-            <tr ng-repeat="attachment in doc.attachments">
-                <td style="padding-left: 50px;" colspan="9">
-                    <div style="display: inline-flex;">
-                        <md-checkbox ng-model="attachment.selected"  aria-label="checkbox"></md-checkbox>
-                        <span style="margin-top: 12px;">{{attachment.name}}</span>
-                    </div>
-                </td>
-            </tr>
-        <tr style="display:none" ng-repeat-end></tr>
+        <tr ng-if="doc.attachments.length > 0 && doc.expanded" ng-repeat-end="">
+            <td style="padding-left: 50px;" colspan="9">
+                <div ng-repeat="attachment in doc.attachments">
+                    <md-checkbox ng-model="attachment.selected"  aria-label="checkbox">
+                        {{attachment.name}}
+                    </md-checkbox>
+<!--                        <span style="margin-top: 12px;">{{attachment.name}}</span>-->
+                </div>
+            </td>
+        </tr>
+        <!-- <tr style="display:none" ng-repeat-end></tr> -->
     </tbody>
 </table>

@@ -1,0 +1,33 @@
+<md-dialog aria-label="{{ 'DOCUMENT_TYPE.CREATE_EDIT_DOC_TYPE' | translate }}">
+  <form name="docTypeForm">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h1>{{ 'DOCUMENT_TYPE.CREATE_EDIT_DOC_TYPE' | translate }}</h1>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="dt.cancel()">
+          <md-icon aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content style="max-width:40em;max-height:410px; ">
+      <md-input-container>
+        <label>{{ 'DOCUMENT_TYPE.NAME' | translate }}</label>
+        <input type="text" ng-model="dt.documentType.name" required ng-pattern="/^[a-zA-Z0-9_\-,!@#$%^&()=+ ]+$/" ng-disabled="dt.documentType.systemType">
+      </md-input-container>
+      <md-input-container>
+        <label>{{ 'DOCUMENT_TYPE.DISPLAY_NAME' | translate }}</label>
+        <input type="text" ng-model="dt.documentType.displayName" required ng-maxlength="150">
+      </md-input-container>
+    </md-dialog-content>
+
+    <div class="md-actions" layout="row">
+      <md-button class="md-primary" ng-click="dt.save(docTypeForm)">
+        {{ 'COMMON.SAVE' | translate }}
+      </md-button>
+      <md-button ng-click="dt.cancel()">
+        {{ 'COMMON.CANCEL' | translate }}
+      </md-button>
+    </div>
+  </form>
+</md-dialog>

@@ -75,9 +75,9 @@
             });
         }
 
-        EmailDocumentsDialogController.$inject = ['$mdDialog', 'docs', 'caseId'];
+        EmailDocumentsDialogController.$inject = ['$mdDialog', 'docs', 'caseId', '$timeout', '$q'];
 
-        function EmailDocumentsDialogController($mdDialog, docs, caseId) {
+        function EmailDocumentsDialogController($mdDialog, docs, caseId, $timeout, $q) {
             var vm = this;
 
             vm.documents = docs;
@@ -85,14 +85,16 @@
             vm.emailDocuments = emailDocuments;
             vm.cancel = cancel;
             vm.querySearch = querySearch;
-            vm.filterSelected = true;
-
+            vm.to = [];
+            vm.selectedItem = null;
+            vm.searchText = null;
+            
             activate()
 
             function activate() {
                 casePartiesService.getCaseParties(caseId).then(function(response) {
                     vm.parties = response;
-                    vm.to = [];
+                    
                 })
             }
 
@@ -104,15 +106,18 @@
             function createFilterFor(query) {
                 var lowercaseQuery = angular.lowercase(query);
                 return function filterFn(party) {
-                    return (party.displayName.toLowerCase().indexOf(lowercaseQuery) != -1);
+                    return (party.displayName.toLowerCase().indexOf(lowercaseQuery) != -1) || (party.displayName.toLowerCase().indexOf(lowercaseQuery) === 0);
                 };
+                
             }
             function emailDocuments() {
                 // Send the email
-                console.log('to', vm.to);
-
+                var toList = '';
+                for (var person in vm.to) {
+                  toList += vm.to[person].contactId + '; ';
+                };
                 caseService.sendEmail(caseId, {
-                    'to': vm.to,
+                    'to': toList,
                     'subject': vm.subject,
                     'message': vm.message,
                     'documents': vm.documents.filter(function(document) {

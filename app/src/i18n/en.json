@@ -45,9 +45,9 @@
 		"UPLOAD": "Upload",
 		"HOME": "Home",
 		"CLOSE": "Close",
-		"CREATED_ON": "Created on",
 		"DUE_DATE": "Due date",
 		"PRIORITY": "Priority",
+		"CREATED_ON": "Created on",
 		"NO": "No"
 	},
 	"CASE": {
@@ -124,8 +124,8 @@
 		"DOCUMENTS": "Documents",
 		"UPLOAD_NEW_DOCUMENTS": "Upload new document",
 		"SEND_DOCUMENTS": "Send documents",
-		"DIGITAL_POST_DOCUMENTS": "Digital Post",
 		"EMAIL_DOCUMENTS": "Email documents",
+		"DIGITAL_POST_DOCUMENTS": "Digital Post",
 		"MY_DOCUMENTS": "My documents",
 		"CHANGE_STATUS": "Change status",
 		"VERSION": "Version",
@@ -419,12 +419,18 @@
 	},
 	"WORKFLOW": {
 		"TASK": {
-			"PRIORITY": [
-				""
-			],
-			"STATUS": [
-				""
-			]
+			"PRIORITY": {
+				"1": "High",
+				"2": "Medium",
+				"3": "Low"
+			},
+			"STATUS": {
+				"NotYetStarted": "Not yet started",
+				"InProgres": "In progress",
+				"OnHold": "On hold",
+				"Cancelled": "Cancelled",
+				"Completed": "Completed"
+			}
 		},
 		"DUE_DATE": "Due date",
 		"PRIORITY": {
@@ -558,10 +564,11 @@
 	"TASK": {
 		"MY_TASKS": "My tasks",
 		"TASKS": "Tasks",
+		"SAVE_AND_CLOSE": "Save and close",
+		"TASK_DONE": "Task done",
+		"APPROVE": "Approve",
+		"REJECT": "Reject",
 		"VIEW_TASK_DETAILS": "View task details"
-	},
-	"SEARCH": {
-		"SEARCH": "Search"
 	},
 	"MENU": {
 		"OPEN_MENU": "Open menu",
@@ -570,5 +577,8 @@
 	},
 	"OFFICE": {
 		"SAVE_EMAIL_IN_OPENESDH": "SAVE E-mail in OpenESDH"
+	},
+	"SEARCH": {
+		"SEARCH": "Search"
 	}
 }

@@ -12,7 +12,7 @@
                     <i class="material-icons" style="vertical-align: middle;">arrow_back</i>
                 </md-button>
                 <h1 class="md-headline" layout-margin>
-                    {{ case["oe:id"].value }} {{ case["cm:title"].value }}
+                    {{ case["cm:title"].value }} <span class="muted">{{ case["oe:id"].value }}</span>
                     <span class="muted" ng-hide="case['oe:status'].value === 'active'">
                         ({{case['oe:status'].value | caseStatus}})
                     </span>
@@ -96,11 +96,11 @@
                     </tr>
                   </thead>
                   <tbody>
-                    
+
                     <tr ng-repeat="doc in docCtrl.documents">
                       <td><i class="material-icons">insert_drive_file</i></td>
                       <td>{{ doc["cm:title"] }}</td>
-                      <td class="muted">{{ doc["doc:type"] | docType }}</td>
+                      <td class="muted">{{ doc["doc:type"] }}</td>
                       <td class="muted">{{ doc["doc:category"] | docCategory }}</td>
                       
                       <td class="muted">
@@ -130,10 +130,10 @@
                   </md-button>
                   <md-menu-content>
                     <md-menu-item>
-                      <md-button ng-disabled="true" ng-click="doSomething()">{{ 'DOCUMENT.DIGITAL_POST_DOCUMENTS' | translate }}</md-button>
+                      <md-button ng-disabled="docCtrl.noDocuments()" ng-click="docCtrl.emailDocuments()">{{ 'DOCUMENT.EMAIL_DOCUMENTS' | translate }}</md-button>
                     </md-menu-item>
                     <md-menu-item>
-                      <md-button ng-disabled="docCtrl.noDocuments()" ng-click="docCtrl.emailDocuments()">{{ 'DOCUMENT.EMAIL_DOCUMENTS' | translate }}</md-button>
+                      <md-button ng-disabled="true" ng-click="doSomething()">{{ 'DOCUMENT.DIGITAL_POST_DOCUMENTS' | translate }}</md-button>
                     </md-menu-item>
                   </md-menu-content>
                 </md-menu>

@@ -11,8 +11,10 @@
         
         var templatesUrl = 'app/src/shared/services/document/preview/view/';
         
-        var service = {                
+        var service = {
+            templatesUrl : templatesUrl,
             previewDocument: previewDocument,
+            previewDocumentPlugin: previewDocumentPlugin,
             _getPluginByMimeType: _getPluginByMimeType,
             plugins: getPlugins()
         };
@@ -20,9 +22,15 @@
         
         function previewDocument(nodeRef){
             var _this = this;
-            alfrescoDocumentService.retrieveSingleDocument(nodeRef).then(function(item){
-                var plugin = _this._getPluginByMimeType(item);
-                previewDialog(plugin);                
+            this.previewDocumentPlugin(nodeRef).then(function(plugin){
+                previewDialog(plugin);
+            });
+        }
+        
+        function previewDocumentPlugin(nodeRef){
+            var _this = this;
+            return alfrescoDocumentService.retrieveSingleDocument(nodeRef).then(function(item){
+                return _this._getPluginByMimeType(item);
             });
         }
         
@@ -56,8 +64,8 @@
                 alfrescoDownloadService.downloadFile($scope.config.nodeRef, $scope.config.fileName);
             };
             
-            if(plugin.init){
-                plugin.init($scope);
+            if(plugin.initScope){
+                plugin.initScope($scope);
             }
             
         }
@@ -69,35 +77,21 @@
                            imageViewer(),
                            videoViewer(),
                            strobeMediaPlayback(),
-                           webViewer()
+                           webViewer(),
+                           cannotPreviewPlugin()
                        ];
             return plugins;
         }
         
         function _getPluginByMimeType(item){
-            var mimeType = item.node.mimetype;
             var resultPlugin = null;
             for(var i in this.plugins){
                 var plugin = this.plugins[i];
-                if(plugin.acceptsMimeType(mimeType)){
-                    resultPlugin = plugin;
-                    break;
+                if(plugin.acceptsItem(item)){
+                    plugin.initPlugin(item);
+                    return plugin;
                 }
             }
-            
-            if(resultPlugin == null){
-                resultPlugin = {
-                    templateUrl: 'cannotPreview.html',
-                };
-            }
-            
-            resultPlugin.nodeRef = item.node.nodeRef;
-            resultPlugin.fileName = item.location.file;
-            resultPlugin.contentUrl = '/alfresco/service' + item.node.contentURL + '?alf_ticket='+sessionService.getUserInfo().ticket;
-            resultPlugin.itemSize = item.node.size;
-            resultPlugin.mimeType = item.node.mimetype;
-            
-            return resultPlugin;
         }
         
         function audioViewer(){
@@ -148,7 +142,7 @@
                             ],
                 templateUrl: 'image.html',
                 maxItemSize: 2000000,
-                init: function($scope){
+                initScope: function($scope){
                     $scope.itemMaxSizeExceeded = (this.itemSize && parseInt(this.itemSize) > this.maxItemSize);
                     if($scope.itemMaxSizeExceeded === false){
                         $scope.imageUrl = $scope.config.contentUrl;
@@ -160,9 +154,11 @@
         }
         
         function pdfViewer(){
-            return {
+            var viewer = {
+                mimeTypes: ['application/pdf'],
+                thumbnail: 'pdf',
                 templateUrl: 'pdf.html',
-                init: function($scope){
+                initScope: function($scope){
                     $scope.viewer = pdf.Instance("viewer");
 
                     $scope.nextPage = function() {
@@ -177,11 +173,10 @@
                         $scope.currentPage = curPage;
                         $scope.totalPages = totalPages;
                     };
-                },
-                acceptsMimeType: function(mimeType){
-                    return mimeType == 'application/pdf';
                 }
             };
+            var result = generalPreviewPlugin();
+            return angular.extend(result, viewer);
         }
         
         function webViewer(){
@@ -193,7 +188,7 @@
                                 'text/xhtml+xml'
                                 ],
                     templateUrl: 'web.html',
-                    init: function($scope){
+                    initScope: function($scope){
                         var _this = this;
                         $http.get(this.contentUrl).then(function(response){
                             if(_this.mimeType == 'text/html' || _this.mimeType == 'text/xhtml+xml'){
@@ -208,9 +203,19 @@
             return angular.extend(result, viewer);
         }
         
+        function cannotPreviewPlugin(){
+            var viewer = {
+                templateUrl: 'cannotPreview.html',
+                _acceptsMimeType: function(item){
+                    return true;
+                }
+            };
+            return angular.extend(generalPreviewPlugin(), viewer);
+        }
+        
         function generalPlaybackPlugin(){
             var plugin = {
-                    init: function($scope){
+                    initScope: function($scope){
                         var hostUrl = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
                         this.contentUrl = hostUrl + this.contentUrl;
                     }
@@ -221,14 +226,63 @@
         
         function generalPreviewPlugin(){
             return {
-                acceptsMimeType: function(mimeType){
-                    for(var i in this.mimeTypes){
-                        var mimeT = this.mimeTypes[i];
-                        if(mimeT == mimeType){
-                            return true;
+                acceptsItem: function(item){
+                    return this._acceptsMimeType(item) || this._acceptsThumbnail(item);
+                },
+                
+                initPlugin: function(item){
+                    this.nodeRef = item.node.nodeRef;
+                    this.fileName = item.location.file;
+                    this.itemSize = item.node.size;
+                    this.mimeType = item.node.mimetype;
+                    this.contentUrl = this._acceptsMimeType(item) ? this._getContentUrl(item) : this._getThumbnailUrl(item);
+                },
+                
+                _acceptsMimeType: function(item){
+                    if(this.mimeTypes === null || this.mimeTypes === undefined){
+                        return false;
+                    }
+                    return this.mimeTypes.indexOf(item.node.mimetype) !== -1;
+                },
+                
+                _acceptsThumbnail: function(item){
+                    if(this.thumbnail === null || this.thumbnail === undefined 
+                            || item.thumbnailDefinitions === null || item.thumbnailDefinitions === undefined){
+                        return false;
+                    }
+                    return item.thumbnailDefinitions.indexOf(this.thumbnail) !== -1;
+                },
+                
+                _getContentUrl: function(item){
+                    return '/alfresco/service' + item.node.contentURL + '?' + this._getSessionTicket();
+                },
+                
+                _getThumbnailUrl: function(item, fileSuffix){
+                    var nodeRefAsLink = this.nodeRef.replace(":/", ""),
+                    noCache = "&noCache=" + new Date().getTime(),
+                    force = "c=force";
+                    var lastModified = this._getLastThumbnailModification(item);
+                    
+                    return "/alfresco/s/api/node/" + nodeRefAsLink + "/content/thumbnails/" + this.thumbnail + (fileSuffix ? "/suffix" + fileSuffix : "") 
+                        + "?" + force + lastModified + noCache + '&' + this._getSessionTicket();
+                },
+                
+                _getLastThumbnailModification: function(item){
+                    var thumbnailModifications = item.node.properties["cm:lastThumbnailModification"];
+                    if(!thumbnailModifications){
+                        thumbnailModifications = [];
+                    }
+                    for(var i in thumbnailModifications){
+                        var thumbnailModification = thumbnailModifications[i];
+                        if (thumbnailModification.indexOf(this.thumbnail) !== -1){
+                            return "&lastModified=" + encodeURIComponent(thumbnailModification);
                         }
                     }
-                    return false;
+                    return "";
+                },
+                
+                _getSessionTicket: function(){
+                    return 'alf_ticket=' + sessionService.getUserInfo().ticket;
                 }
             };
         }
