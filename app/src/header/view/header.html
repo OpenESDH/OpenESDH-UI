@@ -50,7 +50,8 @@
                             <md-icon class="material-icons">folder_open</md-icon>
 
                             <div class="md-list-item-text">
-                                <h3 ng-bind="item.caseTitle"></h3>
+                                <h3 ng-bind-template="{{item.caseTitle}} ({{item.caseId}}) "></h3>
+                                <p ng-bind="item.caseDescription"></p>
                                 <p ng-bind="item.caseCreatedDate"></p>
                             </div>
                         </md-list-item>
