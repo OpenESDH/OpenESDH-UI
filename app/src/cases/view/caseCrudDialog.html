@@ -2,7 +2,8 @@
   <form name="form">
     <md-toolbar layout="row">
       <div class="md-toolbar-tools">
-        <h2>{{ 'CASE.CRUD_CASE' | translate }}</h2>
+        <h2 ng-hide="editCase">{{ 'CASE.CREATE_CASE' | translate }}</h2>
+        <h2 ng-show="editCase">{{ 'CASE.EDIT_PROPERTIES' | translate }}</h2>
       </div>
     </md-toolbar>
     <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;">
@@ -85,7 +86,7 @@
     </md-dialog-content>
     <div class="md-actions" layout="row">
       <md-button type="submit" class="md-primary" ng-click="vm.update(case)" ng-disabled="form.$invalid">
-        {{ 'CASE.CREATE_SAVE_CASE' | translate }}
+        {{ 'COMMON.OK' | translate }}
       </md-button>
       <md-button type="button" ng-click="vm.cancel(form)">
         {{ 'COMMON.CANCEL' | translate }}

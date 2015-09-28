@@ -13,6 +13,7 @@
             getCases: getCases,
             getMyCases: getMyCases,
             createCase: createCase,
+            updateCase: updateCase,
             getCaseInfo: getCaseInfo,
             changeCaseStatus: changeCaseStatus,
             sendEmail: sendEmail
@@ -61,15 +62,7 @@
          * @returns {*}
          */
         function createCase(caseData) {
-            var params = {
-                prop_cm_title: caseData.title,
-                prop_cm_description: caseData.description,
-                assoc_base_owners_added: caseData.owner,
-                prop_base_startDate: caseData.startDate,
-                prop_base_endDate: caseData.endDate,
-                prop_oe_journalKey: caseData.journalKey,
-                prop_oe_journalFacet: caseData.journalFacet
-            };
+            var params = getCaseParams(caseData);
             var type = 'simple:case';
             return userService.getHome().then(function (response) {
                 params.alf_destination = response.nodeRef;
@@ -80,6 +73,25 @@
                     });
                 });
             });
+        }
+        
+        function updateCase(caseData){
+            var params = getCaseParams(caseData);
+            return $http.post('/alfresco/service/api/node/' + alfrescoNodeUtils.processNodeRef(caseData.nodeRef).uri + '/formprocessor', params).then(function (response) {
+                return response.data;
+            });
+        }
+        
+        function getCaseParams(caseData){
+            return {
+                prop_cm_title: caseData.title,
+                prop_cm_description: caseData.description,
+                assoc_base_owners_added: caseData.owner,
+                prop_base_startDate: caseData.startDate,
+                prop_base_endDate: caseData.endDate,
+                prop_oe_journalKey: caseData.journalKey,
+                prop_oe_journalFacet: caseData.journalFacet
+            };
         }
 
         function getCaseInfo(caseId) {
