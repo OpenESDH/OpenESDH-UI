@@ -14,7 +14,7 @@
     function SearchController($scope, $stateParams, searchService) {
         var sctrl = this;
         sctrl.searchTerm = $stateParams.searchTerm;
-        sctrl.selectedFilters=[];//Keep track of the selected filters
+        sctrl.selectedFilters={};//Keep track of the selected filters
         sctrl.filtersQueryString=""; // the selected filters as query string
         sctrl.definedFacets = searchService.getConfiguredFacets();
         sctrl.filterResults = filterResults();
@@ -35,7 +35,7 @@
 
             var queryObj = {
                 facetFields: parseFacetsForQueryFilter(),
-                filters: "", //"{http://www.alfresco.org/model/content/1.0}creator|abeecher"
+                filters: sctrl.filtersQueryString, //"{http://www.alfresco.org/model/content/1.0}creator|abeecher"
                 maxResults: 0,
                 noCache: new Date().getTime(),
                 pageSize: 25,
@@ -117,6 +117,33 @@
 
         function filterResults(filterKey, filterValue){
             console.log("The filter value : "+ filterKey +" ==> "+filterValue);
+            //selectedFilters is to be used to track what is checked then on every addition or removal, we rebuild the
+            //filter query string and re-execute the search
+            if(sctrl.selectedFilters[filterKey])
+                delete (sctrl.selectedFilters[filterKey]);
+            else
+                sctrl.selectedFilters[filterKey] = filterValue;
+
+            rebuildFilterQueryString();
+        }
+
+        function rebuildFilterQueryString(){
+            console.log("Rebuilding filter Query string");
+            var filterQueryStringArr  = [];
+            Object.keys(sctrl.selectedFilters).forEach(function(key){
+                var bufStr = "";
+                var value = sctrl.selectedFilters[key];
+                //strip the @ at the start of the string just in case
+                if(key.startsWith("@"))
+                    bufStr = key.substring(1)+"|"+value;
+                else
+                    bufStr = key+"|"+value;
+
+                filterQueryStringArr.push(bufStr);
+            });
+
+            sctrl.filtersQueryString = filterQueryStringArr.valueOf()[0];
+            executeSearch();
         }
 
     }
