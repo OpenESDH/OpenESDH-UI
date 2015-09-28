@@ -5,17 +5,17 @@
         .module('openeApp.office')
         .controller('OfficeController', OfficeController);
 
-    var email;
+//    var email;
 
     OfficeController.$inject = ['$stateParams', '$window', 'officeService', 'caseService', 'sessionService', '$q'];
 
     function OfficeController($stateParams, $window, officeService, caseService, sessionService, $q) {
         var vm = this;
-        vm.email = email;
+        vm.email = JSON.parse($window.external.getParameter1());
 //        vm.from = email.From;
-        vm.subject = email.Subject;
+        vm.subject = vm.email.Subject;
         vm.selectedCase;
-        vm.attachments = email.Attachments;
+        vm.attachments = vm.email.Attachments;
         
         vm.save = save;
         vm.cancel = cancel;
@@ -69,6 +69,6 @@
 
     // This function is called from the Office Add-In
     window.loadEmail = function(payload) {
-        email = JSON.parse(payload);
+//        email = JSON.parse(payload);
     }
 })();
