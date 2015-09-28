@@ -14,10 +14,9 @@
     function SearchController($scope, $stateParams, searchService) {
         var sctrl = this;
         sctrl.searchTerm = $stateParams.searchTerm;
-        sctrl.selectedFilters={};//Keep track of the selected filters
+        sctrl.selectedFilters = {}; //Keep track of the selected filters
         sctrl.filtersQueryString=""; // the selected filters as query string
         sctrl.definedFacets = searchService.getConfiguredFacets();
-        sctrl.filterResults = filterResults();
 
         function initFacets(){
             searchService.getConfiguredFacets().then(function(data){
@@ -57,7 +56,7 @@
 
             searchService.search(query).then(function(response){
                 sctrl.queryResult = response;
-                if (response.numberFound > 0)
+                if (response.numberFound > 0) {
                     sctrl.fullSearchResults = {
                         results: response.items, //An array of objects
                         facets: response.facets,//An array of objects
@@ -65,7 +64,22 @@
                         totalRecordsUpper: response.totalRecordsUpper,
                         numberFound: response.numberFound
                     };
+                    setActiveFacets();
+                    // console.log("Facets: ", sctrl.fullSearchResults.facets)
+                }
             });
+        }
+
+        function setActiveFacets() {
+            // If object is empty
+            if(Object.getOwnPropertyNames(sctrl.selectedFilters).length == 0) return;
+
+            angular.forEach(sctrl.selectedFilters, function (value, key) {
+                var facet = sctrl.fullSearchResults.facets[key];
+                angular.forEach(facet, function (facetObject) {
+                    if(facetObject.value === value) facetObject.selected = true;
+                })
+            })
         }
 
         /**
@@ -115,7 +129,7 @@
             return stringFacet;
         }
 
-        function filterResults(filterKey, filterValue){
+        sctrl.filterResults = function(filterKey, filterValue) {
             console.log("The filter value : "+ filterKey +" ==> "+filterValue);
             //selectedFilters is to be used to track what is checked then on every addition or removal, we rebuild the
             //filter query string and re-execute the search
