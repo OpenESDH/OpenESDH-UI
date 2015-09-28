@@ -94,7 +94,8 @@
                                 nodeRef: documentNodeRef,
                                 title: formData.title,
                                 type: formData.doc_type,
-                                category: formData.doc_category
+                                category: formData.doc_category,
+                                state: formData.doc_state
                         };
                         
                         caseDocumentDetailsService.updateDocumentProperties(updatedDocument).then(function(result){
@@ -149,6 +150,7 @@
             
             $scope.documentProperties = {
                     doc_type: document.type,
+                    doc_state: document.state,
                     doc_category: document.category,
                     majorVersion: "false"
             };
@@ -174,6 +176,7 @@
             $scope.documentProperties = {
                     title: document.title,
                     doc_type: document.type,
+                    doc_state: document.state,
                     doc_category: document.category
             };
             
