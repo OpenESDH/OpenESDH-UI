@@ -31,30 +31,6 @@
                                       ng-mousedown="asctrl.goToSuggestion(item)"
                                       ng-class="{'activeSuggestion' : asctrl.selectedIndex == $index}">
                             <img class="md-avatar"/>
-    <md-menu ng-controller="AuthController as vm" flex="25" flex-gt-md="40" layout="row" layout-align="end center" md-position-mode="target-right target">
-      <md-button aria-label="{{ 'MENU.OPEN_MENU' | translate }}" ng-click="$mdOpenMenu($event)" style="text-transform: capitalize;">
-        {{ vm.getUserInfo().user.firstName }} <span hide show-gt-md>{{ vm.getUserInfo().user.lastName }}</span> <i class="material-icons" style="vertical-align: middle;">more_vert</i>
-      </md-button>
-      <md-menu-content width="4">
-        <md-menu-item>
-          <md-button ng-disabled="true">
-            {{ 'MENU.VIEW_PROFILE' | translate }}
-          </md-button>
-        </md-menu-item>
-        <md-menu-item ng-show="vm.getUserInfo().user.capabilities.isAdmin">
-          <md-button ui-sref="administration.users">
-            {{ 'ADMIN.ADMINISTRATION' | translate }}
-          </md-button>
-        </md-menu-item>
-        <md-menu-divider></md-menu-divider>
-        <md-menu-item>
-          <md-button ng-click="vm.logout()">
-            {{ 'MENU.LOGOUT' | translate }}
-          </md-button>
-        </md-menu-item>
-      </md-menu-content>
-    </md-menu>
-
                             <div class="md-list-item-text" layout="column">
                                 <h3 ng-bind="item.name"></h3>
                                 <p><b>Case:</b> {{ item.case.caseTitle }}</p>
