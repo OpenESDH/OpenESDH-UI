@@ -25,6 +25,7 @@
             'openeApp.contacts',
             'openeApp.administration',
             'openeApp.office',
+            'openeApp.officeTemplates',
             'openeApp.groups',
             'openeApp.users',
             'openeApp.workflows',

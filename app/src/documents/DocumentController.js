@@ -26,6 +26,7 @@
         vm.uploadDocument = uploadDocument;
         vm.previewDocument = previewDocument;
         vm.emailDocuments = emailDocuments;
+        vm.createDocumentFromTemplate = createDocumentFromTemplate;
         vm.noDocuments = noDocuments;
 
         activate();
@@ -133,6 +134,114 @@
 
         function noDocuments() {
             return typeof vm.documents === 'undefined' || vm.documents.length === 0;
+        }
+
+        function createDocumentFromTemplate() {
+            $mdDialog.show({
+                templateUrl: '/app/src/documents/view/createDocumentFromTemplateDialog.html',
+                controller: CreateDocumentFromTemplateDialogController,
+                controllerAs: 'vm',
+                clickOutsideToClose: true,
+                locals: {
+                    caseId: vm.caseId
+                }
+            });
+        }
+
+        CreateDocumentFromTemplateDialogController.$inject = ['$scope', '$mdDialog', '$translate', 'officeTemplateService', 'sessionService', 'contactsService', 'alfrescoNodeUtils', 'caseId'];
+
+        function CreateDocumentFromTemplateDialogController($scope, $mdDialog, $translate, officeTemplateService, sessionService, contactsService, alfrescoNodeUtils, caseId) {
+            var vm = this;
+
+            $scope.vm = vm;
+
+            vm.caseId = caseId;
+            vm.template = null;
+            vm.cancel = cancel;
+            vm.fieldData = {};
+
+            activate();
+
+            function activate() {
+                $scope.$watch(function (scope) {
+                    return vm.template;
+                }, function (newValue, oldValue) {
+                    if (typeof newValue !== 'undefined' && newValue != null) {
+                        officeTemplateService.getTemplate(newValue.nodeRef).then(function (template) {
+                            vm.currentTemplate = template;
+                        });
+                    }
+                });
+
+                $scope.$watch(function (scope) {
+                    return vm.receiver;
+                }, function (newValue, oldValue) {
+                    if (typeof newValue !== 'undefined' && newValue != null) {
+                        // Update the field values based on the selected
+                        // contact info.
+                        var nodeRefParts = alfrescoNodeUtils.processNodeRef(newValue.nodeRef);
+                        contactsService.getContact(nodeRefParts.storeType, nodeRefParts.storeId, nodeRefParts.id).then(function (contact) {
+                            console.log(contact);
+                            for (var prop in contact) {
+                                if (!contact.hasOwnProperty(prop)) continue;
+                                vm.fieldData["receiver." + prop] = contact[prop];
+                            }
+
+                            // Annoyingly, the name returned by
+                            // contactService is an auto-generated ID, so
+                            // we have to overwrite it here. This should
+                            // really be fixed in the backend.
+                            if (contact["contactType"] == "ORGANIZATION") {
+                                vm.fieldData["receiver.name"] = contact.organizationName;
+                            } else if (contact["contactType"] == "PERSON") {
+                                vm.fieldData["receiver.name"] = contact.firstName + " " + contact.lastName;
+                            }
+                        });
+                    }
+                });
+
+                casePartiesService.getCaseParties(caseId).then(function(response) {
+                    vm.parties = response;
+                    vm.receiver = [];
+                });
+
+                // Load the necessary data
+                caseService.getCaseInfo(caseId).then(function (caseInfo) {
+                    function getPropValue(prop) {
+                        if (prop in caseInfo.properties && typeof caseInfo.properties[prop] !== null) {
+                            var val = caseInfo.properties[prop];
+                            if ("displayValue" in val) {
+                                return val.displayValue;
+                            } else if ("value" in val) {
+                                return val.value;
+                            } else {
+                                return null;
+                            }
+                        }
+                    }
+
+                    angular.extend(vm.fieldData, {
+                        "case.id": getPropValue("oe:id"),
+                        "case.title": getPropValue("cm:title"),
+                        "case.description": getPropValue("cm:description"),
+                        "case.journalKey": getPropValue("oe:journalKey"),
+                        "case.journalFacet": getPropValue("oe:journalFacet"),
+                        // TODO: use real case type
+                        "case.type": $translate.instant("CASE.CASETYPE_STANDARD")
+                    });
+                });
+
+                var user = sessionService.getUserInfo().user;
+                for (var prop in user) {
+                    if (!user.hasOwnProperty(prop)) continue;
+                    vm.fieldData["user." + prop] = user[prop];
+                }
+                vm.fieldData["user.name"] = user.firstName + " " + user.lastName;
+            }
+
+            function cancel(form) {
+                $mdDialog.cancel();
+            }
         }
     }
 
