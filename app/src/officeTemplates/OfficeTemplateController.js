@@ -45,7 +45,7 @@
                 });
                 FileSaver.saveAs({
                     data: blob,
-                    filename: template.name + ".pdf"
+                    filename: template.name.split('.').slice(0, -1).join(".") + ".pdf"
                 });
             });
         }
