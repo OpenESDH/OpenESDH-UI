@@ -11,8 +11,10 @@
         
         var templatesUrl = 'app/src/shared/services/document/preview/view/';
         
-        var service = {                
+        var service = {
+            templatesUrl : templatesUrl,
             previewDocument: previewDocument,
+            previewDocumentPlugin: previewDocumentPlugin,
             _getPluginByMimeType: _getPluginByMimeType,
             plugins: getPlugins()
         };
@@ -20,9 +22,15 @@
         
         function previewDocument(nodeRef){
             var _this = this;
-            alfrescoDocumentService.retrieveSingleDocument(nodeRef).then(function(item){
-                var plugin = _this._getPluginByMimeType(item);
-                previewDialog(plugin);                
+            this.previewDocumentPlugin(nodeRef).then(function(plugin){
+                previewDialog(plugin);
+            });
+        }
+        
+        function previewDocumentPlugin(nodeRef){
+            var _this = this;
+            return alfrescoDocumentService.retrieveSingleDocument(nodeRef).then(function(item){
+                return _this._getPluginByMimeType(item);
             });
         }
         

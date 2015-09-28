@@ -37,7 +37,7 @@
   </div>
   
   <div layout="row" layout-wrap>
-      <div flex="100">
+      <div flex="50">
           <md-card>
               <md-card-content>
                   <h3>{{ 'DOCUMENT.DOCUMENTS' | translate }}</h3>
@@ -72,9 +72,18 @@
                 <md-button class="md-primary" ng-click="docCtrl.editDocumentProperties()">{{ 'DOCUMENT.EDIT_PROPERTIES' | translate }}</md-button>
                 <md-button class="md-primary" ng-click="docCtrl.uploadDocNewVersion()">{{ 'DOCUMENT.UPLOAD_NEW_VERSION' | translate }}</md-button>
                 <md-button class="md-primary" ng-click="docCtrl.downloadDocument()">{{ 'COMMON.DOWNLOAD' | translate }}</md-button>
-                <md-button class="md-primary" ng-click="docCtrl.previewDocument()">{{ 'DOCUMENT.OPEN_PREVIEW' | translate }}</md-button>
               </div>
           </md-card>
+       </div>
+       <div flex="50">
+           <md-card style="height: 614px; overflow: scroll;">
+               <md-card-content>
+                   <h3>{{ 'DOCUMENT.PREVIEW' | translate }}</h3>
+                   <div ng-controller="docCtrl.docPreviewController">
+                       <ng-include src="viewerTemplateUrl"></ng-include>
+                   </div>
+               </md-card-content>
+           </md-card>
        </div>
        <div flex="100">
           <md-card>
