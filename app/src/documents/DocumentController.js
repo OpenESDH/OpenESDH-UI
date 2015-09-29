@@ -172,9 +172,9 @@
             });
         }
 
-        CreateDocumentFromTemplateDialogController.$inject = ['$scope', '$mdDialog', '$translate', 'officeTemplateService', 'sessionService', 'contactsService', 'alfrescoNodeUtils', 'caseId'];
+        CreateDocumentFromTemplateDialogController.$inject = ['$scope', '$filter', '$mdDialog', '$translate', 'officeTemplateService', 'sessionService', 'contactsService', 'alfrescoNodeUtils', 'caseId'];
 
-        function CreateDocumentFromTemplateDialogController($scope, $mdDialog, $translate, officeTemplateService, sessionService, contactsService, alfrescoNodeUtils, caseId) {
+        function CreateDocumentFromTemplateDialogController($scope, $filter, $mdDialog, $translate, officeTemplateService, sessionService, contactsService, alfrescoNodeUtils, caseId) {
             var vm = this;
 
             $scope.vm = vm;
@@ -252,7 +252,7 @@
                         "case.journalKey": getPropValue("oe:journalKey"),
                         "case.journalFacet": getPropValue("oe:journalFacet"),
                         // TODO: use real case type
-                        "case.type": $translate.instant("CASE.CASETYPE_STANDARD")
+                        "case.type": $filter('caseType')(caseInfo.TYPE)
                     });
                 });
 
