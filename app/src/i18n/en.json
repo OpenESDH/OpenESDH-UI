@@ -607,5 +607,7 @@
   "@{http://www.alfresco.org/model/content/1.0}created": "Created",
   "@{http://www.alfresco.org/model/content/1.0}content.mimetype": "File Type",
   "@{http://openesdh.dk/model/case/base/1.0}startDate": "Start Date",
-  "@{http://openesdh.dk/model/case/base/1.0}endDate": "End Date"
+  "@{http://openesdh.dk/model/case/base/1.0}endDate": "End Date",
+  "@{http://openesdh.dk/model/openesdh/1.0}journalKeyIndexed": "Journal key",
+  "@{http://openesdh.dk/model/openesdh/1.0}journalFacetIndexed": "Journal facet"
 }
