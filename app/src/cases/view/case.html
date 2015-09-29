@@ -92,7 +92,7 @@
                         <span class="r" flex>{{ 'COMMON.CREATEDBY' | translate }}</span>
                         <span class="r" flex>{{ 'COMMON.CREATED' | translate }}</span>
                         <span class="r" flex>{{ 'COMMON.MODIFIED' | translate }}</span>
-                        <span flex></span>
+                        <span flex="10"></span>
                     </div>
                     <md-virtual-repeat-container md-auto-shrink>
                         <div md-virtual-repeat="doc in docCtrl.documents" class="repeat-item" layout="row">
@@ -153,7 +153,29 @@
       <md-tab-body layout="column">
         <md-card ng-controller="NoteController as caseNotes">
           <md-card-content>
-            <h3>{{ 'NOTE.NOTES' | translate }}</h3>
+            <h3 class="md-title">{{ 'NOTE.NOTES' | translate }}</h3>
+            
+            <div flex>
+                <md-grid-list md-cols-sm="1" md-cols-md="2" md-cols-gt-md="3"
+                              md-row-height="4:3"
+                              md-gutter="1em">
+                    <md-grid-tile ng-repeat="note in caseNotes.notes"
+                                  md-rowspan="1"
+                                  md-colspan="1"
+                                  md-colspan-sm="1"
+                                  ng-class="tile.background">
+                        <md-grid-tile-header>
+                            <h4>{{ note.headline }}</h4>
+                        </md-grid-tile-header>
+                        {{ note.content }}
+                        <md-grid-tile-footer>
+                            {{ 'COMMON.CREATED' | translate }} {{ note.created | openeDate }} {{ 'COMMON.BY' | translate }} {{ note.authorInfo.firstName + ' ' + note.authorInfo.lastName }}<br>
+                            {{ 'NOTE.RELATED' | translate }}: <span style="margin-right: 0.5em;" ng-repeat="relation in note.concernedPartiesInfo">{{ relation.name }}</span>
+                        </md-grid-tile-footer>
+                    </md-grid-tile>
+                </md-grid-list>
+            </div>
+            
             <md-list>
               <md-list-item ng-repeat="note in caseNotes.notes">
                 <div class="md-list-item-text">
