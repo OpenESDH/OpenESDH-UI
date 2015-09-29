@@ -4,9 +4,9 @@
             .module('openeApp.contacts')
             .controller('OrganizationController', OrganizationController);
 
-    OrganizationController.$inject = ['$scope', '$stateParams', '$mdDialog', '$location', 'contactsService', 'countriesService'];
+    OrganizationController.$inject = ['$scope', '$stateParams', '$mdDialog', '$location', 'contactsService', 'countriesService', 'PATTERNS'];
 
-    function OrganizationController($scope, $stateParams, $mdDialog, $location, contactsService, countriesService) {
+    function OrganizationController($scope, $stateParams, $mdDialog, $location, contactsService, countriesService, PATTERNS) {
         var vm = this;
         vm.doFilter = doFilter;
         vm.showOrganizationEdit = showOrganizationEdit;
@@ -114,6 +114,7 @@
         function DialogController($scope, $mdDialog, organization) {
             $scope.organization = organization;
             $scope.countries = countriesService.getCountries();
+            $scope.PATTERNS = PATTERNS;
 
             $scope.hide = function() {
                 $mdDialog.hide();
@@ -184,6 +185,7 @@
             $scope.countries = countriesService.getCountries();
             $scope.error = null;
             $scope.success = null;
+            $scope.PATTERNS = PATTERNS;
 
             $scope.hide = function() {
                 $mdDialog.hide();

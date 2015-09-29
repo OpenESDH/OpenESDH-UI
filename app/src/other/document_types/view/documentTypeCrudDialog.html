@@ -13,7 +13,7 @@
     <md-dialog-content style="max-width:40em;max-height:410px; ">
       <md-input-container>
         <label>{{ 'DOCUMENT_TYPES.NAME' | translate }}</label>
-        <input type="text" ng-model="dt.documentType.name" required ng-pattern="/^[a-zA-Z0-9_\-,!@#$%^&()=+ ]+$/" ng-disabled="dt.documentType.systemType">
+        <input type="text" ng-model="dt.documentType.name" required ng-pattern="dt.PATTERNS.fileName" ng-disabled="dt.documentType.systemType">
       </md-input-container>
       <md-input-container>
         <label>{{ 'DOCUMENT_TYPES.DISPLAY_NAME' | translate }}</label>

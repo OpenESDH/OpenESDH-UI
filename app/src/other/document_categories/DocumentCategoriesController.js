@@ -4,9 +4,9 @@
             .module('openeApp.documentCategories')
             .controller('DocumentCategoriesController', DocumentCategoriesController);
 
-    DocumentCategoriesController.$inject = ['$scope', '$mdDialog', 'documentCategoryService'];
+    DocumentCategoriesController.$inject = ['$scope', '$mdDialog', 'documentCategoryService', 'PATTERNS'];
 
-    function DocumentCategoriesController($scope, $mdDialog, documentCategoryService) {
+    function DocumentCategoriesController($scope, $mdDialog, documentCategoryService, PATTERNS) {
         var vm = this;
         vm.documentCategories = [];
         vm.loadList = loadList;
@@ -61,6 +61,7 @@
             dc.documentCategory = documentCategory;
             dc.cancel = cancel;
             dc.save = save;
+            dc.PATTERNS = PATTERNS;
 
             function cancel() {
                 $mdDialog.cancel();
