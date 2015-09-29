@@ -39,10 +39,7 @@
         }
 
         function fillTemplate(template, fieldData) {
-            officeTemplateService.fillTemplate(template.nodeRef, fieldData).then(function (response) {
-                var blob = new Blob([response.data], {
-                    type: response.headers('Content-Type')
-                });
+            officeTemplateService.fillTemplate(template.nodeRef, fieldData).then(function (blob) {
                 FileSaver.saveAs({
                     data: blob,
                     filename: template.name.split('.').slice(0, -1).join(".") + ".pdf"

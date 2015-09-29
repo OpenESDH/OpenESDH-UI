@@ -1,5 +1,5 @@
 <md-toolbar id="global-toolbar">
-  <div class="md-toolbar-tools" layout="row">
+    <div class="md-toolbar-tools" layout="row">
 
     <div flex flex-gt-md="40" layout="row" layout-align="start center">
       <a class="md-button" ui-sref="dashboard"><i class="material-icons">dashboard</i> {{ 'COMMON.HOME' | translate }}</a>
@@ -7,45 +7,98 @@
       <a class="md-button" ui-sref="tasks"><i class="material-icons">assignment</i> {{ 'TASK.TASKS' | translate }}</a>
     </div>
 
-    <div id="global-search" flex="25" flex-gt-md ng-controller="SearchController as sctrl">
-      <md-autocomplete md-selected-item="selectedItem"
-                       md-search-text-change="sctrl.getLiveSearchResults(searchText)"
-                       md-search-text="searchText"
-                       md-min-length="1"
-                       md-items="item in sctrl.liveSearchResults.documents"
-                       md-item-text="item.name">
-        <md-item-template>
-          <span md-highlight-text="searchText">{{item.name}} - v{{item.version}}</span>
-        </md-item-template>
-        <md-not-found>
-          No matches found.
-        </md-not-found>
-      </md-autocomplete>
+        <div id="global-search" flex="25" flex-gt-md ng-controller="AutosuggestController as asctrl">
+            <form ng-submit="asctrl.gotoSearchPage()">
+                <md-input-container md-no-float>
+                    <!--<i class="material-icons" style="vertical-align: bottom;">search</i>-->
+                    <input type="text" 
+                            ng-model="asctrl.searchTerm" 
+                            ng-change="asctrl.getLiveSearchResults(asctrl.searchTerm)"
+                            ng-keydown="asctrl.keydown($event)"
+                            ng-model-options="{ debounce: 250 }"
+                            placeholder="{{ 'SEARCH.SEARCH' | translate }}">
+                </md-input-container>
+
+                <!-- Autocomplete dropdown -->
+                <md-whiteframe class="md-whiteframe-z2" ng-if="asctrl.suggestionVisible()">
+                    <md-list>
+                        <md-subheader class="md-no-sticky" ng-if="asctrl.liveSearchResults.documents.length">
+                            {{ 'DOCUMENT.DOCUMENTS' | translate}}
+                        </md-subheader>
+                        <md-list-item class="md-2-line"
+                                      ng-if="asctrl.liveSearchResults.documents.length"
+                                      ng-repeat="item in asctrl.liveSearchResults.documents"
+                                      ng-mousedown="asctrl.goToSuggestion(item)"
+                                      ng-class="{'activeSuggestion' : asctrl.selectedIndex == $index}">
+                            <img class="md-avatar" ng-src="{{item.thumbNailURL}}"/>
+                            <div class="md-list-item-text" layout="column">
+                                <h3 ng-bind="item.name"></h3>
+                                <p><b>Case:</b> {{ item.case.caseTitle }}</p>
+                            </div>
+                        </md-list-item>
+
+                        <md-divider ng-if="asctrl.liveSearchResults.documents.length > 0 && asctrl.liveSearchResults.cases.length > 0"></md-divider>
+
+                        <md-subheader class="md-no-sticky" ng-if="asctrl.liveSearchResults.cases.length">
+                            {{ 'CASE.CASES' | translate}}
+                        </md-subheader>
+                        <md-list-item class="md-2-line" ng-if="asctrl.liveSearchResults.cases.length"
+                                      ng-repeat="item in asctrl.liveSearchResults.cases"
+                                      ng-mousedown="asctrl.goToSuggestion(item)"
+                                      ng-class="{'activeSuggestion' : asctrl.selectedIndex == $index + asctrl.liveSearchResults.documents.length}">
+                            <!-- <i class="material-icons">folder_open</i> -->
+                            <md-icon class="material-icons">folder_open</md-icon>
+
+                            <div class="md-list-item-text">
+                                <h3 ng-bind-template="{{item.caseTitle}} ({{item.caseId}}) "></h3>
+                                <p ng-bind="item.caseDescription"></p>
+                                <p ng-bind="item.caseCreatedDate"></p>
+                            </div>
+                        </md-list-item>
+
+                        <md-list-item class="md-2-line"
+                                      ng-show="asctrl.liveSearchResults.documents.length == 0 && asctrl.liveSearchResults.cases.length == 0">
+                            <div class="md-list-item-text">
+                                <p ng-bind="'SEARCH.NO_MATCHES' | translate"></p>
+                            </div>
+                        </md-list-item>
+
+                        <md-list-item layout-align="center center" ng-if="asctrl.loading">
+                            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                        </md-list-item>
+                    </md-list>
+
+                </md-whiteframe>
+            </form>
+        </div>
+
+
+        <md-menu ng-controller="AuthController as vm" flex="25" flex-gt-md="40" layout="row" layout-align="end center"
+                 md-position-mode="target-right target">
+            <md-button aria-label="{{ 'MENU.OPEN_MENU' | translate }}" ng-click="$mdOpenMenu($event)"
+                       style="text-transform: capitalize;">
+                {{ vm.getUserInfo().user.firstName }} <span hide show-gt-md>{{ vm.getUserInfo().user.lastName }}</span>
+                <i class="material-icons" style="vertical-align: middle;">more_vert</i>
+            </md-button>
+            <md-menu-content width="4">
+                <md-menu-item>
+                    <md-button ng-disabled="true">
+                        {{ 'MENU.VIEW_PROFILE' | translate }}
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ui-sref="administration.users">
+                        {{ 'ADMIN.ADMINISTRATION' | translate }}
+                    </md-button>
+                </md-menu-item>
+                <md-menu-divider></md-menu-divider>
+                <md-menu-item>
+                    <md-button ng-click="vm.logout()">
+                        {{ 'MENU.LOGOUT' | translate }}
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+
     </div>
-
-    <md-menu ng-controller="AuthController as vm" flex="25" flex-gt-md="40" layout="row" layout-align="end center" md-position-mode="target-right target">
-      <md-button aria-label="{{ 'MENU.OPEN_MENU' | translate }}" ng-click="$mdOpenMenu($event)" style="text-transform: capitalize;">
-        {{ vm.getUserInfo().user.firstName }} <span hide show-gt-md>{{ vm.getUserInfo().user.lastName }}</span> <i class="material-icons" style="vertical-align: middle;">more_vert</i>
-      </md-button>
-      <md-menu-content width="4">
-        <md-menu-item>
-          <md-button ng-disabled="true">
-            {{ 'MENU.VIEW_PROFILE' | translate }}
-          </md-button>
-        </md-menu-item>
-        <md-menu-item ng-show="vm.getUserInfo().user.capabilities.isAdmin">
-          <md-button ui-sref="administration.users">
-            {{ 'ADMIN.ADMINISTRATION' | translate }}
-          </md-button>
-        </md-menu-item>
-        <md-menu-divider></md-menu-divider>
-        <md-menu-item>
-          <md-button ng-click="vm.logout()">
-            {{ 'MENU.LOGOUT' | translate }}
-          </md-button>
-        </md-menu-item>
-      </md-menu-content>
-    </md-menu>
-
-  </div>
 </md-toolbar>
