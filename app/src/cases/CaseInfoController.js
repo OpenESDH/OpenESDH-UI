@@ -47,10 +47,22 @@
             nodeRef: c.nodeRef
         };
         if(c['oe:journalKey'].value){
-            caseObj.journalKey.push(c['oe:journalKey'].value);    
+            var nameTitle = c['oe:journalKey'].displayValue.split(' ');
+            caseObj.journalKey.push({
+                value: c['oe:journalKey'].value,
+                nodeRef: c['oe:journalKey'].value,
+                name: nameTitle[0],
+                title: nameTitle[1]
+            });    
         }
         if(c['oe:journalFacet'].value){
-            caseObj.journalFacet.push(c['oe:journalFacet'].value);
+            var nameTitle = c['oe:journalFacet'].displayValue.split(' ');
+            caseObj.journalFacet.push({
+                value: c['oe:journalFacet'].value,
+                nodeRef: c['oe:journalFacet'].value,
+                name: nameTitle[0],
+                title: nameTitle[1]
+            });
         }
         
         caseCrudDialogService.editCase(caseObj).then(function(result){
