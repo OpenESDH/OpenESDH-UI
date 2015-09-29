@@ -100,7 +100,7 @@
                                 <span class="r" flex="5"><i class="material-icons">insert_drive_file</i></span>
                                 <span class="r" flex>{{ doc["cm:title"] }}</span>
                                 <span class="r muted" flex>{{ doc["doc:type"] }}</span>
-                                <span class="r muted" flex>{{ doc["doc:category"] | docCategory }}</span>
+                                <span class="r muted" flex>{{ doc["doc:category"] }}</span>
                                 <span class="r muted" flex>
                                     <span ng-repeat="owner in doc['doc:owner']">{{owner.fullname}}</span>
                                 </span>

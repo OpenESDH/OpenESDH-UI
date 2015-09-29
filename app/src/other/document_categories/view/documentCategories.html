@@ -1,0 +1,32 @@
+<app-header></app-header>
+
+<md-content layout="column">
+  <div class="sub-toolbar" layout-padding>
+    <h1 class="md-headline">{{ 'DOCUMENT_CATEGORIES.DOCUMENT_CATEGORIES' | translate }}</h1>
+  </div>
+
+  <md-card>
+    <md-card-content>
+      <table>
+        <thead>
+          <tr>
+            <th>{{ 'DOCUMENT_CATEGORIES.NAME' | translate }}</th>
+            <th>{{ 'DOCUMENT_CATEGORIES.DISPLAY_NAME' | translate }}</th>
+            <th>{{ 'COMMON.ACTIONS' | translate }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="documentCategory in vm.documentCategories" class="clickable-row" ng-click="vm.showEdit($event, documentCategory)">
+            <td>{{documentCategory["name"]}}</td>
+            <td>{{documentCategory["displayName"]}}</td>
+            
+            <td><md-button class="md-primary" ng-click="vm.doDelete($event, documentCategory)" ng-disabled="{{documentCategory.systemType}}">{{ 'COMMON.DELETE' | translate }}</md-button></td>
+          </tr>
+        </tbody>
+      </table>
+      <md-button class="md-primary" ng-click="vm.showEdit($event)">{{ 'DOCUMENT_CATEGORIES.CREATE_NEW_DOC_CATEGORY' | translate }}</md-button>
+    </md-card-content>
+  </md-card>
+</md-content>
+
+<app-footer></app-footer>

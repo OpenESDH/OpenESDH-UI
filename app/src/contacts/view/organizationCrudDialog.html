@@ -51,11 +51,11 @@
             </md-input-container>
             <md-input-container>
                 <label>{{ 'ORG.PHONE' | translate }}</label>
-                <input type="text" ng-model="organization.phone" ng-minlength="4" ng-pattern="/^[+]?[0-9\- ]+$/">
+                <input type="text" ng-model="organization.phone" ng-minlength="4" ng-pattern="PATTERNS.phone">
             </md-input-container>
             <md-input-container>
                 <label>{{ 'ORG.MOBILE_PHONE' | translate }}</label>
-                <input type="text" ng-model="organization.mobile" ng-minlength="4" ng-pattern="/^[+]?[0-9\- ]+$/">
+                <input type="text" ng-model="organization.mobile" ng-minlength="4" ng-pattern="PATTERNS.phone">
             </md-input-container>
             <md-input-container>
                 <label>{{ 'ORG.WEBSITE' | translate }}</label>
