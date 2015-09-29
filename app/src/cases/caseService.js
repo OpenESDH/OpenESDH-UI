@@ -63,6 +63,7 @@
          */
         function createCase(caseData) {
             var params = getCaseParams(caseData);
+            params.assoc_base_owners_added = caseData.owner;
             var type = 'simple:case';
             return userService.getHome().then(function (response) {
                 params.alf_destination = response.nodeRef;
@@ -75,8 +76,14 @@
             });
         }
         
-        function updateCase(caseData){
+        function updateCase(caseData, oldCaseData){
             var params = getCaseParams(caseData);
+            
+            if(caseData.owner != oldCaseData.owner){
+                params.assoc_base_owners_added = caseData.owner; 
+                params.assoc_base_owners_removed = oldCaseData.owner;
+            }
+            
             return $http.post('/alfresco/service/api/node/' + alfrescoNodeUtils.processNodeRef(caseData.nodeRef).uri + '/formprocessor', params).then(function (response) {
                 return response.data;
             });
@@ -86,7 +93,6 @@
             return {
                 prop_cm_title: caseData.title,
                 prop_cm_description: caseData.description,
-                assoc_base_owners_added: caseData.owner,
                 prop_base_startDate: caseData.startDate,
                 prop_base_endDate: caseData.endDate,
                 prop_oe_journalKey: caseData.journalKey,

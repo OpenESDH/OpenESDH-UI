@@ -55,11 +55,11 @@
                 clickOutsideToClose: true,
                 focusOnOpen: false,
                 locals: {
-                    caseObj: caseObj
+                    caseObj: angular.copy(caseObj)
                 }
-            }).then(function(caseObj) {
-                    prepareCaseData(caseObj);
-                    return caseService.updateCase(caseObj).then(function(result){
+            }).then(function(updatedCaseObj) {
+                    prepareCaseData(updatedCaseObj);
+                    return caseService.updateCase(updatedCaseObj, caseObj).then(function(result){
                         return result;
                     });
             }, 
