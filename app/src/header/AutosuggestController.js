@@ -42,7 +42,7 @@
             ]).then(function (res) {
                 asctrl.liveSearchResults.documents = res[0].data.documents;
                 asctrl.liveSearchResults.documents.forEach(function(document){
-                    document.thumbNailURL = fileUtilsService.getFileIconByMimetype(document.fileMimeType,"32");
+                    document.thumbNailURL = fileUtilsService.getFileIconByMimetype(document.fileMimeType,32);
                 });
                 asctrl.liveSearchResults.cases = res[1].data.cases;
 

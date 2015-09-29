@@ -97,7 +97,7 @@
                     <md-virtual-repeat-container md-auto-shrink>
                         <div md-virtual-repeat="doc in docCtrl.documents" class="repeat-item" layout="row">
                             <a class="r-rowlink" href="#/cases/case/{{docCtrl.caseId}}/doc/{{doc.nodeRef | nodeRefUri}}" layout="row" flex="90">
-                                <span class="r" flex="5"><i class="material-icons">insert_drive_file</i></span>
+                                <span class="r" flex="5"><img class="md-avatar" ng-src="/app/assets/images/filetypes/{{doc.thumbNailURL}}"/></span>
                                 <span class="r" flex>{{ doc["cm:title"] }}</span>
                                 <span class="r muted" flex>{{ doc["doc:type"] }}</span>
                                 <span class="r muted" flex>{{ doc["doc:category"] }}</span>
