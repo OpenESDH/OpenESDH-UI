@@ -9,6 +9,8 @@
     function TasksOverviewController($scope, taskService) {
         var vm = this;
         
+        vm.statuses = ["NotYetStarted", "InProgres", "OnHold", "Cancelled", "Completed"];
+
         init();
         
         function init(){
