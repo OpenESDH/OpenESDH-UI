@@ -7,28 +7,15 @@
         <md-card ng-controller="CaseController as caseController">
           <md-card-content>
 
-            <div layout="row">
-      
-              <div flex="60">
-                <h2 class="md-title">{{ 'CASE.MY_CASES' | translate }}</h2>
+              <div layout="row" layout-align="space-between center" layout-padding>
+                  
+                  <h2 class="md-title">{{ 'CASE.MY_CASES' | translate }}</h2>
+              
+                  <opene-list-filter list="caseController.caseFilter" 
+                                     choice="caseController.caseFilterChoice"
+                                     finished="caseController.getMyCases">
+                  </opene-list-filter>
               </div>
-    
-              <div flex="40" layout-align="end">
-                <md-menu md-position-mode="target-right target" style="float: right;">
-                    <md-button aria-label="Filter list" ng-click="$mdOpenMenu($event)">
-                        {{caseController.caseFilterChoice.name}} <i class="material-icons">keyboard_arrow_down</i>
-                    </md-button>
-                    <md-menu-content width="4">
-                        <md-menu-item ng-repeat="flt in caseController.caseFilter">
-                            <md-button ng-disabled="flt.value == caseController.caseFilterChoice.value" 
-                                        ng-click="caseController.updateFilter($index)">
-                                <span md-menu-align-target>{{flt.name}}</span>
-                            </md-button>
-                        </md-menu-item>
-                    </md-menu-content>
-                </md-menu>
-              </div>
-            </div>
               
               <div class="repeat-table">
                   <div class="repeat-header" layout="row">

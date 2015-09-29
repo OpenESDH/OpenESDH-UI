@@ -37,7 +37,6 @@
         vm.getCases = getCases;
         vm.createCase = createCase;
         vm.getMyCases = getMyCases;
-        vm.updateFilter = updateFilter;
 
         activate();
 
@@ -48,7 +47,9 @@
         }
 
         function getCases() {
-            return caseService.getCases('base:case').then(function(response) {
+            var filters = getFilter();
+
+            return caseService.getCases('base:case', filters).then(function(response) {
                 vm.cases = response;
                 return vm.cases;
             }, function(error) {
@@ -57,13 +58,7 @@
         }
 
         function getMyCases() {
-
-            var filters = [];
-
-            // Handling 'show all'
-            if(vm.caseFilterChoice.value !== 'all') {
-                filters = [{'name': vm.caseFilterChoice.field, 'operator':'=', 'value':vm.caseFilterChoice.value}];
-            }
+            var filters = getFilter();
 
             return caseService.getCases('base:case', filters).then(function(response) {
                 vm.myCases = response;
@@ -73,9 +68,15 @@
             });
         }
 
-        function updateFilter(index) {
-            vm.caseFilterChoice = vm.caseFilter[index];
-            getMyCases();
+        function getFilter() {
+            var filters = [];
+            
+            // Handling 'show all'
+            if(vm.caseFilterChoice.value !== 'all') {
+                filters = [{'name': vm.caseFilterChoice.field, 'operator':'=', 'value':vm.caseFilterChoice.value}];
+            }
+
+            return filters;
         }
 
         function createCase(ev, caseType) {

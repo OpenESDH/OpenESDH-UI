@@ -1,0 +1,12 @@
+<md-menu md-position-mode="target-right target" style="float: right;">
+    <md-button aria-label="Filter list" ng-click="$mdOpenMenu($event)">
+        {{choice.name}} <i class="material-icons">keyboard_arrow_down</i>
+    </md-button>
+    <md-menu-content width="4">
+        <md-menu-item ng-repeat="flt in list">
+            <md-button ng-disabled="flt.value == choice.value" ng-click="updateFilter($index)">
+                <span md-menu-align-target>{{flt.name}}</span>
+            </md-button>
+        </md-menu-item>
+    </md-menu-content>
+</md-menu>
