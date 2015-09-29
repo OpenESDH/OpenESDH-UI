@@ -96,7 +96,7 @@
                     </div>
                     <md-virtual-repeat-container md-auto-shrink>
                         <div md-virtual-repeat="doc in docCtrl.documents" class="repeat-item" layout="row">
-                            <a class="r-rowlink" href="#/cases/case/{{docCtrl.caseId}}/doc/{{doc.nodeRef | nodeRefUri}}" layout="row" flex="90">
+                            <a class="r-rowlink" href="#/cases/case/{{docCtrl.caseId}}/doc/{{doc.nodeRef | nodeRefUri}}" layout="row" flex="80">
                                 <span class="r" flex="5"><i class="material-icons">insert_drive_file</i></span>
                                 <span class="r" flex>{{ doc["cm:title"] }}</span>
                                 <span class="r muted" flex>{{ doc["doc:type"] }}</span>
@@ -107,7 +107,12 @@
                                 <span class="r muted" flex>{{ doc["cm:created"] | openeDate }}</span>
                                 <span class="r muted" flex>{{ doc["cm:modified"] | openeDate }}</span>
                             </a>
-                            <span flex="10"><md-button class="md-primary" ng-click="docCtrl.previewDocument(doc.mainDocNodeRef)">{{ 'COMMON.PREVIEW' | translate }}</md-button></span>
+                            <span flex="10">
+                                <md-button class="md-primary" ng-click="docCtrl.previewDocument(doc.mainDocNodeRef)">{{ 'COMMON.PREVIEW' | translate }}</md-button>
+                            </span>
+                            <span flex="10">
+                                <md-button class="md-primary" ng-click="docCtrl.deleteDocument(doc)" ng-show="docCtrl.isAdmin">{{ 'COMMON.DELETE' | translate }}</md-button>
+                            </span>
                         </div>
                     </md-virtual-repeat-container>
                 </div>

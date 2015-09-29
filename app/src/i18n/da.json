@@ -587,5 +587,7 @@
   "@{http://www.alfresco.org/model/content/1.0}created": "Oprettet",
   "@{http://www.alfresco.org/model/content/1.0}content.mimetype": "Filtype",
   "@{http://openesdh.dk/model/case/base/1.0}startDate": "Start Dato",
-  "@{http://openesdh.dk/model/case/base/1.0}endDate": "Slutdato"
+  "@{http://openesdh.dk/model/case/base/1.0}endDate": "Slutdato",
+  "@{http://openesdh.dk/model/openesdh/1.0}journalKeyIndexed": "Journalnøgle",
+  "@{http://openesdh.dk/model/openesdh/1.0}journalFacetIndexed": "Journalfacet"
 }

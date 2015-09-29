@@ -11,7 +11,8 @@
         
         var service = {
             getWorkflowDefinitions: getWorkflowDefinitions,
-            startWorkflow: startWorkflow
+            startWorkflow: startWorkflow,
+            deleteWorkflow: deleteWorkflow
         };
         return service;
         
@@ -32,6 +33,16 @@
            return $http.post(url, workflow).then(function(result){
                return result.data;
            });
+        }
+        
+        function deleteWorkflow(workflowInstanceId, forced){
+            var url = "/alfresco/service/api/workflow-instances/"+ workflowInstanceId;
+            if(forced){
+                url+= "?forced=" + forced;
+            }
+            return $http.delete(url).then(function(result){
+                return result.data;
+            });
         }
         
     }

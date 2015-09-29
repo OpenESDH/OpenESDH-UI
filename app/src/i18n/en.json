@@ -48,6 +48,7 @@
 		"PRIORITY": "Priority",
 		"CREATED_ON": "Created on",
 		"NO": "No",
+		"YES": "Yes",
 		"STATE": "State"
 	},
 	"CASE": {
@@ -80,7 +81,8 @@
 		"CASETYPE_OTHER": "Other type case",
 		"STARTDATE": "Start date",
 		"ENDDATE": "End date",
-		"MY_CASES": "My cases"
+		"MY_CASES": "My cases",
+		"ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_CASE": "Are you sure you want to delete the case '{{case_title}}' ?"
 	},
 	"DOCUMENT": {
 		"STATUS_CHANGED_SUCCESS": "Status has been changed successfully",
@@ -148,7 +150,8 @@
 		"CANNOT_PREVIEW": "Can't preview",
 		"DOWNLOAD_DOCUMENT": "Download document",
 		"IMAGE_MAX_SIZE_EXCEEDED": "Image \"{{image}}\" is too large to display.",
-		"PREVIEW_DOCUMENT": "Preview document"
+		"PREVIEW_DOCUMENT": "Preview document",
+		"ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_DOCUMENT": "Are you sure you want to delete the document '{{document_title}}' ?"
 	},
 	"COUNTRY": {
 		"AF": "Afghanistan",
@@ -449,7 +452,8 @@
 		},
 		"ASSIGNEES": "Assignees",
 		"CHOOSE_ASSIGNEES": "Choose assignees",
-		"ASSIGN_TO": "Assign to"
+		"ASSIGN_TO": "Assign to",
+		"ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_TASK_AND_WORKFLOW": "Are you sure you want to delete the task '{{task_description}}' and cancel the workflow ?"
 	},
 	"ADMIN": {
 		"ADMINISTRATION_PAGES": "Administration pages",
@@ -603,5 +607,7 @@
   "@{http://www.alfresco.org/model/content/1.0}created": "Created",
   "@{http://www.alfresco.org/model/content/1.0}content.mimetype": "File Type",
   "@{http://openesdh.dk/model/case/base/1.0}startDate": "Start Date",
-  "@{http://openesdh.dk/model/case/base/1.0}endDate": "End Date"
+  "@{http://openesdh.dk/model/case/base/1.0}endDate": "End Date",
+  "@{http://openesdh.dk/model/openesdh/1.0}journalKeyIndexed": "Journal key",
+  "@{http://openesdh.dk/model/openesdh/1.0}journalFacetIndexed": "Journal facet"
 }

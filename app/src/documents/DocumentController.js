@@ -8,19 +8,24 @@
         '$scope',
         '$stateParams',
         '$mdDialog',
+        '$translate',
         'caseDocumentsService',
         'documentPreviewService',
         'caseDocumentFileDialogService',
         'casePartiesService',
-        'caseService'
+        'caseService',
+        'alfrescoFolderService',
+        'sessionService'
     ];
     
-    function DocumentController($scope, $stateParams, $mdDialog, caseDocumentsService, documentPreviewService, caseDocumentFileDialogService, casePartiesService, caseService) {
+    function DocumentController($scope, $stateParams, $mdDialog, $translate, caseDocumentsService, documentPreviewService, 
+                caseDocumentFileDialogService, casePartiesService, caseService, alfrescoFolderService, sessionService) {
 
         var caseId = $stateParams.caseId;
         var vm = this;
         vm.caseId = caseId;
         vm.pageSize = 10;
+        vm.isAdmin = sessionService.isAdmin();
         
         vm.loadDocuments = loadDocuments;
         vm.uploadDocument = uploadDocument;
@@ -28,14 +33,18 @@
         vm.emailDocuments = emailDocuments;
         vm.createDocumentFromTemplate = createDocumentFromTemplate;
         vm.noDocuments = noDocuments;
+        vm.deleteDocument = deleteDocument;
 
         activate();
         
         function activate(){
-            loadDocuments(1);
+            loadDocuments();
         }
         
         function loadDocuments(page){
+            if(page == undefined){
+                page = 1;
+            }
             var res = caseDocumentsService.getDocumentsByCaseId(caseId, page, vm.pageSize);
             res.then(function(response) {
                 vm.documents = response.documents;
@@ -51,12 +60,27 @@
         
         function uploadDocument(){
             caseDocumentFileDialogService.uploadCaseDocument(caseId).then(function(result){
-                loadDocuments(1); 
+                loadDocuments(); 
             });
         }
         
         function previewDocument(nodeRef){
             documentPreviewService.previewDocument(nodeRef);
+        }
+        
+        function deleteDocument(document){
+            var confirm = $mdDialog.confirm()
+                .title($translate.instant('COMMON.CONFIRM'))
+                .content($translate.instant('DOCUMENT.ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_DOCUMENT', {document_title: document["cm:title"]}))
+                .ariaLabel('')
+                .targetEvent(null)
+                .ok($translate.instant('COMMON.YES'))
+                .cancel($translate.instant('COMMON.CANCEL'));
+            $mdDialog.show(confirm).then(function() {
+                alfrescoFolderService.deleteFolder(document.nodeRef).then(function(result){
+                   setTimeout(loadDocuments, 500); 
+                });
+            });
         }
 
         function emailDocuments() {
