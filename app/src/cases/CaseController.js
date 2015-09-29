@@ -17,7 +17,7 @@
         var vm = this;
         vm.cases = [];
         vm.caseFilter = [{
-            name: 'All',
+            name: 'All cases',
             value: 'all'
         },{
             name: 'Active cases',
