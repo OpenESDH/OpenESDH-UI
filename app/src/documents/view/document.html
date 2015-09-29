@@ -47,8 +47,8 @@
                               <dl>
                                   <dt>{{ 'COMMON.TITLE' | translate }}</dt><dd>{{ docCtrl.doc.title }}</dd>
                                   <dt>{{ 'COMMON.STATUS' | translate }}</dt><dd>{{docCtrl.doc.status | docStatus}}</dd>
-                                  <dt>{{ 'COMMON.TYPE' | translate }}</dt><dd>{{ docCtrl.doc.typeName }}</dd>
-                                  <dt>{{ 'COMMON.CATEGORY' | translate }}</dt><dd>{{ docCtrl.doc.category | docCategory}}</dd>
+                                  <dt>{{ 'COMMON.TYPE' | translate }}</dt><dd>{{ docCtrl.doc.typeDisplayName }}</dd>
+                                  <dt>{{ 'COMMON.CATEGORY' | translate }}</dt><dd>{{ docCtrl.doc.categoryDisplayName }}</dd>
                                   <dt>{{ 'COMMON.OWNER' | translate }}</dt><dd>{{ docCtrl.doc.owner }}</dd>
                                   <dt>{{ 'COMMON.CREATED' | translate }}</dt><dd>{{ docCtrl.doc.created | openeDate }}</dd>
                               </dl>
@@ -68,8 +68,8 @@
                   </table>
               </md-card-content>
               <div class="md-actions" layout="row" layout-padding>
-                <md-button class="md-primary" ng-click="docCtrl.editDocumentProperties()">{{ 'DOCUMENT.EDIT_PROPERTIES' | translate }}</md-button>
-                <md-button class="md-primary" ng-click="docCtrl.uploadDocNewVersion()">{{ 'DOCUMENT.UPLOAD_NEW_VERSION' | translate }}</md-button>
+                <md-button class="md-primary" ng-click="docCtrl.editDocumentProperties()" ng-disabled="docCtrl.doc.isLocked">{{ 'DOCUMENT.EDIT_PROPERTIES' | translate }}</md-button>
+                <md-button class="md-primary" ng-click="docCtrl.uploadDocNewVersion()" ng-disabled="docCtrl.doc.isLocked">{{'DOCUMENT.UPLOAD_NEW_VERSION' |translate }}</md-button>
                 <md-button class="md-primary" ng-click="docCtrl.downloadDocument()">{{ 'COMMON.DOWNLOAD' | translate }}</md-button>
               </div>
           </md-card>
@@ -114,7 +114,7 @@
                                        </md-button>
                                        <md-menu-content>
                                           <md-menu-item><md-button ng-disabled="true">{{ 'DOCUMENT.ATTACHMENTS.EDIT_ATTACHMENT' | translate }}</md-button></md-menu-item>
-                                          <md-menu-item><md-button ng-click="docCtrl.uploadAttachmentNewVersion(attachment)">{{ 'DOCUMENT.UPLOAD_NEW_VERSION' | translate }}</md-button></md-menu-item>
+                                          <md-menu-item><md-button ng-click="docCtrl.uploadAttachmentNewVersion(attachment)" ng-disabled="docCtrl.doc.isLocked">{{ 'DOCUMENT.UPLOAD_NEW_VERSION' | translate }}</md-button></md-menu-item>
                                           <md-menu-item><md-button ng-click="docCtrl.previewAttachment(attachment)">{{ 'DOCUMENT.OPEN_PREVIEW' | translate }}</md-button></md-menu-item>
                                           <md-menu-item><md-button ng-click="docCtrl.downloadAttachment(attachment)">{{ 'COMMON.DOWNLOAD' | translate }}</md-button></md-menu-item>
                                        </md-menu-content>
@@ -143,7 +143,7 @@
                   Pages: <button ng-repeat="page in docCtrl.attachmentsPages" ng-click="docCtrl.loadAttachments(page)">{{page}}</button>
               </md-card-content>
               <div class="md-actions" layout="row">
-                <md-button class="md-primary" ng-click="docCtrl.uploadAttachment()">{{ 'DOCUMENT.ATTACHMENTS.UPLOAD_NEW_ATTACHMENT' | translate }}</md-button>
+                <md-button class="md-primary" ng-click="docCtrl.uploadAttachment()" ng-disabled="docCtrl.doc.isLocked">{{ 'DOCUMENT.ATTACHMENTS.UPLOAD_NEW_ATTACHMENT' | translate }}</md-button>
               </div>
           </md-card>
        </div>

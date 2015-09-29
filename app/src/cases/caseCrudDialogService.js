@@ -5,9 +5,9 @@
         .module('openeApp.cases')
         .factory('caseCrudDialogService', caseCrudDialogService);
 
-    caseCrudDialogService.$inject = ['$http', '$mdDialog', '$location', 'caseService'];
+    caseCrudDialogService.$inject = ['$http', '$mdDialog', '$location', 'caseService', 'notificationUtilsService'];
 
-    function caseCrudDialogService($http, $mdDialog, $location, caseService) {
+    function caseCrudDialogService($http, $mdDialog, $location, caseService, notificationUtilsService) {
         return {
             createCase: createCase,
             editCase: editCase
@@ -82,8 +82,8 @@
             }
         }
         
-        CaseDialogController.$inject = ['$scope', '$mdDialog', '$animate', 'notificationUtilsService'];
-        function CaseDialogController($scope, $mdDialog, $animate, notificationUtilsService, caseObj) {
+        CaseDialogController.$inject = ['$scope', '$mdDialog'];
+        function CaseDialogController($scope, $mdDialog, caseObj) {
             var vm = this;
             
             // Data from the case creation form

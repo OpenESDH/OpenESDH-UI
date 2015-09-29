@@ -4,9 +4,9 @@
             .module('openeApp.documentTypes')
             .controller('DocumentTypesController', DocumentTypesController);
 
-    DocumentTypesController.$inject = ['$scope', '$mdDialog', 'documentTypeService'];
+    DocumentTypesController.$inject = ['$scope', '$mdDialog', 'documentTypeService', 'PATTERNS'];
 
-    function DocumentTypesController($scope, $mdDialog, documentTypeService) {
+    function DocumentTypesController($scope, $mdDialog, documentTypeService, PATTERNS) {
         var vm = this;
         vm.documentTypes = [];
         vm.loadList = loadList;
@@ -61,6 +61,7 @@
             dt.documentType = documentType;
             dt.cancel = cancel;
             dt.save = save;
+            dt.PATTERNS = PATTERNS;
 
             function cancel() {
                 $mdDialog.cancel();
