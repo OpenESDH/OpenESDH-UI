@@ -10,14 +10,18 @@
         
         <div flex="25" layout-margin>
             <form name="facets">
-                <fieldset ng-repeat="(key, facet) in sctrl.fullSearchResults.facets">
-                    <legend><i class="material-icons">arrow_drop_down</i> {{key | translate}}</legend>
-                    <md-checkbox ng-repeat="hit in facet" aria-label="{{hit.value}}" 
-                                    class="md-primary" 
-                                    ng-model="hit.selected"
-                                    ng-change="sctrl.filterResults(key, hit.value)">
-                        <span class="search-hits">{{ hit.label | translate }}</span>
-                    </md-checkbox>
+                <fieldset ng-repeat="(key, facet) in sctrl.fullSearchResults.facets"
+                          ng-if="facet.length > 0">
+                    
+                    <legend class="toggle-btn closed" toggle-class="closed"><i class="material-icons">arrow_drop_down</i> {{key | translate}}</legend>
+                    <div class="toggle-obj">
+                        <md-checkbox ng-repeat="hit in facet" aria-label="{{hit.value}}" 
+                                        class="md-primary" 
+                                        ng-model="hit.selected"
+                                        ng-change="sctrl.filterResults(key, hit.value)">
+                            <span class="search-hits">{{ hit.label | translate }}</span>
+                        </md-checkbox>
+                    </div>
                 </fieldset>
             </form>
         </div>

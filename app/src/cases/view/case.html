@@ -171,8 +171,11 @@
             </div>
           </md-card-content>
           <div class="md-actions" layout="row">
-            <md-button class="md-primary" ng-click="caseNotes.newNote()"
-                       ng-disabled="caseIsLocked">{{ 'NOTE.NEW_NOTE' | translate }}</md-button>
+            <md-button class="md-primary"
+                       ng-click="caseNotes.newNote()"
+                       ng-disabled="caseIsLocked">
+                {{ 'NOTE.NEW_NOTE' | translate }}
+            </md-button>
             <md-button class="md-primary" ng-disabled="true">{{ 'NOTE.PRINT_ALL_NOTES' | translate }}</md-button>
           </div>
         </md-card>
