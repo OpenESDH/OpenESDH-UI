@@ -5,7 +5,17 @@
         .module('openeApp.cases')
         .controller('CaseController', CaseController);
 
-    CaseController.$inject = ['$scope', '$mdDialog', '$location', 'caseService', 'userService', 'caseCrudDialogService'];
+    CaseController.$inject = [
+        '$scope', 
+        '$mdDialog', 
+        '$location', 
+        '$translate', 
+        'caseService', 
+        'userService', 
+        'caseCrudDialogService', 
+        'alfrescoFolderService',
+        'sessionService'
+    ];
 
     /**
      * Main Controller for the Cases module
@@ -13,13 +23,15 @@
      * @param cases
      * @constructor
      */
-    function CaseController($scope, $mdDialog, $location, caseService, userService, caseCrudDialogService) {
+    function CaseController($scope, $mdDialog, $location, $translate, caseService, userService, caseCrudDialogService, alfrescoFolderService, sessionService) {
         var vm = this;
         vm.cases = [];
 
         vm.getCases = getCases;
         vm.createCase = createCase;
         vm.getMyCases = getMyCases;
+        vm.deleteCase = deleteCase;
+        vm.isAdmin = sessionService.isAdmin();
 
         activate();
 
@@ -62,6 +74,21 @@
         function getCaseTypes() {
             return caseService.getCaseTypes().then(function(response) {
                 return response;
+            });
+        }
+        
+        function deleteCase(caseObj){
+            var confirm = $mdDialog.confirm()
+                .title($translate.instant('COMMON.CONFIRM'))
+                .content($translate.instant('CASE.ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_CASE', {case_title: caseObj["cm:title"]}))
+                .ariaLabel('')
+                .targetEvent(null)
+                .ok($translate.instant('COMMON.YES'))
+                .cancel($translate.instant('COMMON.CANCEL'));
+            $mdDialog.show(confirm).then(function() {
+                alfrescoFolderService.deleteFolder(caseObj.nodeRef).then(function(result){
+                   setTimeout(getCases, 500); 
+                });
             });
         }
   
