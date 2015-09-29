@@ -5,6 +5,11 @@
     <div class="sub-toolbar" layout="row" layout-align="space-between center" layout-padding>
     
         <h1 class="md-headline" layout-margin>{{ 'CASE.CASES' | translate }}</h1>
+
+        <opene-list-filter list="vm.caseFilter" 
+                            choice="vm.caseFilterChoice"
+                            finished="vm.getCases">
+        </opene-list-filter>
     
         <md-menu>
           <md-button class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="{{ 'CASE.CREATE_NEW_CASE' | translate }}">

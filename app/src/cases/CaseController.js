@@ -26,6 +26,23 @@
     function CaseController($scope, $mdDialog, $location, $translate, caseService, userService, caseCrudDialogService, alfrescoFolderService, sessionService) {
         var vm = this;
         vm.cases = [];
+        vm.caseFilter = [{
+            name: 'All cases',
+            value: 'all'
+        },{
+            name: 'Active cases',
+            field: 'oe:status',
+            value: 'active',
+        }, {
+            name: 'Closed cases',
+            field: 'oe:status',
+            value: 'closed',
+        }, {
+            name: 'Passive cases',
+            field: 'oe:status',
+            value: 'passive',
+        }];
+        vm.caseFilterChoice = vm.caseFilter[0];
 
         vm.getCases = getCases;
         vm.createCase = createCase;
@@ -42,7 +59,9 @@
         }
 
         function getCases() {
-            return caseService.getCases('base:case').then(function(response) {
+            var filters = getFilter();
+
+            return caseService.getCases('base:case', filters).then(function(response) {
                 vm.cases = response;
                 return vm.cases;
             }, function(error) {
@@ -51,13 +70,25 @@
         }
 
         function getMyCases() {
-            var filters = [{'name': 'oe:status', 'operator':'=', 'value':'active'}];
+            var filters = getFilter();
+
             return caseService.getCases('base:case', filters).then(function(response) {
                 vm.myCases = response;
                 return vm.myCases;
             }, function(error) {
                 console.log(error);
             });
+        }
+
+        function getFilter() {
+            var filters = [];
+            
+            // Handling 'show all'
+            if(vm.caseFilterChoice.value !== 'all') {
+                filters = [{'name': vm.caseFilterChoice.field, 'operator':'=', 'value':vm.caseFilterChoice.value}];
+            }
+
+            return filters;
         }
 
         function createCase(ev, caseType) {

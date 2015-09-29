@@ -6,8 +6,16 @@
       
         <md-card ng-controller="CaseController as caseController">
           <md-card-content>
-            
-              <h2 class="md-title">{{ 'CASE.MY_CASES' | translate }}</h2>
+
+              <div layout="row" layout-align="space-between center" layout-padding>
+                  
+                  <h2 class="md-title">{{ 'CASE.MY_CASES' | translate }}</h2>
+              
+                  <opene-list-filter list="caseController.caseFilter" 
+                                     choice="caseController.caseFilterChoice"
+                                     finished="caseController.getMyCases">
+                  </opene-list-filter>
+              </div>
               
               <div class="repeat-table">
                   <div class="repeat-header" layout="row">
@@ -60,7 +68,7 @@
                   <md-virtual-repeat-container md-auto-shrink>
                       <div md-virtual-repeat="document in vm.documents" class="repeat-item">
                           <a class="r-rowlink" href="#/cases/case/{{ document.caseId }}/doc/{{ document.location.parent.nodeRef | nodeRefUri }}" layout="row">
-                              <span class="r" flex="10"><i class="material-icons">insert_drive_file</i></span>
+                              <span class="r" flex="10"><img class="md-avatar" ng-src="/app/assets/images/filetypes/{{document.thumbNailURL}}"/></span>
                               <span class="r" flex="30">{{ document.displayName }}</span>
                               <span class="r muted" flex="30">{{ document.modifiedOn | openeDate}}</span>
                               <span class="r muted" flex="30">{{ document.modifiedBy }}</span>

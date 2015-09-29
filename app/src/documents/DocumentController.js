@@ -13,19 +13,19 @@
         'documentPreviewService',
         'caseDocumentFileDialogService',
         'casePartiesService',
-        'caseService',
         'alfrescoFolderService',
-        'sessionService'
+        'sessionService',
+        'caseService', 'fileUtilsService'
     ];
     
     function DocumentController($scope, $stateParams, $mdDialog, $translate, caseDocumentsService, documentPreviewService, 
-                caseDocumentFileDialogService, casePartiesService, caseService, alfrescoFolderService, sessionService) {
+                caseDocumentFileDialogService, casePartiesService, caseService, alfrescoFolderService, sessionService, fileUtilsService) {
 
         var caseId = $stateParams.caseId;
         var vm = this;
         vm.caseId = caseId;
         vm.pageSize = 10;
-        vm.isAdmin = sessionService.isAdmin();
+        vm.isAdmin = sessionService.isAdmin;
         
         vm.loadDocuments = loadDocuments;
         vm.uploadDocument = uploadDocument;
@@ -48,6 +48,9 @@
             var res = caseDocumentsService.getDocumentsByCaseId(caseId, page, vm.pageSize);
             res.then(function(response) {
                 vm.documents = response.documents;
+                vm.documents.forEach(function(document){
+                    document.thumbNailURL = fileUtilsService.getFileIconByMimetype(document.fileMimeType,24);
+                });
                 vm.contentRange = response.contentRange;
                 var pages = [];
                 var pagesCount = Math.ceil(response.contentRange.totalItems / vm.pageSize); 
