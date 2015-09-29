@@ -5,13 +5,12 @@
         .controller('AutosuggestController', AutosuggestController);
 
     AutosuggestController.$inject = [
-        '$scope',
-        'ALFRESCO_URI',
         '$state',
         '$q',
         '$mdConstant',
         'searchService',
-        'alfrescoNodeUtils'
+        'alfrescoNodeUtils',
+        'fileUtilsService'
     ];
 
     /**
@@ -19,7 +18,7 @@
      * @param $scope
      * @constructor
      */
-    function AutosuggestController($scope, ALFRESCO_URI, $state, $q, $mdConstant, searchService, alfrescoNodeUtils) {
+    function AutosuggestController($state, $q, $mdConstant, searchService, alfrescoNodeUtils, fileUtilsService) {
 
         var asctrl = this;
         asctrl.liveSearchResults = {
@@ -43,7 +42,7 @@
             ]).then(function (res) {
                 asctrl.liveSearchResults.documents = res[0].data.documents;
                 asctrl.liveSearchResults.documents.forEach(function(document){
-                    document.thumbNailURL = ALFRESCO_URI.serviceApiProxy +"node/"+document.nodeRef.replace(":/", "")+"/content/thumbnails/doclib?c=queue&ph=true&lastModified=" + document.lastThumbnailModification || 1
+                    document.thumbNailURL = fileUtilsService.getFileIconByMimetype(document.fileMimeType,32);
                 });
                 asctrl.liveSearchResults.cases = res[1].data.cases;
 

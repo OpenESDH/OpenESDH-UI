@@ -5,6 +5,11 @@
     <div class="sub-toolbar" layout="row" layout-align="space-between center" layout-padding>
     
         <h1 class="md-headline" layout-margin>{{ 'CASE.CASES' | translate }}</h1>
+
+        <opene-list-filter list="vm.caseFilter" 
+                            choice="vm.caseFilterChoice"
+                            finished="vm.getCases">
+        </opene-list-filter>
     
         <md-menu>
           <md-button class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="{{ 'CASE.CREATE_NEW_CASE' | translate }}">
@@ -12,7 +17,7 @@
             {{ 'CASE.CREATE_NEW_CASE' | translate }}
           </md-button>
           <md-menu-content>
-            <md-menu-item><md-button ng-click="vm.createCase($event, 'standard')">{{ 'CASE.CASETYPE_STANDARD' | translate }}</md-button></md-menu-item>
+            <md-menu-item><md-button ng-click="vm.createCase($event, 'standard')">{{ 'simple:case' | caseType }}</md-button></md-menu-item>
             <md-menu-item><md-button ng-disabled="true">{{ 'CASE.CASETYPE_OTHER' | translate }}</md-button></md-menu-item>
           </md-menu-content>
         </md-menu>
@@ -45,7 +50,7 @@
                         <span class="r" flex="5"><i class="material-icons">folder_open</i></span>
                         <span class="r" flex="15">{{case["cm:title"]}}</span>
                         <span class="r muted" flex>{{case["oe:id"]}}</span>
-                        <span class="r muted" flex>{{case["TYPE"]}}</span>
+                        <span class="r muted" flex>{{case["TYPE"] | caseType}}</span>
                         <span class="r muted" flex>{{case["cm:created"] | openeDate}}</span>
                         <span class="r muted" flex>{{case["base:startDate"] | openeDate}}</span>
                         <span class="r muted" flex>{{case["base:endDate"] | openeDate}}</span>
@@ -63,7 +68,7 @@
                 {{ 'CASE.CREATE_NEW_CASE' | translate }}
             </md-button>
             <md-menu-content>
-                <md-menu-item><md-button ng-click="vm.createCase($event, 'standard')">{{ 'CASE.CASETYPE_STANDARD' | translate }}</md-button></md-menu-item>
+                <md-menu-item><md-button ng-click="vm.createCase($event, 'standard')">{{ 'simple:case' | caseType }}</md-button></md-menu-item>
                 <md-menu-item><md-button ng-disabled="true">{{ 'CASE.CASETYPE_OTHER' | translate }}</md-button></md-menu-item>
             </md-menu-content>
         </md-menu>
