@@ -4,11 +4,11 @@
             .module('openeApp.contacts')
             .controller('PersonsController', PersonsController);
 
-    PersonsController.$inject = ['$mdDialog', 'contactsService', 'countriesService'];
+    PersonsController.$inject = ['$mdDialog', 'contactsService', 'countriesService', 'PATTERNS'];
 
     var DEFAULT_PAGE_SIZE = 5;
 
-    function PersonsController($mdDialog, contactsService, countriesService) {
+    function PersonsController($mdDialog, contactsService, countriesService, PATTERNS) {
         var vm = this;
         vm.doFilter = doFilter;
         vm.showPersonEdit = showPersonEdit;
@@ -73,6 +73,7 @@
             $scope.countries = countriesService.getCountries();
             $scope.error = null;
             $scope.success = null;
+            $scope.PATTERNS = PATTERNS;
 
             $scope.hide = function() {
                 $mdDialog.hide();
