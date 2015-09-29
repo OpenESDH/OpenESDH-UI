@@ -41,106 +41,106 @@
           <md-card>
               <md-card-content>
                   <h3>{{ 'DOCUMENT.DOCUMENTS' | translate }}</h3>
-                  <table>
-                      <tr>
-                          <td>
-                              <dl>
-                                  <dt>{{ 'COMMON.TITLE' | translate }}</dt><dd>{{ docCtrl.doc.title }}</dd>
-                                  <dt>{{ 'COMMON.STATUS' | translate }}</dt><dd>{{docCtrl.doc.status | docStatus}}</dd>
-                                  <dt>{{ 'COMMON.TYPE' | translate }}</dt><dd>{{ docCtrl.doc.typeDisplayName }}</dd>
-                                  <dt>{{ 'COMMON.CATEGORY' | translate }}</dt><dd>{{ docCtrl.doc.categoryDisplayName }}</dd>
-                                  <dt>{{ 'COMMON.OWNER' | translate }}</dt><dd>{{ docCtrl.doc.owner }}</dd>
-                                  <dt>{{ 'COMMON.CREATED' | translate }}</dt><dd>{{ docCtrl.doc.created | openeDate }}</dd>
-                              </dl>
-                          </td>
-                          <td>
-                              <dl>
-                                  <dt>{{ 'DOCUMENT.VERSION' | translate }}</dt>
-                                      <dd>
-                                          <select ng-model="docCtrl.docVersion" ng-options="version.label for version in docCtrl.documentVersions"></select>
-                                      </dd>
-                                  <dt>{{ 'DOCUMENT.VERSION_ADDED' | translate }}</dt><dd>{{docCtrl.docVersion.createdDateISO | openeDate}}</dd>
-                                  <dt>{{ 'DOCUMENT.DOCUMENT_NAME' | translate }}</dt><dd>{{ docCtrl.docVersion.name}}</dd>
-                                  <dt>{{ 'DOCUMENT.VERSION_DESCRIPTION' | translate }}</dt><dd>{{ docCtrl.docVersion.description }}</dd>
-                              </dl>
-                          </td>
-                      </tr>
-                  </table>
+                  
+                  <div layout="row">
+                    <dl layout="row" layout-wrap flex="50">
+                      <dt flex="33">{{ 'COMMON.TITLE' | translate }}</dt><dd flex="66">{{ docCtrl.doc.title }}</dd>
+                      <dt flex="33">{{ 'COMMON.STATUS' | translate }}</dt><dd flex="66">{{ docCtrl.doc.status | docStatus }}</dd>
+                      <dt flex="33">{{ 'COMMON.TYPE' | translate }}</dt><dd flex="66">{{ docCtrl.doc.typeDisplayName }}</dd>
+                      <dt flex="33">{{ 'COMMON.CATEGORY' | translate }}</dt><dd flex="66">{{ docCtrl.doc.categoryDisplayName }}</dd>
+                      <dt flex="33">{{ 'COMMON.OWNER' | translate }}</dt><dd flex="66">{{ docCtrl.doc.owner }}</dd>
+                      <dt flex="33">{{ 'COMMON.CREATED' | translate }}</dt><dd flex="66">{{ docCtrl.doc.created | openeDate }}</dd>
+                      
+                    </dl>
+                    <dl layout="row" layout-wrap flex="50" layout-align="start start">
+                      <dt flex="40">{{ 'DOCUMENT.VERSION' | translate }}</dt>
+                      <dd flex="60">
+                        <select ng-model="docCtrl.docVersion" ng-options="version.label for version in docCtrl.documentVersions"></select>
+                      </dd>
+                      <dt flex="40">{{ 'DOCUMENT.VERSION_ADDED' | translate }}</dt><dd flex="60">{{docCtrl.docVersion.createdDateISO | openeDate}}</dd>
+                      <dt flex="40">{{ 'DOCUMENT.DOCUMENT_NAME' | translate }}</dt><dd flex="60">{{ docCtrl.docVersion.name}}</dd>
+                      <dt flex="100" ng-hide="docCtrl.docVersion.description | isEmpty">{{ 'DOCUMENT.VERSION_DESCRIPTION' | translate }}</dt>
+                      <dd flex="100" ng-hide="docCtrl.docVersion.description | isEmpty">{{ docCtrl.docVersion.description }}</dd>
+                    </dl>
+                  </div>
               </md-card-content>
               <div class="md-actions" layout="row" layout-padding>
-                <md-button class="md-primary" ng-click="docCtrl.editDocumentProperties()" ng-disabled="docCtrl.doc.isLocked">{{ 'DOCUMENT.EDIT_PROPERTIES' | translate }}</md-button>
-                <md-button class="md-primary" ng-click="docCtrl.uploadDocNewVersion()" ng-disabled="docCtrl.doc.isLocked">{{'DOCUMENT.UPLOAD_NEW_VERSION' |translate }}</md-button>
-                <md-button class="md-primary" ng-click="docCtrl.downloadDocument()">{{ 'COMMON.DOWNLOAD' | translate }}</md-button>
+                  <md-button class="md-primary" ng-click="docCtrl.editDocumentProperties()" ng-disabled="docCtrl.doc.isLocked">{{ 'DOCUMENT.EDIT_PROPERTIES' | translate }}</md-button>
+                  <md-button class="md-primary" ng-click="docCtrl.uploadDocNewVersion()" ng-disabled="docCtrl.doc.isLocked">{{'DOCUMENT.UPLOAD_NEW_VERSION' |translate }}</md-button>
+                  <md-button class="md-primary" ng-click="docCtrl.downloadDocument()">{{ 'COMMON.DOWNLOAD' | translate }}</md-button>
               </div>
           </md-card>
        </div>
        <div flex="50">
            <md-card>
-               <md-card-content style="height: 514px; overflow: scroll;">
-                   <h3>{{ 'DOCUMENT.PREVIEW' | translate }}</h3>
-                   <div ng-controller="docCtrl.docPreviewController">
-                       <ng-include src="viewerTemplateUrl"></ng-include>
+               <md-card-content>
+                  <div layout="row" layout-align="space-between center">
+                      <h3 class="md-title">{{ 'DOCUMENT.PREVIEW' | translate }}</h3>
+                      <md-button class="md-primary" ng-click="docCtrl.refreshDocumentPreview()"><i class="material-icons">refresh</i></md-button>
                    </div>
-               </md-card-content>
-               <div class="md-actions" layout="row" layout-padding>
-                <md-button class="md-primary" ng-click="docCtrl.refreshDocumentPreview()">{{ 'COMMON.REFRESH' | translate }}</md-button>
-              </div>
+                   <div ng-controller="docCtrl.docPreviewController">
+                       <ng-include class="preview-window" src="viewerTemplateUrl"></ng-include>
+                   </div>
+              </md-card-content>
            </md-card>
        </div>
        <div flex="100">
           <md-card>
               <md-card-content>
                   <h3>{{ 'DOCUMENT.ATTACHMENTS' | translate }}</h3>
-                  <table>
-                      <thead>
-                        <tr>
-                          <th>{{ 'COMMON.TITLE' | translate }}</th>
-                          <th>{{ 'COMMON.ADDED' | translate }}</th>
-                          <th>{{ 'COMMON.ADDED_BY' | translate }}</th>
-                          <th>{{ 'DOCUMENT.ATTACHMENTS.CURRENT_VERSION' | translate }}</th>
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                          <tr ng-repeat-start="attachment in docCtrl.attachments">
-                              <td>{{attachment.name}}</td>
-                              <td>{{attachment.created | openeDate}}</td>
-                              <td>{{attachment.creator.firstName + ' ' + attachment.creator.lastName}}</td>
-                              <td>{{attachment.versionLabel}}</td>
-                              <td>
-                                  <md-menu>
-                                       <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" style="font-size: 11px;">
-                                         actions
-                                       </md-button>
-                                       <md-menu-content>
-                                          <md-menu-item><md-button ng-disabled="true">{{ 'DOCUMENT.ATTACHMENTS.EDIT_ATTACHMENT' | translate }}</md-button></md-menu-item>
-                                          <md-menu-item><md-button ng-click="docCtrl.uploadAttachmentNewVersion(attachment)" ng-disabled="docCtrl.doc.isLocked">{{ 'DOCUMENT.UPLOAD_NEW_VERSION' | translate }}</md-button></md-menu-item>
-                                          <md-menu-item><md-button ng-click="docCtrl.previewAttachment(attachment)">{{ 'DOCUMENT.OPEN_PREVIEW' | translate }}</md-button></md-menu-item>
-                                          <md-menu-item><md-button ng-click="docCtrl.downloadAttachment(attachment)">{{ 'COMMON.DOWNLOAD' | translate }}</md-button></md-menu-item>
-                                       </md-menu-content>
-                                  </md-menu>
-                             </td>
-                          </tr>
-                              <tr ng-repeat="attachmentVersion in attachment.versions" style="color: rgba(0,0,0,0.26);">
-                                  <td style="padding-left: 50px;">{{attachmentVersion.name}}</td>
-                                  <td>{{attachmentVersion.created | openeDate}}</td>
-                                  <td>{{attachmentVersion.creator.firstName + ' ' + attachmentVersion.creator.lastName}}</td>
-                                  <td>{{attachmentVersion.versionLabel}}</td>
-                                  <td>
+                  
+                  <div class="repeat-table">
+                      <div class="repeat-header" layout="row">
+                          <span class="r" flex="5"></span>
+                          <span class="r" flex>{{ 'COMMON.TITLE' | translate }}</span>
+                          <span class="r" flex="15">{{ 'COMMON.ADDED' | translate }}</span>
+                          <span class="r" flex="10">{{ 'COMMON.ADDED_BY' | translate }}</span>
+                          <span class="r" flex="15">{{ 'DOCUMENT.ATTACHMENTS.CURRENT_VERSION' | translate }}</span>
+                          <span class="r" flex="10"></span>
+                      </div>
+                      <md-virtual-repeat-container>
+                          <div md-virtual-repeat="attachment in docCtrl.attachments">
+                              <div class="repeat-item" layout="row">
+                                  <span class="r" flex="5"><i class="material-icons">attachment</i></span>
+                                  <span class="r" flex>{{attachment.name}}</span>
+                                  <span class="r muted" flex="15">{{attachment.created | openeDate}}</span>
+                                  <span class="r muted" flex="10">{{attachment.creator.firstName + ' ' + attachment.creator.lastName}}</span>
+                                  <span class="r muted" flex="15">{{attachment.versionLabel}}</span>
+                                  <span class="r muted" flex="10">
                                       <md-menu>
-                                           <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button"  style="font-size: 11px;">
-                                             {{ 'COMMON.ACTIONS' | translate }}
+                                           <md-button ng-click="$mdOpenMenu($event)">
+                                              {{ 'COMMON.ACTIONS' | translate }}
                                            </md-button>
                                            <md-menu-content>
-                                              <md-menu-item><md-button ng-click="docCtrl.downloadAttachment(attachmentVersion)">{{ 'COMMON.DOWNLOAD' | translate }}</md-button></md-menu-item>
+                                              <md-menu-item><md-button ng-disabled="true">{{ 'DOCUMENT.ATTACHMENTS.EDIT_ATTACHMENT' | translate }}</md-button></md-menu-item>
+                                              <md-menu-item><md-button ng-click="docCtrl.uploadAttachmentNewVersion(attachment)" ng-disabled="docCtrl.doc.isLocked">{{ 'DOCUMENT.UPLOAD_NEW_VERSION' | translate }}</md-button></md-menu-item>
+                                              <md-menu-item><md-button ng-click="docCtrl.previewAttachment(attachment)">{{ 'DOCUMENT.OPEN_PREVIEW' | translate }}</md-button></md-menu-item>
+                                              <md-menu-item><md-button ng-click="docCtrl.downloadAttachment(attachment)">{{ 'COMMON.DOWNLOAD' | translate }}</md-button></md-menu-item>
                                            </md-menu-content>
                                       </md-menu>
-                                 </td>
-                              </tr>
-                          <tr style="display:none" ng-repeat-end></tr>
-                      </tbody>
-                  </table>
-                  Pages: <button ng-repeat="page in docCtrl.attachmentsPages" ng-click="docCtrl.loadAttachments(page)">{{page}}</button>
+                                  </span>
+                              </div>
+                              <div class="repeat-item" layout="row" ng-repeat="attachmentVersion in attachment.versions">
+                                  <span class="r" flex="5"></span>
+                                  <span class="r" flex>{{attachmentVersion.name}}</span>
+                                  <span class="r muted" flex="15">{{attachmentVersion.created | openeDate}}</span>
+                                  <span class="r muted" flex="10">{{attachmentVersion.creator.firstName + ' ' + attachmentVersion.creator.lastName}}</span>
+                                  <span class="r muted" flex="15">{{attachmentVersion.versionLabel}}</span>
+                                  <span class="r muted" flex="10">
+                                      <md-menu>
+                                          <md-button ng-click="$mdOpenMenu($event)">
+                                              {{ 'COMMON.ACTIONS' | translate }}
+                                          </md-button>
+                                          <md-menu-content>
+                                              <md-menu-item><md-button ng-click="docCtrl.downloadAttachment(attachmentVersion)">{{ 'COMMON.DOWNLOAD' | translate }}</md-button></md-menu-item>
+                                          </md-menu-content>
+                                      </md-menu>
+                                  </span>
+                              </div>
+                          </div>
+                      </md-virtual-repeat-container>
+                  </div>
+                  
               </md-card-content>
               <div class="md-actions" layout="row">
                 <md-button class="md-primary" ng-click="docCtrl.uploadAttachment()" ng-disabled="docCtrl.doc.isLocked">{{ 'DOCUMENT.ATTACHMENTS.UPLOAD_NEW_ATTACHMENT' | translate }}</md-button>
