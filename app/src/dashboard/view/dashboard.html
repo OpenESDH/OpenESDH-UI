@@ -45,7 +45,7 @@
                     {{ 'CASE.CREATE_NEW_CASE' | translate }}
                 </md-button>
                 <md-menu-content>
-                    <md-menu-item><md-button ng-click="caseController.createCase($event, 'standard')">{{ 'CASE.CASETYPE_STANDARD' | translate }}</md-button></md-menu-item>
+                    <md-menu-item><md-button ng-click="caseController.createCase($event, 'standard')">{{ 'simple:case' | caseType }}</md-button></md-menu-item>
                     <md-menu-item><md-button ng-disabled="true">{{ 'CASE.CASETYPE_OTHER' | translate }}</md-button></md-menu-item>
                 </md-menu-content>
             </md-menu>

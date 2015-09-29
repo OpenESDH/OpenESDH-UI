@@ -1,6 +1,15 @@
 <app-header></app-header>
 
-<md-card ng-repeat="task in tasksCtrl.tasks">
+<div layout="row" layout-align="end">
+    <md-input-container>
+        <md-select ng-model="status" >
+            <md-option value="" selected>Show all open tasks</md-option>
+            <md-option ng-repeat="status in tasksCtrl.statuses" value="{{status | workflowTaskStatus}}">{{status | workflowTaskStatus}}</md-option>
+        </md-select>
+    </md-input-container>
+</div>
+
+<md-card ng-repeat="task in tasksCtrl.tasks | filter:status">
   <md-card-content>
     <div style="float: right;font-size: 14px;">
         {{'COMMON.CREATED_ON' | translate}} {{task.properties.cm_created | date}} {{'COMMON.BY' | translate}} {{task.owner.firstName + ' ' + task.owner.lastName}}
@@ -15,6 +24,7 @@
   </md-card-content>
   <div class="md-actions" layout="row">
     <md-button class="md-primary" href="#/tasks/task/{{task.name | encodeUri}}/{{task.id | encodeUri}}">{{ 'TASK.VIEW_TASK_DETAILS' | translate }}</md-button>
+    <md-button class="md-primary" ng-click="tasksCtrl.deleteTask(task)" ng-show="tasksCtrl.isAdmin">{{ 'COMMON.DELETE' | translate }}</md-button>
   </div>              
 </md-card>
 

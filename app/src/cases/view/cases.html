@@ -17,7 +17,7 @@
             {{ 'CASE.CREATE_NEW_CASE' | translate }}
           </md-button>
           <md-menu-content>
-            <md-menu-item><md-button ng-click="vm.createCase($event, 'standard')">{{ 'CASE.CASETYPE_STANDARD' | translate }}</md-button></md-menu-item>
+            <md-menu-item><md-button ng-click="vm.createCase($event, 'standard')">{{ 'simple:case' | caseType }}</md-button></md-menu-item>
             <md-menu-item><md-button ng-disabled="true">{{ 'CASE.CASETYPE_OTHER' | translate }}</md-button></md-menu-item>
           </md-menu-content>
         </md-menu>
@@ -38,24 +38,26 @@
                 <span class="r" flex>{{ 'CASE.ENDDATE' | translate }}</span>
                 <span class="r" flex>{{ 'COMMON.MODIFIED' | translate }}</span>
                 <span class="r" flex>{{ 'COMMON.STATUS' | translate }}</span>
+                <span flex></span>
             </div>
             <md-virtual-repeat-container md-auto-shrink style="height: 470px;">
-                <div md-virtual-repeat="case in vm.cases" class="repeat-item">
+                <div md-virtual-repeat="case in vm.cases" class="repeat-item" layout="row">
                     <a class="r-rowlink"
                        ui-sref="caseinfo({'caseId': case['oe:id']})"
                        layout="row"
                        class="{{ case['oe:status'] == 'passive' ? 'muted' : '' }}"
-                       ui-sref="caseinfo({'caseId': case['oe:id']})">
+                       ui-sref="caseinfo({'caseId': case['oe:id']})" flex="90">
                         <span class="r" flex="5"><i class="material-icons">folder_open</i></span>
                         <span class="r" flex="15">{{case["cm:title"]}}</span>
                         <span class="r muted" flex>{{case["oe:id"]}}</span>
-                        <span class="r muted" flex>{{case["TYPE"]}}</span>
+                        <span class="r muted" flex>{{case["TYPE"] | caseType}}</span>
                         <span class="r muted" flex>{{case["cm:created"] | openeDate}}</span>
                         <span class="r muted" flex>{{case["base:startDate"] | openeDate}}</span>
                         <span class="r muted" flex>{{case["base:endDate"] | openeDate}}</span>
                         <span class="r muted" flex>{{case["cm:modified"] | openeDate}}</span>
                         <span class="r muted" flex>{{ case["oe:status"] | caseStatus }}</span>
                     </a>
+                    <span flex="10" ng-show="vm.isAdmin"><md-button class="md-primary" ng-click="vm.deleteCase(case)">{{ 'COMMON.DELETE' | translate }}</md-button></span>
                 </div>
             </md-virtual-repeat-container>
         </div>
@@ -66,7 +68,7 @@
                 {{ 'CASE.CREATE_NEW_CASE' | translate }}
             </md-button>
             <md-menu-content>
-                <md-menu-item><md-button ng-click="vm.createCase($event, 'standard')">{{ 'CASE.CASETYPE_STANDARD' | translate }}</md-button></md-menu-item>
+                <md-menu-item><md-button ng-click="vm.createCase($event, 'standard')">{{ 'simple:case' | caseType }}</md-button></md-menu-item>
                 <md-menu-item><md-button ng-disabled="true">{{ 'CASE.CASETYPE_OTHER' | translate }}</md-button></md-menu-item>
             </md-menu-content>
         </md-menu>

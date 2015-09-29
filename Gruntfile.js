@@ -142,6 +142,9 @@ module.exports = function(grunt) {
                 "CASE": {
                   "STATUS": {
                     "active": "Active", "passive": "Passive", "closed": "Closed", "archived": "Archived"
+                  },
+                  "TYPE": {
+                    "simple_case": "Standard case"
                   }
                 },
                 "DOCUMENT": {
@@ -183,7 +186,10 @@ module.exports = function(grunt) {
               "space": "\t",
               "replace": {
                 "CASE": {
-                  "STATUS": {"active": "Aktiv", "passive": "Passiv", "closed": "Lukket", "archived": "Arkiveret"}
+                  "STATUS": {"active": "Aktiv", "passive": "Passiv", "closed": "Lukket", "archived": "Arkiveret"},
+                  "TYPE": {
+                    "simple_case": "Standardsag"
+                  }
                 },
                 "DOCUMENT": {
                   "CATEGORY": {

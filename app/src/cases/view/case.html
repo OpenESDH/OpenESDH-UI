@@ -107,7 +107,12 @@
                                 <span class="r muted" flex>{{ doc["cm:created"] | openeDate }}</span>
                                 <span class="r muted" flex>{{ doc["cm:modified"] | openeDate }}</span>
                             </a>
-                            <span flex="10"><md-button class="md-primary" ng-click="docCtrl.previewDocument(doc.mainDocNodeRef)">{{ 'COMMON.PREVIEW' | translate }}</md-button></span>
+                            <span flex="10">
+                                <md-button class="md-primary" ng-click="docCtrl.previewDocument(doc.mainDocNodeRef)">{{ 'COMMON.PREVIEW' | translate }}</md-button>
+                            </span>
+                            <span flex="10">
+                                <md-button class="md-primary" ng-click="docCtrl.deleteDocument(doc)" ng-show="docCtrl.isAdmin">{{ 'COMMON.DELETE' | translate }}</md-button>
+                            </span>
                         </div>
                     </md-virtual-repeat-container>
                 </div>
@@ -154,42 +159,16 @@
         <md-card ng-controller="NoteController as caseNotes">
           <md-card-content>
             <h3 class="md-title">{{ 'NOTE.NOTES' | translate }}</h3>
-            
-            <div flex>
-                <md-grid-list md-cols-sm="1" md-cols-md="2" md-cols-gt-md="3"
-                              md-row-height="4:3"
-                              md-gutter="1em">
-                    <md-grid-tile ng-repeat="note in caseNotes.notes"
-                                  md-rowspan="1"
-                                  md-colspan="1"
-                                  md-colspan-sm="1"
-                                  ng-class="tile.background">
-                        <md-grid-tile-header>
-                            <h4>{{ note.headline }}</h4>
-                        </md-grid-tile-header>
-                        {{ note.content }}
-                        <md-grid-tile-footer>
-                            {{ 'COMMON.CREATED' | translate }} {{ note.created | openeDate }} {{ 'COMMON.BY' | translate }} {{ note.authorInfo.firstName + ' ' + note.authorInfo.lastName }}<br>
-                            {{ 'NOTE.RELATED' | translate }}: <span style="margin-right: 0.5em;" ng-repeat="relation in note.concernedPartiesInfo">{{ relation.name }}</span>
-                        </md-grid-tile-footer>
-                    </md-grid-tile>
-                </md-grid-list>
+            <div layout="row" layout-wrap>
+                <div ng-repeat="note in caseNotes.notes" flex="33">
+                    <h4 style="margin-bottom: 0;" class="md-title">{{ note.headline }}</h4>
+                    <p>{{ note.content }}</p>
+                    <p style="font-size: 0.8em;" class="muted">
+                      {{ 'COMMON.CREATED' | translate }} {{ note.created | openeDate }} {{ 'COMMON.BY' | translate }} {{ note.authorInfo.firstName + ' ' + note.authorInfo.lastName }}<br>
+                      {{ 'NOTE.RELATED' | translate }}: <span style="margin-right: 0.5em;" ng-repeat="relation in note.concernedPartiesInfo">{{ relation.name }}</span>
+                    </p>
+                </div>                
             </div>
-            
-            <md-list>
-              <md-list-item ng-repeat="note in caseNotes.notes">
-                <div class="md-list-item-text">
-                  <h4>{{ note.headline }}</h4>
-                  <p>{{ note.content }}</p>
-                  <p style="font-size: 0.8em; color: #999;">
-                    {{ 'COMMON.CREATED' | translate }} {{ note.created | openeDate }} {{ 'COMMON.BY' | translate }} {{ note.authorInfo.firstName + ' ' + note.authorInfo.lastName }}<br>
-                    {{ 'NOTE.RELATED' | translate }}: <span style="margin-right: 0.5em;" ng-repeat="relation in note.concernedPartiesInfo">{{ relation.name }}</span>
-                  </p>
-                </div>
-              </md-list-item>                
-            </md-list>
-              {{ 'COMMON.SHOWING' | translate }} {{caseNotes.contentRange.startIndex}}-{{caseNotes.contentRange.endIndex}} {{ 'COMMON.OF' | translate }} {{caseNotes.contentRange.totalItems}}<br>
-              {{ 'COMMON.PAGES' | translate }}: <span style="margin-right: 10px;" ng-repeat="page in caseNotes.pages"><button ng-click="caseNotes.loadNotes(page)">{{page}}</button></span>
           </md-card-content>
           <div class="md-actions" layout="row">
             <md-button class="md-primary" ng-click="caseNotes.newNote()"
