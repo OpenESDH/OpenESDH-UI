@@ -251,8 +251,7 @@
                         "case.description": getPropValue("cm:description"),
                         "case.journalKey": getPropValue("oe:journalKey"),
                         "case.journalFacet": getPropValue("oe:journalFacet"),
-                        // TODO: use real case type
-                        "case.type": $filter('caseType')(caseInfo.TYPE)
+                        "case.type": $filter('caseType')(caseInfo.allProps.TYPE)
                     });
                 });
 
