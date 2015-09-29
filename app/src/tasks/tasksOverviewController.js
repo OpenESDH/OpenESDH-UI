@@ -11,9 +11,9 @@
         vm.deleteTask = deleteTask;
         vm.isAdmin = sessionService.isAdmin();
         
-        init();
+        loadTasks();
         
-        function init(){
+        function loadTasks(){
             taskService.getCurrentUserWorkflowTasks().then(function(result){
                 vm.tasks = result;
             });
@@ -29,7 +29,7 @@
                 .cancel($translate.instant('COMMON.CANCEL'));
             $mdDialog.show(confirm).then(function() {
                 workflowService.deleteWorkflow(task.workflowInstance.id).then(function(result){
-                    init();
+                    loadTasks();
                 });
             });
         }
