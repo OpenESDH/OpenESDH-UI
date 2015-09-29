@@ -107,8 +107,12 @@
                                 <span class="r muted" flex>{{ doc["cm:created"] | openeDate }}</span>
                                 <span class="r muted" flex>{{ doc["cm:modified"] | openeDate }}</span>
                             </a>
-                            <span flex="10"><md-button class="md-primary" ng-click="docCtrl.previewDocument(doc.mainDocNodeRef)">{{ 'COMMON.PREVIEW' | translate }}</md-button></span>
-                            <span flex="10"><md-button class="md-primary" ng-click="docCtrl.deleteDocument(doc)">{{ 'COMMON.DELETE' | translate }}</md-button></span>
+                            <span flex="10">
+                                <md-button class="md-primary" ng-click="docCtrl.previewDocument(doc.mainDocNodeRef)">{{ 'COMMON.PREVIEW' | translate }}</md-button>
+                            </span>
+                            <span flex="10">
+                                <md-button class="md-primary" ng-click="docCtrl.deleteDocument(doc)" ng-show="docCtrl.isAdmin">{{ 'COMMON.DELETE' | translate }}</md-button>
+                            </span>
                         </div>
                     </md-virtual-repeat-container>
                 </div>

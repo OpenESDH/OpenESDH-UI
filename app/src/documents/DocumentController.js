@@ -14,16 +14,18 @@
         'caseDocumentFileDialogService',
         'casePartiesService',
         'caseService',
-        'alfrescoFolderService'
+        'alfrescoFolderService',
+        'sessionService'
     ];
     
     function DocumentController($scope, $stateParams, $mdDialog, $translate, caseDocumentsService, documentPreviewService, 
-                caseDocumentFileDialogService, casePartiesService, caseService, alfrescoFolderService) {
+                caseDocumentFileDialogService, casePartiesService, caseService, alfrescoFolderService, sessionService) {
 
         var caseId = $stateParams.caseId;
         var vm = this;
         vm.caseId = caseId;
         vm.pageSize = 10;
+        vm.isAdmin = sessionService.isAdmin();
         
         vm.loadDocuments = loadDocuments;
         vm.uploadDocument = uploadDocument;

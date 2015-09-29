@@ -52,7 +52,7 @@
                         <span class="r muted" flex>{{case["cm:modified"] | openeDate}}</span>
                         <span class="r muted" flex>{{ case["oe:status"] | caseStatus }}</span>
                     </a>
-                    <span flex="10"><md-button class="md-primary" ng-click="vm.deleteCase(case)">{{ 'COMMON.DELETE' | translate }}</md-button></span>
+                    <span flex="10" ng-show="vm.isAdmin"><md-button class="md-primary" ng-click="vm.deleteCase(case)">{{ 'COMMON.DELETE' | translate }}</md-button></span>
                 </div>
             </md-virtual-repeat-container>
         </div>

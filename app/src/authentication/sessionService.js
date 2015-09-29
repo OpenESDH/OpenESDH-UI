@@ -10,7 +10,8 @@
     function sessionService($window) {
         var service = {
             getUserInfo: getUserInfo,
-            setUserInfo: setUserInfo
+            setUserInfo: setUserInfo,
+            isAdmin: isAdmin
         };
 
         init();
@@ -32,6 +33,13 @@
         function setUserInfo(info) {
             userInfo = info;
             $window.sessionStorage.setItem('userInfo', angular.toJson(userInfo));
+        }
+        
+        function isAdmin(){
+            if(userInfo == null || userInfo == undefined){
+                return false;
+            }
+            return userInfo.user.capabilities.isAdmin;
         }
     }
 })();
