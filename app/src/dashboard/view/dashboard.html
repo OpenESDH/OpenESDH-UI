@@ -6,8 +6,16 @@
       
         <md-card ng-controller="CaseController as caseController">
           <md-card-content>
-            
-              <h2 class="md-title">{{ 'CASE.MY_CASES' | translate }}</h2>
+
+              <div layout="row" layout-align="space-between center" layout-padding>
+                  
+                  <h2 class="md-title">{{ 'CASE.MY_CASES' | translate }}</h2>
+              
+                  <opene-list-filter list="caseController.caseFilter" 
+                                     choice="caseController.caseFilterChoice"
+                                     finished="caseController.getMyCases">
+                  </opene-list-filter>
+              </div>
               
               <div class="repeat-table">
                   <div class="repeat-header" layout="row">
