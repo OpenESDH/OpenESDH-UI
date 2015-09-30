@@ -132,6 +132,7 @@
 			"RECEIVER": "Modtager"
 		},
 		"DOWNLOAD_RENDERED_FROM_TEMPLATE": "Download fra skabelon",
+    "SAVE_RENDERED_TEMPLATE_TO_CASE": "Gem til sag",
 		"CHANGE_STATUS": "Skift status",
 		"VERSION": "Version",
 		"VERSION_ADDED": "Version tilføjet",
@@ -141,6 +142,7 @@
 		"UPLOAD_NEW_VERSION": "Upload ny version",
 		"PREVIEW": "Preview",
 		"ATTACHMENTS": {
+      "ATTACHMENTS": "Vedhæftninger",
 			"CURRENT_VERSION": "Nuværende version",
 			"EDIT_ATTACHMENT": "Redigér vedhæftning",
 			"UPLOAD_NEW_ATTACHMENT": "Upload ny vedhæftning"
