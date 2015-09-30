@@ -69,10 +69,9 @@
                   <dt flex="33">{{ 'COMMON.DESCRIPTION' | translate }}</dt><dd flex="66">{{ case["cm:description"].value }}</dd>
                 </dl>
               </md-card-content>
-              <div class="md-actions" layout="column" layout-padding layout-align="start start">
+              <div class="md-actions" layout="row" layout-padding layout-align="start center">
                 <md-button class="md-primary" ng-click="vm.editCase($event)"
                            ng-disabled="caseIsLocked">{{ 'CASE.EDIT_INFORMATION' | translate }}</md-button>
-                <md-button class="md-primary" ng-disabled="true">{{ 'CASE.PRINT_CASE' | translate }}</md-button>
                 <md-button class="md-primary" ng-click="vm.startWorklfow()">{{ 'CASE.START_WORKFLOW' | translate }}</md-button>
               </div>
             </md-card>
@@ -85,27 +84,27 @@
                 
                 <div class="repeat-table">
                     <div class="repeat-header" layout="row">
-                        <span class="r" flex="5"></span>
-                        <span class="r" flex>{{ 'COMMON.TITLE' | translate }}</span>
-                        <span class="r" flex>{{ 'COMMON.TYPE' | translate }}</span>
-                        <span class="r" flex>{{ 'COMMON.CATEGORY' | translate }}</span>
-                        <span class="r" flex>{{ 'COMMON.CREATEDBY' | translate }}</span>
-                        <span class="r" flex>{{ 'COMMON.CREATED' | translate }}</span>
-                        <span class="r" flex>{{ 'COMMON.MODIFIED' | translate }}</span>
-                        <span flex="10"></span>
+                        <span layout="row" flex="80">
+                            <span class="r" flex="5"></span>
+                            <span class="r" flex>{{ 'COMMON.TITLE' | translate }}</span>
+                            <span class="r" flex="15">{{ 'COMMON.TYPE' | translate }}</span>
+                            <span class="r" flex="15">{{ 'COMMON.CATEGORY' | translate }}</span>
+                            <span class="r" flex="20">{{ 'COMMON.CREATEDBY' | translate }}</span>
+                            <span class="r" flex="20">{{ 'COMMON.MODIFIED' | translate }}</span>
+                        </span>
+                        <span flex="20"></span>
                     </div>
                     <md-virtual-repeat-container md-auto-shrink>
                         <div md-virtual-repeat="doc in docCtrl.documents" class="repeat-item" layout="row">
-                            <a class="r-rowlink" href="#/cases/case/{{docCtrl.caseId}}/doc/{{doc.nodeRef | nodeRefUri}}" layout="row" flex="90">
+                            <a class="r-rowlink" href="#/cases/case/{{docCtrl.caseId}}/doc/{{doc.nodeRef | nodeRefUri}}" layout="row" flex="80">
                                 <span class="r" flex="5"><img class="md-avatar" ng-src="/app/assets/images/filetypes/{{doc.thumbNailURL}}"/></span>
                                 <span class="r" flex>{{ doc["cm:title"] }}</span>
-                                <span class="r muted" flex>{{ doc["doc:type"] }}</span>
-                                <span class="r muted" flex>{{ doc["doc:category"] }}</span>
-                                <span class="r muted" flex>
+                                <span class="r muted" flex="15">{{ doc["doc:type"] }}</span>
+                                <span class="r muted" flex="15">{{ doc["doc:category"] }}</span>
+                                <span class="r muted" flex="20">
                                     <span ng-repeat="owner in doc['doc:owner']">{{owner.fullname}}</span>
                                 </span>
-                                <span class="r muted" flex>{{ doc["cm:created"] | openeDate }}</span>
-                                <span class="r muted" flex>{{ doc["cm:modified"] | openeDate }}</span>
+                                <span class="r muted" flex="20">{{ doc["cm:modified"] | openeDate }}</span>
                             </a>
                             <span flex="10">
                                 <md-button class="md-primary" ng-click="docCtrl.previewDocument(doc.mainDocNodeRef)">{{ 'COMMON.PREVIEW' | translate }}</md-button>
@@ -139,7 +138,8 @@
                   </md-menu-content>
                 </md-menu>
                 <md-button class="md-primary"
-                           ng-click="docCtrl.createDocumentFromTemplate()">
+                           ng-click="docCtrl.createDocumentFromTemplate()"
+                           ng-disabled="caseIsLocked">
                   {{ 'DOCUMENT.CREATE_FROM_TEMPLATE' | translate }}
                 </md-button>
               </div>
@@ -171,8 +171,11 @@
             </div>
           </md-card-content>
           <div class="md-actions" layout="row">
-            <md-button class="md-primary" ng-click="caseNotes.newNote()"
-                       ng-disabled="caseIsLocked">{{ 'NOTE.NEW_NOTE' | translate }}</md-button>
+            <md-button class="md-primary"
+                       ng-click="caseNotes.newNote()"
+                       ng-disabled="caseIsLocked">
+                {{ 'NOTE.NEW_NOTE' | translate }}
+            </md-button>
             <md-button class="md-primary" ng-disabled="true">{{ 'NOTE.PRINT_ALL_NOTES' | translate }}</md-button>
           </div>
         </md-card>

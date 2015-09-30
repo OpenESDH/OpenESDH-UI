@@ -606,6 +606,8 @@
   "faceted-search.date.six-months.label": "Last six months",
   "faceted-search.date.one-year.label": "Last year",
   "faceted-search.size.100KB-1MB.label": "100kb - 1Mb",
+  "faceted-search.size.10-100KB.label": "10kb - 100kb",
+  "faceted-search.date.one-day.label": "Last 24 hours",
   "@{http://www.alfresco.org/model/content/1.0}content.size": "Size",
   "@{http://www.alfresco.org/model/content/1.0}modifier": "Modifier",
   "@{http://www.alfresco.org/model/content/1.0}modified": "Modified",

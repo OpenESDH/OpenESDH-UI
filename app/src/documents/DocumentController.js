@@ -15,11 +15,12 @@
         'casePartiesService',
         'alfrescoFolderService',
         'sessionService',
-        'caseService', 'fileUtilsService'
+        'caseService',
+        'fileUtilsService'
     ];
     
-    function DocumentController($scope, $stateParams, $mdDialog, $translate, caseDocumentsService, documentPreviewService, 
-                caseDocumentFileDialogService, casePartiesService, caseService, alfrescoFolderService, sessionService, fileUtilsService) {
+    function DocumentController($scope, $stateParams, $mdDialog, $translate, caseDocumentsService, documentPreviewService,
+                caseDocumentFileDialogService, casePartiesService, alfrescoFolderService, sessionService, caseService, fileUtilsService) {
 
         var caseId = $stateParams.caseId;
         var vm = this;

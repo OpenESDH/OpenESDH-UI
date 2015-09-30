@@ -116,6 +116,21 @@ legend {
   width: 100%;
 }
 
+.toggle-btn {
+  cursor: pointer;
+  padding: 0.25em 0.5em 0.25em 0.25em;
+}
+
+.toggle-btn:hover,
+.toggle-btn:focus,
+.toggle-btn:active {
+  background-color: rgba(0,0,0,0.1);
+}
+
+.closed + .toggle-obj {
+  display: none;
+}
+
 
 /* Virtual repeat lists */
 
