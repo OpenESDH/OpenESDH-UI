@@ -38,6 +38,7 @@
             
           </md-card-content>
           <div class="md-actions" layout="row" layout-padding>
+
             <md-menu>
                 <md-button class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="{{ 'CASE.CREATE_NEW_CASE' | translate }}">
                     <i class="material-icons">add</i>
@@ -48,6 +49,7 @@
                     <md-menu-item><md-button ng-disabled="true">{{ 'CASE.CASETYPE_OTHER' | translate }}</md-button></md-menu-item>
                 </md-menu-content>
             </md-menu>
+            
           </div>
         </md-card>
 
@@ -59,7 +61,7 @@
             <div class="repeat-table">
                   <div class="repeat-header" layout="row">
                       <span class="r" flex="10"></span>
-                      <span class="r" flex="30">{{ 'COMMON.NAME' | translate }}</span>
+                      <span class="r" flex="30">{{ 'COMMON.TITLE' | translate }}</span>
                       <span class="r" flex="30">{{ 'COMMON.MODIFIED' | translate }}</span>
                       <span class="r" flex="30">{{ 'COMMON.MODIFIED_BY' | translate }}</span>
                   </div>
@@ -67,7 +69,7 @@
                       <div md-virtual-repeat="document in vm.documents" class="repeat-item">
                           <a class="r-rowlink" href="#/cases/case/{{ document.caseId }}/doc/{{ document.location.parent.nodeRef | nodeRefUri }}" layout="row">
                               <span class="r" flex="10"><img class="md-avatar" ng-src="/app/assets/images/filetypes/{{document.thumbNailURL}}"/></span>
-                              <span class="r" flex="30">{{ document.displayName }}</span>
+                              <span class="r" flex="30">{{ document.title }}</span>
                               <span class="r muted" flex="30">{{ document.modifiedOn | openeDate}}</span>
                               <span class="r muted" flex="30">{{ document.modifiedBy }}</span>
                               
