@@ -123,7 +123,6 @@
         }
 
         function sendEmail(caseId, message) {
-            console.log(message);
             return $http.post('/alfresco/service/api/openesdh/case/' + caseId + '/email', message).then(function (response) {
                 return response.data;
             });
