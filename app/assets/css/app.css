@@ -212,3 +212,21 @@ td .md-button {
 .md-checked .md-label {
   font-weight: 700;
 }
+
+/* Dashboard - task list */
+#dashboardTasksCard {
+  min-height: 532px;
+}
+
+#dashboardTasksCard md-list-item {
+  padding-left: 5px;
+}
+
+#dashboardTasksCard md-list-item:hover {
+  background-color: #F7F7F7;
+  cursor: pointer;
+}
+
+#dashboardTasksCard md-list-item md-icon {
+  margin-right: 10px;
+}
