@@ -26,7 +26,7 @@
         var vm = this;
         vm.caseId = caseId;
         vm.pageSize = 10;
-        vm.isAdmin = sessionService.isAdmin;
+        vm.isAdmin = sessionService.isAdmin();
         
         vm.loadDocuments = loadDocuments;
         vm.uploadDocument = uploadDocument;
