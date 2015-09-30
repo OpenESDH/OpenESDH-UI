@@ -65,6 +65,12 @@
 			"closed": "Lukket",
 			"archived": "Arkiveret"
 		},
+    "FILTER": {
+      "ALL_CASES": "Alle Sager",
+      "ACTIVE_CASES": "Aktive sager",
+      "PASSIVE_CASES": "Passive sager",
+      "CLOSED_CASES": "Lukkede sager"
+    },
 		"CASES": "Sager",
 		"CHANGE_STATUS": "Skift sagsstatus",
 		"CASE": "Sag",
@@ -588,6 +594,10 @@
 	},
 	"SEARCH": {
 		"SEARCH": "Søg",
+    "FIND_USER": "Find bruger",
+    "FIND_USERS": "Find brugere",
+    "FIND_PERSON": "Find personer",
+    "FIND_ORGANISATION": "Find organisationer",
     "NO_MATCHES": "Ingen resultater"
 	},
   "faceted-search.date.one-week.label": "Sidste uge",

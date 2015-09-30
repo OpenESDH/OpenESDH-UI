@@ -65,6 +65,12 @@
 			"closed": "Closed",
 			"archived": "Archived"
 		},
+    "FILTER": {
+      "ALL_CASES": "All cases",
+      "ACTIVE_CASES": "Active cases",
+      "PASSIVE_CASES": "Passive cases",
+      "CLOSED_CASES": "Closed cases"
+    },
 		"CASES": "Cases",
 		"CHANGE_STATUS": "Change case status",
 		"CASE": "Case",
@@ -604,6 +610,10 @@
 	},
 	"SEARCH": {
 		"SEARCH": "Search",
+    "FIND_USER":"Find user",
+    "FIND_USERS":"Find users",
+    "FIND_PERSON":"Find persons",
+    "FIND_ORGANISATION":"Find organizations",
     "NO_MATCHES": "No matches"
 	},
   "faceted-search.date.one-week.label": "Last week",
