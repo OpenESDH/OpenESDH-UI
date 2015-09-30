@@ -72,14 +72,14 @@
               <div class="md-actions" layout="row" layout-padding layout-align="start center">
                 <md-button class="md-primary" ng-click="vm.editCase($event)"
                            ng-disabled="caseIsLocked">{{ 'CASE.EDIT_INFORMATION' | translate }}</md-button>
-                <md-button class="md-primary" ng-click="vm.startWorklfow()">{{ 'CASE.START_WORKFLOW' | translate }}</md-button>
+                <md-button class="md-primary" ng-click="vm.startWorklfow()" ng-disabled="caseIsLocked">{{ 'CASE.START_WORKFLOW' | translate }}</md-button>
               </div>
             </md-card>
           </div>
           
           <div flex="100" flex-gt-md="75">
             <md-card ng-controller="DocumentController as docCtrl">
-              <md-card-content>
+              <md-card-content style="min-height: 400px;">
                 <h3 class="md-title">{{ 'DOCUMENT.DOCUMENTS' | translate }}</h3>
                 
                 <div class="repeat-table">
