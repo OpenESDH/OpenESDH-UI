@@ -58,6 +58,9 @@
       "PASSIVE_CASES": "Passive cases",
       "CLOSED_CASES": "Closed cases"
     },
+	"TYPE": {
+	  "simple_case": "Standard case"
+	},
     "CONFIRM_CLOSE_CASE": "Do you want to close this case?",
     "STATUS_CHANGED_SUCCESS": "Status has been changed successfully",
     "CASETYPE_STANDARD": "Standard case",
