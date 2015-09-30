@@ -49,7 +49,8 @@
 		"PRIORITY": "Priority",
 		"CREATED_ON": "Created on",
 		"NO": "No",
-		"STATE": "State"
+		"STATE": "State",
+    "COMMENT": "Comment"
 	},
 	"CASE": {
 		"CONFIRM_CLOSE_CASE": "Do you want to close this case?",
@@ -579,7 +580,8 @@
 		"TASK_DONE": "Task done",
 		"APPROVE": "Approve",
 		"REJECT": "Reject",
-		"VIEW_TASK_DETAILS": "View task details"
+		"VIEW_TASK_DETAILS": "View task details",
+    "ITEMS": "Items"
 	},
 	"MENU": {
 		"OPEN_MENU": "Open menu",

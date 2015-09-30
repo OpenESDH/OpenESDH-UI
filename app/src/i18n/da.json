@@ -49,7 +49,8 @@
 		"PRIORITY": "Prioritet",
 		"CREATED_ON": "Oprettet d.",
 		"NO": "Nr",
-		"STATE": "Status"
+		"STATE": "Status",
+    "COMMENT": "Kommentar"
 	},
 	"CASE": {
 		"CONFIRM_CLOSE_CASE": "Vil du lukke denne sag?",
@@ -563,7 +564,8 @@
 		"TASK_DONE": "Opgave færdig",
 		"APPROVE": "Godkend",
 		"REJECT": "Afvis",
-		"VIEW_TASK_DETAILS": "Vis opgavedetaljer"
+		"VIEW_TASK_DETAILS": "Vis opgavedetaljer",
+    "ITEMS": "Vedlægninger"
 	},
 	"MENU": {
 		"OPEN_MENU": "Åben menu",

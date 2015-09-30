@@ -85,12 +85,12 @@
   
     <div flex="33">
 
-        <md-card ng-controller="tasksOverviewController as tasksCtrl">
+        <md-card ng-controller="tasksOverviewController as tasksCtrl" style="min-height: 780px;">
           <md-card-content>
             <h2 class="md-title">{{ 'TASK.MY_TASKS' | translate }}</h2>
             <md-list>
-              <md-list-item class="md-2-line" ng-repeat="task in tasksCtrl.tasks">
-                <div class="md-list-item-text">
+              <md-list-item class="md-2-line clickable" ng-repeat="task in tasksCtrl.tasks">
+                <div class="md-list-item-text" ui-sref="workflowtask({ taskName: task.name, taskId : task.id })">
                   <h3>{{task.properties.bpm_description}}</h3>
                   <p>{{task.description}}</p>
                 </div>
