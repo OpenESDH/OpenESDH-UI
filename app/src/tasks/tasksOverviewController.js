@@ -15,7 +15,7 @@
         loadTasks();
         
         function loadTasks(){
-            taskService.getCurrentUserWorkflowTasks().then(function(result){
+            taskService.getTasks().then(function(result){
                 vm.tasks = result;
             });
         }

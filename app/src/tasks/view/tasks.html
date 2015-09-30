@@ -12,7 +12,7 @@
 <md-card ng-repeat="task in tasksCtrl.tasks | filter:status">
   <md-card-content>
     <div style="float: right;font-size: 14px;">
-        {{'COMMON.CREATED_ON' | translate}} {{task.properties.cm_created | date}} {{'COMMON.BY' | translate}} {{task.owner.firstName + ' ' + task.owner.lastName}}
+        {{'COMMON.CREATED_ON' | translate}} {{task.properties.cm_created | date}} {{'COMMON.BY' | translate}} {{task.workflowInstance.initiator.firstName + ' ' + task.workflowInstance.initiator.lastName}}
     </div>
     <h3>{{ task.properties.bpm_description }}</h3>
     <dl layout="row" layout-wrap>
