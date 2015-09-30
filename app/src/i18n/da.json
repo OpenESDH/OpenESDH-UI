@@ -1,9 +1,5 @@
 {
   "COMMON": {
-    "ALL_CASES": "Alle Sager",
-    "ACTIVE_CASES": "Aktive sager",
-    "PASSIVE_CASES": "Passive sager",
-    "CLOSED_CASES": "Lukkede sager",
     "CONFIRM": "Bekræft",
     "OK": "OK",
     "CANCEL": "Annullér",
@@ -55,6 +51,12 @@
     "STATE": "Status"
   },
   "CASE": {
+    "FILTER": {
+      "ALL_CASES": "Alle Sager",
+      "ACTIVE_CASES": "Aktive sager",
+      "PASSIVE_CASES": "Passive sager",
+      "CLOSED_CASES": "Lukkede sager"
+    },
     "CONFIRM_CLOSE_CASE": "Vil du lukke denne sag?",
     "STATUS_CHANGED_SUCCESS": "Status er ændret",
     "CASETYPE_STANDARD": "Standard sag",

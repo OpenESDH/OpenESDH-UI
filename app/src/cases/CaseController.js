@@ -7,7 +7,6 @@
 
     CaseController.$inject = [
         '$scope',
-        '$filter',
         '$mdDialog', 
         '$location', 
         '$translate', 
@@ -24,22 +23,22 @@
      * @param cases
      * @constructor
      */
-    function CaseController($scope, $filter, $mdDialog, $location, $translate, caseService, userService, caseCrudDialogService, alfrescoFolderService, sessionService) {
+    function CaseController($scope, $mdDialog, $location, $translate, caseService, userService, caseCrudDialogService, alfrescoFolderService, sessionService) {
         var vm = this;
         vm.cases = [];
         vm.caseFilter = [{
-            name: $filter('translate')('COMMON.ALL_CASES'),
+            name: $translate.instant('CASE.FILTER.ALL_CASES'),
             value: 'all'
         },{
-            name: $filter('translate')('COMMON.ACTIVE_CASES'),
+            name: $translate.instant('CASE.FILTER.ACTIVE_CASES'),
             field: 'oe:status',
             value: 'active'
         }, {
-            name: $filter('translate')('COMMON.CLOSED_CASES'),
+            name: $translate.instant('CASE.FILTER.CLOSED_CASES'),
             field: 'oe:status',
             value: 'closed'
         }, {
-            name: $filter('translate')('COMMON.PASSIVE_CASES'),
+            name: $translate.instant('CASE.FILTER.PASSIVE_CASES'),
             field: 'oe:status',
             value: 'passive'
         }];
