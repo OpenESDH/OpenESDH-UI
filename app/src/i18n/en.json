@@ -2,6 +2,7 @@
   "COMMON": {
     "CONFIRM": "Confirm",
     "OK": "OK",
+    "YES": "Yes",
     "CANCEL": "Cancel",
     "BACK": "Back",
     "NEXT": "Next",
@@ -48,7 +49,6 @@
     "PRIORITY": "Priority",
     "CREATED_ON": "Created on",
     "NO": "No",
-    "YES": "Yes",
     "STATE": "State"
   },
   "CASE": {
