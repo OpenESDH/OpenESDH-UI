@@ -65,7 +65,7 @@
                       <span class="r" flex="30">{{ 'COMMON.MODIFIED' | translate }}</span>
                       <span class="r" flex="30">{{ 'COMMON.MODIFIED_BY' | translate }}</span>
                   </div>
-                  <md-virtual-repeat-container md-auto-shrink style="height: 200px;">
+                  <md-virtual-repeat-container md-auto-shrink style="min-height: 150px;">
                       <div md-virtual-repeat="document in vm.documents" class="repeat-item">
                           <a class="r-rowlink" href="#/cases/case/{{ document.caseId }}/doc/{{ document.location.parent.nodeRef | nodeRefUri }}" layout="row">
                               <span class="r" flex="10"><img class="md-avatar" ng-src="/app/assets/images/filetypes/{{document.thumbNailURL}}"/></span>
@@ -85,7 +85,7 @@
   
     <div flex="33">
 
-        <md-card ng-controller="tasksOverviewController as tasksCtrl" style="min-height: 780px;">
+        <md-card ng-controller="tasksOverviewController as tasksCtrl" style="min-height: 850px;">
           <md-card-content>
             <h2 class="md-title">{{ 'TASK.MY_TASKS' | translate }}</h2>
             <md-list>
