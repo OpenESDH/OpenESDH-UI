@@ -139,7 +139,8 @@
                   </md-menu-content>
                 </md-menu>
                 <md-button class="md-primary"
-                           ng-click="docCtrl.createDocumentFromTemplate()">
+                           ng-click="docCtrl.createDocumentFromTemplate()"
+                           ng-disabled="caseIsLocked">
                   {{ 'DOCUMENT.CREATE_FROM_TEMPLATE' | translate }}
                 </md-button>
               </div>
