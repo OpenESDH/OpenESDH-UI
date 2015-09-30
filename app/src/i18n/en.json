@@ -1,5 +1,9 @@
 {
 	"COMMON": {
+	  	"ALL_CASES": "All Cases",
+	  	"ACTIVE_CASES": "Active cases",
+	  	"PASSIVE_CASES": "Passive cases",
+	  	"CLOSED_CASES": "Closed cases",
 		"CONFIRM": "Confirm",
 		"OK": "OK",
 		"CANCEL": "Cancel",
