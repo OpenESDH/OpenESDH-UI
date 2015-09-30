@@ -140,10 +140,11 @@
             }
             function emailDocuments() {
                 // Send the email
-                var toList = '';
+                var toList = [];
                 for (var person in vm.to) {
-                  toList += vm.to[person].contactId + '; ';
-                };
+                  // Backend still expects objects with nodeRef property
+                  toList.push({nodeRef: vm.to[person].nodeRef});
+                }
                 caseService.sendEmail(caseId, {
                     'to': toList,
                     'subject': vm.subject,
