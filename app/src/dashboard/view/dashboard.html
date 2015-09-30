@@ -38,6 +38,7 @@
             
           </md-card-content>
           <div class="md-actions" layout="row" layout-padding>
+
             <md-menu>
                 <md-button class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="{{ 'CASE.CREATE_NEW_CASE' | translate }}">
                     <i class="material-icons">add</i>
@@ -48,6 +49,7 @@
                     <md-menu-item><md-button ng-disabled="true">{{ 'CASE.CASETYPE_OTHER' | translate }}</md-button></md-menu-item>
                 </md-menu-content>
             </md-menu>
+            
           </div>
         </md-card>
 
@@ -59,15 +61,15 @@
             <div class="repeat-table">
                   <div class="repeat-header" layout="row">
                       <span class="r" flex="10"></span>
-                      <span class="r" flex="30">{{ 'COMMON.NAME' | translate }}</span>
+                      <span class="r" flex="30">{{ 'COMMON.TITLE' | translate }}</span>
                       <span class="r" flex="30">{{ 'COMMON.MODIFIED' | translate }}</span>
                       <span class="r" flex="30">{{ 'COMMON.MODIFIED_BY' | translate }}</span>
                   </div>
-                  <md-virtual-repeat-container md-auto-shrink style="height: 200px;">
+                  <md-virtual-repeat-container md-auto-shrink style="min-height: 150px;">
                       <div md-virtual-repeat="document in vm.documents" class="repeat-item">
                           <a class="r-rowlink" href="#/cases/case/{{ document.caseId }}/doc/{{ document.location.parent.nodeRef | nodeRefUri }}" layout="row">
                               <span class="r" flex="10"><img class="md-avatar" ng-src="/app/assets/images/filetypes/{{document.thumbNailURL}}"/></span>
-                              <span class="r" flex="30">{{ document.displayName }}</span>
+                              <span class="r" flex="30">{{ document.title }}</span>
                               <span class="r muted" flex="30">{{ document.modifiedOn | openeDate}}</span>
                               <span class="r muted" flex="30">{{ document.modifiedBy }}</span>
                               
@@ -83,17 +85,15 @@
   
     <div flex="33">
 
-        <md-card id="dashboardTasksCard" ng-controller="tasksOverviewController as tasksCtrl">
+        <md-card ng-controller="tasksOverviewController as tasksCtrl" style="min-height: 850px;">
           <md-card-content>
             <h2 class="md-title">{{ 'TASK.MY_TASKS' | translate }}</h2>
             <md-list>
-              <md-list-item class="md-2-line" ng-repeat="task in tasksCtrl.tasks">
-                <md-icon class="material-icons">assignment</md-icon>
-                <div class="md-list-item-text">  
+              <md-list-item class="md-2-line clickable" ng-repeat="task in tasksCtrl.tasks">
+                <div class="md-list-item-text" ui-sref="workflowtask({ taskName: task.name, taskId : task.id })">
                   <h3>{{task.properties.bpm_description}}</h3>
                   <p>{{task.description}}</p>
                 </div>
-                <md-divider></md-divider>
               </md-list-item>
             </md-list>
           </md-card-content>
