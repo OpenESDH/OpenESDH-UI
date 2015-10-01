@@ -148,17 +148,8 @@ module.exports = function(grunt) {
                   }
                 },
                 "DOCUMENT": {
-                  "CATEGORY": {
-                    "annex": "Annex", "proof": "Proof", "contract": "Contract", "note": "Note", "report": "Report", "proxy": "Proxy", "warranty": "Warranty", "part": "Part", "statement": "Statement", "summary": "Summary", "accounting": "Accounting", "offers": "Offers", "other": "Other"  
-                  },
-                  "STATE": {
-                    "draft": "Draft", "final": "Final", "received": "Received", "distributed": "Distributed", "under-review": "Under review", "published": "Published", "finalised": "Finalised", "submitted": "Submitted"
-                  },
                   "STATUS": {
                     "draft": "Draft", "final": "Final"  
-                  },
-                  "TYPE": {
-                    "invoice": "Invoice", "letter": "Letter", "note": "Note", "report": "Report", "agenda": "Agenda", "other": "Other"
                   }
                 },
                 "COUNTRY": {
@@ -192,17 +183,8 @@ module.exports = function(grunt) {
                   }
                 },
                 "DOCUMENT": {
-                  "CATEGORY": {
-                    "annex": "Annex", "proof": "Proof", "contract": "Kontrakt", "note": "Note", "report": "Rapport", "proxy": "Proxy", "warranty": "Garanti", "part": "Part", "statement": "Udtalelse", "summary": "Resumé", "accounting": "Bogholderi", "offers": "Tilbud", "other": "Andet"  
-                  },
-                  "STATE": {
-                    "draft": "Kladde", "final": "Endelig", "received": "Modtaget", "distributed": "Distribueret", "under-review": "Under gennemlæsning", "published": "Publiceret", "finalised": "Færdiggjort", "submitted": "Indmeldt"
-                  },
                   "STATUS": {
                     "draft": "Kladde", "final": "Endelig"  
-                  },
-                  "TYPE": {
-                    "invoice": "Faktura", "letter": "Brev", "note": "Note", "report": "Rapport", "agenda": "Agenda", "other": "Andet"  
                   }
                 },
                 "COUNTRY": {
