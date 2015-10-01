@@ -4,9 +4,11 @@
             .module('openeApp.contacts')
             .controller('OrganizationController', OrganizationController);
 
-    OrganizationController.$inject = ['$scope', '$stateParams', '$mdDialog', '$location', 'contactsService', 'countriesService', 'PATTERNS'];
+    OrganizationController.$inject = ['$scope', '$stateParams', '$mdDialog', '$location', 
+        'contactsService', 'countriesService', 'PATTERNS'];
 
-    function OrganizationController($scope, $stateParams, $mdDialog, $location, contactsService, countriesService, PATTERNS) {
+    function OrganizationController($scope, $stateParams, $mdDialog, $location, 
+    contactsService, countriesService, PATTERNS) {
         var vm = this;
         vm.doFilter = doFilter;
         vm.showOrganizationEdit = showOrganizationEdit;
@@ -15,14 +17,7 @@
         vm.initPersons = initPersons;
         vm.searchQuery = null;
         vm.organizations = [];
-        vm.pages = [];
-        vm.pagingParams = {
-            pageSize: 5, //default 25
-            page: 1,
-            totalRecords: 0,
-            sortField: null,
-            sortAscending: true
-        };
+        vm.pagingParams = contactsService.createPagingParams();
 
         if ($stateParams.uuid) {
             //infoForm
@@ -36,19 +31,10 @@
             vm.organizations.length = 0;
             contactsService.getOrganizations(vm.searchQuery, vm.pagingParams).then(function(response) {
                 vm.organizations = response;
-                initPages(response);
+                vm.pagingParams.totalRecords = response.totalRecords;
             }, function(error) {
                 console.log(error);
             });
-        }
-
-        function initPages(response) {
-            vm.pages.length = 0;
-            vm.pagingParams.totalRecords = response.totalRecords;
-            var pagesCount = Math.ceil(response.totalRecords / vm.pagingParams.pageSize);
-            for (var i = 0; i < pagesCount; i++) {
-                vm.pages.push(i + 1);
-            }
         }
 
         function initInfo() {

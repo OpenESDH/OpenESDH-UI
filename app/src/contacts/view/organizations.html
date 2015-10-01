@@ -1,44 +1,49 @@
 <md-card ng-controller="OrganizationController as vm">
-    <md-card-content>
-        <h3>{{ 'ORG.ORGANIZATIONS' | translate }}</h3>
-        <md-input-container>
-            <label>{{ 'ORG.SEARCH_FOR_ORG' | translate }}</label>
-            <input type="text" ng-model="vm.searchQuery" ng-change="vm.doFilter()">
-        </md-input-container>
+  <md-card-content>
+    <h3>{{ 'ORG.ORGANIZATIONS' | translate }}</h3>
+    <md-input-container>
+      <label>{{ 'ORG.SEARCH_FOR_ORG' | translate }}</label>
+      <input type="text" ng-model="vm.searchQuery" ng-change="vm.doFilter()">
+    </md-input-container>
 
-        <table>
-            <thead>
-            <th>{{ 'COMMON.NAME' | translate }}</th>
-            <th>{{ 'ORG.CVR_NO' | translate }}</th>
-            <th>{{ 'ORG.DEPARTMENT' | translate }}</th>
-            <th>{{ 'ORG.STREET' | translate }}</th>
-            <th>{{ 'ORG.POSTAL_CODE' | translate }}</th>
-            <th>{{ 'ORG.CITY' | translate }}</th>
-            <th>{{ 'ORG.COUNTRY' | translate }}</th>
-            <th>{{ 'COMMON.ACTIONS' | translate }}</th>
-            </thead>
-            <tbody>
-                <tr ng-repeat="organization in vm.organizations.items">
-                    <td>{{organization.organizationName}}</td>
-                    <td>{{organization.cvrNumber}}</td>
-                    <td></td>
-                    <td>{{organization.address}}</td>
-                    <td>{{organization.postCode}}</td>
-                    <td>{{organization.cityName}}</td>
-                    <td>{{organization.countryCode| countryCodeToName}}</td>
-                    <td>
-                        <a class="md-button md-primary"
-                           ui-sref="administration.organization({'storeProtocol': organization.storeType, 'storeIdentifier': organization.storeId, 'uuid': organization.id})">
-                            {{ 'COMMON.VIEW_DETAILS' | translate }}
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <md-button class="md-primary" ng-click="vm.showOrganizationEdit($event)">{{ 'ORG.CREATE_NEW_ORG' | translate }}</md-button>
-        <div style="margin: 0 8px; padding: 0 6px;">
-            {{ 'COMMON.SHOW' | translate }} {{vm.pagingParams.pageSize < vm.pagingParams.totalRecords ? vm.pagingParams.pageSize : vm.pagingParams.totalRecords}} {{ 'COMMON.OF' | translate }} {{vm.pagingParams.totalRecords}}. Pages: 
-            <button ng-repeat="page in vm.pages" ng-click="vm.doFilter(page);" style="margin: 0 2px;">{{page}}</button>
-        </div>
-    </md-card-content>
+    <table>
+      <thead>
+        <th>{{ 'COMMON.NAME' | translate }}</th>
+        <th>{{ 'ORG.CVR_NO' | translate }}</th>
+        <th>{{ 'ORG.DEPARTMENT' | translate }}</th>
+        <th>{{ 'ORG.STREET' | translate }}</th>
+        <th>{{ 'ORG.POSTAL_CODE' | translate }}</th>
+        <th>{{ 'ORG.CITY' | translate }}</th>
+        <th>{{ 'ORG.COUNTRY' | translate }}</th>
+        <th>{{ 'COMMON.ACTIONS' | translate }}</th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="organization in vm.organizations.items">
+          <td>{{organization.organizationName}}</td>
+          <td>{{organization.cvrNumber}}</td>
+          <td></td>
+          <td>{{organization.address}}</td>
+          <td>{{organization.postCode}}</td>
+          <td>{{organization.cityName}}</td>
+          <td>{{organization.countryCode| countryCodeToName}}</td>
+          <td>
+            <a class="md-button md-primary"
+               ui-sref="administration.organization({'storeProtocol': organization.storeType, 'storeIdentifier': organization.storeId, 'uuid': organization.id})">
+              {{ 'COMMON.VIEW_DETAILS' | translate }}
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="md-actions">
+      <md-button class="md-primary" ng-click="vm.showOrganizationEdit($event)">{{ 'ORG.CREATE_NEW_ORG' | translate }}</md-button>
+      <div style="float: right;">
+        <span>{{vm.pagingParams.getStartIndex()}} - {{vm.pagingParams.getEndIndex()}} {{ 'COMMON.OF' | translate }} {{vm.pagingParams.totalRecords}}</span>
+        <span>
+          <md-button ng-click="vm.doFilter(vm.pagingParams.page - 1)" ng-disabled="!vm.pagingParams.hasPreviousPage()" title="Previos page">&lt;</md-button>
+          <md-button ng-click="vm.doFilter(vm.pagingParams.page + 1)" ng-disabled="!vm.pagingParams.hasNextPage()" title="Next page">&gt;</md-button>
+        </span>
+      </div>
+    </div>
+  </md-card-content>
 </md-card>

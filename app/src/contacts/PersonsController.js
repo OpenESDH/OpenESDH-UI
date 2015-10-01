@@ -6,7 +6,7 @@
 
     PersonsController.$inject = ['$mdDialog', 'contactsService', 'countriesService', 'PATTERNS'];
 
-    var DEFAULT_PAGE_SIZE = 5;
+    
 
     function PersonsController($mdDialog, contactsService, countriesService, PATTERNS) {
         var vm = this;
@@ -14,34 +14,18 @@
         vm.showPersonEdit = showPersonEdit;
         vm.persons = [];
         vm.searchQuery = null;
-        vm.pages = [];
-        vm.pagingParams = {
-            pageSize: DEFAULT_PAGE_SIZE,
-            page: 1,
-            totalRecords: 0,
-            sortField: null,
-            sortAscending: true
-        };
+        vm.pagingParams = contactsService.createPagingParams();
 
         initList();
 
         function initList() {
             vm.persons.length = 0;
-            contactsService.getPersons(vm.searchQuery).then(function(response) {
+            contactsService.getPersons(vm.searchQuery, vm.pagingParams).then(function(response) {
                 vm.persons = response;
-                initPages(response);
+                vm.pagingParams.totalRecords = response.totalRecords;
             }, function(error) {
                 console.log(error);
             });
-        }
-
-        function initPages(response) {
-            vm.pages.length = 0;
-            vm.pagingParams.totalRecords = response.totalRecords;
-            var pagesCount = Math.ceil(response.totalRecords / vm.pagingParams.pageSize);
-            for (var i = 0; i < pagesCount; i++) {
-                vm.pages.push(i + 1);
-            }
         }
 
         function doFilter(page) {

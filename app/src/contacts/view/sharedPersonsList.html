@@ -23,4 +23,14 @@
     </tbody>
 </table>
 
-<md-button class="md-primary" ng-click="vm.showPersonEdit($event, null)">{{ 'CONTACT.CREATE_NEW_CONTACT' | translate }}</md-button>
+<div class="md-actions">
+  <md-button class="md-primary" ng-click="vm.showPersonEdit($event, null)">{{ 'CONTACT.CREATE_NEW_CONTACT' | translate }}</md-button>
+  <!-- Here is a pager that we'd like to replace with md-virtual-repeat -->
+  <div style="float: right;" ng-show="vm.pagingParams && vm.pagingParams.totalRecords > 0">
+    <span>{{vm.pagingParams.getStartIndex()}} - {{vm.pagingParams.getEndIndex()}} {{ 'COMMON.OF' | translate }} {{vm.pagingParams.totalRecords}}</span>
+    <span>
+      <md-button ng-click="vm.doFilter(vm.pagingParams.page - 1)" ng-disabled="!vm.pagingParams.hasPreviousPage()" title="Previos page">&lt;</md-button>
+      <md-button ng-click="vm.doFilter(vm.pagingParams.page + 1)" ng-disabled="!vm.pagingParams.hasNextPage()" title="Next page">&gt;</md-button>
+    </span>
+  </div>
+</div>
