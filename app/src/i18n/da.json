@@ -2,6 +2,7 @@
 	"COMMON": {
 		"CONFIRM": "Bekræft",
 		"OK": "OK",
+    "YES": "Ja",
 		"CANCEL": "Annullér",
 		"BACK": "Tilbage",
 		"NEXT": "Næste",
@@ -48,39 +49,51 @@
 		"PRIORITY": "Prioritet",
 		"CREATED_ON": "Oprettet d.",
 		"NO": "Nr",
-		"STATE": "Status"
+		"STATE": "Status",
+    "COMMENT": "Kommentar"
 	},
 	"CASE": {
 		"CONFIRM_CLOSE_CASE": "Vil du lukke denne sag?",
 		"STATUS_CHANGED_SUCCESS": "Status er ændret",
 		"CASETYPE_STANDARD": "Standard sag",
+    "TYPE": {
+      "simple_case": "Standardsag"
+    },
 		"STATUS": {
 			"active": "Aktiv",
 			"passive": "Passiv",
 			"closed": "Lukket",
 			"archived": "Arkiveret"
 		},
+    "FILTER": {
+      "ALL_CASES": "Alle Sager",
+      "ACTIVE_CASES": "Aktive sager",
+      "PASSIVE_CASES": "Passive sager",
+      "CLOSED_CASES": "Lukkede sager"
+    },
 		"CASES": "Sager",
 		"CHANGE_STATUS": "Skift sagsstatus",
 		"CASE": "Sag",
-		"CASE_OWNER": "Sags-ejer",
+		"CASE_OWNER": "Sagsejer",
 		"JOURNAL_KEY": "Journalnøgle",
 		"JOURNAL_FACET": "Journalfacet",
 		"EDIT_INFORMATION": "Redigér information",
 		"PRINT_CASE": "Print sag",
 		"START_WORKFLOW": "Start workflow",
-		"CASE_HISTORY": "Sags-historik",
+		"CASE_HISTORY": "Sagshistorik",
 		"CREATE_CASE": "Opret sag",
 		"EDIT_PROPERTIES": "Redigér sag",
 		"TITLE": "Titel",
 		"OWNER": "Ejer",
-		"START_DATE": "Start-dato",
+		"START_DATE": "Startdato",
 		"DESCRIPTION": "Beskrivelse",
 		"CREATE_NEW_CASE": "Opret ny sag",
 		"CASETYPE_OTHER": "Anden sagstype",
-		"STARTDATE": "Start-dato",
-		"ENDDATE": "Slut-dato",
-		"MY_CASES": "Mine sager"
+		"STARTDATE": "Startdato",
+		"ENDDATE": "Slutdato",
+		"MY_CASES": "Mine sager",
+		"ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_CASE": "Er du sikker på, at du vil slette '{{case_title}}'?",
+    "VIEW_CASE_DETAILS": "Vis sag"
 	},
 	"DOCUMENT": {
 		"STATUS_CHANGED_SUCCESS": "Status er ændret",
@@ -113,6 +126,7 @@
 			"draft": "Kladde",
 			"final": "Endelig"
 		},
+    "DOCUMENT": "Dokument",
 		"DOCUMENTS": "Dokumenter",
 		"UPLOAD_NEW_DOCUMENTS": "Upload nyt dokument",
 		"SEND_DOCUMENTS": "Send dokumenter",
@@ -125,6 +139,7 @@
 			"RECEIVER": "Modtager"
 		},
 		"DOWNLOAD_RENDERED_FROM_TEMPLATE": "Download fra skabelon",
+    "SAVE_RENDERED_TEMPLATE_TO_CASE": "Gem til sag",
 		"CHANGE_STATUS": "Skift status",
 		"VERSION": "Version",
 		"VERSION_ADDED": "Version tilføjet",
@@ -134,6 +149,7 @@
 		"UPLOAD_NEW_VERSION": "Upload ny version",
 		"PREVIEW": "Preview",
 		"ATTACHMENTS": {
+      "ATTACHMENTS": "Vedhæftninger",
 			"CURRENT_VERSION": "Nuværende version",
 			"EDIT_ATTACHMENT": "Redigér vedhæftning",
 			"UPLOAD_NEW_ATTACHMENT": "Upload ny vedhæftning"
@@ -148,7 +164,9 @@
 		"CANNOT_PREVIEW": "Kan ikke vise preview",
 		"DOWNLOAD_DOCUMENT": "Download dokument",
 		"IMAGE_MAX_SIZE_EXCEEDED": "Billedet \"{{image}}\" er for stort til at blive vist.",
-		"PREVIEW_DOCUMENT": "Preview dokument"
+		"PREVIEW_DOCUMENT": "Preview dokument",
+    "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_DOCUMENT": "Er du sikker på, at du vil slette '{{document_title}}'?",
+    "VIEW_DOCUMENT_DETAILS": "Vis dokument"
 	},
 	"COUNTRY": {
 		"AF": "Afghanistan",
@@ -433,7 +451,8 @@
 		},
 		"ASSIGNEES": "Udførere",
 		"CHOOSE_ASSIGNEES": "Vælg udførere",
-		"ASSIGN_TO": "Tildel til"
+		"ASSIGN_TO": "Tildel til",
+		"ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_TASK_AND_WORKFLOW": "Er du sikker på, at du vil slette opgaven '{{task_description}}' og standse dets workflow?"
 	},
 	"ADMIN": {
 		"ADMINISTRATION_PAGES": "Administrationssider",
@@ -551,7 +570,8 @@
 		"TASK_DONE": "Opgave færdig",
 		"APPROVE": "Godkend",
 		"REJECT": "Afvis",
-		"VIEW_TASK_DETAILS": "Vis opgave-detaljer"
+		"VIEW_TASK_DETAILS": "Vis opgavedetaljer",
+    "ITEMS": "Vedlægninger"
 	},
 	"MENU": {
 		"OPEN_MENU": "Åben menu",
@@ -573,21 +593,28 @@
 		"CREATE_NEW_DOC_TYPE": "Opret ny dokumenttype"
 	},
 	"SEARCH": {
-		"SEARCH": "Søg"
+		"SEARCH": "Søg",
+    "FIND_USER": "Find bruger",
+    "FIND_USERS": "Find brugere",
+    "FIND_PERSON": "Find personer",
+    "FIND_ORGANISATION": "Find organisationer",
+    "NO_MATCHES": "Ingen resultater"
 	},
   "faceted-search.date.one-week.label": "Sidste uge",
   "faceted-search.date.one-month.label": "Sidste måned",
   "faceted-search.date.six-months.label": "Sidste seks måneder",
   "faceted-search.date.one-year.label": "Sidste år",
   "faceted-search.size.100KB-1MB.label": "100kb - 1Mb",
+  "faceted-search.size.10-100KB.label": "10kb - 100kb",
+  "faceted-search.date.one-day.label": "Sidste 24 timer",
   "@{http://www.alfresco.org/model/content/1.0}content.size": "Størrelse",
-  "@{http://www.alfresco.org/model/content/1.0}modifier": "Modifikator",
-  "@{http://www.alfresco.org/model/content/1.0}modified": "Modificeret",
-  "@{http://www.alfresco.org/model/content/1.0}creator": "Skaberen",
+  "@{http://www.alfresco.org/model/content/1.0}modifier": "Ændret af",
+  "@{http://www.alfresco.org/model/content/1.0}modified": "Ændret",
+  "@{http://www.alfresco.org/model/content/1.0}creator": "Oprettet af",
   "@{http://www.alfresco.org/model/content/1.0}created": "Oprettet",
   "@{http://www.alfresco.org/model/content/1.0}content.mimetype": "Filtype",
-  "@{http://openesdh.dk/model/case/base/1.0}startDate": "Start Dato",
-  "@{http://openesdh.dk/model/case/base/1.0}endDate": "Slutdato",
+  "@{http://openesdh.dk/model/case/base/1.0}startDate": "Startdato",
+  "@{http://openesdh.dk/model/case/base/1.0}endDate": "Slutato",
   "@{http://openesdh.dk/model/openesdh/1.0}journalKeyIndexed": "Journalnøgle",
   "@{http://openesdh.dk/model/openesdh/1.0}journalFacetIndexed": "Journalfacet"
 }
