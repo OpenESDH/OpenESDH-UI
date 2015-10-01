@@ -67,6 +67,18 @@
         // Add a user or subgroup to group
         function addMember(group_shortName) {
             groupService.addUserToGroup(shortName, userName).then(function (response) {
+                console.log('Adding to a group');
+                vm.groupExists = false;
+                vm.group = {};
+
+                $mdDialog.show({
+                    controller: UsersSearchDialogController,
+                    controllerAs: 'vm',
+                    templateUrl: 'app/src/groups/view/groupCuDialog.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: true
+                });
                 if (isEmpty(response))
                 //TODO Output notice here and/or go to view???
                     alert(userName + " was successfully added to group (" + shortName + ").");
