@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('openeApp')
+        .module('openeApp.documents')
         .factory('caseDocumentFileDialogService', CaseDocumentFileDialogService);
 
     CaseDocumentFileDialogService.$inject = ['$mdDialog', '$q', 'caseDocumentsService', 'caseDocumentDetailsService'];
@@ -119,7 +119,7 @@
             }
             return $mdDialog.show({
                 controller: controller,
-                templateUrl: 'app/src/shared/services/case/view/caseDocumentDialog.html',
+                templateUrl: 'app/src/documents/view/caseDocumentDialog.html',
                 parent: angular.element(document.body),
                 targetEvent: null,
                 clickOutsideToClose: true,
