@@ -6,7 +6,7 @@
         .controller('CaseController', CaseController);
 
     CaseController.$inject = [
-        '$scope', 
+        '$scope',
         '$mdDialog', 
         '$location', 
         '$translate', 
@@ -27,20 +27,20 @@
         var vm = this;
         vm.cases = [];
         vm.caseFilter = [{
-            name: 'All cases',
+            name: $translate.instant('CASE.FILTER.ALL_CASES'),
             value: 'all'
         },{
-            name: 'Active cases',
+            name: $translate.instant('CASE.FILTER.ACTIVE_CASES'),
             field: 'oe:status',
-            value: 'active',
+            value: 'active'
         }, {
-            name: 'Closed cases',
+            name: $translate.instant('CASE.FILTER.CLOSED_CASES'),
             field: 'oe:status',
-            value: 'closed',
+            value: 'closed'
         }, {
-            name: 'Passive cases',
+            name: $translate.instant('CASE.FILTER.PASSIVE_CASES'),
             field: 'oe:status',
-            value: 'passive',
+            value: 'passive'
         }];
         vm.caseFilterChoice = vm.caseFilter[0];
 

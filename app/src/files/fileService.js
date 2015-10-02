@@ -11,7 +11,7 @@
         var fsvc = this;
         return {
             getFileIconByMimetype: getFileIconByMimetype,
-            getFileExtension: getFileExtension,
+            getFileExtension: getFileExtension
         };
 
         fsvc.fileIcon.types = {

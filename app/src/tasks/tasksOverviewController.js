@@ -4,11 +4,21 @@
     angular.module('openeApp.tasks')
         .controller('tasksOverviewController', TasksOverviewController);
     
-    TasksOverviewController.$inject = [ '$scope', 'taskService', '$mdDialog', '$translate', 'workflowService', 'sessionService'];
+    TasksOverviewController.$inject = [
+        '$scope', 
+        'taskService', 
+        '$mdDialog', 
+        '$translate',
+        '$state',
+        'workflowService', 
+        'sessionService'
+    ];
     
-    function TasksOverviewController($scope, taskService, $mdDialog, $translate, workflowService,  sessionService) {
+    function TasksOverviewController($scope, taskService, $mdDialog, $translate, $state, workflowService,  sessionService) {
         var vm = this;
+        vm.tasks = [];
         vm.deleteTask = deleteTask;
+        vm.goToTaskdetailView = goToTaskdetailView;
         vm.isAdmin = sessionService.isAdmin();
         
         vm.statuses = ["NotYetStarted", "InProgres", "OnHold", "Cancelled", "Completed"];
@@ -17,6 +27,7 @@
         function loadTasks(){
             taskService.getTasks().then(function(result){
                 vm.tasks = result;
+                console.log(result);
             });
         }
         
@@ -33,6 +44,10 @@
                     loadTasks();
                 });
             });
+        }
+
+        function goToTaskdetailView(task) {
+            $state.go('tasks');
         }
         
     }

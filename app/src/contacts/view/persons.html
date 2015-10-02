@@ -9,12 +9,5 @@
         </md-input-container>
         
         <div ng-include="'app/src/contacts/view/sharedPersonsList.html'" ></div>
-        
-        <!-- Here is a pager that we'd like to replace with md-virtual-repeat -->
-        <div style="margin: 0 8px; padding: 0 6px;">
-            {{ 'COMMON.SHOWING' | translate }} {{vm.pagingParams.pageSize < vm.pagingParams.totalRecords ? vm.pagingParams.pageSize : vm.pagingParams.totalRecords}} {{ 'COMMON.OF' | translate }} {{vm.pagingParams.totalRecords}}. Pages: 
-            <button ng-repeat="page in vm.pages" ng-click="vm.doFilter(page);" style="margin: 0 2px;">{{page}}</button>
-        </div>
-        
     </md-card-content>
 </md-card>

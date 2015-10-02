@@ -2,6 +2,7 @@
 	"COMMON": {
 		"CONFIRM": "Confirm",
 		"OK": "OK",
+    "YES": "Yes",
 		"CANCEL": "Cancel",
 		"BACK": "Back",
 		"NEXT": "Next",
@@ -48,19 +49,28 @@
 		"PRIORITY": "Priority",
 		"CREATED_ON": "Created on",
 		"NO": "No",
-		"YES": "Yes",
-		"STATE": "State"
+		"STATE": "State",
+    "COMMENT": "Comment"
 	},
 	"CASE": {
 		"CONFIRM_CLOSE_CASE": "Do you want to close this case?",
 		"STATUS_CHANGED_SUCCESS": "Status has been changed successfully",
 		"CASETYPE_STANDARD": "Standard case",
+    "TYPE": {
+      "simple_case": "Standard case"
+    },
 		"STATUS": {
 			"active": "Active",
 			"passive": "Passive",
 			"closed": "Closed",
 			"archived": "Archived"
 		},
+    "FILTER": {
+      "ALL_CASES": "All cases",
+      "ACTIVE_CASES": "Active cases",
+      "PASSIVE_CASES": "Passive cases",
+      "CLOSED_CASES": "Closed cases"
+    },
 		"CASES": "Cases",
 		"CHANGE_STATUS": "Change case status",
 		"CASE": "Case",
@@ -82,7 +92,8 @@
 		"STARTDATE": "Start date",
 		"ENDDATE": "End date",
 		"MY_CASES": "My cases",
-		"ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_CASE": "Are you sure you want to delete the case '{{case_title}}' ?"
+		"ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_CASE": "Are you sure you want to delete the case '{{case_title}}'?",
+    "VIEW_CASE_DETAILS": "View case"
 	},
 	"DOCUMENT": {
 		"STATUS_CHANGED_SUCCESS": "Status has been changed successfully",
@@ -115,6 +126,7 @@
 			"draft": "Draft",
 			"final": "Final"
 		},
+    "DOCUMENT": "Document",
 		"DOCUMENTS": "Documents",
 		"UPLOAD_NEW_DOCUMENTS": "Upload new document",
 		"SEND_DOCUMENTS": "Send documents",
@@ -127,6 +139,7 @@
 			"RECEIVER": "Reciever"
 		},
 		"DOWNLOAD_RENDERED_FROM_TEMPLATE": "Download rendered from template",
+    "SAVE_RENDERED_TEMPLATE_TO_CASE": "Save rendered template to case",
 		"CHANGE_STATUS": "Change status",
 		"VERSION": "Version",
 		"VERSION_ADDED": "Version added",
@@ -136,6 +149,7 @@
 		"UPLOAD_NEW_VERSION": "Upload new version",
 		"PREVIEW": "Preview",
 		"ATTACHMENTS": {
+      "ATTACHMENTS": "Attachments",
 			"CURRENT_VERSION": "Current version",
 			"EDIT_ATTACHMENT": "Edit attachment",
 			"UPLOAD_NEW_ATTACHMENT": "Upload new attachment"
@@ -151,7 +165,8 @@
 		"DOWNLOAD_DOCUMENT": "Download document",
 		"IMAGE_MAX_SIZE_EXCEEDED": "Image \"{{image}}\" is too large to display.",
 		"PREVIEW_DOCUMENT": "Preview document",
-		"ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_DOCUMENT": "Are you sure you want to delete the document '{{document_title}}' ?"
+		"ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_DOCUMENT": "Are you sure you want to delete the document '{{document_title}}' ?",
+    "VIEW_DOCUMENT_DETAILS": "View document"
 	},
 	"COUNTRY": {
 		"AF": "Afghanistan",
@@ -453,7 +468,7 @@
 		"ASSIGNEES": "Assignees",
 		"CHOOSE_ASSIGNEES": "Choose assignees",
 		"ASSIGN_TO": "Assign to",
-		"ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_TASK_AND_WORKFLOW": "Are you sure you want to delete the task '{{task_description}}' and cancel the workflow ?"
+		"ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_TASK_AND_WORKFLOW": "Are you sure you want to delete the task '{{task_description}}' and cancel the workflow?"
 	},
 	"ADMIN": {
 		"ADMINISTRATION_PAGES": "Administration pages",
@@ -571,7 +586,8 @@
 		"TASK_DONE": "Task done",
 		"APPROVE": "Approve",
 		"REJECT": "Reject",
-		"VIEW_TASK_DETAILS": "View task details"
+		"VIEW_TASK_DETAILS": "View task details",
+    "ITEMS": "Items"
 	},
 	"MENU": {
 		"OPEN_MENU": "Open menu",
@@ -593,13 +609,20 @@
 		"CREATE_NEW_DOC_TYPE": "Create new document type"
 	},
 	"SEARCH": {
-		"SEARCH": "Search"
+		"SEARCH": "Search",
+    "FIND_USER":"Find user",
+    "FIND_USERS":"Find users",
+    "FIND_PERSON":"Find persons",
+    "FIND_ORGANISATION":"Find organizations",
+    "NO_MATCHES": "No matches"
 	},
   "faceted-search.date.one-week.label": "Last week",
   "faceted-search.date.one-month.label": "Last month",
   "faceted-search.date.six-months.label": "Last six months",
   "faceted-search.date.one-year.label": "Last year",
   "faceted-search.size.100KB-1MB.label": "100kb - 1Mb",
+  "faceted-search.size.10-100KB.label": "10kb - 100kb",
+  "faceted-search.date.one-day.label": "Last 24 hours",
   "@{http://www.alfresco.org/model/content/1.0}content.size": "Size",
   "@{http://www.alfresco.org/model/content/1.0}modifier": "Modifier",
   "@{http://www.alfresco.org/model/content/1.0}modified": "Modified",
