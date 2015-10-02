@@ -18,7 +18,7 @@
             <md-card>
                 <md-card-content>
                   <div style="text-align: right; font-size: 14px;" class="muted">
-                      {{'COMMON.CREATED_ON' | translate}} {{task.properties.cm_created | date}} {{'COMMON.BY' | translate}} {{task.owner.firstName + ' ' + task.owner.lastName}}
+                      {{'COMMON.CREATED_ON' | translate}} {{task.properties.cm_created | date}} {{'COMMON.BY' | translate}} {{task.workflowInstance.initiator.firstName + ' ' + task.workflowInstance.initiator.lastName}}
                   </div>
                   <h3 class="md-title">{{ task.properties.bpm_description }}</h3>
                   <dl layout="row" layout-wrap>
