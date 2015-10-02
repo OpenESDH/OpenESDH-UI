@@ -8,10 +8,13 @@
     CaseNotesService.$inject = ['$http', 'httpUtils'];
 
     function CaseNotesService($http, httpUtils) {
+        
+        var DEFAULT_NOTES_PAGE_SIZE = 6;
 
         var service = {
             getCaseNotes: getCaseNotes,
-            addNewNote: addNewNote
+            addNewNote: addNewNote,
+            createPagingParams: createPagingParams
         };
         return service;
         
@@ -38,6 +41,28 @@
         
         function getNotesUrlForCase(caseId){
             return "/alfresco/service/api/openesdh/case/" + caseId + "/notes";
+        }
+        
+        function createPagingParams(){
+            return {
+                page: 1,
+                pageSize: DEFAULT_NOTES_PAGE_SIZE,
+                totalRecords: 0,
+                
+                getStartIndex: function() {
+                    return (this.page - 1) * this.pageSize + 1;
+                },
+                getEndIndex: function() {
+                    var lastIndex = this.page * this.pageSize;
+                    return lastIndex < this.totalRecords ? lastIndex : this.totalRecords;
+                },
+                hasPreviousPage: function() {
+                    return this.page > 1;
+                },
+                hasNextPage: function() {
+                    return this.getEndIndex() < this.totalRecords;
+                }
+            };
         }
     }
 })();

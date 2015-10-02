@@ -151,34 +151,12 @@
       </md-tab-body>
     </md-tab>
     
-    <md-tab>
+    <md-tab md-on-select="vm.onTabChange('notes')">
       <md-tab-label>
         <span><i class="material-icons">library_books</i> {{ 'NOTE.NOTES' | translate }}</span>
       </md-tab-label>
       <md-tab-body layout="column">
-        <md-card ng-controller="NoteController as caseNotes">
-          <md-card-content>
-            <h3 class="md-title">{{ 'NOTE.NOTES' | translate }}</h3>
-            <div layout="row" layout-wrap>
-                <div ng-repeat="note in caseNotes.notes" flex="33">
-                    <h4 style="margin-bottom: 0;" class="md-title">{{ note.headline }}</h4>
-                    <p>{{ note.content }}</p>
-                    <p style="font-size: 0.8em;" class="muted">
-                      {{ 'COMMON.CREATED' | translate }} {{ note.created | openeDate }} {{ 'COMMON.BY' | translate }} {{ note.authorInfo.firstName + ' ' + note.authorInfo.lastName }}<br>
-                      {{ 'NOTE.RELATED' | translate }}: <span style="margin-right: 0.5em;" ng-repeat="relation in note.concernedPartiesInfo">{{ relation.name }}</span>
-                    </p>
-                </div>                
-            </div>
-          </md-card-content>
-          <div class="md-actions" layout="row">
-            <md-button class="md-primary"
-                       ng-click="caseNotes.newNote()"
-                       ng-disabled="caseIsLocked">
-                {{ 'NOTE.NEW_NOTE' | translate }}
-            </md-button>
-            <md-button class="md-primary" ng-disabled="true">{{ 'NOTE.PRINT_ALL_NOTES' | translate }}</md-button>
-          </div>
-        </md-card>
+        <div ng-include="'app/src/notes/view/caseNotes.html'"></div>
       </md-tab-body>
     </md-tab>
     
