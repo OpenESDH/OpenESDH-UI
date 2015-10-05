@@ -4,9 +4,11 @@
             .module('openeApp.documentTypes')
             .controller('DocumentTypesController', DocumentTypesController);
 
-    DocumentTypesController.$inject = ['$scope', '$mdDialog', 'documentTypeService', 'PATTERNS'];
+    DocumentTypesController.$inject = ['$scope', '$mdDialog', '$translate',
+        'documentTypeService', 'PATTERNS', 'availableLanguages'];
 
-    function DocumentTypesController($scope, $mdDialog, documentTypeService, PATTERNS) {
+    function DocumentTypesController($scope, $mdDialog, $translate,
+            documentTypeService, PATTERNS, availableLanguages) {
         var vm = this;
         vm.documentTypes = [];
         vm.loadList = loadList;
@@ -24,12 +26,11 @@
 
         function doDelete(ev, documentType) {
             var confirm = $mdDialog.confirm()
-                    .title('Confirmation')
-                    .content('Are you sure you want to delete document type?')
-                    .ariaLabel('Document type delete confirmation')
+                    .title($translate.instant('COMMON.CONFIRM'))
+                    .content($translate.instant('DOCUMENT_TYPES.ARE_YOU_SURE_YOU_WANT_TO_DELETE_DOCUMENT_TYPE_X', documentType.displayName))
                     .targetEvent(ev)
-                    .ok('Yes')
-                    .cancel('Cancel');
+                    .ok($translate.instant('COMMON.YES'))
+                    .cancel($translate.instant('COMMON.CANCEL'));
             $mdDialog.show(confirm).then(function() {
                 documentTypeService.deleteDocumentType(documentType.nodeRef).then(function() {
                     var currentType = vm.documentTypes.indexOf(documentType);
@@ -39,20 +40,23 @@
             });
             ev.stopPropagation();
         }
-        
+
         function showEdit(ev, documentType) {
-            $mdDialog
-                    .show({
-                        controller: DocTypeDialogController,
-                        controllerAs: 'dt',
-                        templateUrl: '/app/src/other/document_types/view/documentTypeCrudDialog.html',
-                        parent: angular.element(document.body),
-                        targetEvent: ev,
-                        clickOutsideToClose: true,
-                        locals: {
-                            documentType: angular.copy(documentType)
-                        }
-                    }).then(function(response) {
+            documentTypeService
+                    .getDocumentType(documentType.nodeRef)
+                    .then(function(fullMultiLanguageDocumentType) {
+                        $mdDialog.show({
+                            controller: DocTypeDialogController,
+                            controllerAs: 'dt',
+                            templateUrl: '/app/src/other/document_types/view/documentTypeCrudDialog.html',
+                            parent: angular.element(document.body),
+                            targetEvent: ev,
+                            clickOutsideToClose: true,
+                            locals: {
+                                documentType: fullMultiLanguageDocumentType
+                            }
+                        }).then(function(response) {
+                        });
                     });
         }
 
@@ -62,18 +66,19 @@
             dt.cancel = cancel;
             dt.save = save;
             dt.PATTERNS = PATTERNS;
+            dt.availableLanguages = availableLanguages.keys;
 
             function cancel() {
                 $mdDialog.cancel();
-            };
+            }
 
             function save(form) {
                 if (!form.$valid) {
                     return;
                 }
                 documentTypeService.saveDocumentType(dt.documentType)
-                            .then(refreshInfoAfterSuccess, saveError);
-            };
+                        .then(refreshInfoAfterSuccess, saveError);
+            }
 
             function refreshInfoAfterSuccess(savedDocumentType) {
                 $mdDialog.hide();
