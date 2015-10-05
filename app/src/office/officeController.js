@@ -5,20 +5,34 @@
         .module('openeApp.office')
         .controller('OfficeController', OfficeController);
 
-//    var email;
+    var document;
 
-    OfficeController.$inject = ['$stateParams', '$window', 'officeService', 'caseService', 'sessionService', '$q'];
+    OfficeController.$inject = ['$stateParams', '$window', 'officeService', 'caseService', 'sessionService', '$q', 'caseDocumentsService'];
 
-    function OfficeController($stateParams, $window, officeService, caseService, sessionService, $q) {
+    function OfficeController($stateParams, $window, officeService, caseService, sessionService, $q, caseDocumentsService) {
         var vm = this;
-        vm.email = JSON.parse($window.external.getParameter1());
+//        vm.email = JSON.parse($window.external.getParameter1());
+//        $window.alert(JSON.stringify(vm.email));
+
+        if (typeof $window.external.getParameter1 != 'undefined') {
+            vm.document = JSON.parse($window.external.getParameter1());
+        } else {
+            vm.document = {};
+//            vm.document.Subject = 'test';
+            vm.document.Attachments = [];
+        }
+
 //        vm.from = email.From;
-        vm.subject = vm.email.Subject;
         vm.selectedCase;
-        vm.attachments = vm.email.Attachments;
-        
+        vm.subject = vm.document.Subject;
+        vm.title = vm.document.Title;
+        vm.attachments = vm.document.Attachments;
+
         vm.save = save;
         vm.cancel = cancel;
+        vm.saveOfficeDocument = saveOfficeDocument;
+
+        loadDocumentConstraints();
 
         if ($stateParams.alf_ticket) {
             sessionService.setUserInfo({ticket: $stateParams.alf_ticket});
@@ -28,7 +42,7 @@
             officeService.saveEmail({
                 caseId: vm.selectedCase['oe:id'],
                 name: vm.subject,
-                email: vm.email
+                email: vm.document
             }).then(function(response) {
                 var metadata = {
                     caseId: vm.selectedCase['oe:id'],
@@ -47,7 +61,21 @@
             $window.external.CancelOpenEsdh();
         }
         
-        
+        function saveOfficeDocument(form) {
+            caseService.getCaseDocumentsFolderNodeRef(vm.selectedCase['oe:id']).then(function(response) {
+                var metadata = {
+                    caseId: vm.selectedCase['oe:id'],
+                    documentName: vm.title,
+                    nodeRef: response.caseDocsFolderNodeRef,
+                    docType: vm.documentProperties.doc_type,
+                    docCategory: vm.documentProperties.doc_category
+                }
+                $window.external.SaveAsOpenEsdh(JSON.stringify(metadata), null);
+            }, function(error) {
+                $window.alert(JSON.stringify(error));
+            });
+        }
+
         /*
          * Autocomplete input
          */
@@ -65,10 +93,17 @@
             };
         }
 
+        function loadDocumentConstraints(){
+            caseDocumentsService.getCaseDocumentConstraints().then(function(documentConstraints){
+                vm.documentConstraints = documentConstraints;
+            });
+        }
+
     }
 
     // This function is called from the Office Add-In
-    window.loadEmail = function(payload) {
-//        email = JSON.parse(payload);
+    window.loadDocument = function(payload) {
+//        window.alert(payload);
+//        document = JSON.parse(payload);
     }
 })();

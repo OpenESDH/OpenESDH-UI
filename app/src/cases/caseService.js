@@ -16,7 +16,8 @@
             updateCase: updateCase,
             getCaseInfo: getCaseInfo,
             changeCaseStatus: changeCaseStatus,
-            sendEmail: sendEmail
+            sendEmail: sendEmail,
+            getCaseDocumentsFolderNodeRef: getCaseDocumentsFolderNodeRef
         };
         return service;
 
