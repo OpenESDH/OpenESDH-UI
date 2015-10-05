@@ -31,6 +31,7 @@
             'openeApp.workflows',
             'openeApp.search',
             'openeApp.search.component.filter',
+            'openeApp.common.directives',
             'openeApp.common.directives.filter',
             'openeApp.documentTypes',
             'openeApp.documentCategories'

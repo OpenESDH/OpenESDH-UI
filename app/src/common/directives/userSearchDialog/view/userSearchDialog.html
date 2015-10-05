@@ -1,58 +1,38 @@
-<md-dialog aria-label="User search dialog" ng-controller="UsersSearchDialogController as udc">
-    <form name="form">
-        <md-toolbar layout="row">
-            <div class="md-toolbar-tools">
-                <h2>{{ 'SEARCH.FIND_USERS' | translate }}</h2>
-            </div>
-        </md-toolbar>
-        <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;">
-            <!--The search container row-->
-            <md-input-container layout="row">
-                <input flex type="text" ng-model="searchTerm" focus-me="false"
-                       ng-keypress="($event.which === 13)?userSearchQuery():0">
-                <md-button type="submit" class="md-primary" ng-click="userSearchQuery()">
-                    {{ 'COMMON.OK' | translate }}
-                </md-button>
-            </md-input-container>
-
-            <!--The list-->
-            <table>
-                <thead>
-                <tr>
-                    <th>{{ 'USER.USERNAME' | translate }}</th>
-                    <th>{{ 'USER.FIRST_NAME' | translate }}</th>
-                    <th>{{ 'USER.LAST_NAME' | translate }}</th>
-                    <th>{{ 'COMMON.ACTION' | translate }}</th>
-                </tr>
-                </thead>
-                <tbody>
-
-                <tr ng-repeat="user in udc.allSystemUsers" ng-if="user.userName!='guest'"
-                    class="{{user.enabled ? 'enabled' : 'muted'}}">
-                    <td>{{user.userName}}</td>
-                    <td>{{user.firstName}}</td>
-                    <td>{{user.lastName}}</td>
-                    <td>
-                        <div class="toggle-obj">
-                            <md-checkbox class="md-primary" ng-model="user.selected"
-                                         ng-change="udc.toggleSelectedUsers(user.userName)">
-                            </md-checkbox>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </md-dialog-content>
-
-        </md-dialog-content>
-        <div class="md-actions" layout="row">
-            <md-button type="submit" class="md-primary" ng-click="udc.executeCallBack()"
-                       ng-disabled="!udc.selectedUsersIsEmpty()">
-                {{ 'COMMON.ADD' | translate }}
-            </md-button>
-            <md-button type="button" ng-click="udc.cancel(form)">
-                {{ 'COMMON.CLOSE' | translate }}
-            </md-button>
+<md-dialog aria-label="User search dialog" style="max-width:800px;max-height:810px;min-width:40%;">
+    <md-toolbar layout="row">
+        <div class="md-toolbar-tools">
+            <h2>{{ 'SEARCH.FIND_USERS' | translate }}</h2>
         </div>
-    </form>
+    </md-toolbar>
+
+    <md-dialog-content layout="column">
+
+        <md-chips ng-model="selectedUsers" md-autocomplete-snap md-require-match="true">
+            <md-autocomplete
+                md-selected-item="selectedItem"
+                md-search-text="searchTerm"
+                md-items="item in querySearch(searchTerm)"
+                md-item-text="item.name"
+                placeholder="Add user">
+                <span md-highlight-text="searchTerm">{{item.name}}</span>
+            </md-autocomplete>
+
+            <md-chip-template>
+                <span>
+                    <strong>{{$chip.name}}</strong>
+                </span>
+            </md-chip-template>
+        </md-chips>
+    
+    </md-dialog-content>
+
+    <div class="md-actions" layout="row">
+        <md-button type="submit" class="md-primary" ng-click="executeCallback()" ng-disabled="selectedUsers.length === 0">
+            {{ 'COMMON.ADD' | translate }}
+        </md-button>
+        <md-button type="button" ng-click="cancel()">
+            {{ 'COMMON.CLOSE' | translate }}
+        </md-button>
+    </div>
+    
 </md-dialog>

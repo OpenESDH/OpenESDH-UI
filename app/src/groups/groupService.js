@@ -65,7 +65,9 @@
          * @param groupShortName
          * @returns {} empty object if successful
          */
-        function addUserToGroup(userName, groupShortName) {
+        // TODO: This method have to accept an array of users
+        // [{name: 'the_name', username: 'the_username'}, {...}]
+        function addUserToGroup(groupShortName, userName) {
             return $http.post(GROUP_PROXY_URI + groupShortName + '/children/' + userName)
                 .then(successOrReject);
         }
