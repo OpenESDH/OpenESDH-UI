@@ -8,19 +8,25 @@
         '$scope',
         '$stateParams',
         '$mdDialog',
+        '$translate',
         'caseDocumentsService',
         'documentPreviewService',
         'caseDocumentFileDialogService',
         'casePartiesService',
-        'caseService'
+        'alfrescoFolderService',
+        'sessionService',
+        'caseService',
+        'fileUtilsService'
     ];
     
-    function DocumentController($scope, $stateParams, $mdDialog, caseDocumentsService, documentPreviewService, caseDocumentFileDialogService, casePartiesService, caseService) {
+    function DocumentController($scope, $stateParams, $mdDialog, $translate, caseDocumentsService, documentPreviewService,
+                caseDocumentFileDialogService, casePartiesService, alfrescoFolderService, sessionService, caseService, fileUtilsService) {
 
         var caseId = $stateParams.caseId;
         var vm = this;
         vm.caseId = caseId;
         vm.pageSize = 10;
+        vm.isAdmin = sessionService.isAdmin();
         
         vm.loadDocuments = loadDocuments;
         vm.uploadDocument = uploadDocument;
@@ -28,17 +34,24 @@
         vm.emailDocuments = emailDocuments;
         vm.createDocumentFromTemplate = createDocumentFromTemplate;
         vm.noDocuments = noDocuments;
+        vm.deleteDocument = deleteDocument;
 
         activate();
         
         function activate(){
-            loadDocuments(1);
+            loadDocuments();
         }
         
         function loadDocuments(page){
+            if(page == undefined){
+                page = 1;
+            }
             var res = caseDocumentsService.getDocumentsByCaseId(caseId, page, vm.pageSize);
             res.then(function(response) {
                 vm.documents = response.documents;
+                vm.documents.forEach(function(document){
+                    document.thumbNailURL = fileUtilsService.getFileIconByMimetype(document.fileMimeType,24);
+                });
                 vm.contentRange = response.contentRange;
                 var pages = [];
                 var pagesCount = Math.ceil(response.contentRange.totalItems / vm.pageSize); 
@@ -51,12 +64,27 @@
         
         function uploadDocument(){
             caseDocumentFileDialogService.uploadCaseDocument(caseId).then(function(result){
-                loadDocuments(1); 
+                loadDocuments(); 
             });
         }
         
         function previewDocument(nodeRef){
             documentPreviewService.previewDocument(nodeRef);
+        }
+        
+        function deleteDocument(document){
+            var confirm = $mdDialog.confirm()
+                .title($translate.instant('COMMON.CONFIRM'))
+                .content($translate.instant('DOCUMENT.ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_DOCUMENT', {document_title: document["cm:title"]}))
+                .ariaLabel('')
+                .targetEvent(null)
+                .ok($translate.instant('COMMON.YES'))
+                .cancel($translate.instant('COMMON.CANCEL'));
+            $mdDialog.show(confirm).then(function() {
+                alfrescoFolderService.deleteFolder(document.nodeRef).then(function(result){
+                   setTimeout(loadDocuments, 500); 
+                });
+            });
         }
 
         function emailDocuments() {
@@ -112,10 +140,11 @@
             }
             function emailDocuments() {
                 // Send the email
-                var toList = '';
+                var toList = [];
                 for (var person in vm.to) {
-                  toList += vm.to[person].contactId + '; ';
-                };
+                  // Backend still expects objects with nodeRef property
+                  toList.push({nodeRef: vm.to[person].nodeRef});
+                }
                 caseService.sendEmail(caseId, {
                     'to': toList,
                     'subject': vm.subject,
@@ -148,9 +177,9 @@
             });
         }
 
-        CreateDocumentFromTemplateDialogController.$inject = ['$scope', '$mdDialog', '$translate', 'officeTemplateService', 'sessionService', 'contactsService', 'alfrescoNodeUtils', 'caseId'];
+        CreateDocumentFromTemplateDialogController.$inject = ['$scope', '$filter', '$mdDialog', '$translate', 'officeTemplateService', 'sessionService', 'contactsService', 'alfrescoNodeUtils', 'caseId'];
 
-        function CreateDocumentFromTemplateDialogController($scope, $mdDialog, $translate, officeTemplateService, sessionService, contactsService, alfrescoNodeUtils, caseId) {
+        function CreateDocumentFromTemplateDialogController($scope, $filter, $mdDialog, $translate, officeTemplateService, sessionService, contactsService, alfrescoNodeUtils, caseId) {
             var vm = this;
 
             $scope.vm = vm;
@@ -227,8 +256,7 @@
                         "case.description": getPropValue("cm:description"),
                         "case.journalKey": getPropValue("oe:journalKey"),
                         "case.journalFacet": getPropValue("oe:journalFacet"),
-                        // TODO: use real case type
-                        "case.type": $translate.instant("CASE.CASETYPE_STANDARD")
+                        "case.type": $filter('caseType')(caseInfo.allProps.TYPE)
                     });
                 });
 

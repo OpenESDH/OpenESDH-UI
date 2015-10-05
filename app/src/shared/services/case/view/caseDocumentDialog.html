@@ -1,8 +1,8 @@
 <md-dialog aria-label="">
-  <form>
+  <form name="uploadForm">
     <md-toolbar layout="row">
       <div class="md-toolbar-tools">
-        <h2 ng-hide="isAttachment || isEditProperties">{{ 'DOCUMENT.UPLOAD_DOCUMENT' | translate }}</h2>
+        <h2 ng-hide="isAttachment || isEditProperties">{{ 'COMMON.UPLOAD' | translate }}</h2>
         <h2 ng-show="isAttachment">{{ 'DOCUMENT.UPLOAD_ATTACHMENT' | translate }}</h2>
         <h2 ng-show="isEditProperties">{{ 'DOCUMENT.EDIT_PROPERTIES' | translate }}</h2>
       </div>
@@ -11,7 +11,7 @@
       
       <div ng-hide="isEditProperties || fromFileObject" layout="row">
         <div flex>
-          <label class="label" for="doc-upload">{{ 'DOCUMENT.DOCUMENT_TO_UPLOAD' | translate }}</label>
+          <label class="label" for="doc-upload"><span class="md-warn">*</span> {{ 'DOCUMENT.DOCUMENT_TO_UPLOAD' | translate }}</label>
           <input type="file" file-model="fileToUpload" id="doc-upload" focus-me>
         </div>
         <div flex>
@@ -31,11 +31,11 @@
 
       <md-input-container ng-show="!isAttachment">
         <label><span class="md-warn">*</span> {{ 'COMMON.NAME' | translate }}</label>
-        <input type="text" ng-model="documentProperties.title" required focus-me>
+        <input type="text" ng-model="documentProperties.title" focus-me>
       </md-input-container>
       
       <md-input-container ng-hide="isAttachment">
-        <label>{{ 'COMMON.TYPE' | translate }}</label>
+        <label><span class="md-warn">*</span> {{ 'COMMON.TYPE' | translate }}</label>
         <md-select ng-model="documentProperties.doc_type" ng-disabled="newDocumentVersion">
           <md-option ng-repeat="type in documentConstraints.documentTypes" ng-value="type.nodeRef">
             {{ type.displayName }}
@@ -44,7 +44,7 @@
       </md-input-container>
       
       <md-input-container ng-hide="isAttachment">
-        <label>{{ 'COMMON.CATEGORY' | translate }}</label>
+        <label><span class="md-warn">*</span> {{ 'COMMON.CATEGORY' | translate }}</label>
         <md-select ng-model="documentProperties.doc_category" ng-disabled="newDocumentVersion">
           <md-option ng-repeat="category in documentConstraints.documentCategories" ng-value="category.nodeRef">
             {{ category.displayName }}
@@ -54,8 +54,11 @@
       
     </md-dialog-content>
     <div class="md-actions" layout="row">
-      <md-button class="md-primary" ng-click="upload()">
+      <md-button ng-hide="isEditProperties" class="md-primary" ng-click="upload()">
         {{ 'COMMON.UPLOAD' | translate }}
+      </md-button>
+      <md-button ng-show="isEditProperties" class="md-primary" ng-click="upload()">
+        {{ 'COMMON.OK' | translate }}
       </md-button>
       <md-button ng-click="cancel()">
         {{ 'COMMON.CANCEL' | translate }}

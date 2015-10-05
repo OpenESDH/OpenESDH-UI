@@ -1,21 +1,41 @@
 <app-header></app-header>
 
-<md-card ng-repeat="task in tasksCtrl.tasks">
-  <md-card-content>
-    <div style="float: right;font-size: 14px;">
-        {{'COMMON.CREATED_ON' | translate}} {{task.properties.cm_created | date}} {{'COMMON.BY' | translate}} {{task.owner.firstName + ' ' + task.owner.lastName}}
+<md-content layout="column">
+  
+    <div class="sub-toolbar" layout="row" layout-align="space-between center" layout-padding>
+    
+        <h1 class="md-headline" layout-margin>{{ 'TASK.TASKS' | translate }}</h1>
+
+        <md-select ng-model="status" >
+            <md-option value="" selected>Show all open tasks</md-option>
+            <md-option ng-repeat="status in tasksCtrl.statuses" value="{{status | workflowTaskStatus}}">{{status | workflowTaskStatus}}</md-option>
+        </md-select>
+    
     </div>
-    <h3>{{ task.properties.bpm_description }}</h3>
-    <dl layout="row" layout-wrap>
-      <dt flex="20">{{ 'COMMON.STATUS' | translate }}</dt><dd flex="66">{{ task.properties.bpm_status | workflowTaskStatus}}</dd>
-      <dt flex="20">{{ 'COMMON.DUE_DATE' | translate }}</dt><dd flex="66">{{ task.properties.bpm_dueDate | date }}</dd>
-      <dt flex="20">{{ 'COMMON.PRIORITY' | translate }}</dt><dd flex="66">{{ task.properties.bpm_priority | workflowTaskPriority}}</dd>
-      <dt flex="20">{{ 'COMMON.DESCRIPTION' | translate }}</dt><dd flex="66">{{ task.description }}</dd>
-    </dl>
-  </md-card-content>
-  <div class="md-actions" layout="row">
-    <md-button class="md-primary" href="#/tasks/task/{{task.name | encodeUri}}/{{task.id | encodeUri}}">{{ 'TASK.VIEW_TASK_DETAILS' | translate }}</md-button>
-  </div>              
-</md-card>
+
+    <div layout="row" layout-wrap>
+        <div ng-repeat="task in tasksCtrl.tasks | filter:status" flex="33">
+            <md-card>
+                <md-card-content>
+                  <div style="text-align: right; font-size: 14px;" class="muted">
+                      {{'COMMON.CREATED_ON' | translate}} {{task.properties.cm_created | date}} {{'COMMON.BY' | translate}} {{task.workflowInstance.initiator.firstName + ' ' + task.workflowInstance.initiator.lastName}}
+                  </div>
+                  <h3 class="md-title">{{ task.properties.bpm_description }}</h3>
+                  <dl layout="row" layout-wrap>
+                    <dt flex="33">{{ 'COMMON.STATUS' | translate }}</dt><dd flex="66">{{ task.properties.bpm_status | workflowTaskStatus}}</dd>
+                    <dt flex="33">{{ 'COMMON.DUE_DATE' | translate }}</dt><dd flex="66">{{ task.properties.bpm_dueDate | date }}</dd>
+                    <dt flex="33">{{ 'COMMON.PRIORITY' | translate }}</dt><dd flex="66">{{ task.properties.bpm_priority | workflowTaskPriority}}</dd>
+                    <dt flex="33">{{ 'COMMON.DESCRIPTION' | translate }}</dt><dd flex="66">{{ task.description }}</dd>
+                  </dl>
+                </md-card-content>
+                <div class="md-actions" layout="row" layout-padding>
+                  <md-button class="md-primary" href="#/tasks/task/{{task.name | encodeUri}}/{{task.id | encodeUri}}">{{ 'TASK.VIEW_TASK_DETAILS' | translate }}</md-button>
+                  <md-button class="md-primary" ng-click="tasksCtrl.deleteTask(task)" ng-show="tasksCtrl.isAdmin">{{ 'COMMON.DELETE' | translate }}</md-button>
+                </div>              
+            </md-card>
+        </div>
+    </div>
+
+</md-content>
 
 <app-footer></app-footer>

@@ -9,7 +9,7 @@
       <dt flex="20">{{ 'COMMON.DESCRIPTION' | translate }}</dt><dd flex="66">{{ taskCtrl.task.description }}</dd>
       <dt flex="20">{{ 'COMMON.STATUS' | translate }}</dt><dd flex="66">{{ taskCtrl.task.properties.bpm_status | workflowTaskStatus}}</dd>
     </dl>
-    <p>{{'TASK.ITEMS'}}:</p>
+    <p>{{ 'TASK.ITEMS' | translate }}:</p>
     <div ng-repeat="item in taskCtrl.task.packageItems">
         <div>
             <span style="font-weight: bold">{{item.name}}</span>
@@ -19,7 +19,7 @@
             <span>{{ 'COMMON.MODIFIED' | translate }}: {{ item.modified | date }}</span>
         </div>
     </div>
-    <p>{{'COMMON.COMMENT'}}:</p>
+    <p>{{ 'COMMON.COMMENT' | translate }}:</p>
     <textarea ng-model="taskCtrl.task.properties.bpm_comment" cols="100" rows="5"></textarea>
   </md-card-content>
   <div class="md-actions" layout="row">

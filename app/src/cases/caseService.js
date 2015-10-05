@@ -76,23 +76,31 @@
             });
         }
         
-        function updateCase(caseData){
-            var params = getCaseParams(caseData);
+        function updateCase(caseData, oldCaseData){
+            var params = getCaseParams(caseData, oldCaseData);
+            
             return $http.post('/alfresco/service/api/node/' + alfrescoNodeUtils.processNodeRef(caseData.nodeRef).uri + '/formprocessor', params).then(function (response) {
                 return response.data;
             });
         }
         
-        function getCaseParams(caseData){
-            return {
+        function getCaseParams(caseData, oldCaseData){
+            var params = {
                 prop_cm_title: caseData.title,
                 prop_cm_description: caseData.description,
-                assoc_base_owners_added: caseData.owner,
                 prop_base_startDate: caseData.startDate,
                 prop_base_endDate: caseData.endDate,
                 prop_oe_journalKey: caseData.journalKey,
                 prop_oe_journalFacet: caseData.journalFacet
             };
+            
+            if(oldCaseData == null || oldCaseData == undefined){
+                params.assoc_base_owners_added = caseData.owner;
+            }else if(caseData.owner != oldCaseData.owner){
+                params.assoc_base_owners_added = caseData.owner; 
+                params.assoc_base_owners_removed = oldCaseData.owner;
+            }
+            return params;
         }
 
         function getCaseInfo(caseId) {
@@ -116,7 +124,6 @@
         }
 
         function sendEmail(caseId, message) {
-            console.log(message);
             return $http.post('/alfresco/service/api/openesdh/case/' + caseId + '/email', message).then(function (response) {
                 return response.data;
             });
