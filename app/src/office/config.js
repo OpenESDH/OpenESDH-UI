@@ -8,8 +8,6 @@
 
     function configure($stateProvider, USER_ROLES) {
 //    function configure($stateProvider) {
-        console.log('in configure', USER_ROLES);
-
         $stateProvider.state('outlook', {
             parent: 'site',
             url: '/outlook?alf_ticket',
@@ -38,6 +36,19 @@
             data: {
 //                authorizedRoles: [USER_ROLES.user]
                 authorizedRoles: ['user']
+            }
+        }).state('office', {
+            parent: 'site',
+            url: '/office?alf_ticket',
+            views: {
+                'content@': {
+                    templateUrl: '/app/src/office/view/office.html',
+                    controller: 'OfficeController',
+                    controllerAs: 'vm'
+                }
+            },
+            data: {
+                authorizedRoles: []
             }
         });
     }

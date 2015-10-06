@@ -257,3 +257,18 @@ td .md-button {
 #dashboardTasksCard md-list-item md-icon {
   margin-right: 10px;
 }
+
+/* case note releated parties enumertion*/
+ol.note_parties {
+    margin: 0; 
+    padding: 0; 
+    list-style-type: disc;
+    display: inline-block;
+}
+ol.note_parties > li {
+    display: inline-block;
+}
+ol.note_parties > li:not(:last-child):after {
+    content: ',';
+    padding-right: 3px; 
+}

@@ -4,9 +4,11 @@
             .module('openeApp.documentCategories')
             .controller('DocumentCategoriesController', DocumentCategoriesController);
 
-    DocumentCategoriesController.$inject = ['$scope', '$mdDialog', 'documentCategoryService', 'PATTERNS'];
+    DocumentCategoriesController.$inject = ['$scope', '$mdDialog', '$translate',
+        'documentCategoryService', 'PATTERNS', 'availableLanguages'];
 
-    function DocumentCategoriesController($scope, $mdDialog, documentCategoryService, PATTERNS) {
+    function DocumentCategoriesController($scope, $mdDialog, $translate,
+            documentCategoryService, PATTERNS, availableLanguages) {
         var vm = this;
         vm.documentCategories = [];
         vm.loadList = loadList;
@@ -24,12 +26,11 @@
 
         function doDelete(ev, documentCategory) {
             var confirm = $mdDialog.confirm()
-                    .title('Confirmation')
-                    .content('Are you sure you want to delete document category?')
-                    .ariaLabel('Document category delete confirmation')
+                    .title($translate.instant('COMMON.CONFIRM'))
+                    .content($translate.instant('DOCUMENT_CATEGORIES.ARE_YOU_SURE_YOU_WANT_TO_DELETE_DOCUMENT_CATEGORY_X', documentCategory.displayName))
                     .targetEvent(ev)
-                    .ok('Yes')
-                    .cancel('Cancel');
+                    .ok($translate.instant('COMMON.YES'))
+                    .cancel($translate.instant('COMMON.CANCEL'));
             $mdDialog.show(confirm).then(function() {
                 documentCategoryService.deleteDocumentCategory(documentCategory.nodeRef).then(function() {
                     var currentCategory = vm.documentCategories.indexOf(documentCategory);
@@ -39,20 +40,24 @@
             });
             ev.stopPropagation();
         }
-        
+
         function showEdit(ev, documentCategory) {
-            $mdDialog
-                    .show({
-                        controller: DocCategoryDialogController,
-                        controllerAs: 'dc',
-                        templateUrl: '/app/src/other/document_categories/view/documentCategoryCrudDialog.html',
-                        parent: angular.element(document.body),
-                        targetEvent: ev,
-                        clickOutsideToClose: true,
-                        locals: {
-                            documentCategory: angular.copy(documentCategory)
-                        }
-                    }).then(function(response) {
+            documentCategoryService
+                    .getDocumentCategory(documentCategory.nodeRef)
+                    .then(function(fullMultiLanguageDocumentCategory) {
+                        $mdDialog
+                                .show({
+                                    controller: DocCategoryDialogController,
+                                    controllerAs: 'dc',
+                                    templateUrl: '/app/src/other/document_categories/view/documentCategoryCrudDialog.html',
+                                    parent: angular.element(document.body),
+                                    targetEvent: ev,
+                                    clickOutsideToClose: true,
+                                    locals: {
+                                        documentCategory: fullMultiLanguageDocumentCategory
+                                    }
+                                }).then(function(response) {
+                        });
                     });
         }
 
@@ -62,18 +67,19 @@
             dc.cancel = cancel;
             dc.save = save;
             dc.PATTERNS = PATTERNS;
+            dc.availableLanguages = availableLanguages.keys;
 
             function cancel() {
                 $mdDialog.cancel();
-            };
+            }
 
             function save(form) {
                 if (!form.$valid) {
                     return;
                 }
                 documentCategoryService.saveDocumentCategory(dc.documentCategory)
-                            .then(refreshInfoAfterSuccess, saveError);
-            };
+                        .then(refreshInfoAfterSuccess, saveError);
+            }
 
             function refreshInfoAfterSuccess(savedDocumentCategory) {
                 $mdDialog.hide();

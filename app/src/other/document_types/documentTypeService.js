@@ -23,8 +23,11 @@
 
         function getDocumentType(nodeRefId) {
             return $http.get('/alfresco/service/api/openesdh/document/type',
-                    {nodeRefId: nodeRefId})
-                    .then(onSuccess);
+                    {
+                        params: {
+                            nodeRefId: nodeRefId
+                        }
+                    }).then(onSuccess);
         }
 
         function saveDocumentType(documentType) {
@@ -33,7 +36,7 @@
                         params: {
                             nodeRefId: documentType.nodeRef,
                             name: documentType.name,
-                            displayName: documentType.displayName
+                            mlDisplayNames: documentType.mlDisplayNames
                         }
                     }).then(onSuccess);
         }

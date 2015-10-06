@@ -23,8 +23,11 @@
 
         function getDocumentCategory(nodeRefId) {
             return $http.get('/alfresco/service/api/openesdh/document/category',
-                    {nodeRefId: nodeRefId})
-                    .then(onSuccess);
+                    {
+                        params: {
+                            nodeRefId: nodeRefId
+                        }
+                    }).then(onSuccess);
         }
 
         function saveDocumentCategory(documentCategory) {
@@ -33,7 +36,7 @@
                         params: {
                             nodeRefId: documentCategory.nodeRef,
                             name: documentCategory.name,
-                            displayName: documentCategory.displayName
+                            mlDisplayNames: documentCategory.mlDisplayNames
                         }
                     }).then(onSuccess);
         }
