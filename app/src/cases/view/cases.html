@@ -51,12 +51,12 @@
         </div>
         
         <md-menu>
-            <md-button class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="{{ 'CASE.CREATE_NEW_CASE' | translate }}">
+            <md-button id="create-case-btn" class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="{{ 'CASE.CREATE_NEW_CASE' | translate }}">
                 <i class="material-icons">add</i>
                 {{ 'CASE.CREATE_NEW_CASE' | translate }}
             </md-button>
             <md-menu-content>
-                <md-menu-item><md-button ng-click="vm.createCase($event, 'standard')">{{ 'simple:case' | caseType }}</md-button></md-menu-item>
+                <md-menu-item><md-button id="create-simple-case" ng-click="vm.createCase($event, 'standard')">{{ 'simple:case' | caseType }}</md-button></md-menu-item>
                 <md-menu-item><md-button ng-disabled="true">{{ 'CASE.CASETYPE_OTHER' | translate }}</md-button></md-menu-item>
             </md-menu-content>
         </md-menu>

@@ -14,6 +14,5 @@ describe('openESDH header', function() {
         //wait for 4 secs just in case
         browser.driver.sleep(4000);
         loginPage.logout();
-
     });
 });
