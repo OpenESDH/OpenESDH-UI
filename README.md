@@ -154,18 +154,18 @@ etc to function properly when an html page is opened via `file://` scheme instea
 
 The app's services depend on a running OpenESDH server being proxied to the path /alfresco.
 
-To that end, Grunt tasks have been added to make this easy to do.
+To that end, Gulp tasks have been added to make this _very_ easy to do.
 
-To install (Grunt)[http://gruntjs.com/getting-started] CLI, run:
+To install [Gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md), run:
 
 ```
-sudo npm install -g grunt-cli
+$ sudo npm install -g gulp
 ```
 
 To run and connect to OpenESDH server on the test.openesdh.dk server, run:
 
 ```
-grunt dev
+$ gulp
 ```
 
 This server always runs the latest builds of the OpenESDH repository develop branch.
@@ -174,14 +174,14 @@ This server always runs the latest builds of the OpenESDH repository develop bra
 To run and connect to a locally running OpenESDH server on localhost:8080, run:
 
 ```
-grunt local
+$ gulp local
 ```
 
 
 To run and connect to OpenESDH server on the demo.openesdh.dk server, run:
 
 ```
-grunt demo-dev
+$ gulp demo
 ```
 
 This server runs demo-able versions of OpenESDH, but may be less up-to-date.
