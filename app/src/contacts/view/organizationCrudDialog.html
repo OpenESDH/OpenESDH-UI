@@ -21,7 +21,7 @@
             </md-input-container>
             <md-input-container>
                 <label>{{ 'ORG.ADDRESS_1' | translate }}</label>
-                <input type="text" ng-model="organization.addressLine1" required>
+                <input type="text" ng-model="organization.addressLine1">
             </md-input-container>
             <md-input-container>
                 <label>{{ 'ORG.ADDRESS_2' | translate }}</label>
@@ -29,15 +29,15 @@
             </md-input-container>
             <md-input-container>
                 <label>{{ 'ORG.POSTAL_CODE' | translate }}</label>
-                <input type="number" ng-model="organization.postCode" required ng-minlength="4" ng-maxlength="4">
+                <input type="number" ng-model="organization.postCode" ng-minlength="4" ng-maxlength="4">
             </md-input-container>
             <md-input-container>
                 <label>{{ 'ORG.CITY' | translate }}</label>
-                <input type="text" ng-model="organization.cityName" required>
+                <input type="text" ng-model="organization.cityName">
             </md-input-container>
             <md-input-container>
                 <label>{{ 'ORG.COUNTRY' | translate }}</label>
-                <md-select ng-model="organization.countryCode" required>
+                <md-select ng-model="organization.countryCode">
                   <md-option ng-value="countryCode" ng-repeat="countryCode in countries">{{ countryCode| countryCodeToName }}</md-option>
                 </md-select>
             </md-input-container>

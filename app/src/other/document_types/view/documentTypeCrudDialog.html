@@ -15,9 +15,10 @@
         <label>{{ 'DOCUMENT_TYPES.NAME' | translate }}</label>
         <input type="text" ng-model="dt.documentType.name" required ng-pattern="dt.PATTERNS.fileName" ng-disabled="dt.documentType.systemType">
       </md-input-container>
-      <md-input-container>
-        <label>{{ 'DOCUMENT_TYPES.DISPLAY_NAME' | translate }}</label>
-        <input type="text" ng-model="dt.documentType.displayName" required ng-maxlength="150">
+      
+      <md-input-container ng-repeat="avLang in dt.availableLanguages">
+        <label>{{ 'DOCUMENT_TYPES.DISPLAY_NAME' | translate }} ({{avLang}})</label>
+        <input type="text" ng-model="dt.documentType.mlDisplayNames[avLang]" required ng-maxlength="150">
       </md-input-container>
     </md-dialog-content>
 

@@ -4,11 +4,11 @@
             .module('openeApp.cases.parties')
             .controller('CasePartiesController', CasePartiesController);
 
-    CasePartiesController.$inject = ['$scope', '$stateParams', '$mdDialog', '$filter',
-        'casePartiesService', 'partyPermittedRolesService', 'contactsService'];
+    CasePartiesController.$inject = ['$scope', '$stateParams', '$mdDialog', '$filter', '$translate',
+        'casePartiesService', 'partyPermittedRolesService', 'contactsService', 'notificationUtilsService'];
 
-    function CasePartiesController($scope, $stateParams, $mdDialog, $filter,
-            casePartiesService, partyPermittedRolesService, contactsService) {
+    function CasePartiesController($scope, $stateParams, $mdDialog, $filter, $translate,
+            casePartiesService, partyPermittedRolesService, contactsService, notificationUtilsService) {
         var vm = this;
         vm.parties = [];
         vm.removeParty = removeParty;
@@ -43,12 +43,26 @@
             });
         }
 
-        function removeParty(party) {
-            casePartiesService.deleteCaseParty($stateParams.caseId, party).then(function(response) {
-                //remove from list
-                var index = vm.parties.indexOf(party);
-                vm.parties.splice(index, 1);
+        function removeParty(ev, party) {
+            var confirm = $mdDialog.confirm()
+                    .title($translate.instant('COMMON.CONFIRM'))
+                    .content($translate.instant('PARTY.ARE_YOU_SURE_YOU_WANT_TO_REMOVE_PARTY', party))
+                    .targetEvent(ev)
+                    .ok($translate.instant('COMMON.YES'))
+                    .cancel($translate.instant('COMMON.CANCEL'));
+            $mdDialog.show(confirm).then(function() {
+                casePartiesService.deleteCaseParty($stateParams.caseId, party).then(function(response) {
+                    //remove from list
+                    var index = vm.parties.indexOf(party);
+                    vm.parties.splice(index, 1);
+                    //notify
+                    notificationUtilsService.notify($translate.instant("PARTY.PARTY_REMOVED_SUCCESSFULLY"));
+                }, error);
             });
+        }
+        
+        function error(response) {
+            notificationUtilsService.alert(response.data.message);
         }
 
         function showAddPartiesDialog(ev) {
@@ -62,8 +76,6 @@
                 clickOutsideToClose: true
             }).then(function(response) {
                 //
-            }, function() {
-                //on cancel dialog
             });
         }
 
@@ -81,8 +93,6 @@
                 }
             }).then(function(response) {
                 //
-            }, function() {
-                //on cancel dialog
             });
         }
 
@@ -151,7 +161,8 @@
                 });
                 vm.createCaseParty(role, contacts).then(function() {
                     $mdDialog.hide();
-                });
+                    notificationUtilsService.notify($translate.instant("PARTY.PARTY_ADDED_SUCCESSFULLY"));
+                }, error);
             }
             function cancel() {
                 $mdDialog.cancel();
@@ -179,7 +190,8 @@
             function save() {
                 vm.changeCaseParty(self.party.nodeRef, self.party.role, self.newRole).then(function() {
                     $mdDialog.hide();
-                });
+                    notificationUtilsService.notify($translate.instant("PARTY.PARTY_CHANGED_SUCCESSFULLY"));
+                }, error);
             }
 
             function cancel() {
