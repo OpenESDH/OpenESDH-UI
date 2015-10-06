@@ -72,6 +72,7 @@
               <div class="md-actions" layout="row" layout-padding layout-align="start center">
                 <md-button class="md-primary" ng-click="vm.editCase($event)"
                            ng-disabled="caseIsLocked">{{ 'CASE.EDIT_INFORMATION' | translate }}</md-button>
+                <md-button class="md-primary" ng-click="vm.printCase()">{{ 'CASE.PRINT_CASE' | translate }}</md-button>
                 <md-button class="md-primary" ng-click="vm.startWorklfow()" ng-disabled="caseIsLocked">{{ 'CASE.START_WORKFLOW' | translate }}</md-button>
               </div>
             </md-card>

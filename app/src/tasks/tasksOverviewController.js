@@ -27,7 +27,6 @@
         function loadTasks(){
             taskService.getTasks().then(function(result){
                 vm.tasks = result;
-                console.log(result);
             });
         }
         
