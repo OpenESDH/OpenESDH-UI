@@ -54,10 +54,8 @@
       
     </md-dialog-content>
     <div class="md-actions" layout="row">
-      <md-button ng-hide="isEditProperties" class="md-primary" ng-click="upload()">
-        {{ 'COMMON.UPLOAD' | translate }}
-      </md-button>
-      <md-button ng-show="isEditProperties" class="md-primary" ng-click="upload()">
+      
+      <md-button class="md-primary" ng-click="upload()">
         {{ 'COMMON.OK' | translate }}
       </md-button>
       <md-button ng-click="cancel()">
