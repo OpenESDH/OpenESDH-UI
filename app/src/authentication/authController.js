@@ -19,7 +19,6 @@
             authService.login(credentials.username, credentials.password).then(function(response) {
                 userService.getPerson(credentials.username).then(function(response) {
                     vm.user = response;
-                    console.log(vm.user);
                 });
                 console.log('tostate: ' + $scope.returnToState);
                 if ($scope.returnToState) {
