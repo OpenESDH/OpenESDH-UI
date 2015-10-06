@@ -36,6 +36,7 @@
                 $mdDialog.cancel();
             };
 
+            // Returns the selected users to the directive callback function
             scope.executeCallback = function () {
                 if(!scope.selectedUsers.length) return;
                 
@@ -44,19 +45,7 @@
                 return scope.getSelectedUsers(scope.selectedUsers);
             };
 
-            scope.querySearch = function(queryterm) {
-                var result;
-                if(queryterm) {
-                    result = getAllSystemUsers(queryterm).then(function (data) {
-                        return data;
-                    });
-                } else {
-                    result = [];
-                }
-                return result;
-            };
-
-            function getAllSystemUsers(queryterm) {
+            scope.getAllSystemUsers = function(queryterm) {
                 var query = createQuery(queryterm);
                 return userService.getPeople(query).then(parseResult);
             };

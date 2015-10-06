@@ -11,9 +11,9 @@
             <md-autocomplete
                 md-selected-item="selectedItem"
                 md-search-text="searchTerm"
-                md-items="item in querySearch(searchTerm)"
+                md-items="item in getAllSystemUsers(searchTerm)"
                 md-item-text="item.name"
-                placeholder="Add user">
+                placeholder="{{ 'SEARCH.FIND_USERS' | translate }}">
                 <span md-highlight-text="searchTerm">{{item.name}}</span>
             </md-autocomplete>
 
