@@ -30,7 +30,8 @@
   </md-card-content>
   <md-card-footer>
     
-    <opene-user-search-dialog get-selected-users="vm.addMembersToGroup"></opene-user-search-dialog>
+    <opene-group-user-dialog search-type="users" get-selected-items="vm.addMembersToGroup"></opene-group-user-dialog>
+    <opene-group-user-dialog search-type="groups" get-selected-items="vm.addMembersToGroup"></opene-group-user-dialog>
     
   </md-card-footer>
 </md-card>

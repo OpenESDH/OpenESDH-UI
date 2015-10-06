@@ -487,6 +487,7 @@
     "GROUPS": "Groups",
     "GROUP": "Group",
     "ADD_USERS": "Add users",
+    "ADD_GROUPS": "Add groups",
     "DISPLAY_NAME": "Display name",
     "SHORT_NAME": "Short name",
     "CREATE_NEW_GROUP": "Create new group"
@@ -612,6 +613,7 @@
     "SEARCH": "Search",
     "FIND_USER": "Find user",
     "FIND_USERS": "Find users",
+    "FIND_GROUPS": "Find groups",
     "FIND_PERSON": "Find persons",
     "FIND_ORGANISATION": "Find organizations",
     "NO_MATCHES": "No matches"
