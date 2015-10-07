@@ -4,11 +4,11 @@
             .module('openeApp.contacts')
             .controller('OrganizationController', OrganizationController);
 
-    OrganizationController.$inject = ['$scope', '$stateParams', '$mdDialog', '$location', 
-        'contactsService', 'countriesService', 'PATTERNS'];
+    OrganizationController.$inject = ['$scope', '$stateParams', '$mdDialog', '$location', '$translate',
+        'contactsService', 'countriesService', 'PATTERNS', 'notificationUtilsService'];
 
-    function OrganizationController($scope, $stateParams, $mdDialog, $location, 
-    contactsService, countriesService, PATTERNS) {
+    function OrganizationController($scope, $stateParams, $mdDialog, $location, $translate,
+            contactsService, countriesService, PATTERNS, notificationUtilsService) {
         var vm = this;
         vm.doFilter = doFilter;
         vm.showOrganizationEdit = showOrganizationEdit;
@@ -32,9 +32,7 @@
             contactsService.getOrganizations(vm.searchQuery, vm.pagingParams).then(function(response) {
                 vm.organizations = response;
                 vm.pagingParams.totalRecords = response.totalRecords;
-            }, function(error) {
-                console.log(error);
-            });
+            }, error);
         }
 
         function initInfo() {
@@ -61,24 +59,20 @@
 
         function deleteOrganization(ev, organization) {
             var confirm = $mdDialog.confirm()
-                    .title('Confirmation')
-                    .content('Are you sure you want to delete organization?')
-                    .ariaLabel('Organization delete confirmation')
+                    .title($translate.instant('COMMON.CONFIRM'))
+                    .content($translate.instant('ORG.ARE_YOU_SURE_YOU_WANT_TO_DELETE_ORG', organization))
                     .targetEvent(ev)
-                    .ok('Yes')
-                    .cancel('Cancel');
+                    .ok($translate.instant('COMMON.YES'))
+                    .cancel($translate.instant('COMMON.CANCEL'));
             $mdDialog.show(confirm).then(function() {
-                contactsService.deletePerson(organization).then(function() {
+                contactsService.deleteOrganization(organization).then(function() {
                     $location.path('/admin/organizations');
-                }, function(response) {
-                    console.log(response);
-                    $scope.status = "Cannot delete";
-                });
+                    notificationUtilsService.notify($translate.instant("ORG.ORG_DELETED_SUCCESSFULLY"));
+                }, error);
             });
         }
 
         function showOrganizationEdit(ev) {
-            $scope.status = null;
             $mdDialog
                     .show({
                         controller: DialogController,
@@ -91,9 +85,7 @@
                         }
                     })
                     .then(function(response) {
-                        $scope.status = response;
-                    }, function() {
-
+                        //
                     });
         }
 
@@ -112,33 +104,33 @@
 
             $scope.save = function(orgForm) {
                 if (!orgForm.$valid) {
-                    $scope.error = 'Fill all required fields!';
+                    notificationUtilsService.notify($translate.instant("COMMON.FILL_ALL_REQUIRED_FIELDS"));
                     return;
                 }
-                $scope.error = null;
                 if ($scope.organization.id) {
                     contactsService.updateOrganization($scope.organization)
-                            .then(refreshInfoAfterSuccess, saveError);
+                            .then(refreshInfoAfterSuccess, error);
                 } else {
                     contactsService.createOrganization($scope.organization)
-                            .then(refreshListAfterSuccess, saveError);
+                            .then(refreshListAfterSuccess, error);
                 }
             };
 
             function refreshListAfterSuccess() {
-                $mdDialog.hide('Success!');
+                notificationUtilsService.notify($translate.instant("ORG.ORG_SAVED_SUCCESSFULLY"));
                 vm.doFilter();
+                $mdDialog.hide();
             }
 
             function refreshInfoAfterSuccess(savedOrganization) {
+                notificationUtilsService.notify($translate.instant("ORG.ORG_SAVED_SUCCESSFULLY"));
                 vm.organization = savedOrganization;
-                $mdDialog.hide('Success!');
+                $mdDialog.hide();
             }
+        }
 
-            function saveError(response) {
-                console.log(response);
-                $scope.error = response.statusText || response.message;
-            }
+        function error(response) {
+            notificationUtilsService.alert(response.data.message);
         }
 
 
@@ -169,8 +161,6 @@
             }
             $scope.person = person;
             $scope.countries = countriesService.getCountries();
-            $scope.error = null;
-            $scope.success = null;
             $scope.PATTERNS = PATTERNS;
 
             $scope.hide = function() {
@@ -183,42 +173,43 @@
 
             $scope.delete = function(ev, person) {
                 var confirm = $mdDialog.confirm()
-                        .title('Confirmation')
-                        .content('Are you sure you want to delete person contact?')
-                        .ariaLabel('Person delete confirmation')
+                        .title($translate.instant('COMMON.CONFIRM'))
+                        .content($translate.instant('CONTACT.ARE_YOU_SURE_YOU_WANT_TO_DELETE_PERSON_CONTACT', person))
                         .targetEvent(ev)
-                        .ok('Yes')
-                        .cancel('Cancel');
+                        .ok($translate.instant('COMMON.YES'))
+                        .cancel($translate.instant('COMMON.CANCEL'));
                 $mdDialog.show(confirm).then(function() {
                     contactsService.deletePerson(person)
-                        .then(refreshInfoAfterSuccess, saveError);
+                            .then(refreshInfoAfterDelete, error);
                 });
             };
 
             $scope.save = function(personForm) {
-                vm.error = null;
-                vm.success = null;
                 if (!personForm.$valid) {
-                    vm.error = 'Fill all required fields!';
+                    notificationUtilsService.notify($translate.instant("COMMON.FILL_ALL_REQUIRED_FIELDS"));
                     return;
                 }
                 if ($scope.person.id) {
                     contactsService.updatePerson($scope.person)
-                            .then(refreshInfoAfterSuccess, saveError);
+                            .then(refreshInfoAfterSave, error);
                 } else {
                     contactsService.createPerson($scope.person)
-                            .then(refreshInfoAfterSuccess, saveError);
+                            .then(refreshInfoAfterSave, error);
                 }
             };
 
-            function refreshInfoAfterSuccess(savedPerson) {
-                $mdDialog.hide('Success!');
-                vm.initPersons();
+            function refreshInfoAfterSave(savedPerson) {
+                refreshInfoAfterSuccessWithMsg($translate.instant("CONTACT.CONTACT_SAVED_SUCCESSFULLY", savedPerson));
             }
 
-            function saveError(response) {
-                console.log(response);
-                $scope.error = response.statusText || response.message;
+            function refreshInfoAfterDelete() {
+                refreshInfoAfterSuccessWithMsg($translate.instant("CONTACT.CONTACT_DELETED_SUCCESSFULLY"));
+            }
+
+            function refreshInfoAfterSuccessWithMsg(msg) {
+                notificationUtilsService.notify(msg);
+                vm.initPersons();
+                $mdDialog.hide();
             }
         }
     }
