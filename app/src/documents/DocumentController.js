@@ -221,9 +221,9 @@
                             // contactService is an auto-generated ID, so
                             // we have to overwrite it here. This should
                             // really be fixed in the backend.
-                            if (contact["contactType"] == "ORGANIZATION") {
+                            if ("organizationName" in contact) {
                                 vm.fieldData["receiver.name"] = contact.organizationName;
-                            } else if (contact["contactType"] == "PERSON") {
+                            } else if ("firstName" in contact) {
                                 vm.fieldData["receiver.name"] = contact.firstName + " " + contact.lastName;
                             }
                         });
