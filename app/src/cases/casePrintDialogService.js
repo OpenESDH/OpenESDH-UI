@@ -40,6 +40,7 @@
             var vm = this;
             vm.case = caseObj;
             vm.documents = documents;
+            vm.formDisabled = true;
             
             vm.cancel = function() {
               $mdDialog.cancel();
@@ -53,6 +54,22 @@
                     documents: _getSelectedDocuments()
                 };
                 $mdDialog.hide(printInfo);
+            }
+            
+            vm.onSelectionChanged = function(){
+                vm.formDisabled = !_isAnythingSelected();
+            };
+            
+            function _isAnythingSelected(){
+                return vm.caseDetails === true 
+                    || vm.caseHistoryLog === true 
+                    || vm.comments === true
+                    || _isAnyDocumentSelected() === true;
+            }
+            
+            function _isAnyDocumentSelected(){
+                var items = _getSelectedDocuments();
+                return items.length > 0;
             }
             
             function _getSelectedDocuments(){
