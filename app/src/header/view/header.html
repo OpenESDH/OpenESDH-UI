@@ -1,11 +1,11 @@
 <md-toolbar id="global-toolbar">
     <div class="md-toolbar-tools" layout="row">
 
-    <div flex flex-gt-md="40" layout="row" layout-align="start center">
-      <a class="md-button" ui-sref="dashboard"><i class="material-icons">dashboard</i> {{ 'COMMON.HOME' | translate }}</a>
-      <a class="md-button" ui-sref="cases"><i class="material-icons">folder_open</i> {{ 'CASE.CASES' | translate }}</a>
-      <a class="md-button" ui-sref="tasks"><i class="material-icons">assignment</i> {{ 'TASK.TASKS' | translate }}</a>
-    </div>
+        <div flex flex-gt-md="40" layout="row" layout-align="start center">
+          <a class="md-button" ui-sref="dashboard"><i class="material-icons">dashboard</i> {{ 'COMMON.HOME' | translate }}</a>
+          <a class="md-button" ui-sref="cases"><i class="material-icons">folder_open</i> {{ 'CASE.CASES' | translate }}</a>
+          <a class="md-button" ui-sref="tasks"><i class="material-icons">assignment</i> {{ 'TASK.TASKS' | translate }}</a>
+        </div>
 
         <div id="global-search" flex="25" flex-gt-md ng-controller="AutosuggestController as asctrl">
             <form ng-submit="asctrl.gotoSearchPage()">
@@ -71,7 +71,7 @@
             </form>
         </div>
 
-        <md-menu ng-controller="AuthController as vm" flex="25" flex-gt-md="40" layout="row" layout-align="end center"
+        <md-menu ng-controller="AuthController as vm" flex="25" flex-gt-md="35" layout="row" layout-align="end center"
                  md-position-mode="target-right target">
             <md-button aria-label="{{ 'MENU.OPEN_MENU' | translate }}" ng-click="$mdOpenMenu($event)"
                        style="text-transform: capitalize;">

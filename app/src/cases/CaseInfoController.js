@@ -5,7 +5,7 @@
        .controller('CaseInfoController', CaseInfoController);
 
   CaseInfoController.$inject = ['$scope', '$stateParams', '$mdDialog', '$translate', 'caseService', 
-                                'notificationUtilsService', 'startCaseWorkflowService', 'caseCrudDialogService'];
+                                'notificationUtilsService', 'startCaseWorkflowService', 'caseCrudDialogService', 'casePrintDialogService'];
   
   /**
    * Main CaseInfoController for the Cases module
@@ -17,13 +17,14 @@
    * @constructor
    */
   function CaseInfoController($scope, $stateParams, $mdDialog, $translate, caseService, 
-              notificationUtilsService, startCaseWorkflowService, caseCrudDialogService) {
+              notificationUtilsService, startCaseWorkflowService, caseCrudDialogService, casePrintDialogService) {
     var vm = this;
 
     vm.editCase = editCase;
     vm.changeCaseStatus = changeCaseStatus;
     vm.onTabChange = onTabChange;
     vm.startWorklfow = startWorklfow;
+    vm.printCase = printCase;
 
     loadCaseInfo();
     
@@ -109,6 +110,10 @@
     
     function startWorklfow(){
         startCaseWorkflowService.startWorkflow();
+    }
+    
+    function printCase(){
+        casePrintDialogService.printCase($stateParams.caseId);
     }
     
   };

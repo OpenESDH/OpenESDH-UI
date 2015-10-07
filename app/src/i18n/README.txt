@@ -28,54 +28,26 @@ You'll notice that this example puts the translatable string in the 'COMMON' nam
 Translatable strings can also be added programmatically. See the Angular translate docs for details.
 
 
-** How to prepare translations
-
-Now that you have a bunch of view files with translatable text in them, it's time to prepare for translation. Point to your project in a terminal and use the command:
-
-[
-
- $ grunt update-lang
-
-]
-
-Grunt will start the update-lang task and create some new files for you. These files are
-/app/src/i18n/draft_en.json
-/app/src/i18n/draft_da.json
-
-Those are the *intermediate* translation files for English and Danish respectively. More languages can be added should the need arise.
-
-Open the files and you'll notice some JSON output a bit like this:
-
-[
-
-  {
-    "COMMON": {
-        "OK": "OK",
-        "CANCEL": "Cancel",
-        "NEXT": "",
-        "DONE": "",
-    } ...
-  }
-
-]
-
-You'll notice the namespace 'COMMON' and its strings. When the Grunt task runs, Grunt will look for {{ 'NAMESPACE.SOME_STRING' | translate }} and put them in the draft_*.json files. If the string is already found in the file along with its translation, Grunt will leave it there and just add the strings that have been created since the last time update-lang was run. Therefore you'll find both translated and empty strings in the draft_*.json file.
-
-*IMPORTANT* Some strings are not completely present in the template files that Grunt goes through. For example, CASE.STATUS only exists as a partial string ( {{ 'CASE.STATUS.' + someVariable | translate }} ) and different statusses are added via ajax response. Our grunt task uses json-replace to add these extra dynamic strings. You can see them in gruntfile.js.
-
-
 ** How to add translations
 
-In the same directory as the draft_*.json files you'll find
+In the /app/src/i18n directory you'll find
 en.json
 da.json
 
-These are the actual translation files. The reason why grunt udate-lang doesn't output to these files directly is that this would remove any manual fixes.
+These are the translation files.
 
 The translating process would be something like this (for English translation):
 
-1. Open newly updated draft_en.json
-2. Look for empty strings ("") in draft_en.json and add translations there
-4. Clear en.json and copy all data from draft_en.json to en.json.
+1. Add new translation properties in ALL the translation files. If you added "CASE.TYPE.SOMETHING" in a view or controller file. You'll need to add
+[
 
-When this is done, you need only refresh your browser to see the new translations in action!
+  "CASE": {
+    "TYPE": {
+      "SOMETHING": "Localized translation goes here"
+    }
+  }
+
+]
+Note: There might already be a namespace present for the property you're adding. Don't add duplicate namespaces.
+
+2. Save your changes and refresh your browser to see the new translations in action!

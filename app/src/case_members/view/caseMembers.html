@@ -1,7 +1,6 @@
 <md-card ng-controller="CaseMembersController as cmc">
     <md-card-content>
         <h3>{{'MEMBER.MEMBERS'| translate}}</h3>
-        <div ng-bind="cmc.status" ng-show="cmc.status"></div>
         <table>
             <thead>
                 <tr>
@@ -17,12 +16,12 @@
                     <td>{{member.authorityType}}</td>
                     <td>{{member.role}}</td>
                     <td>
-                        <md-button class="md-primary" ng-click="cmc.showChangeDialog($event, member)">{{'MEMBER.CHANGE'| translate }}</md-button>
-                        <md-button class="md-primary" ng-click="cmc.removeMember(member)">{{'COMMON.REMOVE'| translate }}</md-button>
+                        <md-button class="md-primary" ng-click="cmc.showChangeDialog($event, member)" ng-disabled="caseIsLocked">{{'MEMBER.CHANGE'| translate }}</md-button>
+                        <md-button class="md-primary" ng-click="cmc.removeMember($event, member)" ng-disabled="caseIsLocked">{{'COMMON.REMOVE'| translate }}</md-button>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <md-button class="md-primary" ng-click="cmc.showNewDialog($event)">{{ 'COMMON.ADD_NEW' | translate }}</md-button>
+        <md-button class="md-primary" ng-click="cmc.showNewDialog($event)" ng-disabled="caseIsLocked">{{ 'COMMON.ADD_NEW' | translate }}</md-button>
     </md-card-content>
 </md-card>

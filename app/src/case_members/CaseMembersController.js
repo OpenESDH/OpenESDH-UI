@@ -4,13 +4,12 @@
             .module('openeApp.cases.members')
             .controller('CaseMembersController', CaseMembersController);
 
-    CaseMembersController.$inject = ['$scope', '$stateParams', 'caseMembersService',
-        '$mdDialog', 'userService', 'caseRoleService'];
+    CaseMembersController.$inject = ['$scope', '$stateParams', '$translate', 'caseMembersService',
+        '$mdDialog', 'userService', 'caseRoleService', 'notificationUtilsService'];
 
-    function CaseMembersController($scope, $stateParams, caseMembersService,
-            $mdDialog, userService, caseRoleService) {
+    function CaseMembersController($scope, $stateParams, $translate, caseMembersService,
+            $mdDialog, userService, caseRoleService, notificationUtilsService) {
         var vm = this;
-        vm.status = null;
         vm.members = [];
 
         vm.showNewDialog = showNewDialog;
@@ -23,7 +22,6 @@
         //lets init only when tab is selected
         $scope.$on('tabSelectEvent', function(event, args) {
             if (args.tab === 'members') {
-                vm.status = null;
                 fillList();
             }
         });
@@ -35,34 +33,51 @@
             });
         }
 
-        function removeMember(member) {
-            vm.status = null;
-            return caseMembersService.deleteCaseMember($stateParams.caseId, member.authority, member.role).then(success, error);
+        function removeMember(ev, member) {
+            var confirm = $mdDialog.confirm()
+                    .title($translate.instant('COMMON.CONFIRM'))
+                    .content($translate.instant('MEMBER.ARE_YOU_SURE_YOU_WANT_TO_REMOVE_MEMBER', member))
+                    .targetEvent(ev)
+                    .ok($translate.instant('COMMON.YES'))
+                    .cancel($translate.instant('COMMON.CANCEL'));
+            $mdDialog.show(confirm).then(function() {
+                caseMembersService.deleteCaseMember($stateParams.caseId, member.authority, member.role).then(successRemove, error);
+            });
         }
 
         function createMember(role, authorities) {
-            vm.status = null;
             return caseMembersService
                     .createCaseMembers($stateParams.caseId, role, authorities)
-                    .then(success, error);
+                    .then(function() {
+                        if (authorities.length > 1) {
+                            success($translate.instant("MEMBER.MEMBERS_ADDED_SUCCESSFULLY", {count: authorities.length}));
+                        } else {
+                            success($translate.instant("MEMBER.MEMBER_ADDED_SUCCESSFULLY"));
+                        }
+                    }, error);
         }
 
         function changeMember(authority, role, newRole) {
-            vm.status = null;
             return caseMembersService
                     .changeCaseMember($stateParams.caseId, authority, role, newRole)
-                    .then(success, error);
+                    .then(successChange, error);
         }
 
-        function success() {
-            vm.status = 'Success';
+        function successChange() {
+            success($translate.instant("MEMBER.MEMBER_CHANGED_SUCCESSFULLY"));
+        }
+
+        function successRemove() {
+            success($translate.instant("MEMBER.MEMBER_REMOVED_SUCCESSFULLY"));
+        }
+
+        function success(msg) {
             fillList();
+            notificationUtilsService.notify(msg);
         }
 
         function error(response) {
-            vm.status = 'Error: ' + response.data && response.data.text
-                    ? response.data.text
-                    : response.data;
+            notificationUtilsService.alert(response.data.message);
         }
 
         function showNewDialog(event) {

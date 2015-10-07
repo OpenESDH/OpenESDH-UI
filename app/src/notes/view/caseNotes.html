@@ -23,7 +23,7 @@
       {{ 'NOTE.NEW_NOTE' | translate }}
     </md-button>
     <md-button class="md-primary" ng-disabled="true">{{ 'NOTE.PRINT_ALL_NOTES' | translate }}</md-button>
-    <div style="float: right;">
+    <div style="float: right;" ng-show="caseNotes.pagingParams.totalRecords > 0">
       <span>{{caseNotes.pagingParams.getStartIndex()}} - {{caseNotes.pagingParams.getEndIndex()}} {{ 'COMMON.OF' | translate }} {{caseNotes.pagingParams.totalRecords}}</span>
       <span>
         <md-button ng-click="caseNotes.loadNotes(caseNotes.pagingParams.page - 1)" ng-disabled="!caseNotes.pagingParams.hasPreviousPage()" title="Previos page">&lt;</md-button>

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('openeApp')
+        .module('openeApp.documents')
         .factory('caseDocumentsService', CaseDocumentsService);
 
     CaseDocumentsService.$inject = ['$http', 'httpUtils', 'alfrescoUploadService'];
