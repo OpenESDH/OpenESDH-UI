@@ -11,7 +11,7 @@ var environment = {
 
 var paths = {
 	scripts: ['app/src/**/*.module.js', 'app/src/**/*.js', '!app/src/**/*Spec.js'],
-	css: []
+	scss: ['app/src/app.scss', 'app/src/**/*.scss']
 };
 
 var dist = {
@@ -49,13 +49,21 @@ gulp.task('scripts', function () {
 
 // Css
 gulp.task('css', function () {
-	// Nothing here yet
+	return gulp.src(paths.scss)
+			.pipe($.wrap('/** ---------------- \n * Filepath: <%= file.relative %>\n */\n<%= contents %>'))
+			.pipe($.concat(dist.name + '.scss'))
+			.pipe($.sass())
+			.pipe(gulp.dest(dist.folder))
+			.pipe($.rename({ suffix: '.min' }))
+			.pipe($.minifyCss())
+			.pipe(gulp.dest(dist.folder))
+			.on('error', $.util.log)
 });
 
 // Set up watchers
 gulp.task('watch', function () {
 	gulp.watch(paths.scripts, ['scripts']);
-	gulp.watch(paths.css, ['css']);
+	gulp.watch(paths.scss, ['css']);
 });
 
 /** ----------------

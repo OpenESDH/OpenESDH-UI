@@ -1,0 +1,55 @@
+#global-search {
+	position: relative;
+
+	input {
+		background: #fff;
+		border-radius: 0.25em;
+	}
+
+	.md-subheader .md-subheader-inner {
+	    padding: 8px 0px 8px 16px;
+	}
+
+	md-input-container {
+		position: relative; 
+		top: 12px;
+
+		.md-input {
+			font-size: 16px;
+		}
+	}
+
+	md-list-item {
+		
+		.md-avatar {
+			border-radius: 0;
+		}
+
+		md-icon {
+			color: #454545;
+			font-size: 40px;
+		}
+	}
+
+	md-whiteframe {
+		width: 100%; 
+		position: absolute; 
+		top: 61px;
+	    background-color: white; 
+	    color: #000;
+	}
+
+	.activeSuggestion, 
+	md-list-item:hover {
+		cursor: pointer;
+		background-color: #1E88E5;
+	}
+
+	.activeSuggestion h3,
+	md-list-item:hover h3,
+	.activeSuggestion p,
+	md-list-item:hover p,
+	md-list-item.activeSuggestion md-icon {
+		color: #FFFFFF;
+	}
+}
