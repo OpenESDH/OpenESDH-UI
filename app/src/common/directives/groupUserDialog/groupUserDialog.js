@@ -4,9 +4,9 @@
     angular.module('openeApp.common.directives')
         .directive('openeGroupUserDialog', openeGroupUserDialog);
 
-    openeGroupUserDialog.$inject = ['$mdDialog', 'userService']
+    openeGroupUserDialog.$inject = ['$mdDialog', 'userService', 'groupService']
 
-    function openeGroupUserDialog($mdDialog, userService) {
+    function openeGroupUserDialog($mdDialog, userService, groupService) {
 
         function postlink(scope, elem, attrs) {
 
@@ -24,7 +24,7 @@
                     targetEvent: event,
                     clickOutsideToClose: true
                 });
-            }
+            };
 
             // Cancel form in dialog
             scope.cancel = function () {
@@ -39,10 +39,8 @@
             // Returns the selected items to the directive callback function
             scope.executeCallback = function () {
                 if(!scope.selectedItems.length) return;
-                scope.getSelectedItems({
-                    type: scope.searchType,
-                    items: scope.selectedItems
-                });
+                scope.getSelectedItems( scope.selectedItems
+                );
                 scope.cancel();
             };
 
@@ -62,7 +60,8 @@
                         return {
                             name: contact.firstName + ' ' + contact.lastName,
                             email: contact.email,
-                            username: contact.userName
+                            type: "user",
+                            userName: contact.userName
                         }
                     });
                 });
@@ -78,8 +77,14 @@
              * Group search
              */
             function searchGroups(queryterm) {
-                return userService.getGroups(queryterm).then(function (response) {
-                    return response;
+                return groupService.findGroup(queryterm).then(function (response) {
+                    return response.data.map(function (group, index) {
+                        return {
+                            name: group.displayName,
+                            type: "group",
+                            shortName: group.shortName
+                        }
+                    });
                 });
             };
 
