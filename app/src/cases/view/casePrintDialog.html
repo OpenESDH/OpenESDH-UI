@@ -7,15 +7,15 @@
     </md-toolbar>
     <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em">
     
-        <md-checkbox ng-model="dlg.caseDetails"  aria-label="Details">
+        <md-checkbox ng-model="dlg.caseDetails"  aria-label="Details" ng-change="dlg.onSelectionChanged()">
             {{"CASE.CASE_DETAILS" | translate}}
         </md-checkbox>
         
-        <md-checkbox ng-model="dlg.caseHistoryLog"  aria-label="History">
+        <md-checkbox ng-model="dlg.caseHistoryLog"  aria-label="History" ng-change="dlg.onSelectionChanged()">
             {{"CASE.CASE_HISTORY_LOG" | translate}}
         </md-checkbox>
         
-        <md-checkbox ng-model="dlg.comments"  aria-label="Comments">
+        <md-checkbox ng-model="dlg.comments"  aria-label="Comments" ng-change="dlg.onSelectionChanged()">
             {{"CASE.COMMENTS" | translate}}
         </md-checkbox>
         
@@ -43,7 +43,7 @@
                     </td>
                     <td>
                         <div style="display: inline-flex;">
-                            <md-checkbox ng-model="doc.selected" aria-label="checkbox">{{doc.title}}</md-checkbox>
+                            <md-checkbox ng-model="doc.selected" aria-label="checkbox" ng-change="dlg.onSelectionChanged()">{{doc.title}}</md-checkbox>
                             <!-- <span style="margin-top: 12px;">{{doc.title}}</span> -->
                         </div>
                     </td>
@@ -58,7 +58,7 @@
                 <tr ng-if="doc.attachments.length > 0 && doc.expanded" ng-repeat-end="">
                     <td style="padding-left: 50px;" colspan="9">
                         <div ng-repeat="attachment in doc.attachments">
-                            <md-checkbox ng-model="attachment.selected"  aria-label="checkbox">
+                            <md-checkbox ng-model="attachment.selected"  aria-label="checkbox" ng-change="dlg.onSelectionChanged()">
                                 {{attachment.name}}
                             </md-checkbox>
         <!--                        <span style="margin-top: 12px;">{{attachment.name}}</span>-->
@@ -73,7 +73,7 @@
       
     </md-dialog-content>
     <div class="md-actions" layout="row">
-      <md-button class="md-primary" ng-click="dlg.print()">
+      <md-button class="md-primary" ng-click="dlg.print()" ng-disabled="dlg.formDisabled">
         {{ 'CASE.PRINT_CASE' | translate }}
       </md-button>
       <md-button ng-click="dlg.cancel()">
