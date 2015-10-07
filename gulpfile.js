@@ -1,6 +1,5 @@
-var gulp 		= require('gulp'),
-	jshint		= require('gulp-jshint'),
-	webserver 	= require('gulp-webserver');
+var gulp = require('gulp'),
+	$ 	 = require('gulp-load-plugins')();
 
 // Config vars
 // If, after a while, there are a lot of config vars, we can move these to a separate file
@@ -11,14 +10,19 @@ var environment = {
 };
 
 var paths = {
-	scripts: ['app/src/**/*.js'],
+	scripts: ['app/src/**/*.module.js', 'app/src/**/*.js', '!app/src/**/*Spec.js'],
 	css: []
 };
+
+var dist = {
+	name: 'opene-app',
+	folder: './dist/'
+}
 
 // Setting up a local webserver
 function createWebserver(config) {
 	return gulp.src('./')
-			.pipe(webserver({
+			.pipe($.webserver({
 				open: true, // Open up a browser automatically
 				proxies: [{
 					source: '/alfresco', 
@@ -30,8 +34,17 @@ function createWebserver(config) {
 // Script tasks
 gulp.task('scripts', function () {
 	return gulp.src(paths.scripts)
-			.pipe(jshint('.jshintrc'))
-			.pipe(jshint.reporter('jshint-stylish'));
+			//.pipe($.wrap('(function(){\n"use strict";\n<%= contents %>\n})();'))
+			//.pipe($.jshint('.jshintrc'))
+			//.pipe($.jshint.reporter('jshint-stylish'))
+			.pipe($.concat(dist.name + '.js'))
+			.pipe(gulp.dest(dist.folder))
+			.pipe($.rename({ suffix: '.min' }))
+            .pipe($.stripDebug())
+            .pipe($.ngAnnotate())
+            .pipe($.uglify())
+            .pipe(gulp.dest(dist.folder))
+            .on('error', $.util.log)
 });
 
 // Css
