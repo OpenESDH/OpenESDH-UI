@@ -67,7 +67,7 @@
             $mdDialog.show(confirm).then(function() {
                 contactsService.deleteOrganization(organization).then(function() {
                     $location.path('/admin/organizations');
-                    notificationUtilsService.notify($translate.instant("ORG.ORG_DELETED_SUCCESSFULLY"));
+                    notificationUtilsService.notify($translate.instant("ORG.ORG_DELETED_SUCCESSFULLY", organization));
                 }, error);
             });
         }
@@ -116,14 +116,14 @@
                 }
             };
 
-            function refreshListAfterSuccess() {
-                notificationUtilsService.notify($translate.instant("ORG.ORG_SAVED_SUCCESSFULLY"));
+            function refreshListAfterSuccess(savedOrganization) {
+                notificationUtilsService.notify($translate.instant("ORG.ORG_SAVED_SUCCESSFULLY", savedOrganization));
                 vm.doFilter();
                 $mdDialog.hide();
             }
 
             function refreshInfoAfterSuccess(savedOrganization) {
-                notificationUtilsService.notify($translate.instant("ORG.ORG_SAVED_SUCCESSFULLY"));
+                notificationUtilsService.notify($translate.instant("ORG.ORG_SAVED_SUCCESSFULLY", savedOrganization));
                 vm.organization = savedOrganization;
                 $mdDialog.hide();
             }
@@ -179,8 +179,9 @@
                         .ok($translate.instant('COMMON.YES'))
                         .cancel($translate.instant('COMMON.CANCEL'));
                 $mdDialog.show(confirm).then(function() {
-                    contactsService.deletePerson(person)
-                            .then(refreshInfoAfterDelete, error);
+                    contactsService.deletePerson(person).then(function(){
+                        refreshInfoAfterSuccessWithMsg($translate.instant("CONTACT.CONTACT_DELETED_SUCCESSFULLY", person));
+                    }, error);
                 });
             };
 
@@ -200,10 +201,6 @@
 
             function refreshInfoAfterSave(savedPerson) {
                 refreshInfoAfterSuccessWithMsg($translate.instant("CONTACT.CONTACT_SAVED_SUCCESSFULLY", savedPerson));
-            }
-
-            function refreshInfoAfterDelete() {
-                refreshInfoAfterSuccessWithMsg($translate.instant("CONTACT.CONTACT_DELETED_SUCCESSFULLY"));
             }
 
             function refreshInfoAfterSuccessWithMsg(msg) {

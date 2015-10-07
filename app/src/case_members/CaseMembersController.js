@@ -5,7 +5,7 @@
             .controller('CaseMembersController', CaseMembersController);
 
     CaseMembersController.$inject = ['$scope', '$stateParams', '$translate', 'caseMembersService',
-        '$mdDialog', 'userService', 'caseRoleService','notificationUtilsService'];
+        '$mdDialog', 'userService', 'caseRoleService', 'notificationUtilsService'];
 
     function CaseMembersController($scope, $stateParams, $translate, caseMembersService,
             $mdDialog, userService, caseRoleService, notificationUtilsService) {
@@ -35,11 +35,11 @@
 
         function removeMember(ev, member) {
             var confirm = $mdDialog.confirm()
-                .title($translate.instant('COMMON.CONFIRM'))
-                .content($translate.instant('MEMBER.ARE_YOU_SURE_YOU_WANT_TO_REMOVE_MEMBER', member))
-                .targetEvent(ev)
-                .ok($translate.instant('COMMON.YES'))
-                .cancel($translate.instant('COMMON.CANCEL'));
+                    .title($translate.instant('COMMON.CONFIRM'))
+                    .content($translate.instant('MEMBER.ARE_YOU_SURE_YOU_WANT_TO_REMOVE_MEMBER', member))
+                    .targetEvent(ev)
+                    .ok($translate.instant('COMMON.YES'))
+                    .cancel($translate.instant('COMMON.CANCEL'));
             $mdDialog.show(confirm).then(function() {
                 caseMembersService.deleteCaseMember($stateParams.caseId, member.authority, member.role).then(successRemove, error);
             });
@@ -48,7 +48,13 @@
         function createMember(role, authorities) {
             return caseMembersService
                     .createCaseMembers($stateParams.caseId, role, authorities)
-                    .then(successAdd, error);
+                    .then(function() {
+                        if (authorities.length > 1) {
+                            success($translate.instant("MEMBER.MEMBERS_ADDED_SUCCESSFULLY", {count: authorities.length}));
+                        } else {
+                            success($translate.instant("MEMBER.MEMBER_ADDED_SUCCESSFULLY"));
+                        }
+                    }, error);
         }
 
         function changeMember(authority, role, newRole) {
@@ -57,15 +63,11 @@
                     .then(successChange, error);
         }
 
-        function successAdd(){
-            success($translate.instant("MEMBER.MEMBER_ADDED_SUCCESSFULLY"));
-        }
-        
-        function successChange(){
+        function successChange() {
             success($translate.instant("MEMBER.MEMBER_CHANGED_SUCCESSFULLY"));
         }
-        
-        function successRemove(){
+
+        function successRemove() {
             success($translate.instant("MEMBER.MEMBER_REMOVED_SUCCESSFULLY"));
         }
 

@@ -161,7 +161,11 @@
                 });
                 vm.createCaseParty(role, contacts).then(function() {
                     $mdDialog.hide();
-                    notificationUtilsService.notify($translate.instant("PARTY.PARTY_ADDED_SUCCESSFULLY"));
+                    if (contacts.length > 1) {
+                        notificationUtilsService.notify($translate.instant("PARTY.PARTIES_ADDED_SUCCESSFULLY", { count: contacts.length }));
+                    } else {
+                        notificationUtilsService.notify($translate.instant("PARTY.PARTY_ADDED_SUCCESSFULLY"));
+                    }
                 }, error);
             }
             function cancel() {

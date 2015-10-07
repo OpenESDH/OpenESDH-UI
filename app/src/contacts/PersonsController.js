@@ -68,8 +68,9 @@
                         .ok($translate.instant('COMMON.YES'))
                         .cancel($translate.instant('COMMON.CANCEL'));
                 $mdDialog.show(confirm).then(function() {
-                    contactsService.deletePerson(person)
-                            .then(refreshInfoAfterDelete, error);
+                    contactsService.deletePerson(person).then(function() {
+                        refreshInfoAfterSuccessWithMsg($translate.instant("CONTACT.CONTACT_DELETED_SUCCESSFULLY", person));
+                    }, error);
                 });
 
             };
@@ -90,10 +91,6 @@
 
             function refreshInfoAfterSave(savedPerson) {
                 refreshInfoAfterSuccessWithMsg($translate.instant("CONTACT.CONTACT_SAVED_SUCCESSFULLY", savedPerson));
-            }
-
-            function refreshInfoAfterDelete() {
-                refreshInfoAfterSuccessWithMsg($translate.instant("CONTACT.CONTACT_DELETED_SUCCESSFULLY"));
             }
 
             function refreshInfoAfterSuccessWithMsg(msg) {

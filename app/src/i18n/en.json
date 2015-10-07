@@ -2,7 +2,7 @@
 	"COMMON": {
 		"CONFIRM": "Confirm",
 		"OK": "OK",
-    "YES": "Yes",
+		"YES": "Yes",
 		"CANCEL": "Cancel",
 		"BACK": "Back",
 		"NEXT": "Next",
@@ -50,7 +50,8 @@
 		"CREATED_ON": "Created on",
 		"NO": "No",
 		"STATE": "State",
-    "COMMENT": "Comment"
+		"COMMENT": "Comment",
+		"FILL_ALL_REQUIRED_FIELDS": "Fill all required fields!"
 	},
 	"CASE": {
 		"CONFIRM_CLOSE_CASE": "Do you want to close this case?",
@@ -514,7 +515,10 @@
 		"SEARCH_FOR_ORG": "Search for organisation",
 		"CVR_NO": "CVR No",
 		"STREET": "Street",
-		"CREATE_NEW_ORG": "Create new organisation"
+		"CREATE_NEW_ORG": "Create new organisation",
+		"ARE_YOU_SURE_YOU_WANT_TO_DELETE_ORG": "Are you sure you want to delete \"{{organizationName}}\" organization?",
+		"ORG_SAVED_SUCCESSFULLY": "Organization \"{{organizationName}}\" saved successfully",
+		"ORG_DELETED_SUCCESSFULLY": "Organization \"{{organizationName}}\" deleted successfully"
 	},
 	"CONTACT": {
 		"CONTACTS": "Contacts",
@@ -535,7 +539,10 @@
 		"SEARCH_FOR_CONTACTS": "Search for contacts",
 		"DEPARTMENT": "Department",
 		"STREET": "Street",
-		"CREATE_NEW_CONTACT": "Create new contact"
+		"CREATE_NEW_CONTACT": "Create new contact",
+		"ARE_YOU_SURE_YOU_WANT_TO_DELETE_PERSON_CONTACT": "Are you sure you want to delete \"{{firstName}} {{lastName}}\" contact?",
+		"CONTACT_SAVED_SUCCESSFULLY": "Contact \"{{firstName}} {{lastName}}\" saved successfully",
+		"CONTACT_DELETED_SUCCESSFULLY": "Contact \"{{firstName}} {{lastName}}\" deleted successfully"
 	},
 	"LOGIN": {
 		"LOGIN": "Login",
@@ -553,7 +560,12 @@
 		"CHOOSE_AUTHORITIES": "Choose authorities",
 		"CHANGE_MEMBER_ROLE": "Change member role",
 		"OLD_ROLE": "Old role",
-		"TO_ROLE": "New role"
+		"TO_ROLE": "New role",
+		"ARE_YOU_SURE_YOU_WANT_TO_REMOVE_MEMBER": "Are you sure you want to remove case member \"{{displayName}}\" as \"{{role}}\"?",
+		"MEMBER_ADDED_SUCCESSFULLY": "Case member added successfully",
+		"MEMBERS_ADDED_SUCCESSFULLY": "{{count}} case members added successfully",
+		"MEMBER_CHANGED_SUCCESSFULLY": "Case member changed successfully",
+		"MEMBER_REMOVED_SUCCESSFULLY": "Case member removed successfully"
 	},
 	"NOTE": {
 		"NOTES": "Journal notes",
@@ -577,7 +589,12 @@
 		"CHOOSE_PERSON_CONTACTS": "Choose person contacts",
 		"CHANGE_PARTY_ROLE": "Change party role",
 		"OLD_ROLE": "Old role",
-		"TO_ROLE": "New role"
+		"TO_ROLE": "New role",
+                "ARE_YOU_SURE_YOU_WANT_TO_REMOVE_PARTY": "Are you sure you want to remove case party \"{{displayName}}\"?",
+                "PARTY_ADDED_SUCCESSFULLY": "Case party added successfully",
+                "PARTIES_ADDED_SUCCESSFULLY": "{{count}} case parties added successfully",
+                "PARTY_CHANGED_SUCCESSFULLY": "Case party changed successfully",
+                "PARTY_REMOVED_SUCCESSFULLY": "Case party removed successfully"
 	},
 	"TASK": {
 		"MY_TASKS": "My tasks",
