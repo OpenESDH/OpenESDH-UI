@@ -19,6 +19,7 @@
         vm.createGroup = createGroup;
         vm.deleteGroup = deleteGroup;
         vm.addMembersToGroup = addMembersToGroup;
+        vm.removeMemberFromGroup = removeMemberFromGroup;
 
         if ($stateParams && $stateParams.shortName && $stateParams.shortName != 'ALL') {
             showGroup($stateParams.shortName);
@@ -66,26 +67,47 @@
         }
 
         // Add a user or subgroup to group
-        function addMembersToGroup(users) {
+        function addMembersToGroup(candidates) {
             var group_shortName = $stateParams.shortName;
-            console.log("Adding following users to the group: ", group_shortName, users);
-            // groupService.addUserToGroup(group_shortName, users).then(function (response) {
-            //     console.log('Adding users to group');
-            //     vm.groupExists = false;
-            //     vm.group = {};
-
-            //     if (isEmpty(response))
-            //     //TODO Output notice here and/or go to view???
-            //         alert(userName + " was successfully added to group (" + shortName + ").");
-            // });
+            console.log("Adding following users to the group: ", group_shortName, candidates);
+            var groups =[], users = [];
+            candidates.forEach(function(member){
+                if(member.type == "user")
+                    users.push(member.userName);
+                if(member.type == "group")
+                    groups.push(member.shortName);
+            });
+            var members = {groups: groups, users: users};
+             groupService.addGroupMembers(group_shortName, members).then(function (response) {
+                 console.log('Adding users to group');
+                 if (isEmpty(response))
+                 //TODO Output notice here and/or go to view???
+                     console.log("Member(s) were successfully added to group (" + group_shortName + ").");
+                 else
+                     vm.groups = response.data;
+             });
         }
 
         // Remove member from group
-        function removeUserFromGroup(group_shortName, userName) {
-            groupService.removeUserFromGroup(group_shortName, userName).then(function(response){
-                if (isEmpty(response))
-                //TODO Output notice here and/or go to view???
-                    alert(userName + " was successfully removed from group (" + group_shortName + ").");
+        function removeMemberFromGroup(group_shortName, authType, memberName, ev) {
+            var confirmDel = $mdDialog.confirm()
+                .title('Remove member')
+                .content('Remove ' + memberName + ' from '+group_shortName+' group?')
+                .ariaLabel('Delete group')
+                .targetEvent(ev)
+                .ok('Delete')
+                .cancel('Cancel');
+            $mdDialog.show(confirmDel).then(function() {
+                if(authType == "GROUP")
+                    memberName = authType+"_"+memberName;
+                groupService.removeMemberFromGroup(group_shortName, memberName).then(function (response) {
+                    if (isEmpty(response))
+                    //TODO Output notice here and/or go to view???
+                        console.log(memberName + " was successfully removed from group (" + group_shortName + ").");
+                    listMembers(group_shortName);
+                });
+            }, function() {
+                console.log('Cancelled');
             });
         }
 

@@ -22,6 +22,7 @@
             <md-button ng-show="{{ m.authorityType == 'GROUP' }}" ui-sref="administration.group({'shortName': m.shortName })">
               {{ 'COMMON.VIEW_DETAILS' | translate }}
             </md-button>
+            <md-button ng-disabled="false" ng-click="vm.removeMemberFromGroup(vm.group.shortName, m.authorityType, m.shortName, $event)" >{{ 'COMMON.REMOVE' | translate }}</md-button>
           </td>
         </tr>
       </tbody>
