@@ -26,7 +26,6 @@
                   md-require-match="true">
           
             <md-autocomplete style="width: 30em;"
-                             ng-show="case.journalKey.length === 0"
                              md-input-name="autocompleteField"
                              md-input-minlength="2"
                              md-selected-item="selectedItem"
@@ -45,7 +44,7 @@
             <md-chip-template>
                 <span>
                     <strong>{{ $chip.name }}</strong>
-                    <em>{{ $chip.type }}</em>
+                    <em>{{ $chip.title }}</em>
                 </span>
             </md-chip-template>
         </md-chips>
@@ -54,7 +53,6 @@
                   md-autocomplete-snap
                   md-require-match="true">
           <md-autocomplete style="width: 30em;"
-                           ng-show="case.journalFacet.length === 0"
                            md-input-name="autocompleteField"
                            md-input-minlength="2"
                            md-selected-item="selectedItem"
