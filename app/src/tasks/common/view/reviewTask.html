@@ -23,9 +23,9 @@
     <textarea ng-model="taskCtrl.task.properties.bpm_comment" cols="100" rows="5"></textarea>
   </md-card-content>
   <div class="md-actions" layout="row">
-    <md-button class="md-primary" ng-click="taskCtrl.updateTask()">{{'TASK.SAVE_AND_CLOSE' | translate}}</md-button>
-    <md-button class="md-primary" ng-click="taskCtrl.cancel()">{{'COMMON.CANCEL' | translate}}</md-button>
-    <md-button class="md-primary" ng-click="taskCtrl.approve()">{{'TASK.APPROVE' | translate}}</md-button>
-    <md-button class="md-primary" ng-click="taskCtrl.reject()">{{'TASK.REJECT' | translate}}</md-button>
+    <md-button class="md-primary" ng-click="taskCtrl.updateTask()">{{ 'TASK.SAVE_AND_CLOSE' | translate}}</md-button>
+    <md-button class="md-primary" ng-click="taskCtrl.cancel()">{{ 'COMMON.CANCEL' | translate}}</md-button>
+    <md-button class="md-primary" ng-click="taskCtrl.approve()">{{ 'TASK.APPROVE' | translate}}</md-button>
+    <md-button class="md-primary" ng-click="taskCtrl.reject()">{{ 'TASK.REJECT' | translate}}</md-button>
   </div>              
 </md-card>

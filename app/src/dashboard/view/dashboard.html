@@ -1,8 +1,8 @@
 <app-header></app-header>
 
-<section layout="row">
+<section layout="column" layout-gt-md="row">
   
-    <div flex="66" layout="column">
+    <div flex="100" flex-gt-md="66" layout="column">
       
         <md-card ng-controller="CaseController as caseController">
           <md-card-content>
@@ -83,17 +83,17 @@
       
     </div>
   
-    <div flex="33">
+    <div flex="100" flex-gt-md="33">
 
         <md-card ng-controller="tasksOverviewController as tasksCtrl" style="min-height: 850px;">
           <md-card-content>
             <h2 class="md-title">{{ 'TASK.MY_TASKS' | translate }}</h2>
             <md-list>
-              <md-list-item class="md-2-line clickable" ng-repeat="task in tasksCtrl.tasks">
-                <div class="md-list-item-text" ui-sref="workflowtask({ taskName: task.name, taskId : task.id })">
+              <md-list-item class="md-2-line" ng-repeat="task in tasksCtrl.tasks">
+                <md-button class="md-list-item-text task-btn" ui-sref="workflowtask({ taskName: task.name, taskId : task.id })">
                   <h3>{{task.properties.bpm_description}}</h3>
                   <p>{{task.description}}</p>
-                </div>
+                </md-button>
               </md-list-item>
             </md-list>
           </md-card-content>
