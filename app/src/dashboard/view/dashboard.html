@@ -53,7 +53,7 @@
           </div>
         </md-card>
 
-        <md-card ng-controller="FileController as vm">
+        <md-card ng-controller="DocumentController as docCtrl">
           <md-card-content>
             
             <h2 class="md-title">{{ 'DOCUMENT.MY_DOCUMENTS' | translate }}</h2>
@@ -66,7 +66,7 @@
                       <span class="r" flex="20">{{ 'COMMON.MODIFIED_BY' | translate }}</span>
                   </div>
                   <md-virtual-repeat-container md-auto-shrink style="min-height: 150px;">
-                      <div md-virtual-repeat="document in vm.documents" class="repeat-item">
+                      <div md-virtual-repeat="document in docCtrl.documents" class="repeat-item">
                           <a class="r-rowlink" href="#/cases/case/{{ document.caseId }}/doc/{{ document.location.parent.nodeRef | nodeRefUri }}" layout="row">
                               <span class="r" flex="5"><img class="md-avatar" ng-src="/app/assets/images/filetypes/{{document.thumbNailURL}}"/></span>
                               <span class="r" flex>{{ document.title }}</span>

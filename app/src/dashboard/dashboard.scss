@@ -1,0 +1,17 @@
+/* Dashboard - task list */
+#dashboardTasksCard {
+	min-height: 532px;
+
+	md-list-item {
+		padding-left: 5px;
+
+		&:hover {
+			background-color: #F7F7F7;
+			cursor: pointer;
+		}
+
+		md-icon {
+			margin-right: 10px;
+		}
+	}
+}
