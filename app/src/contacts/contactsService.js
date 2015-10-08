@@ -1,11 +1,7 @@
-(function() {
-    'use strict';
 
     angular
             .module('openeApp.contacts')
             .factory('contactsService', contactsService);
-
-    contactsService.$inject = ['$http', '$q'];
     
     var DEFAULT_PAGE_SIZE = 5;
 
@@ -116,4 +112,3 @@
             return response.data;
         }
     }
-})();

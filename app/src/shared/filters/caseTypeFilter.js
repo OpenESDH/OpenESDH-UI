@@ -1,11 +1,7 @@
-(function() {
-    'use strict';
     
     angular
         .module('openeApp')
         .filter('caseType', caseTypeFilterFactory);
-
-    caseTypeFilterFactory.$inject = ['$translate'];
     
     function caseTypeFilterFactory($translate){
         function caseTypeFilter(type) {
@@ -16,6 +12,3 @@
         }
         return caseTypeFilter;
     }
-    
-})();
-    

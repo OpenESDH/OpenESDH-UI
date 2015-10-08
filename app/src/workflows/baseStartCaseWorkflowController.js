@@ -1,10 +1,7 @@
-(function(){
     
     angular
         .module('openeApp.workflows')
         .controller('BaseStartCaseWorkflowController', BaseStartCaseWorkflowController);
-    
-    BaseStartCaseWorkflowController.$inject = ['$mdDialog', '$stateParams', 'caseDocumentsService'];
     
     function BaseStartCaseWorkflowController($mdDialog, $stateParams, caseDocumentsService) {
         
@@ -62,5 +59,3 @@
             return items;
         }
     }
-    
-})();

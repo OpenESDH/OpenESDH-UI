@@ -1,10 +1,7 @@
-(function(){
 
     angular
         .module('openeApp')
         .controller('FooterController', FooterController);
-
-    FooterController.$inject = ['$scope', 'authService', 'serverVersionService'];
 
     function FooterController($scope, authService, serverVersionService) {
         var vm = this;
@@ -21,4 +18,3 @@
             });
         }
     }
-})();

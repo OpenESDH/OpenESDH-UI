@@ -1,11 +1,7 @@
-(function() {
-    'use strict';
 
     angular
         .module('openeApp')
         .factory('searchService', searchService);
-
-    searchService.$inject = ['$http'];
 
     function searchService($http) {
 
@@ -70,4 +66,3 @@
 
         return service;
     }
-})();

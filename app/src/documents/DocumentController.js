@@ -1,25 +1,7 @@
-(function(){
-    
+
     angular
         .module('openeApp.documents')
         .controller('DocumentController', DocumentController);
-    
-    DocumentController.$inject = [
-        '$scope',
-        '$state',
-        '$stateParams',
-        '$mdDialog',
-        '$translate',
-        'documentService',
-        'caseDocumentsService',
-        'documentPreviewService',
-        'caseDocumentFileDialogService',
-        'casePartiesService',
-        'alfrescoFolderService',
-        'sessionService',
-        'caseService',
-        'fileUtilsService'
-    ];
     
     function DocumentController($scope, $state, $stateParams, $mdDialog, $translate, documentService, caseDocumentsService, documentPreviewService,
                 caseDocumentFileDialogService, casePartiesService, alfrescoFolderService, sessionService, caseService, fileUtilsService) {
@@ -122,8 +104,6 @@
             });
         }
 
-        EmailDocumentsDialogController.$inject = ['$mdDialog', 'docs', 'caseId', '$timeout', '$q'];
-
         function EmailDocumentsDialogController($mdDialog, docs, caseId, $timeout, $q) {
             var vm = this;
 
@@ -195,8 +175,6 @@
                 }
             });
         }
-
-        CreateDocumentFromTemplateDialogController.$inject = ['$scope', '$filter', '$mdDialog', '$translate', 'officeTemplateService', 'sessionService', 'contactsService', 'alfrescoNodeUtils', 'caseId'];
 
         function CreateDocumentFromTemplateDialogController($scope, $filter, $mdDialog, $translate, officeTemplateService, sessionService, contactsService, alfrescoNodeUtils, caseId) {
             var vm = this;
@@ -308,5 +286,3 @@
             }
         }
     }
-
-})();

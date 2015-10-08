@@ -1,11 +1,7 @@
-(function() {
-    'use strict';
-    
+
     angular
         .module('openeApp')
         .filter('workflowTaskStatus', workflowTaskStatusFilterFactory);
-    
-    workflowTaskStatusFilterFactory.$inject = ['$translate'];
     
     function workflowTaskStatusFilterFactory($translate){
         function workflowTaskStatusFilter(taskStatus) {
@@ -16,6 +12,3 @@
         }
         return workflowTaskStatusFilter;
     }
-    
-})();
-    

@@ -1,10 +1,7 @@
-(function(){
-
     
-    angular.module('openeApp.tasks.common')
+    angular
+        .module('openeApp.tasks.common')
         .controller('baseTaskController', BaseTaskController);
-    
-    BaseTaskController.$inject = ['taskService' , '$stateParams', '$location'];
     
     function BaseTaskController(taskService, $stateParams, $location) {
         var vm = this;
@@ -79,4 +76,3 @@
             $location.path('/tasks');
         }
     }
-})();

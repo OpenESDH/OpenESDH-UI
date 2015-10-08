@@ -1,18 +1,7 @@
-(function(){
-
     
-    angular.module('openeApp.tasks')
+    angular
+        .module('openeApp.tasks')
         .controller('tasksOverviewController', TasksOverviewController);
-    
-    TasksOverviewController.$inject = [
-        '$scope', 
-        'taskService', 
-        '$mdDialog', 
-        '$translate',
-        '$state',
-        'workflowService', 
-        'sessionService'
-    ];
     
     function TasksOverviewController($scope, taskService, $mdDialog, $translate, $state, workflowService,  sessionService) {
         var vm = this;
@@ -50,5 +39,3 @@
         }
         
     }
-
-})();

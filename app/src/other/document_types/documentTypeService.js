@@ -1,11 +1,7 @@
-(function() {
-    'use strict';
 
     angular
             .module('openeApp.documentTypes')
             .factory('documentTypeService', documentTypeService);
-
-    documentTypeService.$inject = ['$http'];
 
     function documentTypeService($http) {
         var service = {
@@ -53,4 +49,3 @@
             return response.data;
         }
     }
-})();

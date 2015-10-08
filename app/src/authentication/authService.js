@@ -1,18 +1,14 @@
-(function() {
-    'use strict';
 
-    angular
-        .module('openeApp')
-        .config(config)
-        .factory('httpTicketInterceptor', httpTicketInterceptor)
-        .factory('authService', authService);
+angular
+    .module('openeApp')
+    .config(config)
+    .factory('httpTicketInterceptor', httpTicketInterceptor)
+    .factory('authService', authService);
 
     function config($httpProvider) {
         $httpProvider.interceptors.push('httpTicketInterceptor');
         $httpProvider.defaults.headers.common.Authorization = undefined;
     }
-
-    httpTicketInterceptor.$inject = ['sessionService'];
 
     function httpTicketInterceptor(sessionService) {
         var service = {
@@ -28,8 +24,6 @@
             return config;
         }
     }
-
-    authService.$inject = ['$http', '$window', '$state', 'sessionService', 'userService'];
 
     function authService($http, $window, $state, sessionService, userService) {
         var userInfo = {};
@@ -126,4 +120,3 @@
             }
         }
     }
-})();

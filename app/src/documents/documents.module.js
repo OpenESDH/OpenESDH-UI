@@ -1,7 +1,1 @@
-(function(){
-    'use strict';
-
-    angular
-        .module('openeApp.documents', [ 'ngMaterial', 'pascalprecht.translate']);    
-
-})();
+angular.module('openeApp.documents', [ 'ngMaterial', 'pascalprecht.translate']);

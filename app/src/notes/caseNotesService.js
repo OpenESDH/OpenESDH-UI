@@ -1,11 +1,7 @@
-(function() {
-    'use strict';
 
     angular
         .module('openeApp.notes')
         .factory('caseNotesService', CaseNotesService);
-
-    CaseNotesService.$inject = ['$http', 'httpUtils'];
 
     function CaseNotesService($http, httpUtils) {
         
@@ -65,4 +61,3 @@
             };
         }
     }
-})();

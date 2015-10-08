@@ -1,10 +1,7 @@
-(function(){
-    'use strict';
 
-    angular.module('openeApp.office').config(configure);
-
-//    configure.$inject = ['$stateProvider', 'USER_ROLES'];
-    configure.$inject = ['$stateProvider'];
+    angular
+        .module('openeApp.office')
+        .config(configure);
 
     function configure($stateProvider, USER_ROLES) {
 //    function configure($stateProvider) {
@@ -52,4 +49,3 @@
             }
         });
     }
-})();

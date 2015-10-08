@@ -1,10 +1,6 @@
-(function(){
-    'use strict';
 
     angular.module('openeApp.search.component.filter')
         .controller('SearchFilterComponent', SearchFilterComponent);
-
-    SearchFilterComponent.$inject = ['$scope'];
 
     /**
      * This controller is a component controller for selecting a search filter for now it contains a select options
@@ -51,4 +47,3 @@
             return cb(query);
         }
     }
-})();

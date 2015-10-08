@@ -1,9 +1,7 @@
-(function(){
-    'use strict';
-    angular.module('openeApp.activitiParallelReview.tasks', ['openeApp.tasks.common'])
+
+    angular
+        .module('openeApp.activitiParallelReview.tasks', ['openeApp.tasks.common'])
         .config(config);
-    
-    config.$inject = ['taskFormConfigServiceProvider'];
     
     function config(taskFormConfigServiceProvider){
         
@@ -20,4 +18,3 @@
             controller: 'simpleTaskController'
         });
     }
-})();

@@ -1,5 +1,3 @@
-(function() {
-    'use strict';
 
     angular
         .module('openeApp.workflows')
@@ -16,8 +14,6 @@
             serviceConfig.push(dlgConfig);
             return this;
         }
-
-        StartCaseWorkflowService.$inject = ['$mdDialog', '$stateParams', 'workflowService'];
         
         function StartCaseWorkflowService($mdDialog, $stateParams, workflowService) {
             
@@ -113,4 +109,3 @@
             }
         } // end of service
     } // end of provider
-})();

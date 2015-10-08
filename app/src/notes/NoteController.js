@@ -1,10 +1,7 @@
-(function() {
 
     angular
             .module('openeApp.notes')
             .controller('NoteController', NoteController);
-
-    NoteController.$inject = ['$scope', '$stateParams', '$mdDialog', 'caseNotesService', 'casePartiesService'];
 
     function NoteController($scope, $stateParams, $mdDialog, caseNotesService, casePartiesService) {
         var vm = this;
@@ -107,5 +104,3 @@
             }
         }
     }
-
-})();

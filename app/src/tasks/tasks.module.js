@@ -1,5 +1,4 @@
-(function(){
-    'use strict';
+
     angular.module('openeApp.tasks', [ 
         'ngMaterial', 
         'openeApp.tasks.common', 
@@ -7,4 +6,3 @@
         'openeApp.activitiReview.tasks',
         'openeApp.activitiParallelReview.tasks'
     ]);
-})();

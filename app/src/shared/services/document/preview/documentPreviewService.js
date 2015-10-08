@@ -1,11 +1,7 @@
-(function() {
-    'use strict';
 
     angular
         .module('openeApp')
         .factory('documentPreviewService', DocumentPreviewService);
-
-    DocumentPreviewService.$inject = ['$mdDialog', 'alfrescoDocumentService', 'alfrescoDownloadService', 'PDFViewerService', 'sessionService', '$http', '$sce'];
 
     function DocumentPreviewService($mdDialog, alfrescoDocumentService, alfrescoDownloadService, pdf, sessionService, $http, $sce) {
         
@@ -287,4 +283,3 @@
             };
         }
     }
-})();

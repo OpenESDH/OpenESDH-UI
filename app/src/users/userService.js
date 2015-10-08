@@ -1,11 +1,7 @@
-(function() {
-    'use strict';
 
     angular
         .module('openeApp')
         .factory('userService', userService);
-
-    userService.$inject = ['ALFRESCO_URI', '$http', '$resource'];
 
     function userService(ALFRESCO_URI, $http, $resource) {
         return {
@@ -118,4 +114,3 @@
             });
         }
     }
-})();

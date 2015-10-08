@@ -1,11 +1,7 @@
-(function() {
-    'use strict';
 
     angular
             .module('openeApp.cases.parties')
             .factory('casePartiesService', CasePartiesService);
-
-    CasePartiesService.$inject = ['$http', '$q'];
 
     function CasePartiesService($http, $q) {
         var service = {
@@ -47,4 +43,3 @@
             return response.data;
         }
     }
-})();

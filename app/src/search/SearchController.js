@@ -1,10 +1,7 @@
-(function () {
-    'use strict';
+
     angular
         .module('openeApp.search')
         .controller('SearchController', SearchController);
-
-    SearchController.$inject = ['$scope', '$stateParams', 'searchService'];
 
     /**
      * Main Controller for the Search module
@@ -161,5 +158,3 @@
         }
 
     }
-
-})();
