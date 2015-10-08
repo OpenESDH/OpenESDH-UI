@@ -10,7 +10,7 @@
         vm.goToTaskdetailView = goToTaskdetailView;
         vm.isAdmin = sessionService.isAdmin();
         
-        vm.statuses = ["NotYetStarted", "InProgres", "OnHold", "Cancelled", "Completed"];
+        vm.statuses = ["Not Yet Started", "In Progres", "On Hold", "Cancelled", "Completed"];
         loadTasks();
         
         function loadTasks(){
