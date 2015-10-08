@@ -1,0 +1,34 @@
+<md-card ng-controller="NoteController as caseNotes">
+  <md-card-content>
+    <h3 class="md-title">{{ 'NOTE.NOTES' | translate }}</h3>
+    <div layout="row" layout-wrap>
+      <div ng-repeat="note in caseNotes.notes" flex="33">
+        <h4 style="margin-bottom: 0;" class="md-title">{{ note.headline}}</h4>
+        <p>{{ note.content}}</p>
+        <div style="font-size: 0.8em;" class="muted">
+          {{ 'COMMON.CREATED' | translate }} {{ note.created | openeDate }} {{ 'COMMON.BY' | translate }} {{ note.authorInfo.firstName + ' ' + note.authorInfo.lastName}}<br>
+          <div ng-show="note.concernedPartiesInfo && note.concernedPartiesInfo.length > 0 ">{{ 'NOTE.RELATED' | translate }}:
+            <ol class="note_parties">
+              <li ng-repeat="relation in note.concernedPartiesInfo">{{ relation.name}}</li>
+            </ol>
+          </div>
+        </div>
+      </div>                
+    </div>
+  </md-card-content>
+  <div class="md-actions">
+    <md-button class="md-primary"
+               ng-click="caseNotes.newNote()"
+               ng-disabled="caseIsLocked">
+      {{ 'NOTE.NEW_NOTE' | translate }}
+    </md-button>
+    <md-button class="md-primary" ng-disabled="true">{{ 'NOTE.PRINT_ALL_NOTES' | translate }}</md-button>
+    <div style="float: right;" ng-show="caseNotes.pagingParams.totalRecords > 0">
+      <span>{{caseNotes.pagingParams.getStartIndex()}} - {{caseNotes.pagingParams.getEndIndex()}} {{ 'COMMON.OF' | translate }} {{caseNotes.pagingParams.totalRecords}}</span>
+      <span>
+        <md-button ng-click="caseNotes.loadNotes(caseNotes.pagingParams.page - 1)" ng-disabled="!caseNotes.pagingParams.hasPreviousPage()" title="Previos page">&lt;</md-button>
+        <md-button ng-click="caseNotes.loadNotes(caseNotes.pagingParams.page + 1)" ng-disabled="!caseNotes.pagingParams.hasNextPage()" title="Next page">&gt;</md-button>
+      </span>
+    </div>
+  </div>
+</md-card>

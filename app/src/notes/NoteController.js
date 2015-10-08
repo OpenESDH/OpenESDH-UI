@@ -1,94 +1,111 @@
-(function(){
+(function() {
 
     angular
-       .module('openeApp.notes')
-       .controller('NoteController', NoteController);
+            .module('openeApp.notes')
+            .controller('NoteController', NoteController);
 
     NoteController.$inject = ['$scope', '$stateParams', '$mdDialog', 'caseNotesService', 'casePartiesService'];
 
     function NoteController($scope, $stateParams, $mdDialog, caseNotesService, casePartiesService) {
-
-        var caseId = $stateParams.caseId;
-        var caseParties = [];
-        
         var vm = this;
+        var caseId = $stateParams.caseId;
         vm.newNote = newNote;
         vm.loadNotes = loadNotes;
-        vm.pageSize = 2;
-        
-        activate();
-        
-        function activate(){
-            
-            loadNotes(1);
-            
-            casePartiesService.getCaseParties(caseId).then(function(parties){
-                caseParties = parties;
-            });
-            
-        }
-        
-        function loadNotes(page){
-            var res = caseNotesService.getCaseNotes(caseId, page, vm.pageSize);
-            res.then(function(response) {     
+        vm.pagingParams = caseNotesService.createPagingParams();
+
+        //lets init only when tab is selected
+        $scope.$on('tabSelectEvent', function(event, args) {
+            if (args.tab === 'notes') {
+                loadNotes(1);
+            }
+        });
+
+        function loadNotes(page) {
+            var res = caseNotesService.getCaseNotes(caseId, page, vm.pagingParams.pageSize);
+            res.then(function(response) {
                 vm.notes = response.notes;
-                vm.contentRange = response.contentRange;
-                var pages = [];
-                var pagesCount = Math.ceil(response.contentRange.totalItems / vm.pageSize); 
-                for(var i=0; i < pagesCount; i++){
-                    pages.push(i+1);
-                }
-                vm.pages = pages;
+                vm.pagingParams.page = page;
+                vm.pagingParams.totalRecords = response.contentRange.totalItems;
             });
         }
-        
-        function newNote(ev){
+
+        function newNote(ev) {
             $mdDialog.show({
                 controller: DialogController,
-                templateUrl: 'app/src/notes/noteCrudDialog.html',
+                controllerAs: 'vmNote',
+                templateUrl: 'app/src/notes/view/noteCrudDialog.html',
                 parent: angular.element(document.body),
                 focusOnOpen: false,
                 targetEvent: ev,
                 clickOutsideToClose: true
-              })
-              .then(function(note) {
-                  addNote(note);
-              }, function() {
+            }).then(function(note) {
+                addNote(note);
+            }, function() {
                 //on cancel dialog
-              });
-        }
-        
-        function addNote(note){
-            if(!note || (!note.headline && !note.content)){
-                return;
-            }
-            caseNotesService.addNewNote(caseId, note).then(function(response){
-                loadNotes(1);
             });
         }
-        
+
+        function addNote(note) {
+            if (!note || (!note.headline && !note.content)) {
+                return;
+            }
+            caseNotesService.addNewNote(caseId, note).then(function(response) {
+                loadNotes(vm.pagingParams.page);
+            });
+        }
+
         function DialogController($scope, $mdDialog) {
-            
-            $scope.caseParties = caseParties;
-            
-            $scope.cancel = function() {
-              $mdDialog.cancel();
-            };
-            
-            $scope.addNote = function(){
-                var partiesNodeRefs = [];
-                for(var i in $scope.concernedParties){
-                    var party = $scope.concernedParties[i];
-                    partiesNodeRefs.push(party.nodeRef);
-                }
+            var vmNote = this;
+            //values
+            vmNote.concernedParties = [];
+            vmNote.headline = null;
+            vmNote.content = null;
+            vmNote.querySearch = querySearch;
+            //
+            loadParties();
+            //actions
+            vmNote.cancel = cancel;
+            vmNote.addNote = addNote;
+
+            function cancel() {
+                $mdDialog.cancel();
+            }
+
+            function addNote() {
+                var partiesNodeRefs = vmNote.concernedParties.map(function(party){
+                    return party.nodeRef;
+                });
+                
                 var note = {
-                        headline: $scope.headline, 
-                        content: $scope.content, 
-                        concernedParties: partiesNodeRefs
+                    headline: vmNote.headline,
+                    content: vmNote.content,
+                    concernedParties: partiesNodeRefs
                 };
                 $mdDialog.hide(note);
-            };
-        };
+            }
+
+            function querySearch(query) {
+                var results = query ? vmNote.caseParties.filter(createFilterFor(query)) : [];
+                return results;
+            }
+
+            function createFilterFor(query) {
+                var lowercaseQuery = angular.lowercase(query);
+                return function(party) {
+                    return (party._lowername.indexOf(lowercaseQuery) === 0);
+                };
+            }
+
+            function loadParties() {
+                return casePartiesService.getCaseParties(caseId).then(function(parties) {
+                    vmNote.caseParties = parties.map(function(party) {
+                        party._lowername = angular.lowercase(party.displayName);
+                        return party;
+                    });
+                    return vmNote.caseParties;
+                });
+            }
+        }
     }
 
 })();

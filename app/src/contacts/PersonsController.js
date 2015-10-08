@@ -4,11 +4,13 @@
             .module('openeApp.contacts')
             .controller('PersonsController', PersonsController);
 
-    PersonsController.$inject = ['$mdDialog', 'contactsService', 'countriesService', 'PATTERNS'];
+    PersonsController.$inject = ['$mdDialog', '$translate',
+        'contactsService', 'countriesService', 'PATTERNS', 'notificationUtilsService'];
 
-    
 
-    function PersonsController($mdDialog, contactsService, countriesService, PATTERNS) {
+
+    function PersonsController($mdDialog, $translate,
+            contactsService, countriesService, PATTERNS, notificationUtilsService) {
         var vm = this;
         vm.doFilter = doFilter;
         vm.showPersonEdit = showPersonEdit;
@@ -23,9 +25,7 @@
             contactsService.getPersons(vm.searchQuery, vm.pagingParams).then(function(response) {
                 vm.persons = response;
                 vm.pagingParams.totalRecords = response.totalRecords;
-            }, function(error) {
-                console.log(error);
-            });
+            }, error);
         }
 
         function doFilter(page) {
@@ -34,29 +34,22 @@
         }
 
         function showPersonEdit(ev, person) {
-            $mdDialog
-                    .show({
-                        controller: DialogController,
-                        templateUrl: 'app/src/contacts/view/personCrudDialog.html',
-                        parent: angular.element(document.body),
-                        targetEvent: ev,
-                        clickOutsideToClose: true,
-                        locals: {
-                            person: angular.copy(person)
-                        }
-                    })
-                    .then(function(response) {
-                        console.log(response);
-                    }, function() {
-
-                    });
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'app/src/contacts/view/personCrudDialog.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                locals: {
+                    person: angular.copy(person)
+                }
+            }).then(function(response) {
+            });
         }
 
         function DialogController($scope, $mdDialog, person) {
             $scope.person = person;
             $scope.countries = countriesService.getCountries();
-            $scope.error = null;
-            $scope.success = null;
             $scope.PATTERNS = PATTERNS;
 
             $scope.hide = function() {
@@ -69,44 +62,46 @@
 
             $scope.delete = function(ev, person) {
                 var confirm = $mdDialog.confirm()
-                        .title('Confirmation')
-                        .content('Are you sure you want to delete person contact?')
-                        .ariaLabel('Person delete confirmation')
+                        .title($translate.instant('COMMON.CONFIRM'))
+                        .content($translate.instant('CONTACT.ARE_YOU_SURE_YOU_WANT_TO_DELETE_PERSON_CONTACT', person))
                         .targetEvent(ev)
-                        .ok('Yes')
-                        .cancel('Cancel');
+                        .ok($translate.instant('COMMON.YES'))
+                        .cancel($translate.instant('COMMON.CANCEL'));
                 $mdDialog.show(confirm).then(function() {
-                    contactsService.deletePerson(person)
-                        .then(refreshInfoAfterSuccess, saveError);
+                    contactsService.deletePerson(person).then(function() {
+                        refreshInfoAfterSuccessWithMsg($translate.instant("CONTACT.CONTACT_DELETED_SUCCESSFULLY", person));
+                    }, error);
                 });
-                
+
             };
 
             $scope.save = function(personForm) {
-                vm.error = null;
-                vm.success = null;
                 if (!personForm.$valid) {
-                    vm.error = 'Fill all required fields!';
+                    notificationUtilsService.notify($translate.instant("COMMON.FILL_ALL_REQUIRED_FIELDS"));
                     return;
                 }
                 if ($scope.person.id) {
                     contactsService.updatePerson($scope.person)
-                            .then(refreshInfoAfterSuccess, saveError);
+                            .then(refreshInfoAfterSave, error);
                 } else {
                     contactsService.createPerson($scope.person)
-                            .then(refreshInfoAfterSuccess, saveError);
+                            .then(refreshInfoAfterSave, error);
                 }
             };
 
-            function refreshInfoAfterSuccess(savedPerson) {
-                $mdDialog.hide('Success!');
-                vm.doFilter();
+            function refreshInfoAfterSave(savedPerson) {
+                refreshInfoAfterSuccessWithMsg($translate.instant("CONTACT.CONTACT_SAVED_SUCCESSFULLY", savedPerson));
             }
 
-            function saveError(response) {
-                console.log(response);
-                $scope.error = response.statusText || response.message;
+            function refreshInfoAfterSuccessWithMsg(msg) {
+                notificationUtilsService.notify(msg);
+                vm.doFilter();
+                $mdDialog.hide();
             }
+        }
+
+        function error(response) {
+            notificationUtilsService.alert(response.data.message);
         }
     }
 })();

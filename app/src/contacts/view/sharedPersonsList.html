@@ -17,7 +17,7 @@
             <td>{{person.address}}</td>
             <td>{{person.postCode}}</td>
             <td>{{person.cityName}}</td>
-            <td>{{person.countryCode| countryCodeToName}}</td>
+            <td>{{person.countryCode ? (person.countryCode| countryCodeToName) : null}}</td>
             <td><md-button class="md-primary" ng-click="vm.showPersonEdit($event, person)">{{ 'COMMON.EDIT' | translate }}</md-button></td>
         </tr>
     </tbody>

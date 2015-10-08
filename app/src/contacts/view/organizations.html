@@ -25,7 +25,7 @@
           <td>{{organization.address}}</td>
           <td>{{organization.postCode}}</td>
           <td>{{organization.cityName}}</td>
-          <td>{{organization.countryCode| countryCodeToName}}</td>
+          <td>{{organization.countryCode ? (organization.countryCode| countryCodeToName) : null}}</td>
           <td>
             <a class="md-button md-primary"
                ui-sref="administration.organization({'storeProtocol': organization.storeType, 'storeIdentifier': organization.storeId, 'uuid': organization.id})">

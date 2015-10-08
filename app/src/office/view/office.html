@@ -1,6 +1,6 @@
 <md-card>
   <md-card-content>
-    <h2>{{ 'OFFICE.SAVE_EMAIL_IN_OPENESDH' | translate }}</h2>
+    <h2>{{ 'OFFICE.SAVE_DOCUMENT_IN_OPENESDH' | translate }}</h2>
 
     <form name="form">
         <md-autocomplete required
@@ -18,17 +18,28 @@
         </md-autocomplete>
         <md-input-container>
             <label>{{ 'COMMON.TITLE' | translate }}</label>
-            <input type="text" ng-model="vm.subject" required>
+            <input type="text" ng-model="vm.title" required>
         </md-input-container>
-        <div ng-show="vm.attachments.length > 0">
-            <md-subheader class="md-no-sticky">{{ 'DOCUMENT.ATTACHMENTS' | translate }}:</md-subheader>
-            <md-list-item ng-repeat="attachment in vm.attachments">
-                <md-checkbox ng-model="attachment.selected"></md-checkbox>
-                <p>{{attachment.Name}}</p>
-            </md-list-item>
-        </div>
+
+        <md-input-container>
+            <label>{{ 'COMMON.TYPE' | translate }}</label>
+            <md-select ng-model="vm.documentProperties.doc_type">
+                <md-option ng-repeat="type in vm.documentConstraints.documentTypes" ng-value="type.nodeRef">
+                    {{ type.displayName }}
+                </md-option>
+            </md-select>
+        </md-input-container>
+
+        <md-input-container>
+            <label>{{ 'COMMON.CATEGORY' | translate }}</label>
+            <md-select ng-model="vm.documentProperties.doc_category">
+                <md-option ng-repeat="category in vm.documentConstraints.documentCategories" ng-value="category.nodeRef">
+                    {{ category.displayName }}
+                </md-option>
+            </md-select>
+        </md-input-container>
         <div class="md-actions" layout="row">
-            <md-button type="submit" class="md-primary" ng-click="vm.save(form)" ng-disabled="form.$invalid">{{ 'COMMON.SAVE' | translate }}</md-button>
+            <md-button type="submit" class="md-primary" ng-click="vm.saveOfficeDocument(form)" ng-disabled="form.$invalid">{{ 'COMMON.SAVE' | translate }}</md-button>
             <md-button type="button" ng-click="vm.cancel(form)">{{ 'COMMON.CANCEL' | translate }}</md-button>
         </div>
     </form>

@@ -471,6 +471,7 @@
 		"GROUPS": "Grupper",
 		"GROUP": "Gruppe",
 		"ADD_USERS": "Tilføj brugere",
+		"ADD_GROUPS": "Tilføj grupper",
 		"DISPLAY_NAME": "Displaynavn",
 		"SHORT_NAME": "Maskinnavn",
 		"CREATE_NEW_GROUP": "Opret ny gruppe"
@@ -594,11 +595,12 @@
 	},
 	"SEARCH": {
 		"SEARCH": "Søg",
-    "FIND_USER": "Find bruger",
-    "FIND_USERS": "Find brugere",
-    "FIND_PERSON": "Find personer",
-    "FIND_ORGANISATION": "Find organisationer",
-    "NO_MATCHES": "Ingen resultater"
+	    "FIND_USER": "Find bruger",
+	    "FIND_USERS": "Find brugere",
+	    "FIND_GROUPS": "Find grupper",
+	    "FIND_PERSON": "Find personer",
+	    "FIND_ORGANISATION": "Find organisationer",
+	    "NO_MATCHES": "Ingen resultater"
 	},
   "faceted-search.date.one-week.label": "Sidste uge",
   "faceted-search.date.one-month.label": "Sidste måned",

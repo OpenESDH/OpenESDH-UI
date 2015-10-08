@@ -19,18 +19,18 @@
               
               <div class="repeat-table">
                   <div class="repeat-header" layout="row">
-                      <span class="r" flex="10"></span>
-                      <span class="r" flex="30">{{ 'COMMON.TITLE' | translate }}</span>
-                      <span class="r" flex="30">{{ 'COMMON.ID' | translate }}</span>
-                      <span class="r" flex="30">{{ 'COMMON.MODIFIED' | translate }}</span>
+                      <span class="r" flex="5"></span>
+                      <span class="r" flex>{{ 'COMMON.TITLE' | translate }}</span>
+                      <span class="r" flex="20">{{ 'COMMON.ID' | translate }}</span>
+                      <span class="r" flex="20">{{ 'COMMON.MODIFIED' | translate }}</span>
                   </div>
                   <md-virtual-repeat-container md-auto-shrink style="height: 200px;">
                       <div md-virtual-repeat="case in caseController.myCases" class="repeat-item">
                           <a class="r-rowlink" ui-sref="caseinfo({'caseId': case['oe:id']})" layout="row">
-                              <span class="r" flex="10"><i class="material-icons">folder_open</i></span>
-                              <span class="r" flex="30">{{case["cm:title"]}}</span>
-                              <span class="r muted" flex="30">{{case["oe:id"]}}</span>
-                              <span class="r muted" flex="30">{{case["cm:modified"] | openeDate}}</span>
+                              <span class="r" flex="5"><i class="material-icons">folder_open</i></span>
+                              <span class="r" flex>{{case["cm:title"]}}</span>
+                              <span class="r muted" flex="20">{{case["oe:id"]}}</span>
+                              <span class="r muted" flex="20">{{case["cm:modified"] | openeDate}}</span>
                           </a>
                       </div>
                   </md-virtual-repeat-container>
@@ -53,25 +53,25 @@
           </div>
         </md-card>
 
-        <md-card ng-controller="FileController as vm">
+        <md-card ng-controller="DocumentController as docCtrl">
           <md-card-content>
             
             <h2 class="md-title">{{ 'DOCUMENT.MY_DOCUMENTS' | translate }}</h2>
             
             <div class="repeat-table">
                   <div class="repeat-header" layout="row">
-                      <span class="r" flex="10"></span>
-                      <span class="r" flex="30">{{ 'COMMON.TITLE' | translate }}</span>
-                      <span class="r" flex="30">{{ 'COMMON.MODIFIED' | translate }}</span>
-                      <span class="r" flex="30">{{ 'COMMON.MODIFIED_BY' | translate }}</span>
+                      <span class="r" flex="5"></span>
+                      <span class="r" flex>{{ 'COMMON.TITLE' | translate }}</span>
+                      <span class="r" flex="20">{{ 'COMMON.MODIFIED' | translate }}</span>
+                      <span class="r" flex="20">{{ 'COMMON.MODIFIED_BY' | translate }}</span>
                   </div>
                   <md-virtual-repeat-container md-auto-shrink style="min-height: 150px;">
-                      <div md-virtual-repeat="document in vm.documents" class="repeat-item">
+                      <div md-virtual-repeat="document in docCtrl.documents" class="repeat-item">
                           <a class="r-rowlink" href="#/cases/case/{{ document.caseId }}/doc/{{ document.location.parent.nodeRef | nodeRefUri }}" layout="row">
-                              <span class="r" flex="10"><img class="md-avatar" ng-src="/app/assets/images/filetypes/{{document.thumbNailURL}}"/></span>
-                              <span class="r" flex="30">{{ document.title }}</span>
-                              <span class="r muted" flex="30">{{ document.modifiedOn | openeDate}}</span>
-                              <span class="r muted" flex="30">{{ document.modifiedBy }}</span>
+                              <span class="r" flex="5"><img class="md-avatar" ng-src="/app/assets/images/filetypes/{{document.thumbNailURL}}"/></span>
+                              <span class="r" flex>{{ document.title }}</span>
+                              <span class="r muted" flex="20">{{ document.modifiedOn | openeDate}}</span>
+                              <span class="r muted" flex="20">{{ document.modifiedBy }}</span>
                               
                           </a>
                       </div>

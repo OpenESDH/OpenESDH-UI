@@ -16,7 +16,9 @@
             updateCase: updateCase,
             getCaseInfo: getCaseInfo,
             changeCaseStatus: changeCaseStatus,
-            sendEmail: sendEmail
+            sendEmail: sendEmail,
+            printCase: printCase,
+            getCaseDocumentsFolderNodeRef: getCaseDocumentsFolderNodeRef
         };
         return service;
 
@@ -124,6 +126,12 @@
 
         function sendEmail(caseId, message) {
             return $http.post('/alfresco/service/api/openesdh/case/' + caseId + '/email', message).then(function (response) {
+                return response.data;
+            });
+        }
+        
+        function printCase(caseId, printInfo){
+            return $http.post('/alfresco/s/api/openesdh/case/' + caseId + '/print', printInfo,  {responseType: 'arraybuffer'}).then(function(response){
                 return response.data;
             });
         }
