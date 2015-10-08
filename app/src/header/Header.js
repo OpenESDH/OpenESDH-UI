@@ -1,11 +1,7 @@
-(function () {
-    'use strict';
 
     angular
         .module('openeApp')
         .directive('appHeader', HeaderDirective);
-
-    //HeaderDirective.$inject = ['service'];
 
     function HeaderDirective() {
 
@@ -20,5 +16,3 @@
             templateUrl: 'app/src/header/view/header.html'
         };
     }
-
-})();

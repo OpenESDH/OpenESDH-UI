@@ -1,10 +1,6 @@
-(function(){
-
-    
+   
     angular.module('openeApp.activitiReview.tasks')
         .controller('reviewTaskController', reviewTaskController);
-    
-    reviewTaskController.$inject = ['$controller'];
     
     function reviewTaskController($controller) {
         angular.extend(this, $controller('baseTaskController', {}));
@@ -20,5 +16,3 @@
         }
         
     }
-
-})();

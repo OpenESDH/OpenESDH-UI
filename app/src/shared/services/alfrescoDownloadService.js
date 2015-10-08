@@ -1,11 +1,7 @@
-(function() {
-    'use strict';
 
     angular
         .module('openeApp')
         .factory('alfrescoDownloadService', AlfrescoDownloadService);
-
-    AlfrescoDownloadService.$inject = ['alfrescoNodeUtils', 'sessionService'];
 
     function AlfrescoDownloadService(alfrescoNodeUtils, sessionService) {
         
@@ -30,4 +26,3 @@
         }
         
     }
-})();

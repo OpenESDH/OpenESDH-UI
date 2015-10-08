@@ -1,11 +1,7 @@
-(function () {
-    'use strict';
 
     angular
         .module('openeApp.users')
         .controller('UsersController', UsersController);
-
-    UsersController.$inject = ['$scope', '$mdDialog', 'userService'];
 
     /**
      * Main Controller for the system users module
@@ -130,5 +126,3 @@
         }
 
     }
-
-})();

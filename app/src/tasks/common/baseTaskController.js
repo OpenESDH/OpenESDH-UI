@@ -1,12 +1,9 @@
-(function(){
-
     
-    angular.module('openeApp.tasks.common')
+    angular
+        .module('openeApp.tasks.common')
         .controller('baseTaskController', BaseTaskController);
     
-    BaseTaskController.$inject = ['taskService' , '$stateParams', '$location'];
-    
-    function BaseTaskController(taskService, $stateParams, $location) {
+    function BaseTaskController(taskService, $stateParams, $location, documentPreviewService) {
         var vm = this;
         vm.taskId = $stateParams.taskId;
         vm.init = init;
@@ -17,6 +14,10 @@
         vm.reject = reject;
         vm.endTask = endTask;
         vm.backToTasks = backToTasks;
+        vm.changeStatus = changeStatus;
+        vm.previewDocument = previewDocument;
+        vm.statuses = ["Not Yet Started", "In Progres", "On Hold", "Cancelled", "Completed"];
+        vm.toggleStatus = {item: -1};
         
         function init(){
             var vm = this;
@@ -78,5 +79,14 @@
         function backToTasks(){
             $location.path('/tasks');
         }
+
+        function changeStatus(idx){
+            var vm = this;
+            vm.toggleStatus.item = idx;
+            vm.task.properties.bpm_status = vm.statuses[idx];
+        }
+
+        function previewDocument(nodeRef){
+            documentPreviewService.previewDocument(nodeRef);
+        }
     }
-})();

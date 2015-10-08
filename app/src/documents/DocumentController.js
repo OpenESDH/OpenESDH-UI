@@ -1,25 +1,9 @@
-(function(){
-    
+
     angular
         .module('openeApp.documents')
         .controller('DocumentController', DocumentController);
     
-    DocumentController.$inject = [
-        '$scope',
-        '$stateParams',
-        '$mdDialog',
-        '$translate',
-        'caseDocumentsService',
-        'documentPreviewService',
-        'caseDocumentFileDialogService',
-        'casePartiesService',
-        'alfrescoFolderService',
-        'sessionService',
-        'caseService',
-        'fileUtilsService'
-    ];
-    
-    function DocumentController($scope, $stateParams, $mdDialog, $translate, caseDocumentsService, documentPreviewService,
+    function DocumentController($scope, $state, $stateParams, $mdDialog, $translate, documentService, caseDocumentsService, documentPreviewService,
                 caseDocumentFileDialogService, casePartiesService, alfrescoFolderService, sessionService, caseService, fileUtilsService) {
 
         var caseId = $stateParams.caseId;
@@ -28,7 +12,6 @@
         vm.pageSize = 10;
         vm.isAdmin = sessionService.isAdmin();
         
-        vm.loadDocuments = loadDocuments;
         vm.uploadDocument = uploadDocument;
         vm.previewDocument = previewDocument;
         vm.emailDocuments = emailDocuments;
@@ -39,20 +22,30 @@
         activate();
         
         function activate(){
-            loadDocuments();
+            // If dashboard, load my documents
+            if($state.is('dashboard')) {
+                loadMyDocuments();
+            } else {
+                loadDocumentsByCase();
+            }
+        }
+
+        function loadMyDocuments() {
+            vm.documents = documentService.getDocuments().then(function(response) {
+                vm.documents = response.items;
+                addThumbnailUrl();
+            });
         }
         
-        function loadDocuments(page){
+        function loadDocumentsByCase(page){
             if(page == undefined){
                 page = 1;
             }
             var res = caseDocumentsService.getDocumentsByCaseId(caseId, page, vm.pageSize);
             res.then(function(response) {
                 vm.documents = response.documents;
-                vm.documents.forEach(function(document){
-                    document.thumbNailURL = fileUtilsService.getFileIconByMimetype(document.fileMimeType,24);
-                });
                 vm.contentRange = response.contentRange;
+                addThumbnailUrl();
                 var pages = [];
                 var pagesCount = Math.ceil(response.contentRange.totalItems / vm.pageSize); 
                 for(var i=0; i < pagesCount; i++){
@@ -61,10 +54,18 @@
                 vm.pages = pages;
             });
         }
+
+        function addThumbnailUrl () {
+            // Mimetype has different paths on caseDocs vs MyDocuments
+            var mimeTypeProperty = $state.is('dashboard') ? 'mimetype' : 'fileMimeType';
+            vm.documents.forEach(function(document){
+                document.thumbNailURL = fileUtilsService.getFileIconByMimetype(document[mimeTypeProperty],24);
+            });
+        }
         
         function uploadDocument(){
             caseDocumentFileDialogService.uploadCaseDocument(caseId).then(function(result){
-                loadDocuments(); 
+                loadDocumentsByCase(); 
             });
         }
         
@@ -82,7 +83,7 @@
                 .cancel($translate.instant('COMMON.CANCEL'));
             $mdDialog.show(confirm).then(function() {
                 alfrescoFolderService.deleteFolder(document.nodeRef).then(function(result){
-                   setTimeout(loadDocuments, 500); 
+                   setTimeout(loadDocumentsByCase, 500); 
                 });
             });
         }
@@ -102,8 +103,6 @@
                 });
             });
         }
-
-        EmailDocumentsDialogController.$inject = ['$mdDialog', 'docs', 'caseId', '$timeout', '$q'];
 
         function EmailDocumentsDialogController($mdDialog, docs, caseId, $timeout, $q) {
             var vm = this;
@@ -176,8 +175,6 @@
                 }
             });
         }
-
-        CreateDocumentFromTemplateDialogController.$inject = ['$scope', '$filter', '$mdDialog', '$translate', 'officeTemplateService', 'sessionService', 'contactsService', 'alfrescoNodeUtils', 'caseId'];
 
         function CreateDocumentFromTemplateDialogController($scope, $filter, $mdDialog, $translate, officeTemplateService, sessionService, contactsService, alfrescoNodeUtils, caseId) {
             var vm = this;
@@ -279,7 +276,7 @@
                     blob.name = template.name.split('.').slice(0, -1).join(".") + "-" + uniqueStr + ".pdf";
 
                     caseDocumentFileDialogService.uploadCaseDocument(caseId, blob).then(function (result) {
-                        loadDocuments(1);
+                        loadDocumentsByCase(1);
                     });
                 });
             }
@@ -289,5 +286,3 @@
             }
         }
     }
-
-})();

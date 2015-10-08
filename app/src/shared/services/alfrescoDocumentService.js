@@ -1,11 +1,7 @@
-(function() {
-    'use strict';
 
     angular
         .module('openeApp')
         .factory('alfrescoDocumentService', AlfrescoDocumentService);
-
-    AlfrescoDocumentService.$inject = ['$http', 'alfrescoNodeUtils'];
 
     function AlfrescoDocumentService($http, alfrescoNodeUtils) {
         
@@ -23,4 +19,3 @@
         }
         
     }
-})();

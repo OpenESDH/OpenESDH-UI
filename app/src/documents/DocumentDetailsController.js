@@ -1,11 +1,7 @@
-(function(){
-    
+
     angular
         .module('openeApp.documents')
         .controller('DocumentDetailsController', DocumentDetailsController);
-    
-    DocumentDetailsController.$inject = [ '$scope', '$stateParams', '$mdDialog', '$translate', 'caseDocumentDetailsService', 
-                                          'documentPreviewService', 'caseDocumentFileDialogService', 'notificationUtilsService', 'alfrescoDownloadService'];
     
     function DocumentDetailsController($scope, $stateParams, $mdDialog, $translate, caseDocumentDetailsService, 
                 documentPreviewService, caseDocumentFileDialogService, notificationUtilsService, alfrescoDownloadService) {
@@ -145,5 +141,3 @@
             });
         }
     }
-
-})();

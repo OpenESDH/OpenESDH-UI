@@ -452,7 +452,8 @@
 		"ASSIGNEES": "Udførere",
 		"CHOOSE_ASSIGNEES": "Vælg udførere",
 		"ASSIGN_TO": "Tildel til",
-		"ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_TASK_AND_WORKFLOW": "Er du sikker på, at du vil slette opgaven '{{task_description}}' og standse dets workflow?"
+		"ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_TASK_AND_WORKFLOW": "Er du sikker på, at du vil slette opgaven '{{task_description}}' og standse dets workflow?",
+        "WORKFLOW_DETAILS": "Workflow detaljer"
 	},
 	"ADMIN": {
 		"ADMINISTRATION_PAGES": "Administrationssider",
@@ -471,6 +472,7 @@
 		"GROUPS": "Grupper",
 		"GROUP": "Gruppe",
 		"ADD_USERS": "Tilføj brugere",
+		"ADD_GROUPS": "Tilføj grupper",
 		"DISPLAY_NAME": "Displaynavn",
 		"SHORT_NAME": "Maskinnavn",
 		"CREATE_NEW_GROUP": "Opret ny gruppe"
@@ -571,7 +573,8 @@
 		"APPROVE": "Godkend",
 		"REJECT": "Afvis",
 		"VIEW_TASK_DETAILS": "Vis opgavedetaljer",
-    "ITEMS": "Vedlægninger"
+        "TASK_DETAILS": "Opgavedetaljer",
+        "ITEMS": "Vedlægninger"
 	},
 	"MENU": {
 		"OPEN_MENU": "Åben menu",
@@ -594,11 +597,12 @@
 	},
 	"SEARCH": {
 		"SEARCH": "Søg",
-    "FIND_USER": "Find bruger",
-    "FIND_USERS": "Find brugere",
-    "FIND_PERSON": "Find personer",
-    "FIND_ORGANISATION": "Find organisationer",
-    "NO_MATCHES": "Ingen resultater"
+	    "FIND_USER": "Find bruger",
+	    "FIND_USERS": "Find brugere",
+	    "FIND_GROUPS": "Find grupper",
+	    "FIND_PERSON": "Find personer",
+	    "FIND_ORGANISATION": "Find organisationer",
+	    "NO_MATCHES": "Ingen resultater"
 	},
   "faceted-search.date.one-week.label": "Sidste uge",
   "faceted-search.date.one-month.label": "Sidste måned",

@@ -1,17 +1,7 @@
-(function () {
-    'use strict';
+
     angular
         .module('openeApp.search')
         .controller('AutosuggestController', AutosuggestController);
-
-    AutosuggestController.$inject = [
-        '$state',
-        '$q',
-        '$mdConstant',
-        'searchService',
-        'alfrescoNodeUtils',
-        'fileUtilsService'
-    ];
 
     /**
      * Main Controller for the Search module
@@ -161,5 +151,3 @@
       }
 
     }
-
-})();

@@ -1,20 +1,7 @@
-(function(){
-    'use strict';
 
     angular
         .module('openeApp.cases')
         .controller('CaseController', CaseController);
-
-    CaseController.$inject = [
-        '$scope',
-        '$mdDialog', 
-        '$location', 
-        '$translate', 
-        'caseService', 
-        'caseCrudDialogService', 
-        'alfrescoFolderService',
-        'sessionService'
-    ];
 
     /**
      * Main Controller for the Cases module
@@ -116,5 +103,3 @@
         }
   
   };
-  
-})();

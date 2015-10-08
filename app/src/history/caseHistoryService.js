@@ -1,11 +1,7 @@
-(function() {
-    'use strict';
 
     angular
         .module('openeApp.cases')
         .factory('caseHistoryService', caseHistoryService);
-
-    caseHistoryService.$inject = ['$http', 'httpUtils'];
 
     function caseHistoryService($http, httpUtils) {
         var service = {
@@ -29,4 +25,3 @@
             });
         }
     }
-})();

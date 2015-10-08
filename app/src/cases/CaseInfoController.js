@@ -1,11 +1,7 @@
-(function(){
 
   angular
        .module('openeApp.cases')
        .controller('CaseInfoController', CaseInfoController);
-
-  CaseInfoController.$inject = ['$scope', '$stateParams', '$mdDialog', '$translate', 'caseService', 
-                                'notificationUtilsService', 'startCaseWorkflowService', 'caseCrudDialogService', 'casePrintDialogService'];
   
   /**
    * Main CaseInfoController for the Cases module
@@ -118,5 +114,3 @@
     }
     
   };
-
-})();

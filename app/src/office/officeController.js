@@ -1,13 +1,9 @@
-(function(){
-    'use strict';
 
     angular
         .module('openeApp.office')
         .controller('OfficeController', OfficeController);
 
     var document;
-
-    OfficeController.$inject = ['$stateParams', '$window', 'officeService', 'caseService', 'sessionService', '$q', 'caseDocumentsService'];
 
     function OfficeController($stateParams, $window, officeService, caseService, sessionService, $q, caseDocumentsService) {
         var vm = this;
@@ -106,4 +102,3 @@
 //        window.alert(payload);
 //        document = JSON.parse(payload);
     }
-})();

@@ -1,11 +1,7 @@
-(function() {
-    'use strict';
 
     angular
         .module('openeApp.documents')
         .factory('caseDocumentFileDialogService', CaseDocumentFileDialogService);
-
-    CaseDocumentFileDialogService.$inject = ['$mdDialog', '$q', 'caseDocumentsService', 'caseDocumentDetailsService'];
 
     function CaseDocumentFileDialogService($mdDialog, $q, caseDocumentsService, caseDocumentDetailsService) {
         var service = {
@@ -221,5 +217,3 @@
             });
         }
     }
-
-})();

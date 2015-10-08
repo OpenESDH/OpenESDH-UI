@@ -1,0 +1,16 @@
+/* case note releated parties enumertion*/
+ol.note_parties {
+	margin: 0; 
+	padding: 0; 
+	list-style-type: disc;
+	display: inline-block;
+
+	> li {
+		display: inline-block;
+	}
+
+	> li:not(:last-child):after {
+	    content: ',';
+	    padding-right: 3px; 
+	}
+}

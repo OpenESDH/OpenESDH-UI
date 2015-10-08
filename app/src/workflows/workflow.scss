@@ -1,0 +1,22 @@
+/* Workflow */
+table {
+	tr {
+		.collapse, .expand {
+			display: block;
+		}
+
+		.collapse:after {
+			content: "\0025BC";
+			display: block;
+			color: #999;
+			cursor: pointer;
+		}
+
+		.expand:after {
+			content: "\0025BA";
+			display: block;
+			color: #999;
+			cursor: pointer;
+		}
+	}
+}

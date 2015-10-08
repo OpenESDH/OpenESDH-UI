@@ -1,11 +1,7 @@
-(function () {
-    'use strict';
 
     angular
         .module('openeApp.cases')
         .factory('casePrintDialogService', casePrintDialogService);
-
-    casePrintDialogService.$inject = ['$mdDialog', 'caseService', 'caseDocumentsService', 'documentPrintService'];
 
     function casePrintDialogService($mdDialog, caseService, caseDocumentsService, documentPrintService) {
         return {
@@ -92,4 +88,3 @@
             }
         }
     }
-})();

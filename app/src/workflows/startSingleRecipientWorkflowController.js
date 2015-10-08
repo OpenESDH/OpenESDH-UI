@@ -1,10 +1,7 @@
-(function(){
-    
+
     angular
         .module('openeApp.workflows')
         .controller('StartSingleRecipientWorkflowController', StartSingleRecipientWorkflowController);
-    
-    StartSingleRecipientWorkflowController.$inject = ['$controller', 'userService', 'workflowDef'];
     
     function StartSingleRecipientWorkflowController($controller, userService, workflowDef) {
         
@@ -32,5 +29,3 @@
         }
 
     }
-    
-})();

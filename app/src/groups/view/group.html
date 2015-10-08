@@ -19,7 +19,10 @@
           <td><i class="material-icons">{{ m.authorityType == 'USER' ? "person" : "group" }}</i></td>
           <td>{{ m.displayName }}</td>
           <td>
-            <md-button ng-show="{{ m.authorityType == 'GROUP' }}" ui-sref="administration.group({'shortName': m.shortName })">{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button>
+            <md-button ng-show="{{ m.authorityType == 'GROUP' }}" ui-sref="administration.group({'shortName': m.shortName })">
+              {{ 'COMMON.VIEW_DETAILS' | translate }}
+            </md-button>
+            <md-button ng-disabled="false" ng-click="vm.removeMemberFromGroup(vm.group.shortName, m.authorityType, m.shortName, $event)" >{{ 'COMMON.REMOVE' | translate }}</md-button>
           </td>
         </tr>
       </tbody>
@@ -28,10 +31,8 @@
   </md-card-content>
   <md-card-footer>
     
-    <md-button aria-label="{{ 'GROUP.ADD_USERS' | translate }}" class="md-primary">
-      <i class="material-icons">person_add</i>
-      {{ 'GROUP.ADD_USERS' | translate }}
-    </md-button>
+    <opene-group-user-dialog search-type="users" get-selected-items="vm.addMembersToGroup"></opene-group-user-dialog>
+    <opene-group-user-dialog search-type="groups" get-selected-items="vm.addMembersToGroup"></opene-group-user-dialog>
     
   </md-card-footer>
 </md-card>

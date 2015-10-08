@@ -1,13 +1,7 @@
-(function() {
 
     angular
             .module('openeApp.contacts')
             .controller('PersonsController', PersonsController);
-
-    PersonsController.$inject = ['$mdDialog', '$translate',
-        'contactsService', 'countriesService', 'PATTERNS', 'notificationUtilsService'];
-
-
 
     function PersonsController($mdDialog, $translate,
             contactsService, countriesService, PATTERNS, notificationUtilsService) {
@@ -104,4 +98,3 @@
             notificationUtilsService.alert(response.data.message);
         }
     }
-})();

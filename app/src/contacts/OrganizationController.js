@@ -1,11 +1,7 @@
-(function() {
 
     angular
-            .module('openeApp.contacts')
-            .controller('OrganizationController', OrganizationController);
-
-    OrganizationController.$inject = ['$scope', '$stateParams', '$mdDialog', '$location', '$translate',
-        'contactsService', 'countriesService', 'PATTERNS', 'notificationUtilsService'];
+        .module('openeApp.contacts')
+        .controller('OrganizationController', OrganizationController);
 
     function OrganizationController($scope, $stateParams, $mdDialog, $location, $translate,
             contactsService, countriesService, PATTERNS, notificationUtilsService) {
@@ -209,6 +205,4 @@
                 $mdDialog.hide();
             }
         }
-    }
-
-})();
+    };

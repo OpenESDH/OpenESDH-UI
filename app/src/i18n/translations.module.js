@@ -1,10 +1,6 @@
-(function() {
-    'use strict';
 
     angular
-        .module('openeApp.translations', [
-            'pascalprecht.translate'
-        ])
+        .module('openeApp.translations', ['pascalprecht.translate'])
         .factory('availableLanguages', AvailableLanguages)
         .config(config);
     
@@ -21,8 +17,6 @@
         return availableLanguages;
     }
 
-    config.$inject = ['$translateProvider', '$translateStaticFilesLoaderProvider'];
-
     function config($translateProvider, $translateStaticFilesLoaderProvider) {
         
         $translateProvider.useStaticFilesLoader({
@@ -35,5 +29,3 @@
             .registerAvailableLanguageKeys(availableLanguages.keys, availableLanguages.localesKeys)
             .determinePreferredLanguage();
     }
-
-})();

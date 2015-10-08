@@ -11,17 +11,10 @@
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
     <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css">
     <link rel="stylesheet" href="./bower_components/isteven-angular-multiselect/isteven-multi-select.css">
-    <link rel="stylesheet" href="./app/assets/css/app.css">
-    <link rel="stylesheet" href="./app/src/header/header.css">
+    <link rel="stylesheet" href="./dist/opene-app.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  </head>
 
-  <body ng-app="openeApp" layout="column">
- 
-    <md-content id="content" ui-view="content"></md-content>
-
-    
-    <!-- All the javascript -->
+    <!-- Vendor scripts -->
 
     <script src="./bower_components/pdfjs-dist/build/pdf.js"></script>
     <script src="./bower_components/swfobject/swfobject/swfobject.js"></script>
@@ -43,164 +36,13 @@
     <script src="./bower_components/angular-swfobject/angular-swfobject.js"></script>
     <script src="./bower_components/angular-file-saver/dist/angular-file-saver.bundle.js"></script>
 
-    <script src="./app/src/app.module.js"></script>
+    <!-- Opene-E App -->
+    <script src="./dist/opene-app.js"></script>
 
-    <script src="./app/src/core/core.module.js"></script>
-    <script src="./app/src/core/constants.js"></script>
+  </head>
 
-    <script src="./app/src/i18n/translations.module.js"></script>
-
-    <script src="./app/src/shared/directives/fileModelDirective.js"></script>
-    <script src="./app/src/shared/directives/focusMeDirective.js"></script>
-    <script src="./app/src/shared/directives/toggleClassDirective.js"></script>
-
-    <script src="./app/src/shared/services/httpUtilsService.js"></script>
-    <script src="./app/src/shared/services/alfrescoUploadService.js"></script>
-    <script src="./app/src/shared/services/alfrescoDownloadService.js"></script>
-    <script src="./app/src/shared/services/alfrescoDocumentService.js"></script>
-    <script src="./app/src/shared/services/alfrescoNodeUtilsService.js"></script>
-    <script src="./app/src/shared/services/alfrescoFolderService.js"></script>
-    <script src="./app/src/shared/services/notificationUtilsService.js"></script>
-    <script src="./app/src/shared/services/serverVersionService.js"></script>
-    <script src="./app/src/shared/services/countriesService.js"></script>
-    <script src="./app/src/shared/services/document/preview/documentPreviewService.js"></script>
-    <script src="./app/src/shared/services/workflow/workflowService.js"></script>
-    <script src="./app/src/shared/services/document/documentPrintService.js"></script>
-    
-
-    <script src="./app/src/shared/filters/isEmptyFilter.js"></script>
-    <script src="./app/src/shared/filters/caseTypeFilter.js"></script>
-    <script src="./app/src/shared/filters/openeDateFilter.js"></script>
-    <script src="./app/src/shared/filters/documentStatusFilter.js"></script>
-    <script src="./app/src/shared/filters/caseStatusFilter.js"></script>
-    <script src="./app/src/shared/filters/nodeRefUriFilter.js"></script>
-    <script src="./app/src/shared/filters/countryCodeToNameFilter.js"></script>
-    <script src="./app/src/shared/filters/workflowTaskStatusFilter.js"></script>
-    <script src="./app/src/shared/filters/workflowTaskPriorityFilter.js"></script>
-    
-    <script src="./app/src/authentication/sessionService.js"></script>
-    <script src="./app/src/authentication/authService.js"></script>
-    <script src="./app/src/authentication/authController.js"></script>
-
-    <script src="./app/src/users/users.module.js"></script>
-    <script src="./app/src/users/UsersController.js"></script>
-    <script src="./app/src/users/userService.js"></script>
-    <script src="./app/src/search/searchService.js"></script>
-    <script src="./app/src/search/search.module.js"></script>
-    <script src="./app/src/search/SearchController.js"></script>
-    <script src="./app/src/header/AutosuggestController.js"></script>
-    <script src="./app/src/files/fileService.js"></script>
-    <!--Search filter component-->
-    <script src="./app/src/common/components/search/SearchFilterComponent.module.js"></script>
-    <script src="./app/src/common/components/search/SearchFilterController.js"></script>
-
-    <!-- filtersearch directive -->
-    <script src="./app/src/common/directives/filtersearch/filtersearch.module.js"></script>
-    <script src="./app/src/common/directives/filtersearch/filtersearch.js"></script>
-    <script src="./app/src/common/directives/listFilter/listFilter.js"></script>
-
-    <script src="./app/src/header/Header.js"></script>
-    <script src="./app/src/footer/Footer.js"></script>
-    <script src="./app/src/footer/FooterController.js"></script>
-
-    <script src="./app/src/dashboard/dashboard.module.js"></script>
-    <script src="./app/src/dashboard/DashboardController.js"></script>
-    
-    <script src="./app/src/parties/parties.module.js"></script>
-    <script src="./app/src/parties/casePartiesService.js"></script>
-    <script src="./app/src/parties/partyPermittedRolesService.js"></script>
-    <script src="./app/src/parties/CasePartiesController.js"></script>
-
-    <script src="./app/src/cases/cases.module.js"></script>
-    <script src="./app/src/cases/caseService.js"></script>
-    <script src="./app/src/cases/CaseController.js"></script>
-    <script src="./app/src/cases/caseInfoletDirective.js"></script>
-    <script src="./app/src/cases/caseRoleService.js"></script>
-    <script src="./app/src/cases/casePrintDialogService.js"></script>
-    
-    <script src="./app/src/cases/common/cases.common.module.js"></script>
-    <script src="./app/src/cases/common/caseCommonDialogController.js"></script>
-    <script src="./app/src/cases/common/simpleCaseDialogController.js"></script>
-    <script src="./app/src/cases/common/caseCrudDialogService.js"></script>
-    
-    
-    <script src="./app/src/case_members/caseMembers.module.js"></script>
-    <script src="./app/src/case_members/caseMembersService.js"></script>
-    <script src="./app/src/case_members/CaseMembersController.js"></script>
-
-    <script src="./app/src/classification/classification.module.js"></script>
-    <script src="./app/src/classification/classificationService.js"></script>
-    <script src="./app/src/classification/ClassificationController.js"></script>
-
-    <script src="./app/src/documents/documents.module.js"></script>
-    <script src="./app/src/documents/caseDocumentsService.js"></script>
-    <script src="./app/src/documents/caseDocumentDetailsService.js"></script>
-    <script src="./app/src/documents/caseDocumentFileDialogService.js"></script>
-    <script src="./app/src/documents/documentService.js"></script>
-    <script src="./app/src/documents/DocumentController.js"></script>
-    <script src="./app/src/documents/DocumentDetailsController.js"></script>
-    
-    <script src="./app/src/history/caseHistoryService.js"></script>
-    <script src="./app/src/history/CaseHistoryController.js"></script>
-    
-    <script src="./app/src/files/Files.js"></script>
-    <script src="./app/src/files/FileController.js"></script>
-    <script src="./app/src/cases/CaseInfoController.js"></script>
-
-    <script src="./app/src/tasks/common/tasks.common.module.js"></script>
-    <script src="./app/src/tasks/common/taskService.js"></script>
-    <script src="./app/src/tasks/common/taskFormConfigService.js"></script>
-    <script src="./app/src/tasks/common/taskFormLoaderController.js"></script>
-    <script src="./app/src/tasks/common/baseTaskController.js"></script>
-    <script src="./app/src/tasks/common/simpleTaskController.js"></script>
-    
-    <script src="./app/src/tasks/tasks.module.js"></script>
-    <script src="./app/src/tasks/tasksOverviewController.js"></script>
-        
-    <script src="./app/src/tasks/activitiAdhoc/adhoc.tasks.module.js"></script>
-    <script src="./app/src/tasks/activitiReview/activitiReview.tasks.module.js"></script>
-    <script src="./app/src/tasks/activitiReview/reviewTaskController.js"></script>
-    <script src="./app/src/tasks/activitiParallelReview/activitiParallelReview.tasks.module.js"></script>
-    
-    <script src="./app/src/contacts/contacts.module.js"></script>
-    <script src="./app/src/contacts/contactsService.js"></script>
-    <script src="./app/src/contacts/OrganizationController.js"></script>
-    <script src="./app/src/contacts/PersonsController.js"></script>
-
-    <script src="./app/src/notes/notes.module.js"></script>
-    <script src="./app/src/notes/caseNotesService.js"></script>
-    <script src="./app/src/notes/NoteController.js"></script>
-
-    <script src="./app/src/office/office.module.js"></script>
-    <script src="./app/src/office/officeService.js"></script>
-    <script src="./app/src/office/officeController.js"></script>
-    <script src="./app/src/office/config.js"></script>
-
-    <script src="./app/src/officeTemplates/officeTemplates.module.js"></script>
-    <script src="./app/src/officeTemplates/officeTemplateService.js"></script>
-    <script src="./app/src/officeTemplates/OfficeTemplateController.js"></script>
-
-    <script src="./app/src/admin/admin.module.js"></script>
-    <script src="./app/src/admin/AdminController.js"></script>
-    
-    <script src="./app/src/groups/groups.module.js"></script>
-    <script src="./app/src/groups/GroupController.js"></script>
-    <script src="./app/src/groups/groupService.js"></script>
-    
-    <script src="./app/src/workflows/workflows.module.js"></script>
-    <script src="./app/src/workflows/startCaseWorkflowService.js"></script>
-    <script src="./app/src/workflows/baseStartCaseWorkflowController.js"></script>
-    <script src="./app/src/workflows/startSingleRecipientWorkflowController.js"></script>
-    <script src="./app/src/workflows/startParallelGroupReviewWorkflowController.js"></script>
-    <script src="./app/src/workflows/startParallelReviewWorkflowController.js"></script>
-    <script src="./app/src/workflows/startPooledReviewWorkflowController.js"></script>
-    
-    <script src="./app/src/other/document_types/documentType.module.js"></script>
-    <script src="./app/src/other/document_types/documentTypeService.js"></script>
-    <script src="./app/src/other/document_types/DocumentTypesController.js"></script>
-    
-    <script src="./app/src/other/document_categories/documentCategory.module.js"></script>
-    <script src="./app/src/other/document_categories/documentCategoryService.js"></script>
-    <script src="./app/src/other/document_categories/DocumentCategoriesController.js"></script>
+  <body ng-app="openeApp" layout="column">
+    <md-content id="content" ui-view="content"></md-content>
   </body>
+
 </html>

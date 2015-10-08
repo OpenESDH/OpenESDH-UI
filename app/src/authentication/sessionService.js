@@ -1,11 +1,7 @@
-(function() {
-    'use strict';
 
     angular
         .module('openeApp')
         .factory('sessionService', sessionService);
-
-    sessionService.$inject = ['$window'];
 
     function sessionService($window) {
         var service = {
@@ -42,4 +38,3 @@
             return userInfo.user.capabilities.isAdmin;
         }
     }
-})();

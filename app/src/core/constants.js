@@ -1,5 +1,3 @@
-(function(){
-    'use strict';
 
     angular
         .module('openeApp.core')
@@ -13,4 +11,3 @@
             serviceApiProxy: '/alfresco/service/api/',
             serviceSlingshotProxy: '/alfresco/service/slingshot/'
         });
-})();

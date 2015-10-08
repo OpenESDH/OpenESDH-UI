@@ -1,5 +1,3 @@
-(function () {
-    'use strict';
 
     angular
         .module('openeApp')
@@ -13,6 +11,3 @@
             return true;
         }
     }
-
-})();
-    

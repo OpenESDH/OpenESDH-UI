@@ -1,5 +1,3 @@
-(function() {
-    'use strict';
 
     angular
         .module('openeApp')
@@ -27,4 +25,3 @@
             return requestConfig;
         }
     }
-})();

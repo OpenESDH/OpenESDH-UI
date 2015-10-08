@@ -1,11 +1,7 @@
-(function () {
-    'use strict';
 
     angular
         .module('openeApp')
         .factory('serverVersionService', ServerVersionService);
-
-    ServerVersionService.$inject = ['$http'];
 
     function ServerVersionService($http) {
         return {
@@ -22,4 +18,3 @@
         }
 
     }
-})();
