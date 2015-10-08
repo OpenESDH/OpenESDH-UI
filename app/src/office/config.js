@@ -3,7 +3,7 @@
         .module('openeApp.office')
         .config(configure);
 
-    function configure($stateProvider, USER_ROLES) {
+    function configure($stateProvider) {
 //    function configure($stateProvider) {
         $stateProvider.state('outlook', {
             parent: 'site',

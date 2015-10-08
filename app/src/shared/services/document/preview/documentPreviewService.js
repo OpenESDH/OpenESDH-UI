@@ -3,7 +3,7 @@
         .module('openeApp')
         .factory('documentPreviewService', DocumentPreviewService);
 
-    function DocumentPreviewService($mdDialog, alfrescoDocumentService, alfrescoDownloadService, pdf, sessionService, $http, $sce) {
+    function DocumentPreviewService($mdDialog, alfrescoDocumentService, alfrescoDownloadService, PDFViewerService, sessionService, $http, $sce) {
         
         var templatesUrl = 'app/src/shared/services/document/preview/view/';
         
@@ -155,7 +155,7 @@
                 thumbnail: 'pdf',
                 templateUrl: 'pdf.html',
                 initScope: function($scope){
-                    $scope.viewer = pdf.Instance("viewer");
+                    $scope.viewer = PDFViewerService.Instance("viewer");
 
                     $scope.nextPage = function() {
                         $scope.viewer.nextPage();

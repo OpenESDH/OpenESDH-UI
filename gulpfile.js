@@ -34,7 +34,7 @@ function createWebserver(config) {
 // Script tasks
 gulp.task('scripts', function () {
 	return gulp.src(paths.scripts)
-			//.pipe($.wrap('(function(){\n"use strict";\n<%= contents %>\n})();'))
+			.pipe($.wrap('(function(){\n"use strict";\n<%= contents %>\n})();'))
 			//.pipe($.jshint('.jshintrc'))
 			//.pipe($.jshint.reporter('jshint-stylish'))
 			.pipe($.concat(dist.name + '.js'))
