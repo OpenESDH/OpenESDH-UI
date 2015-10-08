@@ -1,11 +1,7 @@
-(function () {
-    'use strict';
 
     angular
         .module('openeApp.groups')
         .controller('GroupController', GroupController);
-
-    GroupController.$inject = ['$scope', '$mdDialog', 'groupService', '$stateParams'];
 
     /**
      * Main Controller for the Groups module
@@ -215,5 +211,3 @@
         }
 
     }
-
-})();

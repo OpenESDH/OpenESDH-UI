@@ -1,11 +1,7 @@
-(function() {
 
     angular
-            .module('openeApp.documentCategories')
-            .controller('DocumentCategoriesController', DocumentCategoriesController);
-
-    DocumentCategoriesController.$inject = ['$scope', '$mdDialog', '$translate',
-        'documentCategoryService', 'PATTERNS', 'availableLanguages'];
+        .module('openeApp.documentCategories')
+        .controller('DocumentCategoriesController', DocumentCategoriesController);
 
     function DocumentCategoriesController($scope, $mdDialog, $translate,
             documentCategoryService, PATTERNS, availableLanguages) {
@@ -91,4 +87,3 @@
             }
         }
     }
-})();

@@ -1,10 +1,7 @@
-(function(){
-    
+
     angular
         .module('openeApp.workflows')
         .controller('StartPooledReviewWorkflowController', StartPooledReviewWorkflowController);
-    
-    StartPooledReviewWorkflowController.$inject = ['$controller', 'userService', 'workflowDef'];
     
     function StartPooledReviewWorkflowController($controller, userService, workflowDef) {
         
@@ -35,5 +32,3 @@
         }
 
     }
-    
-})();

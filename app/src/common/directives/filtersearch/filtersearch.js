@@ -1,5 +1,3 @@
-(function(){
-    'use strict';
 
     angular.module('openeApp.common.directives.filter')
         .directive('openeFilterSearch', FilterSearchDirective);
@@ -51,4 +49,3 @@
             templateUrl: '/app/src/common/directives/filtersearch/view/filtersearch.html'
         }
     }
-})();

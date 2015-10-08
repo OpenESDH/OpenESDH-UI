@@ -1,11 +1,7 @@
-(function() {
-    'use strict';
-    
+
     angular
         .module('openeApp')
         .filter('openeDate', openeDateFilterFactory);
-    
-    openeDateFilterFactory.$inject = ['dateFilter'];
     
     function openeDateFilterFactory(dateFilter){
         function openeDateFilter(dateValue, givenFormat) {
@@ -22,6 +18,3 @@
         }
         return openeDateFilter;
     }
-    
-})();
-    

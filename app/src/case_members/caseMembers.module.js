@@ -1,6 +1,1 @@
-(function(){
-    'use strict';
-
-    angular.module('openeApp.cases.members', [ 'ngMaterial']);
-   
-})();
+angular.module('openeApp.cases.members', [ 'ngMaterial']);

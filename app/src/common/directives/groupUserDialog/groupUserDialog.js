@@ -1,10 +1,6 @@
-(function() {
-    'use strict';
 
     angular.module('openeApp.common.directives')
         .directive('openeGroupUserDialog', openeGroupUserDialog);
-
-    openeGroupUserDialog.$inject = ['$mdDialog', 'userService', 'groupService']
 
     function openeGroupUserDialog($mdDialog, userService, groupService) {
 
@@ -102,4 +98,3 @@
                       '</md-button>'
         }
     }
-})();

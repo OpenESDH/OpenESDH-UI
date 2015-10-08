@@ -1,5 +1,3 @@
-(function() {
-    'use strict';
 
     angular
         .module('openeApp', [
@@ -66,8 +64,6 @@
                 }
             });
         });
-
-    config.$inject = ['$mdThemingProvider', '$stateProvider', '$urlRouterProvider', 'USER_ROLES', '$mdIconProvider'];
 
     function config($mdThemingProvider, $stateProvider, $urlRouterProvider, USER_ROLES, $mdIconProvider) {
         $mdThemingProvider.theme('default')
@@ -299,5 +295,3 @@
             }
         });
     }
-
-})();

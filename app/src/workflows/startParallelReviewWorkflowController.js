@@ -1,10 +1,7 @@
-(function(){
     
     angular
         .module('openeApp.workflows')
         .controller('StartParallelReviewWorkflowController', StartParallelReviewWorkflowController);
-    
-    StartParallelReviewWorkflowController.$inject = ['$controller', 'userService', 'workflowDef'];
     
     function StartParallelReviewWorkflowController($controller, userService, workflowDef) {
         
@@ -39,5 +36,3 @@
         }
 
     }
-    
-})();

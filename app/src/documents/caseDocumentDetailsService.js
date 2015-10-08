@@ -1,11 +1,7 @@
-(function() {
-    'use strict';
 
     angular
         .module('openeApp.documents')
         .factory('caseDocumentDetailsService', CaseDocumentDetailsService);
-
-    CaseDocumentDetailsService.$inject = ['$http', 'httpUtils', 'alfrescoUploadService', 'alfrescoDownloadService', 'alfrescoNodeUtils'];
 
     function CaseDocumentDetailsService($http, httpUtils, alfrescoUploadService, alfrescoDownloadService, alfrescoNodeUtils) {
         var service = {
@@ -105,4 +101,3 @@
             });
         }
     }
-})();

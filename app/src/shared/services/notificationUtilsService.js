@@ -1,11 +1,7 @@
-(function() {
-    'use strict';
 
     angular
         .module('openeApp')
         .factory('notificationUtilsService', notificationUtilsService);
-
-    notificationUtilsService.$inject = ['$mdToast', '$translate'];
 
     function notificationUtilsService($mdToast, $translate) {
         var service = {
@@ -44,4 +40,3 @@
             );
         }
     }
-})();

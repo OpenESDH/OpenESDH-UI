@@ -1,5 +1,3 @@
-(function() {
-    'use strict';
 
     angular
         .module('openeApp.tasks.common')
@@ -33,4 +31,3 @@
             }
         } // end of service
     } // end of provider
-})();

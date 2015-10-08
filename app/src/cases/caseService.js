@@ -1,11 +1,7 @@
-(function () {
-    'use strict';
 
     angular
         .module('openeApp.cases')
         .factory('caseService', caseService);
-
-    caseService.$inject = ['$http', 'userService', 'alfrescoNodeUtils'];
 
     function caseService($http, userService, alfrescoNodeUtils) {
         var service = {
@@ -136,4 +132,3 @@
             });
         }
     }
-})();

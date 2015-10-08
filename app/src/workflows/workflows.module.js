@@ -1,10 +1,7 @@
-(function(){
-    'use strict';
 
-    angular.module('openeApp.workflows', [ 'ngMaterial' ])
+    angular
+        .module('openeApp.workflows', [ 'ngMaterial' ])
         .config(config);
-    
-    config.$inject = ['$provide', 'startCaseWorkflowServiceProvider'];
     
     function config($provide, startCaseWorkflowServiceProvider){
         
@@ -68,5 +65,3 @@
         });
         
     }
-    
-})();

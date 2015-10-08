@@ -1,5 +1,1 @@
-(function(){
-    'use strict';
-
-    angular.module('openeApp.core', []);
-})();
+angular.module('openeApp.core', []);

@@ -1,9 +1,7 @@
-(function() {
-    'use strict';
 
     angular
-            .module('openeApp')
-            .factory('countriesService', countriesService);
+        .module('openeApp')
+        .factory('countriesService', countriesService);
 
     function countriesService() {
         var countries = null;
@@ -275,5 +273,3 @@
         }
 
     }
-})();
-

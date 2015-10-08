@@ -1,9 +1,6 @@
-(function(){
 
     angular.module('openeApp.tasks.common')
         .controller('taskFormLoaderController', taskFormLoaderController);
-    
-    taskFormLoaderController.$inject = ['$stateParams', 'taskFormConfigService', '$controller'];
     
     function taskFormLoaderController($stateParams, taskFormConfigService, $controller) {
         var vm = this;
@@ -22,5 +19,3 @@
             };    
         }
     }
-
-})();

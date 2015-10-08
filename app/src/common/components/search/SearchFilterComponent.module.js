@@ -1,4 +1,1 @@
-(function(){
-    'use strict';
-    angular.module('openeApp.search.component.filter', [ 'ngMaterial', 'pascalprecht.translate']);
-})();
+angular.module('openeApp.search.component.filter', [ 'ngMaterial', 'pascalprecht.translate']);

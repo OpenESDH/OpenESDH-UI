@@ -1,11 +1,7 @@
-(function() {
-    'use strict';
 
     angular
         .module('openeApp')
         .directive('fileModel', FileModelDirective);
-    
-    FileModelDirective.$inject = ['$parse'];
     
     function FileModelDirective($parse) {
         return {
@@ -22,5 +18,3 @@
             }
         };
     }
-
-})();

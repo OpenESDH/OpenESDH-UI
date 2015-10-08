@@ -1,11 +1,7 @@
-(function () {
-    'use strict';
 
     angular
         .module('openeApp.officeTemplates')
         .factory('officeTemplateService', officeTemplateService);
-
-    officeTemplateService.$inject = ['$http', 'userService', 'alfrescoNodeUtils'];
 
     function officeTemplateService($http, userService, alfrescoNodeUtils) {
         return {
@@ -46,4 +42,3 @@
             });
         }
     }
-})();

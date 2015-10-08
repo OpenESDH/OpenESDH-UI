@@ -1,11 +1,7 @@
-(function() {
-    'use strict';
 
     angular
         .module('openeApp')
         .factory('fileUtilsService', fileService);
-
-    //fileService.$inject = ['$scope'];
 
     function fileService() {
         var fsvc = this;
@@ -258,4 +254,3 @@
         }
 
     }
-})();

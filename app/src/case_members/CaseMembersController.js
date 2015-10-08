@@ -1,11 +1,7 @@
-(function() {
 
     angular
-            .module('openeApp.cases.members')
-            .controller('CaseMembersController', CaseMembersController);
-
-    CaseMembersController.$inject = ['$scope', '$stateParams', '$translate', 'caseMembersService',
-        '$mdDialog', 'userService', 'caseRoleService', 'notificationUtilsService'];
+        .module('openeApp.cases.members')
+        .controller('CaseMembersController', CaseMembersController);
 
     function CaseMembersController($scope, $stateParams, $translate, caseMembersService,
             $mdDialog, userService, caseRoleService, notificationUtilsService) {
@@ -200,4 +196,3 @@
             }
         }
     }
-})();

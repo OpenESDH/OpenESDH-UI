@@ -1,12 +1,9 @@
-(function(){
-    'use strict';
+
     angular
         .module('openeApp.documents')
         .factory('documentService', documentService);
 
-    documentService.$inject = ['$http'];
-
-    function documentService($http, $resource) {
+    function documentService($http) {
         var service = {
             getDocuments: getDocuments,
             getFavoriteDocuments: getFavoriteDocuments
@@ -43,4 +40,3 @@
             });
         }
     }
-})();

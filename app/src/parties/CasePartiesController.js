@@ -1,11 +1,7 @@
-(function() {
 
     angular
             .module('openeApp.cases.parties')
             .controller('CasePartiesController', CasePartiesController);
-
-    CasePartiesController.$inject = ['$scope', '$stateParams', '$mdDialog', '$filter', '$translate',
-        'casePartiesService', 'partyPermittedRolesService', 'contactsService', 'notificationUtilsService'];
 
     function CasePartiesController($scope, $stateParams, $mdDialog, $filter, $translate,
             casePartiesService, partyPermittedRolesService, contactsService, notificationUtilsService) {
@@ -204,4 +200,3 @@
 
         }
     }
-})();

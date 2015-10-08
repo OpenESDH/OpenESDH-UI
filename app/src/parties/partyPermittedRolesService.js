@@ -1,11 +1,7 @@
-(function() {
-    'use strict';
 
     angular
-            .module('openeApp.cases.parties')
-            .factory('partyPermittedRolesService', PartyPermittedRolesService);
-
-    PartyPermittedRolesService.$inject = ['$http', '$q'];
+        .module('openeApp.cases.parties')
+        .factory('partyPermittedRolesService', PartyPermittedRolesService);
 
     function PartyPermittedRolesService($http, $q) {
         var service = {
@@ -25,4 +21,3 @@
             return response.data;
         }
     }
-})();
