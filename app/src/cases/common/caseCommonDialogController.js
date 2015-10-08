@@ -1,6 +1,3 @@
-(function () {
-    'use strict';
-
     angular
         .module('openeApp.cases.common')
         .controller('CaseCommonDialogController', CaseCommonDialogController);
@@ -44,4 +41,3 @@
             });
         }
     }
- })();
