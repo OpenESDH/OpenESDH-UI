@@ -1,61 +1,61 @@
-<md-dialog aria-label="Case edit dialog">
+<md-dialog aria-label="User dialog">
   <form name="form">
     <md-toolbar layout="row">
       <div class="md-toolbar-tools">
-        <h2>{{vm.dialogMode}} {{ 'USER.USER' | translate }}</h2>
+        <h2>{{ucd.dialogMode | translate}}</h2>
       </div>
     </md-toolbar>
     <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;">
       <div layout="row">
         <md-input-container>
           <label>{{ 'USER.FIRST_NAME' | translate }}</label>
-          <input type="text" ng-model="user.firstName" required focus-me="true">
+          <input type="text" ng-model="ucd.user.firstName" required focus-me="true">
         </md-input-container>
         <md-input-container>
           <label>{{ 'USER.LAST_NAME' | translate }}</label>
-          <input type="text" ng-model="user.lastName" required focus-me="false">
+          <input type="text" ng-model="ucd.user.lastName" required focus-me="false">
         </md-input-container>
       </div>
 
         <md-input-container>
           <label>{{ 'COMMON.EMAIL' | translate }}</label>
-          <input type="text" ng-model="user.email" required focus-me="false">
+          <input type="text" ng-model="ucd.user.email" required focus-me="false">
         </md-input-container>
 
         <div ng-show="vm.userExists">
             <label>Disable Account</label>
-            <input type="checkbox" ng-model="user.enabled" ng-checked="!user.enabled" focus-me="false">
+            <input type="checkbox" ng-model="ucd.user.enabled" ng-checked="!user.enabled" focus-me="false">
         </div>
 
         <md-input-container>
           <label>{{ 'LOGIN.USER_NAME' | translate }}</label>
-          <input type="text" ng-model="user.userName" required focus-me="false" ng-disabled="vm.userExists">
+          <input type="text" ng-model="ucd.user.userName" required focus-me="false" ng-disabled="vm.userExists">
         </md-input-container>
 
         <!--TODO Need to make sure that the password fields match before allowing form submission-->
       <div layout="row">
         <md-input-container>
           <label>{{ 'LOGIN.PASSWORD' | translate }}</label>
-          <input type="password" ng-model="user.password" ng-required="!vm.userExists || undefined" focus-me="false">
+          <input type="password" ng-model="ucd.user.password" ng-required="!vm.userExists || undefined" focus-me="false">
         </md-input-container>
 
         <md-input-container>
           <label>{{ 'LOGIN.VERIFY_PASSWORD' | translate }}</label>
-          <input type="verifypassword" ng-model="user.verifypassword" ng-required="!vm.userExists || undefined" focus-me="false">
+          <input type="password" ng-model="ucd.user.verifypassword" ng-required="!vm.userExists || undefined" focus-me="false">
         </md-input-container>
       </div>
       
       <md-input-container>
         <label>{{ 'COMMON.DESCRIPTION' | translate }}</label>
-        <textarea ng-model="user.desc"></textarea>
+        <textarea ng-model="ucd.user.desc"></textarea>
       </md-input-container>
       
     </md-dialog-content>
     <div class="md-actions" layout="row">
-      <md-button type="submit" class="md-primary" ng-click="vm.update(user)" ng-disabled="form.$invalid">
-        {{vm.dialogMode}} {{ 'USER.USER' | translate }}
+      <md-button type="submit" class="md-primary" ng-click="ucd.update(user)" ng-disabled="form.$invalid">
+        {{ucd.dialogMode | translate}}
       </md-button>
-      <md-button type="button" ng-click="vm.cancel(form)">
+      <md-button type="button" ng-click="ucd.cancel(form)">
         {{ 'COMMON.CANCEL' | translate }}
       </md-button>
     </div>
