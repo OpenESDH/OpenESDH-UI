@@ -45,7 +45,8 @@
             journalFacet: [],
             startDate: new Date(c['base:startDate'].value),
             description: c['cm:description'].displayValue,
-            nodeRef: c.nodeRef
+            nodeRef: c.nodeRef,
+            type: c.type
         };
         if(c['oe:journalKey'].value){
             var nameTitle = c['oe:journalKey'].displayValue.split(' ');

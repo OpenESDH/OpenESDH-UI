@@ -11,7 +11,6 @@
         '$location', 
         '$translate', 
         'caseService', 
-        'userService', 
         'caseCrudDialogService', 
         'alfrescoFolderService',
         'sessionService'
@@ -23,7 +22,7 @@
      * @param cases
      * @constructor
      */
-    function CaseController($scope, $mdDialog, $location, $translate, caseService, userService, caseCrudDialogService, alfrescoFolderService, sessionService) {
+    function CaseController($scope, $mdDialog, $location, $translate, caseService, caseCrudDialogService, alfrescoFolderService, sessionService) {
         var vm = this;
         vm.cases = [];
         vm.caseFilter = [{
@@ -49,11 +48,11 @@
         vm.getMyCases = getMyCases;
         vm.deleteCase = deleteCase;
         vm.isAdmin = sessionService.isAdmin();
+        vm.registeredCaseTypes = caseCrudDialogService.getRegisteredCaseTypes();
 
         activate();
 
         function activate() {
-            getAuthorities();
             getCases();
             getMyCases();
         }
@@ -95,13 +94,6 @@
             caseCrudDialogService.createCase(caseType);
         }
 
-        function getAuthorities() {
-            return userService.getAuthorities().then(function(response) {
-                vm.authorities = response;
-                return response;
-            });
-        }
-        
         function getCaseTypes() {
             return caseService.getCaseTypes().then(function(response) {
                 return response;

@@ -1,6 +1,6 @@
 (function(){
     'use strict';
 
-    angular.module('openeApp.cases', [ 'ngMaterial']);
+    angular.module('openeApp.cases', [ 'openeApp.cases.common']);
     
 })();

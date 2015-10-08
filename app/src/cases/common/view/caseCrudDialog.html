@@ -10,18 +10,18 @@
       
       <md-input-container>
         <label><span class="md-warn">*</span> {{ 'CASE.TITLE' | translate }}</label>
-        <input type="text" ng-model="case.title" required focus-me>
+        <input type="text" ng-model="vm.case.title" required focus-me>
       </md-input-container>
 
       <md-input-container>
         <label><span class="md-warn">*</span> {{ 'CASE.OWNER' | translate }}</label>
-        <md-select ng-model="case.owner" ng-controller="CaseController as vm" required>
+        <md-select ng-model="vm.case.owner" required>
           <md-option ng-value="auth.nodeRef" ng-repeat="auth in vm.authorities">{{ auth.name }}</md-option>
         </md-select>
       </md-input-container>
 
       <div ng-controller="ClassificationController as classCtrl">
-        <md-chips ng-model="case.journalKey"
+        <md-chips ng-model="vm.case.journalKey"
                   md-autocomplete-snap
                   md-require-match="true">
           
@@ -50,7 +50,7 @@
             </md-chip-template>
         </md-chips>
 
-        <md-chips ng-model="case.journalFacet"
+        <md-chips ng-model="vm.case.journalFacet"
                   md-autocomplete-snap
                   md-require-match="true">
           <md-autocomplete style="width: 30em;"
@@ -79,16 +79,16 @@
         </md-chips>
       </div>
       
-      <md-datepicker ng-model="case.startDate" md-placeholder="{{ 'CASE.START_DATE' | translate }}"></md-datepicker>
+      <md-datepicker ng-model="vm.case.startDate" md-placeholder="{{ 'CASE.START_DATE' | translate }}"></md-datepicker>
 
       <md-input-container>
         <label>{{ 'CASE.DESCRIPTION' | translate }}</label>
-        <textarea ng-model="case.description"></textarea>
+        <textarea ng-model="vm.case.description"></textarea>
       </md-input-container>
       
     </md-dialog-content>
     <div class="md-actions" layout="row">
-      <md-button type="submit" class="md-primary" ng-click="vm.update(case)" ng-disabled="form.$invalid">
+      <md-button type="submit" class="md-primary" ng-click="vm.update(vm.case)" ng-disabled="form.$invalid">
         {{ 'COMMON.OK' | translate }}
       </md-button>
       <md-button type="button" ng-click="vm.cancel(form)">
