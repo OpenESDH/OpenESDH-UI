@@ -15,7 +15,12 @@ exports.config = {
     onPrepare: function() {
         browser.driver.manage().window().setSize(1440, 800);
     },
+    suites: {
+        login: './login/*.test.js',
+        header: './common/*.test.js',
+        case: './cases/*.test.js'
+    }/*,
     specs: [
-        './**/*.test.js'
-    ]
+        './!**!/!*.test.js'
+    ]*/
 };

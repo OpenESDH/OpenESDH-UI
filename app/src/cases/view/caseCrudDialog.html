@@ -88,10 +88,10 @@
       
     </md-dialog-content>
     <div class="md-actions" layout="row">
-      <md-button type="submit" class="md-primary" ng-click="vm.update(case)" ng-disabled="form.$invalid">
+        <md-button id="create-case-dlg-ok-btn" type="submit" class="md-primary" ng-click="vm.update(case)" ng-disabled="form.$invalid">
         {{ 'COMMON.OK' | translate }}
       </md-button>
-      <md-button type="button" ng-click="vm.cancel(form)">
+      <md-button id="create-case-dlg-cancel-btn" type="button" ng-click="vm.cancel(form)">
         {{ 'COMMON.CANCEL' | translate }}
       </md-button>
     </div>
