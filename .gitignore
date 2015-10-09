@@ -11,3 +11,5 @@ app/jspm_packages
 .tern-project
 nbproject/*
 dist/*
+app/src/.sass-cache
+app/src/**/.sass-cache
