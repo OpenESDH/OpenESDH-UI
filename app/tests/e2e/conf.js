@@ -12,6 +12,9 @@ exports.config = {
     jasmineNodeOpts: {
         showColors: true
     },
+    onPrepare: function() {
+        browser.driver.manage().window().setSize(1440, 800);
+    },
     specs: [
         './**/*.test.js'
     ]
