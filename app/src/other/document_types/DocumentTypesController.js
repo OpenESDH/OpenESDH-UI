@@ -1,11 +1,7 @@
-(function() {
 
     angular
             .module('openeApp.documentTypes')
             .controller('DocumentTypesController', DocumentTypesController);
-
-    DocumentTypesController.$inject = ['$scope', '$mdDialog', '$translate',
-        'documentTypeService', 'PATTERNS', 'availableLanguages'];
 
     function DocumentTypesController($scope, $mdDialog, $translate,
             documentTypeService, PATTERNS, availableLanguages) {
@@ -90,4 +86,3 @@
             }
         }
     }
-})();

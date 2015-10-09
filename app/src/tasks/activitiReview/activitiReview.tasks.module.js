@@ -1,9 +1,7 @@
-(function(){
-    'use strict';
-    angular.module('openeApp.activitiReview.tasks', ['openeApp.tasks.common'])
+
+    angular
+        .module('openeApp.activitiReview.tasks', ['openeApp.tasks.common'])
         .config(config);
-    
-    config.$inject = ['taskFormConfigServiceProvider'];
     
     function config(taskFormConfigServiceProvider){
         taskFormConfigServiceProvider.taskForm({
@@ -20,4 +18,3 @@
             controller: 'simpleTaskController'
         });
     }
-})();

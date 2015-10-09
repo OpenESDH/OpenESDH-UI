@@ -1,10 +1,7 @@
-(function(){
     
     angular
         .module('openeApp.workflows')
         .controller('BaseStartCaseWorkflowController', BaseStartCaseWorkflowController);
-    
-    BaseStartCaseWorkflowController.$inject = ['$mdDialog', '$stateParams', 'caseDocumentsService'];
     
     function BaseStartCaseWorkflowController($mdDialog, $stateParams, caseDocumentsService) {
         
@@ -37,7 +34,10 @@
                 message: vm.message,
                 sendEmailNotifications: vm.sendEmailNotifications === true,
                 dueDate: vm.selectedDueDate,
-                items: _getSelectedDocuments()
+                items: _getSelectedDocuments(),
+                properties: {
+                    oe_caseId: $stateParams.caseId
+                }
             };
             
             return workflow;
@@ -62,5 +62,3 @@
             return items;
         }
     }
-    
-})();

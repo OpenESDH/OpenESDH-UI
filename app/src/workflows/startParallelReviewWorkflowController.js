@@ -1,10 +1,7 @@
-(function(){
     
     angular
         .module('openeApp.workflows')
         .controller('StartParallelReviewWorkflowController', StartParallelReviewWorkflowController);
-    
-    StartParallelReviewWorkflowController.$inject = ['$controller', 'userService', 'workflowDef'];
     
     function StartParallelReviewWorkflowController($controller, userService, workflowDef) {
         
@@ -29,7 +26,7 @@
             var assignees = vm.selectedRecipients.map(function(recipient){
                 return recipient.nodeRef;
             });
-            angular.extend(wi, {
+            angular.merge(wi, {
                 assignees: assignees,
                 properties: {
                     wf_requiredApprovePercent: vm.requiredApprovalPercentage
@@ -39,5 +36,3 @@
         }
 
     }
-    
-})();

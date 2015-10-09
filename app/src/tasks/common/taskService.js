@@ -1,11 +1,7 @@
-(function () {
-    'use strict';
 
     angular
         .module('openeApp.tasks.common')
         .factory('taskService', TaskService);
-
-    TaskService.$inject = ['$http', 'sessionService'];
 
     function TaskService($http, sessionService) {
         return {
@@ -55,4 +51,3 @@
         }
 
     }
-})();

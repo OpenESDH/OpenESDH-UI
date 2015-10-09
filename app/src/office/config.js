@@ -1,12 +1,9 @@
-(function(){
-    'use strict';
 
-    angular.module('openeApp.office').config(configure);
+    angular
+        .module('openeApp.office')
+        .config(configure);
 
-//    configure.$inject = ['$stateProvider', 'USER_ROLES'];
-    configure.$inject = ['$stateProvider'];
-
-    function configure($stateProvider, USER_ROLES) {
+    function configure($stateProvider) {
 //    function configure($stateProvider) {
         $stateProvider.state('outlook', {
             parent: 'site',
@@ -52,4 +49,3 @@
             }
         });
     }
-})();

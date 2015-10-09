@@ -1,11 +1,7 @@
-(function() {
-    'use strict';
 
     angular
         .module('openeApp')
         .factory('alfrescoUploadService', AlfrescoUploadService);
-
-    AlfrescoUploadService.$inject = ['$http'];
 
     function AlfrescoUploadService($http) {
         
@@ -55,4 +51,3 @@
         }
         
     }
-})();

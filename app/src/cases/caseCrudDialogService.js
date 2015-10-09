@@ -1,11 +1,7 @@
-(function () {
-    'use strict';
 
     angular
         .module('openeApp.cases')
         .factory('caseCrudDialogService', caseCrudDialogService);
-
-    caseCrudDialogService.$inject = ['$http', '$mdDialog', '$location', 'caseService', 'notificationUtilsService'];
 
     function caseCrudDialogService($http, $mdDialog, $location, caseService, notificationUtilsService) {
         return {
@@ -82,7 +78,6 @@
             }
         }
         
-        CaseDialogController.$inject = ['$scope', '$mdDialog'];
         function CaseDialogController($scope, $mdDialog, caseObj) {
             var vm = this;
             
@@ -103,4 +98,3 @@
             }
         }
     }
-})();

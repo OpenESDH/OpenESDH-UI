@@ -1,11 +1,7 @@
-(function() {
-    'use strict';
 
     angular
         .module('openeApp')
         .factory('workflowService', WorkflowService);
-
-    WorkflowService.$inject = ['$http'];
 
     function WorkflowService($http) {
         
@@ -46,4 +42,3 @@
         }
         
     }
-})();

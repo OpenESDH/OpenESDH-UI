@@ -1,11 +1,7 @@
-(function () {
-    'use strict';
 
     angular
         .module('openeApp.cases')
         .factory('caseRoleService', caseRoleService);
-
-    caseRoleService.$inject = ['$http', '$q'];
 
     function caseRoleService($http, $q) {
         var service = {
@@ -24,5 +20,3 @@
             return response.data;
         }
     }
-
-})();

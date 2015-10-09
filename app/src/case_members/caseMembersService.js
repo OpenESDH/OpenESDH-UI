@@ -1,11 +1,7 @@
-(function() {
-    'use strict';
 
     angular
-            .module('openeApp.cases.members')
-            .factory('caseMembersService', caseMembersService);
-
-    caseMembersService.$inject = ['$http', '$q'];
+        .module('openeApp.cases.members')
+        .factory('caseMembersService', caseMembersService);
 
     function caseMembersService($http, $q) {
         var service = {
@@ -57,4 +53,3 @@
             return response.data;
         }
     }
-})();

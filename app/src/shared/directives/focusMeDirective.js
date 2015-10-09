@@ -1,11 +1,7 @@
-(function() {
-    'use strict';
 
     angular
         .module('openeApp')
         .directive('focusMe', FocusMeDirective);
-
-    FocusMeDirective.$inject = ['$timeout'];
 
     function FocusMeDirective($timeout) {
         return {
@@ -21,4 +17,3 @@
             }
         };
     };
-})();

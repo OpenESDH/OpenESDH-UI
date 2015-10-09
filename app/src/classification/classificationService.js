@@ -1,11 +1,7 @@
-(function () {
-    'use strict';
 
     angular
         .module('openeApp.classification')
         .factory('classificationService', classificationService);
-
-    classificationService.$inject = ['$http', 'userService', 'alfrescoNodeUtils'];
 
     function classificationService($http, userService, alfrescoNodeUtils) {
         var service = {
@@ -19,4 +15,3 @@
             });
         }
     }
-})();

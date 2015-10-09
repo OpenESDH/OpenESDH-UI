@@ -1,10 +1,7 @@
-(function(){
-    
+
     angular
         .module('openeApp.workflows')
         .controller('StartSingleRecipientWorkflowController', StartSingleRecipientWorkflowController);
-    
-    StartSingleRecipientWorkflowController.$inject = ['$controller', 'userService', 'workflowDef'];
     
     function StartSingleRecipientWorkflowController($controller, userService, workflowDef) {
         
@@ -25,12 +22,10 @@
         
         function getWorkflowInfo(){
             var wi = vm.BaseStartCaseWorkflowController_getWorkflowInfo();
-            angular.extend(wi, {
+            angular.merge(wi, {
                 assignTo: vm.selectedRecipient
             });
             return wi;
         }
 
     }
-    
-})();

@@ -1,10 +1,6 @@
-(function(){
-    'use strict';
 
     angular.module('openeApp.common.directives.filter')
         .directive('openeListFilter', ListFilterDirective);
-
-    ListFilterDirective.$inject = ['$timeout']
 
     function ListFilterDirective($timeout) {
 
@@ -32,4 +28,3 @@
             templateUrl: '/app/src/common/directives/listFilter/view/listFilter.html'
         }
     }
-})();

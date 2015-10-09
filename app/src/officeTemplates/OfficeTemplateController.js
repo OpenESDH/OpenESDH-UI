@@ -1,11 +1,7 @@
-(function(){
-    'use strict';
 
     angular
         .module('openeApp.officeTemplates')
         .controller('OfficeTemplateController', OfficeTemplateController);
-
-    OfficeTemplateController.$inject = ['$scope', 'officeTemplateService', 'FileSaver', 'Blob'];
 
     /**
      * Main Controller for the Cases module
@@ -47,5 +43,3 @@
             });
         }
   }
-  
-})();

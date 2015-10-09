@@ -1,9 +1,5 @@
-(function () {
-    'use strict';
 
     angular.module('openeApp.cases.parties').factory('groupService', GroupService);
-
-    GroupService.$inject = ['ALFRESCO_URI', '$http', '$q'];
 
     function GroupService(ALFRESCO_URI, $http, $q) {
         var GROUP_PROXY_URI = ALFRESCO_URI.serviceApiProxy + 'groups/';
@@ -124,4 +120,3 @@
             return response.data || response;
         }
     }
-})();

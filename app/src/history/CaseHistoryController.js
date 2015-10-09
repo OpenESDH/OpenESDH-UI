@@ -1,10 +1,7 @@
-(function(){
 
   angular
        .module('openeApp.cases')
        .controller('CaseHistoryController', CaseHistoryController);
-
-  CaseHistoryController.$inject = ['$scope', '$stateParams', 'caseHistoryService'];
   
   function CaseHistoryController($scope, $stateParams, caseHistoryService) {
     var vm = this;
@@ -60,5 +57,3 @@
         loadHistory(vm.currentPage + 1);
     }
   };
-
-})();

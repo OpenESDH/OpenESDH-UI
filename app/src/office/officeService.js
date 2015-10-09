@@ -1,11 +1,7 @@
-(function() {
-    'use strict';
 
     angular
         .module('openeApp.office')
         .factory('officeService', officeService);
-
-    officeService.$inject = ['$http'];
 
     function officeService($http) {
         var service = {
@@ -20,4 +16,3 @@
             })
         }
     }
-})();

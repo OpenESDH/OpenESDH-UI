@@ -1,10 +1,7 @@
-(function(){
-    
+
     angular
         .module('openeApp.workflows')
         .controller('StartPooledReviewWorkflowController', StartPooledReviewWorkflowController);
-    
-    StartPooledReviewWorkflowController.$inject = ['$controller', 'userService', 'workflowDef'];
     
     function StartPooledReviewWorkflowController($controller, userService, workflowDef) {
         
@@ -25,7 +22,7 @@
         
         function getWorkflowInfo(){
             var wi = vm.BaseStartCaseWorkflowController_getWorkflowInfo();
-            angular.extend(wi, {
+            angular.merge(wi, {
                 assignToGroup: vm.selectedRecipient,
                 properties: {
                     wf_requiredApprovePercent: vm.requiredApprovalPercentage
@@ -35,5 +32,3 @@
         }
 
     }
-    
-})();

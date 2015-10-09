@@ -1,4 +1,1 @@
-(function(){
-    'use strict';
-    angular.module('openeApp.tasks.common', []);
-})();
+angular.module('openeApp.tasks.common', []);

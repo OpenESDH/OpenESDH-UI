@@ -1,11 +1,7 @@
-(function() {
-    'use strict';
 
     angular
             .module('openeApp.documentCategories')
             .factory('documentCategoryService', documentCategoryService);
-
-    documentCategoryService.$inject = ['$http'];
 
     function documentCategoryService($http) {
         var service = {
@@ -53,4 +49,3 @@
             return response.data;
         }
     }
-})();

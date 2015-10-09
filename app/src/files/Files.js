@@ -1,6 +1,1 @@
-(function(){
-  'use strict';
-
-  angular.module('openeApp.files', [ 'ngMaterial' ]);
-
-})();
+angular.module('openeApp.files', [ 'ngMaterial' ]);

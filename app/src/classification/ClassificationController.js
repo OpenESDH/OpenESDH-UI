@@ -1,11 +1,7 @@
-(function () {
-    'use strict';
 
     angular
         .module('openeApp.classification')
         .controller('ClassificationController', ClassificationController);
-
-    ClassificationController.$inject = ['$scope', 'classificationService'];
 
     function ClassificationController($scope, classificationService) {
 
@@ -21,5 +17,3 @@
             });
         }
     }
-
-})();
