@@ -26,7 +26,7 @@
             var assignees = vm.selectedRecipients.map(function(recipient){
                 return recipient.nodeRef;
             });
-            angular.extend(wi, {
+            angular.merge(wi, {
                 assignees: assignees,
                 properties: {
                     wf_requiredApprovePercent: vm.requiredApprovalPercentage
