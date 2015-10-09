@@ -57,7 +57,7 @@
                                         <div style="font-size: 0.8em;">{{ 'COMMON.CREATED' | translate }} {{item.modified | date}} {{ 'COMMON.BY' | translate }} {{item.createdBy.firstName}} {{item.createdBy.lastName}}</div>
                                     </div>
                                     <span flex="15">
-                                        <md-button class="md-primary" ng-click="taskCtrl.previewDocument(item.nodeRef)">{{ 'COMMON.PREVIEW' | translate }}</md-button>
+                                        <md-button class="md-primary" ng-click="taskCtrl.previewDocument(item)">{{ 'COMMON.PREVIEW' | translate }}</md-button>
                                     </span>
                                 </div>
                             </md-card-content>

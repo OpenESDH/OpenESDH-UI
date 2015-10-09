@@ -86,7 +86,11 @@
             vm.task.properties.bpm_status = vm.statuses[idx];
         }
 
-        function previewDocument(nodeRef){
+        function previewDocument(item){
+            var nodeRef = item.nodeRef;
+            if(item.mainDocNodeRef != undefined && item.mainDocNodeRef != null){
+                nodeRef = item.mainDocNodeRef;
+            }
             documentPreviewService.previewDocument(nodeRef);
         }
     }
