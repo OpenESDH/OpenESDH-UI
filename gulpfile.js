@@ -70,15 +70,22 @@ gulp.task('watch', function () {
  * Gulp runner tasks
  * (tasks to run from the CLI)
  */
-gulp.task('dev', ['scripts', 'css', 'watch'], function () {
+
+/*
+ * This task is used to just build the scripts and css.
+ * Useful if you want to deploy to production (e.g. with Apache).
+ */
+gulp.task('build', ['scripts', 'css']);
+
+gulp.task('dev', ['build', 'watch'], function () {
 	createWebserver(environment.test);
 });
 
-gulp.task('demo', ['scripts', 'css', 'watch'], function () {
+gulp.task('demo', ['build', 'watch'], function () {
 	createWebserver(environment.demo);
 });
 
-gulp.task('local', ['scripts', 'css', 'watch'], function () {
+gulp.task('local', ['build', 'watch'], function () {
 	createWebserver(environment.local);
 });
 
