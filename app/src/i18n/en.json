@@ -488,6 +488,7 @@
 		"GROUPS": "Groups",
 		"GROUP": "Group",
 		"ADD_USERS": "Add users",
+		"ADD_GROUPS": "Add groups",
 		"DISPLAY_NAME": "Display name",
 		"SHORT_NAME": "Short name",
 		"CREATE_NEW_GROUP": "Create new group"

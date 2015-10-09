@@ -18,7 +18,7 @@
         <tr ng-repeat="m in vm.groups">
           <td><i class="material-icons">{{ m.authorityType == 'USER' ? "person" : "group" }}</i></td>
           <td>{{ m.displayName }}</td>
-          <td>
+          <td layout="row">
             <md-button ng-show="{{ m.authorityType == 'GROUP' }}" ui-sref="administration.group({'shortName': m.shortName })">
               {{ 'COMMON.VIEW_DETAILS' | translate }}
             </md-button>
