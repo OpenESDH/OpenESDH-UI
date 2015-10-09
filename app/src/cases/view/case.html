@@ -55,19 +55,7 @@
             <md-card>
               <md-card-content>
                 <h3 class="md-title">{{ 'COMMON.INFORMATION' | translate }}</h3>
-                <dl layout="row" layout-wrap>
-                  <dt flex="33">{{ 'COMMON.ID' | translate }}</dt><dd flex="66">{{ case["oe:id"].value }}</dd>
-                  <dt flex="33">{{ 'COMMON.TITLE' | translate }}</dt><dd flex="66">{{ case["cm:title"].value }}</dd>
-                  <dt flex="33">{{ 'COMMON.STATUS' | translate }}</dt><dd flex="66">{{ case["oe:status"].value | caseStatus }}</dd>
-                  <dt flex="33">{{ 'COMMON.CREATEDBY' | translate }}</dt><dd flex="66">{{ case["cm:creator"].fullname }}</dd>
-                  <dt flex="33">{{ 'COMMON.CREATED' | translate }}</dt><dd flex="66">{{ case["cm:created"].value | openeDate}}</dd>
-                  <dt flex="33">{{ 'CASE.CASE_OWNER' | translate }}</dt><dd flex="66">{{ case["base:owners"].fullname }}</dd>
-                  <dt flex="33">{{ 'COMMON.MODIFIED' | translate }}</dt><dd flex="66">{{ case["cm:modified"].value  | openeDate}}</dd>
-                  <dt flex="33">{{ 'CASE.JOURNAL_KEY' | translate }}</dt><dd flex="66">{{ case["oe:journalKey"].displayValue }}</dd>
-                  <dt flex="33" ng-hide="case['oe:journalFacet'] | isEmpty">{{ 'CASE.JOURNAL_FACET' | translate}}</dt>
-                  <dd flex="66" ng-hide="case['oe:journalFacet'] | isEmpty">{{ case["oe:journalFacet"].displayValue }}</dd>
-                  <dt flex="33">{{ 'COMMON.DESCRIPTION' | translate }}</dt><dd flex="66">{{ case["cm:description"].value }}</dd>
-                </dl>
+                <dl layout="row" layout-wrap ng-include="vm.caseInfoTemplateUrl"></dl>
               </md-card-content>
               <div class="md-actions" layout="row" layout-padding layout-align="start center">
                 <md-button class="md-primary" ng-click="vm.editCase($event)"

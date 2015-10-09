@@ -7,8 +7,7 @@
         var serviceConfig = [{
             type: 'simple:case',
             controller: 'SimpleCaseDialogController',
-            controllerAs: 'vm',
-            templateUrl: 'app/src/cases/common/view/caseCrudDialog.html'
+            caseInfoTemplateUrl: 'app/src/cases/common/view/caseInfo.html'
         }];
         
         this.$get = caseCrudDialogService;
@@ -31,11 +30,12 @@
             return null;
         }
         
-        caseCrudDialogService.$inject = ['$http', '$mdDialog', '$location', 'caseService', 'notificationUtilsService'];
+        caseCrudDialogService.$inject = ['$http', '$mdDialog', '$location'];
 
-        function caseCrudDialogService($http, $mdDialog, $location, caseService, notificationUtilsService) {
+        function caseCrudDialogService($http, $mdDialog, $location) {
             return {
-                getRegisteredCaseTypes: getRegisteredCaseTypes, 
+                getRegisteredCaseTypes: getRegisteredCaseTypes,
+                getCaseInfoTemplateUrl: getCaseInfoTemplateUrl,
                 createCase: createCase,
                 editCase: editCase
             };
@@ -46,80 +46,49 @@
                 })
             }
             
+            function getCaseInfoTemplateUrl(caseType){
+                var config = getCaseCrudFormConfig(caseType);
+                return config.caseInfoTemplateUrl;
+            }
+            
             function createCase(caseType) {
-
                 var formConfig = getCaseCrudFormConfig(caseType);
                 if(formConfig == null){
                     return;
                 }
                 
-                $mdDialog.show({
-                    controller: formConfig.controller,
-                    controllerAs: formConfig.controllerAs,
-                    templateUrl: formConfig.templateUrl,
-                    parent: angular.element(document.body),
-                    targetEvent: null,
-                    clickOutsideToClose: true,
-                    focusOnOpen: false,
-                    locals: {
-                        caseObj: {
-                            newCase: true
-                        }
-                    }
-                }).then(function(c){
-                    var caseData = angular.copy(c);
-                    prepareCaseData(caseData);
-                    // When submitting, do something with the case data
-                    caseService.createCase(caseData).then(function (caseId) {
-                        $location.path("/cases/case/" + caseId);
-                        // When the form is submitted, show a notification:
-                        notificationUtilsService.notify('Case ' + caseData.title + ' created');
-                    }, function (response) {
-                        notificationUtilsService.alert('Error creating case: ' + response.data.message);
-                    });
+                var caseInfo = {
+                    newCase: true,
+                    type: formConfig.type
+                };
+                showDialog(formConfig, caseInfo).then(function(caseId){
+                    $location.path("/cases/case/" + caseId);
                 });
             }
             
-            function editCase(caseObj){
-                
-                var formConfig = getCaseCrudFormConfig(caseObj.type);
+            function editCase(caseInfo){
+                var formConfig = getCaseCrudFormConfig(caseInfo.properties.type);
                 if(formConfig == null){
                     return;
                 }
                 
+                return showDialog(formConfig, caseInfo);
+            }
+            
+            function showDialog(formConfig, caseInfo){
                 return $mdDialog.show({
                     controller: formConfig.controller,
-                    controllerAs: formConfig.controllerAs,
-                    templateUrl: formConfig.templateUrl,
+                    controllerAs: 'vm',
+                    templateUrl: 'app/src/cases/common/view/caseCrudDialog.html',
                     parent: angular.element(document.body),
                     targetEvent: null,
                     clickOutsideToClose: true,
                     focusOnOpen: false,
                     locals: {
-                        caseObj: angular.copy(caseObj)
+                        caseInfo: caseInfo
                     }
-                }).then(function(updatedCaseObj) {
-                        prepareCaseData(updatedCaseObj);
-                        return caseService.updateCase(updatedCaseObj, caseObj).then(function(result){
-                            return result;
-                        });
-                }, 
-                function() {
                 });
             }
             
-            function prepareCaseData(caseData){
-                if (caseData.journalKey != undefined && caseData.journalKey.length > 0) {
-                    caseData.journalKey = caseData.journalKey[0].nodeRef;
-                } else {
-                    delete caseData.journalKey;
-                }
-                
-                if (caseData.journalFacet != undefined && caseData.journalFacet.length > 0) {
-                    caseData.journalFacet = caseData.journalFacet[0].nodeRef;
-                } else {
-                    delete caseData.journalFacet;
-                }
-            }
         }
     }

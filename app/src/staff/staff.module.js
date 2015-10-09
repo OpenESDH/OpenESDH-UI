@@ -6,8 +6,7 @@
         caseCrudDialogServiceProvider.caseCrudForm({
             type: 'staff:case',
             controller: 'StaffCaseDialogController',
-            controllerAs: 'vm',
-            templateUrl: 'app/src/cases/common/view/caseCrudDialog.html'
+            caseInfoTemplateUrl: 'app/src/staff/view/caseInfo.html'
         });
     }
 

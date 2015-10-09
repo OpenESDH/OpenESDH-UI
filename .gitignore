@@ -10,4 +10,4 @@ app/jspm_packages
 .settings
 .tern-project
 nbproject/*
-dist/*
+dist

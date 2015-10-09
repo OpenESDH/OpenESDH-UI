@@ -8,90 +8,14 @@
     </md-toolbar>
     <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;">
       
-      <md-input-container>
-        <label><span class="md-warn">*</span> {{ 'CASE.TITLE' | translate }}</label>
-        <input type="text" ng-model="vm.case.title" required focus-me>
-      </md-input-container>
-
-      <md-input-container>
-        <label><span class="md-warn">*</span> {{ 'CASE.OWNER' | translate }}</label>
-        <md-select ng-model="vm.case.owner" required>
-          <md-option ng-value="auth.nodeRef" ng-repeat="auth in vm.authorities">{{ auth.name }}</md-option>
-        </md-select>
-      </md-input-container>
-
-      <div ng-controller="ClassificationController as classCtrl">
-        <md-chips ng-model="vm.case.journalKey"
-                  md-autocomplete-snap
-                  md-require-match="true">
-          
-            <md-autocomplete style="width: 30em;"
-                             md-input-name="autocompleteField"
-                             md-min-length="2"
-                             md-input-minlength="2"
-                             md-selected-item="selectedItem"
-                             md-search-text="searchText"
-                             md-items="item in classCtrl.search(searchText, 'oe:journalKey')"
-                             md-item-text="item.name + ' ' + item.title"
-                             placeholder="{{'CASE.JOURNAL_KEY' | translate}}">
-              <md-item-template>
-                  <span md-highlight-text="searchText">{{item.name}}</span>
-                  <span md-highlight-text="searchText" class="muted">{{item.title}}</span>
-              </md-item-template>
-              <md-not-found>
-                  {{ 'COMMON.NO_MATCHES' | translate }}
-              </md-not-found>
-            </md-autocomplete>
-            <md-chip-template>
-                <span>
-                    <strong>{{ $chip.name }}</strong>
-                    <em>{{ $chip.title }}</em>
-                </span>
-            </md-chip-template>
-        </md-chips>
-
-        <md-chips ng-model="vm.case.journalFacet"
-                  md-autocomplete-snap
-                  md-require-match="true">
-          <md-autocomplete style="width: 30em;"
-                           md-input-name="autocompleteField"
-                           md-min-length="2"
-                           md-input-minlength="2"
-                           md-selected-item="selectedItem"
-                           md-search-text="searchText"
-                           md-items="item in classCtrl.search(searchText, 'oe:journalFacet')"
-                           md-item-text="item.name + ' ' + item.title"
-                           placeholder="{{'CASE.JOURNAL_FACET' | translate}}">
-            <md-item-template>
-                <span md-highlight-text="searchText">{{item.name}}</span>
-                <span md-highlight-text="searchText" class="muted">{{item.title}}</span>
-            </md-item-template>
-            <md-not-found>
-              {{ 'COMMON.NO_MATCHES' | translate }}
-            </md-not-found>
-          </md-autocomplete>
-            <md-chip-template>
-                <span>
-                  <strong>{{$chip.name}}</strong>
-                  <em>{{$chip.title}}</em>
-                </span>
-            </md-chip-template>
-        </md-chips>
-      </div>
-      
-      <md-datepicker ng-model="vm.case.startDate" md-placeholder="{{ 'CASE.START_DATE' | translate }}"></md-datepicker>
-
-      <md-input-container>
-        <label>{{ 'CASE.DESCRIPTION' | translate }}</label>
-        <textarea ng-model="vm.case.description"></textarea>
-      </md-input-container>
+      <ng-include src="vm.formTemplateUrl" />
       
     </md-dialog-content>
     <div class="md-actions" layout="row">
-      <md-button type="submit" class="md-primary" ng-click="vm.update(vm.case)" ng-disabled="form.$invalid">
+      <md-button type="submit" class="md-primary" ng-click="vm.save()" ng-disabled="form.$invalid">
         {{ 'COMMON.OK' | translate }}
       </md-button>
-      <md-button type="button" ng-click="vm.cancel(form)">
+      <md-button type="button" ng-click="vm.cancel()">
         {{ 'COMMON.CANCEL' | translate }}
       </md-button>
     </div>
