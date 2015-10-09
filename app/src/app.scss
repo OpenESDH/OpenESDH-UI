@@ -187,6 +187,56 @@ textarea {
 	}
 }
 
+
+/* Workflow */
+
+table {
+    tr {
+        .collapse, .expand {
+            display: block;
+
+            &:after {
+                display: block;
+                color: #999;
+                cursor: pointer;
+            }
+        }
+
+        .collapse:after {
+            content: "\0025BC";
+        }
+
+        .expand:after {
+            content: "\0025BA";
+        }
+    }
+}
+
+button.button-status {
+    margin: 0;
+    min-width: initial;
+    overflow: visible;
+    color: rgba(0,0,0,0.87);
+    background-color: rgb(250,250,250);
+    border-top: solid 1px rgba(0,0,0,0.2);
+    border-bottom: solid 1px rgba(0,0,0,0.2);
+    border-left: solid 1px rgba(0,0,0,0.2);
+    border-radius: 0;
+
+    &:last-child {
+        border-right: solid 1px rgba(0,0,0,0.2);
+    }
+}
+
+button.button-status.active {
+    color: rgba(255,255,255,0.87);
+    background-color: rgb(16,108,200);
+
+    &:hover {
+        background-color: rgb(16,108,200);
+    }
+}
+
 /* Angular Material override styles */
 .md-datepicker-calendar-pane {
 	max-width: 339px;

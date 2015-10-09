@@ -14,6 +14,7 @@
         vm.createUser = createUser;
         vm.editUser = editUser;
         vm.userExists = false;
+        vm.dialogMode = 'USER.CREATE_USER';
 
         //For the search control filter
         vm.userSearchFilters = [
@@ -39,25 +40,25 @@
             console.log('Creating a new user');
             vm.userExists = false;
             vm.user = {};
+            vm.dialogMode = 'USER.CREATE_USER';
 
-            $mdDialog.show({
-                controller: UserDialogController,
-                controllerAs: 'vm',
-                templateUrl: 'app/src/users/view/userCrudDialog.html',
-                parent: angular.element(document.body),
-                targetEvent: ev,
-                clickOutsideToClose: true
-            });
+            return showUserDialog(ev);
         }
 
         function editUser(ev, user) {
             console.log('Editing user');
             vm.userExists = true;
             vm.user = user;
+            vm.dialogMode = 'USER.EDIT_USER';
 
+            return showUserDialog(ev);
+        
+        }
+
+        function showUserDialog(ev) {
             $mdDialog.show({
                 controller: UserDialogController,
-                controllerAs: 'vm',
+                controllerAs: 'ucd',
                 templateUrl: 'app/src/users/view/userCrudDialog.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
@@ -65,11 +66,12 @@
             });
         }
 
-        function UserDialogController($scope, $mdDialog, $mdToast, $animate, userService) {
+        function UserDialogController($scope, $mdDialog, $mdToast, userService) {
             var ucd = this;
 
             // Data from the user creation form
-            $scope.user = vm.user;
+            ucd.user = vm.user;
+            ucd.dialogMode = vm.dialogMode;
             ucd.userData = {};
             ucd.userExists = vm.userExists;
             ucd.cancel = cancel;
@@ -84,10 +86,10 @@
             function update(u) {
                 ucd.userData = angular.copy(u);
                 ucd.userData.disableAccount = u.enabled;
+                // createSuccess is a promise!
                 var createSuccess = (ucd.userExists) ? userService.updateUser(ucd.userData) : userService.createUser(ucd.userData);
-                console.log(ucd.userData);
-                $mdDialog.cancel();
                 notifyUserSaved(createSuccess);
+                $mdDialog.cancel();
             }
 
             // When the form is submitted, show a notification:
@@ -107,13 +109,16 @@
             }
 
             function notifyUserSaved(cuSuccess) {
-                $mdToast.show(
-                    $mdToast.simple()
-                        .content(cuSuccess.message)
-                        .position(ucd.getToastPosition())
-                        .hideDelay(3000)
-                );
-                getAllSystemUsers();
+                cuSuccess.then(function (response) {
+                    console.log(response);
+                    $mdToast.show(
+                        $mdToast.simple()
+                            .content(cuSuccess.message)
+                            .position(ucd.getToastPosition())
+                            .hideDelay(3000)
+                    );
+                    getAllSystemUsers();
+                });
             }
         }
 

@@ -469,7 +469,8 @@
 		"ASSIGNEES": "Assignees",
 		"CHOOSE_ASSIGNEES": "Choose assignees",
 		"ASSIGN_TO": "Assign to",
-		"ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_TASK_AND_WORKFLOW": "Are you sure you want to delete the task '{{task_description}}' and cancel the workflow?"
+		"ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_TASK_AND_WORKFLOW": "Are you sure you want to delete the task '{{task_description}}' and cancel the workflow?",
+        "WORKFLOW_DETAILS": "Workflow details"
 	},
 	"ADMIN": {
 		"ADMINISTRATION_PAGES": "Administration pages",
@@ -605,6 +606,7 @@
 		"APPROVE": "Approve",
 		"REJECT": "Reject",
 		"VIEW_TASK_DETAILS": "View task details",
+        "TASK_DETAILS": "Task details",
     "ITEMS": "Items"
   },
   "MENU": {
