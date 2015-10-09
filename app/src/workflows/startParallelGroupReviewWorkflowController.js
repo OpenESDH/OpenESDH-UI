@@ -22,7 +22,7 @@
         
         function getWorkflowInfo(){
             var wi = vm.BaseStartCaseWorkflowController_getWorkflowInfo();
-            angular.extend(wi, {
+            angular.merge(wi, {
                 assignToGroup: vm.selectedRecipient,
                 properties: {
                     wf_requiredApprovePercent: vm.requiredApprovalPercentage

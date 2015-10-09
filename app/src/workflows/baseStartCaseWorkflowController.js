@@ -34,7 +34,10 @@
                 message: vm.message,
                 sendEmailNotifications: vm.sendEmailNotifications === true,
                 dueDate: vm.selectedDueDate,
-                items: _getSelectedDocuments()
+                items: _getSelectedDocuments(),
+                properties: {
+                    oe_caseId: $stateParams.caseId
+                }
             };
             
             return workflow;
