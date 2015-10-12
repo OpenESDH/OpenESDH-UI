@@ -1,16 +1,16 @@
 <md-card ng-controller="UsersController as vm">
     <md-card-content>
+
         <div layout="row" layout-align="space-between center">
             <h2 class="md-title" flex>{{ 'USER.USERS' | translate }}</h2>
-
             <opene-filter-search flex="15" 
                 option-label="vm.optionLabel"
                 option-value="vm.optionValue"
                 select-options="vm.selectOptions"
                 finished="vm.filterCallback">
             </opene-filter-search>
-            
         </div>
+
         <table>
             <thead>
             <tr>
@@ -27,9 +27,11 @@
                 <td>{{user.firstName}}</td>
                 <td>{{user.lastName}}</td>
                 <td>
-                    <md-button class="md-primary" ng-click="vm.editUser($event, user)"
-                               aria-label="Edit user">
+                    <md-button class="md-primary" ng-click="vm.editUser($event, user)" aria-label="Edit user">
                         {{ 'USER.EDIT_USER' | translate }}
+                    </md-button>
+                    <md-button class="md-primary" ng-click="vm.deleteUser($event, user)" aria-label="Delete user">
+                        {{ 'COMMON.DELETE' | translate }}
                     </md-button>
                 </td>
             </tr>

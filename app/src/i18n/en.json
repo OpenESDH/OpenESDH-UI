@@ -492,7 +492,11 @@
 		"LAST_NAME": "Last name",
 		"USERNAME": "Username",
 		"EDIT_USER": "Edit user",
-		"CREATE_USER": "Create user"
+		"DELETE_USER": "Delete user",
+		"DELETE_USER_SUCCESS": "User successfully deleted",
+		"DELETE_USER_FAILURE": "User could not be deleted",
+		"CREATE_USER": "Create user",
+	  	"ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER": "Are you sure you want to delete '{{user}}'?"
 	},
 	"GROUP": {
 		"GROUPS": "Groups",
