@@ -8,10 +8,11 @@
      * @param $scope
      * @constructor
      */
-    function UsersController($scope, $mdDialog, userService) {
+    function UsersController($scope, $mdDialog, $mdToast, userService, $translate) {
         var vm = this;
 
         vm.createUser = createUser;
+        vm.deleteUser = deleteUser;
         vm.editUser = editUser;
         vm.userExists = false;
         vm.dialogMode = 'USER.CREATE_USER';
@@ -53,6 +54,32 @@
 
             return showUserDialog(ev);
         
+        }
+
+        function deleteUser(ev, user) {
+            console.log('Deleting user');
+            vm.user = user;
+
+            var confirm = $mdDialog.confirm()
+                .title($translate.instant('COMMON.CONFIRM'))
+                .content($translate.instant('USER.ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER', {user: vm.user.firstName +" "+vm.user.lastName+"("+vm.user.userName+")"}))
+                .ariaLabel('')
+                .targetEvent(null)
+                .ok($translate.instant('COMMON.YES'))
+                .cancel($translate.instant('COMMON.CANCEL'));
+            $mdDialog.show(confirm).then(function() {
+                userService.deleteUser(vm.user.userName).then(function(response){
+                    var responseMessage = (Object.keys(response).length == 0) ? $translate.instant('USER.DELETE_USER_SUCCESS') : $translate.instant('USER.DELETE_USER_FAILURE');
+                        getAllSystemUsers();
+                        $mdToast.show(
+                            $mdToast.simple()
+                                .content(responseMessage)
+                                .position('top right')
+                                .hideDelay(3000)
+                        );
+                })
+            });
+
         }
 
         function showUserDialog(ev) {

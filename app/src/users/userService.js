@@ -5,7 +5,7 @@
 
     function userService(ALFRESCO_URI, $http, $resource) {
         return {
-            getPerson: getPerson,
+            deleteUser: deletePerson,
             getPeople: getPeople,
             getHome: getHome,
             getAuthorities: getAuthorities,
@@ -17,6 +17,12 @@
             getGroups: getGroups,
             changePassword: changePassword
         };
+
+        function deletePerson(userName) {
+            return $http.delete('/alfresco/service/api/people/' + userName).then(function(response) {
+                return response.data;
+            });
+        }
 
         function getPerson(username) {
             return $http.get('/alfresco/service/api/people/' + username).then(function(response) {
