@@ -2,7 +2,7 @@
         .module('openeApp.cases.common')
         .controller('CaseCommonDialogController', CaseCommonDialogController);
     
-    function CaseCommonDialogController($mdDialog, userService, caseService, notificationUtilsService, caseInfo) {
+    function CaseCommonDialogController($mdDialog, $translate, userService, caseService, notificationUtilsService, caseInfo) {
         var vm = this;
         vm.formTemplateUrl = "app/src/cases/common/view/caseCrudForm.html";
         // Data from the case creation form
@@ -15,7 +15,9 @@
         vm.init = init;
         vm.getAuthorities = getAuthorities;
         vm.initCasePropsForEdit = initCasePropsForEdit;
-        vm.getPropsToSave = getPropsToSave;        
+        vm.getPropsToSave = getPropsToSave;
+        vm.getDateValue = getDateValue;
+        vm.getNumberValue = getNumberValue;
         
         function init(){
             var vm = this;
@@ -100,11 +102,11 @@
             // When submitting, do something with the case data
             caseService.createCase(vm.caseInfo.type, props).then(function (caseId) {
                 // When the form is submitted, show a notification:
-                notificationUtilsService.notify('Case ' + props.prop_cm_title + ' created');
+                notificationUtilsService.notify($translate.instant("CASE.CASE_CREATED", {case_title: props.prop_cm_title}));
                 $mdDialog.hide(caseId);
                 
             }, function (response) {
-                notificationUtilsService.alert('Error creating case: ' + response.data.message);
+                notificationUtilsService.alert($translate.instant("CASE.ERROR_CREATING_CASE", {case_title: props.prop_cm_title}) + response.data.message);
             });
         }
         
@@ -112,7 +114,7 @@
             var vm = this;
             var props = vm.getPropsToSave();
             caseService.updateCase(vm.caseInfo.properties.nodeRef, props).then(function(result){
-                notificationUtilsService.notify('Case ' + props.prop_cm_title + ' updated');
+                notificationUtilsService.notify($translate.instant("CASE.CASE_UPDATED", {case_title: props.prop_cm_title}));
                 $mdDialog.hide(result);
             });    
         }
@@ -144,5 +146,19 @@
             }
             
             return props;
+        }
+        
+        function getDateValue(val){
+            if(val === undefined){
+                return "";
+            }
+            return new Date(val.value);
+        }
+        
+        function getNumberValue(val){
+            if(val === undefined){
+                return 0;
+            }
+            return Number(val.value);
         }
     }

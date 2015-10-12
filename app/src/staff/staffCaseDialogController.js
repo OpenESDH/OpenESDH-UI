@@ -15,9 +15,9 @@
             vm.initCommonCasePropsForEdit();
             var c = vm.caseInfo.allProps.properties;
             angular.extend(vm.case, {
-                prop_staff_hireDate: new Date(c['staff:hireDate'].value),
-                prop_staff_resignationDate: new Date(c['staff:resignationDate'].value),
-                prop_staff_salary: Number(c['staff:salary'].value)
+                prop_staff_hireDate: this.getDateValue(c['staff:hireDate']),
+                prop_staff_resignationDate: this.getDateValue(c['staff:resignationDate']),
+                prop_staff_salary: this.getNumberValue(c['staff:salary'])
             });
         }
     }

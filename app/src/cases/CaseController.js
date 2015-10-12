@@ -31,11 +31,9 @@
         vm.caseFilterChoice = vm.caseFilter[0];
 
         vm.getCases = getCases;
-        vm.createCase = createCase;
         vm.getMyCases = getMyCases;
         vm.deleteCase = deleteCase;
         vm.isAdmin = sessionService.isAdmin();
-        vm.registeredCaseTypes = caseCrudDialogService.getRegisteredCaseTypes();
 
         activate();
 
@@ -75,10 +73,6 @@
             }
 
             return filters;
-        }
-
-        function createCase(ev, caseType) {
-            caseCrudDialogService.createCase(caseType);
         }
 
         function getCaseTypes() {

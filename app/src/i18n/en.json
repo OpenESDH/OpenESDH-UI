@@ -100,7 +100,10 @@
         "HIRE_DATE": "Hire date",
         "RESIGNATION_DATE": "Resignation date",
         "SALARY": "Salary"
-    }
+    },
+    "CASE_CREATED": "Case '{{case_title}}' created",
+    "CASE_UPDATED": "Case '{{case_title}}' updated",
+    "ERROR_CREATING_CASE": "Error creating case: {{case_title}}"
   },
   "DOCUMENT": {
     "STATUS_CHANGED_SUCCESS": "Status has been changed successfully",
