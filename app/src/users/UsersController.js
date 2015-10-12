@@ -62,7 +62,7 @@
 
             var confirm = $mdDialog.confirm()
                 .title($translate.instant('COMMON.CONFIRM'))
-                .content($translate.instant('USER.ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER', {user: vm.user.firstName +" "+vm.user.lastName+"("+vm.user.userName+")"}))
+                .content($translate.instant('USER.ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER', {user: vm.user.firstName +" "+vm.user.lastName+" ("+vm.user.userName+")"}))
                 .ariaLabel('')
                 .targetEvent(null)
                 .ok($translate.instant('COMMON.YES'))
