@@ -26,6 +26,8 @@
     
     function loadCaseInfo(){
         caseService.getCaseInfo($stateParams.caseId).then(function(result){
+            vm.caseInfo = result;
+            vm.caseInfoTemplateUrl = caseCrudDialogService.getCaseInfoTemplateUrl(result.properties.type);
             $scope.case = result.properties;
             $scope.caseIsLocked = result.isLocked;
             $scope.caseStatusChoices = result.statusChoices;
@@ -33,36 +35,7 @@
     }
     
     function editCase(ev) {
-        var c = $scope.case;
-        var caseObj = {
-            title: c['cm:title'].displayValue,
-            owner: c['base:owners'].nodeRef[0],
-            journalKey: [],
-            journalFacet: [],
-            startDate: new Date(c['base:startDate'].value),
-            description: c['cm:description'].displayValue,
-            nodeRef: c.nodeRef
-        };
-        if(c['oe:journalKey'].value){
-            var nameTitle = c['oe:journalKey'].displayValue.split(' ');
-            caseObj.journalKey.push({
-                value: c['oe:journalKey'].value,
-                nodeRef: c['oe:journalKey'].value,
-                name: nameTitle[0],
-                title: nameTitle[1]
-            });    
-        }
-        if(c['oe:journalFacet'].value){
-            var nameTitle = c['oe:journalFacet'].displayValue.split(' ');
-            caseObj.journalFacet.push({
-                value: c['oe:journalFacet'].value,
-                nodeRef: c['oe:journalFacet'].value,
-                name: nameTitle[0],
-                title: nameTitle[1]
-            });
-        }
-        
-        caseCrudDialogService.editCase(caseObj).then(function(result){
+        caseCrudDialogService.editCase(vm.caseInfo).then(function(result){
             loadCaseInfo();
         });
     }
