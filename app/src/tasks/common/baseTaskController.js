@@ -16,6 +16,7 @@
         vm.backToTasks = backToTasks;
         vm.changeStatus = changeStatus;
         vm.previewDocument = previewDocument;
+        vm.documentNodeRefToOpen = documentNodeRefToOpen;
         vm.statuses = ["Not Yet Started", "In Progres", "On Hold", "Cancelled", "Completed"];
         vm.toggleStatus = {item: -1};
         
@@ -86,7 +87,18 @@
             vm.task.properties.bpm_status = vm.statuses[idx];
         }
 
-        function previewDocument(nodeRef){
+        function previewDocument(item){
+            var nodeRef = item.nodeRef;
+            if(item.mainDocNodeRef != undefined && item.mainDocNodeRef != null){
+                nodeRef = item.mainDocNodeRef;
+            }
             documentPreviewService.previewDocument(nodeRef);
+        }
+        
+        function documentNodeRefToOpen(item){
+            if(item.docRecordNodeRef != undefined && item.docRecordNodeRef != null){
+                return item.docRecordNodeRef;
+            }
+            return item.nodeRef;
         }
     }

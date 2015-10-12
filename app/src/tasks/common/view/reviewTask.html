@@ -51,12 +51,15 @@
                                 <h3>{{'TASK.ITEMS' | translate}}</h3>
                                 <md-divider style="margin-bottom: 1em;"></md-divider>
                                 <div ng-repeat="item in taskCtrl.task.packageItems" layout="row" layout-align="left center">
-                                    <div flex="80">
+                                    <div flex="75">
                                         <b>{{item.name}}</b>
                                         <div style="font-size: 0.8em;">{{ 'COMMON.CREATED' | translate }} {{item.modified | date}} {{ 'COMMON.BY' | translate }} {{item.createdBy.firstName}} {{item.createdBy.lastName}}</div>
                                     </div>
+                                    <span flex="10">
+                                        <md-button class="md-primary" ng-click="taskCtrl.previewDocument(item)">{{ 'COMMON.PREVIEW' | translate }}</md-button>
+                                    </span>
                                     <span flex="15">
-                                        <md-button class="md-primary" ng-click="taskCtrl.previewDocument(item.nodeRef)">{{ 'COMMON.PREVIEW' | translate }}</md-button>
+                                        <md-button class="md-primary" ng-href="#/cases/case/{{taskCtrl.task.caseId}}/doc/{{taskCtrl.documentNodeRefToOpen(item) | nodeRefUri}}">{{ 'COMMON.OPEN' | translate }}</md-button>
                                     </span>
                                 </div>
                             </md-card-content>

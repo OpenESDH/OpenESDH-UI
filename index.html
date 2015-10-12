@@ -16,7 +16,7 @@
 
     <!-- Vendor scripts -->
 
-    <script src="./bower_components/pdfjs-dist/build/pdf.js"></script>
+    <script src="./bower_components/pdfjs-dist/build/pdf.combined.js"></script>
     <script src="./bower_components/swfobject/swfobject/swfobject.js"></script>
 
     <script src="./bower_components/angular/angular.js"></script>
@@ -41,8 +41,8 @@
 
   </head>
 
-  <body ng-app="openeApp" layout="column">
-    <md-content id="content" ui-view="content"></md-content>
+  <body ng-app="openeApp" layout="column" class="body">
+    <md-content class="body__content" ui-view="content"></md-content>
   </body>
 
 </html>
