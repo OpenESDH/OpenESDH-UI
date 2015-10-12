@@ -17,6 +17,7 @@ var CaseCrudDialog = function () {
     function fillCrudDialog() {
         var caseTxtTitle = oeUtils.generateRandomString(8);
         browser.waitForAngular().then(function(){
+            console.log("Popped Up. Waiting...");
             browser.wait(protractor.ExpectedConditions.visibilityOf(caseTitle), 10000).then(function() {
                 caseTitle.sendKeys(caseTxtTitle);
                 caseOwner.sendKeys("la");
@@ -28,10 +29,9 @@ var CaseCrudDialog = function () {
                 });
                 okDialogBtn.click();
                 browser.driver.sleep(1000);
+                return caseTxtTitle;
             });
         });
-        okDialogBtn.click();
-        return caseTxtTitle;
     }
 
 };
