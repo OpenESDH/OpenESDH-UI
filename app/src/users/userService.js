@@ -6,6 +6,7 @@
     function userService(ALFRESCO_URI, $http, $resource) {
         return {
             deleteUser: deletePerson,
+            getPerson: getPerson,
             getPeople: getPeople,
             getHome: getHome,
             getAuthorities: getAuthorities,
