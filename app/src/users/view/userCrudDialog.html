@@ -52,10 +52,10 @@
       
     </md-dialog-content>
     <div class="md-actions" layout="row">
-      <md-button type="submit" class="md-primary" ng-click="ucd.update(user)" ng-disabled="form.$invalid">
+      <md-button id="create-user-dialog-ok-btn" type="submit" class="md-primary" ng-click="ucd.update(ucd.user)" ng-disabled="form.$invalid">
         {{ucd.dialogMode | translate}}
       </md-button>
-      <md-button type="button" ng-click="ucd.cancel(form)">
+      <md-button id="create-user-dialog-cancel-btn" type="button" ng-click="ucd.cancel(form)">
         {{ 'COMMON.CANCEL' | translate }}
       </md-button>
     </div>
