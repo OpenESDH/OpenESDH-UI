@@ -466,7 +466,11 @@
 		"LAST_NAME": "Efternavn",
 		"USERNAME": "Brugernavn",
 		"EDIT_USER": "Redigér bruger",
-		"CREATE_USER": "Opret bruger"
+	  	"DELETE_USER": "Slet bruger",
+	  	"DELETE_USER_SUCCESS": "Bruger slettet",
+	  	"DELETE_USER_FAILURE": "Bruger kunne ikke slettes",
+		"CREATE_USER": "Opret bruger",
+	  	"ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER": "Er du sikker på, at du vil slette '{{user}}'?"
 	},
 	"GROUP": {
 		"GROUPS": "Grupper",
