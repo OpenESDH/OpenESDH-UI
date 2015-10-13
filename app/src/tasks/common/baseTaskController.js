@@ -3,7 +3,7 @@
         .module('openeApp.tasks.common')
         .controller('baseTaskController', BaseTaskController);
     
-    function BaseTaskController(taskService, $stateParams, $location, documentPreviewService) {
+    function BaseTaskController(taskService, $stateParams, $location, documentPreviewService, sessionService, workflowService, $translate) {
         var vm = this;
         vm.taskId = $stateParams.taskId;
         vm.init = init;
@@ -17,8 +17,9 @@
         vm.changeStatus = changeStatus;
         vm.previewDocument = previewDocument;
         vm.documentNodeRefToOpen = documentNodeRefToOpen;
-        vm.statuses = ["Not Yet Started", "In Progres", "On Hold", "Cancelled", "Completed"];
+        vm.statuses = ["Not Yet Started", "In Progres", "On Hold", "Cancelled"];
         vm.toggleStatus = {item: -1};
+        vm.isAdmin = sessionService.isAdmin();
         
         function init(){
             var vm = this;
@@ -34,6 +35,15 @@
                 vm.backToTasks();
             });
         }
+        
+        //TODO – deleteWorkflow needs implementation
+        /**
+         * Pre – Accepts a task object and possibly info on related workflow/process
+         * Post – Deletes the task and it's related workflow/process
+         */
+        function deleteWorkflow(task) {
+          
+        };
         
         function taskDone(){
             var vm = this;
