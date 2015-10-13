@@ -57,9 +57,12 @@
                 <h3 class="md-title">{{ 'COMMON.INFORMATION' | translate }}</h3>
                 <dl layout="row" layout-wrap ng-include="vm.caseInfoTemplateUrl"></dl>
               </md-card-content>
-              <div class="md-actions" layout="row" layout-padding layout-align="start center">
+              <div class="md-actions" layout="column" layout-padding layout-align="start start">
                 <md-button class="md-primary" ng-click="vm.editCase($event)"
-                           ng-disabled="caseIsLocked">{{ 'CASE.EDIT_INFORMATION' | translate }}</md-button>
+                           ng-disabled="caseIsLocked">
+                    <i class="material-icons">mode_edit</i>
+                    {{ 'CASE.EDIT_INFORMATION' | translate }}
+                </md-button>
                 <md-button class="md-primary" ng-click="vm.printCase()">{{ 'CASE.PRINT_CASE' | translate }}</md-button>
                 <md-button class="md-primary" ng-click="vm.startWorklfow()" ng-disabled="caseIsLocked">{{ 'CASE.START_WORKFLOW' | translate }}</md-button>
               </div>
