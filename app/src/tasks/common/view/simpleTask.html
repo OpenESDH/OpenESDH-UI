@@ -1,7 +1,11 @@
 <md-content layout="column" ng-controller="ctrl.controller as taskCtrl">
-    <div class="sub-toolbar" layout="row" layout-align="space-between center" layout-padding>
+    <div class="sub-toolbar" layout="row" layout-align="start center" layout-padding>
+        <md-button ng-href="#/tasks" ng-aria="{{ 'TASK.TASKS' | translate }}">
+            <i class="material-icons" style="vertical-align: middle;">arrow_back</i>
+        </md-button>
         <h1 class="md-headline" layout-margin>{{taskCtrl.task.properties.bpm_description}}</h1>
     </div>
+    
     <md-tabs md-dynamic-height>
         <md-tab md-on-select="vm.onTabChange('case')">
             <md-tab-label>
@@ -39,9 +43,7 @@
 
                             </dl>
                           </md-card-content>
-                          <div class="md-actions" layout="row">
-                            <md-button class="md-primary" ng-click="taskCtrl.updateTask()">{{'TASK.SAVE_AND_CLOSE' | translate}}</md-button>
-                            <md-button class="md-primary" ng-click="taskCtrl.cancel()">{{'COMMON.CANCEL' | translate}}</md-button>
+                          <div class="md-actions" layout="row" layout-padding>
                             <md-button class="md-primary" ng-click="taskCtrl.taskDone()">{{'TASK.TASK_DONE' | translate}}</md-button>
                           </div>
                         </md-card>

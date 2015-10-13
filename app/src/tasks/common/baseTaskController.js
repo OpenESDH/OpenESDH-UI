@@ -8,7 +8,6 @@
         vm.taskId = $stateParams.taskId;
         vm.init = init;
         vm.updateTask = updateTask;
-        vm.cancel = cancel;
         vm.taskDone = taskDone;
         vm.approve = approve;
         vm.reject = reject;
@@ -52,10 +51,6 @@
             });
         }
         
-        function cancel(){
-            this.backToTasks();
-        }
-        
         /**
          *   Uses vm.reviewOutcomeProperty as review outcome property name.
          *   Uses vm.reviewOutcomeApprove as review approval outcome value.
@@ -95,6 +90,9 @@
             var vm = this;
             vm.toggleStatus.item = idx;
             vm.task.properties.bpm_status = vm.statuses[idx];
+            taskService.updateTask(vm.taskId, vm.task.properties).then(function(response){
+                // console.log('Task status updated');
+            });
         }
 
         function previewDocument(item){
