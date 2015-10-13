@@ -618,8 +618,9 @@
 		"APPROVE": "Approve",
 		"REJECT": "Reject",
 		"VIEW_TASK_DETAILS": "View task details",
-        "TASK_DETAILS": "Task details",
-    "ITEMS": "Items"
+    "TASK_DETAILS": "Task details",
+    "ITEMS": "Items",
+    "DELETE_TASK": "Delete task"
   },
   "MENU": {
     "OPEN_MENU": "Open menu",
