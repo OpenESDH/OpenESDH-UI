@@ -97,6 +97,7 @@
     "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_CASE": "Are you sure you want to delete the case '{{case_title}}'?",
     "VIEW_CASE_DETAILS": "View case",
     "STAFF":{
+        "EMPLOYEE": "Employee",
         "HIRE_DATE": "Hire date",
         "RESIGNATION_DATE": "Resignation date",
         "SALARY": "Salary"

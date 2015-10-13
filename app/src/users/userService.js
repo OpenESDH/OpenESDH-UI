@@ -103,17 +103,9 @@ function userService(ALFRESCO_URI, $http, $resource) {
             return response.data;
         });
     }
-
+    
     function getPeople(filter) {
-        return $http.get('/alfresco/s/api/people?' + filter).then(function(response) {
-            return response.data;
-        });
-    }
-
-    function getasdf(username) {
-        return $http.get('/alfresco/s/api/people/' + username + '/preferences', {
-            params: {pf: 'org.alfresco.share.documents.favourites'}
-        }).then(function(response) {
+        return $http.get('/alfresco/s/api/people?filter=' + filter).then(function(response) {
             return response.data;
         });
     }
