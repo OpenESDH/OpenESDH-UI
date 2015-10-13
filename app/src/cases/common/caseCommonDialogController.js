@@ -18,6 +18,7 @@
         vm.getPropsToSave = getPropsToSave;
         vm.getDateValue = getDateValue;
         vm.getNumberValue = getNumberValue;
+        vm.getValue = getValue;
         
         function init(){
             var vm = this;
@@ -122,6 +123,13 @@
         function getPropsToSave(){
             var vm = this;
             var props = angular.copy(vm.case);
+            
+            for(var prop in props){
+                if(props.hasOwnProperty(prop) && (props[prop] == null)){
+                    props[prop] = "";
+                }
+            }
+            
             if (props.prop_oe_journalKey != undefined && props.prop_oe_journalKey.length > 0) {
                 props.prop_oe_journalKey = props.prop_oe_journalKey[0].nodeRef;
             } else {
@@ -149,16 +157,23 @@
         }
         
         function getDateValue(val){
-            if(val === undefined){
+            if(val === undefined || val.value === undefined){
                 return "";
             }
             return new Date(val.value);
         }
         
         function getNumberValue(val){
-            if(val === undefined){
-                return 0;
+            if(val === undefined || val.value === undefined){
+                return "";
             }
             return Number(val.value);
+        }
+        
+        function getValue(val){
+            if(val == undefined || val.value === undefined){
+                return "";
+            }
+            return val.value;
         }
     }
