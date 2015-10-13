@@ -462,14 +462,14 @@
 		"DUE_DATE": "Due date",
 		"PRIORITY": {
 			"PRIORITY": "Priority",
-			"HIGH": "Hight",
+			"HIGH": "High",
 			"MEDIUM": "Medium",
 			"LOW": "Low"
 		},
 		"MESSAGE": "Message",
 		"SEND_EMAIL_NOTIFICATIONS": "Send email notifications",
 		"SELECT_WORKFLOW_TYPE": "Select workflow type",
-		"SELECT_ITEMS": "Select items",
+		"SELECT_ITEMS": "Attach documents",
 		"INFORMATION": "Information",
 		"REVIEW_GROUP": "Review group",
 		"REQUIRED_APPROVAL_PERCENTAGE": {
