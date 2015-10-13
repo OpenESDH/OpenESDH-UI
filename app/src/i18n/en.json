@@ -505,7 +505,12 @@
 		"ADD_USERS": "Add users",
 		"DISPLAY_NAME": "Display name",
 		"SHORT_NAME": "Short name",
-		"CREATE_NEW_GROUP": "Create new group"
+		"CREATE_NEW_GROUP": "Create new group",
+		"FLT_ALL": "All groups",
+		"FLT_SYS": "System groups",
+		"FLT_OPENE": "OpenE groups",
+		"FLT_SIMPLE": "Simple case groups",
+		"FLT_STAFF": "Staff case groups"
 	},
 	"ORG": {
 		"ORGANIZATIONS": "Organisations",

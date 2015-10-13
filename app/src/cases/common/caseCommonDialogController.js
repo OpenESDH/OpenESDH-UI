@@ -34,12 +34,12 @@
                 };
             }
             
-            vm.getAuthorities();
+            vm.getAuthorities(caseInfo.type);
         }
 
-        function getAuthorities() {
+        function getAuthorities(type) {
             var vm = this;
-            return userService.getAuthorities().then(function(response) {
+            return userService.getCaseAuthorities(type.split(':')[0].toUpperCase()).then(function(response) {
                 vm.authorities = response;
                 return response;
             });
