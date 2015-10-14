@@ -51,7 +51,8 @@
 		"NO": "No",
 		"STATE": "State",
 		"COMMENT": "Comment",
-		"FILL_ALL_REQUIRED_FIELDS": "Fill all required fields!"
+		"FILL_ALL_REQUIRED_FIELDS": "Fill all required fields!",
+        "OPEN": "Open"
 	},
 	"CASE": {
 		"CONFIRM_CLOSE_CASE": "Do you want to close this case?",

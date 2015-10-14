@@ -50,7 +50,8 @@
 		"CREATED_ON": "Oprettet d.",
 		"NO": "Nr",
 		"STATE": "Status",
-    "COMMENT": "Kommentar"
+        "COMMENT": "Kommentar",
+        "OPEN": "Åbne"
 	},
 	"CASE": {
 		"CONFIRM_CLOSE_CASE": "Vil du lukke denne sag?",
