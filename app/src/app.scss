@@ -104,6 +104,18 @@ textarea {
  * Common helper classes and IDs
  */
 
+.login-form {
+    text-align: center;
+
+    md-input-container {
+        text-align: left;
+
+        label {
+            width: 300px;
+        }
+    }
+}
+
 .sub-toolbar {
   background: #fff;
 }
