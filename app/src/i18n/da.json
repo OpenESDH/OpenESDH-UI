@@ -57,7 +57,8 @@
 		"STATUS_CHANGED_SUCCESS": "Status er ændret",
 		"CASETYPE_STANDARD": "Standard sag",
     "TYPE": {
-      "simple_case": "Standardsag"
+      "simple_case": "Standardsag",
+      "staff_case": "Personalesag"
     },
 		"STATUS": {
 			"active": "Aktiv",
@@ -93,7 +94,13 @@
 		"ENDDATE": "Slutdato",
 		"MY_CASES": "Mine sager",
 		"ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_CASE": "Er du sikker på, at du vil slette '{{case_title}}'?",
-    "VIEW_CASE_DETAILS": "Vis sag"
+        "VIEW_CASE_DETAILS": "Vis sag",
+        "STAFF":{
+            "EMPLOYEE": "Medarbejder",
+            "HIRE_DATE": "Ansættelsesdato",
+            "RESIGNATION_DATE": "Fratrædelsesdato",
+            "SALARY": "Lønniveau"
+        }
 	},
 	"DOCUMENT": {
 		"STATUS_CHANGED_SUCCESS": "Status er ændret",
