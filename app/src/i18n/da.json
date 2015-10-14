@@ -100,7 +100,10 @@
             "HIRE_DATE": "Ansættelsesdato",
             "RESIGNATION_DATE": "Fratrædelsesdato",
             "SALARY": "Lønniveau"
-        }
+        },
+        "CASE_DETAILS": "Sagsdetajler",
+        "CASE_HISTORY_LOG": "Sagshistorik",
+        "COMMENTS": "Journalnoter"
 	},
 	"DOCUMENT": {
 		"STATUS_CHANGED_SUCCESS": "Status er ændret",
