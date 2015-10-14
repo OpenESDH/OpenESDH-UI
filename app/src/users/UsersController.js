@@ -15,7 +15,6 @@
         vm.deleteUser = deleteUser;
         vm.editUser = editUser;
         vm.userExists = false;
-        vm.dialogMode = 'USER.CREATE_USER';
 
         //For the search control filter
         vm.userSearchFilters = [
@@ -39,36 +38,27 @@
 
         function createUser(ev) {
             console.log('Creating a new user');
-            vm.userExists = false;
-            vm.user = {};
-            vm.dialogMode = 'USER.CREATE_USER';
-
-            return showUserDialog(ev);
+            return showUserDialog(ev, null);
         }
 
         function editUser(ev, user) {
             console.log('Editing user');
-            vm.userExists = true;
-            vm.user = user;
-            vm.dialogMode = 'USER.EDIT_USER';
-
-            return showUserDialog(ev);
-        
+            return showUserDialog(ev, user);
         }
 
         function deleteUser(ev, user) {
             console.log('Deleting user');
-            vm.user = user;
 
             var confirm = $mdDialog.confirm()
                 .title($translate.instant('COMMON.CONFIRM'))
-                .content($translate.instant('USER.ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER', {user: vm.user.firstName +" "+vm.user.lastName+" ("+vm.user.userName+")"}))
+                .content($translate.instant('USER.ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER', {user: user.firstName +" "+user.lastName+" ("+user.userName+")"}))
                 .ariaLabel('')
                 .targetEvent(null)
                 .ok($translate.instant('COMMON.YES'))
                 .cancel($translate.instant('COMMON.CANCEL'));
+
             $mdDialog.show(confirm).then(function() {
-                userService.deleteUser(vm.user.userName).then(function(response){
+                userService.deleteUser(user.userName).then(function(response){
                     var responseMessage = (Object.keys(response).length == 0) ? $translate.instant('USER.DELETE_USER_SUCCESS') : $translate.instant('USER.DELETE_USER_FAILURE');
                         getAllSystemUsers();
                         $mdToast.show(
@@ -80,73 +70,30 @@
                 })
             });
 
-        }
+        }   
 
-        function showUserDialog(ev) {
+        function showUserDialog(ev, user) {
             $mdDialog.show({
-                controller: UserDialogController,
+                controller: 'UserDialogController',
                 controllerAs: 'ucd',
+                locals : {
+                    user : user
+                },
                 templateUrl: 'app/src/users/view/userCrudDialog.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose: true
-            });
-        }
-
-        function UserDialogController($scope, $mdDialog, $mdToast, userService) {
-            var ucd = this;
-
-            // Data from the user creation form
-            ucd.user = vm.user;
-            ucd.dialogMode = vm.dialogMode;
-            ucd.userData = {};
-            ucd.userExists = vm.userExists;
-            ucd.cancel = cancel;
-            ucd.update = update;
-            ucd.getToastPosition = getToastPosition;
-
-            // Cancel or submit form in dialog
-            function cancel(form) {
-                $mdDialog.cancel();
-            }
-
-            function update(u) {
-                ucd.userData = angular.copy(u);
-                ucd.userData.disableAccount = u.enabled;
-                // createSuccess is a promise!
-                var createSuccess = (ucd.userExists) ? userService.updateUser(ucd.userData) : userService.createUser(ucd.userData);
-                notifyUserSaved(createSuccess);
-                $mdDialog.cancel();
-            }
-
-            // When the form is submitted, show a notification:
-            ucd.toastPosition = {
-                bottom: false,
-                top: true,
-                left: false,
-                right: true
-            };
-
-            function getToastPosition() {
-                return Object.keys(ucd.toastPosition)
-                    .filter(function (pos) {
-                        return ucd.toastPosition[pos];
-                    })
-                    .join(' ');
-            }
-
-            function notifyUserSaved(cuSuccess) {
-                cuSuccess.then(function (response) {
-                    console.log(response);
-                    $mdToast.show(
-                        $mdToast.simple()
-                            .content(cuSuccess.message)
-                            .position(ucd.getToastPosition())
-                            .hideDelay(3000)
-                    );
+            }).then(function onUpdateOrCreate(user, isExistingUser) {
+                console.log("Then callback, user updated or edited");
+                if(isExistingUser) {
+                    vm.allSystemUsers = [];
                     getAllSystemUsers();
-                });
-            }
+                } else {
+                    vm.allSystemUsers.push(user);
+                }
+            }, function onCancel() {
+                // Do nothing
+            });
         }
 
         function getAllSystemUsers(query) {
