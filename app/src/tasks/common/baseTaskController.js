@@ -3,7 +3,7 @@
         .module('openeApp.tasks.common')
         .controller('baseTaskController', BaseTaskController);
     
-    function BaseTaskController(taskService, $stateParams, $location, documentPreviewService, sessionService, workflowService, $translate) {
+    function BaseTaskController(taskService, $stateParams, $location, documentPreviewService, sessionService, workflowService, $translate, $mdDialog) {
         var vm = this;
         vm.taskId = $stateParams.taskId;
         vm.init = init;
@@ -15,6 +15,7 @@
         vm.backToTasks = backToTasks;
         vm.changeStatus = changeStatus;
         vm.previewDocument = previewDocument;
+        vm.deleteWorkflow = deleteWorkflow;
         vm.documentNodeRefToOpen = documentNodeRefToOpen;
         vm.statuses = ["Not Yet Started", "In Progres", "On Hold", "Cancelled"];
         vm.toggleStatus = {item: -1};
@@ -35,12 +36,20 @@
             });
         }
         
-        //TODO – deleteWorkflow needs implementation
-        /**
-         * Pre – Accepts a task object and possibly info on related workflow/process
-         * Post – Deletes the task and it's related workflow/process
-         */
         function deleteWorkflow(task) {
+            var vm = this;
+            var confirm = $mdDialog.confirm()
+                .title($translate.instant('COMMON.CONFIRM'))
+                .content($translate.instant('WORKFLOW.ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_TASK_AND_WORKFLOW', {task_description: task.properties.bpm_description}))
+                .ariaLabel('')
+                .targetEvent(null)
+                .ok($translate.instant('COMMON.YES'))
+                .cancel($translate.instant('COMMON.CANCEL'));
+            $mdDialog.show(confirm).then(function() {
+                workflowService.deleteWorkflow(task.workflowInstance.id).then(function(result){
+                    vm.backToTasks();
+                });
+            });
           
         };
         

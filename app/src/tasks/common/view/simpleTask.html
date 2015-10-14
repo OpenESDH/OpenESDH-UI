@@ -4,10 +4,16 @@
             <i class="material-icons" style="vertical-align: middle;">arrow_back</i>
         </md-button>
         <h1 class="md-headline" layout-margin>{{taskCtrl.task.properties.bpm_description}}</h1>
+        <md-button style="position: absolute; right: 0; top: 1em; z-index: 1;"
+                   class="md-primary"
+                   ng-click="taskCtrl.deleteWorkflow(taskCtrl.task)"
+                   ng-show="taskCtrl.isAdmin">
+          {{ 'TASK.DELETE_TASK' | translate }} <i class="material-icons">close</i>
+        </md-button>
     </div>
     
     <md-tabs md-dynamic-height>
-        <md-tab md-on-select="vm.onTabChange('case')">
+        <md-tab>
             <md-tab-label>
                 <span>{{ 'TASK.TASK_DETAILS' | translate }}</span>
             </md-tab-label>
@@ -16,7 +22,7 @@
                     <div flex="50" layout="column">
                         <md-card>
                             <md-card-content>
-                                <h3>{{ 'COMMON.INFORMATION' | translate }}</h4>
+                                <h3>{{ 'COMMON.INFORMATION' | translate }}</h4> 
                             <dl layout="row" layout-wrap>
 
                               <dt flex="20">{{ 'COMMON.STATUS' | translate }}</dt>

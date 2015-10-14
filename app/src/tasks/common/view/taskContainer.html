@@ -1,13 +1,5 @@
 <app-header></app-header>
 
-<md-button style="position: absolute; right: 0; top: 9em; z-index: 1;"
-           class="md-primary"
-           ng-controller="baseTaskController as ctrl"
-           ng-click="ctrl.deleteWorkflow(task)"
-           ng-show="ctrl.isAdmin">
-  {{ 'TASK.DELETE_TASK' | translate }} <i class="material-icons">close</i>
-</md-button>
-
 <ng-include src="ctrl.taskTemplateUrl"></ng-include>
 
 <app-footer></app-footer>
