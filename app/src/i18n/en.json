@@ -65,7 +65,8 @@
       "active": "Active",
       "passive": "Passive",
       "closed": "Closed",
-      "archived": "Archived"
+      "archived": "Archived",
+      "in-progress": "In progress"
     },
     "FILTER": {
       "ALL_CASES": "All cases",
