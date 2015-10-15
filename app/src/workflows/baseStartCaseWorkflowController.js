@@ -3,7 +3,7 @@
         .module('openeApp.workflows')
         .controller('BaseStartCaseWorkflowController', BaseStartCaseWorkflowController);
     
-    function BaseStartCaseWorkflowController($mdDialog, $stateParams, caseDocumentsService) {
+    function BaseStartCaseWorkflowController($mdDialog, $stateParams, caseDocumentsService, $mdToast, $translate) {
         
         var vm = this;
         vm.init = init;
@@ -26,6 +26,7 @@
         function submit(){
             var workflow = this.getWorkflowInfo();
             $mdDialog.hide(workflow);
+            $mdToast.showSimple("'" + workflow.message + "' " + $translate.instant('WORKFLOW.STARTED'));
         }
         
         function getWorkflowInfo(){

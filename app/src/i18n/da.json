@@ -473,7 +473,8 @@
         "CHOOSE_ASSIGNEES": "Vælg udførere",
         "ASSIGN_TO": "Tildel til",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_TASK_AND_WORKFLOW": "Er du sikker på, at du vil slette opgaven '{{task_description}}' og standse dets workflow?",
-        "WORKFLOW_DETAILS": "Workflow detaljer"
+        "WORKFLOW_DETAILS": "Workflow detaljer",
+        "STARTED": "startet"
     },
     "ADMIN": {
         "ADMINISTRATION_PAGES": "Administrationssider",
