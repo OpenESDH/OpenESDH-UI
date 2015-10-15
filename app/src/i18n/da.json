@@ -492,7 +492,12 @@
         "ADD_GROUPS": "Tilføj grupper",
         "DISPLAY_NAME": "Displaynavn",
         "SHORT_NAME": "Maskinnavn",
-        "CREATE_NEW_GROUP": "Opret ny gruppe"
+        "CREATE_NEW_GROUP": "Opret ny gruppe",
+        "FLT_ALL": "Alle grupper",
+        "FLT_SYS": "System grupper",
+        "FLT_OPENE": "OpenE grupper",
+        "FLT_SIMPLE": "Standardsag grupper",
+        "FLT_STAFF": "Personalesag grupper"
     },
     "ORG": {
         "ORGANIZATIONS": "Organisationer",
