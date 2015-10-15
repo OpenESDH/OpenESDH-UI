@@ -1,23 +1,33 @@
-body,
-md-content {
+/*
+ * Body styles
+ */
+
+.body {
 	background-color: #ddd;
 }
 
-body > md-content {
+.body__content {
 	height: 100%;
 }
 
-md-content > .login-form {
-	height: 100%;
-	min-height: auto;
+
+/*
+ * Native HTML element styles
+ */
+
+a,
+a:link {
+  text-decoration: none;
+  color: #000;
+}
+a:hover,
+a:active,
+a:focus {
+  color: #666; 
 }
 
 footer {
 	padding: 1em;
-}
-
-md-tabs md-tabs-wrapper {
-	background-color: #fff;
 }
 
 dt,
@@ -89,7 +99,23 @@ textarea {
 	border: solid 1px rgba(0,0,0,0.2);
 }
 
-/* Specific style classes and IDs */
+
+/*
+ * Common helper classes and IDs
+ */
+
+.login-form {
+    text-align: center;
+
+    md-input-container {
+        text-align: left;
+
+        label {
+            width: 300px;
+        }
+    }
+}
+
 .sub-toolbar {
   background: #fff;
 }
@@ -120,7 +146,7 @@ textarea {
 .toggle-btn {
 	cursor: pointer;
 	padding: 0.25em 0.5em 0.25em 0.25em;
-
+  
 	&:hover,
 	&:focus,
 	&:active {
@@ -133,23 +159,10 @@ textarea {
   display: none;
 }
 
-.clickable {
-	
-	&:hover,
-	&:focus,
-	&:active {
-		background-color: rgba(0,0,0,0.1);
-		cursor: pointer;
-	}
-}
 
 /* Virtual repeat lists */
 
 .repeat-table {
-
-	md-virtual-repeat-container {
-		height: 300px;
-	}
 
 	md-virtual-repeat-container,
 	.repeat-header,
@@ -188,56 +201,27 @@ textarea {
 }
 
 
-/* Workflow */
+/*
+ * Angular Material element overrides
+ */
 
-table {
-    tr {
-        .collapse, .expand {
-            display: block;
-
-            &:after {
-                display: block;
-                color: #999;
-                cursor: pointer;
-            }
-        }
-
-        .collapse:after {
-            content: "\0025BC";
-        }
-
-        .expand:after {
-            content: "\0025BA";
-        }
-    }
+md-content {
+	background-color: #ddd;
 }
 
-button.button-status {
-    margin: 0;
-    min-width: initial;
-    overflow: visible;
-    color: rgba(0,0,0,0.87);
-    background-color: rgb(250,250,250);
-    border-top: solid 1px rgba(0,0,0,0.2);
-    border-bottom: solid 1px rgba(0,0,0,0.2);
-    border-left: solid 1px rgba(0,0,0,0.2);
-    border-radius: 0;
-
-    &:last-child {
-        border-right: solid 1px rgba(0,0,0,0.2);
-    }
+md-tabs md-tabs-wrapper {
+	background-color: #fff;
 }
 
-button.button-status.active {
-    color: rgba(255,255,255,0.87);
-    background-color: rgb(16,108,200);
-
-    &:hover {
-        background-color: rgb(16,108,200);
-    }
+md-virtual-repeat-container {
+  height: 300px;
 }
 
-/* Angular Material override styles */
+
+/*
+ * Angular Material class overrides
+ */
+
 .md-datepicker-calendar-pane {
 	max-width: 339px;
 }

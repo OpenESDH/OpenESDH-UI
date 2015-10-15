@@ -12,6 +12,7 @@
             'isteven-multi-select',
             'openeApp.translations',
             'openeApp.cases',
+            'openeApp.cases.staff',
             'openeApp.cases.members',
             'openeApp.cases.parties',
             'openeApp.classification',

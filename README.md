@@ -184,4 +184,8 @@ To run and connect to OpenESDH server on the demo.openesdh.dk server, run:
 $ gulp demo
 ```
 
-This server runs demo-able versions of OpenESDH, but may be less up-to-date.
+To only build the scripts and css files, for example, if you are deploying to Apache, run:
+
+```
+$ gulp build
+```

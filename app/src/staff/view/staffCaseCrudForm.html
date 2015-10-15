@@ -1,27 +1,40 @@
-<md-dialog aria-label="Case edit dialog">
-  <form name="form">
-    <md-toolbar layout="row">
-      <div class="md-toolbar-tools">
-        <h2 ng-hide="editCase">{{ 'CASE.CREATE_CASE' | translate }}</h2>
-        <h2 ng-show="editCase">{{ 'CASE.EDIT_PROPERTIES' | translate }}</h2>
-      </div>
-    </md-toolbar>
-    <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;">
-      
       <md-input-container>
         <label><span class="md-warn">*</span> {{ 'CASE.TITLE' | translate }}</label>
-        <input type="text" ng-model="case.title" required focus-me>
+        <input type="text" ng-model="vm.case.prop_cm_title" required focus-me>
       </md-input-container>
+
+      <md-autocomplete style="width: 30em;"
+                       md-input-name="employeeInfoField"
+                       md-min-length="2"
+                       md-input-minlength="2"
+                       md-selected-item="vm.case.prop_staff_employeeInfo"
+                       md-search-text="vm.employeeSearchText"
+                       md-items="item in vm.searchEmployee()"
+                       md-item-text="item"
+                       md-search-text-change="vm.setEmployeeInfo(vm.employeeSearchText)"
+                       md-floating-label="{{'CASE.STAFF.EMPLOYEE' | translate}}">
+        <md-item-template>
+            <span md-highlight-text="vm.employeeSearchText">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          {{ 'COMMON.NO_MATCHES' | translate }}
+        </md-not-found>
+      </md-autocomplete>
 
       <md-input-container>
         <label><span class="md-warn">*</span> {{ 'CASE.OWNER' | translate }}</label>
-        <md-select ng-model="case.owner" ng-controller="CaseController as vm" required>
-          <md-option ng-value="auth.nodeRef" ng-repeat="auth in vm.authorities">{{ auth.name }}</md-option>
+        <md-select ng-model="vm.case.assoc_base_owners_added" required>
+          <md-optgroup label="Groups">
+            <md-option ng-value="auth.nodeRef" ng-repeat="auth in vm.authorities | filter: {type: 'cm:authorityContainer' }" ng-disabled="!auth.selectable">{{ auth.name }}</md-option>
+          </md-optgroup>
+          <md-optgroup label="Users">
+            <md-option ng-value="auth.nodeRef" ng-repeat="auth in vm.authorities | filter: {type: 'cm:person'}" ng-disabled="!auth.selectable">{{ auth.name }}</md-option>
+          </md-optgroup>
         </md-select>
       </md-input-container>
 
       <div ng-controller="ClassificationController as classCtrl">
-        <md-chips ng-model="case.journalKey"
+        <md-chips ng-model="vm.case.prop_oe_journalKey"
                   md-autocomplete-snap
                   md-require-match="true">
           
@@ -50,7 +63,7 @@
             </md-chip-template>
         </md-chips>
 
-        <md-chips ng-model="case.journalFacet"
+        <md-chips ng-model="vm.case.prop_oe_journalFacet"
                   md-autocomplete-snap
                   md-require-match="true">
           <md-autocomplete style="width: 30em;"
@@ -79,21 +92,24 @@
         </md-chips>
       </div>
       
-      <md-datepicker ng-model="case.startDate" md-placeholder="{{ 'CASE.START_DATE' | translate }}"></md-datepicker>
+      <div>
+          <md-datepicker ng-model="vm.case.prop_base_startDate" md-placeholder="{{ 'CASE.START_DATE' | translate }}"></md-datepicker>
+      </div>
+      
+      <div>
+          <md-datepicker ng-model="vm.case.prop_staff_hireDate" md-placeholder="{{ 'CASE.STAFF.HIRE_DATE' | translate }}"></md-datepicker>
+      </div>
+      
+      <div>
+          <md-datepicker ng-model="vm.case.prop_staff_resignationDate" md-placeholder="{{ 'CASE.STAFF.RESIGNATION_DATE' | translate }}"></md-datepicker>
+      </div>
+      
+      <md-input-container>
+        <label>{{'CASE.STAFF.SALARY' | translate}}</label>
+        <input type="number" ng-model="vm.case.prop_staff_salary" style="width: 100px" min="0"/>
+      </md-input-container>
 
       <md-input-container>
         <label>{{ 'CASE.DESCRIPTION' | translate }}</label>
-        <textarea ng-model="case.description"></textarea>
+        <textarea ng-model="vm.case.prop_cm_description"></textarea>
       </md-input-container>
-      
-    </md-dialog-content>
-    <div class="md-actions" layout="row">
-      <md-button type="submit" class="md-primary" ng-click="vm.update(case)" ng-disabled="form.$invalid">
-        {{ 'COMMON.OK' | translate }}
-      </md-button>
-      <md-button type="button" ng-click="vm.cancel(form)">
-        {{ 'COMMON.CANCEL' | translate }}
-      </md-button>
-    </div>
-  </form>
-</md-dialog>
