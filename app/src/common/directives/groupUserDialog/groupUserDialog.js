@@ -64,10 +64,10 @@
             };
 
             function createUserSearchQuery(queryterm) {
-                var query = "sortBy=" + scope.sortBy;
-                query += '&dir=' + scope.sortOrder + '&filter=' + encodeURIComponent(queryterm) + '&maxResults=' + scope.maxResults;
+                var query = encodeURIComponent(queryterm);
+                query += "&sortBy=" + scope.sortBy + '&dir=' + scope.sortOrder + '&maxResults=' + scope.maxResults;
                 return query;
-            };
+            }
 
             /**
              * Group search
