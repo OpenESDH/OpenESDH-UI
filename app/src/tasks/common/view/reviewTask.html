@@ -1,9 +1,20 @@
 <md-content layout="column" ng-controller="ctrl.controller as taskCtrl">
-    <div class="sub-toolbar" layout="row" layout-align="space-between center" layout-padding>
+
+    <div class="sub-toolbar" layout="row" layout-align="start center" layout-padding>
+        <md-button ng-href="#/tasks" ng-aria="{{ 'TASK.TASKS' | translate }}">
+            <i class="material-icons" style="vertical-align: middle;">arrow_back</i>
+        </md-button>
         <h1 class="md-headline" layout-margin>{{taskCtrl.task.properties.bpm_description}}</h1>
+        <md-button style="position: absolute; right: 0; top: 1em; z-index: 1;"
+                   class="md-primary"
+                   ng-click="taskCtrl.deleteWorkflow(taskCtrl.task)"
+                   ng-show="taskCtrl.isAdmin">
+          {{ 'TASK.DELETE_TASK' | translate }} <i class="material-icons">close</i>
+        </md-button>
     </div>
+    
     <md-tabs md-dynamic-height>
-        <md-tab md-on-select="vm.onTabChange('case')">
+        <md-tab>
             <md-tab-label>
                 <span>{{ 'TASK.TASK_DETAILS' | translate }}</span>
             </md-tab-label>
@@ -38,7 +49,6 @@
                                 </dl>
                             </md-card-content>
                             <div class="md-actions" layout="row">
-                                <md-button class="md-primary" ng-click="taskCtrl.updateTask()">{{'TASK.SAVE_AND_CLOSE' | translate}}</md-button>
                                 <md-button class="md-primary" ng-click="taskCtrl.cancel()">{{'COMMON.CANCEL' | translate}}</md-button>
                                 <md-button class="md-primary" ng-click="taskCtrl.approve()">{{'TASK.APPROVE' | translate}}</md-button>
                                 <md-button class="md-primary" ng-click="taskCtrl.reject()">{{'TASK.REJECT' | translate}}</md-button>

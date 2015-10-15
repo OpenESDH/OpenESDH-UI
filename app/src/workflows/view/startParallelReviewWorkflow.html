@@ -6,13 +6,9 @@
     </md-toolbar>
         <mt-wizard chevrons-always-visible="false" on-finish="dlg.submit()" on-cancel="dlg.cancel()">
             
-            <mt-wz-step title="{{'WORKFLOW.SELECT_ITEMS' | translate}}" class="workflowWizardStep">
-                <ng-include src="'app/src/workflows/view/selectCaseDocuments.html'"></ng-include>
-            </mt-wz-step>
-            
             <mt-wz-step title="{{'WORKFLOW.INFORMATION' | translate}}" class="workflowWizardStep">
                 <md-input-container>
-                    <label>{{'WORKFLOW.ASSIGNEES' | translate}}</label>
+                    <label>* {{'WORKFLOW.ASSIGNEES' | translate}}</label>
                     <md-chips ng-model="dlg.selectedRecipients" md-autocomplete-snap md-require-match="true">
                         <md-autocomplete
                             md-selected-item="dlg.selectedItem"
@@ -39,6 +35,10 @@
                     </md-input-container>
                 </div>
                 <ng-include src="'app/src/workflows/view/selectDueDatePriorityMessageSendEmail.html'"></ng-include>
+            </mt-wz-step>
+            
+            <mt-wz-step title="{{'WORKFLOW.SELECT_ITEMS' | translate}}" class="workflowWizardStep">
+                <ng-include src="'app/src/workflows/view/selectCaseDocuments.html'"></ng-include>
             </mt-wz-step>
             
         </mt-wizard>

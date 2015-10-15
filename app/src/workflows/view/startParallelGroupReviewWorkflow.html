@@ -6,14 +6,10 @@
     </md-toolbar>
         <mt-wizard chevrons-always-visible="false" on-finish="dlg.submit()" on-cancel="dlg.cancel()">
             
-            <mt-wz-step title="{{'WORKFLOW.SELECT_ITEMS' | translate}}" class="workflowWizardStep">
-                <ng-include src="'app/src/workflows/view/selectCaseDocuments.html'"></ng-include>
-            </mt-wz-step>
-            
             <mt-wz-step title="{{'WORKFLOW.INFORMATION' | translate}}" class="workflowWizardStep">
                 <div style="width: 400px">
                     <md-input-container>
-                        <label>{{'WORKFLOW.REVIEW_GROUP' | translate}}</label>
+                        <label>* {{'WORKFLOW.REVIEW_GROUP' | translate}}</label>
                         <md-select ng-model="dlg.selectedRecipient">
                           <md-option ng-repeat="recipient in dlg.recipients" value="{{recipient.nodeRef}}">{{recipient.name}}</md-option>
                         </md-select>
@@ -27,6 +23,10 @@
                 </div>
                 
                 <ng-include src="'app/src/workflows/view/selectDueDatePriorityMessageSendEmail.html'"></ng-include>
+            </mt-wz-step>
+            
+            <mt-wz-step title="{{'WORKFLOW.SELECT_ITEMS' | translate}}" class="workflowWizardStep">
+                <ng-include src="'app/src/workflows/view/selectCaseDocuments.html'"></ng-include>
             </mt-wz-step>
             
         </mt-wizard>

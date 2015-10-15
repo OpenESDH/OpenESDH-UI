@@ -29,7 +29,6 @@
             </md-card-content>
             <div class="md-actions" layout="row" layout-padding>
               <md-button class="md-primary" href="#/tasks/task/{{task.name | encodeUri}}/{{task.id | encodeUri}}">{{ 'TASK.VIEW_TASK_DETAILS' | translate }}</md-button>
-              <md-button class="md-primary" ng-click="tasksCtrl.deleteTask(task)" ng-show="tasksCtrl.isAdmin">{{ 'COMMON.DELETE' | translate }}</md-button>
             </div>              
         </md-card>
     </div>
