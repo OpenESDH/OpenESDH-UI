@@ -1,5 +1,6 @@
   <dt flex="33">{{ 'COMMON.ID' | translate }}</dt><dd flex="66">{{ case["oe:id"].value }}</dd>
   <dt flex="33">{{ 'COMMON.TITLE' | translate }}</dt><dd flex="66">{{ case["cm:title"].value }}</dd>
+  <dt flex="33">{{ 'CASE.STAFF.EMPLOYEE' | translate }}</dt><dd flex="66">{{ vm.caseInfo.allProps.properties["staff:employeeInfo"].value }}</dd>
   <dt flex="33">{{ 'COMMON.STATUS' | translate }}</dt><dd flex="66">{{ case["oe:status"].value | caseStatus }}</dd>
   <dt flex="33">{{ 'COMMON.CREATEDBY' | translate }}</dt><dd flex="66">{{ case["cm:creator"].fullname }}</dd>
   <dt flex="33">{{ 'COMMON.CREATED' | translate }}</dt><dd flex="66">{{ case["cm:created"].value | openeDate}}</dd>

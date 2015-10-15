@@ -50,14 +50,16 @@
 		"CREATED_ON": "Oprettet d.",
 		"NO": "Nr",
 		"STATE": "Status",
-    "COMMENT": "Kommentar"
+        "COMMENT": "Kommentar",
+        "OPEN": "Åbne"
 	},
 	"CASE": {
 		"CONFIRM_CLOSE_CASE": "Vil du lukke denne sag?",
 		"STATUS_CHANGED_SUCCESS": "Status er ændret",
 		"CASETYPE_STANDARD": "Standard sag",
     "TYPE": {
-      "simple_case": "Standardsag"
+      "simple_case": "Standardsag",
+      "staff_case": "Personalesag"
     },
 		"STATUS": {
 			"active": "Aktiv",
@@ -93,7 +95,16 @@
 		"ENDDATE": "Slutdato",
 		"MY_CASES": "Mine sager",
 		"ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_CASE": "Er du sikker på, at du vil slette '{{case_title}}'?",
-    "VIEW_CASE_DETAILS": "Vis sag"
+        "VIEW_CASE_DETAILS": "Vis sag",
+        "STAFF":{
+            "EMPLOYEE": "Medarbejder",
+            "HIRE_DATE": "Ansættelsesdato",
+            "RESIGNATION_DATE": "Fratrædelsesdato",
+            "SALARY": "Lønniveau"
+        },
+        "CASE_DETAILS": "Sagsdetajler",
+        "CASE_HISTORY_LOG": "Sagshistorik",
+        "COMMENTS": "Journalnoter"
 	},
 	"DOCUMENT": {
 		"STATUS_CHANGED_SUCCESS": "Status er ændret",

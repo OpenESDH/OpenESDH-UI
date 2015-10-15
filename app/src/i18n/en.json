@@ -51,7 +51,8 @@
 		"NO": "No",
 		"STATE": "State",
 		"COMMENT": "Comment",
-		"FILL_ALL_REQUIRED_FIELDS": "Fill all required fields!"
+		"FILL_ALL_REQUIRED_FIELDS": "Fill all required fields!",
+        "OPEN": "Open"
 	},
 	"CASE": {
 		"CONFIRM_CLOSE_CASE": "Do you want to close this case?",
@@ -65,7 +66,8 @@
       "active": "Active",
       "passive": "Passive",
       "closed": "Closed",
-      "archived": "Archived"
+      "archived": "Archived",
+      "in-progress": "In progress"
     },
     "FILTER": {
       "ALL_CASES": "All cases",
@@ -97,13 +99,17 @@
     "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_CASE": "Are you sure you want to delete the case '{{case_title}}'?",
     "VIEW_CASE_DETAILS": "View case",
     "STAFF":{
+        "EMPLOYEE": "Employee",
         "HIRE_DATE": "Hire date",
         "RESIGNATION_DATE": "Resignation date",
         "SALARY": "Salary"
     },
     "CASE_CREATED": "Case '{{case_title}}' created",
     "CASE_UPDATED": "Case '{{case_title}}' updated",
-    "ERROR_CREATING_CASE": "Error creating case: {{case_title}}"
+    "ERROR_CREATING_CASE": "Error creating case: {{case_title}}",
+    "CASE_DETAILS": "Case details",
+    "CASE_HISTORY_LOG": "Case history log",
+    "COMMENTS": "Journal notes"
   },
   "DOCUMENT": {
     "STATUS_CHANGED_SUCCESS": "Status has been changed successfully",
@@ -504,7 +510,12 @@
 		"ADD_USERS": "Add users",
 		"DISPLAY_NAME": "Display name",
 		"SHORT_NAME": "Short name",
-		"CREATE_NEW_GROUP": "Create new group"
+		"CREATE_NEW_GROUP": "Create new group",
+		"FLT_ALL": "All groups",
+		"FLT_SYS": "System groups",
+		"FLT_OPENE": "OpenE groups",
+		"FLT_SIMPLE": "Simple case groups",
+		"FLT_STAFF": "Staff case groups"
 	},
 	"ORG": {
 		"ORGANIZATIONS": "Organisations",

@@ -5,6 +5,7 @@
         var GROUP_PROXY_URI = ALFRESCO_URI.serviceApiProxy + 'groups/';
         return {
             listAllSystemGroups: listAllSystemGroups,
+            listGroupsByType: listGroupsByType,
             isGroupMember: isGroupMember,
             getGroup: getGroup,
             getGroupMembers: getGroupMembers,
@@ -23,6 +24,20 @@
         function listAllSystemGroups() {
             //limit maximum results to 100 
             return $http.get(ALFRESCO_URI.serviceApiProxy + 'groups?filter=*&maxItems=100')
+                .then(successOrReject);
+        }
+        
+        function listGroupsByType(type, filter) {
+            var params = {
+                zone: null,
+                filter: filter,
+                sortBy: "displayName",
+                sortAsc: true,
+                //paging
+                skipCount: null,
+                maxItems: null
+            };
+            return $http.get(ALFRESCO_URI.serviceApiProxy + 'groups/list/' + type, params)
                 .then(successOrReject);
         }
 
@@ -90,7 +105,7 @@
          * @returns {*} Newly created group object
          */
         function createGroup(groupShortName, displayName) {
-            return $http.post(ALFRESCO_URI.serviceApiProxy + 'rootgroups/' + groupShortName, {params: {displayName: displayName}})
+            return $http.post(GROUP_PROXY_URI + groupShortName + '/create', null, {params: {displayName: displayName}})
                 .then(successOrReject);
         }
 
