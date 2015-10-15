@@ -617,7 +617,8 @@
     "REJECT": "Afvis",
     "VIEW_TASK_DETAILS": "Vis opgavedetaljer",
     "TASK_DETAILS": "Opgavedetaljer",
-    "ITEMS": "Vedlægninger"
+    "ITEMS": "Vedlægninger",
+    "DELETE_TASK": "Slet opgave"
   },
   "MENU": {
     "OPEN_MENU": "Åben menu",
