@@ -12,7 +12,7 @@
    * @param caseService
    * @constructor
    */
-  function CaseInfoController($scope, $stateParams, $mdDialog, $translate, caseService, 
+  function CaseInfoController($scope, $stateParams, $mdDialog, $translate, $filter, caseService, 
               notificationUtilsService, startCaseWorkflowService, caseCrudDialogService, casePrintDialogService) {
     var vm = this;
 
@@ -21,6 +21,7 @@
     vm.onTabChange = onTabChange;
     vm.startWorklfow = startWorklfow;
     vm.printCase = printCase;
+    $scope.$filter = $filter;
 
     loadCaseInfo();
     

@@ -7,7 +7,7 @@ angular
         vm.registeredCaseTypes = caseCrudDialogService.getRegisteredCaseTypes();
         vm.createCase = createCase;
         
-        function createCase(ev, caseType) {
-            caseCrudDialogService.createCase(caseType);
+        function createCase(ev, caseType, callback) {
+            caseCrudDialogService.createCase(caseType, callback);
         }
     }

@@ -21,7 +21,7 @@
         
         function getCaseCrudFormConfig(caseType){
             var configs = serviceConfig.filter(function(item){
-                return item.type == caseType;
+                return item.type === caseType;
             });
             if(configs.length > 0){
                 return configs[0];
@@ -43,7 +43,7 @@
             function getRegisteredCaseTypes(){
                 return serviceConfig.map(function(item){
                     return item.type;
-                })
+                });
             }
             
             function getCaseInfoTemplateUrl(caseType){
@@ -51,7 +51,7 @@
                 return config.caseInfoTemplateUrl;
             }
             
-            function createCase(caseType) {
+            function createCase(caseType, callback) {
                 var formConfig = getCaseCrudFormConfig(caseType);
                 if(formConfig == null){
                     return;
@@ -61,8 +61,12 @@
                     newCase: true,
                     type: formConfig.type
                 };
-                showDialog(formConfig, caseInfo).then(function(caseId){
-                    $location.path("/cases/case/" + caseId);
+                showDialog(formConfig, caseInfo).then(function(caseId) {
+                    if (callback) {
+                        callback(caseId);
+                    } else {
+                        $location.path("/cases/case/" + caseId);
+                    }
                 });
             }
             
