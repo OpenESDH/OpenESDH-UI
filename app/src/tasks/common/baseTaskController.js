@@ -17,7 +17,7 @@
         vm.previewDocument = previewDocument;
         vm.deleteWorkflow = deleteWorkflow;
         vm.documentNodeRefToOpen = documentNodeRefToOpen;
-        vm.statuses = ["Not Yet Started", "In Progres", "On Hold", "Cancelled"];
+        vm.statuses = ["Not Yet Started", "In Progres", "On Hold"];
         vm.toggleStatus = {item: -1};
         vm.isAdmin = sessionService.isAdmin();
         
