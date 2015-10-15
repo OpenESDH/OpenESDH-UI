@@ -29,12 +29,13 @@
             }else{
                 vm.case = {
                     prop_base_startDate: new Date(),
+                    prop_base_endDate: '',
                     prop_oe_journalKey: [],
                     prop_oe_journalFacet: []
                 };
             }
             
-            vm.getAuthorities(caseInfo.type);
+            vm.getAuthorities(caseInfo.type||caseInfo.properties.type);
         }
 
         function getAuthorities(type) {
@@ -55,6 +56,7 @@
                 prop_oe_journalKey: [],
                 prop_oe_journalFacet: [],
                 prop_base_startDate: new Date(c['base:startDate'].value),
+                prop_base_endDate: new Date(vm.caseInfo.allProps.properties['base:endDate'].value),
                 prop_cm_description: c['cm:description'].displayValue
             };
             

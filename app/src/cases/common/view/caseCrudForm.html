@@ -74,7 +74,12 @@
         </md-chips>
       </div>
       
+    <div>
       <md-datepicker ng-model="vm.case.prop_base_startDate" md-placeholder="{{ 'CASE.START_DATE' | translate }}"></md-datepicker>
+    </div>
+    <div>
+      <md-datepicker ng-model="vm.case.prop_base_endDate" md-placeholder="{{ 'CASE.EXPECTED_END_DATE' | translate }}"></md-datepicker>
+    </div>
 
       <md-input-container>
         <label>{{ 'CASE.DESCRIPTION' | translate }}</label>
