@@ -3,7 +3,7 @@
         .module('openeApp.tasks.common')
         .controller('baseTaskController', BaseTaskController);
     
-    function BaseTaskController(taskService, $stateParams, $location, documentPreviewService, sessionService, workflowService, $translate, $mdDialog) {
+    function BaseTaskController(taskService, $stateParams, $location, documentPreviewService, sessionService, workflowService, $translate, $mdDialog, $mdToast) {
         var vm = this;
         vm.taskId = $stateParams.taskId;
         vm.init = init;
@@ -56,7 +56,7 @@
         function taskDone(){
             var vm = this;
             taskService.updateTask(vm.taskId, vm.task.properties).then(function(response){
-                vm.endTask();
+                vm.endTask($translate.instant('TASK.TASK_DONE'));
             });
         }
         
@@ -69,7 +69,7 @@
             var props = {};
             props[vm.reviewOutcomeProperty] = vm.reviewOutcomeApprove;
             taskService.updateTask(vm.taskId, props).then(function(response){
-                vm.endTask();
+                vm.endTask($translate.instant('TASK.TASK_APPROVED'));
             });
         }
 
@@ -81,11 +81,12 @@
             var props = {};
             props[vm.reviewOutcomeProperty] = vm.reviewOutcomeReject;
             taskService.updateTask(vm.taskId, props).then(function(response){
-                vm.endTask();
+                vm.endTask($translate.instant('TASK.TASK_REJECTED'));
             });
         }
         
-        function endTask(){
+        function endTask(msg){
+            $mdToast.showSimple(msg);
             taskService.endTask(vm.taskId).then(function(response){
                 vm.backToTasks();
             });

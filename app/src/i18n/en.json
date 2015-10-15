@@ -636,7 +636,14 @@
         "VIEW_TASK_DETAILS": "View task details",
         "TASK_DETAILS": "Task details",
         "ITEMS": "Items",
-        "DELETE_TASK": "Delete task"
+        "DELETE_TASK": "Delete task",
+        "TASK_APPROVED": "Task was approved",
+        "TASK_REJECTED": "Task was rejected",
+        "OUTCOME": "Outcome",
+        "NUMBER_OF_REVIEWERS": "No of reviewers",
+        "REQUIRED_APPROVAL_PERCENTAGE": "Required approval percentage",
+        "REVIEWERS_WHO_APPROVED": "Reviewers who approved",
+        "ACTUAL_APPROVAL_PERCENTAGE": "Actual approval percentage"
     },
     "MENU": {
         "OPEN_MENU": "Open menu",

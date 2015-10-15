@@ -620,7 +620,14 @@
         "VIEW_TASK_DETAILS": "Vis opgavedetaljer",
         "TASK_DETAILS": "Opgavedetaljer",
         "ITEMS": "Vedlægninger",
-        "DELETE_TASK": "Slet opgave"
+        "DELETE_TASK": "Slet opgave",
+        "TASK_APPROVED": "Opgaven blev godkendt",
+        "TASK_REJECTED": "Opgaven blev afvist",
+        "OUTCOME": "Resultat",
+        "NUMBER_OF_REVIEWERS": "Antal gennemlæsere",
+        "REQUIRED_APPROVAL_PERCENTAGE": "Nødvendig godkendelsesprocent",
+        "REVIEWERS_WHO_APPROVED": "Antal godkendelser",
+        "ACTUAL_APPROVAL_PERCENTAGE": "Aktuel godkendelsesprocent"
     },
     "MENU": {
         "OPEN_MENU": "Åben menu",
