@@ -51,6 +51,7 @@
     "NO": "Nr",
     "STATE": "Status",
     "COMMENT": "Kommentar",
+    "FILL_ALL_REQUIRED_FIELDS": "Udfyld de obligatoriske felter",
     "OPEN": "Åbne"
   },
   "CASE": {
@@ -65,7 +66,8 @@
       "active": "Aktiv",
       "passive": "Passiv",
       "closed": "Lukket",
-      "archived": "Arkiveret"
+      "archived": "Arkiveret",
+      "in-progress": "Igangværende"
     },
     "FILTER": {
       "ALL_CASES": "Alle Sager",
@@ -102,11 +104,14 @@
       "RESIGNATION_DATE": "Fratrædelsesdato",
       "SALARY": "Lønniveau"
     },
+    "CASE_CREATED": "Sag '{{case_title}}' oprettet",
+    "CASE_UPDATED": "Sag '{{case_title}}' opdateret",
+    "ERROR_CREATING_CASE": "Kunne ikke oprette sag: {{case_title}}",
     "CASE_DETAILS": "Sagsdetajler",
     "CASE_HISTORY_LOG": "Sagshistorik",
     "COMMENTS": "Journalnoter",
-    "CREATED_BY":"Oprettet {{at}} af {{by}}",
-    "MODIFIED_BY":"Senest ændret {{at}} af {{by}}"
+    "CREATED_BY":"Created {{at}} by {{by}}",
+    "MODIFIED_BY":"Last modified {{at}} by {{by}}"
   },
   "DOCUMENT": {
     "STATUS_CHANGED_SUCCESS": "Status er ændret",
@@ -456,7 +461,7 @@
     "MESSAGE": "Besked",
     "SEND_EMAIL_NOTIFICATIONS": "Send email-notifikationer",
     "SELECT_WORKFLOW_TYPE": "Vælg workflow-type",
-    "SELECT_ITEMS": "Vedhæft dokumenter",
+    "SELECT_ITEMS": "Vælg",
     "INFORMATION": "Information",
     "REVIEW_GROUP": "Review gruppe",
     "REQUIRED_APPROVAL_PERCENTAGE": {
@@ -469,8 +474,8 @@
     "WORKFLOW_DETAILS": "Workflow detaljer"
   },
   "ADMIN": {
-    "ADMINISTRATION_PAGES": "Administrationssider",
-    "ADMINISTRATION": "Administration"
+      "ADMINISTRATION_PAGES": "Administrationssider",
+      "ADMINISTRATION": "Administration"
   },
   "USER": {
     "USERS": "Brugere",
@@ -492,7 +497,12 @@
     "ADD_GROUPS": "Tilføj grupper",
     "DISPLAY_NAME": "Displaynavn",
     "SHORT_NAME": "Maskinnavn",
-    "CREATE_NEW_GROUP": "Opret ny gruppe"
+    "CREATE_NEW_GROUP": "Opret ny gruppe",
+    "FLT_ALL": "Alle grupper",
+    "FLT_SYS": "Systemgrupper",
+    "FLT_OPENE": "OpenE-grupper",
+    "FLT_SIMPLE": "Simpel sag-grupper",
+    "FLT_STAFF": "Medarbejdersag-grupper"
   },
   "ORG": {
     "ORGANIZATIONS": "Organisationer",
@@ -517,7 +527,10 @@
     "SEARCH_FOR_ORG": "Søg i organisationer",
     "CVR_NO": "CVR-nr",
     "STREET": "Gade",
-    "CREATE_NEW_ORG": "Opret ny organisation"
+    "CREATE_NEW_ORG": "Opret ny organisation",
+    "ARE_YOU_SURE_YOU_WANT_TO_DELETE_ORG": "Er du sikker på, at du vil slette organisationen \"{{organizationName}}\"?",
+    "ORG_SAVED_SUCCESSFULLY": "Organisation \"{{organizationName}}\" gemt",
+    "ORG_DELETED_SUCCESSFULLY": "Organisation \"{{organizationName}}\" slettet"
   },
   "CONTACT": {
     "CONTACTS": "Kontakter",
@@ -538,7 +551,10 @@
     "SEARCH_FOR_CONTACTS": "Søg i kontakter",
     "DEPARTMENT": "Afdeling",
     "STREET": "Gade",
-    "CREATE_NEW_CONTACT": "Opret ny kontakt"
+    "CREATE_NEW_CONTACT": "Opret ny kontakt",
+    "ARE_YOU_SURE_YOU_WANT_TO_DELETE_PERSON_CONTACT": "Er du sikker på, at du vil slette \"{{firstName}} {{lastName}}\"?",
+        "CONTACT_SAVED_SUCCESSFULLY": "Kontakt \"{{firstName}} {{lastName}}\" gemt",
+        "CONTACT_DELETED_SUCCESSFULLY": "Kontakt \"{{firstName}} {{lastName}}\" slettet"
   },
   "LOGIN": {
     "LOGIN": "Log ind",
@@ -556,7 +572,12 @@
     "CHOOSE_AUTHORITIES": "Vælg autoriteter",
     "CHANGE_MEMBER_ROLE": "Skift medlemsrolle",
     "OLD_ROLE": "Fra rolle",
-    "TO_ROLE": "Til rolle"
+    "TO_ROLE": "Til rolle",
+    "ARE_YOU_SURE_YOU_WANT_TO_REMOVE_MEMBER": "Vil du fjerne medlem \"{{displayName}}\", som er \"{{role}}\"?",
+    "MEMBER_ADDED_SUCCESSFULLY": "Medlem tilføjet",
+    "MEMBERS_ADDED_SUCCESSFULLY": "{{count}} medlemmer tilføjet",
+    "MEMBER_CHANGED_SUCCESSFULLY": "Medlem ændret",
+    "MEMBER_REMOVED_SUCCESSFULLY": "Medlem fjernet"
   },
   "NOTE": {
     "NOTES": "Journalnoter",
@@ -580,7 +601,12 @@
     "CHOOSE_PERSON_CONTACTS": "Vælg personkontakter",
     "CHANGE_PARTY_ROLE": "Skift partsrolle",
     "OLD_ROLE": "Gammel rolle",
-    "TO_ROLE": "Ny rolle"
+    "TO_ROLE": "Ny rolle",
+    "ARE_YOU_SURE_YOU_WANT_TO_REMOVE_PARTY": "Er du sikker på, at du vil fjerne part \"{{displayName}}\"?",
+    "PARTY_ADDED_SUCCESSFULLY": "Part tilføjet",
+    "PARTIES_ADDED_SUCCESSFULLY": "{{count}} parter tilføjet",
+    "PARTY_CHANGED_SUCCESSFULLY": "Part ændret",
+    "PARTY_REMOVED_SUCCESSFULLY": "Part fjernet"
   },
   "TASK": {
     "MY_TASKS": "Mine opgaver",
@@ -591,8 +617,7 @@
     "REJECT": "Afvis",
     "VIEW_TASK_DETAILS": "Vis opgavedetaljer",
     "TASK_DETAILS": "Opgavedetaljer",
-    "ITEMS": "Vedhæftninger",
-    "DELETE_TASK": "Slet opgave"
+    "ITEMS": "Vedlægninger"
   },
   "MENU": {
     "OPEN_MENU": "Åben menu",
