@@ -263,3 +263,8 @@ md-virtual-repeat-container {
 .md-checked .md-label {
 	font-weight: 700;
 }
+
+md-input-container .md-input:-webkit-autofill ~ label {
+    -webkit-transform: translate3d(0, 6px, 0) scale(0.75);
+    transform: translate3d(0, 6px, 0) scale(0.75);
+}
