@@ -180,7 +180,8 @@ textarea {
 
 	.repeat-header {
 		/* Offsets header to align with container content - because of scrollbar in container */
-		margin-right: 1em;
+		/* Vu 2015-10-16: This causes table header and table content not vertically aligned with each other (Document attachment view) */
+		// margin-right: 1em;
 
 		.r {
 			color: rgba(0,0,0,0.54);
