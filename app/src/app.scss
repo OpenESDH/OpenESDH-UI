@@ -135,10 +135,13 @@ textarea {
   border-bottom: dotted 1px #000;
 }
 
-.preview-window {
-	max-height: 400px;
+.preview-window-container {
 	overflow: auto;
-	
+        
+        .preview-window {
+                max-height: 400px;
+        }
+        
 	img {
 		width: 100%;
 	}

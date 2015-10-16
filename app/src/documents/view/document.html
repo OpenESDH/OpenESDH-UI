@@ -140,10 +140,10 @@
                   <div layout="row" layout-align="space-between center">
                       <h3 class="md-title">{{ 'DOCUMENT.PREVIEW' | translate }}</h3>
                       <md-button class="md-primary" ng-click="docCtrl.refreshDocumentPreview()"><i class="material-icons">refresh</i></md-button>
-                   </div>
-                   <div ng-controller="docCtrl.docPreviewController">
-                       <ng-include class="preview-window" src="viewerTemplateUrl"></ng-include>
-                   </div>
+                  </div>
+                  <div ng-controller="docCtrl.docPreviewController" class="preview-window-container">
+                      <ng-include class="preview-window" src="viewerTemplateUrl"></ng-include>
+                  </div>
               </md-card-content>
            </md-card>
        </div>
