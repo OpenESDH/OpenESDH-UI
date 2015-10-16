@@ -113,7 +113,8 @@
         "CASE_HISTORY_LOG": "Case history log",
         "COMMENTS": "Journal notes",
         "CREATED_BY": "Created {{at}} by {{by}}",
-        "MODIFIED_BY": "Last modified {{at}} by {{by}}"
+        "MODIFIED_BY": "Last modified {{at}} by {{by}}",
+        "CASE_NOT_FOUND": "Case not found"
     },
     "DOCUMENT": {
         "STATUS_CHANGED_SUCCESS": "Status has been changed successfully",

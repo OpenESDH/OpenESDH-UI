@@ -112,8 +112,9 @@
         "CASE_DETAILS": "Sagsdetajler",
         "CASE_HISTORY_LOG": "Sagshistorik",
         "COMMENTS": "Journalnoter",
-        "CREATED_BY":"Created {{at}} by {{by}}",
-        "MODIFIED_BY":"Last modified {{at}} by {{by}}"
+        "CREATED_BY": "Oprettet {{at}} af {{by}}",
+        "MODIFIED_BY": "Senest ændret {{at}} af {{by}}",
+        "CASE_NOT_FOUND": "CASE_NOT_FOUND"
     },
     "DOCUMENT": {
         "STATUS_CHANGED_SUCCESS": "Status er ændret",

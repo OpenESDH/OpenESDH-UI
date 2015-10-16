@@ -3,7 +3,7 @@
        .module('openeApp.cases')
        .controller('CaseInfoController', CaseInfoController);
   
-  /**
+  /*
    * Main CaseInfoController for the Cases module
    * @param $scope
    * @param $stateParams
@@ -22,16 +22,29 @@
     vm.startWorklfow = startWorklfow;
     vm.printCase = printCase;
     $scope.$filter = $filter;
-
+    
     loadCaseInfo();
     
-    function loadCaseInfo(){
-        caseService.getCaseInfo($stateParams.caseId).then(function(result){
+    function loadCaseInfo() {
+        caseService.getCaseInfo($stateParams.caseId).then(function(result) {
+            vm.hasData = true;
             vm.caseInfo = result;
             vm.caseInfoTemplateUrl = caseCrudDialogService.getCaseInfoTemplateUrl(result.properties.type);
             $scope.case = result.properties;
             $scope.caseIsLocked = result.isLocked;
             $scope.caseStatusChoices = result.statusChoices;
+        }, function(response) {
+            vm.hasData = false;
+            if (response.status === 400){
+                //bad reqest (might be handled exception)
+                //CASE.CASE_NOT_FOUND
+                var key = 'CASE.' + response.data.message.split(' ')[1];
+                var msg = $translate.instant(key);
+                notificationUtilsService.alert(msg === key ? response.data.message : msg);
+                return;
+            }
+            //other exceptions
+            notificationUtilsService.alert(response.data.message);
         });
     }
     
