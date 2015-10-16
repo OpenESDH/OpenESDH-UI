@@ -23,7 +23,8 @@
         
         function init(){
             var vm = this;
-            taskService.getTaskDetails(vm.taskId).then(function(result){
+            return taskService.getTaskDetails(vm.taskId).then(function(result){
+                console.log("task", result);
                 vm.task = result;
                 vm.taskProperties = angular.extend({}, result.properties);
             });
@@ -66,7 +67,7 @@
          */
         function approve(){
             var vm = this;
-            var props = {};
+            var props = angular.copy(vm.task.properties);
             props[vm.reviewOutcomeProperty] = vm.reviewOutcomeApprove;
             taskService.updateTask(vm.taskId, props).then(function(response){
                 vm.endTask($translate.instant('TASK.TASK_APPROVED'));
@@ -78,7 +79,7 @@
          */
         function reject(){
             var vm = this;
-            var props = {};
+            var props = angular.copy(vm.task.properties);
             props[vm.reviewOutcomeProperty] = vm.reviewOutcomeReject;
             taskService.updateTask(vm.taskId, props).then(function(response){
                 vm.endTask($translate.instant('TASK.TASK_REJECTED'));

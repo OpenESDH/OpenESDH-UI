@@ -38,6 +38,11 @@
         });
         
         startCaseWorkflowServiceProvider.wfDialogConfig({
+            workflowName: 'activiti$activitySequentialReview',
+            controller: 'StartParallelReviewWorkflowController',
+            controllerAs: 'dlg',
+            templateUrl: 'app/src/workflows/view/startSequentialReviewWorkflow.html'
+        }).wfDialogConfig({
             workflowName: 'activiti$activitiAdhoc',
             controller: 'StartSingleRecipientWorkflowController',
             controllerAs: 'dlg',
@@ -63,5 +68,4 @@
              controllerAs: 'dlg',
              templateUrl: 'app/src/workflows/view/startParallelGroupReviewWorkflow.html'
         });
-        
     }
