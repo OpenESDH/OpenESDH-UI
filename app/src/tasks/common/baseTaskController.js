@@ -8,7 +8,6 @@
         vm.taskId = $stateParams.taskId;
         vm.init = init;
         vm.updateTask = updateTask;
-        vm.cancel = cancel;
         vm.taskDone = taskDone;
         vm.approve = approve;
         vm.reject = reject;
@@ -29,10 +28,6 @@
                 vm.task = result;
                 vm.taskProperties = angular.extend({}, result.properties);
             });
-        }
-        
-        function cancel(){
-            this.backToTasks();
         }
         
         function updateTask(){
