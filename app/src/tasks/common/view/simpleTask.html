@@ -1,16 +1,4 @@
 <md-content layout="column" ng-controller="ctrl.controller as taskCtrl">
-    <div class="sub-toolbar" layout="row" layout-align="start center" layout-padding>
-        <md-button ng-href="#/tasks" ng-aria="{{ 'TASK.TASKS' | translate }}">
-            <i class="material-icons" style="vertical-align: middle;">arrow_back</i>
-        </md-button>
-        <h1 class="md-headline" layout-margin>{{taskCtrl.task.properties.bpm_description}}</h1>
-        <md-button style="position: absolute; right: 0; top: 1em; z-index: 1;"
-                   class="md-primary"
-                   ng-click="taskCtrl.deleteWorkflow(taskCtrl.task)"
-                   ng-show="taskCtrl.isAdmin">
-          {{ 'TASK.DELETE_TASK' | translate }} <i class="material-icons">close</i>
-        </md-button>
-    </div>
     
     <md-tabs md-dynamic-height>
         <md-tab>
