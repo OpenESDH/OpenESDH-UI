@@ -29,7 +29,7 @@
         </div>
       </div>
 
-      <md-input-container ng-show="!isAttachment">
+      <md-input-container ng-hide="isAttachment">
         <label><span class="md-warn">*</span> {{ 'COMMON.NAME' | translate }}</label>
         <input type="text" ng-model="documentProperties.title" focus-me>
       </md-input-container>
@@ -50,6 +50,11 @@
             {{ category.displayName }}
           </md-option>
         </md-select>
+      </md-input-container>
+
+      <md-input-container ng-hide="isAttachment">
+        <label>{{ 'COMMON.DESCRIPTION' | translate }}</label>
+        <textarea ng-model="documentProperties.description" columns="1"></textarea>
       </md-input-container>
       
     </md-dialog-content>
