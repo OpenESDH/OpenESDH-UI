@@ -2,7 +2,7 @@
     angular.module('openeApp.activitiReview.tasks')
         .controller('reviewTaskController', reviewTaskController);
     
-    function reviewTaskController($controller, taskService, sessionService, $mdToast, $translate) {
+    function reviewTaskController($controller, taskService, sessionService, notificationUtilsService, $translate) {
         angular.extend(this, $controller('baseTaskController', {}));
         var vm = this;
         vm.claim = claim;
@@ -23,14 +23,14 @@
                     'cm_owner': userInfo.user.userName
             };
             taskService.updateTask(vm.taskId, props).then(function(response){
-                $mdToast.showSimple($translate.instant('TASK.TASK_HAS_BEEN_CLAIMED'));
+                notificationUtilsService.notify($translate.instant('TASK.TASK_HAS_BEEN_CLAIMED'));
                 vm.init();
             });
         }
         
         function releaseToPool(){
             taskService.updateTask(vm.taskId, {'cm_owner':null}).then(function(response){
-                $mdToast.showSimple($translate.instant('TASK.TASK_HAS_BEEN_RELEASED'));
+                notificationUtilsService.notify($translate.instant('TASK.TASK_HAS_BEEN_RELEASED'));
                 vm.backToTasks();
             });
         }

@@ -3,7 +3,7 @@
         .module('openeApp.workflows')
         .controller('BaseStartCaseWorkflowController', BaseStartCaseWorkflowController);
     
-    function BaseStartCaseWorkflowController($mdDialog, $stateParams, caseDocumentsService, $mdToast, $translate) {
+    function BaseStartCaseWorkflowController($mdDialog, $stateParams, caseDocumentsService, notificationUtilsService, $translate) {
         
         var vm = this;
         vm.init = init;
@@ -17,6 +17,7 @@
             caseDocumentsService.getCaseDocumentsWithAttachments($stateParams.caseId).then(function(result){
                 vm.documents = result;
             });
+            vm.selectedPriority = 2; //default medium priority
         }
         
         function cancel(){
@@ -26,7 +27,7 @@
         function submit(){
             var workflow = this.getWorkflowInfo();
             $mdDialog.hide(workflow);
-            $mdToast.showSimple("'" + workflow.message + "' " + $translate.instant('WORKFLOW.STARTED'));
+            notificationUtilsService.notify("'" + workflow.message + "' " + $translate.instant('WORKFLOW.STARTED'));
         }
         
         function getWorkflowInfo(){
