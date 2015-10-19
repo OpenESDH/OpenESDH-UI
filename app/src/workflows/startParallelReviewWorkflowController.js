@@ -11,6 +11,7 @@
         vm.workflowDef = workflowDef;
         vm.BaseStartCaseWorkflowController_getWorkflowInfo = vm.getWorkflowInfo;
         vm.getWorkflowInfo = getWorkflowInfo;
+        vm.isValid = isValid;
         
         init();
         
@@ -33,6 +34,12 @@
                 }
             });
             return wi;
+        }
+        
+        function isValid(){
+            return vm.selectedRecipients.length > 0 
+                && vm.message != null 
+                && vm.message.length > 0;
         }
 
     }
