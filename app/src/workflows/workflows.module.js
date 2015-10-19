@@ -46,7 +46,7 @@
         
         startCaseWorkflowServiceProvider.wfDialogConfig({
             workflowName: 'activiti$activitySequentialReview',
-            controller: 'StartParallelReviewWorkflowController',
+            controller: 'StartMultiRecipientReviewWorkflowController',
             controllerAs: 'dlg',
             templateUrl: 'app/src/workflows/view/startSequentialReviewWorkflow.html'
         }).wfDialogConfig({
@@ -61,9 +61,9 @@
             templateUrl: 'app/src/workflows/view/startParallelGroupReviewWorkflow.html'
         }).wfDialogConfig({
             workflowName: 'activiti$activitiParallelReview',
-            controller: 'StartParallelReviewWorkflowController',
+            controller: 'StartMultiRecipientReviewWorkflowController',
             controllerAs: 'dlg',
-            templateUrl: 'app/src/workflows/view/startParallelReviewWorkflow.html'            
+            templateUrl: 'app/src/workflows/view/startMultiRecipientReviewWorkflow.html'            
         }).wfDialogConfig({
             workflowName: 'activiti$activitiReview',
             controller: 'StartSingleRecipientWorkflowController',
