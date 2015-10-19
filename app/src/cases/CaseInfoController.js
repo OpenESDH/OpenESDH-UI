@@ -12,7 +12,7 @@
    * @param caseService
    * @constructor
    */
-  function CaseInfoController($scope, $stateParams, $mdDialog, $translate, $filter, caseService, 
+  function CaseInfoController($scope, $stateParams, $mdDialog, $translate, $filter, sessionService, caseService, 
               notificationUtilsService, startCaseWorkflowService, caseCrudDialogService, casePrintDialogService) {
     var vm = this;
 
@@ -22,7 +22,11 @@
     vm.startWorklfow = startWorklfow;
     vm.printCase = printCase;
     $scope.$filter = $filter;
-    
+
+    if ($stateParams.alf_ticket) {
+        sessionService.setUserInfo({ticket: $stateParams.alf_ticket});
+    }  
+      
     loadCaseInfo();
     
     function loadCaseInfo() {

@@ -5,7 +5,7 @@ angular
 
 var document;
 
-function OfficeController($stateParams, $window, officeService, caseService, sessionService, $q, caseDocumentsService, PATTERNS) {
+function OfficeController($stateParams, $window, officeService, caseService, sessionService, caseDocumentsService) {
     var vm = this;
 
     if (typeof $window.external.getParameter1 !== 'undefined') {
@@ -20,7 +20,6 @@ function OfficeController($stateParams, $window, officeService, caseService, ses
     vm.title = vm.document.Title;
     vm.attachments = vm.document.Attachments;
 
-    vm.PATTERNS = PATTERNS;
     vm.save = save;
     vm.cancel = cancel;
     vm.newCaseCallback = newCaseCallback;
@@ -30,7 +29,6 @@ function OfficeController($stateParams, $window, officeService, caseService, ses
 
     if ($stateParams.alf_ticket) {
         sessionService.setUserInfo({ticket: $stateParams.alf_ticket});
-//            $window.sessionStorage.userInfo = JSON.stringify({ticket: $stateParams.alf_ticket});
     }
 
     function newCaseCallback(caseId) {
@@ -110,4 +108,4 @@ function OfficeController($stateParams, $window, officeService, caseService, ses
 window.loadDocument = function(payload) {
 //        window.alert(payload);
 //        document = JSON.parse(payload);
-}
+};
