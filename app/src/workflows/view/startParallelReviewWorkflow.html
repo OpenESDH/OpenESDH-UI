@@ -4,7 +4,7 @@
         <h2>{{dlg.workflowDef.title}}</h2>
       </div>
     </md-toolbar>
-        <mt-wizard chevrons-always-visible="false" on-finish="dlg.submit()" on-cancel="dlg.cancel()">
+        <mt-wizard chevrons-always-visible="false" on-finish="dlg.submit()" on-cancel="dlg.cancel()" is-valid="dlg.isValid()">
             
             <mt-wz-step title="{{'WORKFLOW.INFORMATION' | translate}}" class="workflowWizardStep">
                 <md-input-container>
