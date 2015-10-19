@@ -645,7 +645,12 @@
         "NUMBER_OF_REVIEWERS": "No of reviewers",
         "REQUIRED_APPROVAL_PERCENTAGE": "Required approval percentage",
         "REVIEWERS_WHO_APPROVED": "Reviewers who approved",
-        "ACTUAL_APPROVAL_PERCENTAGE": "Actual approval percentage"
+        "ACTUAL_APPROVAL_PERCENTAGE": "Actual approval percentage",
+        "CLAIM": "Claim",
+        "RELEASE_TO_POOL": "Release to pool",
+        "TASK_HAS_BEEN_CLAIMED": "Task has been claimed",
+        "TASK_HAS_BEEN_RELEASED": "Task has been released",
+        "THIS_TASK_IS_UNASSIGNED": "This task is unassigned"
     },
     "MENU": {
         "OPEN_MENU": "Open menu",
