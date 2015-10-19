@@ -4,11 +4,11 @@
         <h2>{{dlg.workflowDef.title}}</h2>
       </div>
     </md-toolbar>
-        <mt-wizard chevrons-always-visible="false" on-finish="dlg.submit()" on-cancel="dlg.cancel()" is-valid="dlg.isValid()">
+        <mt-wizard chevrons-always-visible="false" on-finish="dlg.submit()" on-cancel="dlg.cancel()" is-valid="dlg.isValid(currentStep)">
             
             <mt-wz-step title="{{'WORKFLOW.INFORMATION' | translate}}" class="workflowWizardStep">
-                <form name="formStep1">
-                    <md-input-container>
+                <form name="wfForm">
+                    <md-input-container ng-init="dlg.appendForm(wfForm)">
                         <label>{{'WORKFLOW.ASSIGNEES' | translate}}</label>
                         <md-chips ng-model="dlg.selectedRecipients" md-autocomplete-snap md-require-match="true">
                             <md-autocomplete

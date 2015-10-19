@@ -4,37 +4,39 @@
         <h2>{{dlg.workflowDef.title}}</h2>
       </div>
     </md-toolbar>
-        <mt-wizard chevrons-always-visible="false" on-finish="dlg.submit()" on-cancel="dlg.cancel()" is-valid="dlg.isValid()">
+        <mt-wizard chevrons-always-visible="false" on-finish="dlg.submit()" on-cancel="dlg.cancel()" is-valid="dlg.isValid(currentStep)">
             
             <mt-wz-step title="{{'WORKFLOW.INFORMATION' | translate}}" class="workflowWizardStep">
-                <md-input-container>
-                    <label>* {{'WORKFLOW.ASSIGNEES' | translate}}</label>
-                    <md-chips ng-model="dlg.selectedRecipients" md-autocomplete-snap md-require-match="true">
-                        <md-autocomplete
-                            md-selected-item="dlg.selectedItem"
-                            md-search-text="dlg.searchText"
-                            md-items="item in dlg.searchRecipient()"
-                            md-item-text="item.name"
-                            md-no-cache="true"
-                            md-icon=""
-                            placeholder="{{ 'WORKFLOW.CHOOSE_ASSIGNEES'| translate }}">
-                          <span md-highlight-text="dlg.searchText">{{item.name}}</span>
-                        </md-autocomplete>
-                        <md-chip-template>
-                          <span>
-                            <strong>{{$chip.name}}</strong>
-                          </span>
-                        </md-chip-template>
-                    </md-chips>
-                    
-                </md-input-container>
-                <div style="width: 200px">
-                    <md-input-container>
-                        <label>{{'WORKFLOW.REQUIRED_APPROVAL_PERCENTAGE.REQUIRED_APPROVAL_PERCENTAGE' | translate}}</label>
-                        <input type="number" ng-model="dlg.requiredApprovalPercentage" name="requiredApprovalPercentage" min="1" max="100" value="50"/>
+                <form name="wfForm">
+                    <md-input-container ng-init="dlg.appendForm(wfForm)">
+                        <label>* {{'WORKFLOW.ASSIGNEES' | translate}}</label>
+                        <md-chips ng-model="dlg.selectedRecipients" md-autocomplete-snap md-require-match="true">
+                            <md-autocomplete
+                                md-selected-item="dlg.selectedItem"
+                                md-search-text="dlg.searchText"
+                                md-items="item in dlg.searchRecipient()"
+                                md-item-text="item.name"
+                                md-no-cache="true"
+                                md-icon=""
+                                placeholder="{{ 'WORKFLOW.CHOOSE_ASSIGNEES'| translate }}">
+                              <span md-highlight-text="dlg.searchText">{{item.name}}</span>
+                            </md-autocomplete>
+                            <md-chip-template>
+                              <span>
+                                <strong>{{$chip.name}}</strong>
+                              </span>
+                            </md-chip-template>
+                        </md-chips>
+                        
                     </md-input-container>
-                </div>
-                <ng-include src="'app/src/workflows/view/selectDueDatePriorityMessageSendEmail.html'"></ng-include>
+                    <div style="width: 200px">
+                        <md-input-container>
+                            <label>{{'WORKFLOW.REQUIRED_APPROVAL_PERCENTAGE.REQUIRED_APPROVAL_PERCENTAGE' | translate}}</label>
+                            <input type="number" ng-model="dlg.requiredApprovalPercentage" name="requiredApprovalPercentage" min="1" max="100" value="50"/>
+                        </md-input-container>
+                    </div>
+                    <ng-include src="'app/src/workflows/view/selectDueDatePriorityMessageSendEmail.html'"></ng-include>
+                </form>
             </mt-wz-step>
             
             <mt-wz-step title="{{'WORKFLOW.SELECT_ITEMS' | translate}}" class="workflowWizardStep">

@@ -6,10 +6,13 @@
     function BaseStartCaseWorkflowController($mdDialog, $stateParams, caseDocumentsService, $mdToast, $translate) {
         
         var vm = this;
+        vm.forms = [];
         vm.init = init;
         vm.getWorkflowInfo = getWorkflowInfo;
         vm.submit = submit;
         vm.cancel = cancel;
+        vm.appendForm = appendForm;
+        vm.isValid = isValid;
 
         function init(){
             //set sub controller scope 
@@ -44,6 +47,11 @@
             return workflow;
         }
         
+        function appendForm(form){
+            var vm = this;
+            vm.forms.push(form);
+        }
+        
         function _getSelectedDocuments(){
             var items = [];
             for(var i in vm.documents){
@@ -62,4 +70,13 @@
             }
             return items;
         }
+        
+        function isValid(currentStep){
+            var vm = this;
+            if(vm.forms[currentStep] === undefined){
+                return true;
+            }
+            return vm.forms[currentStep].$valid;
+        }
+        
     }
