@@ -8,3 +8,8 @@ tmp
 app/jspm_packages
 .project
 .settings
+.tern-project
+nbproject/*
+dist
+app/src/.sass-cache
+app/src/**/.sass-cache

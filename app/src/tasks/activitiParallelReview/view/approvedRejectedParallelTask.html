@@ -1,0 +1,49 @@
+
+<md-card ng-controller="ctrl.controller as taskCtrl">
+  <md-card-content>
+    <h3>{{ taskCtrl.task.properties.bpm_description }}</h4>
+    <dl layout="row" layout-wrap>
+      <dt flex="20">{{ 'COMMON.OWNER' | translate }}</dt><dd flex="66">{{taskCtrl.task.owner.firstName + ' ' + taskCtrl.task.owner.lastName}}</dd>
+      <dt flex="20">{{ 'COMMON.DUE_DATE' | translate }}</dt><dd flex="66">{{ taskCtrl.task.workflowInstance.dueDate | date }}</dd>
+      <dt flex="20">{{ 'COMMON.PRIORITY' | translate }}</dt><dd flex="66">{{ taskCtrl.task.workflowInstance.priority | workflowTaskPriority}}</dd>
+      <dt flex="20">{{ 'COMMON.DESCRIPTION' | translate }}</dt><dd flex="66">{{ taskCtrl.task.description }}</dd>
+      <dt flex="20">{{ 'COMMON.STATUS' | translate }}</dt><dd flex="66">{{ taskCtrl.task.properties.bpm_status | workflowTaskStatus}}</dd>
+    </dl>
+    <p>{{ 'TASK.OUTCOME' | translate }}</p>
+    <div style="width: 1000px">
+        <div>
+            <span style="width: 50%; display: inline-block;">
+                <label style="font-weight: bold">{{ 'TASK.NUMBER_OF_REVIEWERS' | translate }}:</label> {{taskCtrl.task.properties.wf_reviewerCount}}
+            </span>
+            <span>
+                <label style="font-weight: bold">{{ 'TASK.REVIEWERS_WHO_APPROVED' | translate }}:</label> {{taskCtrl.task.properties.wf_approveCount}}
+            </span>
+        </div>
+        <div>
+            <span style="width: 50%; display: inline-block;">
+                <label style="font-weight: bold">{{ 'TASK.REQUIRED_APPROVAL_PERCENTAGE' | translate }}:</label> {{taskCtrl.task.properties.wf_requiredPercent}}
+            </span>
+            <span>
+                <label style="font-weight: bold">{{ 'TASK.ACTUAL_APPROVAL_PERCENTAGE' | translate }}:</label> {{taskCtrl.task.properties.wf_actualPercent}}
+            </span>
+        </div>
+    </table>
+    <p>{{ 'TASK.ITEMS' | translate }}:</p>
+    <div ng-repeat="item in taskCtrl.task.packageItems">
+        <div>
+            <span style="font-weight: bold">{{item.name}}</span>
+            <br/>
+            <span>{{ 'COMMON.DESCRIPTION' | translate }}: {{item.description}}</span>
+            <br/>
+            <span>{{ 'COMMON.MODIFIED' | translate }}: {{ item.modified | date }}</span>
+        </div>
+    </div>
+    <p>{{ 'COMMON.COMMENT' | translate }}:</p>
+    <textarea ng-model="taskCtrl.task.properties.bpm_comment" cols="100" rows="5"></textarea>
+  </md-card-content>
+  <div class="md-actions" layout="row">
+    <md-button class="md-primary" ng-click="taskCtrl.updateTask()">{{ 'TASK.SAVE_AND_CLOSE' | translate }}</md-button>
+    <md-button class="md-primary" ng-click="taskCtrl.cancel()">{{ 'COMMON.CANCEL' | translate }}</md-button>
+    <md-button class="md-primary" ng-click="taskCtrl.taskDone()">{{ 'TASK.TASK_DONE' | translate }}</md-button>
+  </div>              
+</md-card>

@@ -1,0 +1,47 @@
+<md-dialog aria-label="Case edit dialog">
+  <form name="form">
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">
+        <h2>{{ 'NOTE.CREATE_NOTE' | translate }}</h2>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;min-height:300px;">
+      <md-input-container>
+        <label>{{ 'NOTE.HEADLINE' | translate }}</label>
+        <input type="text" ng-model="vmNote.headline" required focus-me>
+      </md-input-container>
+      <md-input-container>
+        <label>{{ 'NOTE.CONTENT' | translate }}</label>
+        <textarea ng-model="vmNote.content" required></textarea>
+      </md-input-container>
+
+      <label>{{ 'NOTE.CONCERNED_PARTIES' | translate }}:</label>
+      <md-chips ng-model="vmNote.concernedParties" md-autocomplete-snap md-require-match="true">
+        <md-autocomplete
+            md-selected-item="vmNote.selectedItem"
+            md-search-text="vmNote.searchText"
+            md-items="item in vmNote.querySearch(vmNote.searchText)"
+            md-item-text="item.displayName"
+            md-no-cache="true"
+            md-icon=""
+            placeholder="{{ 'NOTE.CONCERNED_PARTIES'| translate }}">
+          <span md-highlight-text="ctrl.searchText">{{item.displayName}}</span>
+        </md-autocomplete>
+        <md-chip-template>
+          <span>
+            <strong>{{$chip.displayName}}</strong>
+          </span>
+        </md-chip-template>
+      </md-chips>
+
+    </md-dialog-content>
+    <div class="md-actions" layout="row">
+      <md-button class="md-primary" ng-click="vmNote.addNote()" ng-disabled="form.$invalid">
+        {{ 'NOTE.ADD_NOTE' | translate }}
+      </md-button>
+      <md-button ng-click="vmNote.cancel()">
+        {{ 'COMMON.CANCEL' | translate }}
+      </md-button>
+    </div>
+  </form>
+</md-dialog>

@@ -1,0 +1,1 @@
+angular.module('openeApp.office', ['ngMaterial','ui.router']);

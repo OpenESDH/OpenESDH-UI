@@ -1,0 +1,1 @@
+angular.module('openeApp.cases.members', [ 'ngMaterial']);

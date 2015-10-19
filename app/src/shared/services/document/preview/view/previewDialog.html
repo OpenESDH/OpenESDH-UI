@@ -1,0 +1,17 @@
+<md-dialog aria-label="{{ 'DOCUMENT.PREVIEW_DOCUMENT' | translate }}">
+  <form>
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">
+        <h2>{{ 'DOCUMENT.PREVIEW_DOCUMENT' | translate }} "{{config.fileName}}"</h2>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:1500px;max-height:610px;min-width:40em">
+        <ng-include src="viewerTemplateUrl"></ng-include>
+    </md-dialog-content>
+    <div class="md-actions" layout="row">
+      <md-button ng-click="cancel()">
+        {{ 'COMMON.CLOSE' | translate }}
+      </md-button>
+    </div>
+  </form>
+</md-dialog>

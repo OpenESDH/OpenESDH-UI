@@ -1,0 +1,1 @@
+angular.module('openeApp.administration', [ 'ngMaterial', 'pascalprecht.translate']);

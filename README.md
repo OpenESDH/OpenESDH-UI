@@ -152,19 +152,40 @@ etc to function properly when an html page is opened via `file://` scheme instea
 
 ### Running the App during Development
 
-The angular-seed project comes pre-configured with a local development web server.  It is a node.js
-tool called [http-server][http-server].  You can install http-server globally:
+The app's services depend on a running OpenESDH server being proxied to the path /alfresco.
+
+To that end, Gulp tasks have been added to make this _very_ easy to do.
+
+To install [Gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md), run:
 
 ```
-npm install -g live-server
+$ sudo npm install -g gulp
 ```
 
-Then you can start your own development web server to serve static files from a folder by running:
+To run and connect to OpenESDH server on the test.openesdh.dk server, run:
 
 ```
-cd app
-live-server
+$ gulp
 ```
 
-Alternatively, you can choose to configure your own webserver, such as apache or nginx. Just
-configure your server to serve the files under the `app/` directory.
+This server always runs the latest builds of the OpenESDH repository develop branch.
+
+
+To run and connect to a locally running OpenESDH server on localhost:8080, run:
+
+```
+$ gulp local
+```
+
+
+To run and connect to OpenESDH server on the demo.openesdh.dk server, run:
+
+```
+$ gulp demo
+```
+
+To only build the scripts and css files, for example, if you are deploying to Apache, run:
+
+```
+$ gulp build
+```

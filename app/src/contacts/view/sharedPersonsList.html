@@ -1,0 +1,36 @@
+<table>
+    <thead>
+        <th>{{ 'CONTACT.FIRST_NAME' | translate }}</th>
+        <th>{{ 'CONTACT.LAST_NAME' | translate }}</th>
+        <th>{{ 'CONTACT.DEPARTMENT' | translate }}</th>
+        <th>{{ 'CONTACT.STREET' | translate }}</th>
+        <th>{{ 'CONTACT.POSTAL_CODE' | translate }}</th>
+        <th>{{ 'CONTACT.CITY' | translate }}</th>
+        <th>{{ 'CONTACT.COUNTRY' | translate }}</th>
+        <th>{{ 'COMMON.ACTIONS' | translate }}</th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="person in vm.persons.items">
+            <td>{{person.firstName}}</td>
+            <td>{{person.lastName}}</td>
+            <td>{{person.department}}</td>
+            <td>{{person.address}}</td>
+            <td>{{person.postCode}}</td>
+            <td>{{person.cityName}}</td>
+            <td>{{person.countryCode ? (person.countryCode| countryCodeToName) : null}}</td>
+            <td><md-button class="md-primary" ng-click="vm.showPersonEdit($event, person)">{{ 'COMMON.EDIT' | translate }}</md-button></td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="md-actions">
+  <md-button class="md-primary" ng-click="vm.showPersonEdit($event, null)">{{ 'CONTACT.CREATE_NEW_CONTACT' | translate }}</md-button>
+  <!-- Here is a pager that we'd like to replace with md-virtual-repeat -->
+  <div style="float: right;" ng-show="vm.pagingParams && vm.pagingParams.totalRecords > 0">
+    <span>{{vm.pagingParams.getStartIndex()}} - {{vm.pagingParams.getEndIndex()}} {{ 'COMMON.OF' | translate }} {{vm.pagingParams.totalRecords}}</span>
+    <span>
+      <md-button ng-click="vm.doFilter(vm.pagingParams.page - 1)" ng-disabled="!vm.pagingParams.hasPreviousPage()" title="Previos page">&lt;</md-button>
+      <md-button ng-click="vm.doFilter(vm.pagingParams.page + 1)" ng-disabled="!vm.pagingParams.hasNextPage()" title="Next page">&gt;</md-button>
+    </span>
+  </div>
+</div>

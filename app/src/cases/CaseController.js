@@ -1,144 +1,99 @@
-(function(){
 
-  angular
-       .module('cases')
-       .controller('CaseController', [ '$scope', '$mdDialog', CaseController ]);
+    angular
+        .module('openeApp.cases')
+        .controller('CaseController', CaseController);
 
-       
-  /**
-   * Main Controller for the Cases module
-   * @param $scope
-   * @param cases
-   * @constructor
-   */
-  function CaseController($scope, $mdDialog) {
-    
-    $scope.cases = [
-      {
-        caseId: 5672855,
-        title: 'Case title goes here',
-        desc: 'I love cheese, especially airedale queso. Cheese and biscuits halloumi cauliflower cheese cottage cheese swiss boursin fondue caerphilly. Cow port-salut camembert de normandie macaroni cheese feta who moved my cheese babybel boursin. Red leicester roquefort boursin squirty cheese jarlsberg blue castello caerphilly chalk and cheese. Lancashire.',
-        type: 'Casetype',
-        createdDate: 'May 2 2015',
-        startDate: 'May 2 2015',
-        modifiedDate: 'May 12 2015',
-        endDate: 'June 21 2015',
-        status: 'In progress',
-        owner: 'Someone Someonesson',
-        creator: 'Svend Tveskæg',
-        assignee: 'Someone Elsesson',
-        journalKey: 'KGHEISHG',
-        isUpdated: true,
-        documents: ['document1.xls', 'document2.pdf', 'document3.xls']
-      },
-      {
-        caseId: 12442,
-        title: 'Another case title goes here',
-        desc: 'Horses horses horses',
-        type: 'Casetype',
-        createdDate: 'May 2 2015',
-        startDate: 'May 2 2015',
-        modifiedDate: 'May 12 2015',
-        endDate: 'June 21 2015',
-        status: 'Archived',
-        owner: 'Someone Elsesson',
-        creator: 'Someone Someonesson',
-        assignee: 'Someone Elsesson',
-        journalKey: 'KGHEISHG',
-        isUpdated: false,
-        documents: ['document1.xls', 'document2.pdf', 'document3.xls']
-      },
-      {
-        caseId: 275,
-        title: 'It is a case with case stuff in it',
-        desc: 'I love cheese, especially airedale queso. Cheese and biscuits halloumi cauliflower cheese cottage cheese swiss boursin fondue caerphilly. Cow port-salut camembert de normandie macaroni cheese feta who moved my cheese babybel boursin. Red leicester roquefort boursin squirty cheese jarlsberg blue castello caerphilly chalk and cheese. Lancashire.',
-        type: 'Casetype',
-        createdDate: 'May 2 2015',
-        startDate: 'May 2 2015',
-        modifiedDate: 'May 12 2015',
-        endDate: 'June 21 2015',
-        status: 'In progress',
-        owner: 'Someone Someonesson',
-        creator: 'Svend Tveskæg',
-        assignee: '',
-        journalKey: 'KGHEISHG',
-        isUpdated: false,
-        documents: ['document1.xls', 'document2.pdf', 'document3.xls']
-      },
-      {
-        caseId: 123275,
-        title: 'Yet another case',
-        desc: 'I love cheese, especially airedale queso. Cheese and biscuits halloumi cauliflower cheese cottage cheese swiss boursin fondue caerphilly. Cow port-salut camembert de normandie macaroni cheese feta who moved my cheese babybel boursin. Red leicester roquefort boursin squirty cheese jarlsberg blue castello caerphilly chalk and cheese. Lancashire.',
-        type: 'Casetype',
-        createdDate: 'May 2 2015',
-        startDate: 'May 2 2015',
-        modifiedDate: 'May 12 2015',
-        endDate: 'June 21 2015',
-        status: 'In progress',
-        owner: 'Someone Someonesson',
-        creator: 'Svend Tveskæg',
-        assignee: '',
-        journalKey: 'KGHEISHG',
-        isUpdated: false,
-        documents: ['document1.xls', 'document2.pdf', 'document3.xls']
-      }
-    ];
-    
-    $scope.myUpdatedCases = countMyUpdatedCases();
-    
-    function countMyUpdatedCases() {
-      var i = 0;
-      for (var c in $scope.cases) {
-        if ($scope.cases[c].isUpdated) {
-          i++;
-        };
-      }
-      return i;
-    };
-    
-    $scope.unassignedCasesNum = countUnassignedCases();
-    
-    function countUnassignedCases() {
-      var i = 0;
-      for (var c in $scope.cases) {
-        if ($scope.cases[c].assignee === '') {
-          i++;
-        };
-      }
-      return i;
-    };
-    
-    $scope.casesNeedAction = countCasesNeedAction();
-    
-    function countCasesNeedAction() {
-      return countUnassignedCases() + countMyUpdatedCases();
-    };
-    
-    $scope.createCase = function(ev) {
-      $mdDialog.show({
-        controller: DialogController,
-        templateUrl: 'src/cases/view/caseCrudDialog.html',
-        parent: angular.element(document.body),
-        targetEvent: ev,
-        clickOutsideToClose:true
-      })
-      .then(function(answer) {
-        $scope.status = 'You said the information was "' + answer + '".';
-      }, function() {
-        $scope.status = 'You cancelled the dialog.';
-      });
-    };
-    
-    function DialogController($scope, $mdDialog) {
-      $scope.hide = function() {
-        $mdDialog.hide();
-      };
-      $scope.cancel = function() {
-        $mdDialog.cancel();
-      };
-    };
-    
-  };
+    /**
+     * Main Controller for the Cases module
+     * @param $scope
+     * @param cases
+     * @constructor
+     */
+    function CaseController($scope, $mdDialog, $location, $translate, caseService, caseCrudDialogService, alfrescoFolderService, sessionService) {
+        var vm = this;
+        vm.cases = [];
+        vm.caseFilter = [{
+            name: $translate.instant('CASE.FILTER.ALL_CASES'),
+            value: 'all'
+        },{
+            name: $translate.instant('CASE.FILTER.ACTIVE_CASES'),
+            field: 'oe:status',
+            value: 'active'
+        }, {
+            name: $translate.instant('CASE.FILTER.CLOSED_CASES'),
+            field: 'oe:status',
+            value: 'closed'
+        }, {
+            name: $translate.instant('CASE.FILTER.PASSIVE_CASES'),
+            field: 'oe:status',
+            value: 'passive'
+        }];
+        vm.caseFilterChoice = vm.caseFilter[0];
+
+        vm.getCases = getCases;
+        vm.getMyCases = getMyCases;
+        vm.deleteCase = deleteCase;
+        vm.isAdmin = sessionService.isAdmin();
+
+        activate();
+
+        function activate() {
+            getCases();
+            getMyCases();
+        }
+
+        function getCases() {
+            var filters = getFilter();
+
+            return caseService.getCases('base:case', filters).then(function(response) {
+                vm.cases = response;
+                return vm.cases;
+            }, function(error) {
+                console.log(error);
+            });
+        }
+
+        function getMyCases() {
+            var filters = getFilter();
+
+            return caseService.getCases('base:case', filters).then(function(response) {
+                vm.myCases = response;
+                return vm.myCases;
+            }, function(error) {
+                console.log(error);
+            });
+        }
+
+        function getFilter() {
+            var filters = [];
+            
+            // Handling 'show all'
+            if(vm.caseFilterChoice.value !== 'all') {
+                filters = [{'name': vm.caseFilterChoice.field, 'operator':'=', 'value':vm.caseFilterChoice.value}];
+            }
+
+            return filters;
+        }
+
+        function getCaseTypes() {
+            return caseService.getCaseTypes().then(function(response) {
+                return response;
+            });
+        }
+        
+        function deleteCase(caseObj){
+            var confirm = $mdDialog.confirm()
+                .title($translate.instant('COMMON.CONFIRM'))
+                .content($translate.instant('CASE.ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_CASE', {case_title: caseObj["cm:title"]}))
+                .ariaLabel('')
+                .targetEvent(null)
+                .ok($translate.instant('COMMON.YES'))
+                .cancel($translate.instant('COMMON.CANCEL'));
+            $mdDialog.show(confirm).then(function() {
+                alfrescoFolderService.deleteFolder(caseObj.nodeRef).then(function(result){
+                   setTimeout(getCases, 500); 
+                });
+            });
+        }
   
-
-})();
+  };

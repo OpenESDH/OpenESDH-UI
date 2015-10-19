@@ -1,0 +1,1 @@
+angular.module('openeApp.notes', [ 'ngMaterial', 'pascalprecht.translate']);

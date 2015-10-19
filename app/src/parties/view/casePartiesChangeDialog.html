@@ -1,0 +1,42 @@
+<md-dialog aria-label="Case parties change dialog">
+  <form name="form">
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">
+        <h2>{{ 'PARTY.CHANGE_PARTY_ROLE' | translate }}</h2>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;min-height:300px;">
+
+      <md-input-container>
+        <label>{{ 'COMMON.NAME' | translate }}</label>
+        <input type="text" ng-model="dlChange.party.displayName" ng-readonly="true">
+      </md-input-container>
+      
+      <md-input-container>
+        <label>{{ 'COMMON.EMAIL' | translate }}</label>
+        <input type="text" ng-model="dlChange.party.contactId" ng-readonly="true">
+      </md-input-container>
+      
+      <md-input-container>
+        <label>{{ 'PARTY.OLD_ROLE' | translate }}</label>
+        <input type="text" ng-model="dlChange.party.role" ng-readonly="true">
+      </md-input-container>
+      
+      <md-input-container>
+        <label>{{ 'PARTY.TO_ROLE' | translate }}</label>
+        <md-select ng-model="dlChange.newRole" md-on-open="dlChange.loadRoles()" required>
+          <md-option ng-value="role" ng-repeat="role in dlChange.roles">{{role}}</md-option>
+        </md-select>
+      </md-input-container>
+
+    </md-dialog-content>
+    <div class="md-actions" layout="row">
+      <md-button class="md-primary" ng-click="dlChange.save()" ng-disabled="form.$invalid">
+        {{ 'PARTY.CHANGE' | translate }}
+      </md-button>
+      <md-button ng-click="dlChange.cancel()">
+        {{ 'COMMON.CANCEL' | translate }}
+      </md-button>
+    </div>
+  </form>
+</md-dialog>

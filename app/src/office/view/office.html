@@ -1,0 +1,47 @@
+<md-card>
+  <md-card-content>
+    <h2>{{ 'OFFICE.SAVE_DOCUMENT_IN_OPENESDH' | translate }}</h2>
+    <form name="form">
+        <md-autocomplete required
+            md-input-name="autocompleteField"
+            md-input-minlength="2"
+            md-selected-item="vm.selectedCase"
+            md-search-text="searchText"
+            md-items="item in vm.querySearch(searchText)"
+            md-item-text="item['oe:id']"
+            md-floating-label="Case">
+          <md-item-template>
+            <span md-highlight-text="searchText">{{item['oe:id'] }} {{item['cm:title']}}</span>
+            <!--<span md-highlight-text="searchText" class="muted">(ID: {{item.id}})</span>-->
+          </md-item-template>
+        </md-autocomplete>
+        <md-input-container>
+            <label>{{ 'COMMON.TITLE' | translate }}</label>
+            <input type="text" ng-model="vm.title" required ng-pattern="vm.PATTERNS.fileName">
+        </md-input-container>
+
+        <md-input-container>
+            <label>{{ 'COMMON.TYPE' | translate }}</label>
+            <md-select ng-model="vm.documentProperties.doc_type">
+                <md-option ng-repeat="type in vm.documentConstraints.documentTypes" ng-value="type.nodeRef">
+                    {{ type.displayName }}
+                </md-option>
+            </md-select>
+        </md-input-container>
+
+        <md-input-container>
+            <label>{{ 'COMMON.CATEGORY' | translate }}</label>
+            <md-select ng-model="vm.documentProperties.doc_category">
+                <md-option ng-repeat="category in vm.documentConstraints.documentCategories" ng-value="category.nodeRef">
+                    {{ category.displayName }}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <div class="md-actions" layout="row">
+            <md-button type="submit" class="md-primary" ng-click="vm.saveOfficeDocument(form)" ng-disabled="form.$invalid">{{ 'COMMON.SAVE' | translate }}</md-button>
+            <md-button type="button" ng-click="vm.cancel(form)">{{ 'COMMON.CANCEL' | translate }}</md-button>
+        </div>
+    </form>
+
+  </md-card-content>
+</md-card>

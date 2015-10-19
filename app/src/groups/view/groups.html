@@ -1,0 +1,41 @@
+<md-card ng-controller="GroupController as vm">
+  <md-card-content>
+    <div layout="row" layout-align="space-between center">
+      <h3 class="md-title">{{ 'GROUP.GROUPS' | translate }}</h3>
+      
+      <opene-list-filter list="vm.groupTypeFilter" 
+                         choice="vm.groupType"
+                         finished="vm.loadList">
+      </opene-list-filter>
+      <md-button aria-label="Create new group" class="md-primary" ng-click="vm.createGroup($event)">
+        <i class="material-icons">group_add</i>
+        {{ 'GROUP.CREATE_NEW_GROUP' | translate }}
+      </md-button>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>{{ 'COMMON.NAME' | translate }}</th>
+          <th></th>
+          <th>{{ 'COMMON.ACTIONS' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="g in vm.groups">
+          <td><i class="material-icons">{{ g.authorityType == 'USER' ? "person" : "group" }}</i></td>
+          <td>{{ g.displayName}}</td>
+          <td class="muted">{{ g.shortName}}</td>
+          <td layout="row">
+      <md-button ui-sref="administration.group({'shortName': g.shortName })">{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button>
+      <md-button ng-disabled="false" ng-click="vm.deleteGroup(g.shortName, $event)" >{{ 'COMMON.REMOVE' | translate }}</md-button>
+      </td>
+      </tr>
+      </tbody>
+    </table>
+    <md-button aria-label="Create new group" class="md-primary" ng-click="vm.createGroup($event)">
+      <i class="material-icons">group_add</i>
+      {{ 'GROUP.CREATE_NEW_GROUP' | translate }}
+    </md-button>
+  </md-card-content>
+</md-card>

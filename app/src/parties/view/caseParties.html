@@ -1,0 +1,29 @@
+<md-card ng-controller="CasePartiesController as cmCPC">
+    <md-card-content>
+        <h3>{{ 'PARTY.PARTIES' | translate }}</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>{{ 'COMMON.NAME' | translate }}</th>
+                    <th>{{ 'COMMON.EMAIL' | translate }}</th>
+                    <th>{{ 'COMMON.TYPE' | translate }}</th>
+                    <th>{{ 'PARTY.ROLE' | translate }}</th>
+                    <th>{{ 'COMMON.ACTIONS' | translate }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="party in cmCPC.parties">
+                    <td>{{party.displayName}}</td>
+                    <td>{{party.contactId}}</td>
+                    <td>{{party.contactType}}</td>
+                    <td>{{party.role}}</td>
+                    <td>
+                        <md-button class="md-primary" ng-click="cmCPC.showChangePartyDialog($event, party)" ng-disabled="caseIsLocked">{{ 'PARTY.CHANGE' | translate }}</md-button>
+                        <md-button class="md-primary" ng-click="cmCPC.removeParty($event, party)" ng-disabled="caseIsLocked">{{ 'COMMON.REMOVE' | translate }}</md-button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <md-button class="md-primary" ng-click="cmCPC.showAddPartiesDialog($event)" ng-disabled="caseIsLocked">{{ 'COMMON.ADD_NEW' | translate }}</md-button>
+    </md-card-content>
+</md-card>

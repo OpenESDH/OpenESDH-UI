@@ -1,0 +1,13 @@
+<md-card ng-controller="PersonsController as vm">
+    <md-card-content>
+      
+        <h3 class="md-title">{{ 'CONTACT.CONTACTS' | translate }}</h3>
+        
+        <md-input-container>
+            <label>{{ 'CONTACT.SEARCH_FOR_CONTACTS' | translate }}</label>
+            <input type="text" ng-model="vm.searchQuery" ng-change="vm.doFilter()">
+        </md-input-container>
+        
+        <div ng-include="'app/src/contacts/view/sharedPersonsList.html'" ></div>
+    </md-card-content>
+</md-card>

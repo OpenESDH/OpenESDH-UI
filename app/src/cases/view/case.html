@@ -1,154 +1,217 @@
-<md-content layout-padding>
-  <h2>{{ cases[0].caseId }} {{ cases[0].title }}</h2>
+<app-header></app-header>
+
+<md-content layout="column">
+  
+  
+    <div class="sub-toolbar">
+    
+        <div layout="row" layout-align="space-between center" layout-padding>
+    
+            <div layout="row" layout-align="start center">
+                <md-button ng-href="#/cases" ng-aria="{{ 'CASE.CASES' | translate }}">
+                    <i class="material-icons" style="vertical-align: middle;">arrow_back</i> {{ 'CASE.CASES' | translate }}
+                </md-button>
+                <h1 class="md-headline" layout-margin>
+                    {{ case["cm:title"].value }} <span class="muted">{{ case["oe:id"].value }}</span>
+                    <span class="muted" ng-hide="case['oe:status'].value === 'active'">
+                        ({{case['oe:status'].value | caseStatus}})
+                    </span>
+                </h1>
+            </div>
+      
+            <md-menu>
+                <md-button class="md-primary" ng-click="$mdOpenMenu($event)"
+                           aria-label="{{ 'CASE.CHANGE_STATUS' | translate }}"
+                           ng-disabled="caseStatusChoices.length == 0">
+                    {{ 'CASE.CHANGE_STATUS' | translate }}
+                </md-button>
+                    <md-menu-content>
+                        <md-menu-item ng-repeat="choiceName in caseStatusChoices">
+                        <md-button ng-class="{'current-choice': choiceName === case['oe:status'].value}"
+                                   ng-disabled="choiceName === case['oe:status'].value"
+                                   aria-label="{{ choiceName | caseStatus }}"
+                                   ng-click="vm.changeCaseStatus(choiceName)">
+                            {{ choiceName | caseStatus }}
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+      
+        </div>
+    
+    </div>
+  
+  <md-tabs md-dynamic-height>
+    
+    <md-tab md-on-select="vm.onTabChange('case')">
+      <md-tab-label>
+        <span><i class="material-icons">folder_open</i> {{ 'CASE.CASE' | translate }}</span>
+      </md-tab-label>
+      <md-tab-body>
+        
+        <div layout="row" layout-wrap>
+          
+          <div flex="100" flex-gt-md="25">
+            <md-card>
+              <md-card-content>
+                <h3 class="md-title">{{ 'COMMON.INFORMATION' | translate }}</h3>
+                <dl layout="row" layout-wrap ng-include="vm.caseInfoTemplateUrl"></dl>
+              </md-card-content>
+              <div class="md-actions" layout="column" layout-padding layout-align="start start">
+                <md-button class="md-primary" ng-click="vm.editCase($event)"
+                           ng-disabled="caseIsLocked">
+                    <i class="material-icons">mode_edit</i>
+                    {{ 'CASE.EDIT_INFORMATION' | translate }}
+                </md-button>
+                <md-button class="md-primary" ng-click="vm.printCase()">{{ 'CASE.PRINT_CASE' | translate }}</md-button>
+                <md-button class="md-primary" ng-click="vm.startWorklfow()" ng-disabled="caseIsLocked">{{ 'CASE.START_WORKFLOW' | translate }}</md-button>
+              </div>
+            </md-card>
+          </div>
+          
+          <div flex="100" flex-gt-md="75">
+            <md-card ng-controller="DocumentController as docCtrl">
+              <md-card-content style="min-height: 400px;">
+                <h3 class="md-title">{{ 'DOCUMENT.DOCUMENTS' | translate }}</h3>
+                
+                <div class="repeat-table">
+                    <div class="repeat-header" layout="row">
+                        <span layout="row" flex="80">
+                            <span class="r" flex="5"></span>
+                            <span class="r" flex>{{ 'COMMON.TITLE' | translate }}</span>
+                            <span class="r" flex="15">{{ 'COMMON.TYPE' | translate }}</span>
+                            <span class="r" flex="15">{{ 'COMMON.CATEGORY' | translate }}</span>
+                            <span class="r" flex="20">{{ 'COMMON.CREATEDBY' | translate }}</span>
+                            <span class="r" flex="20">{{ 'COMMON.MODIFIED' | translate }}</span>
+                        </span>
+                        <span flex="20"></span>
+                    </div>
+                    <md-virtual-repeat-container md-auto-shrink>
+                        <div md-virtual-repeat="doc in docCtrl.documents" class="repeat-item" layout="row">
+                            <a class="r-rowlink" href="#/cases/case/{{docCtrl.caseId}}/doc/{{doc.nodeRef | nodeRefUri}}" layout="row" flex="80">
+                                <span class="r" flex="5"><img class="md-avatar" ng-src="/app/assets/images/filetypes/{{doc.thumbNailURL}}"/></span>
+                                <span class="r" flex>{{ doc["cm:title"] }}</span>
+                                <span class="r muted" flex="15">{{ doc["doc:type"] }}</span>
+                                <span class="r muted" flex="15">{{ doc["doc:category"] }}</span>
+                                <span class="r muted" flex="20">
+                                    <span ng-repeat="owner in doc['doc:owner']">{{owner.fullname}}</span>
+                                </span>
+                                <span class="r muted" flex="20">{{ doc["cm:modified"] | openeDate }}</span>
+                            </a>
+                            <span flex="10">
+                                <md-button class="md-primary" ng-click="docCtrl.previewDocument(doc.mainDocNodeRef)">{{ 'COMMON.PREVIEW' | translate }}</md-button>
+                            </span>
+                            <span flex="10">
+                                <md-button class="md-primary" ng-click="docCtrl.deleteDocument(doc)" ng-show="docCtrl.isAdmin">{{ 'COMMON.DELETE' | translate }}</md-button>
+                            </span>
+                        </div>
+                    </md-virtual-repeat-container>
+                </div>
+                
+              </md-card-content>
+              <div class="md-actions" layout="row" layout-padding>
+                <md-button class="md-primary"
+                           ng-click="docCtrl.uploadDocument()"
+                           ng-disabled="caseIsLocked">
+                  <i class="material-icons">file_upload</i>
+                  {{ 'DOCUMENT.UPLOAD_NEW_DOCUMENTS' | translate }}
+                </md-button>
+                <md-menu>
+                  <md-button ng-click="$mdOpenMenu($event)" class="md-primary" aria-label="{{ 'DOCUMENT.SEND_DOCUMENTS' | translate }}">
+                    {{ 'DOCUMENT.SEND_DOCUMENTS' | translate }}
+                  </md-button>
+                  <md-menu-content>
+                    <md-menu-item>
+                      <md-button ng-disabled="docCtrl.noDocuments()" ng-click="docCtrl.emailDocuments()">{{ 'DOCUMENT.EMAIL_DOCUMENTS' | translate }}</md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                      <md-button ng-disabled="true" ng-click="doSomething()">{{ 'DOCUMENT.DIGITAL_POST_DOCUMENTS' | translate }}</md-button>
+                    </md-menu-item>
+                  </md-menu-content>
+                </md-menu>
+                <md-button class="md-primary"
+                           ng-click="docCtrl.createDocumentFromTemplate()"
+                           ng-disabled="caseIsLocked">
+                  {{ 'DOCUMENT.CREATE_FROM_TEMPLATE' | translate }}
+                </md-button>
+              </div>
+            </md-card>
+          </div>
+          
+        </div>
+        
+      </md-tab-body>
+    </md-tab>
+    
+    <md-tab md-on-select="vm.onTabChange('notes')">
+      <md-tab-label>
+        <span><i class="material-icons">library_books</i> {{ 'NOTE.NOTES' | translate }}</span>
+      </md-tab-label>
+      <md-tab-body layout="column">
+        <div ng-include="'app/src/notes/view/caseNotes.html'"></div>
+      </md-tab-body>
+    </md-tab>
+    
+    <md-tab md-on-select="vm.onTabChange('members')">
+      <md-tab-label>
+        <span><i class="material-icons">people</i> {{ 'MEMBER.MEMBERS' | translate }}</span>
+      </md-tab-label>
+      <md-tab-body layout="column">
+        <div ng-include="'app/src/case_members/view/caseMembers.html'"></div>
+      </md-tab-body>
+    </md-tab>
+    
+    <md-tab md-on-select="vm.onTabChange('parties')">
+      <md-tab-label>
+        <span><i class="material-icons">people_outline</i> {{ 'PARTY.PARTIES'| translate }}</span>
+      </md-tab-label>
+      <md-tab-body layout="column">
+        <div ng-include="'app/src/parties/view/caseParties.html'"></div>
+      </md-tab-body>
+    </md-tab>
+      
+    <md-tab md-on-select="vm.onTabChange('history')">
+      <md-tab-label>
+        <span><i class="material-icons">history</i> {{ 'COMMON.HISTORY' | translate }}</span>
+      </md-tab-label>
+      <md-tab-body layout="column">
+        <md-card ng-controller="CaseHistoryController as historyCtrl">
+          <md-card-content>
+            <h3>{{ 'CASE.CASE_HISTORY' | translate }}</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>{{ 'COMMON.ACTION' | translate }}</th>
+                  <th>{{ 'COMMON.TYPE' | translate }}</th>
+                  <th>{{ 'USER.USER' | translate }}</th>
+                  <th>{{ 'COMMON.TIME' | translate }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="log in historyCtrl.history">
+                  <td>{{ log.action }}</td>
+                  <td>{{ log.type }}</td>
+                  <td>{{ log.user }}</td>
+                  <td>{{ log.time | openeDate: 'fullDate'}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </md-card-content>
+          <div class="md-actions">
+              <div style="float: right;">
+                  <span>{{historyCtrl.startIndex}} - {{historyCtrl.endIndex}} {{ 'COMMON.OF' | translate }} {{historyCtrl.totalItems}}</span>
+                  <span>
+                      <md-button ng-click="historyCtrl.loadPreviousPage()" ng-disabled="!historyCtrl.previousPage">&lt;</md-button>
+                      <md-button ng-click="historyCtrl.loadNextPage()" ng-disabled="!historyCtrl.nextPage">&gt;</md-button>
+                  </span>
+              </div>
+          </div>
+        </md-card>
+      </md-tab-body>
+    </md-tab>
+    
+  </md-tabs>
+
 </md-content>
 
-<md-tabs md-dynamic-height>
-  
-  <md-tab>
-    <md-tab-label>
-      <span>Case home</span>
-    </md-tab-label>
-    <md-tab-body>
-      
-      <div layout="row" layout-wrap>
-        
-        <div flex="50">
-          <md-card>
-            <md-card-content>
-              <h3>Information</h3>
-              <dl>
-                <dt>Case ID</dt><dd>{{ cases[0].caseId }}</dd>
-                <dt>Case title</dt><dd>{{ cases[0].title }}</dd>
-                <dt>Status</dt><dd>{{ cases[0].status }}</dd>
-                <dt>Created by</dt><dd>{{ cases[0].creator }}</dd>
-                <dt>Created</dt><dd>{{ cases[0].createdDate }}</dd>
-                <dt>Case owners</dt><dd>{{ cases[0].owner }}</dd>
-                <dt>Last modified</dt><dd>{{ cases[0].modifiedDate }}</dd>
-                <dt>Description</dt><dd>{{ cases[0].desc }}</dd>
-              </dl>
-            </md-card-content>
-            <div class="md-actions" layout="row">
-              <md-button class="md-primary" ng-click="createCase($event)">Edit information</md-button>
-              <md-button class="md-primary" ng-disabled="true">Print case</md-button>
-              <md-button class="md-primary" ng-disabled="true">Start workflow</md-button>
-              <md-button class="md-primary" ng-disabled="true">Create site</md-button>
-            </div>
-          </md-card>
-        </div>
-        
-        <div flex="50">
-          <md-card>
-            <md-card-content>
-              <h3>Notes</h3>
-              <md-list ng-controller="NoteController">
-                <md-list-item ng-repeat="note in notes">
-                  <div class="md-list-item-text">
-                    <h4>{{ note.title }}</h4>
-                    <p>{{ note.desc }}</p>
-                    <p style="font-size: 0.8em; color: #999;">
-                      Created {{ note.createdDate }} by {{ note.creator }}<br>
-                      Related: <span style="margin-right: 0.5em;" ng-repeat="relation in note.relatedTo">{{ relation }}</span>
-                    </p>
-                  </div>
-                </md-list-item>
-              </md-list>
-            </md-card-content>
-            <div class="md-actions" layout="row">
-              <md-button class="md-primary" ng-disabled="true">New note</md-button>
-              <md-button class="md-primary" ng-disabled="true">Print all notes</md-button>
-            </div>
-          </md-card>
-        </div>
-        
-        <div flex="100">
-          <md-card>
-            <md-card-content>
-              <h3>Documents</h3>
-              <table ng-controller="DocumentController">
-                <thead>
-                  <tr>
-                    <th>Title</th>
-                    <th>Doc.No.</th>
-                    <th>Type</th>
-                    <th>Category</th>
-                    <th>State</th>
-                    <th>Owner</th>
-                    <th>Created</th>
-                    <th>Modified</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr ng-repeat="doc in docs" class="{{ doc.isUpdated ? 'updated' : 'not-updated' }}">
-                    <td>{{ doc.title }}</td>
-                    <td>{{ doc.docNo }}</td>
-                    <td>{{ doc.type }}</td>
-                    <td>{{ doc.category }}</td>
-                    <td>{{ doc.state }}</td>
-                    <td>{{ doc.owner }}</td>
-                    <td>{{ doc.createdDate }}</td>
-                    <td>{{ doc.modifiedDate }}</td>
-                    <td><md-button class="md-primary" ng-disabled="true">View details</md-button> <md-button class="md-primary" ng-disabled="true">Preview</md-button></td>
-                  </tr>
-                </tbody>
-              </table>
-            </md-card-content>
-            <div class="md-actions" layout="row">
-              <md-button class="md-primary" ng-disabled="true">Create new document</md-button>
-              <md-button class="md-primary" ng-disabled="true">Upload new documents</md-button>
-              <md-button class="md-primary" ng-disabled="true">Email documents</md-button>
-            </div>
-          </md-card>
-        </div>
-        
-      </div>
-      
-    </md-tab-body>
-  </md-tab>
-  
-  <md-tab>
-    <md-tab-label>
-      <span>Members</span>
-    </md-tab-label>
-    <md-tab-body layout="column">
-      <md-card>
-        <md-card-content>
-          <h3>Members</h3>
-        </md-card-content>
-        <div class="md-actions">
-        </div>
-      </md-card>
-    </md-tab-body>
-  </md-tab>
-  
-  <md-tab>
-    <md-tab-label>
-      <span>Parties</span>
-    </md-tab-label>
-    <md-tab-body layout="column">
-      <md-card>
-        <md-card-content>
-          <h3>Parties</h3>
-        </md-card-content>
-        <div class="md-actions">
-        </div>
-      </md-card>
-    </md-tab-body>
-  </md-tab>
-  
-  <md-tab>
-    <md-tab-label>
-      <span>History</span>
-    </md-tab-label>
-    <md-tab-body layout="column">
-      <md-card>
-        <md-card-content>
-          <h3>History</h3>
-        </md-card-content>
-        <div class="md-actions">
-        </div>
-      </md-card>
-    </md-tab-body>
-  </md-tab>
-  
-</md-tabs>
+<app-footer></app-footer>

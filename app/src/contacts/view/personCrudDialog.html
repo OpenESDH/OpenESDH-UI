@@ -1,0 +1,100 @@
+<md-dialog aria-label="Create / edit contact">
+  <form name="personForm">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h1>Create / edit contact</h1>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:40em;max-height:410px; ">
+      <div layout="row">
+        <md-input-container>
+          <label>{{ 'CONTACT.FIRST_NAME' | translate }}</label>
+          <input type="text" ng-model="person.firstName" required ng-maxlength="50" autofocus>
+        </md-input-container>
+        <md-input-container>
+          <label>{{ 'CONTACT.MIDDLE_NAME' | translate }}</label>
+          <input type="text" ng-model="person.middleName" ng-maxlength="50">
+        </md-input-container>
+      </div>
+      <md-input-container>
+        <label>{{ 'CONTACT.LAST_NAME' | translate }}</label>
+        <input type="text" ng-model="person.lastName" required ng-maxlength="40">
+      </md-input-container>
+      <md-input-container>
+        <label>{{ 'CONTACT.ADDRESS_1' | translate }}</label>
+        <input type="text" ng-model="person.addressLine1" ng-maxlength="34">
+      </md-input-container>
+      <md-input-container>
+        <label>{{ 'CONTACT.ADDRESS_2' | translate }}</label>
+        <input type="text" ng-model="person.addressLine2" ng-maxlength="34">
+      </md-input-container>
+      <md-input-container>
+        <label>{{ 'CONTACT.POSTAL_CODE' | translate }}</label>
+        <input type="number" ng-model="person.postCode" ng-minlength="4" ng-maxlength="4">
+      </md-input-container>
+      <div layout="row">
+        <md-input-container>
+          <label>{{ 'CONTACT.CITY' | translate }}</label>
+          <input type="text" ng-model="person.cityName" ng-maxlength="34">
+        </md-input-container>
+        <md-input-container>
+          <label>{{ 'CONTACT.COUNTRY' | translate }}</label>
+          <md-select ng-model="person.countryCode">
+            <md-option ng-value="countryCode" ng-repeat="countryCode in countries">{{ countryCode| countryCodeToName }}</md-option>
+          </md-select>
+        </md-input-container>
+      </div>
+      <md-input-container>
+        <label>{{ 'CONTACT.CPR_NO' | translate }}</label>
+        <input type="text" ng-model="person.cprNumber" required ng-minlength="10" ng-maxlength="10" ng-pattern="/^\d{10}$/">
+      </md-input-container>
+      <md-input-container>
+        <label>{{ 'COMMON.EMAIL' | translate }}</label>
+        <input name="email" type="email" ng-model="person.email" required>
+      </md-input-container>
+      <div layout="row">
+        <md-input-container>
+          <label>{{ 'CONTACT.PHONE' | translate }}</label>
+          <input type="text" ng-model="person.phone" ng-minlength="4" ng-pattern="PATTERNS.phone">
+        </md-input-container>
+        <md-input-container>
+          <label>{{ 'CONTACT.MOBILE_PHONE' | translate }}</label>
+          <input type="text" ng-model="person.mobile" ng-minlength="4" ng-pattern="PATTERNS.phone">
+        </md-input-container>
+      </div>
+      <md-input-container>
+        <label>{{ 'CONTACT.WEBSITE' | translate }}</label>
+        <input type="text" ng-model="person.website" ng-maxlength="70">
+      </md-input-container>
+      <div layout="row">
+        <md-input-container>
+          <label>{{ 'CONTACT.LINKEDIN' | translate }}</label>
+          <input type="text" ng-model="person.linkedin" ng-maxlength="70">
+        </md-input-container>
+        <md-input-container>
+          <label>{{ 'CONTACT.IM' | translate }}</label>
+          <input type="text" ng-model="person.IM" ng-maxlength="70">
+        </md-input-container>
+      </div>
+      <md-input-container>
+        <label>{{ 'NOTE.NOTES' | translate }}</label>
+        <textarea ng-model="person.notes" ng-maxlength="2000"></textarea>
+      </md-input-container>
+    </md-dialog-content>
+    <div class="md-actions" layout="row">
+      <md-button class="md-primary" ng-click="save(personForm)">
+        {{ 'COMMON.SAVE' | translate }}
+      </md-button>
+      <md-button ng-click="delete($event, person)" ng-show="person.id">
+        {{ 'COMMON.DELETE' | translate }}
+      </md-button>
+      <md-button ng-click="cancel()">
+        {{ 'COMMON.CANCEL' | translate }}
+      </md-button>
+    </div>
+  </form>
+</md-dialog>

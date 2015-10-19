@@ -1,0 +1,40 @@
+<md-card ng-controller="GroupController as vm">
+  <md-card-content>
+    <div layout="row">
+      <md-button ui-sref="administration.groups">
+        <i class="material-icons">arrow_back</i>
+      </md-button>
+      <h3>{{ 'GROUP.GROUP' | translate }}: {{ vm.group.displayName }}</h3>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>{{ 'COMMON.NAME' | translate }}</th>
+          <th>{{ 'COMMON.ACTIONS' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="m in vm.groups">
+          <td><i class="material-icons">{{ m.authorityType == 'USER' ? "person" : "group" }}</i></td>
+          <td>{{ m.displayName }}</td>
+          <td layout="row">
+            <md-button ng-show="{{ m.authorityType == 'GROUP' }}" ui-sref="administration.group({'shortName': m.shortName })">
+              {{ 'COMMON.VIEW_DETAILS' | translate }}
+            </md-button>
+            <md-button ng-disabled="false" ng-click="vm.removeMemberFromGroup(vm.group.shortName, m.authorityType, m.shortName, $event)" >
+              {{ 'COMMON.REMOVE' | translate }}
+            </md-button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </md-card-content>
+  <md-card-footer>
+    
+    <opene-group-user-dialog search-type="users" get-selected-items="vm.addMembersToGroup"></opene-group-user-dialog>
+    <opene-group-user-dialog search-type="groups" get-selected-items="vm.addMembersToGroup"></opene-group-user-dialog>
+    
+  </md-card-footer>
+</md-card>

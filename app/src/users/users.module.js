@@ -1,0 +1,1 @@
+angular.module('openeApp.users', [ 'ngMaterial', 'pascalprecht.translate']);

@@ -1,0 +1,23 @@
+<md-dialog aria-label="Case edit dialog" class="case-dialog">
+  <form name="form">
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">
+        <h2 ng-hide="vm.editCase">{{ 'COMMON.CREATE' | translate }} {{ vm.caseInfo.type | caseType | lowercase }}</h2>
+        <h2 ng-show="vm.editCase">{{ 'CASE.EDIT_PROPERTIES' | translate }}</h2>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;">
+      
+      <ng-include src="vm.formTemplateUrl" />
+      
+    </md-dialog-content>
+    <div class="md-actions" layout="row">
+      <md-button type="submit" class="md-primary" ng-click="vm.save()" ng-disabled="form.$invalid">
+        {{ 'COMMON.OK' | translate }}
+      </md-button>
+      <md-button type="button" ng-click="vm.cancel()">
+        {{ 'COMMON.CANCEL' | translate }}
+      </md-button>
+    </div>
+  </form>
+</md-dialog>

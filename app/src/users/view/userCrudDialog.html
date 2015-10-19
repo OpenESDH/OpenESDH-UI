@@ -1,0 +1,63 @@
+<md-dialog aria-label="User dialog">
+  <form name="form">
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">
+        <h2>{{ucd.dialogMode | translate}}</h2>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;">
+      <div layout="row">
+        <md-input-container>
+          <label>{{ 'USER.FIRST_NAME' | translate }}</label>
+          <input type="text" ng-model="ucd.user.firstName" required focus-me="true">
+        </md-input-container>
+        <md-input-container>
+          <label>{{ 'USER.LAST_NAME' | translate }}</label>
+          <input type="text" ng-model="ucd.user.lastName" required focus-me="false">
+        </md-input-container>
+      </div>
+
+        <md-input-container>
+          <label>{{ 'COMMON.EMAIL' | translate }}</label>
+          <input type="text" ng-model="ucd.user.email" required focus-me="false">
+        </md-input-container>
+
+        <div ng-show="ucd.userExists">
+            <label>Disable Account</label>
+            <input type="checkbox" ng-model="ucd.user.enabled" ng-true-value="false" ng-false-value="true" focus-me="false">
+        </div>
+
+        <md-input-container>
+          <label>{{ 'LOGIN.USER_NAME' | translate }}</label>
+          <input type="text" ng-model="ucd.user.userName" required focus-me="false" ng-disabled="ucd.userExists">
+        </md-input-container>
+
+        <!--TODO Need to make sure that the password fields match before allowing form submission-->
+      <div layout="row">
+        <md-input-container>
+          <label>{{ 'LOGIN.PASSWORD' | translate }}</label>
+          <input type="password" ng-model="ucd.user.password" ng-required="!ucd.userExists || undefined" focus-me="false">
+        </md-input-container>
+
+        <md-input-container>
+          <label>{{ 'LOGIN.VERIFY_PASSWORD' | translate }}</label>
+          <input type="password" ng-model="ucd.user.verifypassword" ng-required="!ucd.userExists || undefined" focus-me="false">
+        </md-input-container>
+      </div>
+      
+      <md-input-container>
+        <label>{{ 'COMMON.DESCRIPTION' | translate }}</label>
+        <textarea ng-model="ucd.user.desc"></textarea>
+      </md-input-container>
+      
+    </md-dialog-content>
+    <div class="md-actions" layout="row">
+      <md-button id="create-user-dialog-ok-btn" type="submit" class="md-primary" ng-click="ucd.update(ucd.user)" ng-disabled="form.$invalid">
+        {{ucd.dialogMode | translate}}
+      </md-button>
+      <md-button id="create-user-dialog-cancel-btn" type="button" ng-click="ucd.cancel(form)">
+        {{ 'COMMON.CANCEL' | translate }}
+      </md-button>
+    </div>
+  </form>
+</md-dialog>

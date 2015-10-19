@@ -1,0 +1,51 @@
+<md-dialog aria-label="Email documents">
+    <form name="form">
+        <md-toolbar layout="row">
+            <div class="md-toolbar-tools">
+                <h2>Email documents</h2>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;">
+            
+            <md-chips ng-model="vm.to" md-require-match="true">
+                <md-autocomplete
+                    md-selected-item="vm.selectedItem"
+                    md-search-text="vm.searchText"
+                    md-items="item in vm.querySearch(vm.searchText)"
+                    md-item-text="item.displayName"
+                    placeholder="To">
+                  <span md-highlight-text="vm.searchText">{{ item.displayName }} :: {{ item.contactId }}</span>
+                </md-autocomplete>
+                <md-chip-template>
+                  <span>
+                    <strong>{{ $chip.displayName }}</strong>
+                    <em>({{ $chip.contactId }})</em>
+                  </span>
+                </md-chip-template>
+            </md-chips>
+            
+            <md-input-container>
+                <label>Subject</label>
+                <input type="text" ng-model="vm.subject" required>
+            </md-input-container>
+            <md-input-container>
+                <label>Message</label>
+                <textarea ng-model="vm.message"></textarea>
+            </md-input-container>
+            <md-list>
+                <md-list-item ng-repeat="document in vm.documents">
+                    <md-checkbox ng-model="document.selected" aria-label="{{document['cm:title']}}"></md-checkbox>
+                    <label>{{document['cm:title']}}</label>
+                </md-list-item>
+            <md-list>
+        </md-dialog-content>
+        <div class="md-actions" layout="row">
+            <md-button type="submit" class="md-primary" ng-click="vm.emailDocuments()" ng-disabled="form.$invalid">
+                Email documents
+            </md-button>
+            <md-button type="button" ng-click="vm.cancel(form)">
+                Cancel
+            </md-button>
+        </div>
+    </form>
+</md-dialog>

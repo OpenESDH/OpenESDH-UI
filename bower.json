@@ -7,12 +7,29 @@
   "private": true,
   "dependencies": {
     "angular": "^1.4.x",
+    "angular-resource": "^1.4.x",
     "angular-route": "^1.4.x",
+    "angular-ui-router": "",
+    "angular-resource": "^1.4.x",
     "angular-animate": "^1.4.x",
     "angular-aria": "^1.4.x",
-    "angular-material": "^0.10.0"
+    "angular-material": "0.11.3",
+    "angular-sanitize": "1.4.x",
+    "angular-encode-uri": "",
+    "angular-translate": "",
+    "angular-translate-loader-static-files": "",
+    "isteven-angular-multiselect":"3.0.0",
+    "pdfjs-dist": "",
+    "ng-pdfviewer": "",
+    "angular-swfobject": "",
+    "material-wizard": "",
+    "angular-file-saver": ""
   },
   "devDependencies": {
-    "angular-material": "~0.10.0"
+    "angular-mocks": "^1.4.x"
+  },
+  "resolutions": {
+    "angular": "^1.4.x",
+    "angular-material": "^0.11.0"
   }
 }

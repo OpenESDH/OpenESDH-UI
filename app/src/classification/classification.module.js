@@ -1,0 +1,1 @@
+angular.module('openeApp.classification', [ 'pascalprecht.translate']);
