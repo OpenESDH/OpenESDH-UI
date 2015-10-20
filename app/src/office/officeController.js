@@ -48,6 +48,8 @@ function OfficeController($stateParams, $window, $controller, $scope, officeServ
                 angular.extend(this, $controller('StaffCaseDialogController', {caseInfo: caseInfo}));
                 break;
         }
+
+        vm.init();
     }
 
     function newCaseCallback(caseId) {
