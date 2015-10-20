@@ -5,7 +5,7 @@ angular
 
 var document;
 
-function OfficeController($stateParams, $window, officeService, caseService, sessionService, caseDocumentsService) {
+function OfficeController($stateParams, $window, $controller, $scope, officeService, caseService, sessionService, caseDocumentsService) {
     var vm = this;
 
     if (typeof $window.external.getParameter1 !== 'undefined') {
@@ -24,11 +24,30 @@ function OfficeController($stateParams, $window, officeService, caseService, ses
     vm.cancel = cancel;
     vm.newCaseCallback = newCaseCallback;
     vm.saveOfficeDocument = saveOfficeDocument;
+    vm.setPartial = setPartial;
 
     loadDocumentConstraints();
 
     if ($stateParams.alf_ticket) {
         sessionService.setUserInfo({ticket: $stateParams.alf_ticket});
+    }
+
+    function setPartial(caseType){
+        var type = caseType.split(':')[0];
+
+        var caseInfo = {
+            newCase: true,
+            type: caseType
+        };
+
+        switch(type){
+            case 'simple':
+                angular.extend(this, $controller('CaseCommonDialogController', {caseInfo: caseInfo}));
+                break;
+            case 'staff':
+                angular.extend(this, $controller('StaffCaseDialogController', {caseInfo: caseInfo}));
+                break;
+        }
     }
 
     function newCaseCallback(caseId) {
