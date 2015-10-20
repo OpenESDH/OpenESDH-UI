@@ -65,7 +65,6 @@ function OfficeController($stateParams, $window, $controller, $translate, office
             var props = vm.getPropsToSave();
             // When submitting, do something with the case data
             caseService.createCase(vm.caseInfo.type, props).then(function (caseId) {
-                notificationUtilsService.notify('Case creates: ' + caseId);
                 saveEmail(caseId);
             }, function (response) {
                 notificationUtilsService.alert($translate.instant("CASE.ERROR_CREATING_CASE", {case_title: props.prop_cm_title}) + response.data.message);
@@ -76,13 +75,11 @@ function OfficeController($stateParams, $window, $controller, $translate, office
     }
 
     function saveEmail(caseId){
-        notificationUtilsService.notify('Saving email for... ' + caseId);
         officeService.saveEmail({
             caseId: caseId,
             name: vm.subject,
             email: vm.document
         }).then(function(response) {
-            notificationUtilsService.notify('Email saved');
             var metadata = {
                 caseId: caseId,
                 documentName: vm.subject,
