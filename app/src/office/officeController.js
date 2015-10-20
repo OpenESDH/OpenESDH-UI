@@ -24,7 +24,6 @@ function OfficeController($stateParams, $window, $controller, $translate, office
     vm.saveEmailWithCase = saveEmailWithCase;
     vm.saveEmail = saveEmail;
     vm.cancel = cancel;
-    vm.newCaseCallback = newCaseCallback;
     vm.saveOfficeDocument = saveOfficeDocument;
     vm.setPartial = setPartial;
 
@@ -61,42 +60,31 @@ function OfficeController($stateParams, $window, $controller, $translate, office
 
     }
 
-    function newCaseCallback(caseId) {
-        return caseService.getCaseInfo(caseId)
-                .then(function(createdCase) {
-                    vm.selectedCase = {
-                        'oe:id': caseId,
-                        'cm:title': createdCase.properties['cm:title'].value
-                    };
-                });
-    }
-
     function saveEmailWithCase() {
         if (vm.newCase) {
             var props = vm.getPropsToSave();
             // When submitting, do something with the case data
             caseService.createCase(vm.caseInfo.type, props).then(function (caseId) {
-                // When the form is submitted, show a notification:
-                notificationUtilsService.notify($translate.instant("CASE.CASE_CREATED", {case_title: props.prop_cm_title}));
-
-                saveEmail();
+                notificationUtilsService.notify('Case creates: ' + caseId);
+                saveEmail(caseId);
             }, function (response) {
                 notificationUtilsService.alert($translate.instant("CASE.ERROR_CREATING_CASE", {case_title: props.prop_cm_title}) + response.data.message);
             });
         } else {
-            saveEmail();
+            saveEmail(vm.selectedCase['oe:id']);
         }
-
     }
 
-    function saveEmail(){
+    function saveEmail(caseId){
+        notificationUtilsService.notify('Saving email for... ' + caseId);
         officeService.saveEmail({
-            caseId: vm.selectedCase['oe:id'],
+            caseId: caseId,
             name: vm.subject,
             email: vm.document
         }).then(function(response) {
+            notificationUtilsService.notify('Email saved');
             var metadata = {
-                caseId: vm.selectedCase['oe:id'],
+                caseId: caseId,
                 documentName: vm.subject,
                 nodeRef: response.nodeRef
             };
@@ -104,7 +92,8 @@ function OfficeController($stateParams, $window, $controller, $translate, office
                 return attachment.selected;
             });
             $window.external.SaveAsOpenEsdh(JSON.stringify(metadata), JSON.stringify(atms));
-        }, function(error) {
+        }, function(response) {
+            notificationUtilsService.alert(response.data.message);
         });
     }
 
