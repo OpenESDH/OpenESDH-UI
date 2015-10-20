@@ -496,7 +496,7 @@
         "CREATE_USER": "Opret bruger",
         "UPLOAD_USERS": "Upload brugere (csv)",
         "UPLOAD_USERS_NOTE": "Upload brugere. Kun CSV-filer",
-        "FAILED_TO_UPLOAD_MSG": "{{failedNumberOfUsers}} brugere blev ikke tilføjet af følgende grunde:",
+        "FAILED_TO_UPLOAD_MSG": "{{failedNumberOfUsers}} bruger(e) blev ikke tilføjet af følgende grunde:",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER": "Er du sikker på, at du vil slette '{{user}}'?"
     },
     "GROUP": {

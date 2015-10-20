@@ -10,7 +10,7 @@
       <input type="file" file-model="fileToUpload">
     </md-dialog-content>
     <div class="md-actions" layout="row">
-      <md-button class="md-primary" ng-click="upload()">
+      <md-button class="md-primary" ng-click="upload($event)">
         {{ 'COMMON.UPLOAD' | translate }}
       </md-button>
       <md-button ng-click="cancel()">

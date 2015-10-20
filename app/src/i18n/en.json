@@ -512,7 +512,7 @@
         "CREATE_USER": "Create user",
         "UPLOAD_USERS": "Upload users (csv)",
         "UPLOAD_USERS_NOTE": "Upload users. CSV files only",
-        "FAILED_TO_UPLOAD_MSG": "{{failedNumberOfUsers}} were not added for the following reasons:",
+        "FAILED_TO_UPLOAD_MSG": "{{failedNumberOfUsers}} user(s) were not added for the following reasons:",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER": "Are you sure you want to delete '{{user}}'?"
     },
     "GROUP": {
