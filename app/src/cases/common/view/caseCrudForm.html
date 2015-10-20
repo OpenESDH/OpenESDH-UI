@@ -1,87 +1,89 @@
-      <md-input-container>
-        <label><span class="md-warn">*</span> {{ 'CASE.TITLE' | translate }}</label>
-        <input type="text" ng-model="vm.case.prop_cm_title" required focus-me>
-      </md-input-container>
+<md-input-container>
+  <label><span class="md-warn">*</span> {{ 'CASE.TITLE' | translate }}</label>
+  <input type="text" ng-model="vm.case.prop_cm_title" required focus-me>
+</md-input-container>
 
-      <md-input-container>
-        <label><span class="md-warn">*</span> {{ 'CASE.OWNER' | translate }}</label>
-        <md-select ng-model="vm.case.assoc_base_owners_added" required>
-          <md-optgroup label="Groups">
-            <md-option ng-value="auth.nodeRef" ng-repeat="auth in vm.authorities | filter: {type: 'cm:authorityContainer' }" ng-disabled="!auth.selectable">{{ auth.name }}</md-option>
-          </md-optgroup>
-          <md-optgroup label="Users">
-            <md-option ng-value="auth.nodeRef" ng-repeat="auth in vm.authorities | filter: {type: 'cm:person'}" ng-disabled="!auth.selectable">{{ auth.name }}</md-option>
-          </md-optgroup>
-        </md-select>
-      </md-input-container>
+<md-input-container>
+  <label><span class="md-warn">*</span> {{ 'CASE.OWNER' | translate }}</label>
+  <md-select ng-model="vm.case.assoc_base_owners_added" required>
+    <md-optgroup label="Groups">
+      <md-option ng-value="auth.nodeRef" ng-repeat="auth in vm.authorities | filter: {type: 'cm:authorityContainer' }" ng-disabled="!auth.selectable">{{ auth.name }}</md-option>
+    </md-optgroup>
+    <md-optgroup label="Users">
+      <md-option ng-value="auth.nodeRef" ng-repeat="auth in vm.authorities | filter: {type: 'cm:person'}" ng-disabled="!auth.selectable">{{ auth.name }}</md-option>
+    </md-optgroup>
+  </md-select>
+</md-input-container>
 
-      <div ng-controller="ClassificationController as classCtrl">
-        <md-chips ng-model="vm.case.prop_oe_journalKey"
-                  md-autocomplete-snap
-                  md-require-match="true">
-          
-            <md-autocomplete style="width: 30em;"
-                             md-input-name="autocompleteField"
-                             md-min-length="2"
-                             md-input-minlength="2"
-                             md-selected-item="selectedItem"
-                             md-search-text="searchText"
-                             md-items="item in classCtrl.search(searchText, 'oe:journalKey')"
-                             md-item-text="item.name + ' ' + item.title"
-                             placeholder="{{'CASE.JOURNAL_KEY' | translate}}">
-              <md-item-template>
-                  <span md-highlight-text="searchText">{{item.name}}</span>
-                  <span md-highlight-text="searchText" class="muted">{{item.title}}</span>
-              </md-item-template>
-              <md-not-found>
-                  {{ 'COMMON.NO_MATCHES' | translate }}
-              </md-not-found>
-            </md-autocomplete>
-            <md-chip-template>
-                <span>
-                    <strong>{{ $chip.name }}</strong>
-                    <em>{{ $chip.title }}</em>
-                </span>
-            </md-chip-template>
-        </md-chips>
-
-        <md-chips ng-model="vm.case.prop_oe_journalFacet"
-                  md-autocomplete-snap
-                  md-require-match="true">
-          <md-autocomplete style="width: 30em;"
-                           md-input-name="autocompleteField"
-                           md-min-length="2"
-                           md-input-minlength="2"
-                           md-selected-item="selectedItem"
-                           md-search-text="searchText"
-                           md-items="item in classCtrl.search(searchText, 'oe:journalFacet')"
-                           md-item-text="item.name + ' ' + item.title"
-                           placeholder="{{'CASE.JOURNAL_FACET' | translate}}">
+<div ng-controller="ClassificationController as classCtrl">
+    <md-chips ng-model="vm.case.prop_oe_journalKey"
+            md-autocomplete-snap
+            md-require-match="true">
+    
+        <md-autocomplete style="width: 30em;"
+                       md-input-name="autocompleteField"
+                       md-min-length="2"
+                       md-input-minlength="2"
+                       md-selected-item="selectedItem"
+                       md-search-text="searchText"
+                       md-items="item in classCtrl.search(searchText, 'oe:journalKey')"
+                       md-item-text="item.name + ' ' + item.title"
+                       placeholder="{{'CASE.JOURNAL_KEY' | translate}}">
             <md-item-template>
                 <span md-highlight-text="searchText">{{item.name}}</span>
                 <span md-highlight-text="searchText" class="muted">{{item.title}}</span>
             </md-item-template>
             <md-not-found>
-              {{ 'COMMON.NO_MATCHES' | translate }}
+                {{ 'COMMON.NO_MATCHES' | translate }}
             </md-not-found>
-          </md-autocomplete>
-            <md-chip-template>
-                <span>
-                  <strong>{{$chip.name}}</strong>
-                  <em>{{$chip.title}}</em>
-                </span>
-            </md-chip-template>
-        </md-chips>
-      </div>
-      
-    <div>
-      <md-datepicker ng-model="vm.case.prop_base_startDate" md-placeholder="{{ 'CASE.START_DATE' | translate }}"></md-datepicker>
-    </div>
-    <div>
-      <md-datepicker ng-model="vm.case.prop_base_endDate" md-placeholder="{{ 'CASE.EXPECTED_END_DATE' | translate }}"></md-datepicker>
-    </div>
+        </md-autocomplete>
+        <md-chip-template>
+            <span>
+                <strong>{{ $chip.name }}</strong>
+                <em>{{ $chip.title }}</em>
+            </span>
+        </md-chip-template>
+    </md-chips>
 
-      <md-input-container>
-        <label>{{ 'CASE.DESCRIPTION' | translate }}</label>
-        <textarea ng-model="vm.case.prop_cm_description"></textarea>
-      </md-input-container>
+    <md-chips ng-model="vm.case.prop_oe_journalFacet"
+            md-autocomplete-snap
+            md-require-match="true">
+        <md-autocomplete style="width: 30em;"
+                     md-input-name="autocompleteField"
+                     md-min-length="2"
+                     md-input-minlength="2"
+                     md-selected-item="selectedItem"
+                     md-search-text="searchText"
+                     md-items="item in classCtrl.search(searchText, 'oe:journalFacet')"
+                     md-item-text="item.name + ' ' + item.title"
+                     placeholder="{{'CASE.JOURNAL_FACET' | translate}}">
+            <md-item-template>
+                <span md-highlight-text="searchText">{{item.name}}</span>
+                <span md-highlight-text="searchText" class="muted">{{item.title}}</span>
+            </md-item-template>
+            <md-not-found>
+                {{ 'COMMON.NO_MATCHES' | translate }}
+            </md-not-found>
+        </md-autocomplete>
+        <md-chip-template>
+            <span>
+                <strong>{{$chip.name}}</strong>
+                <em>{{$chip.title}}</em>
+            </span>
+        </md-chip-template>
+    </md-chips>
+</div>
+
+<div layout="row">
+    <div flex="50">
+        <md-datepicker ng-model="vm.case.prop_base_startDate" md-placeholder="{{ 'CASE.START_DATE' | translate }}"></md-datepicker>
+    </div>
+    <div flex="50">
+        <md-datepicker ng-model="vm.case.prop_base_endDate" md-placeholder="{{ 'CASE.EXPECTED_END_DATE' | translate }}"></md-datepicker>
+    </div>
+</div>
+
+<md-input-container>
+    <label>{{ 'CASE.DESCRIPTION' | translate }}</label>
+    <textarea ng-model="vm.case.prop_cm_description"></textarea>
+</md-input-container>
