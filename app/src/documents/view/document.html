@@ -64,6 +64,7 @@
                       <dd flex="100" ng-hide="docCtrl.docVersion.description | isEmpty">{{ docCtrl.docVersion.description }}</dd>
                     </dl>
                   </div>
+                  <p ng-bind="docCtrl.doc.description"></p>
               </md-card-content>
               <div class="md-actions" layout="row" layout-padding>
                   <md-button class="md-primary" ng-click="docCtrl.editDocumentProperties()" ng-disabled="docCtrl.doc.isLocked">{{ 'DOCUMENT.EDIT_PROPERTIES' | translate }}</md-button>

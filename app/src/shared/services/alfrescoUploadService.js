@@ -18,7 +18,7 @@
             formData.append("destination", destination ? destination : null);
 
             if(!extras || !extras.majorVersion){
-                formData.append("majorVersion", "false");    
+                formData.append("majorVersion", "false");
             }
             
             /**
