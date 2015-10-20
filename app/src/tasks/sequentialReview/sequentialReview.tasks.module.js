@@ -5,15 +5,15 @@
     
     function config(taskFormConfigServiceProvider){
         taskFormConfigServiceProvider.taskForm({
-            taskName: 'wf:activitiSequentialReviewTask',
+            taskName: 'oewf:activitiSequentialReviewTask',
             templateUrl: '/app/src/tasks/sequentialReview/view/sequentialReviewTask.html',
             controller: 'sequentialReviewTaskController'
         }).taskForm({
-            taskName: 'wf:sequentialApprovedTask',
+            taskName: 'oewf:sequentialApprovedTask',
             templateUrl: '/app/src/tasks/sequentialReview/view/approvedRejectedTask.html',
             controller: 'sequentialReviewTaskController'
         }).taskForm({
-            taskName: 'wf:sequentialRejectedTask',
+            taskName: 'oewf:sequentialRejectedTask',
             templateUrl: '/app/src/tasks/sequentialReview/view/approvedRejectedTask.html',
             controller: 'sequentialReviewTaskController'
         });
