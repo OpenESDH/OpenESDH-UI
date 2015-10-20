@@ -4,25 +4,27 @@
         <h2>{{dlg.workflowDef.title}}</h2>
       </div>
     </md-toolbar>
-        <mt-wizard chevrons-always-visible="false" on-finish="dlg.submit()" on-cancel="dlg.cancel()">
+        <mt-wizard chevrons-always-visible="false" on-finish="dlg.submit()" on-cancel="dlg.cancel()" is-valid="dlg.isValid(currentStep)">
             
             <mt-wz-step title="{{'WORKFLOW.INFORMATION' | translate}}" class="workflowWizardStep">
-                <div style="width: 400px">
-                    <md-input-container>
-                        <label>* {{'WORKFLOW.REVIEW_GROUP' | translate}}</label>
-                        <md-select ng-model="dlg.selectedRecipient">
-                          <md-option ng-repeat="recipient in dlg.recipients" value="{{recipient.nodeRef}}">{{recipient.name}}</md-option>
-                        </md-select>
-                    </md-input-container>
-                </div>
-                <div style="width: 200px">
-                    <md-input-container>
-                        <label>{{'WORKFLOW.REQUIRED_APPROVAL_PERCENTAGE.REQUIRED_APPROVAL_PERCENTAGE' | translate}}</label>
-                        <input type="number" ng-model="dlg.requiredApprovalPercentage" name="requiredApprovalPercentage" min="1" max="100" value="50"/>
-                    </md-input-container>
-                </div>
-                
-                <ng-include src="'app/src/workflows/view/selectDueDatePriorityMessageSendEmail.html'"></ng-include>
+                <form name="wfForm">
+                    <div style="width: 400px" ng-init="dlg.appendForm(wfForm)">
+                        <md-input-container>
+                            <label>* {{'WORKFLOW.REVIEW_GROUP' | translate}}</label>
+                            <md-select ng-model="dlg.selectedRecipient" required>
+                              <md-option ng-repeat="recipient in dlg.recipients" value="{{recipient.nodeRef}}">{{recipient.name}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div style="width: 200px">
+                        <md-input-container>
+                            <label>{{'WORKFLOW.REQUIRED_APPROVAL_PERCENTAGE.REQUIRED_APPROVAL_PERCENTAGE' | translate}}</label>
+                            <input type="number" ng-model="dlg.requiredApprovalPercentage" name="requiredApprovalPercentage" min="1" max="100" value="50"/>
+                        </md-input-container>
+                    </div>
+                    
+                    <ng-include src="'app/src/workflows/view/selectDueDatePriorityMessageSendEmail.html'"></ng-include>
+                </form>
             </mt-wz-step>
             
             <mt-wz-step title="{{'WORKFLOW.SELECT_ITEMS' | translate}}" class="workflowWizardStep">

@@ -3,7 +3,7 @@
         .module('openeApp.tasks.common')
         .controller('baseTaskController', BaseTaskController);
     
-    function BaseTaskController(taskService, $stateParams, $location, documentPreviewService, sessionService, workflowService, $translate, $mdDialog, $mdToast) {
+    function BaseTaskController(taskService, $stateParams, $location, documentPreviewService, sessionService, workflowService, $translate, $mdDialog, notificationUtilsService) {
         var vm = this;
         vm.taskId = $stateParams.taskId;
         vm.init = init;
@@ -20,6 +20,7 @@
         vm.statuses = ["Not Yet Started", "In Progres", "On Hold"];
         vm.toggleStatus = {item: -1};
         vm.isAdmin = sessionService.isAdmin();
+        vm._copyTaskProperties = _copyTaskProperties;
         
         function init(){
             var vm = this;
@@ -66,7 +67,7 @@
          */
         function approve(){
             var vm = this;
-            var props = angular.copy(vm.task.properties);
+            var props = vm._copyTaskProperties();
             props[vm.reviewOutcomeProperty] = vm.reviewOutcomeApprove;
             taskService.updateTask(vm.taskId, props).then(function(response){
                 vm.endTask($translate.instant('TASK.TASK_APPROVED'));
@@ -78,15 +79,24 @@
          */
         function reject(){
             var vm = this;
-            var props = angular.copy(vm.task.properties);
+            var props = vm._copyTaskProperties();
             props[vm.reviewOutcomeProperty] = vm.reviewOutcomeReject;
             taskService.updateTask(vm.taskId, props).then(function(response){
                 vm.endTask($translate.instant('TASK.TASK_REJECTED'));
             });
         }
         
+        function _copyTaskProperties(){
+            var vm = this;
+            var props = angular.copy(vm.task.properties);
+            if(props.bpm_pooledActors != undefined){
+                delete props.bpm_pooledActors;    
+            }
+            return props;
+        }
+        
         function endTask(msg){
-            $mdToast.showSimple(msg);
+            notificationUtilsService.notify(msg);
             taskService.endTask(vm.taskId).then(function(response){
                 vm.backToTasks();
             });

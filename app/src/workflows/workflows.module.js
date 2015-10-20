@@ -33,7 +33,7 @@
                     ' <div layout="row" layout-align="end center" >' +
                     '  <md-button class="md-primary" aria-label="cancel" ng-click="onCancel()" ng-show="selectedIndex == 0 ">{{"COMMON.CANCEL" | translate}}</md-button>' +
                     '  <md-button class="md-primary" aria-label="previous" ng-click="previous()" ng-show="selectedIndex > 0 ">{{"COMMON.BACK" | translate}}</md-button>' +
-                    '  <md-button class="md-primary" aria-label="next" ng-click="next()"  ng-show="selectedIndex < steps.length -1" ng-disabled="isValid && !isValid()">{{"COMMON.NEXT" | translate}}</md-button>' +
+                    '  <md-button class="md-primary" aria-label="next" ng-click="next()"  ng-show="selectedIndex < steps.length -1" ng-disabled="(isValid && !isValid({currentStep: selectedIndex}))">{{"COMMON.NEXT" | translate}}</md-button>' +
                     '  <md-button class="md-primary" aria-label="finish" ng-click="onFinish()"  ng-show="selectedIndex == steps.length -1">{{"COMMON.DONE" | translate}}</md-button>' +
                     ' </div>' +
                     '</div>';

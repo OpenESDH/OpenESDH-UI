@@ -34,8 +34,12 @@
                                     <dt flex="20">{{ 'COMMON.DESCRIPTION' | translate }}</dt>
                                     <dd flex="66">{{ taskCtrl.task.description }}</dd>
                                 </dl>
+                                
+                                <p ng-show="taskCtrl.task.isClaimable"> {{'TASK.THIS_TASK_IS_UNASSIGNED' | translate}}</p>
                             </md-card-content>
                             <div class="md-actions" layout="row">
+                                <md-button class="md-primary" ng-click="taskCtrl.claim()" ng-show="taskCtrl.task.isClaimable">{{'TASK.CLAIM' | translate}}</md-button>
+                                <md-button class="md-primary" ng-click="taskCtrl.releaseToPool()" ng-show="!taskCtrl.task.isClaimable && taskCtrl.task.isPooled">{{'TASK.RELEASE_TO_POOL' | translate}}</md-button>
                                 <md-button class="md-primary" ng-click="taskCtrl.approve()">{{'TASK.APPROVE' | translate}}</md-button>
                                 <md-button class="md-primary" ng-click="taskCtrl.reject()">{{'TASK.REJECT' | translate}}</md-button>
                             </div>
