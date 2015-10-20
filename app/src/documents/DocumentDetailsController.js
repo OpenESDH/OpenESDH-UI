@@ -36,7 +36,6 @@
         function loadCaseDocumentInfo(){
             caseDocumentDetailsService.getCaseDocument(documentNodeRef).then(function(document){
                 caseDocument = document;
-                console.log(document)
                 vm.doc = document;
                 loadVersionDetails();
                 loadDocumentPreview();
