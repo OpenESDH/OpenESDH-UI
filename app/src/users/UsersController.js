@@ -14,6 +14,7 @@
         vm.createUser = createUser;
         vm.deleteUser = deleteUser;
         vm.editUser = editUser;
+        vm.showCSVUploadDialog = showCSVUploadDialog;
         vm.userExists = false;
 
         //For the search control filter
@@ -96,12 +97,70 @@
             });
         }
 
+        function showCSVUploadDialog(){
+
+            return $mdDialog.show({
+                controller: userUploadCSVDialogController,
+                templateUrl: 'app/src/users/view/usersUploadDialog.html',
+                parent: angular.element(document.body),
+                targetEvent: null,
+                clickOutsideToClose: true,
+                focusOnOpen: false
+            }).then(function(){
+                getAllSystemUsers();
+            });
+        }
+
         function getAllSystemUsers(query) {
             var filter = query ? query : "*";
             return userService.getPeople(filter).then(function (response) {
                 vm.allSystemUsers = response.people;
                 return response;
             });
+        }
+
+        function userUploadCSVDialogController($scope, $translate, $mdDialog, alfrescoUploadService) {
+
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+
+            $scope.upload = function(){
+                $mdDialog.hide();
+                alfrescoUploadService.uploadUsersCSVFile($scope.fileToUpload).then(function(response){
+                    console.log("THe csv user returns: \n"+response);
+                    var returnedUsers = response.users;
+                    var failedUsers, msg, dlgTitle;
+                    var numOfFailedUsers = response.totalUsers - response.addedUsers;
+                    if (numOfFailedUsers > 0){
+                        dlgTitle = $translate.instant('COMMON.ERROR');
+                        //accumulate the failed users into a separate array
+                        failedUsers = returnedUsers.map(function(user){
+                           var buffer = [];
+                            if(user.uploadStatus.indexOf("@") == -1)
+                                buffer.push(user);
+                            return buffer;
+                        });
+                         msg = $translate.instant('USER.FAILED_TO_UPLOAD_MSG',{failedNumberOfUsers: numOfFailedUsers}) + '\n';
+                        failedUsers.forEach(function(fUser){
+                            msg+= fUser.username + ": "+fUser.uploadStatus+"\n";
+                        });
+
+                    }
+                    else{
+                        dlgTitle = $translate.instant('COMMON.SUCCESS');
+
+                    }
+                    $mdDialog.show(
+                        $mdDialog.alert().clickOutsideToClose(true)
+                            .title(dlgTitle)
+                            .content(msg)
+                            .ariaLabel('User upload csv response.')
+                            .ok("OK")
+                            .targetEvent()
+                    );
+                });
+            };
         }
 
     }
