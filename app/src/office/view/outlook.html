@@ -2,14 +2,44 @@
     <md-card-content>
         <h2>{{ 'OFFICE.SAVE_EMAIL_IN_OPENESDH' | translate }}</h2>
         <form name="form">
-            <md-autocomplete required md-input-name="autocompleteField" md-input-minlength="2" md-selected-item="vm.selectedCase" md-search-text="searchText" md-items="item in vm.querySearch(searchText)" md-item-text="item['oe:id']" md-floating-label="Case">
+            <h3>{{ 'CASE.CREATE_FROM' | translate }}
+                <!-- <md-select placeholder="{{ 'CASE.SELECT_CASE_TYPE' | translate }}" ng-model="vm.caseType" md-on-open="setPartial()" style="min-width: 200px;">
+                    <md-option ng-value="">existing case</md-option>
+                    <md-option ng-value="simple">simple case</md-option>
+                    <md-option ng-value="staff">staff case</md-option>
+                </md-select> -->
+                <md-menu ng-controller="CreateCaseMenuController as ctrl">
+                    <md-button class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="{{ 'CASE.SELECT_CASE_TYPE' | translate }}">
+                        {{ 'CASE.SELECT_CASE_TYPE' | translate }}
+                    </md-button>
+                    <md-menu-content>
+                        <md-menu-item>
+                            <md-button ng-click="vm.setPartial()">existing case</md-button>
+                        </md-menu-item>
+                        <md-menu-item ng-repeat="caseType in ctrl.registeredCaseTypes">
+                            <md-button ng-click="vm.setPartial(caseType)">{{ caseType | caseType | lowercase }}</md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-disabled="true">{{ 'CASE.CASETYPE_OTHER' | translate | lowercase }}</md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </h3>
+
+            <h4 ng-if="vm.newCase">{{ vm.caseInfo.type | caseType }}</h4>
+            <ng-include src="vm.formTemplateUrl"></ng-include>
+
+            <h4 ng-if="!vm.newCase">{{ 'CASE.SEARCH_CASE' | translate }}</h4>
+            <md-autocomplete ng-if="!vm.newCase" required md-input-name="autocompleteField" md-input-minlength="2" md-selected-item="vm.selectedCase" md-search-text="searchText" md-items="item in vm.querySearch(searchText)" md-item-text="item['oe:id']" md-floating-label="* {{ 'CASE' | translate }}">
                 <md-item-template>
                     <span md-highlight-text="searchText">{{item['oe:id'] }} {{item['cm:title']}}</span>
                     <!--<span md-highlight-text="searchText" class="muted">(ID: {{item.id}})</span>-->
                 </md-item-template>
             </md-autocomplete>
+
+            <h3>Email document</h3>
             <md-input-container>
-                <label>{{ 'COMMON.TITLE' | translate }}</label>
+                <label><span class="md-warn">*</span> {{ 'COMMON.TITLE' | translate }}</label>
                 <input type="text" ng-model="vm.subject" required>
             </md-input-container>
             <md-list ng-show="vm.attachments.length > 0">
@@ -20,29 +50,9 @@
                 </md-list-item>
             </md-list>
 
-            <!-- Create case content embedded here -->
-            <div layout="row" layout-align="center center">
-                <md-whiteframe class="md-whiteframe-3dp" flex="50">
-                    <ng-include src="vm.formTemplateUrl"></ng-include>
-                </md-whiteframe>
-            </div>
-            <!-- End create case content -->
 
             <div class="md-actions" layout="row">
-                <md-button type="submit" class="md-primary" ng-click="vm.save(form)" ng-disabled="form.$invalid">{{ 'COMMON.SAVE_EMAIL' | translate }}</md-button>
-                <md-menu ng-controller="CreateCaseMenuController as ctrl">
-                    <md-button class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="{{ 'CASE.CREATE_NEW_CASE' | translate }}">
-                        <i class="material-icons">add</i> {{ 'CASE.CREATE_NEW_CASE' | translate }}
-                    </md-button>
-                    <md-menu-content>
-                        <md-menu-item ng-repeat="caseType in ctrl.registeredCaseTypes">
-                            <md-button ng-click="vm.setPartial(caseType)">{{ caseType | caseType }}</md-button>
-                        </md-menu-item>
-                        <md-menu-item>
-                            <md-button ng-disabled="true">{{ 'CASE.CASETYPE_OTHER' | translate }}</md-button>
-                        </md-menu-item>
-                    </md-menu-content>
-                </md-menu>
+                <md-button type="submit" class="md-primary" ng-click="vm.saveEmailWithCase(form)" ng-disabled="form.$invalid">{{ 'COMMON.SAVE_EMAIL' | translate }}</md-button>
                 <md-button type="button" ng-click="vm.cancel(form)">{{ 'COMMON.CANCEL' | translate }}</md-button>
             </div>
         </form>

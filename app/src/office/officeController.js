@@ -5,7 +5,7 @@ angular
 
 var document;
 
-function OfficeController($stateParams, $window, $controller, $scope, officeService, caseService, sessionService, caseDocumentsService) {
+function OfficeController($stateParams, $window, $controller, $translate, officeService, caseService, sessionService, caseDocumentsService, notificationUtilsService) {
     var vm = this;
 
     if (typeof $window.external.getParameter1 !== 'undefined') {
@@ -15,12 +15,14 @@ function OfficeController($stateParams, $window, $controller, $scope, officeServ
         vm.document.Attachments = [];
     }
 
+    vm.newCase = false;
     vm.selectedCase;
     vm.subject = vm.document.Subject;
     vm.title = vm.document.Title;
     vm.attachments = vm.document.Attachments;
 
-    vm.save = save;
+    vm.saveEmailWithCase = saveEmailWithCase;
+    vm.saveEmail = saveEmail;
     vm.cancel = cancel;
     vm.newCaseCallback = newCaseCallback;
     vm.saveOfficeDocument = saveOfficeDocument;
@@ -33,23 +35,30 @@ function OfficeController($stateParams, $window, $controller, $scope, officeServ
     }
 
     function setPartial(caseType){
-        var type = caseType.split(':')[0];
+        vm.formTemplateUrl = '';
+        var type = caseType?caseType.split(':')[0]:'';
 
         var caseInfo = {
             newCase: true,
             type: caseType
         };
 
+        vm.newCase = true;
+
         switch(type){
             case 'simple':
                 angular.extend(this, $controller('CaseCommonDialogController', {caseInfo: caseInfo}));
+                vm.init();
                 break;
             case 'staff':
                 angular.extend(this, $controller('StaffCaseDialogController', {caseInfo: caseInfo}));
+                vm.init();
+                break;
+            case '':
+                vm.newCase = false;
                 break;
         }
 
-        vm.init();
     }
 
     function newCaseCallback(caseId) {
@@ -62,7 +71,25 @@ function OfficeController($stateParams, $window, $controller, $scope, officeServ
                 });
     }
 
-    function save() {
+    function saveEmailWithCase() {
+        if (vm.newCase) {
+            var props = vm.getPropsToSave();
+            // When submitting, do something with the case data
+            caseService.createCase(vm.caseInfo.type, props).then(function (caseId) {
+                // When the form is submitted, show a notification:
+                notificationUtilsService.notify($translate.instant("CASE.CASE_CREATED", {case_title: props.prop_cm_title}));
+
+                saveEmail();
+            }, function (response) {
+                notificationUtilsService.alert($translate.instant("CASE.ERROR_CREATING_CASE", {case_title: props.prop_cm_title}) + response.data.message);
+            });
+        } else {
+            saveEmail();
+        }
+
+    }
+
+    function saveEmail(){
         officeService.saveEmail({
             caseId: vm.selectedCase['oe:id'],
             name: vm.subject,

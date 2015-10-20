@@ -115,7 +115,10 @@
         "COMMENTS": "Journal notes",
         "CREATED_BY": "Created {{at}} by {{by}}",
         "MODIFIED_BY": "Last modified {{at}} by {{by}}",
-        "CASE_NOT_FOUND": "Case not found"
+        "CASE_NOT_FOUND": "Case not found",
+        "SEARCH_CASE": "Seach case",
+        "CREATE_FROM": "Create from",
+        "SELECT_CASE_TYPE": "Select case type"
     },
     "DOCUMENT": {
         "STATUS_CHANGED_SUCCESS": "Status has been changed successfully",
