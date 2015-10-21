@@ -654,7 +654,8 @@
         "RELEASE_TO_POOL": "Release to pool",
         "TASK_HAS_BEEN_CLAIMED": "Task has been claimed",
         "TASK_HAS_BEEN_RELEASED": "Task has been released",
-        "THIS_TASK_IS_UNASSIGNED": "This task is unassigned"
+        "THIS_TASK_IS_UNASSIGNED": "This task is unassigned",
+        "TASK_CREATED_ON_BY": "Created on {{on}} by {{by}}"
     },
     "MENU": {
         "OPEN_MENU": "Open menu",

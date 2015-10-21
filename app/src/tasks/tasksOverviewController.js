@@ -3,11 +3,12 @@
         .module('openeApp.tasks')
         .controller('tasksOverviewController', TasksOverviewController);
     
-    function TasksOverviewController(taskService) {
+    function TasksOverviewController($filter, taskService) {
         var vm = this;
         vm.tasks = [];
+        vm.$filter = $filter;
         
-        vm.statuses = ["Not Yet Started", "In Progres", "On Hold", "Cancelled", "Completed"];
+        vm.statuses = taskService.getTaskStatuses();
         loadTasks();
         
         function loadTasks(){
