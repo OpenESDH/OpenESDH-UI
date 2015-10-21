@@ -15,7 +15,7 @@
         <md-card ng-repeat="task in tasksCtrl.tasks | filter:status">
             <md-card-content>
               <div style="text-align: right; font-size: 14px;" class="muted">
-                  {{'COMMON.CREATED_ON' | translate}} {{task.properties.cm_created | date}} {{'COMMON.BY' | translate}} {{task.workflowInstance.initiator.firstName + ' ' + task.workflowInstance.initiator.lastName}}
+                  {{'TASK.TASK_CREATED_ON_BY' | translate: {on:tasksCtrl.$filter('openeDate')(task.properties.cm_created), by:task.workflowInstance.initiator.firstName + ' ' + task.workflowInstance.initiator.lastName} }}
               </div>
               <h3 class="md-title"><a href="#/tasks/task/{{task.name | encodeUri}}/{{task.id | encodeUri}}">{{ task.properties.bpm_description }}</a></h3>
               <dl layout="row" layout-wrap>

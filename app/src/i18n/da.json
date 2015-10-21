@@ -633,7 +633,8 @@
         "NUMBER_OF_REVIEWERS": "Antal gennemlæsere",
         "REQUIRED_APPROVAL_PERCENTAGE": "Nødvendig godkendelsesprocent",
         "REVIEWERS_WHO_APPROVED": "Antal godkendelser",
-        "ACTUAL_APPROVAL_PERCENTAGE": "Aktuel godkendelsesprocent"
+        "ACTUAL_APPROVAL_PERCENTAGE": "Aktuel godkendelsesprocent",
+        "TASK_CREATED_ON_BY": "Oprettet d. {{on}} af {{by}}"
     },
     "MENU": {
         "OPEN_MENU": "Åben menu",
