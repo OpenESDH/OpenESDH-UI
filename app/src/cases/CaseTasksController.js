@@ -2,10 +2,9 @@
        .module('openeApp.cases')
        .controller('CaseTasksController', CaseTasksController);
     
-    function CaseTasksController($scope, $stateParams, $filter, taskService){
+    function CaseTasksController($scope, $stateParams, taskService){
         var vm = this;
         vm.statuses = taskService.getTaskStatuses();
-        vm.$filter = $filter;
         
         $scope.$on('tabSelectEvent', function(event, args) {
             if (args.tab === 'tasks') {
