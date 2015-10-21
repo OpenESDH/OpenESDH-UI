@@ -7,7 +7,7 @@
         var vm = this;
         vm.tasks = [];
         
-        vm.statuses = ["Not Yet Started", "In Progres", "On Hold", "Cancelled", "Completed"];
+        vm.statuses = taskService.getTaskStatuses();
         loadTasks();
         
         function loadTasks(){
