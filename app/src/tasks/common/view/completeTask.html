@@ -1,9 +1,7 @@
 <md-content layout="column" ng-controller="ctrl.controller as taskCtrl">
-    <div class="sub-toolbar" layout="row" layout-align="space-between center" layout-padding>
-        <h1 class="md-headline" layout-margin>{{taskCtrl.task.properties.bpm_description}}</h1>
-    </div>
+    
     <md-tabs md-dynamic-height>
-        <md-tab md-on-select="vm.onTabChange('case')">
+        <md-tab>
             <md-tab-label>
                 <span>{{ 'TASK.TASK_DETAILS' | translate }}</span>
             </md-tab-label>
@@ -12,14 +10,14 @@
                     <div flex="50" layout="column">
                         <md-card>
                             <md-card-content>
-                                <h3>{{ 'COMMON.INFORMATION' | translate }}</h4>
+                                <h3>{{ 'COMMON.INFORMATION' | translate }}</h4> 
                             <dl layout="row" layout-wrap>
 
                               <dt flex="20">{{ 'COMMON.DUE_DATE' | translate }}</dt>
                               <dd flex="66">{{ taskCtrl.task.workflowInstance.dueDate | date }}</dd>
 
                               <dt flex="20">{{ 'COMMON.PRIORITY' | translate }}</dt>
-                              <dd flex="66">{{ taskCtrl.task.properties.bpm_priority | workflowTaskPriority}}</dd>
+                              <dd flex="66">{{ taskCtrl.task.workflowInstance.priority | workflowTaskPriority}}</dd>
 
                               <dt flex="20">{{ 'COMMON.CREATEDBY' | translate }}</dt>
                               <dd flex="66">{{ taskCtrl.task.workflowInstance.initiator.firstName }} {{ taskCtrl.task.workflowInstance.initiator.lastName }}</dd>
@@ -32,19 +30,9 @@
 
                             </dl>
                           </md-card-content>
-                          <div class="md-actions" layout="row">
+                          <div class="md-actions" layout="row" layout-padding>
                             <md-button class="md-primary" ng-click="taskCtrl.taskDone()">{{'TASK.TASK_DONE' | translate}}</md-button>
                           </div>
-                        </md-card>
-                        <md-card>
-                            <md-card-content>
-                                <h3>{{'COMMON.COMMENT' | translate}}</h3>
-                                <div ng-repeat="item in taskCtrl.taskComments">
-                                    <span>{{item.firstName + ' ' + item.lastName}} {{item.date | openeDate}}</span>
-                                    <pre>{{item.text}}</pre>
-                                    <md-divider style="margin-bottom: 1em;"></md-divider>
-                                </div> 
-                            </md-card-content>
                         </md-card>
                     </div>
                     <div flex>
@@ -78,3 +66,4 @@
             </md-tab-body>
         </md-tab>
     </md-tabs>
+</md-content>
