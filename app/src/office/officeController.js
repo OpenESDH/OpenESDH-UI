@@ -23,9 +23,8 @@ function OfficeController($stateParams, $window, $controller, $translate, office
     vm.attachments = vm.document.Attachments;
 
     vm.saveEmailWithCase = saveEmailWithCase;
-    vm.saveEmail = saveEmail;
     vm.cancel = cancel;
-    vm.saveOfficeDocument = saveOfficeDocument;
+    vm.saveOfficeDocWithCase = saveOfficeDocWithCase;
     vm.setPartial = setPartial;
 
     loadDocumentConstraints();
@@ -92,11 +91,29 @@ function OfficeController($stateParams, $window, $controller, $translate, office
     function cancel() {
         $window.external.CancelOpenEsdh();
     }
+    
+    function saveOfficeDocWithCase(form) {
+        if (form.$invalid) {
+            notificationUtilsService.alert("Fill all fields");
+            return;
+        }
+        if (vm.newCase) {
+            vm.save().then(function(caseId) {
+                saveOfficeDocument(caseId);
+            });
+        } else {
+            if (!vm.selectedCase) {
+                notificationUtilsService.alert($translate.instant('CASE.CASE_NOT_FOUND'));
+                return;
+            }
+            saveOfficeDocument(vm.selectedCase['oe:id']);
+        }
+    }
 
-    function saveOfficeDocument(form) {
+    function saveOfficeDocument(caseId) {
         var metadata = {
             newFolder: true,
-            caseId: vm.selectedCase['oe:id'],
+            caseId: caseId,
             documentName: vm.title,
 //            nodeRef: response.caseDocsFolderNodeRef,
             docType: vm.documentProperties.doc_type,
