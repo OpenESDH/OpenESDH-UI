@@ -3,11 +3,6 @@
         <h2>{{ 'OFFICE.SAVE_EMAIL_IN_OPENESDH' | translate }}</h2>
         <form name="form">
             <h3>{{ 'CASE.CREATE_FROM' | translate }}
-                <!-- <md-select placeholder="{{ 'CASE.SELECT_CASE_TYPE' | translate }}" ng-model="vm.caseType" md-on-open="setPartial()" style="min-width: 200px;">
-                    <md-option ng-value="">existing case</md-option>
-                    <md-option ng-value="simple">simple case</md-option>
-                    <md-option ng-value="staff">staff case</md-option>
-                </md-select> -->
                 <md-menu ng-controller="CreateCaseMenuController as ctrl">
                     <md-button class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="{{ 'CASE.SELECT_CASE_TYPE' | translate }}">
                         {{ 'CASE.SELECT_CASE_TYPE' | translate }}
@@ -26,15 +21,24 @@
                 </md-menu>
             </h3>
 
-            <h4 ng-if="vm.newCase">{{ vm.caseInfo.type | caseType }}</h4>
+            <h4 ng-show="vm.newCase">{{ vm.caseInfo.type | caseType }}</h4>
             <ng-include src="vm.formTemplateUrl"></ng-include>
 
-            <h4 ng-if="!vm.newCase">{{ 'CASE.SEARCH_CASE' | translate }}</h4>
-            <md-autocomplete ng-if="!vm.newCase" required md-input-name="autocompleteField" md-input-minlength="2" md-selected-item="vm.selectedCase" md-search-text="searchText" md-items="item in vm.querySearch(searchText)" md-item-text="item['oe:id']" md-floating-label="* {{ 'CASE' | translate }}">
-                <md-item-template>
-                    <span md-highlight-text="searchText">{{item['oe:id'] }} {{item['cm:title']}}</span>
-                    <!--<span md-highlight-text="searchText" class="muted">(ID: {{item.id}})</span>-->
-                </md-item-template>
+            <h4 ng-hide="vm.newCase">{{ 'CASE.SEARCH_CASE' | translate }}</h4>
+            <md-autocomplete 
+                ng-if="!vm.newCase" 
+                ng-required="!vm.newCase" 
+                md-input-name="caseSelector"
+                md-input-minlength="2" 
+                md-selected-item="vm.selectedCase" 
+                md-search-text="searchText" 
+                md-items="item in vm.querySearch(searchText)" 
+                md-item-text="item['oe:id']" 
+                md-floating-label="* {{ 'CASE' | translate }}">
+              <md-item-template>
+                <span md-highlight-text="searchText">{{item['oe:id'] }} {{item['cm:title']}}</span>
+                <!--<span md-highlight-text="searchText" class="muted">(ID: {{item.id}})</span>-->
+              </md-item-template>
             </md-autocomplete>
 
             <h3>Email document</h3>
@@ -52,7 +56,9 @@
 
 
             <div class="md-actions" layout="row">
-                <md-button type="submit" class="md-primary" ng-click="vm.saveEmailWithCase(form)" ng-disabled="form.$invalid">{{ 'COMMON.SAVE_EMAIL' | translate }}</md-button>
+                <md-button type="submit" class="md-primary" ng-click="vm.saveEmailWithCase(form)" 
+                           ng-disabled="form.$invalid || !(vm.newCase || vm.selectedCase || vm.selectedCase['oe:id'])">
+                  {{ 'COMMON.SAVE_EMAIL' | translate }}</md-button>
                 <md-button type="button" ng-click="vm.cancel(form)">{{ 'COMMON.CANCEL' | translate }}</md-button>
             </div>
         </form>

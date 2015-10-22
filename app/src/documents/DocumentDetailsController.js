@@ -13,7 +13,7 @@
         
         var vm = this;
         vm.caseId = caseId;
-        vm.pageSize = 2;
+        vm.pageSize = 100;
         
         vm.uploadDocNewVersion = uploadDocNewVersion;
         vm.downloadDocument = downloadDocument;

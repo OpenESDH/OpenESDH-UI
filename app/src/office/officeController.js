@@ -5,7 +5,8 @@ angular
 
 var document;
 
-function OfficeController($stateParams, $window, $controller, $translate, officeService, caseService, sessionService, caseDocumentsService, notificationUtilsService) {
+function OfficeController($stateParams, $window, $controller, $translate, officeService, caseService, sessionService,
+        caseDocumentsService, notificationUtilsService, caseCrudDialogService) {
     var vm = this;
 
     if (typeof $window.external.getParameter1 !== 'undefined') {
@@ -22,9 +23,8 @@ function OfficeController($stateParams, $window, $controller, $translate, office
     vm.attachments = vm.document.Attachments;
 
     vm.saveEmailWithCase = saveEmailWithCase;
-    vm.saveEmail = saveEmail;
     vm.cancel = cancel;
-    vm.saveOfficeDocument = saveOfficeDocument;
+    vm.saveOfficeDocWithCase = saveOfficeDocWithCase;
     vm.setPartial = setPartial;
 
     loadDocumentConstraints();
@@ -33,48 +33,42 @@ function OfficeController($stateParams, $window, $controller, $translate, office
         sessionService.setUserInfo({ticket: $stateParams.alf_ticket});
     }
 
-    function setPartial(caseType){
+    function setPartial(caseType) {
         vm.formTemplateUrl = '';
-        var type = caseType?caseType.split(':')[0]:'';
+        vm.newCase = false;
+        vm.selectedCase = null;
 
-        var caseInfo = {
-            newCase: true,
-            type: caseType
-        };
+        if (caseType) {
+            vm.newCase = true;
+            var caseInfo = {
+                newCase: true,
+                type: caseType
+            };
+            var caseController = $controller(caseCrudDialogService.getCaseControllerName(caseType), {caseInfo: caseInfo});
+            caseController._afterCaseCreated = function(caseId) {
+                return caseId;
+            };
 
-        vm.newCase = true;
-
-        switch(type){
-            case 'simple':
-                angular.extend(this, $controller('CaseCommonDialogController', {caseInfo: caseInfo}));
-                vm.init();
-                break;
-            case 'staff':
-                angular.extend(this, $controller('StaffCaseDialogController', {caseInfo: caseInfo}));
-                vm.init();
-                break;
-            case '':
-                vm.newCase = false;
-                break;
+            angular.extend(this, caseController);
+            vm.init();
         }
-
     }
 
     function saveEmailWithCase() {
         if (vm.newCase) {
-            var props = vm.getPropsToSave();
-            // When submitting, do something with the case data
-            caseService.createCase(vm.caseInfo.type, props).then(function (caseId) {
+            vm.save().then(function(caseId) {
                 saveEmail(caseId);
-            }, function (response) {
-                notificationUtilsService.alert($translate.instant("CASE.ERROR_CREATING_CASE", {case_title: props.prop_cm_title}) + response.data.message);
             });
         } else {
+            if (!vm.selectedCase) {
+                notificationUtilsService.alert($translate.instant('CASE.CASE_NOT_FOUND'));
+                return;
+            }
             saveEmail(vm.selectedCase['oe:id']);
         }
     }
 
-    function saveEmail(caseId){
+    function saveEmail(caseId) {
         officeService.saveEmail({
             caseId: caseId,
             name: vm.subject,
@@ -97,26 +91,40 @@ function OfficeController($stateParams, $window, $controller, $translate, office
     function cancel() {
         $window.external.CancelOpenEsdh();
     }
+    
+    function saveOfficeDocWithCase(form) {
+        if (form.$invalid) {
+            notificationUtilsService.alert("Fill all fields");
+            return;
+        }
+        if (vm.newCase) {
+            vm.save().then(function(caseId) {
+                saveOfficeDocument(caseId);
+            });
+        } else {
+            if (!vm.selectedCase) {
+                notificationUtilsService.alert($translate.instant('CASE.CASE_NOT_FOUND'));
+                return;
+            }
+            saveOfficeDocument(vm.selectedCase['oe:id']);
+        }
+    }
 
-    function saveOfficeDocument(form) {
-        caseService.getCaseDocumentsFolderNodeRef(vm.selectedCase['oe:id']).then(function(response) {
-            var metadata = {
-                caseId: vm.selectedCase['oe:id'],
-                documentName: vm.title,
-                nodeRef: response.caseDocsFolderNodeRef,
-                docType: vm.documentProperties.doc_type,
-                docCategory: vm.documentProperties.doc_category
-            };
-            $window.external.SaveAsOpenEsdh(JSON.stringify(metadata), null);
-        }, function(error) {
-            $window.alert(JSON.stringify(error));
-        });
+    function saveOfficeDocument(caseId) {
+        var metadata = {
+            newFolder: true,
+            caseId: caseId,
+            documentName: vm.title,
+//            nodeRef: response.caseDocsFolderNodeRef,
+            docType: vm.documentProperties.doc_type,
+            docCategory: vm.documentProperties.doc_category
+        };
+        $window.external.SaveAsOpenEsdh(JSON.stringify(metadata), null);
     }
 
     /*
      * Autocomplete input
      */
-
     vm.querySearch = querySearch;
     function querySearch(query) {
         return caseService.getCases('base:case').then(function(response) {
@@ -124,9 +132,8 @@ function OfficeController($stateParams, $window, $controller, $translate, office
         });
     }
     function createFilterFor(query) {
-        var lowercaseQuery = angular.lowercase(query);
         return function filterFn(item) {
-            return (item['oe:id'].indexOf(query) != -1 || item['cm:title'].indexOf(query) != -1);
+            return (item['oe:id'].indexOf(query) !== -1 || item['cm:title'].indexOf(query) !== -1);
         };
     }
 

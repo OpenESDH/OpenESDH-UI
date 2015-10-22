@@ -663,7 +663,8 @@
         "LOGOUT": "Logout"
     },
     "OFFICE": {
-        "SAVE_EMAIL_IN_OPENESDH": "SAVE E-mail in OpenESDH"
+        "SAVE_EMAIL_IN_OPENESDH": "SAVE e-mail in OpenESDH",
+        "SAVE_DOCUMENT_IN_OPENESDH": "SAVE document in OpenESDH"
     },
     "DOCUMENT_TYPE": {
         "CREATE_EDIT_DOC_TYPE": "Create / edit document type",

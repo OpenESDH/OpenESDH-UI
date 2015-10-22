@@ -3,7 +3,7 @@
         .module('openeApp')
         .factory('alfrescoUploadService', AlfrescoUploadService);
 
-    function AlfrescoUploadService($http) {
+    function AlfrescoUploadService($http, notificationUtilsService) {
         
         var service = {
             uploadFile: uploadFile
@@ -47,6 +47,8 @@
                 headers: {'Content-Type': undefined}
             }).then(function(response){
                 return response;
+            }, function (response){
+                notificationUtilsService.alert(response.data.message);
             });
         }
         

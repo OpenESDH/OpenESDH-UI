@@ -11,6 +11,7 @@
         vm.cancel = cancel;
         vm.save = save;
         vm._saveNew = _saveNew;
+        vm._afterCaseCreated = null;//if assigned, then will be called after case creation _afterCaseCreated(caseId)
         vm._update = _update;
         vm.init = init;
         vm.getAuthorities = getAuthorities;
@@ -34,13 +35,13 @@
                     prop_oe_journalFacet: []
                 };
             }
-            
-            vm.getAuthorities(caseInfo.type||caseInfo.properties.type);
+            vm.getAuthorities();
         }
 
         function getAuthorities(type) {
             var vm = this;
-            return userService.getCaseAuthorities(type.split(':')[0].toUpperCase()).then(function(response) {
+            var caseType = type || vm.caseInfo.type || vm.caseInfo.properties.type;
+            return userService.getCaseAuthorities(caseType.split(':')[0].toUpperCase()).then(function(response) {
                 vm.authorities = response;
                 return response;
             });
@@ -93,22 +94,26 @@
         function save() {
             var vm = this;
             if(vm.editCase === true){
-                vm._update();
+                return vm._update();
             }else{
-                vm._saveNew();
+                return vm._saveNew();
             }
         }
         
-        function _saveNew(){
+        function _saveNew() {
             var vm = this;
             var props = vm.getPropsToSave();
             // When submitting, do something with the case data
-            caseService.createCase(vm.caseInfo.type, props).then(function (caseId) {
+            return caseService.createCase(vm.caseInfo.type, props).then(function (caseId){
+                if (vm._afterCaseCreated) {
+                    //if assigned, then will be called after case creation _afterCaseCreated(caseId)
+                    return vm._afterCaseCreated(caseId);
+                }
                 // When the form is submitted, show a notification:
                 notificationUtilsService.notify($translate.instant("CASE.CASE_CREATED", {case_title: props.prop_cm_title}));
                 $mdDialog.hide(caseId);
-                
-            }, function (response) {
+                return caseId;
+            }, function(response) {
                 notificationUtilsService.alert($translate.instant("CASE.ERROR_CREATING_CASE", {case_title: props.prop_cm_title}) + response.data.message);
             });
         }
@@ -116,7 +121,7 @@
         function _update(){
             var vm = this;
             var props = vm.getPropsToSave();
-            caseService.updateCase(vm.caseInfo.properties.nodeRef, props).then(function(result){
+            return caseService.updateCase(vm.caseInfo.properties.nodeRef, props).then(function(result){
                 notificationUtilsService.notify($translate.instant("CASE.CASE_UPDATED", {case_title: props.prop_cm_title}));
                 $mdDialog.hide(result);
             });    
