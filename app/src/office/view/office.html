@@ -3,15 +3,15 @@
     <h2>{{ 'OFFICE.SAVE_DOCUMENT_IN_OPENESDH' | translate }}</h2>
     <form name="form">
         <md-autocomplete required
-            md-input-name="autocompleteField"
+            md-input-name="caseSelector"
             md-input-minlength="2"
             md-selected-item="vm.selectedCase"
-            md-search-text="searchText"
-            md-items="item in vm.querySearch(searchText)"
+            md-search-text="searchTextCase"
+            md-items="item in vm.querySearch(searchTextCase)"
             md-item-text="item['oe:id']"
             md-floating-label="Case">
           <md-item-template>
-            <span md-highlight-text="searchText">{{item['oe:id'] }} {{item['cm:title']}}</span>
+            <span md-highlight-text="searchTextCase">{{item['oe:id'] }} {{item['cm:title']}}</span>
             <!--<span md-highlight-text="searchText" class="muted">(ID: {{item.id}})</span>-->
           </md-item-template>
         </md-autocomplete>

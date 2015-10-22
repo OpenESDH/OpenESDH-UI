@@ -21,17 +21,17 @@
             md-require-match="true">
     
         <md-autocomplete style="width: 30em;"
-                       md-input-name="autocompleteField"
+                       md-input-name="journalKey"
                        md-min-length="2"
                        md-input-minlength="2"
-                       md-selected-item="selectedItem"
-                       md-search-text="searchText"
-                       md-items="item in classCtrl.search(searchText, 'oe:journalKey')"
+                       md-selected-item="selectedItemKey"
+                       md-search-text="searchTextKey"
+                       md-items="item in classCtrl.search(searchTextKey, 'oe:journalKey')"
                        md-item-text="item.name + ' ' + item.title"
                        placeholder="{{'CASE.JOURNAL_KEY' | translate}}">
             <md-item-template>
-                <span md-highlight-text="searchText">{{item.name}}</span>
-                <span md-highlight-text="searchText" class="muted">{{item.title}}</span>
+                <span md-highlight-text="searchTextKey">{{item.name}}</span>
+                <span md-highlight-text="searchTextKey" class="muted">{{item.title}}</span>
             </md-item-template>
             <md-not-found>
                 {{ 'COMMON.NO_MATCHES' | translate }}
@@ -49,17 +49,17 @@
             md-autocomplete-snap
             md-require-match="true">
         <md-autocomplete style="width: 30em;"
-                     md-input-name="autocompleteField"
+                     md-input-name="journalFacet"
                      md-min-length="2"
                      md-input-minlength="2"
-                     md-selected-item="selectedItem"
-                     md-search-text="searchText"
-                     md-items="item in classCtrl.search(searchText, 'oe:journalFacet')"
+                     md-selected-item="selectedItemFacet"
+                     md-search-text="searchTextFacet"
+                     md-items="item in classCtrl.search(searchTextFacet, 'oe:journalFacet')"
                      md-item-text="item.name + ' ' + item.title"
                      placeholder="{{'CASE.JOURNAL_FACET' | translate}}">
             <md-item-template>
-                <span md-highlight-text="searchText">{{item.name}}</span>
-                <span md-highlight-text="searchText" class="muted">{{item.title}}</span>
+                <span md-highlight-text="searchTextFacet">{{item.name}}</span>
+                <span md-highlight-text="searchTextFacet" class="muted">{{item.title}}</span>
             </md-item-template>
             <md-not-found>
                 {{ 'COMMON.NO_MATCHES' | translate }}
