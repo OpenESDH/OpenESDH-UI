@@ -33,7 +33,7 @@
         caseService.getCaseInfo($stateParams.caseId).then(function(result) {
             vm.hasData = true;
             vm.caseInfo = result;
-            vm.caseInfoTemplateUrl = caseCrudDialogService.getCaseInfoTemplateUrl(result.properties.type);
+            vm.caseInfoTemplateUrl = caseCrudDialogService.getCaseInfoTemplateUrl(result.type);
             $scope.case = result.properties;
             $scope.caseIsLocked = result.isLocked;
             $scope.caseStatusChoices = result.statusChoices;

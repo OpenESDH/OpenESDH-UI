@@ -1,17 +1,17 @@
   <dt flex="33">{{ 'COMMON.ID' | translate }}</dt><dd flex="66">{{ case["oe:id"].value }}</dd>
   <dt flex="33">{{ 'COMMON.TITLE' | translate }}</dt><dd flex="66">{{ case["cm:title"].value }}</dd>
-  <dt flex="33">{{ 'CASE.STAFF.EMPLOYEE' | translate }}</dt><dd flex="66">{{ vm.caseInfo.allProps.properties["staff:employeeInfo"].value }}</dd>
+  <dt flex="33">{{ 'CASE.STAFF.EMPLOYEE' | translate }}</dt><dd flex="66">{{ case["staff:employeeInfo"].value }}</dd>
   <dt flex="33">{{ 'COMMON.STATUS' | translate }}</dt><dd flex="66">{{ case["oe:status"].value | caseStatus }}</dd>
   <dt flex="33">{{ 'COMMON.CREATEDBY' | translate }}</dt><dd flex="66">{{ case["cm:creator"].fullname }}</dd>
   <dt flex="33">{{ 'COMMON.CREATED' | translate }}</dt><dd flex="66">{{ case["cm:created"].value | openeDate}}</dd>
-  <dt flex="33">{{ 'CASE.CASE_OWNER' | translate }}</dt><dd flex="66">{{ case["base:owners"].fullname }}</dd>
+  <dt flex="33">{{ 'CASE.CASE_OWNER' | translate }}</dt><dd flex="66">{{ case["owners"][0].displayName }}</dd>
   <dt flex="33">{{ 'COMMON.MODIFIED' | translate }}</dt><dd flex="66">{{ case["cm:modified"].value  | openeDate}}</dd>
   <dt flex="33">{{ 'CASE.JOURNAL_KEY' | translate }}</dt><dd flex="66">{{ case["oe:journalKey"].displayValue }}</dd>
   <dt flex="33" ng-hide="case['oe:journalFacet'] | isEmpty">{{ 'CASE.JOURNAL_FACET' | translate}}</dt>
   <dd flex="66" ng-hide="case['oe:journalFacet'] | isEmpty">{{ case["oe:journalFacet"].displayValue }}</dd>
   
-  <dt flex="33">{{ 'CASE.STAFF.HIRE_DATE' | translate }}</dt><dd flex="66">{{ vm.caseInfo.allProps.properties["staff:hireDate"].value | openeDate}}</dd>
-  <dt flex="33">{{ 'CASE.STAFF.RESIGNATION_DATE' | translate }}</dt><dd flex="66">{{ vm.caseInfo.allProps.properties["staff:resignationDate"].value | openeDate}}</dd>
-  <dt flex="33">{{ 'CASE.STAFF.SALARY' | translate }}</dt><dd flex="66">{{ vm.caseInfo.allProps.properties["staff:salary"].value }}</dd>
+  <dt flex="33">{{ 'CASE.STAFF.HIRE_DATE' | translate }}</dt><dd flex="66">{{ case["staff:hireDate"].value | openeDate}}</dd>
+  <dt flex="33">{{ 'CASE.STAFF.RESIGNATION_DATE' | translate }}</dt><dd flex="66">{{ case["staff:resignationDate"].value | openeDate}}</dd>
+  <dt flex="33">{{ 'CASE.STAFF.SALARY' | translate }}</dt><dd flex="66">{{ case["staff:salary"].value }}</dd>
   
   <dt flex="33">{{ 'COMMON.DESCRIPTION' | translate }}</dt><dd flex="66">{{ case["cm:description"].value }}</dd>

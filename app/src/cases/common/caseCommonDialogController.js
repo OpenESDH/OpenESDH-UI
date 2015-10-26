@@ -40,7 +40,7 @@
 
         function getAuthorities(type) {
             var vm = this;
-            var caseType = type || vm.caseInfo.type || vm.caseInfo.properties.type;
+            var caseType = type || vm.caseInfo.type;
             return userService.getCaseAuthorities(caseType.split(':')[0].toUpperCase()).then(function(response) {
                 vm.authorities = response;
                 return response;
@@ -52,12 +52,12 @@
             var c = vm.caseInfo.properties;
             
             var caseObj = {
-                assoc_base_owners_added: c['base:owners'].nodeRef[0],
+                assoc_base_owners_added: c['owners'][0].nodeRef,
                 prop_cm_title: c['cm:title'].displayValue,
                 prop_oe_journalKey: [],
                 prop_oe_journalFacet: [],
-                prop_base_startDate: new Date(c['base:startDate'].value),
-                prop_base_endDate: new Date(vm.caseInfo.allProps.properties['base:endDate'].value),
+                prop_base_startDate: c['base:startDate'].value ? new Date(c['base:startDate'].value) : null,
+                prop_base_endDate: c['base:endDate'].value ? new Date(c['base:endDate'].value) : null,
                 prop_cm_description: c['cm:description'].displayValue
             };
             
@@ -80,8 +80,6 @@
                     title: nameTitle[1]
                 });
             }
-            
-            
             vm.case = {};
             angular.extend(vm.case, caseObj);
         }
