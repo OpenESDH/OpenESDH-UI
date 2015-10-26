@@ -139,16 +139,15 @@
                             if(user.uploadStatus.indexOf("@") == -1)
                                 failedUsers.push(user);
                         });
-                         msg = $translate.instant('USER.FAILED_TO_UPLOAD_MSG',{failedNumberOfUsers: numOfFailedUsers});
+                        msg = $translate.instant('USER.FAILED_TO_UPLOAD_MSG',{failedNumberOfUsers: numOfFailedUsers});
                         failedUsers.forEach(function(fUser){
                             msg+= "<br/>"+fUser.username + ": "+fUser.uploadStatus;
                         });
 
-                    }
-                    else{
+                    } else {
                         dlgTitle = $translate.instant('COMMON.SUCCESS');
-
                     }
+
                     $mdDialog.show(
                         $mdDialog.alert()
                             .parent(angular.element(document.querySelector('body')))
