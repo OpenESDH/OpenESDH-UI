@@ -1,16 +1,14 @@
 <md-content layout="column" ng-controller="ctrl.controller as taskCtrl">
-    <div class="sub-toolbar" layout="row" layout-align="space-between center" layout-padding>
-        <h1 class="md-headline" layout-margin>{{taskCtrl.task.properties.bpm_description}}</h1>
-    </div>
+    
     <md-tabs md-dynamic-height>
-        <md-tab md-on-select="vm.onTabChange('case')">
+        <md-tab>
             <md-tab-label>
                 <span>{{ 'TASK.TASK_DETAILS' | translate }}</span>
             </md-tab-label>
             <md-tab-body>
                 <md-content layout="row">
                     <div flex="50" layout="column">
-                        <md-card ng-controller="ctrl.controller as taskCtrl">
+                        <md-card>
                             <md-card-content>
                                 <h3>{{ 'WORKFLOW.INFORMATION' | translate }}</h3>
                                 <dl layout="row" layout-wrap>
@@ -36,10 +34,12 @@
                                     <dt flex="20">{{ 'COMMON.DESCRIPTION' | translate }}</dt>
                                     <dd flex="66">{{ taskCtrl.task.description }}</dd>
                                 </dl>
+                                
+                                <p ng-show="taskCtrl.task.isClaimable"> {{'TASK.THIS_TASK_IS_UNASSIGNED' | translate}}</p>
                             </md-card-content>
                             <div class="md-actions" layout="row">
-                                <md-button class="md-primary" ng-click="taskCtrl.updateTask()">{{'TASK.SAVE_AND_CLOSE' | translate}}</md-button>
-                                <md-button class="md-primary" ng-click="taskCtrl.cancel()">{{'COMMON.CANCEL' | translate}}</md-button>
+                                <md-button class="md-primary" ng-click="taskCtrl.claim()" ng-show="taskCtrl.task.isClaimable">{{'TASK.CLAIM' | translate}}</md-button>
+                                <md-button class="md-primary" ng-click="taskCtrl.releaseToPool()" ng-show="!taskCtrl.task.isClaimable && taskCtrl.task.isPooled">{{'TASK.RELEASE_TO_POOL' | translate}}</md-button>
                                 <md-button class="md-primary" ng-click="taskCtrl.approve()">{{'TASK.APPROVE' | translate}}</md-button>
                                 <md-button class="md-primary" ng-click="taskCtrl.reject()">{{'TASK.REJECT' | translate}}</md-button>
                             </div>

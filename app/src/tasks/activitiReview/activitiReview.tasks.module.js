@@ -10,11 +10,11 @@
             controller: 'reviewTaskController'
         }).taskForm({
             taskName: 'wf:approvedTask',
-            templateUrl: '/app/src/tasks/common/view/simpleTask.html',
+            templateUrl: '/app/src/tasks/common/view/completeTask.html',
             controller: 'simpleTaskController'
         }).taskForm({
             taskName: 'wf:rejectedTask',
-            templateUrl: '/app/src/tasks/common/view/simpleTask.html',
+            templateUrl: '/app/src/tasks/common/view/completeTask.html',
             controller: 'simpleTaskController'
         });
     }

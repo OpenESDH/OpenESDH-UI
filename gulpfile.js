@@ -24,6 +24,7 @@ function createWebserver(config) {
 	return gulp.src('./')
 			.pipe($.webserver({
 				open: true, // Open up a browser automatically
+        host: '0.0.0.0', // hostname needed if you want to access the server from anywhere on your local network
 				proxies: [{
 					source: '/alfresco', 
 					target: config.proxy + '/alfresco'

@@ -1,5 +1,20 @@
 <app-header></app-header>
 
-<ng-include src="ctrl.taskTemplateUrl"/>
+<div class="sub-toolbar" layout="row" layout-align="space-between center" layout-padding ng-controller="ctrl.controller as taskCtrl">
+    <div layout="row" layout-align="start center">
+        <md-button ng-href="#/tasks" ng-aria="{{ 'TASK.TASKS' | translate }}">
+            <i class="material-icons" style="vertical-align: middle;">arrow_back</i>
+            {{ 'TASK.TASKS' | translate }}
+        </md-button>
+        <h1 class="md-headline" layout-margin>{{ taskCtrl.task.properties.bpm_description }}</h1>
+    </div>
+    <md-button class="md-primary"
+               ng-click="taskCtrl.deleteWorkflow(taskCtrl.task)"
+               ng-show="taskCtrl.isAdmin">
+      {{ 'TASK.DELETE_TASK' | translate }} <i class="material-icons">close</i>
+    </md-button>
+</div>
+
+<ng-include src="ctrl.taskTemplateUrl"></ng-include>
 
 <app-footer></app-footer>

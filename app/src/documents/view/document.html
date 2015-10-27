@@ -2,42 +2,43 @@
 
 <md-content layout="column">
   
-  <div class="sub-toolbar">
+    <div class="sub-toolbar">
+        <div layout="row" layout-align="space-between center" layout-padding>
+            <div layout="row" layout-align="start center">
+                <md-button ng-href="#/cases/case/{{docCtrl.caseId}}">
+                    <i class="material-icons" style="vertical-align: middle;">arrow_back</i>
+                    {{ docCtrl.caseId }}
+                </md-button>
+                <h1 class="md-headline">
+                    {{ docCtrl.doc.title }}
+                    <span class="muted">({{docCtrl.doc.status | docStatus}})</span>
+                  </h1>
+            </div>
   
-    <md-button ng-href="#/cases/case/{{docCtrl.caseId}}"><i class="material-icons" style="vertical-align: middle;">arrow_back</i> {{ 'COMMON.BACK' | translate }}</md-button>
-    
-    <div layout="row" layout-align="space-between center" layout-padding layout-margin>
-  
-      <h1 class="md-headline">
-        {{ docCtrl.doc.title }}
-        <span class="muted">({{docCtrl.doc.status | docStatus}})</span>
-      </h1>
-      
-      <!-- TODO: This and the case status menu in case.html could probably be refactored into some shared code -->
-      
-      <md-menu>
-        <md-button class="md-primary" ng-click="$mdOpenMenu($event)"
-                   aria-label="{{ 'DOCUMENT.CHANGE_STATUS' | translate }}"
-                   ng-disabled="docCtrl.doc.statusChoices.length == 0">
-            {{ 'DOCUMENT.CHANGE_STATUS' | translate }}
-        </md-button>
-        <md-menu-content>
-          <md-menu-item ng-repeat="choiceName in docCtrl.doc.statusChoices">
-              <md-button
-                      ng-class="{'current-choice': choiceName === docCtrl.doc.status}"
-                      ng-disabled="choiceName === docCtrl.doc.status"
-                      aria-label="{{ choiceName | docStatus }}"
-                      ng-click="docCtrl.changeDocumentStatus(choiceName)">{{ choiceName | docStatus }}</md-button>
-          </md-menu-item>
-        </md-menu-content>
-      </md-menu>
-      
+        <!-- TODO: This and the case status menu in case.html could probably be refactored into some shared code -->
+        <md-menu>
+            <md-button class="md-primary" ng-click="$mdOpenMenu($event)"
+                       aria-label="{{ 'DOCUMENT.CHANGE_STATUS' | translate }}"
+                       ng-disabled="docCtrl.doc.statusChoices.length == 0">
+                {{ 'DOCUMENT.CHANGE_STATUS' | translate }}
+            </md-button>
+            <md-menu-content>
+                <md-menu-item ng-repeat="choiceName in docCtrl.doc.statusChoices">
+                    <md-button ng-class="{'current-choice': choiceName === docCtrl.doc.status}"
+                               ng-disabled="choiceName === docCtrl.doc.status"
+                               aria-label="{{ choiceName | docStatus }}"
+                               ng-click="docCtrl.changeDocumentStatus(choiceName)">
+                        {{ choiceName | docStatus }}
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+        
     </div>
-    
   </div>
   
   <div layout="row" layout-wrap>
-      <div flex="50">
+      <div flex="55">
           <md-card>
               <md-card-content>
                   <h3>{{ 'DOCUMENT.DOCUMENTS' | translate }}</h3>
@@ -63,6 +64,7 @@
                       <dd flex="100" ng-hide="docCtrl.docVersion.description | isEmpty">{{ docCtrl.docVersion.description }}</dd>
                     </dl>
                   </div>
+                  <p ng-bind="docCtrl.doc.description"></p>
               </md-card-content>
               <div class="md-actions" layout="row" layout-padding>
                   <md-button class="md-primary" ng-click="docCtrl.editDocumentProperties()" ng-disabled="docCtrl.doc.isLocked">{{ 'DOCUMENT.EDIT_PROPERTIES' | translate }}</md-button>
@@ -70,21 +72,7 @@
                   <md-button class="md-primary" ng-click="docCtrl.downloadDocument()">{{ 'COMMON.DOWNLOAD' | translate }}</md-button>
               </div>
           </md-card>
-       </div>
-       <div flex="50">
-           <md-card>
-               <md-card-content>
-                  <div layout="row" layout-align="space-between center">
-                      <h3 class="md-title">{{ 'DOCUMENT.PREVIEW' | translate }}</h3>
-                      <md-button class="md-primary" ng-click="docCtrl.refreshDocumentPreview()"><i class="material-icons">refresh</i></md-button>
-                   </div>
-                   <div ng-controller="docCtrl.docPreviewController">
-                       <ng-include class="preview-window" src="viewerTemplateUrl"></ng-include>
-                   </div>
-              </md-card-content>
-           </md-card>
-       </div>
-       <div flex="100">
+
           <md-card>
               <md-card-content>
                   <h3>{{ 'DOCUMENT.ATTACHMENTS.ATTACHMENTS' | translate }}</h3>
@@ -93,9 +81,9 @@
                       <div class="repeat-header" layout="row">
                           <span class="r" flex="5"></span>
                           <span class="r" flex>{{ 'COMMON.TITLE' | translate }}</span>
-                          <span class="r" flex="15">{{ 'COMMON.ADDED' | translate }}</span>
-                          <span class="r" flex="10">{{ 'COMMON.ADDED_BY' | translate }}</span>
-                          <span class="r" flex="15">{{ 'DOCUMENT.ATTACHMENTS.CURRENT_VERSION' | translate }}</span>
+                          <span class="r" flex="20">{{ 'COMMON.ADDED' | translate }}</span>
+                          <span class="r" flex="15">{{ 'COMMON.ADDED_BY' | translate }}</span>
+                          <span class="r" flex="20">{{ 'DOCUMENT.ATTACHMENTS.CURRENT_VERSION' | translate }}</span>
                           <span class="r" flex="10"></span>
                       </div>
                       <md-virtual-repeat-container>
@@ -103,10 +91,10 @@
                               <div class="repeat-item" layout="row">
                                   <span class="r" flex="5"><i class="material-icons">attachment</i></span>
                                   <span class="r" flex>{{attachment.name}}</span>
-                                  <span class="r muted" flex="15">{{attachment.created | openeDate}}</span>
-                                  <span class="r muted" flex="10">{{attachment.creator.firstName + ' ' + attachment.creator.lastName}}</span>
-                                  <span class="r muted" flex="15">{{attachment.versionLabel}}</span>
-                                  <span class="r muted" flex="10">
+                                  <span class="r muted" flex="20">{{attachment.created | openeDate}}</span>
+                                  <span class="r muted" flex="15">{{attachment.creator.firstName + ' ' + attachment.creator.lastName}}</span>
+                                  <span class="r muted" flex="20">{{attachment.versionLabel}}</span>
+                                  <span class="muted" flex="10">
                                       <md-menu>
                                            <md-button ng-click="$mdOpenMenu($event)">
                                               {{ 'COMMON.ACTIONS' | translate }}
@@ -123,10 +111,10 @@
                               <div class="repeat-item" layout="row" ng-repeat="attachmentVersion in attachment.versions">
                                   <span class="r" flex="5"></span>
                                   <span class="r" flex>{{attachmentVersion.name}}</span>
-                                  <span class="r muted" flex="15">{{attachmentVersion.created | openeDate}}</span>
-                                  <span class="r muted" flex="10">{{attachmentVersion.creator.firstName + ' ' + attachmentVersion.creator.lastName}}</span>
-                                  <span class="r muted" flex="15">{{attachmentVersion.versionLabel}}</span>
-                                  <span class="r muted" flex="10">
+                                  <span class="r muted" flex="20">{{attachmentVersion.created | openeDate}}</span>
+                                  <span class="r muted" flex="15">{{attachmentVersion.creator.firstName + ' ' + attachmentVersion.creator.lastName}}</span>
+                                  <span class="r muted" flex="20">{{attachmentVersion.versionLabel}}</span>
+                                  <span class="muted" flex="10">
                                       <md-menu>
                                           <md-button ng-click="$mdOpenMenu($event)">
                                               {{ 'COMMON.ACTIONS' | translate }}
@@ -146,6 +134,19 @@
                 <md-button class="md-primary" ng-click="docCtrl.uploadAttachment()" ng-disabled="docCtrl.doc.isLocked">{{ 'DOCUMENT.ATTACHMENTS.UPLOAD_NEW_ATTACHMENT' | translate }}</md-button>
               </div>
           </md-card>
+       </div>
+       <div flex="45">
+           <md-card>
+               <md-card-content>
+                  <div layout="row" layout-align="space-between center">
+                      <h3 class="md-title">{{ 'DOCUMENT.PREVIEW' | translate }}</h3>
+                      <md-button class="md-primary" ng-click="docCtrl.refreshDocumentPreview()"><i class="material-icons">refresh</i></md-button>
+                  </div>
+                  <div ng-controller="docCtrl.docPreviewController" class="preview-window-container">
+                      <ng-include class="preview-window" src="viewerTemplateUrl"></ng-include>
+                  </div>
+              </md-card-content>
+           </md-card>
        </div>
   </div>
 

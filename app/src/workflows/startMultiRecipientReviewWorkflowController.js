@@ -1,9 +1,9 @@
     
     angular
         .module('openeApp.workflows')
-        .controller('StartParallelReviewWorkflowController', StartParallelReviewWorkflowController);
+        .controller('StartMultiRecipientReviewWorkflowController', StartMultiRecipientReviewWorkflowController);
     
-    function StartParallelReviewWorkflowController($controller, userService, workflowDef) {
+    function StartMultiRecipientReviewWorkflowController($controller, userService, workflowDef) {
         
         angular.extend(this, $controller('BaseStartCaseWorkflowController', {}));
         var vm = this;
@@ -11,14 +11,15 @@
         vm.workflowDef = workflowDef;
         vm.BaseStartCaseWorkflowController_getWorkflowInfo = vm.getWorkflowInfo;
         vm.getWorkflowInfo = getWorkflowInfo;
+        vm.searchRecipient = searchRecipient; 
+        
+        vm.BaseStartCaseWorkflowController_isValid = vm.isValid;
+        vm.isValid = isValid;
         
         init();
         
         function init(){
             vm.init();
-            userService.getPersons().then(function(result){
-                vm.recipients = result;
-            });
         }
         
         function getWorkflowInfo(){
@@ -34,5 +35,14 @@
             });
             return wi;
         }
+        
+        function searchRecipient(){
+            return userService.getPersons(vm.searchText).then(function(result){
+                return result;
+            });
+        }
 
+        function isValid(currentStep){
+            return vm.BaseStartCaseWorkflowController_isValid(currentStep) && vm.selectedRecipients.length > 0;
+        }
     }

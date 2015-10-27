@@ -1,9 +1,7 @@
 <md-content layout="column" ng-controller="ctrl.controller as taskCtrl">
-    <div class="sub-toolbar" layout="row" layout-align="space-between center" layout-padding>
-        <h1 class="md-headline" layout-margin>{{taskCtrl.task.properties.bpm_description}}</h1>
-    </div>
+    
     <md-tabs md-dynamic-height>
-        <md-tab md-on-select="vm.onTabChange('case')">
+        <md-tab>
             <md-tab-label>
                 <span>{{ 'TASK.TASK_DETAILS' | translate }}</span>
             </md-tab-label>
@@ -12,7 +10,7 @@
                     <div flex="50" layout="column">
                         <md-card>
                             <md-card-content>
-                                <h3>{{ 'COMMON.INFORMATION' | translate }}</h4>
+                                <h3>{{ 'COMMON.INFORMATION' | translate }}</h4> 
                             <dl layout="row" layout-wrap>
 
                               <dt flex="20">{{ 'COMMON.STATUS' | translate }}</dt>
@@ -39,9 +37,7 @@
 
                             </dl>
                           </md-card-content>
-                          <div class="md-actions" layout="row">
-                            <md-button class="md-primary" ng-click="taskCtrl.updateTask()">{{'TASK.SAVE_AND_CLOSE' | translate}}</md-button>
-                            <md-button class="md-primary" ng-click="taskCtrl.cancel()">{{'COMMON.CANCEL' | translate}}</md-button>
+                          <div class="md-actions" layout="row" layout-padding>
                             <md-button class="md-primary" ng-click="taskCtrl.taskDone()">{{'TASK.TASK_DONE' | translate}}</md-button>
                           </div>
                         </md-card>
@@ -77,3 +73,4 @@
             </md-tab-body>
         </md-tab>
     </md-tabs>
+</md-content>

@@ -10,7 +10,7 @@
             controller: 'simpleTaskController'
         }).taskForm({
             taskName: 'wf:completedAdhocTask',
-            templateUrl: '/app/src/tasks/common/view/simpleTask.html',
+            templateUrl: '/app/src/tasks/common/view/completeTask.html',
             controller: 'simpleTaskController'
         });
     }
