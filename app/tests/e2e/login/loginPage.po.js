@@ -1,20 +1,15 @@
+var globalHeaderMenu = require('../common/globalHeader.po.js');
+
 var LoginPage = function () {
-    var globalHeaderMenu = require('../common/globalHeader.po.js');
-
-
-    return{
-        login: login,
-        loginAs: loginAs,
-        logout: logout
-    };
+    
+    var public = {};
 
     /**
      * Default login as admin.
-     *
      * TODO might want to abstract the password out to a file and pull that in as a dep
      */
-    function login() {
-        loginAs("admin", "admin");
+    public.login = function() {
+        public.loginAs("admin", "bullerfisk1992");
     }
 
     /**
@@ -22,7 +17,7 @@ var LoginPage = function () {
      * @param userName
      * @param password
      */
-    function loginAs(userName, password) {
+    public.loginAs = function(userName, password) {
         //following PageObject pattern define the functions here.
         browser.get('http://localhost:8000');
         //The fields
@@ -36,14 +31,13 @@ var LoginPage = function () {
         browser.driver.sleep(2000);
     }
 
-    function logout() {
+    public.logout = function() {
         globalHeaderMenu.getHeaderMenuItem().userMenuBtn.click();
         element(by.xpath('//button[@id="logout"]')).click();
         browser.driver.sleep(2000);
     }
+
+    return public;
 };
 
-
-module.exports.getLoginPage = function () {
-    return new LoginPage();
-};
+module.exports = LoginPage();

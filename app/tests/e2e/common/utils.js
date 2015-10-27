@@ -16,7 +16,7 @@ module.exports.generateRandomString = function (characterLength) {
 /**
  * Usage: Return Random Email Id.
  */
-exports.getRandomEmail = function () {
+module.exports.getRandomEmail = function () {
     var strValues = "abcdefghijk123456789";
     var strEmail = "";
     for (var i = 0; i < 7; i++) {

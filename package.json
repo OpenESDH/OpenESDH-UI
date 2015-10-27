@@ -33,6 +33,6 @@
   "scripts": {
     "postinstall": "bower update",
     "prestart": "npm update",
-    "test": "protractor ./e2e/protractor.conf.js"
+    "test": "protractor ./app/tests/e2e/conf.js"
   }
 }

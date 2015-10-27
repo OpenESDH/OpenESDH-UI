@@ -14,6 +14,4 @@ var CasePage = function () {
 
 };
 
-module.exports.getCasePage = function () {
-    return new CasePage();
-};
+module.exports = CasePage();

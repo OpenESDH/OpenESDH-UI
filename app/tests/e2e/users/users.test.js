@@ -1,8 +1,7 @@
-describe('openESDH case page tests', function () {
+var userPage = require('./userPage.po.js');
+var loginPage = require('../login/loginPage.po.js');
 
-    var userPage = require('./userPage.po.js').getUserPage();
-    var loginPageBuilder = require('../login/loginPage.po.js');
-    var loginPage = loginPageBuilder.getLoginPage();
+describe('openESDH case page tests', function () {
 
     //Executed before each of the "it" tests
     beforeEach(function () {

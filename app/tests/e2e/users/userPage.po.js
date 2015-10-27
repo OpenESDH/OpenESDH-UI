@@ -1,6 +1,8 @@
-var CasePage = function () {
-    var globalHeaderMenu = require('../common/globalHeader.po.js');
-    var oeUtils = require('../common/utils');
+var globalHeaderMenu = require('../common/globalHeader.po.js');
+var oeUtils = require('../common/utils');
+
+var UserPage = function () {
+
     //All input fields in the dialog encapsulated in an object
     var userCUInputFields = {
         firstName: element(by.model('ucd.user.firstName')),
@@ -69,6 +71,4 @@ var CasePage = function () {
     }
 };
 
-module.exports.getUserPage = function () {
-    return new CasePage();
-};
+module.exports = UserPage();

@@ -10,7 +10,7 @@ var CaseCrudDialog = function () {
     var cancalDialogBtn = element(by.id('create-case-dlg-cancel-btn')).click();
 
 
-    return{
+    return {
         fillCrudDialog: fillCrudDialog
     };
 
@@ -37,6 +37,4 @@ var CaseCrudDialog = function () {
 };
 
 
-module.exports.getCaseCrudDialog = function () {
-    return new CaseCrudDialog();
-};
+module.exports = CaseCrudDialog();

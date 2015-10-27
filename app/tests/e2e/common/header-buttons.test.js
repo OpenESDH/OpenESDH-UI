@@ -1,8 +1,7 @@
-describe('openESDH header', function() {
+var globalHeader = require('./globalHeader.po.js');
+var loginPage = require('../login/loginPage.po.js');
 
-    var globalHeader = require('./globalHeader.po.js');
-    var loginPageBuilder = require('../login/loginPage.po.js');
-    var loginPage = loginPageBuilder.getLoginPage();
+describe('openESDH header', function() {
 
     //Executed before each of the "it" tests
     beforeEach(function() {
