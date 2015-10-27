@@ -11,7 +11,9 @@ var environment = {
 
 var paths = {
 	scripts: ['app/src/**/*.module.js', 'app/src/**/*.js', '!app/src/**/*Spec.js'],
-	scss: ['app/src/app.scss', 'app/src/**/*.scss']
+	scss: ['app/src/app.scss', 'app/src/**/*.scss'],
+	e2e_tests: ['app/tests/e2e/**/*test.js'],
+	protractorConfigFile: 'app/tests/e2e/conf.js'
 };
 
 var dist = {
@@ -24,7 +26,7 @@ function createWebserver(config) {
 	return gulp.src('./')
 			.pipe($.webserver({
 				open: true, // Open up a browser automatically
-        host: '0.0.0.0', // hostname needed if you want to access the server from anywhere on your local network
+        		host: '0.0.0.0', // hostname needed if you want to access the server from anywhere on your local network
 				proxies: [{
 					source: '/alfresco', 
 					target: config.proxy + '/alfresco'
@@ -61,6 +63,15 @@ gulp.task('css', function () {
 			.on('error', $.util.log)
 });
 
+// UI-test
+gulp.task('e2e-tests', function() {
+	gulp.src(paths.e2e_tests)
+	    .pipe($.protractor.protractor({
+	        configFile: paths.protractorConfigFile
+	    }))
+	    .on('error', function(e) { throw e })
+});
+
 // Set up watchers
 gulp.task('watch', function () {
 	gulp.watch(paths.scripts, ['scripts']);
@@ -89,6 +100,9 @@ gulp.task('demo', ['build', 'watch'], function () {
 gulp.task('local', ['build', 'watch'], function () {
 	createWebserver(environment.local);
 });
+
+/* Tests */
+gulp.task('ui-test', ['e2e-tests']);
 
 /*
 	Running '$ gulp'
