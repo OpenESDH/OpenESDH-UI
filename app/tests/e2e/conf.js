@@ -1,4 +1,4 @@
-var env = require('./__appConf/environment.js');
+//var env = require('./__appConf/environment.js');
 
 exports.config = {
     capabilities: {'browserName': 'chrome'},
@@ -13,17 +13,13 @@ exports.config = {
         showColors: true
     },
     onPrepare: function() {
-        //browser.driver.manage().window().maximize();
         browser.driver.manage().window().setSize(1440, 800);
         browser.get('http://localhost:8000/#');
     },
     suites: {
-        login: './login/*.test.js',
+        login:  './login/*.test.js',
         header: './common/*.test.js',
-        case: './cases/*.test.js',
-        users: './users/*.test.js'
-    },
-    specs: [
-        './**/*.test.js'
-    ]
+        case:   './cases/*.test.js',
+        users:  './users/*.test.js'
+    }
 };
