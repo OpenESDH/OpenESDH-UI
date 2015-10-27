@@ -13,7 +13,7 @@
         
         var vm = this;
         vm.caseId = caseId;
-        vm.pageSize = 2;
+        vm.pageSize = 100;
         
         vm.uploadDocNewVersion = uploadDocNewVersion;
         vm.downloadDocument = downloadDocument;
@@ -35,7 +35,7 @@
         
         function loadCaseDocumentInfo(){
             caseDocumentDetailsService.getCaseDocument(documentNodeRef).then(function(document){
-                caseDocument = document;                
+                caseDocument = document;
                 vm.doc = document;
                 loadVersionDetails();
                 loadDocumentPreview();

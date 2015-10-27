@@ -6,10 +6,12 @@
     function TaskService($http, sessionService) {
         return {
             getTasks: getTasks,
+            getCaseTasks: getCaseTasks,
             getCurrentUserWorkflowTasks: getCurrentUserWorkflowTasks,
             getTaskDetails: getTaskDetails,
             updateTask: updateTask,
-            endTask: endTask
+            endTask: endTask,
+            getTaskStatuses: getTaskStatuses
         };
         
         function getTasks(){
@@ -18,6 +20,12 @@
             }
             return $http.get("/alfresco/s/api/openesdh/workflow/tasks").then(function (response) {
                 return response.data.tasks;
+            });
+        }
+        
+        function getCaseTasks(caseId){
+            return $http.get("/alfresco/s/api/openesdh/case/" + caseId + "/tasks").then(function (response) {
+                return response.data;
             });
         }
         
@@ -48,6 +56,10 @@
             return $http.post(url).then(function(response){
                 return response.data; 
             });
+        }
+        
+        function getTaskStatuses(){
+            return  ["Not Yet Started", "In Progres", "On Hold", "Cancelled", "Completed"];
         }
 
     }

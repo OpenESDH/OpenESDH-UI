@@ -1,0 +1,39 @@
+<md-dialog aria-label="">
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">
+        <h2>{{dlg.workflowDef.title}}</h2>
+      </div>
+    </md-toolbar>
+        <mt-wizard chevrons-always-visible="false" on-finish="dlg.submit()" on-cancel="dlg.cancel()" is-valid="dlg.isValid(currentStep)">
+            
+            <mt-wz-step title="{{'WORKFLOW.INFORMATION' | translate}}" class="workflowWizardStep">
+                <form name="wfForm">
+                    <md-input-container ng-init="dlg.appendForm(wfForm)">
+                        <label>{{'WORKFLOW.ASSIGNEES' | translate}}</label>
+                        <md-chips ng-model="dlg.selectedRecipients" md-autocomplete-snap md-require-match="true">
+                            <md-autocomplete
+                                md-selected-item="dlg.selectedItem"
+                                md-search-text="dlg.searchText"
+                                md-items="item in dlg.searchRecipient()"
+                                md-item-text="item.name"
+                                md-no-cache="true"
+                                md-icon=""
+                                placeholder="{{ 'WORKFLOW.CHOOSE_ASSIGNEES'| translate }}">
+                              <span md-highlight-text="dlg.searchText">{{item.name}}</span>
+                            </md-autocomplete>
+                            <md-chip-template>
+                              <span>
+                                <strong>{{$chip.name}}</strong>
+                              </span>
+                            </md-chip-template>
+                        </md-chips>
+                    </md-input-container>
+                    <ng-include src="'app/src/workflows/view/selectDueDatePriorityMessageSendEmail.html'"></ng-include>
+                </form>
+            </mt-wz-step>
+            
+            <mt-wz-step title="{{'WORKFLOW.SELECT_ITEMS' | translate}}" class="workflowWizardStep">
+                <ng-include src="'app/src/workflows/view/selectCaseDocuments.html'"></ng-include>
+            </mt-wz-step>
+        </mt-wizard>
+</md-dialog>

@@ -13,8 +13,8 @@
           </div>
         </md-input-container>
         <md-input-container>
-          <label>{{ 'LOGIN.PASSWORD' | translate }}</label>
           <input type="password" ng-model="vm.credentials.password" name="password" required>
+          <label>{{ 'LOGIN.PASSWORD' | translate }}</label>
         </md-input-container>
         <md-button type="submit" class="md-raised md-primary" ng-click="vm.login(vm.credentials)" ng-disabled="form.$invalid">{{ 'LOGIN.LOGIN' | translate }}</md-button>
       </form>

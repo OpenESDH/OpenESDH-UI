@@ -59,12 +59,10 @@
          * @param caseData
          * @returns {*}
          */
-        function createCase(caseData) {
-            var params = getCaseParams(caseData);
-            var type = 'simple:case';
+        function createCase(type, props) {
             return userService.getHome().then(function (response) {
-                params.alf_destination = response.nodeRef;
-                return $http.post('/alfresco/service/api/type/' + type + '/formprocessor', params).then(function (response) {
+                props.alf_destination = response.nodeRef;
+                return $http.post('/alfresco/service/api/type/' + type + '/formprocessor', props).then(function (response) {
                     var nodeRef = response.data.persistedObject;
                     return $http.get('/alfresco/service/api/openesdh/documents/isCaseDoc/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri).then(function (response) {
                         return response.data.caseId;
@@ -73,33 +71,12 @@
             });
         }
         
-        function updateCase(caseData, oldCaseData){
-            var params = getCaseParams(caseData, oldCaseData);
-            
-            return $http.post('/alfresco/service/api/node/' + alfrescoNodeUtils.processNodeRef(caseData.nodeRef).uri + '/formprocessor', params).then(function (response) {
+        function updateCase(nodeRef, props){
+            return $http.post('/alfresco/service/api/node/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri + '/formprocessor', props).then(function (response) {
                 return response.data;
             });
         }
         
-        function getCaseParams(caseData, oldCaseData){
-            var params = {
-                prop_cm_title: caseData.title,
-                prop_cm_description: caseData.description,
-                prop_base_startDate: caseData.startDate,
-                prop_base_endDate: caseData.endDate,
-                prop_oe_journalKey: caseData.journalKey,
-                prop_oe_journalFacet: caseData.journalFacet
-            };
-            
-            if(oldCaseData == null || oldCaseData == undefined){
-                params.assoc_base_owners_added = caseData.owner;
-            }else if(caseData.owner != oldCaseData.owner){
-                params.assoc_base_owners_added = caseData.owner; 
-                params.assoc_base_owners_removed = oldCaseData.owner;
-            }
-            return params;
-        }
-
         function getCaseInfo(caseId) {
             return $http.get('/alfresco/service/api/openesdh/caseinfo/' + caseId).then(getCaseInfoComplete);
 

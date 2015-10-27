@@ -3,7 +3,7 @@
        .module('openeApp.cases')
        .controller('CaseInfoController', CaseInfoController);
   
-  /**
+  /*
    * Main CaseInfoController for the Cases module
    * @param $scope
    * @param $stateParams
@@ -12,7 +12,7 @@
    * @param caseService
    * @constructor
    */
-  function CaseInfoController($scope, $stateParams, $mdDialog, $translate, caseService, 
+  function CaseInfoController($scope, $stateParams, $mdDialog, $translate, $filter, sessionService, caseService, 
               notificationUtilsService, startCaseWorkflowService, caseCrudDialogService, casePrintDialogService) {
     var vm = this;
 
@@ -21,48 +21,39 @@
     vm.onTabChange = onTabChange;
     vm.startWorklfow = startWorklfow;
     vm.printCase = printCase;
+    $scope.$filter = $filter;
 
+    if ($stateParams.alf_ticket) {
+        sessionService.setUserInfo({ticket: $stateParams.alf_ticket});
+    }  
+      
     loadCaseInfo();
     
-    function loadCaseInfo(){
-        caseService.getCaseInfo($stateParams.caseId).then(function(result){
+    function loadCaseInfo() {
+        caseService.getCaseInfo($stateParams.caseId).then(function(result) {
+            vm.hasData = true;
+            vm.caseInfo = result;
+            vm.caseInfoTemplateUrl = caseCrudDialogService.getCaseInfoTemplateUrl(result.properties.type);
             $scope.case = result.properties;
             $scope.caseIsLocked = result.isLocked;
             $scope.caseStatusChoices = result.statusChoices;
+        }, function(response) {
+            vm.hasData = false;
+            if (response.status === 400){
+                //bad reqest (might be handled exception)
+                //CASE.CASE_NOT_FOUND
+                var key = 'CASE.' + response.data.message.split(' ')[1];
+                var msg = $translate.instant(key);
+                notificationUtilsService.alert(msg === key ? response.data.message : msg);
+                return;
+            }
+            //other exceptions
+            notificationUtilsService.alert(response.data.message);
         });
     }
     
     function editCase(ev) {
-        var c = $scope.case;
-        var caseObj = {
-            title: c['cm:title'].displayValue,
-            owner: c['base:owners'].nodeRef[0],
-            journalKey: [],
-            journalFacet: [],
-            startDate: new Date(c['base:startDate'].value),
-            description: c['cm:description'].displayValue,
-            nodeRef: c.nodeRef
-        };
-        if(c['oe:journalKey'].value){
-            var nameTitle = c['oe:journalKey'].displayValue.split(' ');
-            caseObj.journalKey.push({
-                value: c['oe:journalKey'].value,
-                nodeRef: c['oe:journalKey'].value,
-                name: nameTitle[0],
-                title: nameTitle[1]
-            });    
-        }
-        if(c['oe:journalFacet'].value){
-            var nameTitle = c['oe:journalFacet'].displayValue.split(' ');
-            caseObj.journalFacet.push({
-                value: c['oe:journalFacet'].value,
-                nodeRef: c['oe:journalFacet'].value,
-                name: nameTitle[0],
-                title: nameTitle[1]
-            });
-        }
-        
-        caseCrudDialogService.editCase(caseObj).then(function(result){
+        caseCrudDialogService.editCase(vm.caseInfo).then(function(result){
             loadCaseInfo();
         });
     }

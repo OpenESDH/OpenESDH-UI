@@ -8,8 +8,15 @@
         $provide.decorator('mtWizardDirective', function($delegate, $controller){
             var directive = $delegate[0];
 
-            directive.$$isolateBindings.onCancel = {
+            var isolateBindings = directive.$$isolateBindings;
+            isolateBindings.onCancel = {
                     attrName: 'onCancel',
+                    mode: '&',
+                    optional: 'true'
+            };
+            
+            isolateBindings.isValid = {
+                    attrName: 'isValid',
                     mode: '&',
                     optional: 'true'
             };
@@ -26,7 +33,7 @@
                     ' <div layout="row" layout-align="end center" >' +
                     '  <md-button class="md-primary" aria-label="cancel" ng-click="onCancel()" ng-show="selectedIndex == 0 ">{{"COMMON.CANCEL" | translate}}</md-button>' +
                     '  <md-button class="md-primary" aria-label="previous" ng-click="previous()" ng-show="selectedIndex > 0 ">{{"COMMON.BACK" | translate}}</md-button>' +
-                    '  <md-button class="md-primary" aria-label="next" ng-click="next()"  ng-show="selectedIndex < steps.length -1">{{"COMMON.NEXT" | translate}}</md-button>' +
+                    '  <md-button class="md-primary" aria-label="next" ng-click="next()"  ng-show="selectedIndex < steps.length -1" ng-disabled="(isValid && !isValid({currentStep: selectedIndex}))">{{"COMMON.NEXT" | translate}}</md-button>' +
                     '  <md-button class="md-primary" aria-label="finish" ng-click="onFinish()"  ng-show="selectedIndex == steps.length -1">{{"COMMON.DONE" | translate}}</md-button>' +
                     ' </div>' +
                     '</div>';
@@ -38,6 +45,11 @@
         });
         
         startCaseWorkflowServiceProvider.wfDialogConfig({
+            workflowName: 'activiti$activitySequentialReview',
+            controller: 'StartMultiRecipientReviewWorkflowController',
+            controllerAs: 'dlg',
+            templateUrl: 'app/src/workflows/view/startSequentialReviewWorkflow.html'
+        }).wfDialogConfig({
             workflowName: 'activiti$activitiAdhoc',
             controller: 'StartSingleRecipientWorkflowController',
             controllerAs: 'dlg',
@@ -49,9 +61,9 @@
             templateUrl: 'app/src/workflows/view/startParallelGroupReviewWorkflow.html'
         }).wfDialogConfig({
             workflowName: 'activiti$activitiParallelReview',
-            controller: 'StartParallelReviewWorkflowController',
+            controller: 'StartMultiRecipientReviewWorkflowController',
             controllerAs: 'dlg',
-            templateUrl: 'app/src/workflows/view/startParallelReviewWorkflow.html'            
+            templateUrl: 'app/src/workflows/view/startMultiRecipientReviewWorkflow.html'            
         }).wfDialogConfig({
             workflowName: 'activiti$activitiReview',
             controller: 'StartSingleRecipientWorkflowController',
@@ -63,5 +75,4 @@
              controllerAs: 'dlg',
              templateUrl: 'app/src/workflows/view/startParallelGroupReviewWorkflow.html'
         });
-        
     }

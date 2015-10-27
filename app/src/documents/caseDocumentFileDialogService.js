@@ -29,9 +29,9 @@
                         formData.fileToUpload = fileObject;
                     }
                     
-                    caseDocumentsService.getDocumentsFolderNodeRef(caseId).then(function(res){
-                        caseDocumentsService.uploadCaseDocument(formData.fileToUpload, res.caseDocsFolderNodeRef, formData.documentProperties).then(function(result){
-                            resolve(result);
+                    return caseDocumentsService.getDocumentsFolderNodeRef(caseId).then(function(res){
+                        return caseDocumentsService.uploadCaseDocument(formData.fileToUpload, res.caseDocsFolderNodeRef, formData.documentProperties).then(function(result){
+                            return resolve(result);
                         });
                     });
                     
@@ -155,6 +155,7 @@
             $scope.documentProperties = {
                     doc_type: document.typeId,
                     doc_category: document.categoryId,
+                    description: document.description,
                     majorVersion: "false"
             };
             
@@ -179,7 +180,8 @@
             $scope.documentProperties = {
                     title: document.title,
                     doc_type: document.typeId,
-                    doc_category: document.categoryId
+                    doc_category: document.categoryId,
+                    description: document.description
             };
             
             $scope.cancel = function() {

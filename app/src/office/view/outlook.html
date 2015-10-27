@@ -1,37 +1,66 @@
 <md-card>
-  <md-card-content>
-    <h2>{{ 'OFFICE.SAVE_EMAIL_IN_OPENESDH' | translate }}</h2>
+    <md-card-content>
+        <h2>{{ 'OFFICE.SAVE_EMAIL_IN_OPENESDH' | translate }}</h2>
+        <form name="form">
+            <h3>{{ 'CASE.CREATE_FROM' | translate }}
+                <md-menu ng-controller="CreateCaseMenuController as ctrl">
+                    <md-button class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="{{ 'CASE.SELECT_CASE_TYPE' | translate }}">
+                        {{ 'CASE.SELECT_CASE_TYPE' | translate }}
+                    </md-button>
+                    <md-menu-content>
+                        <md-menu-item>
+                            <md-button ng-click="vm.setPartial()">existing case</md-button>
+                        </md-menu-item>
+                        <md-menu-item ng-repeat="caseType in ctrl.registeredCaseTypes">
+                            <md-button ng-click="vm.setPartial(caseType)">{{ caseType | caseType | lowercase }}</md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-disabled="true">{{ 'CASE.CASETYPE_OTHER' | translate | lowercase }}</md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </h3>
 
-    <form name="form">
-        <md-autocomplete required
-            md-input-name="autocompleteField"
-            md-input-minlength="2"
-            md-selected-item="vm.selectedCase"
-            md-search-text="searchText"
-            md-items="item in vm.querySearch(searchText)"
-            md-item-text="item['oe:id']"
-            md-floating-label="Case">
-          <md-item-template>
-            <span md-highlight-text="searchText">{{item['oe:id'] }} {{item['cm:title']}}</span>
-            <!--<span md-highlight-text="searchText" class="muted">(ID: {{item.id}})</span>-->
-          </md-item-template>
-        </md-autocomplete>
-        <md-input-container>
-            <label>{{ 'COMMON.TITLE' | translate }}</label>
-            <input type="text" ng-model="vm.subject" required>
-        </md-input-container>
-        <div ng-show="vm.attachments.length > 0">
-            <md-subheader class="md-no-sticky">{{ 'DOCUMENT.ATTACHMENTS' | translate }}:</md-subheader>
-            <md-list-item ng-repeat="attachment in vm.attachments">
-                <md-checkbox ng-model="attachment.selected"></md-checkbox>
-                <p>{{attachment.Name}}</p>
-            </md-list-item>
-        </div>
-        <div class="md-actions" layout="row">
-            <md-button type="submit" class="md-primary" ng-click="vm.save(form)" ng-disabled="form.$invalid">{{ 'COMMON.SAVE' | translate }}</md-button>
-            <md-button type="button" ng-click="vm.cancel(form)">{{ 'COMMON.CANCEL' | translate }}</md-button>
-        </div>
-    </form>
+            <h4 ng-show="vm.newCase">{{ vm.caseInfo.type | caseType }}</h4>
+            <ng-include src="vm.formTemplateUrl"></ng-include>
 
-  </md-card-content>
+            <h4 ng-hide="vm.newCase">{{ 'CASE.SEARCH_CASE' | translate }}</h4>
+            <md-autocomplete 
+                ng-if="!vm.newCase" 
+                ng-required="!vm.newCase" 
+                md-input-name="caseSelector"
+                md-input-minlength="2" 
+                md-selected-item="vm.selectedCase" 
+                md-search-text="searchText" 
+                md-items="item in vm.querySearch(searchText)" 
+                md-item-text="item['oe:id']" 
+                md-floating-label="* {{ 'CASE' | translate }}">
+              <md-item-template>
+                <span md-highlight-text="searchText">{{item['oe:id'] }} {{item['cm:title']}}</span>
+                <!--<span md-highlight-text="searchText" class="muted">(ID: {{item.id}})</span>-->
+              </md-item-template>
+            </md-autocomplete>
+
+            <h3>Email document</h3>
+            <md-input-container>
+                <label><span class="md-warn">*</span> {{ 'COMMON.TITLE' | translate }}</label>
+                <input type="text" ng-model="vm.subject" required>
+            </md-input-container>
+            <md-list ng-show="vm.attachments.length > 0">
+                <md-subheader class="md-no-sticky">{{ 'DOCUMENT.ATTACHMENTS' | translate }}:</md-subheader>
+                <md-list-item ng-repeat="attachment in vm.attachments">
+                    <md-checkbox ng-model="attachment.selected"></md-checkbox>
+                    <p>{{attachment.Name}}</p>
+                </md-list-item>
+            </md-list>
+
+
+            <div class="md-actions" layout="row">
+                <md-button type="submit" class="md-primary" ng-click="vm.saveEmailWithCase(form)" 
+                           ng-disabled="form.$invalid || !(vm.newCase || vm.selectedCase || vm.selectedCase['oe:id'])">
+                  {{ 'COMMON.SAVE_EMAIL' | translate }}</md-button>
+                <md-button type="button" ng-click="vm.cancel(form)">{{ 'COMMON.CANCEL' | translate }}</md-button>
+            </div>
+        </form>
+    </md-card-content>
 </md-card>

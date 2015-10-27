@@ -22,7 +22,7 @@
             }
         }).state('outlook.caseinfo', {
             parent: 'site',
-            url: '/outlook/case/:caseId',
+            url: '/outlook/case/:caseId?alf_ticket',
             views: {
                 'content@': {
                     templateUrl: '/app/src/office/view/caseInfo.html',
@@ -32,7 +32,8 @@
             },
             data: {
 //                authorizedRoles: [USER_ROLES.user]
-                authorizedRoles: ['user']
+//                authorizedRoles: ['user']
+                authorizedRoles: []
             }
         }).state('office', {
             parent: 'site',
