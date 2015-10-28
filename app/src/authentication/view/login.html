@@ -9,7 +9,7 @@
                     <label>{{ 'LOGIN.USER_NAME' | translate }}</label>
                     <input type="text" ng-model="vm.credentials.username" name="username" required autofocus>
                     <div ng-messages="form.username.$error" ng-if="form.username.$dirty">
-                        <div ng-message="required">{{ 'FILL_ALL_REQUIRED_FIELDS' : translate }}</div>
+                        <div ng-message="required">{{ 'COMMON.FILL_ALL_REQUIRED_FIELDS' | translate }}</div>
                     </div>
                 </md-input-container>
 
@@ -17,7 +17,7 @@
                     <label>{{ 'LOGIN.PASSWORD' | translate }}</label>
                     <input type="password" ng-model="vm.credentials.password" name="password" required>
                     <div ng-messages="form.password.$error" ng-if="form.password.$dirty">
-                        <div ng-message="required">{{ 'FILL_ALL_REQUIRED_FIELDS' : translate }}</div>
+                        <div ng-message="required">{{ 'COMMON.FILL_ALL_REQUIRED_FIELDS' | translate }}</div>
                     </div>
                 </md-input-container>
 
