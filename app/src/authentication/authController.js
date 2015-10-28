@@ -3,13 +3,14 @@ angular
     .module('openeApp')
     .controller('AuthController', AuthController);
 
-function AuthController($scope, $state, authService, userService) {
+function AuthController($scope, $state, authService, userService, $mdDialog) {
     var vm = this;
 
     vm.login = login;
     vm.logout = logout;
     vm.loggedin = loggedin;
     vm.getUserInfo = getUserInfo;
+    vm.showForgot = showForgot;
 
     function login(credentials) {
         authService.login(credentials.username, credentials.password).then(function(response) {
@@ -34,6 +35,27 @@ function AuthController($scope, $state, authService, userService) {
 
     function loggedin() {
         return authService.loggedin();
+    }
+
+    function forgotPasswordCtrl($scope, $mdDialog) {
+        var dlg = this;
+
+        dlg.cancel = function() {
+            return $mdDialog.cancel();
+        }
+
+
+    };
+
+    function showForgot(ev) {
+        $mdDialog.show({
+            controller: forgotPasswordCtrl,
+            controllerAs: 'dlg',
+            templateUrl: 'app/src/authentication/view/forgotPasswordDialog.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true
+        });
     }
 
     function getUserInfo() {

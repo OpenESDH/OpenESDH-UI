@@ -584,6 +584,7 @@
         "LOGIN": "Login",
         "USER_NAME": "Username",
         "PASSWORD": "Password",
+        "FORGOT_PASSWORD": "Forgot password",
         "VERIFY_PASSWORD": "Verify password"
     },
     "MEMBER": {

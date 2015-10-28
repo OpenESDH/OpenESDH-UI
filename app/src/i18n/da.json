@@ -568,6 +568,7 @@
         "LOGIN": "Log ind",
         "USER_NAME": "Brugernavn",
         "PASSWORD": "Kodeord",
+        "FORGOT_PASSWORD": "Glemt kodeord",
         "VERIFY_PASSWORD": "Gentag kodeord"
     },
     "MEMBER": {
