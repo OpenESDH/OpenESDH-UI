@@ -8,14 +8,17 @@
                 <md-input-container>
                     <label>{{ 'LOGIN.USER_NAME' | translate }}</label>
                     <input type="text" ng-model="vm.credentials.username" name="username" required autofocus>
-                    <div ng-messages="form.username.$error" ng-show="form.username.$dirty">
-                        <div ng-message>{{ vm.user.message }}</div>
+                    <div ng-messages="form.username.$error" ng-if="form.username.$dirty">
+                        <div ng-message="required">This field is required</div>
                     </div>
                 </md-input-container>
 
                 <md-input-container>
-                    <input type="password" ng-model="vm.credentials.password" name="password" required>
                     <label>{{ 'LOGIN.PASSWORD' | translate }}</label>
+                    <input type="password" ng-model="vm.credentials.password" name="password" required>
+                    <div ng-messages="form.password.$error" ng-if="form.password.$dirty">
+                        <div ng-message="required">This field is required</div>
+                    </div>
                 </md-input-container>
 
                 <md-button type="submit" class="md-raised md-primary" 
@@ -24,7 +27,7 @@
                     {{ 'LOGIN.LOGIN' | translate }}
                 </md-button>
 
-                <md-button type="button" ng-click="vm.showForgot($event)">
+                <md-button type="button" ng-click="vm.showForgotDialog($event)">
                     {{ 'LOGIN.FORGOT_PASSWORD' | translate }}
                 </md-button>
 

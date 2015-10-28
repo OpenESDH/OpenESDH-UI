@@ -10,7 +10,7 @@ function AuthController($scope, $state, authService, userService, $mdDialog) {
     vm.logout = logout;
     vm.loggedin = loggedin;
     vm.getUserInfo = getUserInfo;
-    vm.showForgot = showForgot;
+    vm.showForgotDialog = showForgotDialog;
 
     function login(credentials) {
         authService.login(credentials.username, credentials.password).then(function(response) {
@@ -39,15 +39,24 @@ function AuthController($scope, $state, authService, userService, $mdDialog) {
 
     function forgotPasswordCtrl($scope, $mdDialog) {
         var dlg = this;
+        dlg.emailSent = false;
 
         dlg.cancel = function() {
             return $mdDialog.cancel();
         }
 
+        dlg.forgotPassword = function(){
+            if(!dlg.email) return;
+
+            authService.changePassword(dlg.email).then(function success(response) {
+                dlg.emailSent = true;
+            }); 
+        }
+
 
     };
 
-    function showForgot(ev) {
+    function showForgotDialog(ev) {
         $mdDialog.show({
             controller: forgotPasswordCtrl,
             controllerAs: 'dlg',
