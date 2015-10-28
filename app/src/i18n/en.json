@@ -635,6 +635,7 @@
     "TASK": {
         "MY_TASKS": "My tasks",
         "TASKS": "Tasks",
+        "TASK": "Task",
         "SAVE_AND_CLOSE": "Save and close",
         "TASK_DONE": "Task done",
         "APPROVE": "Approve",
