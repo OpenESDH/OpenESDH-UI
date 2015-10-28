@@ -45,12 +45,28 @@ function AuthController($scope, $state, authService, userService, $mdDialog) {
             return $mdDialog.cancel();
         }
 
-        dlg.forgotPassword = function(){
+        dlg.updateValidators = function() {
+            if(dlg.form.email.$error.notExist)
+                delete dlg.form.email.$error.notExist;
+        }
+
+        dlg.forgotPassword = function() {
             if(!dlg.email) return;
 
-            authService.changePassword(dlg.email).then(function success(response) {
-                dlg.emailSent = true;
-            }); 
+            authService.changePassword(dlg.email).then(
+                
+                function success(response) {
+                    dlg.emailSent = true;
+                }, 
+                
+                function onError(response) {
+                    // If email doesn't exist in system
+                    if( response.status === 404 ){
+                        dlg.form.email.$setDirty();
+                        dlg.form.email.$error.notExist = true;
+                    }
+                }
+            ); 
         }
 
 

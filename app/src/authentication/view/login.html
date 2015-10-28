@@ -21,15 +21,17 @@
                     </div>
                 </md-input-container>
 
-                <md-button type="submit" class="md-raised md-primary" 
-                            ng-click="vm.login(vm.credentials)" 
-                            ng-disabled="form.$invalid">
-                    {{ 'LOGIN.LOGIN' | translate }}
-                </md-button>
+                <div layout="row" layout-align="center">
+                    <md-button type="submit" class="md-raised md-primary" 
+                                ng-click="vm.login(vm.credentials)" 
+                                ng-disabled="form.$invalid">
+                        {{ 'LOGIN.LOGIN' | translate }}
+                    </md-button>
+                </div>
 
-                <md-button type="button" ng-click="vm.showForgotDialog($event)">
+                <a href="#" ng-click="vm.showForgotDialog($event)">
                     {{ 'LOGIN.FORGOT_PASSWORD' | translate }}
-                </md-button>
+                </a>
 
             </form>
         </md-card-content>
