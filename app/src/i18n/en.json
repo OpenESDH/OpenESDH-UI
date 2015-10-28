@@ -586,7 +586,8 @@
         "USER_NAME": "Username",
         "PASSWORD": "Password",
         "FORGOT_PASSWORD": "Forgot password",
-        "VERIFY_PASSWORD": "Verify password"
+        "VERIFY_PASSWORD": "Verify password",
+        "INVALID_EMAIL": "Email address is invalid"
     },
     "MEMBER": {
         "MEMBERS": "Members",

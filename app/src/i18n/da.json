@@ -570,7 +570,8 @@
         "USER_NAME": "Brugernavn",
         "PASSWORD": "Kodeord",
         "FORGOT_PASSWORD": "Glemt kodeord",
-        "VERIFY_PASSWORD": "Gentag kodeord"
+        "VERIFY_PASSWORD": "Gentag kodeord",
+        "INVALID_EMAIL": "Add a valid email address"
     },
     "MEMBER": {
         "MEMBERS": "Medlemmer",
