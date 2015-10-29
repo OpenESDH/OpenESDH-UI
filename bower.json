@@ -31,6 +31,6 @@
   },
   "resolutions": {
     "angular": "^1.4.x",
-    "angular-material": "^0.11.0"
+    "angular-material": "^1.0.0"
   }
 }
