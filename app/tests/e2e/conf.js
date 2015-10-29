@@ -1,5 +1,3 @@
-//var env = require('./__appConf/environment.js');
-
 exports.config = {
     capabilities: {'browserName': 'chrome'},
     /*multiCapabilities: [
@@ -12,6 +10,7 @@ exports.config = {
     jasmineNodeOpts: {
         showColors: true
     },
+    seleniumPort: 4840,
     onPrepare: function() {
         browser.driver.manage().window().setSize(1440, 800);
         browser.get('http://localhost:8000/#');
