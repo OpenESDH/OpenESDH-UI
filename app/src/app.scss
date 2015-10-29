@@ -229,7 +229,7 @@ textarea {
 		}
 	}
     .tlist__body {
-        height: calc(100vh - 11em);
+        height: calc(100vh - 12em);
     }
 	.tlist__item__link {
 		text-decoration: none;
@@ -249,6 +249,9 @@ textarea {
             background-color: transparent;
             .tlist__header {
                 display: none;
+            }
+            .tlist__body {
+                height: calc(100vh - 11em);
             }
             .tlist__item {
                 background-color: #fff;
