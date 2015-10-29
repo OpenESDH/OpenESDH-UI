@@ -624,6 +624,7 @@
   "TASK": {
     "MY_TASKS": "Mine opgaver",
     "TASKS": "Opgaver",
+    "TASK": "Opgave",
     "SAVE_AND_CLOSE": "Gem og luk",
     "TASK_DONE": "Opgave færdig",
     "APPROVE": "Godkend",
