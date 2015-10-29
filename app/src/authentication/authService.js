@@ -31,6 +31,7 @@ angular
             login: login,
             logout: logout,
             loggedin: loggedin,
+            changePassword: changePassword,
             isAuthenticated: isAuthenticated,
             isAuthorized: isAuthorized,
             getUserInfo: getUserInfo,
@@ -73,6 +74,18 @@ angular
 
         function loggedin() {
             return sessionService.getUserInfo();
+        }
+
+        /**
+         * Accepts a user email (which should be unique) bound to a unique user name, recreates a password for the user
+         * and emails the user with the details required to login to the system.
+         * @param email
+         * @returns {*}
+         */
+        function changePassword(email) {
+            return $http.post("/alfresco/service/api/openesdh/reset-user-password", {email: email}).then(function(response){
+                return response;
+            });
         }
 
         function isAuthenticated() {

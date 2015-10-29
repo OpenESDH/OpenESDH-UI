@@ -3,6 +3,7 @@
         .module('openeApp', [
             'ngSanitize',
             'ngMaterial',
+            'ngMessages',
             'material.wizard',
             'ui.router',
             'rt.encodeuri',

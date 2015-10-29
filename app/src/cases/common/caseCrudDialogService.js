@@ -74,11 +74,10 @@
             }
             
             function editCase(caseInfo){
-                var formConfig = getCaseCrudFormConfig(caseInfo.properties.type);
-                if(formConfig == null){
+                var formConfig = getCaseCrudFormConfig(caseInfo.type);
+                if(!formConfig){
                     return;
                 }
-                
                 return showDialog(formConfig, caseInfo);
             }
             

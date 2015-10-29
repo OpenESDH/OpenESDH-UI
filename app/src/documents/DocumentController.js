@@ -203,7 +203,7 @@
                 $scope.$watch(function (scope) {
                     return vm.receiver;
                 }, function (newValue, oldValue) {
-                    if (typeof newValue !== 'undefined' && newValue != null) {
+                    if (typeof newValue !== 'undefined' && newValue != null && newValue.entries.length > 0) {
                         // Update the field values based on the selected
                         // contact info.
                         var nodeRefParts = alfrescoNodeUtils.processNodeRef(newValue.nodeRef);
@@ -253,7 +253,7 @@
                         "case.description": getPropValue("cm:description"),
                         "case.journalKey": getPropValue("oe:journalKey"),
                         "case.journalFacet": getPropValue("oe:journalFacet"),
-                        "case.type": $filter('caseType')(caseInfo.allProps.TYPE)
+                        "case.type": $filter('caseType')(caseInfo.type)
                     });
                 });
 
