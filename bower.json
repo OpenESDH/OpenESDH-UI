@@ -23,13 +23,14 @@
     "ng-pdfviewer": "",
     "angular-swfobject": "",
     "material-wizard": "",
-    "angular-file-saver": ""
+    "angular-file-saver": "",
+    "angular-auto-height": ""
   },
   "devDependencies": {
     "angular-mocks": "^1.4.x"
   },
   "resolutions": {
     "angular": "^1.4.x",
-    "angular-material": "^0.11.0"
+    "angular-material": "^1.0.0"
   }
 }

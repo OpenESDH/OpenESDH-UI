@@ -33,7 +33,8 @@
             'openeApp.common.directives',
             'openeApp.common.directives.filter',
             'openeApp.documentTypes',
-            'openeApp.documentCategories'
+            'openeApp.documentCategories',
+            'm43nu.auto-height'
         ])
         .constant('USER_ROLES', {
             admin: 'admin',

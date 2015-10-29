@@ -228,9 +228,6 @@ textarea {
 			font-weight: 700;
 		}
 	}
-    .tlist__body {
-        height: calc(100vh - 12em);
-    }
 	.tlist__item__link {
 		text-decoration: none;
 		color: #000;
@@ -244,48 +241,51 @@ textarea {
     .tlist__item__createinfo {
         display: none;
     }
-    @media screen and (max-width: 45em) {
-        & {
-            background-color: transparent;
-            .tlist__header {
-                display: none;
-            }
-            .tlist__body {
-                height: calc(100vh - 11em);
-            }
-            .tlist__item {
-                background-color: #fff;
-                margin: 0.5em;
-                height: 17.5em;
-                overflow: hidden;
-            }
-            .tlist__item__link {
-                display: block;
-                padding: 0.5em 0;
-            }
-            .tlist__cell {
-                display: block;
-                flex: none;
-                max-width: 100%;
-                .cell__label {
-                    display: block;
-                    color: #999;
-                    font-size: 0.8em;
-                }
-            }
-            .tlist__cell-icon {
-                float: left;
-                width: 2.5em;
-                height: 2em;
-            }
-            .tlist__item__createinfo {
-                display: block;
-                font-size: 0.8em;
-                color: #999;
-                padding: 0.5em 1em;
-                text-align: right;
-            }
+}
+@mixin tlist-cardview {
+    background-color: transparent;
+    .tlist__header {
+        display: none;
+    }
+    .tlist__item {
+        background-color: #fff;
+        margin: 0.5em;
+        height: 17.5em;
+        overflow: hidden;
+    }
+    .tlist__item__link {
+        display: block;
+        padding: 0.5em 0;
+    }
+    .tlist__cell {
+        display: block;
+        flex: none;
+        max-width: 100%;
+        .cell__label {
+            display: block;
+            color: #999;
+            font-size: 0.8em;
         }
+    }
+    .tlist__cell_icon {
+        float: left;
+        width: 2.5em;
+        height: 2em;
+    }
+    .tlist__item__createinfo {
+        display: block;
+        font-size: 0.8em;
+        color: #999;
+        padding: 0.5em 1em;
+        text-align: right;
+    }
+}
+.tlist_cards {
+    @include tlist-cardview;
+}
+@media screen and (max-width: 45em) {
+    .tlist {
+        @include tlist-cardview;
     }
 }
 
