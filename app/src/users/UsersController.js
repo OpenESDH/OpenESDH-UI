@@ -84,7 +84,6 @@
                 targetEvent: ev,
                 clickOutsideToClose: true
             }).then(function onUpdateOrCreate(user, isExistingUser) {
-                console.log("Then callback, user updated or edited");
                 if(isExistingUser) {
                     vm.allSystemUsers = [];
                     getAllSystemUsers();

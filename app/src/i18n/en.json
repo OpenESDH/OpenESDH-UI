@@ -588,6 +588,7 @@
         "FORGOT_PASSWORD": "Forgot password",
         "VERIFY_PASSWORD": "Verify password",
         "INVALID_EMAIL": "Email address is invalid",
+        "PASSWORD_NOMATCH": "Password is not matching",
         "FORGOT_PASSWORD_SUCCESS": "Instructions have been sent to the email provided. Check your email and follow the instructions.",
         "FORGOT_PASSWORD_PROMPT": "Enter your email address and we'll send you information regarding how to reset your password. "
     },

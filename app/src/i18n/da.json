@@ -572,6 +572,7 @@
     "FORGOT_PASSWORD": "Glemt kodeord",
     "VERIFY_PASSWORD": "Gentag kodeord",
     "INVALID_EMAIL": "Add a valid email address",
+    "PASSWORD_NOMATCH": "Kodeord matcher ikke",
     "FORGOT_PASSWORD_SUCCESS": "Instruktioner er blevet sendt til den email forudsat. Tjek din e-mail og følg vejledningen.",
     "FORGOT_PASSWORD_PROMPT": "Indtast din e-mailadresse og vi sender dig oplysninger om, hvordan du nulstiller din adgangskode."
   },
