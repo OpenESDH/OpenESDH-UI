@@ -496,7 +496,8 @@
         "ASSIGN_TO": "Assign to",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_TASK_AND_WORKFLOW": "Are you sure you want to delete the task '{{task_description}}' and cancel the workflow?",
         "WORKFLOW_DETAILS": "Workflow details",
-        "STARTED": "started"
+        "STARTED": "started",
+        "WORKFLOW_INSTANCE_DIAGRAM": "Workflow Instance Diagram"
     },
     "ADMIN": {
         "ADMINISTRATION_PAGES": "Administration pages",
