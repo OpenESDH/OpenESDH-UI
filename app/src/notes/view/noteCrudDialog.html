@@ -1,21 +1,16 @@
-<md-dialog aria-label="Case edit dialog">
+<md-dialog aria-label="Case edit dialog" style="max-width:800px;max-height:810px;min-width:60%;min-height:300px;">
   <form name="form">
     <md-toolbar layout="row">
       <div class="md-toolbar-tools">
         <h2>{{ 'NOTE.CREATE_NOTE' | translate }}</h2>
       </div>
     </md-toolbar>
-    <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;min-height:300px;">
-      <md-input-container>
+    <md-dialog-content layout="column" layout-padding>
+      <md-input-container flex>
         <label>{{ 'NOTE.HEADLINE' | translate }}</label>
         <input type="text" ng-model="vmNote.headline" required focus-me>
       </md-input-container>
-      <md-input-container>
-        <label>{{ 'NOTE.CONTENT' | translate }}</label>
-        <textarea ng-model="vmNote.content" required></textarea>
-      </md-input-container>
 
-      <label>{{ 'NOTE.CONCERNED_PARTIES' | translate }}:</label>
       <md-chips ng-model="vmNote.concernedParties" md-autocomplete-snap md-require-match="true">
         <md-autocomplete
             md-selected-item="vmNote.selectedItem"
@@ -33,6 +28,11 @@
           </span>
         </md-chip-template>
       </md-chips>
+
+      <md-input-container>
+        <label>{{ 'NOTE.CONTENT' | translate }}</label>
+        <textarea ng-model="vmNote.content" rows="3" style="width: 100%;" required></textarea>
+      </md-input-container>
 
     </md-dialog-content>
     <div class="md-actions" layout="row">

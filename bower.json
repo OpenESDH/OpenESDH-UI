@@ -25,7 +25,7 @@
     "angular-swfobject": "",
     "material-wizard": "",
     "angular-file-saver": "",
-    "angular-auto-height": ""
+    "angular-auto-height": "https://github.com/m43nu/angular-auto-height.git"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.x"
