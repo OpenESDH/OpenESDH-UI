@@ -11,6 +11,10 @@ exports.config = {
         showColors: true
     },
     seleniumPort: 4840,
+
+    /* Due to issues with slow Selenium startup due to RNG, see http://stackoverflow.com/questions/14058111/selenium-server-doesnt-bind-to-socket-after-being-killed-with-sigterm. */
+    seleniumArgs: ["-Djava.security.egd=file:/dev/./urandom"],
+
     onPrepare: function() {
         browser.driver.manage().window().setSize(1440, 800);
         browser.get('http://localhost:8000/#');
