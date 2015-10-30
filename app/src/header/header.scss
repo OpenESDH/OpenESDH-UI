@@ -11,8 +11,9 @@
 	}
 
 	md-input-container {
-		position: relative; 
-		top: 12px;
+		position: relative;
+	    top: -2px;
+	    width: 100%;
 
 		.md-input {
 			font-size: 16px;
@@ -34,7 +35,7 @@
 	md-whiteframe {
 		width: 100%; 
 		position: absolute; 
-		top: 61px;
+		top: 64px;
 	    background-color: white; 
 	    color: #000;
 	}
