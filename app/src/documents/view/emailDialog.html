@@ -1,13 +1,14 @@
-<md-dialog aria-label="Email documents">
+<md-dialog class="dialog-small" aria-label="Email documents">
     <form name="form">
-        <md-toolbar layout="row">
+        <md-toolbar layout>
             <div class="md-toolbar-tools">
                 <h2>Email documents</h2>
             </div>
         </md-toolbar>
-        <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;">
+
+        <md-dialog-content layout="column">
             
-            <md-chips ng-model="vm.to" md-require-match="true">
+            <md-chips flex ng-model="vm.to" md-require-match="true">
                 <md-autocomplete
                     md-selected-item="vm.selectedItem"
                     md-search-text="vm.searchText"
@@ -24,22 +25,24 @@
                 </md-chip-template>
             </md-chips>
             
-            <md-input-container>
+            <md-input-container flex>
                 <label>Subject</label>
                 <input type="text" ng-model="vm.subject" required>
             </md-input-container>
-            <md-input-container>
+            <md-input-container flex>
                 <label>Message</label>
                 <textarea ng-model="vm.message"></textarea>
             </md-input-container>
-            <md-list>
+            
+            <md-list flex>
                 <md-list-item ng-repeat="document in vm.documents">
                     <md-checkbox ng-model="document.selected" aria-label="{{document['cm:title']}}"></md-checkbox>
                     <label>{{document['cm:title']}}</label>
                 </md-list-item>
             <md-list>
         </md-dialog-content>
-        <div class="md-actions" layout="row">
+
+        <div class="md-actions" layout>
             <md-button type="submit" class="md-primary" ng-click="vm.emailDocuments()" ng-disabled="form.$invalid">
                 Email documents
             </md-button>
