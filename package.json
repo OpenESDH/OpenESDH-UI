@@ -28,6 +28,7 @@
     "karma-phantomjs-launcher": "^0.2.1",
     "phantomjs": "^1.9.18",
     "protractor": "^2.5.1",
+    "protractor-jasmine2-screenshot-reporter": "^0.1.7",
     "selenium-webdriver": "^2.47.1",
     "shelljs": "^0.2.6"
   },
