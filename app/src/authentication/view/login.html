@@ -3,9 +3,9 @@
         <md-toolbar layout-padding>
             <h1 class="md-headline">ESDH {{ 'LOGIN.LOGIN' | translate }}</h1>
         </md-toolbar>
-        <md-card-content>
-            <form name="form">
-                <md-input-container>
+        <md-card-content style="width: 300px;">
+            <form name="form" layout="column" layout-align="center">
+                <md-input-container flex>
                     <label>{{ 'LOGIN.USER_NAME' | translate }}</label>
                     <input type="text" ng-model="vm.credentials.username" name="username" required autofocus>
                     <div ng-messages="form.username.$error" ng-if="form.username.$dirty">
@@ -13,7 +13,7 @@
                     </div>
                 </md-input-container>
 
-                <md-input-container>
+                <md-input-container flex>
                     <label>{{ 'LOGIN.PASSWORD' | translate }}</label>
                     <input type="password" ng-model="vm.credentials.password" name="password" required>
                     <div ng-messages="form.password.$error" ng-if="form.password.$dirty">
@@ -21,7 +21,7 @@
                     </div>
                 </md-input-container>
 
-                <div layout="row" layout-align="center">
+                <div>
                     <md-button type="submit" class="md-raised md-primary" 
                                 ng-click="vm.login(vm.credentials)" 
                                 ng-disabled="form.$invalid">
