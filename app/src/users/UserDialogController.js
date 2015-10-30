@@ -69,6 +69,8 @@ angular
 
 	    function handleCreateEditError(response) {
 
+	    	console.log(response)
+
         	// If conflict
         	if(response.status === 409) {
 
