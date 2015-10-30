@@ -13,7 +13,10 @@
         return service;
         
         function getWorkflowDefinitions(exclude){
-            var url = "/alfresco/s/api/workflow-definitions?exclude=" + exclude;
+            var url = "/alfresco/s/api/workflow-definitions";
+            if(exclude != undefined && exclude != null){
+                url += "?exclude=" + exclude;
+            }
             return $http.get(url).then(function(result){
                 return result.data;
             });
