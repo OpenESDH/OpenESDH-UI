@@ -166,13 +166,15 @@ textarea {
 md-dialog {
 	&[class*="dialog-"] {
 		max-width:800px;
-		max-height:810px;
+		md-dialog-content {
+			max-height:810px;
+		}
 	}
 	&.dialog-large {
-		width: 550px;
+		min-width: 550px;
 	}
 	&.dialog-small {
-		width: 350px;
+		min-width: 350px;
 	}
 	md-dialog-content {
 		padding: 16px; // Corresponds to ng-material heading padding
