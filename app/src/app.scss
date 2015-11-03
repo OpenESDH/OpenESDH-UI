@@ -114,6 +114,12 @@ textarea {
   font-size: 0.8em;
 }
 
+.single-line {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .search-hits {
   color: rgba(0,0,0,0.54);
   padding: 0 0.25em;
