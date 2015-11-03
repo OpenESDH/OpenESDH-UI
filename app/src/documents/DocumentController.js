@@ -237,7 +237,9 @@
                     function getPropValue(prop) {
                         if (prop in caseInfo.properties && typeof caseInfo.properties[prop] !== null) {
                             var val = caseInfo.properties[prop];
-                            if ("displayValue" in val) {
+                            if (typeof val != "object") {
+                                return null;
+                            } else if ("displayValue" in val) {
                                 return val.displayValue;
                             } else if ("value" in val) {
                                 return val.value;
