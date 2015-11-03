@@ -203,7 +203,7 @@
                 $scope.$watch(function (scope) {
                     return vm.receiver;
                 }, function (newValue, oldValue) {
-                    if (typeof newValue !== 'undefined' && newValue != null && newValue.entries.length > 0) {
+                    if (typeof newValue !== 'undefined' && newValue != null) {
                         // Update the field values based on the selected
                         // contact info.
                         var nodeRefParts = alfrescoNodeUtils.processNodeRef(newValue.nodeRef);
