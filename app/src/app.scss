@@ -174,7 +174,7 @@ md-dialog {
 		min-width: 550px;
 	}
 	&.dialog-small {
-		min-width: 350px;
+		width: 350px;
 	}
 	md-dialog-content {
 		padding: 16px; // Corresponds to ng-material heading padding
