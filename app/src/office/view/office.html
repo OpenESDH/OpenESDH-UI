@@ -41,7 +41,7 @@
         </md-item-template>
       </md-autocomplete>
 
-      <h3>Document</h3>  
+      <h3>{{ 'DOCUMENT.DOCUMENT' | translate }}</h3>
       <md-input-container>
         <label><span class="md-warn">*</span> {{ 'COMMON.TITLE' | translate }}</label>
         <input type="text" ng-model="vm.title" required>
@@ -67,7 +67,7 @@
       <div class="md-actions" layout="row">
         <md-button type="submit" class="md-primary" ng-click="vm.saveOfficeDocWithCase(form)" 
                            >
-          {{ 'COMMON.SAVE_EMAIL' | translate }}</md-button>
+          {{ 'COMMON.SAVE' | translate }}</md-button>
         <md-button type="button" ng-click="vm.cancel(form)">{{ 'COMMON.CANCEL' | translate }}</md-button>
       </div>
     </form>

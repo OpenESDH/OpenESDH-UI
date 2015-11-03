@@ -35,7 +35,6 @@
     "NO_MATCHES": "Ingen match",
     "EMAIL": "Email",
     "SAVE": "Gem",
-    "SAVE_EMAIL": "Arkiver e-mail",
     "VIEW_DETAILS": "Vis detaljer",
     "SHOW": "Vis",
     "DELETE": "Slet",
@@ -572,8 +571,8 @@
     "FORGOT_PASSWORD": "Glemt kodeord",
     "VERIFY_PASSWORD": "Gentag kodeord",
     "INVALID_EMAIL": "Add a valid email address",
-    "FORGOT_PASSWORD_SUCCESS": "Instruktioner er blevet sendt til den email forudsat. Tjek din e-mail og følg vejledningen.",
-    "FORGOT_PASSWORD_PROMPT": "Indtast din e-mailadresse og vi sender dig oplysninger om, hvordan du nulstiller din adgangskode."
+    "FORGOT_PASSWORD_SUCCESS": "Instruktioner er blevet sendt til den email forudsat. Tjek din email og følg vejledningen.",
+    "FORGOT_PASSWORD_PROMPT": "Indtast din emailadresse og vi sender dig oplysninger om, hvordan du nulstiller din adgangskode."
   },
   "MEMBER": {
     "MEMBERS": "Medlemmer",
@@ -648,7 +647,8 @@
     "LOGOUT": "Log ud"
   },
   "OFFICE": {
-    "SAVE_EMAIL_IN_OPENESDH": "Gem Email i OpenESDH"
+    "SAVE_EMAIL_IN_OPENESDH": "Gem email i OpenESDH",
+    "SAVE_DOCUMENT_IN_OPENESDH": "Gem dokument i OpenESDH"
   },
   "DOCUMENT_TYPE": {
     "CREATE_EDIT_DOC_TYPE": "Opret / redigér dokumenttype",

@@ -35,7 +35,6 @@
         "NO_MATCHES": "No matches",
         "EMAIL": "Email",
         "SAVE": "Save",
-        "SAVE_EMAIL": "Save email",
         "VIEW_DETAILS": "View details",
         "SHOW": "Show",
         "DELETE": "Delete",
@@ -670,8 +669,8 @@
         "LOGOUT": "Logout"
     },
     "OFFICE": {
-        "SAVE_EMAIL_IN_OPENESDH": "SAVE e-mail in OpenESDH",
-        "SAVE_DOCUMENT_IN_OPENESDH": "SAVE document in OpenESDH"
+        "SAVE_EMAIL_IN_OPENESDH": "Save email in OpenESDH",
+        "SAVE_DOCUMENT_IN_OPENESDH": "Save document in OpenESDH"
     },
     "DOCUMENT_TYPE": {
         "CREATE_EDIT_DOC_TYPE": "Create / edit document type",
