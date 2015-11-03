@@ -162,7 +162,10 @@
         "MY_DOCUMENTS": "My documents",
         "CHOOSE_TEMPLATE": "Choose template",
         "TEMPLATE": {
-            "RECEIVER": "Reciever"
+            "RECEIVER": "Receiver",
+            "LABELS": {
+                "TEMPLATES":"Templates"
+            }
         },
         "DOWNLOAD_RENDERED_FROM_TEMPLATE": "Download rendered from template",
         "SAVE_RENDERED_TEMPLATE_TO_CASE": "Save rendered template to case",

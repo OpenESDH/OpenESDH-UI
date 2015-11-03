@@ -21,6 +21,7 @@
             'openeApp.files',
             'openeApp.tasks',
             'openeApp.documents',
+            'openeApp.docTemplates',
             'openeApp.notes',
             'openeApp.contacts',
             'openeApp.administration',
@@ -161,6 +162,19 @@
                     templateUrl: '/app/src/tasks/view/tasks.html',
                     controller: 'tasksOverviewController',
                     controllerAs: 'tasksCtrl'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
+            }
+        }).state('templates', {
+            parent: 'site',
+            url: '/templates',
+            views: {
+                'content@': {
+                    templateUrl: '/app/src/documents/templates/view/templates.html',
+                    controller: 'templatesController',
+                    controllerAs: 'tmplCtrl'
                 }
             },
             data: {

@@ -162,7 +162,8 @@
     "MY_DOCUMENTS": "Mine dokumenter",
     "CHOOSE_TEMPLATE": "Vælg skabelon",
     "TEMPLATE": {
-      "RECEIVER": "Modtager"
+      "RECEIVER": "Modtager",
+      "HEADER_MENU_LABEL": "Skabelon"
     },
     "DOWNLOAD_RENDERED_FROM_TEMPLATE": "Download fra skabelon",
     "SAVE_RENDERED_TEMPLATE_TO_CASE": "Gem til sag",
