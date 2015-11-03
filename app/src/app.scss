@@ -162,6 +162,31 @@ textarea {
   display: none;
 }
 
+/* Md-dialog sizes */
+md-dialog {
+	&[class*="dialog-"] {
+		max-width:800px;
+		md-dialog-content {
+			max-height:810px;
+		}
+	}
+	&.dialog-large {
+		min-width: 550px;
+	}
+	&.dialog-small {
+		width: 350px;
+	}
+	md-dialog-content {
+		padding: 16px; // Corresponds to ng-material heading padding
+	}
+}
+
+@media screen and (max-width: 45em) {
+	md-dialog.dialog-large, md-dialog.dialog-small {
+		width: 80%;
+	}
+}
+
 
 /* Virtual repeat lists */
 
