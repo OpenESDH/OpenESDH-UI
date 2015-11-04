@@ -43,31 +43,35 @@
       </md-autocomplete>
 
       <h2 class="md-title">{{ 'DOCUMENT.DOCUMENT' | translate }}</h2>
-      <md-input-container>
-        <label><span class="md-warn">*</span> {{ 'COMMON.TITLE' | translate }}</label>
-        <input type="text" ng-model="vm.title" required>
-      </md-input-container>
-
-      <md-input-container>
-        <label>{{ 'COMMON.TYPE' | translate }}</label>
-        <md-select ng-model="vm.documentProperties.doc_type">
-          <md-option ng-repeat="type in vm.documentConstraints.documentTypes" ng-value="type.nodeRef">
-            {{ type.displayName}}
-          </md-option>
-        </md-select>
-      </md-input-container>
-
-      <md-input-container>
-        <label>{{ 'COMMON.CATEGORY' | translate }}</label>
-        <md-select ng-model="vm.documentProperties.doc_category">
-          <md-option ng-repeat="category in vm.documentConstraints.documentCategories" ng-value="category.nodeRef">
-            {{ category.displayName}}
-          </md-option>
-        </md-select>
-      </md-input-container>
+      <div layout="column">
+        
+        <md-input-container>
+          <label><span class="md-warn">*</span> {{ 'COMMON.TITLE' | translate }}</label>
+          <input type="text" ng-model="vm.title" required>
+        </md-input-container>
+  
+        <md-input-container>
+          <label>{{ 'COMMON.TYPE' | translate }}</label>
+          <md-select ng-model="vm.documentProperties.doc_type">
+            <md-option ng-repeat="type in vm.documentConstraints.documentTypes" ng-value="type.nodeRef">
+              {{ type.displayName}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+  
+        <md-input-container>
+          <label>{{ 'COMMON.CATEGORY' | translate }}</label>
+          <md-select ng-model="vm.documentProperties.doc_category">
+            <md-option ng-repeat="category in vm.documentConstraints.documentCategories" ng-value="category.nodeRef">
+              {{ category.displayName}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+      
+      </div>
+      
       <div class="md-actions" layout="row">
-        <md-button type="submit" class="md-primary" ng-click="vm.saveOfficeDocWithCase(form)" 
-                           >
+        <md-button type="submit" class="md-primary" ng-click="vm.saveOfficeDocWithCase(form)">
           {{ 'COMMON.SAVE' | translate }}</md-button>
         <md-button type="button" ng-click="vm.cancel(form)">{{ 'COMMON.CANCEL' | translate }}</md-button>
       </div>

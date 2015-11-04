@@ -43,17 +43,19 @@
             </md-autocomplete>
 
             <h2 class="md-title">{{ 'DOCUMENT.DOCUMENT' | translate }}</h2>
-            <md-input-container>
-                <label><span class="md-warn">*</span> {{ 'COMMON.TITLE' | translate }}</label>
-                <input type="text" ng-model="vm.subject" required>
-            </md-input-container>
-            <md-list ng-show="vm.attachments.length > 0">
-                <md-subheader class="md-no-sticky">{{ 'DOCUMENT.ATTACHMENTS' | translate }}:</md-subheader>
-                <md-list-item ng-repeat="attachment in vm.attachments">
-                    <md-checkbox ng-model="attachment.selected"></md-checkbox>
-                    <p>{{attachment.Name}}</p>
-                </md-list-item>
-            </md-list>
+            <div layout="column">
+                <md-input-container>
+                    <label><span class="md-warn">*</span> {{ 'COMMON.TITLE' | translate }}</label>
+                    <input type="text" ng-model="vm.subject" required>
+                </md-input-container>
+                <md-list ng-show="vm.attachments.length > 0">
+                    <md-subheader class="md-no-sticky">{{ 'DOCUMENT.ATTACHMENTS' | translate }}:</md-subheader>
+                    <md-list-item ng-repeat="attachment in vm.attachments">
+                        <md-checkbox ng-model="attachment.selected"></md-checkbox>
+                        <p>{{attachment.Name}}</p>
+                    </md-list-item>
+                </md-list>
+            </div>
 
             <div class="md-actions" layout="row">
                 <md-button type="submit" class="md-primary" ng-click="vm.saveEmailWithCase(form)" 
