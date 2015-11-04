@@ -54,7 +54,10 @@
     "STATE": "Status",
     "COMMENT": "Kommentar",
     "FILL_ALL_REQUIRED_FIELDS": "Udfyld de obligatoriske felter",
-    "OPEN": "Åbne"
+    "OPEN": "Åbne",
+    "TO": "Til",
+    "SUBJECT": "Emne",
+    "MESSAGE": "Meddelelse"
   },
   "CASE": {
     "CONFIRM_CLOSE_CASE": "Vil du lukke denne sag?",

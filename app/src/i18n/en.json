@@ -54,7 +54,10 @@
         "STATE": "State",
         "COMMENT": "Comment",
         "FILL_ALL_REQUIRED_FIELDS": "Fill all required fields!",
-        "OPEN": "Open"
+        "OPEN": "Open",
+        "TO": "To",
+        "SUBJECT": "Subject",
+        "MESSAGE": "Message"
     },
     "CASE": {
         "CONFIRM_CLOSE_CASE": "Do you want to close this case?",
