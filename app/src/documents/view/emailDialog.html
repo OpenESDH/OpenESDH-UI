@@ -15,12 +15,12 @@
                     md-items="item in vm.querySearch(vm.searchText)"
                     md-item-text="item.displayName"
                     placeholder="To">
-                  <span md-highlight-text="vm.searchText">{{ item.displayName }} :: {{ item.contactId }}</span>
+                    <span md-highlight-text="vm.searchText">{{ item.displayName }} :: {{ item.contactId }}</span>
                 </md-autocomplete>
                 <md-chip-template>
                   <span>
                     <strong>{{ $chip.displayName }}</strong>
-                    <em>({{ $chip.contactId }})</em>
+                    <!-- <em>({{ $chip.contactId }})</em> -->
                   </span>
                 </md-chip-template>
             </md-chips>
