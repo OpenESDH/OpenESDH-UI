@@ -144,6 +144,9 @@
                   // Backend still expects objects with nodeRef property
                   toList.push({nodeRef: vm.to[person].nodeRef});
                 }
+                if (vm.message == null) {
+                    vm.message = "";
+                }
                 caseService.sendEmail(caseId, {
                     'to': toList,
                     'subject': vm.subject,
