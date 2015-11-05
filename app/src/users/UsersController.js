@@ -98,9 +98,7 @@
 
         function getAllSystemUsers(query) {
             var filter = query ? query : "";
-            console.log(filter);
             return userService.getPeople(filter).then(function (response) {
-                console.log("Res: ", response);
                 vm.allSystemUsers = response.people;
                 return response;
             });
