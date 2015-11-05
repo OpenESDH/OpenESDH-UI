@@ -2,7 +2,7 @@
 <md-content layout="column">
     <div class="sub-toolbar" layout="row" layout-align="space-between center" layout-padding>
         <h1 class="md-headline" layout-margin>{{ 'DOCUMENT.TEMPLATE.LABELS.TEMPLATES' | translate }}</h1>
-        <div class="md-actions" layout-padding ng-controller="templatesController as tmplCtrl">
+        <div class="md-actions" layout-padding ng-controller="OfficeTemplateController as tmplCtrl">
             <md-button class="md-primary" ng-click="tmplCtrl.uploadNewTemplate()">
                        <!--ng-disabled="caseIsLocked">-->
                 <i class="material-icons">file_upload</i>

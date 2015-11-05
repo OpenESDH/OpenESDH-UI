@@ -9,7 +9,7 @@
      * @param cases
      * @constructor
      */
-    function OfficeTemplateController($scope, officeTemplateService, FileSaver, Blob) {
+    function OfficeTemplateController($scope, officeTemplateService, FileSaver, Blob, $mdDialog) {
         var vm = this;
 
         vm.getTemplates = getTemplates;
@@ -47,7 +47,7 @@
         function uploadTemplate(){
             showDialog(NewCaseDocumentDialogController).then(function (response) {
                 console.log("==> Response from dialog:"+response);
-                templateService.uploadTemplate(response).then(function(response){
+                officeTemplateService.uploadTemplate(response).then(function(response){
                     console.log("==> Response from dialog Service:"+response);
                 });
             });
@@ -61,7 +61,7 @@
             }
             return $mdDialog.show({
                 controller: NewCaseDocumentDialogController,
-                templateUrl: 'app/src/documents/templates/view/uploadDialog.html',
+                templateUrl: 'app/src/officeTemplates/view/uploadDialog.html',
                 parent: angular.element(document.body),
                 targetEvent: null,
                 clickOutsideToClose: true,

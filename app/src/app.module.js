@@ -172,7 +172,7 @@
             views: {
                 'content@': {
                     templateUrl: '/app/src/officeTemplates/view/templates.html',
-                    controller: 'templatesController',
+                    controller: 'OfficeTemplateController',
                     controllerAs: 'tmplCtrl'
                 }
             },
