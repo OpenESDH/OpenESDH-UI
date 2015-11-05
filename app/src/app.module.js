@@ -21,7 +21,6 @@
             'openeApp.files',
             'openeApp.tasks',
             'openeApp.documents',
-            'openeApp.docTemplates',
             'openeApp.notes',
             'openeApp.contacts',
             'openeApp.administration',
@@ -172,7 +171,7 @@
             url: '/templates',
             views: {
                 'content@': {
-                    templateUrl: '/app/src/documents/templates/view/templates.html',
+                    templateUrl: '/app/src/officeTemplates/view/templates.html',
                     controller: 'templatesController',
                     controllerAs: 'tmplCtrl'
                 }

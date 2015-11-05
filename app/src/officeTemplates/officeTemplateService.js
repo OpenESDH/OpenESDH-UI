@@ -7,7 +7,9 @@
         return {
             getTemplates: getTemplates,
             getTemplate: getTemplate,
-            fillTemplate: fillTemplate
+            fillTemplate: fillTemplate,
+            uploadTemplate: uploadTemplate,
+            getCardViewThumbnail: getCardViewThumbnail
         };
 
         function getTemplates() {
@@ -40,5 +42,27 @@
                     type: response.headers('Content-Type')
                 });
             });
+        }
+
+        function uploadTemplate(formData) {
+            var tmplFileData = new FormData();
+            tmplFileData.append("filedata", formData.fileToUpload);
+            tmplFileData.append("filename", formData.fileToUpload.name);
+            angular.forEach(formData.templateProperties, function (value, key) {
+                tmplFileData.append(key, value);
+            });
+
+            return $http.post('/alfresco/service/api/openesdh/officetemplate', tmplFileData, {
+                transformRequest: angular.identity, headers: {'Content-Type': undefined}
+            }).then(function(response) {
+                return response.data;
+            });
+        }
+
+        function getCardViewThumbnail (nodeRef, thumbnailName){
+            var nodeRefAsLink = nodeRef.replace(":/", ""),
+                noCache = "&noCache=" + new Date().getTime(),
+                force = "c=force";
+            return "/alfresco/s/api/node/" + nodeRefAsLink + "/content/thumbnails/"+(thumbnailName ? thumbnailName : "cardViewThumbnail") + "?" + force + noCache + '&' + this._getSessionTicket();
         }
     }
