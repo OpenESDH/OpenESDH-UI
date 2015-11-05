@@ -667,7 +667,8 @@
     "CREATE_NEW_DOC_TYPE": "Opret ny dokumenttype"
   },
   "SYSTEM_SETTINGS": {
-    "SYSTEM_SETTINGS": "Systemopsætning"
+    "SYSTEM_SETTINGS": "Systemopsætning",
+    "DOCUMENT_CATEGORIES": "Dokument kategorier"
   },
   "SEARCH": {
     "SEARCH": "Søg",
