@@ -687,6 +687,10 @@
         "DISPLAY_NAME": "Display name",
         "CREATE_NEW_DOC_TYPE": "Create new document type"
     },
+    "SYSTEM_SETTINGS": {
+        "SYSTEM_SETTINGS": "System settings",
+        "DOCUMENT_CATEGORIES": "Document categories"
+    },
     "SEARCH": {
         "SEARCH": "Search",
         "FIND_USER": "Find user",

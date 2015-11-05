@@ -29,6 +29,7 @@
             'openeApp.groups',
             'openeApp.users',
             'openeApp.workflows',
+            'openeApp.systemsettings',
             'openeApp.search',
             'openeApp.search.component.filter',
             'openeApp.common.directives',
@@ -81,7 +82,9 @@
 
         $mdIconProvider.icon('md-calendar', '/app/assets/img/icons/today.svg');
 
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider
+            .when('/admin/system-settings','/admin/system-settings/document-types')
+            .otherwise('/');
 
         $stateProvider.state('site', {
             abstract: true,
@@ -260,6 +263,37 @@
             views: {
                 'contacts': {
                     templateUrl: '/app/src/contacts/view/persons.html'
+                }
+            }
+        }).state('administration.systemsettings', {
+            url: '/system-settings',
+            data: {
+                authorizedRoles: [USER_ROLES.admin],
+                selectedTab: 4
+            },
+            views: {
+                'systemsettings': {
+                    templateUrl: '/app/src/system_settings/view/system_settings.html'
+                }
+            }
+        }).state('administration.systemsettings.doctypes', {
+            url: '/document-types',
+            data: {
+                authorizedRoles: [USER_ROLES.admin],
+            },
+            views: {
+                'systemsetting-view': {
+                    templateUrl: '/app/src/system_settings/view/document_types.html'
+                }
+            }
+        }).state('administration.systemsettings.doccat', {
+            url: '/document-categories',
+            data: {
+                authorizedRoles: [USER_ROLES.admin],
+            },
+            views: {
+                'systemsetting-view': {
+                    templateUrl: '/app/src/system_settings/view/document_categories.html'
                 }
             }
         }).state('documenttypes', {

@@ -666,6 +666,9 @@
     "DISPLAY_NAME": "Titel",
     "CREATE_NEW_DOC_TYPE": "Opret ny dokumenttype"
   },
+  "SYSTEM_SETTINGS": {
+    "SYSTEM_SETTINGS": "Systemopsætning"
+  },
   "SEARCH": {
     "SEARCH": "Søg",
     "FIND_USER": "Find bruger",
