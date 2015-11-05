@@ -164,7 +164,8 @@
         "TEMPLATE": {
             "RECEIVER": "Receiver",
             "LABELS": {
-                "TEMPLATES":"Templates"
+                "TEMPLATES":"Templates",
+                "UPLOAD_NEW_TEMPLATE": "Upload new template"
             }
         },
         "DOWNLOAD_RENDERED_FROM_TEMPLATE": "Download rendered from template",
