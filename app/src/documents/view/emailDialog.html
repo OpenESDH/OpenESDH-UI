@@ -2,7 +2,7 @@
     <form name="form">
         <md-toolbar layout>
             <div class="md-toolbar-tools">
-                <h2>Email documents</h2>
+                <h2>{{ 'DOCUMENT.EMAIL_DOCUMENTS' | translate }}</h2>
             </div>
         </md-toolbar>
 
@@ -14,23 +14,22 @@
                     md-search-text="vm.searchText"
                     md-items="item in vm.querySearch(vm.searchText)"
                     md-item-text="item.displayName"
-                    placeholder="To">
-                  <span md-highlight-text="vm.searchText">{{ item.displayName }} :: {{ item.contactId }}</span>
+                    placeholder="{{ 'COMMON.TO' | translate }}">
+                    <span md-highlight-text="vm.searchText">{{ item.displayName }} :: {{ item.contactId }}</span>
                 </md-autocomplete>
                 <md-chip-template>
                   <span>
                     <strong>{{ $chip.displayName }}</strong>
-                    <em>({{ $chip.contactId }})</em>
                   </span>
                 </md-chip-template>
             </md-chips>
             
             <md-input-container flex>
-                <label>Subject</label>
+                <label>{{ 'COMMON.SUBJECT' | translate }}</label>
                 <input type="text" ng-model="vm.subject" required>
             </md-input-container>
             <md-input-container flex>
-                <label>Message</label>
+                <label>{{ 'COMMON.MESSAGE' | translate }}</label>
                 <textarea ng-model="vm.message"></textarea>
             </md-input-container>
             
@@ -44,10 +43,10 @@
 
         <div class="md-actions" layout>
             <md-button type="submit" class="md-primary" ng-click="vm.emailDocuments()" ng-disabled="form.$invalid">
-                Email documents
+                {{ 'DOCUMENT.EMAIL_DOCUMENTS' | translate }}
             </md-button>
             <md-button type="button" ng-click="vm.cancel(form)">
-                Cancel
+                {{ 'COMMON.CANCEL' | translate }}
             </md-button>
         </div>
     </form>

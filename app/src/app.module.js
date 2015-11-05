@@ -8,7 +8,7 @@
             'ui.router',
             'rt.encodeuri',
             'ngResource',
-            'ngPDFViewer',
+            'pdf',
             'swfobject',
             'isteven-multi-select',
             'openeApp.translations',

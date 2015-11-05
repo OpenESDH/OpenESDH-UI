@@ -10,12 +10,12 @@
         </md-toolbar>
 
         <md-dialog-content>
-            <div ng-hide="isEditProperties || fromFileObject" layout="row">
-                <div flex>
+            <div ng-hide="isEditProperties || fromFileObject" layout="column">
+                <div>
                     <label class="label" for="doc-upload"><span class="md-warn">*</span> {{ 'DOCUMENT.DOCUMENT_TO_UPLOAD' | translate }}</label>
                     <input type="file" file-model="fileToUpload" id="doc-upload" focus-me>
                 </div>
-                <div flex>
+                <div>
                     <md-input-container ng-show="newDocumentVersion">
                         <label>{{ 'DOCUMENT.VERSIONTYPE' | translate }}</label>
                         <md-select ng-model="documentProperties.majorVersion">

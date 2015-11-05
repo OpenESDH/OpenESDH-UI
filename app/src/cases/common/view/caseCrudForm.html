@@ -1,4 +1,5 @@
 <div layout>
+  
   <md-input-container flex="65">
     <label><span class="md-warn">*</span> {{ 'CASE.TITLE' | translate }}</label>
     <input type="text" ng-model="vm.case.prop_cm_title" required focus-me>
@@ -15,10 +16,11 @@
       </md-optgroup>
     </md-select>
   </md-input-container>
+  
 </div>
 
 <div ng-controller="ClassificationController as classCtrl" layout="column">
-    <md-chips flex
+    <md-chips
             ng-model="vm.case.prop_oe_journalKey"
             md-autocomplete-snap
             md-require-match="true">
@@ -48,7 +50,7 @@
         </md-chip-template>
     </md-chips>
 
-    <md-chips flex
+    <md-chips
             ng-model="vm.case.prop_oe_journalFacet"
             md-autocomplete-snap
             md-require-match="true">
@@ -76,12 +78,16 @@
             </span>
         </md-chip-template>
     </md-chips>
+    
 </div>
 
-<md-datepicker flex ng-model="vm.case.prop_base_startDate" 
-              md-placeholder="{{ 'CASE.START_DATE' | translate }}"></md-datepicker>
-<md-datepicker flex ng-model="vm.case.prop_base_endDate" 
-              md-placeholder="{{ 'CASE.EXPECTED_END_DATE' | translate }}"></md-datepicker>
+<md-datepicker flex ng-model="vm.case.prop_base_startDate"
+               md-placeholder="{{ 'CASE.START_DATE' | translate }}">
+</md-datepicker>
+
+<md-datepicker flex ng-model="vm.case.prop_base_endDate"
+               md-placeholder="{{ 'CASE.EXPECTED_END_DATE' | translate }}">
+</md-datepicker>
 
 <div layout>
   <md-input-container flex>

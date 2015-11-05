@@ -27,10 +27,10 @@
         function postlink(scope, elem, attrs) {
             
             scope.searchFilter = 'userName';
-            scope.searchTerm = '*';
+            scope.searchTerm = '';
 
             scope.constructQuery = function() {
-                var query = "sortBy=" + scope.searchFilter;
+                var query = "?sortBy=" + scope.searchFilter;
                 query += '&dir=asc&filter=' + encodeURIComponent(scope.searchTerm) + '&maxResults=250';
                 return scope.finished(query);
             }

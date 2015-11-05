@@ -114,6 +114,12 @@ textarea {
   font-size: 0.8em;
 }
 
+.single-line {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .search-hits {
   color: rgba(0,0,0,0.54);
   padding: 0 0.25em;
@@ -128,7 +134,18 @@ textarea {
         
         .preview-window {
                 max-height: 400px;
-        }
+
+
+				.wrapper {margin: 0 auto; width: 960px; }
+				.pdf-controls { width: 100%; display: block; background: #eee; padding: 1em;}
+				.rotate0 {-webkit-transform: rotate(0deg); transform: rotate(0deg); }
+				.rotate90 {-webkit-transform: rotate(90deg); transform: rotate(90deg); }
+				.rotate180 {-webkit-transform: rotate(180deg); transform: rotate(180deg); }
+				.rotate270 {-webkit-transform: rotate(270deg); transform: rotate(270deg); }
+				.fixed { position: fixed; top: 0; left: calc(50% - 480px); z-index: 100; width: 100%; padding: 1em; background: rgba(238, 238, 238,.9); width: 960px; }
+
+
+		}
         
 	img {
 		width: 100%;
@@ -162,7 +179,7 @@ md-dialog {
 		min-width: 550px;
 	}
 	&.dialog-small {
-		width: 350px;
+		width: 400px;
 	}
 	md-dialog-content {
 		padding: 16px; // Corresponds to ng-material heading padding
@@ -366,4 +383,8 @@ md-virtual-repeat-container {
 md-input-container .md-input:-webkit-autofill ~ label {
     -webkit-transform: translate3d(0, 6px, 0) scale(0.75);
     transform: translate3d(0, 6px, 0) scale(0.75);
+}
+
+.md-virtual-repeat-container.md-autocomplete-suggestions-container {
+    min-width: 20em !important;
 }

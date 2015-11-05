@@ -46,7 +46,7 @@
          class="global-tools__search">
         <form ng-submit="asctrl.gotoSearchPage()">
             <md-input-container md-no-float>
-                <i class="material-icons">search</i>
+                <i class="material-icons global-tools__search__icon">search</i>
                 <input type="text" ng-model="asctrl.searchTerm"
                        ng-change="asctrl.getLiveSearchResults(asctrl.searchTerm)"
                        ng-keydown="asctrl.keydown($event)" ng-model-options="{ debounce: 250 }"
@@ -63,14 +63,11 @@
                                   ng-repeat="item in asctrl.liveSearchResults.documents"
                                   ng-mousedown="asctrl.goToSuggestion(item)"
                                   ng-class="{'activeSuggestion' : asctrl.selectedIndex == $index}">
-                        <img class="md-avatar" ng-src="/app/assets/images/filetypes/{{item.thumbNailURL}}"/>
+                        <img class="md-avatar" ng-src="/app/assets/images/filetypes/{{item.thumbNailURL}}" alt="">
 
                         <div class="md-list-item-text" layout="column">
                             <h3 ng-bind="item.title"></h3>
-
-                            <!--TODO For some reason translate filter won't pick this up-->
-                            <!--<p><b>{{ "CASE.CASE" | translate}}:</b> {{ item.case.caseTitle }}</p>-->
-                            <p><b>Sag:</b> {{ item.case.caseTitle }}</p>
+                            <p class="single-line"><span class="label">{{ "CASE.CASE" | translate }}</span> {{ item.case.caseTitle }}</p>
                         </div>
                     </md-list-item>
 
@@ -82,13 +79,11 @@
                     <md-list-item class="md-2-line" ng-if="asctrl.liveSearchResults.cases.length"
                                   ng-repeat="item in asctrl.liveSearchResults.cases" ng-mousedown="asctrl.goToSuggestion(item)"
                                   ng-class="{'activeSuggestion' : asctrl.selectedIndex == $index + asctrl.liveSearchResults.documents.length}">
-                        <md-icon class="material-icons">folder_open</md-icon>
+                        <md-icon class="material-icons md-avatar">folder_open</md-icon>
 
-                        <div class="md-list-item-text">
-                            <h3 ng-bind-template="{{item.caseTitle}} ({{item.caseId}}) "></h3>
-
-                            <p ng-bind="item.caseDescription"></p>
-
+                        <div class="md-list-item-text" layout="column">
+                            <h3 ng-bind-template="{{item.caseTitle}} ({{item.caseId}})"></h3>
+                            <p ng-bind="item.caseDescription" class="single-line"></p>
                         </div>
                     </md-list-item>
 

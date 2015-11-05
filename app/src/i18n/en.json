@@ -35,7 +35,6 @@
         "NO_MATCHES": "No matches",
         "EMAIL": "Email",
         "SAVE": "Save",
-        "SAVE_EMAIL": "Save email",
         "VIEW_DETAILS": "View details",
         "SHOW": "Show",
         "DELETE": "Delete",
@@ -55,7 +54,10 @@
         "STATE": "State",
         "COMMENT": "Comment",
         "FILL_ALL_REQUIRED_FIELDS": "Fill all required fields!",
-        "OPEN": "Open"
+        "OPEN": "Open",
+        "TO": "To",
+        "SUBJECT": "Subject",
+        "MESSAGE": "Message"
     },
     "CASE": {
         "CONFIRM_CLOSE_CASE": "Do you want to close this case?",
@@ -666,7 +668,8 @@
         "TASK_HAS_BEEN_CLAIMED": "Task has been claimed",
         "TASK_HAS_BEEN_RELEASED": "Task has been released",
         "THIS_TASK_IS_UNASSIGNED": "This task is unassigned",
-        "TASK_CREATED_ON_BY": "Created on {{on}} by {{by}}"
+        "TASK_CREATED_ON_BY": "Created on {{on}} by {{by}}",
+        "SHOW_ALL_OPEN_TASKS": "Show all open tasks"
     },
     "MENU": {
         "OPEN_MENU": "Open menu",
@@ -674,8 +677,8 @@
         "LOGOUT": "Logout"
     },
     "OFFICE": {
-        "SAVE_EMAIL_IN_OPENESDH": "SAVE e-mail in OpenESDH",
-        "SAVE_DOCUMENT_IN_OPENESDH": "SAVE document in OpenESDH"
+        "SAVE_EMAIL_IN_OPENESDH": "Save email in OpenESDH",
+        "SAVE_DOCUMENT_IN_OPENESDH": "Save document in OpenESDH"
     },
     "DOCUMENT_TYPE": {
         "CREATE_EDIT_DOC_TYPE": "Create / edit document type",
