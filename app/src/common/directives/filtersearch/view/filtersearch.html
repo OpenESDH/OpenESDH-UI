@@ -1,10 +1,16 @@
-<md-input-container layout="row">
-    
-    <select ng-model="searchFilter" flex>
-        <option ng-repeat="item in selectOptions" value="{{item[optionValue]}}">{{item[optionLabel]}}</option>
-    </select>
+<md-input-container layout>
 
-    <input flex type="text" ng-model="searchTerm" focus-me="false" 
-    		ng-keypress="($event.which === 13)?constructQuery():0">
+    <md-input-container flex>
+        <md-select ng-model="searchFilter">
+            <md-option ng-repeat="item in selectOptions" value="{{item[optionValue]}}">
+                {{item[optionLabel]}}
+            </md-option>
+        </md-select>
+    </md-input-container>
+
+    <md-input-container flex>
+    	<label>Search</label>
+		<input ng-model="searchTerm" ng-keypress="($event.which === 13)?constructQuery():0">
+	</md-input-container>
 
 </md-input-container>
