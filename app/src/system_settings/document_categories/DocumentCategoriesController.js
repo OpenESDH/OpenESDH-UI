@@ -23,7 +23,7 @@
         function doDelete(ev, documentCategory) {
             var confirm = $mdDialog.confirm()
                     .title($translate.instant('COMMON.CONFIRM'))
-                    .content($translate.instant('DOCUMENT_CATEGORIES.ARE_YOU_SURE_YOU_WANT_TO_DELETE_DOCUMENT_CATEGORY_X', documentCategory.displayName))
+                    .content($translate.instant('DOCUMENT_CATEGORIES.ARE_YOU_SURE_YOU_WANT_TO_DELETE_DOCUMENT_CATEGORY_X', {title: documentCategory.displayName}))
                     .targetEvent(ev)
                     .ok($translate.instant('COMMON.YES'))
                     .cancel($translate.instant('COMMON.CANCEL'));
@@ -38,11 +38,7 @@
         }
 
         function showEdit(ev, documentCategory) {
-            documentCategoryService
-                    .getDocumentCategory(documentCategory.nodeRef)
-                    .then(function(fullMultiLanguageDocumentCategory) {
-                        $mdDialog
-                                .show({
+            $mdDialog.show({
                                     controller: DocCategoryDialogController,
                                     controllerAs: 'dc',
                                     templateUrl: '/app/src/system_settings/document_categories/view/documentCategoryCrudDialog.html',
@@ -50,11 +46,16 @@
                                     targetEvent: ev,
                                     clickOutsideToClose: true,
                                     locals: {
-                                        documentCategory: fullMultiLanguageDocumentCategory
+                                        documentCategory: null
                                     }
                                 }).then(function(response) {
-                        });
-                    });
+
+                                });
+            // documentCategoryService
+            //         .getDocumentCategory(documentCategory.nodeRef)
+            //         .then(function(fullMultiLanguageDocumentCategory) {
+                        
+            //         });
         }
 
         function DocCategoryDialogController($scope, $mdDialog, documentCategory) {
@@ -73,8 +74,9 @@
                 if (!form.$valid) {
                     return;
                 }
-                documentCategoryService.saveDocumentCategory(dc.documentCategory)
-                        .then(refreshInfoAfterSuccess, saveError);
+                documentCategoryService
+                    .saveDocumentCategory(dc.documentCategory)
+                    .then(refreshInfoAfterSuccess, saveError);
             }
 
             function refreshInfoAfterSuccess(savedDocumentCategory) {

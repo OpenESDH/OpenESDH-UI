@@ -23,7 +23,7 @@
         function doDelete(ev, documentType) {
             var confirm = $mdDialog.confirm()
                     .title($translate.instant('COMMON.CONFIRM'))
-                    .content($translate.instant('DOCUMENT_TYPES.ARE_YOU_SURE_YOU_WANT_TO_DELETE_DOCUMENT_TYPE_X', documentType.displayName))
+                    .content($translate.instant('DOCUMENT_TYPES.ARE_YOU_SURE_YOU_WANT_TO_DELETE_DOCUMENT_TYPE_X', {title: documentType.displayName}))
                     .targetEvent(ev)
                     .ok($translate.instant('COMMON.YES'))
                     .cancel($translate.instant('COMMON.CANCEL'));
