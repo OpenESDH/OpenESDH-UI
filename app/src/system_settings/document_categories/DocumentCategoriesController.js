@@ -38,24 +38,31 @@
         }
 
         function showEdit(ev, documentCategory) {
-            $mdDialog.show({
-                                    controller: DocCategoryDialogController,
-                                    controllerAs: 'dc',
-                                    templateUrl: '/app/src/system_settings/document_categories/view/documentCategoryCrudDialog.html',
-                                    parent: angular.element(document.body),
-                                    targetEvent: ev,
-                                    clickOutsideToClose: true,
-                                    locals: {
-                                        documentCategory: null
-                                    }
-                                }).then(function(response) {
+            if(!documentCategory) return showDialog(ev, null);
 
-                                });
-            // documentCategoryService
-            //         .getDocumentCategory(documentCategory.nodeRef)
-            //         .then(function(fullMultiLanguageDocumentCategory) {
-                        
-            //         });
+            documentCategoryService
+                .getDocumentCategory(documentCategory.nodeRef)
+                .then(function(fullMultiLanguageDocumentCategory) {
+                    return showDialog(ev, fullMultiLanguageDocumentCategory);
+                });
+            
+        }
+
+        function showDialog (ev, docCat) {
+            var doc = docCat ? docCat : null;
+            $mdDialog.show({
+                controller: DocCategoryDialogController,
+                controllerAs: 'dc',
+                templateUrl: '/app/src/system_settings/document_categories/view/documentCategoryCrudDialog.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                locals: {
+                    documentCategory: doc
+                }
+            }).then(function(response) {
+
+            });
         }
 
         function DocCategoryDialogController($scope, $mdDialog, documentCategory) {

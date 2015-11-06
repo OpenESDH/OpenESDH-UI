@@ -38,22 +38,29 @@
         }
 
         function showEdit(ev, documentType) {
+            if(!documentType) return showDialog(ev, null);
+
             documentTypeService
                     .getDocumentType(documentType.nodeRef)
                     .then(function(fullMultiLanguageDocumentType) {
-                        $mdDialog.show({
-                            controller: DocTypeDialogController,
-                            controllerAs: 'dt',
-                            templateUrl: '/app/src/system_settings/document_types/view/documentTypeCrudDialog.html',
-                            parent: angular.element(document.body),
-                            targetEvent: ev,
-                            clickOutsideToClose: true,
-                            locals: {
-                                documentType: fullMultiLanguageDocumentType
-                            }
-                        }).then(function(response) {
-                        });
+                        return showDialog(ev, fullMultiLanguageDocumentType);
                     });
+        }
+
+        function showDialog(ev, docType) {
+            var doc = docType ? docType : null;
+            $mdDialog.show({
+                controller: DocTypeDialogController,
+                controllerAs: 'dt',
+                templateUrl: '/app/src/system_settings/document_types/view/documentTypeCrudDialog.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                locals: {
+                   documentType: doc
+                }
+            }).then(function(response) {
+            });
         }
 
         function DocTypeDialogController($scope, $mdDialog, documentType) {
