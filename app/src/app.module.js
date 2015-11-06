@@ -29,12 +29,11 @@
             'openeApp.groups',
             'openeApp.users',
             'openeApp.workflows',
+            'openeApp.systemsettings',
             'openeApp.search',
             'openeApp.search.component.filter',
             'openeApp.common.directives',
             'openeApp.common.directives.filter',
-            'openeApp.documentTypes',
-            'openeApp.documentCategories',
             'm43nu.auto-height'
         ])
         .constant('USER_ROLES', {
@@ -81,7 +80,9 @@
 
         $mdIconProvider.icon('md-calendar', '/app/assets/img/icons/today.svg');
 
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider
+            .when('/admin/system-settings','/admin/system-settings/document-types')
+            .otherwise('/');
 
         $stateProvider.state('site', {
             abstract: true,
@@ -262,29 +263,40 @@
                     templateUrl: '/app/src/contacts/view/persons.html'
                 }
             }
-        }).state('documenttypes', {
-            url: '/documenttypes',
+        }).state('administration.systemsettings', {
+            url: '/system-settings',
+            data: {
+                authorizedRoles: [USER_ROLES.admin],
+                selectedTab: 4
+            },
             views: {
-                'content@': {
-                    templateUrl: '/app/src/other/document_types/view/documentTypes.html',
+                'systemsettings': {
+                    templateUrl: '/app/src/system_settings/menu/system_settings.html'
+                }
+            }
+        }).state('administration.systemsettings.doctypes', {
+            url: '/document-types',
+            data: {
+                authorizedRoles: [USER_ROLES.admin],
+            },
+            views: {
+                'systemsetting-view': {
+                    templateUrl: '/app/src/system_settings/document_types/view/documentTypes.html',
                     controller: 'DocumentTypesController',
                     controllerAs: 'vm'
                 }
-            },
-            data: {
-                authorizedRoles: [USER_ROLES.admin]
             }
-        }).state('documentcategories', {
-            url: '/documentcategories',
+        }).state('administration.systemsettings.doccategories', {
+            url: '/document-categories',
+            data: {
+                authorizedRoles: [USER_ROLES.admin],
+            },
             views: {
-                'content@': {
-                    templateUrl: '/app/src/other/document_categories/view/documentCategories.html',
+                'systemsetting-view': {
+                    templateUrl: '/app/src/system_settings/document_categories/view/documentCategories.html',
                     controller: 'DocumentCategoriesController',
                     controllerAs: 'vm'
                 }
-            },
-            data: {
-                authorizedRoles: [USER_ROLES.admin]
             }
         }).state('search', {
             url: '/search/:searchTerm',
