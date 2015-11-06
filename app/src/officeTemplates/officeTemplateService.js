@@ -3,7 +3,10 @@
         .module('openeApp.officeTemplates')
         .factory('officeTemplateService', officeTemplateService);
 
-    function officeTemplateService($http, userService, alfrescoNodeUtils) {
+    function officeTemplateService($http, userService, alfrescoNodeUtils, sessionService) {
+
+        var lastFetch = 0;
+
         return {
             getTemplates: getTemplates,
             getTemplate: getTemplate,
@@ -59,10 +62,17 @@
             });
         }
 
+        function getTime() {
+            var cur = new Date().getTime();
+            if(cur - lastFetch > 5000) lastFetch = cur;
+            return lastFetch;
+        }
+
         function getCardViewThumbnail (nodeRef, thumbnailName){
             var nodeRefAsLink = nodeRef.replace(":/", ""),
-                noCache = "&noCache=" + new Date().getTime(),
+                noCache = "&noCache=" + getTime(),
                 force = "c=force";
-            return "/alfresco/s/api/node/" + nodeRefAsLink + "/content/thumbnails/"+(thumbnailName ? thumbnailName : "cardViewThumbnail") + "?" + force + noCache + '&' + this._getSessionTicket();
+            var url = "/alfresco/s/api/node/" + nodeRefAsLink + "/content/thumbnails/"+(thumbnailName ? thumbnailName : "cardViewThumbnail") + "?" + force + noCache;
+            return url + "&alf_ticket=" + sessionService.getUserInfo().ticket;
         }
     }

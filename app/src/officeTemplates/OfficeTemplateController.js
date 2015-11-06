@@ -14,6 +14,7 @@
 
         vm.getTemplates = getTemplates;
         vm.getTemplate = getTemplate;
+        vm.getThumbnail = getThumbnail;
         vm.fillTemplate = fillTemplate;
         vm.uploadNewTemplate = uploadTemplate;
 
@@ -28,6 +29,11 @@
                 console.log("Templates: ", templates)
                 vm.templates = templates;
             });
+        }
+
+        function getThumbnail(nodeRef) {
+            var url = officeTemplateService.getCardViewThumbnail(nodeRef);
+            return url;
         }
 
         function getTemplate(nodeRef) {
