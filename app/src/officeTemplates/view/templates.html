@@ -15,14 +15,18 @@
             <md-card-content layout layout-wrap>
                 
                 <md-card ng-repeat="temp in tmplCtrl.templates" flex="20">
-                    <img ng-src="{{tmplCtrl.getThumbnail(temp.nodeRef)}}" class="md-card-image" alt="Washed Out">
-                    <md-card-content>
-                        <h2 class="md-title" ng-bind="temp.title"></h2>
+                    <md-card-content layout layout-padding layout-fill>
+                        <div>
+                            <img ng-src="{{tmplCtrl.getThumbnail(temp.nodeRef)}}" class="md-card-image" style="border: 1px solid #eee;" alt="Washed Out">
+                        </div>
+                        <div layout="column">
+                            <h2 class="md-title" ng-bind="temp.title" flex></h2>
+                            <p flex>Some template information</p>
+                            <div class="md-actions" layout="column" layout-align="end end">
+                                <md-button>Use template</md-button>
+                            </div>
+                        </div>
                     </md-card-content>
-                    <div class="md-actions" layout="row" layout-align="end center">
-                        <md-button>Use template</md-button>
-                        <md-button>Delete</md-button>
-                    </div>
                 </md-card>
 
             </md-card-content>
