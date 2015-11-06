@@ -1,6 +1,6 @@
 
     angular
-            .module('openeApp.documentCategories')
+            .module('openeApp.systemsettings')
             .factory('documentCategoryService', documentCategoryService);
 
     function documentCategoryService($http) {

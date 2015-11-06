@@ -4,10 +4,14 @@
 		<md-list flex="15">
 			<md-subheader class="md-no-sticky">Parameters</md-subheader>
 			<md-list-item>
-    			<a ui-sref="administration.systemsettings.doctypes" ui-sref-active="active">{{ 'DOCUMENT_TYPES.DOCUMENT_TYPES' | translate}}</a>
+    			<a ui-sref="administration.systemsettings.doctypes" ui-sref-active="active">
+    				{{ 'DOCUMENT_TYPES.DOCUMENT_TYPES' | translate}}
+    			</a>
 			</md-list-item>
 			<md-list-item>
-    			<a ui-sref="administration.systemsettings.doccat" ui-sref-active="active">{{ 'SYSTEM_SETTINGS.DOCUMENT_CATEGORIES' | translate}}</a>
+    			<a ui-sref="administration.systemsettings.doccategories" ui-sref-active="active">
+    				{{ 'DOCUMENT_CATEGORIES.DOCUMENT_CATEGORIES' | translate}}
+    			</a>
 			</md-list-item>
 			<md-divider></md-divider>
 			<md-subheader class="md-no-sticky">Modules</md-subheader>
@@ -16,6 +20,6 @@
 			</md-list-item>
 		</md-list>
         
-        <div flex="grow" ui-view="systemsetting-view"></div>
+        <div flex="grow" ui-view="systemsetting-view" layout-margin></div>
     </md-card-content>
 </md-card>

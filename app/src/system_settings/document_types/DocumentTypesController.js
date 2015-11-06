@@ -1,6 +1,6 @@
 
     angular
-            .module('openeApp.documentTypes')
+            .module('openeApp.systemsettings')
             .controller('DocumentTypesController', DocumentTypesController);
 
     function DocumentTypesController($scope, $mdDialog, $translate,
@@ -44,7 +44,7 @@
                         $mdDialog.show({
                             controller: DocTypeDialogController,
                             controllerAs: 'dt',
-                            templateUrl: '/app/src/other/document_types/view/documentTypeCrudDialog.html',
+                            templateUrl: '/app/src/system_settings/document_types/view/documentTypeCrudDialog.html',
                             parent: angular.element(document.body),
                             targetEvent: ev,
                             clickOutsideToClose: true,

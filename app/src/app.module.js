@@ -34,8 +34,6 @@
             'openeApp.search.component.filter',
             'openeApp.common.directives',
             'openeApp.common.directives.filter',
-            'openeApp.documentTypes',
-            'openeApp.documentCategories',
             'm43nu.auto-height'
         ])
         .constant('USER_ROLES', {
@@ -273,7 +271,7 @@
             },
             views: {
                 'systemsettings': {
-                    templateUrl: '/app/src/system_settings/view/system_settings.html'
+                    templateUrl: '/app/src/system_settings/menu/system_settings.html'
                 }
             }
         }).state('administration.systemsettings.doctypes', {
@@ -283,42 +281,22 @@
             },
             views: {
                 'systemsetting-view': {
-                    templateUrl: '/app/src/system_settings/view/document_types.html'
+                    templateUrl: '/app/src/system_settings/document_types/view/documentTypes.html',
+                    controller: 'DocumentTypesController',
+                    controllerAs: 'vm'
                 }
             }
-        }).state('administration.systemsettings.doccat', {
+        }).state('administration.systemsettings.doccategories', {
             url: '/document-categories',
             data: {
                 authorizedRoles: [USER_ROLES.admin],
             },
             views: {
                 'systemsetting-view': {
-                    templateUrl: '/app/src/system_settings/view/document_categories.html'
-                }
-            }
-        }).state('documenttypes', {
-            url: '/documenttypes',
-            views: {
-                'content@': {
-                    templateUrl: '/app/src/other/document_types/view/documentTypes.html',
-                    controller: 'DocumentTypesController',
-                    controllerAs: 'vm'
-                }
-            },
-            data: {
-                authorizedRoles: [USER_ROLES.admin]
-            }
-        }).state('documentcategories', {
-            url: '/documentcategories',
-            views: {
-                'content@': {
-                    templateUrl: '/app/src/other/document_categories/view/documentCategories.html',
+                    templateUrl: '/app/src/system_settings/document_categories/view/documentCategories.html',
                     controller: 'DocumentCategoriesController',
                     controllerAs: 'vm'
                 }
-            },
-            data: {
-                authorizedRoles: [USER_ROLES.admin]
             }
         }).state('search', {
             url: '/search/:searchTerm',

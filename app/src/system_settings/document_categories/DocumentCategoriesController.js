@@ -1,6 +1,6 @@
 
     angular
-        .module('openeApp.documentCategories')
+        .module('openeApp.systemsettings')
         .controller('DocumentCategoriesController', DocumentCategoriesController);
 
     function DocumentCategoriesController($scope, $mdDialog, $translate,
@@ -45,7 +45,7 @@
                                 .show({
                                     controller: DocCategoryDialogController,
                                     controllerAs: 'dc',
-                                    templateUrl: '/app/src/other/document_categories/view/documentCategoryCrudDialog.html',
+                                    templateUrl: '/app/src/system_settings/document_categories/view/documentCategoryCrudDialog.html',
                                     parent: angular.element(document.body),
                                     targetEvent: ev,
                                     clickOutsideToClose: true,
