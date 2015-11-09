@@ -1,3 +1,5 @@
+$opene-primary-color: #1E88E5;
+
 /*
  * Body styles
  */
@@ -192,6 +194,14 @@ md-dialog {
 	}
 }
 
+/* Navigation list - override active state */
+md-list md-list-item.active a {
+	background-color: $opene-primary-color;
+	color: white;
+	md-icon {
+		color: white;
+	}
+}
 
 /* Virtual repeat lists */
 

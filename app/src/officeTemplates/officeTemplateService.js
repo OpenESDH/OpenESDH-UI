@@ -3,11 +3,17 @@
         .module('openeApp.officeTemplates')
         .factory('officeTemplateService', officeTemplateService);
 
-    function officeTemplateService($http, userService, alfrescoNodeUtils) {
+    function officeTemplateService($http, userService, alfrescoNodeUtils, sessionService) {
+
+        var lastFetch = 0;
+
         return {
             getTemplates: getTemplates,
+            deleteTemplate: deleteTemplate,
             getTemplate: getTemplate,
-            fillTemplate: fillTemplate
+            fillTemplate: fillTemplate,
+            uploadTemplate: uploadTemplate,
+            getCardViewThumbnail: getCardViewThumbnail
         };
 
         function getTemplates() {
@@ -18,6 +24,17 @@
 
         function getTemplate(nodeRef) {
             return $http.get('/alfresco/service/api/openesdh/officetemplates/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri).then(function (response) {
+                return response.data;
+            });
+        }
+
+        /**
+         * Deletes a template given its noderef
+         * @param nodeRef
+         * @returns {*}
+         */
+        function deleteTemplate(nodeRef) {
+            return $http.delete('/alfresco/service/api/openesdh/officeDocTemplate/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri).then(function (response) {
                 return response.data;
             });
         }
@@ -40,5 +57,34 @@
                     type: response.headers('Content-Type')
                 });
             });
+        }
+
+        function uploadTemplate(formData) {
+            var tmplFileData = new FormData();
+            tmplFileData.append("filedata", formData.fileToUpload);
+            tmplFileData.append("filename", formData.fileToUpload.name);
+            angular.forEach(formData.templateProperties, function (value, key) {
+                tmplFileData.append(key, value);
+            });
+
+            return $http.post('/alfresco/service/api/openesdh/officeDocTemplate', tmplFileData, {
+                transformRequest: angular.identity, headers: {'Content-Type': undefined}
+            }).then(function(response) {
+                return response.data;
+            });
+        }
+
+        function getTime() {
+            var cur = new Date().getTime();
+            if(cur - lastFetch > 5000) lastFetch = cur;
+            return lastFetch;
+        }
+
+        function getCardViewThumbnail (nodeRef, thumbnailName){
+            var nodeRefAsLink = nodeRef.replace(":/", ""),
+                noCache = "&noCache=" + getTime(),
+                force = "c=force";
+            var url = "/alfresco/s/api/node/" + nodeRefAsLink + "/content/thumbnails/"+(thumbnailName ? thumbnailName : "cardViewThumbnail") + "?" + force + noCache;
+            return url + "&alf_ticket=" + sessionService.getUserInfo().ticket;
         }
     }
