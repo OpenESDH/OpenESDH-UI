@@ -16,6 +16,7 @@
         vm.getTemplate = getTemplate;
         vm.getThumbnail = getThumbnail;
         vm.fillTemplate = fillTemplate;
+        vm.getFileExtension = getFileExtension;
         vm.uploadNewTemplate = uploadTemplate;
 
         activate();
@@ -32,8 +33,12 @@
         }
 
         function getThumbnail(nodeRef) {
-            var url = officeTemplateService.getCardViewThumbnail(nodeRef);
-            return url;
+            return officeTemplateService.getCardViewThumbnail(nodeRef);
+        }
+
+        function getFileExtension(filename) {
+            var parts = filename.split('.');
+            return parts[parts.length - 1];
         }
 
         function getTemplate(nodeRef) {
@@ -53,9 +58,10 @@
 
         function uploadTemplate(){
             showDialog(NewCaseDocumentDialogController).then(function (response) {
-                console.log("==> Response from dialog:"+response);
-                officeTemplateService.uploadTemplate(response).then(function(response){
-                    console.log("==> Response from dialog Service:"+response);
+                console.log("==> Response from dialog:", response);
+                officeTemplateService.uploadTemplate(response).then(function(response) {
+                    console.log("==> Response from dialog Service:", response);
+                    return getTemplates();
                 });
             });
         }

@@ -34,7 +34,8 @@
             'openeApp.search.component.filter',
             'openeApp.common.directives',
             'openeApp.common.directives.filter',
-            'm43nu.auto-height'
+            'm43nu.auto-height',
+            'dcbImgFallback'
         ])
         .constant('USER_ROLES', {
             admin: 'admin',

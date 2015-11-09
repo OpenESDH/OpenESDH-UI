@@ -1,11 +1,12 @@
-<div layout layout-wrap>
+<div layout layout-margin layout-wrap>
     
-    <md-card ng-repeat="temp in tmplCtrl.templates" flex="20">
+    <md-card ng-repeat="temp in tmplCtrl.templates" flex="23" class="template-card">
         <md-card-content layout layout-padding layout-fill>
-            <div>
-                <img ng-src="{{tmplCtrl.getThumbnail(temp.nodeRef)}}" class="md-card-image" style="border: 1px solid #ddd;" alt="Washed Out">
+            <div class="template-card__preview">
+                <span ng-bind="tmplCtrl.getFileExtension(temp.name)"></span>
+                <img ng-src="{{tmplCtrl.getThumbnail(temp.nodeRef)}}" fallback-src class="md-card-image" alt="preview thumbnail for template">
             </div>
-            <div layout="column">
+            <div layout="column" class="template-card__crud">
                 <h2 class="md-title" ng-bind="temp.title" flex></h2>
                 <p flex>Some template information</p>
                 <div class="md-actions" layout="column" layout-align="end end">
