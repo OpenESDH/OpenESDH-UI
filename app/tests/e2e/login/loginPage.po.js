@@ -9,8 +9,8 @@ var LoginPage = function () {
      * TODO might want to abstract the password out to a file and pull that in as a dep
      */
     public.login = function() {
-        public.loginAs("admin", "bullerfisk1992");
-    }
+        public.loginAs("admin", "admin");
+    };
 
     /**
      * Lpgin as an arbitral user
@@ -29,13 +29,13 @@ var LoginPage = function () {
         passwordInput.sendKeys(password);
         loginBtn.click();
         browser.driver.sleep(2000);
-    }
+    };
 
     public.logout = function() {
         globalHeaderMenu.getHeaderMenuItem().userMenuBtn.click();
         element(by.xpath('//button[@id="logout"]')).click();
         browser.driver.sleep(2000);
-    }
+    };
 
     return public;
 };

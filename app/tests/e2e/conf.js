@@ -51,6 +51,7 @@ exports.config = {
         login: './login/*.test.js',
         header: './common/*.test.js',
         case: './cases/*.test.js',
-        users: './users/*.test.js'
+        users: './users/*.test.js',
+        admin: './admin/*.test.js'
     }
 };
