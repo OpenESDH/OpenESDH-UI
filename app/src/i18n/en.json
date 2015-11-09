@@ -689,7 +689,20 @@
         "DOCUMENT_TYPES": "Document types",
         "NAME": "Name",
         "DISPLAY_NAME": "Display name",
-        "CREATE_NEW_DOC_TYPE": "Create new document type"
+        "CREATE_NEW_DOC_TYPE": "Create new document type",
+        "CREATE_EDIT_DOC_TYPE": "Create / edit document type",
+        "ARE_YOU_SURE_YOU_WANT_TO_DELETE_DOCUMENT_TYPE_X": "Are you sure you want to delete document type '{{title}}'?"
+    },
+    "DOCUMENT_CATEGORIES": {
+        "DOCUMENT_CATEGORIES": "Document categories",
+        "NAME": "Name",
+        "DISPLAY_NAME": "Title",
+        "CREATE_NEW_DOC_CATEGORY": "Create new document category",
+        "CREATE_EDIT_DOC_CATEGORY": "Create / edit document category",
+        "ARE_YOU_SURE_YOU_WANT_TO_DELETE_DOCUMENT_CATEGORY_X": "Are you sure you want to delete document category '{{title}}'?"
+    },
+    "SYSTEM_SETTINGS": {
+        "SYSTEM_SETTINGS": "System settings"
     },
     "SEARCH": {
         "SEARCH": "Search",

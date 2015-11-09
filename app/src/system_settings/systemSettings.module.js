@@ -1,0 +1,1 @@
+angular.module('openeApp.systemsettings', [ 'ngMaterial', 'pascalprecht.translate']);
