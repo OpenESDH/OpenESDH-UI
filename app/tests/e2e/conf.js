@@ -29,6 +29,16 @@ exports.config = {
         browser.getCapabilities().then(function (capabilities) {
             browser.capabilities = capabilities;
         });
+
+        browser.params.loginDetails = (function () {
+            // Load the username/password to use from a config file located
+            // in the parent directory of the OpenESDH-UI root
+            try {
+                return require('../../../../loginDetails.json');
+            } catch (e) {
+                return {'userName': 'admin', 'password': 'admin'};
+            }
+        })();
         // Add a screenshot reporter and store screenshots to `/tmp/screnshots`:
         //see https://github.com/mlison/protractor-jasmine2-screenshot-reporter/issues/4
         /*jasmine.getEnv().addReporter(
