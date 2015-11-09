@@ -272,7 +272,9 @@
             },
             views: {
                 'systemsettings': {
-                    templateUrl: '/app/src/system_settings/menu/system_settings.html'
+                    templateUrl: '/app/src/system_settings/menu/system_settings.html',
+                    controller: 'SystemsettingsController',
+                    controllerAs: 'vm'
                 }
             }
         }).state('administration.systemsettings.doctypes', {

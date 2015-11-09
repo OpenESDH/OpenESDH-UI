@@ -44,7 +44,7 @@
 
         function deleteTemplate(nodeRef) {
             return officeTemplateService.deleteTemplate(nodeRef).then(function(response) {
-                return response.message;
+                return getTemplates();
             });
         }
 
