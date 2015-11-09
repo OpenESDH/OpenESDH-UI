@@ -1,0 +1,53 @@
+<md-dialog class="dialog-small" aria-label="">
+    <form name="uploadTemplateForm">
+        
+        <md-toolbar layout>
+            <div class="md-toolbar-tools">
+                <h2>{{ 'COMMON.UPLOAD' | translate }}</h2>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div layout="row">
+                <div flex>
+                    <label class="label" for="tmpl-upload"><span class="md-warn">*</span> {{ 'DOCUMENT.DOCUMENT_TO_UPLOAD' | translate }}</label>
+                    <input type="file" file-model="fileToUpload" id="tmpl-upload" focus-me>
+                </div>
+                <!--<div flex>
+                    <md-input-container ng-show="newTemplateVersion">
+                        <label>{{ 'DOCUMENT.VERSIONTYPE' | translate }}</label>
+                        <md-select ng-model="templateProperties.majorVersion">
+                            <md-option ng-value="false">
+                                {{ 'DOCUMENT.MINOR_VERSION' | translate }}
+                            </md-option>
+                            <md-option ng-value="true">
+                                {{ 'DOCUMENT.MAJOR_VERSION' | translate }}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>-->
+            </div>
+
+            <md-input-container layout ng-disabled="newTemplateVersion">
+                <label><span class="md-warn">*</span> {{ 'COMMON.NAME' | translate }}</label>
+                <input type="text" ng-model="templateProperties.title" focus-me>
+            </md-input-container>
+
+            <md-input-container layout>
+                <label>{{ 'COMMON.DESCRIPTION' | translate }}</label>
+                <textarea ng-model="templateProperties.description" columns="1"></textarea>
+            </md-input-container>
+
+        </md-dialog-content>
+
+        <div class="md-actions" layout>
+            <md-button class="md-primary" ng-click="upload()">
+                {{ 'COMMON.OK' | translate }}
+            </md-button>
+            <md-button ng-click="cancel()">
+                {{ 'COMMON.CANCEL' | translate }}
+            </md-button>
+        </div>
+
+    </form>
+</md-dialog>
