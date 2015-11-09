@@ -13,8 +13,12 @@
         return service;
         
         function getWorkflowDefinitions(exclude){
-            var url = "/alfresco/s/api/workflow-definitions?exclude=" + exclude;
-            return $http.get(url).then(function(result){
+            var url = "/alfresco/s/api/workflow-definitions";
+            var config = {};
+            if(exclude != undefined && exclude != null){
+                config.params.exclude = exclude;
+            }
+            return $http.get(url, config).then(function(result){
                 return result.data;
             });
         }
@@ -33,10 +37,11 @@
         
         function deleteWorkflow(workflowInstanceId, forced){
             var url = "/alfresco/service/api/workflow-instances/"+ workflowInstanceId;
+            var config = {};
             if(forced){
-                url+= "?forced=" + forced;
+                config.params.forced = forced;
             }
-            return $http.delete(url).then(function(result){
+            return $http.delete(url, config).then(function(result){
                 return result.data;
             });
         }

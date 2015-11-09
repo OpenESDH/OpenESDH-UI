@@ -10,7 +10,7 @@
                     <div flex="50" layout="column">
                         <md-card>
                             <md-card-content>
-                                <h3>{{ 'COMMON.INFORMATION' | translate }}</h4> 
+                                <h3>{{ 'COMMON.INFORMATION' | translate }}</h3>
                             <dl layout="row" layout-wrap>
 
                               <dt flex="20">{{ 'COMMON.STATUS' | translate }}</dt>
@@ -65,12 +65,6 @@
                 </md-content>
             </md-tab-body>
         </md-tab>
-        <md-tab>
-            <md-tab-label>
-                <span>{{ 'WORKFLOW.WORKFLOW_DETAILS' | translate }}</span>
-            </md-tab-label>
-            <md-tab-body layout="column">
-            </md-tab-body>
-        </md-tab>
+        <ng-include src="'app/src/tasks/common/view/workflowDetails.html'"></ng-include>
     </md-tabs>
 </md-content>

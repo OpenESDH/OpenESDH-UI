@@ -3,7 +3,7 @@
         .module('openeApp')
         .factory('documentPreviewService', DocumentPreviewService);
 
-    function DocumentPreviewService($mdDialog, alfrescoDocumentService, alfrescoDownloadService, PDFViewerService, sessionService, $http, $sce) {
+    function DocumentPreviewService($mdDialog, $timeout, alfrescoDocumentService, alfrescoDownloadService, sessionService, $http, $sce) {
         
         var templatesUrl = 'app/src/shared/services/document/preview/view/';
         
@@ -154,20 +154,29 @@
                 mimeTypes: ['application/pdf'],
                 thumbnail: 'pdf',
                 templateUrl: 'pdf.html',
-                initScope: function($scope){
-                    $scope.viewer = PDFViewerService.Instance("viewer");
+                initScope: function ($scope) {
+                    $scope.pdfUrl = $scope.config.contentUrl;
 
-                    $scope.nextPage = function() {
-                        $scope.viewer.nextPage();
+                    // Generate a random canvas id
+                    $scope.canvasid = Math.random().toString(36).slice(2);
+                    // TODO: Loading message
+                    //$scope.loading = $translate.instant();
+
+                    $scope.getNavStyle = function(scroll) {
+                        if(scroll > 100) return 'pdf-controls fixed';
+                        else return 'pdf-controls';
                     };
 
-                    $scope.prevPage = function() {
-                        $scope.viewer.prevPage();
+                    $scope.onError = function(error) {
+                        //console.log(error);
                     };
 
-                    $scope.pageLoaded = function(curPage, totalPages) {
-                        $scope.currentPage = curPage;
-                        $scope.totalPages = totalPages;
+                    $scope.onLoad = function() {
+                        $scope.loading = '';
+                    };
+
+                    $scope.onProgress = function(progress) {
+                        //console.log(progress);
                     };
                 }
             };

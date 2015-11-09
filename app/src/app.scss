@@ -104,18 +104,6 @@ textarea {
  * Common helper classes and IDs
  */
 
-.login-form {
-    text-align: center;
-
-    md-input-container {
-        text-align: left;
-
-        label {
-            width: 300px;
-        }
-    }
-}
-
 .sub-toolbar {
   background: #fff;
 }
@@ -124,6 +112,12 @@ textarea {
   display: block;
   margin: 1em 0 0.75em;
   font-size: 0.8em;
+}
+
+.single-line {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .search-hits {
@@ -140,7 +134,18 @@ textarea {
         
         .preview-window {
                 max-height: 400px;
-        }
+
+
+				.wrapper {margin: 0 auto; width: 960px; }
+				.pdf-controls { width: 100%; display: block; background: #eee; padding: 1em;}
+				.rotate0 {-webkit-transform: rotate(0deg); transform: rotate(0deg); }
+				.rotate90 {-webkit-transform: rotate(90deg); transform: rotate(90deg); }
+				.rotate180 {-webkit-transform: rotate(180deg); transform: rotate(180deg); }
+				.rotate270 {-webkit-transform: rotate(270deg); transform: rotate(270deg); }
+				.fixed { position: fixed; top: 0; left: calc(50% - 480px); z-index: 100; width: 100%; padding: 1em; background: rgba(238, 238, 238,.9); width: 960px; }
+
+
+		}
         
 	img {
 		width: 100%;
@@ -160,6 +165,31 @@ textarea {
 
 .closed + .toggle-obj {
   display: none;
+}
+
+/* Md-dialog sizes */
+md-dialog {
+	&[class*="dialog-"] {
+		max-width:800px;
+		md-dialog-content {
+			max-height:810px;
+		}
+	}
+	&.dialog-large {
+		min-width: 550px;
+	}
+	&.dialog-small {
+		width: 400px;
+	}
+	md-dialog-content {
+		padding: 16px; // Corresponds to ng-material heading padding
+	}
+}
+
+@media screen and (max-width: 45em) {
+	md-dialog.dialog-large, md-dialog.dialog-small {
+		width: 80%;
+	}
 }
 
 
@@ -228,9 +258,6 @@ textarea {
 			font-weight: 700;
 		}
 	}
-    .tlist__body {
-        height: calc(100vh - 12em);
-    }
 	.tlist__item__link {
 		text-decoration: none;
 		color: #000;
@@ -244,48 +271,51 @@ textarea {
     .tlist__item__createinfo {
         display: none;
     }
-    @media screen and (max-width: 45em) {
-        & {
-            background-color: transparent;
-            .tlist__header {
-                display: none;
-            }
-            .tlist__body {
-                height: calc(100vh - 11em);
-            }
-            .tlist__item {
-                background-color: #fff;
-                margin: 0.5em;
-                height: 17.5em;
-                overflow: hidden;
-            }
-            .tlist__item__link {
-                display: block;
-                padding: 0.5em 0;
-            }
-            .tlist__cell {
-                display: block;
-                flex: none;
-                max-width: 100%;
-                .cell__label {
-                    display: block;
-                    color: #999;
-                    font-size: 0.8em;
-                }
-            }
-            .tlist__cell-icon {
-                float: left;
-                width: 2.5em;
-                height: 2em;
-            }
-            .tlist__item__createinfo {
-                display: block;
-                font-size: 0.8em;
-                color: #999;
-                padding: 0.5em 1em;
-                text-align: right;
-            }
+}
+@mixin tlist-cardview {
+    background-color: transparent;
+    .tlist__header {
+        display: none;
+    }
+    .tlist__item {
+        background-color: #fff;
+        margin: 0.5em;
+        height: 17.5em;
+        overflow: hidden;
+    }
+    .tlist__item__link {
+        display: block;
+        padding: 0.5em 0;
+    }
+    .tlist__cell {
+        display: block;
+        flex: none;
+        max-width: 100%;
+        .cell__label {
+            display: block;
+            color: #999;
+            font-size: 0.8em;
         }
+    }
+    .tlist__cell_icon {
+        float: left;
+        width: 2.5em;
+        height: 2em;
+    }
+    .tlist__item__createinfo {
+        display: block;
+        font-size: 0.8em;
+        color: #999;
+        padding: 0.5em 1em;
+        text-align: right;
+    }
+}
+.tlist_cards {
+    @include tlist-cardview;
+}
+@media screen and (max-width: 45em) {
+    .tlist {
+        @include tlist-cardview;
     }
 }
 
@@ -353,4 +383,8 @@ md-virtual-repeat-container {
 md-input-container .md-input:-webkit-autofill ~ label {
     -webkit-transform: translate3d(0, 6px, 0) scale(0.75);
     transform: translate3d(0, 6px, 0) scale(0.75);
+}
+
+.md-virtual-repeat-container.md-autocomplete-suggestions-container {
+    min-width: 20em !important;
 }

@@ -44,6 +44,15 @@
             </md-tab-body>
         </md-tab>
 
+        <md-tab ui-sref="administration.systemsettings">
+            <md-tab-label>
+                <span><i class="material-icons">settings</i> {{ 'SYSTEM_SETTINGS.SYSTEM_SETTINGS' | translate }}</span>
+            </md-tab-label>
+            <md-tab-body layout="column">
+                <div ui-view="systemsettings"></div>
+            </md-tab-body>
+        </md-tab>
+
     </md-tabs>
 
 </md-content>

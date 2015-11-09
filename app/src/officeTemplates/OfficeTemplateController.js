@@ -36,10 +36,10 @@
 
         function fillTemplate(template, fieldData) {
             officeTemplateService.fillTemplate(template.nodeRef, fieldData).then(function (blob) {
-                FileSaver.saveAs({
-                    data: blob,
-                    filename: template.name.split('.').slice(0, -1).join(".") + ".pdf"
-                });
+                FileSaver.saveAs(
+                    blob,
+                    template.name.split('.').slice(0, -1).join(".") + ".pdf"
+                );
             });
         }
   }

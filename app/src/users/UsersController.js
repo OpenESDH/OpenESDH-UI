@@ -97,7 +97,7 @@
         }
 
         function getAllSystemUsers(query) {
-            var filter = query ? query : "*";
+            var filter = query ? query : "";
             return userService.getPeople(filter).then(function (response) {
                 vm.allSystemUsers = response.people;
                 return response;

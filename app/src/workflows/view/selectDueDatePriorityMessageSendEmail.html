@@ -1,23 +1,29 @@
-<md-input-container>
-    <label>* {{'WORKFLOW.MESSAGE' | translate}}</label>
-    <textarea ng-model="dlg.message" required></textarea>
-</md-input-container>
-<div layout="row">
-    <md-input-container flex="50">
-        <label>{{'WORKFLOW.DUE_DATE' | translate}}</label>
-        <input type="date" ng-model="dlg.selectedDueDate" />
+<div layout="column">
+
+    <md-input-container>
+        <label>* {{'WORKFLOW.MESSAGE' | translate}}</label>
+        <textarea ng-model="dlg.message" required></textarea>
     </md-input-container>
     
-    <md-input-container flex="50">
-        <label>{{'WORKFLOW.PRIORITY.PRIORITY' | translate}}</label>
-        <md-select ng-model="dlg.selectedPriority">
-          <md-option value="1">{{'WORKFLOW.PRIORITY.HIGH' | translate}}</md-option>
-          <md-option value="2">{{'WORKFLOW.PRIORITY.MEDIUM' | translate}}</md-option>
-          <md-option value="3">{{'WORKFLOW.PRIORITY.LOW' | translate}}</md-option>
-        </md-select>
-    </md-input-container>
-</div>
-<div style="display: inline-flex;">
-    <md-checkbox ng-model="dlg.sendEmailNotifications"  aria-label="checkbox"></md-checkbox>
-    <span style="margin-top: 12px;">{{'WORKFLOW.SEND_EMAIL_NOTIFICATIONS' | translate}}</span>
+    <div layout="row">
+        <md-input-container flex="50">
+            <label>{{'WORKFLOW.DUE_DATE' | translate}}</label>
+            <input type="date" ng-model="dlg.selectedDueDate" />
+        </md-input-container>
+        
+        <md-input-container flex="50">
+            <label>{{'WORKFLOW.PRIORITY.PRIORITY' | translate}}</label>
+            <md-select ng-model="dlg.selectedPriority">
+              <md-option value="1">{{'WORKFLOW.PRIORITY.HIGH' | translate}}</md-option>
+              <md-option value="2">{{'WORKFLOW.PRIORITY.MEDIUM' | translate}}</md-option>
+              <md-option value="3">{{'WORKFLOW.PRIORITY.LOW' | translate}}</md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+    
+    <div style="display: inline-flex;">
+        <md-checkbox ng-model="dlg.sendEmailNotifications"  aria-label="checkbox"></md-checkbox>
+        <span style="margin-top: 12px;">{{'WORKFLOW.SEND_EMAIL_NOTIFICATIONS' | translate}}</span>
+    </div>
+
 </div>
