@@ -9,7 +9,7 @@
           <md-input-container>
             <label class="label">{{'DOCUMENT.CHOOSE_TEMPLATE' | translate}}</label>
             <md-select ng-model="vm.template" required>
-                <md-option ng-value="template" ng-repeat="template in tempCtrl.templates">{{ template.title }}</md-option>
+                <md-option ng-value="template" ng-repeat="template in tempCtrl.templates">{{ template.name }}</md-option>
             </md-select>
           </md-input-container>            
           <md-input-container>            

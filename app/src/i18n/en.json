@@ -35,7 +35,6 @@
         "NO_MATCHES": "No matches",
         "EMAIL": "Email",
         "SAVE": "Save",
-        "SAVE_EMAIL": "Save email",
         "VIEW_DETAILS": "View details",
         "SHOW": "Show",
         "DELETE": "Delete",
@@ -55,7 +54,10 @@
         "STATE": "State",
         "COMMENT": "Comment",
         "FILL_ALL_REQUIRED_FIELDS": "Fill all required fields!",
-        "OPEN": "Open"
+        "OPEN": "Open",
+        "TO": "To",
+        "SUBJECT": "Subject",
+        "MESSAGE": "Message"
     },
     "CASE": {
         "CONFIRM_CLOSE_CASE": "Do you want to close this case?",
@@ -496,7 +498,8 @@
         "ASSIGN_TO": "Assign to",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_TASK_AND_WORKFLOW": "Are you sure you want to delete the task '{{task_description}}' and cancel the workflow?",
         "WORKFLOW_DETAILS": "Workflow details",
-        "STARTED": "started"
+        "STARTED": "started",
+        "WORKFLOW_INSTANCE_DIAGRAM": "Workflow Instance Diagram"
     },
     "ADMIN": {
         "ADMINISTRATION_PAGES": "Administration pages",
@@ -661,7 +664,8 @@
         "TASK_HAS_BEEN_CLAIMED": "Task has been claimed",
         "TASK_HAS_BEEN_RELEASED": "Task has been released",
         "THIS_TASK_IS_UNASSIGNED": "This task is unassigned",
-        "TASK_CREATED_ON_BY": "Created on {{on}} by {{by}}"
+        "TASK_CREATED_ON_BY": "Created on {{on}} by {{by}}",
+        "SHOW_ALL_OPEN_TASKS": "Show all open tasks"
     },
     "MENU": {
         "OPEN_MENU": "Open menu",
@@ -669,8 +673,8 @@
         "LOGOUT": "Logout"
     },
     "OFFICE": {
-        "SAVE_EMAIL_IN_OPENESDH": "SAVE e-mail in OpenESDH",
-        "SAVE_DOCUMENT_IN_OPENESDH": "SAVE document in OpenESDH"
+        "SAVE_EMAIL_IN_OPENESDH": "Save email in OpenESDH",
+        "SAVE_DOCUMENT_IN_OPENESDH": "Save document in OpenESDH"
     },
     "DOCUMENT_TYPE": {
         "CREATE_EDIT_DOC_TYPE": "Create / edit document type",
@@ -681,7 +685,20 @@
         "DOCUMENT_TYPES": "Document types",
         "NAME": "Name",
         "DISPLAY_NAME": "Display name",
-        "CREATE_NEW_DOC_TYPE": "Create new document type"
+        "CREATE_NEW_DOC_TYPE": "Create new document type",
+        "CREATE_EDIT_DOC_TYPE": "Create / edit document type",
+        "ARE_YOU_SURE_YOU_WANT_TO_DELETE_DOCUMENT_TYPE_X": "Are you sure you want to delete document type '{{title}}'?"
+    },
+    "DOCUMENT_CATEGORIES": {
+        "DOCUMENT_CATEGORIES": "Document categories",
+        "NAME": "Name",
+        "DISPLAY_NAME": "Title",
+        "CREATE_NEW_DOC_CATEGORY": "Create new document category",
+        "CREATE_EDIT_DOC_CATEGORY": "Create / edit document category",
+        "ARE_YOU_SURE_YOU_WANT_TO_DELETE_DOCUMENT_CATEGORY_X": "Are you sure you want to delete document category '{{title}}'?"
+    },
+    "SYSTEM_SETTINGS": {
+        "SYSTEM_SETTINGS": "System settings"
     },
     "SEARCH": {
         "SEARCH": "Search",

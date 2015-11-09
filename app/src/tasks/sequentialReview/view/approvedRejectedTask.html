@@ -70,11 +70,5 @@
                 </md-content>
             </md-tab-body>
         </md-tab>
-        <md-tab>
-            <md-tab-label>
-                <span>{{ 'WORKFLOW.WORKFLOW_DETAILS' | translate }}</span>
-            </md-tab-label>
-            <md-tab-body layout="column">
-            </md-tab-body>
-        </md-tab>
+        <ng-include src="'app/src/tasks/common/view/workflowDetails.html'"></ng-include>
     </md-tabs>

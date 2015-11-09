@@ -1,6 +1,6 @@
 
     angular
-            .module('openeApp.documentTypes')
+            .module('openeApp.systemsettings')
             .factory('documentTypeService', documentTypeService);
 
     function documentTypeService($http) {

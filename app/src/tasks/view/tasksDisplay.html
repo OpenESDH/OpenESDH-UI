@@ -5,7 +5,7 @@
         <h1 class="md-headline" layout-margin>{{ 'TASK.TASKS' | translate }}</h1>
 
         <md-select ng-model="status" >
-            <md-option value="" selected>Show all open tasks</md-option>
+            <md-option value="" selected>{{ 'TASK.SHOW_ALL_OPEN_TASKS' | translate }}</md-option>
             <md-option ng-repeat="status in tasksCtrl.statuses" value="{{status}}">{{status | workflowTaskStatus}}</md-option>
         </md-select>
     
@@ -22,12 +22,12 @@
                 <span class="tlist__cell" flex="15">{{ 'COMMON.DUE_DATE' | translate }}</span>
                 <span class="tlist__cell" flex="10">{{ 'COMMON.PRIORITY' | translate }}</span>
             </div>
-            <md-virtual-repeat-container class="tlist__body">
-                <div md-virtual-repeat="task in tasksCtrl.tasks | filter:status" class="tlist__item" layout="column">
+            <md-virtual-repeat-container class="tlist__body" auto-height>
+                <div md-virtual-repeat="task in tasksCtrl.tasks | filter:status" class="tlist__item" layout="column" flex>
                     <a class="tlist__item__link"
                        href="#/tasks/task/{{task.name | encodeUri}}/{{task.id | encodeUri}}"
                        layout="row">
-                        <span class="tlist__cell tlist__cell-icon" flex="5"><i class="material-icons">assignment</i></span>
+                        <span class="tlist__cell tlist__cell_icon" flex="5"><i class="material-icons">assignment</i></span>
                         <span class="tlist__cell" flex>{{ task.properties.bpm_description }}</span>
                         <span class="tlist__cell muted" flex="25"><span class="cell__label">{{ 'COMMON.DESCRIPTION' | translate }}</span>{{ task.description }}</span>
                         <span class="tlist__cell muted" flex="15"><span class="cell__label">{{ 'COMMON.STATUS' | translate }}</span> {{ task.properties.bpm_status | workflowTaskStatus}}</span>
