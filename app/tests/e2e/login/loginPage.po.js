@@ -9,7 +9,7 @@ var LoginPage = function () {
      * TODO might want to abstract the password out to a file and pull that in as a dep
      */
     public.login = function() {
-        public.loginAs(browser.params.loginDetails.userName, browser.params.loginDetails.password);
+        public.loginAs(browser.params.loginDetails.username, browser.params.loginDetails.password);
     };
 
     /**
