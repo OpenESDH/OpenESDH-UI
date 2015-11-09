@@ -13,6 +13,7 @@
         var vm = this;
 
         vm.getTemplates = getTemplates;
+        vm.deleteTemplate = deleteTemplate;
         vm.getTemplate = getTemplate;
         vm.getThumbnail = getThumbnail;
         vm.fillTemplate = fillTemplate;
@@ -39,6 +40,12 @@
         function getFileExtension(filename) {
             var parts = filename.split('.');
             return parts[parts.length - 1];
+        }
+
+        function deleteTemplate(nodeRef) {
+            return officeTemplateService.deleteTemplate(nodeRef).then(function(response) {
+                return response.message;
+            });
         }
 
         function getTemplate(nodeRef) {

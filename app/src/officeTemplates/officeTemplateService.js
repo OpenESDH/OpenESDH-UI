@@ -9,6 +9,7 @@
 
         return {
             getTemplates: getTemplates,
+            deleteTemplate: deleteTemplate,
             getTemplate: getTemplate,
             fillTemplate: fillTemplate,
             uploadTemplate: uploadTemplate,
@@ -23,6 +24,17 @@
 
         function getTemplate(nodeRef) {
             return $http.get('/alfresco/service/api/openesdh/officetemplates/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri).then(function (response) {
+                return response.data;
+            });
+        }
+
+        /**
+         * Deletes a template given its noderef
+         * @param nodeRef
+         * @returns {*}
+         */
+        function deleteTemplate(nodeRef) {
+            return $http.delete('/alfresco/service/api/openesdh/officeDocTemplate/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri).then(function (response) {
                 return response.data;
             });
         }
@@ -55,7 +67,7 @@
                 tmplFileData.append(key, value);
             });
 
-            return $http.post('/alfresco/service/api/openesdh/officetemplate', tmplFileData, {
+            return $http.post('/alfresco/service/api/openesdh/officeDocTemplate', tmplFileData, {
                 transformRequest: angular.identity, headers: {'Content-Type': undefined}
             }).then(function(response) {
                 return response.data;
