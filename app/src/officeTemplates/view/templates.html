@@ -9,7 +9,7 @@
                 <h2 class="md-title" ng-bind="temp.title" flex></h2>
                 <p flex>Some template information</p>
                 <div class="md-actions" layout="column" layout-align="end end">
-                    <md-button>Use template</md-button>
+                    <md-button ng-click="tmplCtrl.deleteTemplate(temp.nodeRef)">{{'COMMON.DELETE' | translate}}</md-button>
                 </div>
             </div>
         </md-card-content>

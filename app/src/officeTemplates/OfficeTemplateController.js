@@ -13,6 +13,7 @@
         var vm = this;
 
         vm.getTemplates = getTemplates;
+        vm.deleteTemplate = deleteTemplate;
         vm.getTemplate = getTemplate;
         vm.getThumbnail = getThumbnail;
         vm.fillTemplate = fillTemplate;
@@ -34,6 +35,12 @@
         function getThumbnail(nodeRef) {
             var url = officeTemplateService.getCardViewThumbnail(nodeRef);
             return url;
+        }
+
+        function deleteTemplate(nodeRef) {
+            return officeTemplateService.deleteTemplate(nodeRef).then(function(response) {
+                return response.message;
+            });
         }
 
         function getTemplate(nodeRef) {
