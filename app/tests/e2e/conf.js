@@ -31,22 +31,21 @@ exports.config = {
         });
         // Add a screenshot reporter and store screenshots to `/tmp/screnshots`:
         //see https://github.com/mlison/protractor-jasmine2-screenshot-reporter/issues/4
-        /*jasmine.getEnv().addReporter(
+        jasmine.getEnv().addReporter(
             new HtmlScreenshotReporter({
                 dest: 'target/screenshots',
                 filename: 'failed-reports.html',
                 ignoreSkippedSpecs: true,
                 reportOnlyFailedSpecs: false,
                 captureOnlyFailedSpecs: false,
-                //pathBuilder: function(currentSpec, suites, browserCapabilities) {
-                 // will return chrome/your-spec-name.png
-                 //return browserCapabilities.get('browserName') + '/' + currentSpec.fullName;
-                 //},
-                 metadataBuilder: function(currentSpec, suites, browserCapabilities) {
-                 return { id: currentSpec.id, os: browserCapabilities.get('browserName') };
-                 }
+                pathBuilder: function (currentSpec) {
+                    return browser.capabilities.get('platform') + '/' + browser.capabilities.get('browserName') + '.' + browser.capabilities.get('version') + '/' + currentSpec.fullName;
+                }
+                /*metadataBuilder: function (currentSpec, suites, browserCapabilities) {
+                    return {id: currentSpec.id, os: browserCapabilities.get('browserName')};
+                }*/
             })
-        );*/
+        );
     },
     suites: {
         login: './login/*.test.js',
