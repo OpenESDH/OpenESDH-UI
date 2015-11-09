@@ -167,19 +167,6 @@
             data: {
                 authorizedRoles: [USER_ROLES.user]
             }
-        }).state('templates', {
-            parent: 'site',
-            url: '/templates',
-            views: {
-                'content@': {
-                    templateUrl: '/app/src/officeTemplates/view/templates.html',
-                    controller: 'OfficeTemplateController',
-                    controllerAs: 'tmplCtrl'
-                }
-            },
-            data: {
-                authorizedRoles: [USER_ROLES.user]
-            }
         }).state('workflowtask', {
             parent: 'site',
             url: '/tasks/task/:taskName/:taskId',
@@ -310,6 +297,18 @@
                     controller: 'DocumentCategoriesController',
                     controllerAs: 'vm'
                 }
+            }
+        }).state('administration.systemsettings.templates', {
+            url: '/templates',
+            views: {
+                'systemsetting-view': {
+                    templateUrl: '/app/src/officeTemplates/view/templates.html',
+                    controller: 'OfficeTemplateController',
+                    controllerAs: 'tmplCtrl'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
             }
         }).state('search', {
             url: '/search/:searchTerm',
