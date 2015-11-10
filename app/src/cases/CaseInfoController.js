@@ -13,7 +13,7 @@
    * @constructor
    */
   function CaseInfoController($scope, $stateParams, $mdDialog, $translate, $filter, sessionService, caseService, 
-              notificationUtilsService, startCaseWorkflowService, caseCrudDialogService, casePrintDialogService) {
+              notificationUtilsService, startCaseWorkflowService, caseCrudDialogService, casePrintDialogService, preferenceService) {
     var vm = this;
 
     vm.editCase = editCase;
@@ -21,6 +21,10 @@
     vm.onTabChange = onTabChange;
     vm.startWorklfow = startWorklfow;
     vm.printCase = printCase;
+    vm.addCaseToFavourites = addCaseToFavourites;
+    vm.removeCaseFromFavourites = removeCaseFromFavourites;
+    vm.checkFavourite = checkFavourite; 
+    
     $scope.$filter = $filter;
 
     if ($stateParams.alf_ticket) {
@@ -50,6 +54,8 @@
             //other exceptions
             notificationUtilsService.alert(response.data.message);
         });
+        
+        vm.checkFavourite();
     }
     
     function editCase(ev) {
@@ -103,4 +109,21 @@
         casePrintDialogService.printCase($stateParams.caseId);
     }
     
+    function addCaseToFavourites(){
+        preferenceService.addFavouriteCase($stateParams.caseId).then(function(){
+            vm.checkFavourite();
+        });
+    }
+
+    function removeCaseFromFavourites(){
+        preferenceService.removeFavouriteCase($stateParams.caseId).then(function(){
+            vm.checkFavourite();
+        });
+    }
+
+    function checkFavourite(){
+        preferenceService.isFavouriteCase($stateParams.caseId).then(function(result){
+            vm.isFavourite = result; 
+        });
+    }
   };
