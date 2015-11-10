@@ -6,7 +6,6 @@ var LoginPage = function () {
 
     /**
      * Default login as admin.
-     * TODO might want to abstract the password out to a file and pull that in as a dep
      */
     public.login = function() {
         public.loginAs(browser.params.loginDetails.username, browser.params.loginDetails.password);
