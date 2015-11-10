@@ -164,6 +164,7 @@
         "MY_DOCUMENTS": "My documents",
         "CHOOSE_TEMPLATE": "Choose template",
         "TEMPLATE": {
+            "ARE_YOU_SURE_YOU_WANT_TO_DELETE_TEMPLATE": "Are you sure you want to delete the template '{{title}}' ?",
             "RECEIVER": "Receiver",
             "LABELS": {
                 "TEMPLATES":"Templates",

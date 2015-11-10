@@ -9,7 +9,7 @@
      * @param cases
      * @constructor
      */
-    function OfficeTemplateController($scope, officeTemplateService, FileSaver, Blob, $mdDialog) {
+    function OfficeTemplateController($scope, $mdDialog, $translate, officeTemplateService, FileSaver, Blob) {
         var vm = this;
 
         vm.getTemplates = getTemplates;
@@ -42,10 +42,20 @@
             return parts[parts.length - 1];
         }
 
-        function deleteTemplate(nodeRef) {
-            return officeTemplateService.deleteTemplate(nodeRef).then(function(response) {
-                return getTemplates();
+        function deleteTemplate(ev, template) {
+            var confirm = $mdDialog.confirm()
+                    .title($translate.instant('COMMON.CONFIRM'))
+                    .content($translate.instant('DOCUMENT.TEMPLATE.ARE_YOU_SURE_YOU_WANT_TO_DELETE_TEMPLATE', {title: template.title}))
+                    .targetEvent(ev)
+                    .ok($translate.instant('COMMON.YES'))
+                    .cancel($translate.instant('COMMON.CANCEL'));
+            
+            $mdDialog.show(confirm).then(function() {
+                officeTemplateService.deleteTemplate(template.nodeRef).then(function(response) {
+                    return getTemplates();
+                });
             });
+            ev.stopPropagation();
         }
 
         function getTemplate(nodeRef) {
