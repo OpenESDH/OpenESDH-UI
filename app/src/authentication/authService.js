@@ -2,12 +2,10 @@ angular
     .module('openeApp')
     .config(config)
     .factory('httpTicketInterceptor', httpTicketInterceptor)
-    //.factory('httpResponseInterceptor', httpResponseInterceptor)
     .factory('authService', authService);
 
 function config($httpProvider) {
     $httpProvider.interceptors.push('httpTicketInterceptor');
-    //$httpProvider.interceptors.push('httpResponseInterceptor');
     $httpProvider.defaults.headers.common.Authorization = undefined;
 }
 

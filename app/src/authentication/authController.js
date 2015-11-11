@@ -16,16 +16,21 @@ function AuthController($scope, $state, $stateParams, $translate, authService, u
 
     function login(credentials) {
         authService.login(credentials.username, credentials.password).then(function(response) {
-            if(response.status == 200) {
+
+            // Logged in
+            if(response.userName) {
                 userService.getPerson(credentials.username).then(function (response) {
                     vm.user = response;
                     $state.go('dashboard');
                 });
             }
-            else {
-                vm.errorMsg = (response.status == 403)? $translate.instant('LOGIN.AUTH_FAILURE') : $translate.instant('LOGIN.SESSION_TIMEOUT');
-                $state.go("login");
+
+            // If incorrect values            
+            if(response.status == 403) {
+                vm.form.password.$setDirty();
+                vm.form.password.$error.failure = true;
             }
+
         });
     }
 
