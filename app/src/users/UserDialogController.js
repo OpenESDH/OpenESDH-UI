@@ -27,17 +27,10 @@ angular
 	    }
 
 	    function update(u) {
-	    	if(ucd.userExists) {
-	    		ucd.user.disableAccount = !u.enabled;	
-	    	} else {
-
-	    	}
+	    	if(ucd.userExists) ucd.user.disableAccount = !u.enabled;
 	        var promise = (ucd.userExists) ? userService.updateUser(ucd.user) : userService.createUser(ucd.user);
 	        promise.then(function onSuccess(response) {
-	        	console.log("onSuccess", response);
 	        	notifyUserSaved(response);
-
-
 	        }, handleCreateEditError);
 	    }	    
 
