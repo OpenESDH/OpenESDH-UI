@@ -11,7 +11,6 @@
     "angular-resource": "^1.4.x",
     "angular-route": "^1.4.x",
     "angular-ui-router": "",
-    "angular-resource": "^1.4.x",
     "angular-animate": "^1.4.x",
     "angular-aria": "^1.4.x",
     "angular-material": "^1.0.0",
@@ -19,13 +18,14 @@
     "angular-encode-uri": "",
     "angular-translate": "",
     "angular-translate-loader-static-files": "",
-    "isteven-angular-multiselect":"3.0.0",
+    "isteven-angular-multiselect": "3.0.0",
     "pdfjs-dist": "",
     "angular-pdf": "",
     "angular-swfobject": "",
     "material-wizard": "",
     "angular-file-saver": "",
-    "angular-auto-height": "https://github.com/m43nu/angular-auto-height.git"
+    "angular-auto-height": "https://github.com/m43nu/angular-auto-height.git",
+    "angular-img-fallback": "~0.1.3"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.x"

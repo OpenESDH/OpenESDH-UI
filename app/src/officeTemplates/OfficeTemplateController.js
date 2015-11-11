@@ -9,7 +9,7 @@
      * @param cases
      * @constructor
      */
-    function OfficeTemplateController($scope, officeTemplateService, FileSaver, Blob, $mdDialog) {
+    function OfficeTemplateController($scope, $mdDialog, $translate, officeTemplateService, FileSaver, Blob) {
         var vm = this;
 
         vm.getTemplates = getTemplates;
@@ -17,6 +17,7 @@
         vm.getTemplate = getTemplate;
         vm.getThumbnail = getThumbnail;
         vm.fillTemplate = fillTemplate;
+        vm.getFileExtension = getFileExtension;
         vm.uploadNewTemplate = uploadTemplate;
 
         activate();
@@ -33,14 +34,28 @@
         }
 
         function getThumbnail(nodeRef) {
-            var url = officeTemplateService.getCardViewThumbnail(nodeRef);
-            return url;
+            return officeTemplateService.getCardViewThumbnail(nodeRef);
         }
 
-        function deleteTemplate(nodeRef) {
-            return officeTemplateService.deleteTemplate(nodeRef).then(function(response) {
-                return response.message;
+        function getFileExtension(filename) {
+            var parts = filename.split('.');
+            return parts[parts.length - 1];
+        }
+
+        function deleteTemplate(ev, template) {
+            var confirm = $mdDialog.confirm()
+                    .title($translate.instant('COMMON.CONFIRM'))
+                    .content($translate.instant('DOCUMENT.TEMPLATE.ARE_YOU_SURE_YOU_WANT_TO_DELETE_TEMPLATE', {title: template.title}))
+                    .targetEvent(ev)
+                    .ok($translate.instant('COMMON.YES'))
+                    .cancel($translate.instant('COMMON.CANCEL'));
+            
+            $mdDialog.show(confirm).then(function() {
+                officeTemplateService.deleteTemplate(template.nodeRef).then(function(response) {
+                    return getTemplates();
+                });
             });
+            ev.stopPropagation();
         }
 
         function getTemplate(nodeRef) {
@@ -60,9 +75,10 @@
 
         function uploadTemplate(){
             showDialog(NewCaseDocumentDialogController).then(function (response) {
-                console.log("==> Response from dialog:"+response);
-                officeTemplateService.uploadTemplate(response).then(function(response){
-                    console.log("==> Response from dialog Service:"+response);
+                console.log("==> Response from dialog:", response);
+                officeTemplateService.uploadTemplate(response).then(function(response) {
+                    console.log("==> Response from dialog Service:", response);
+                    return getTemplates();
                 });
             });
         }

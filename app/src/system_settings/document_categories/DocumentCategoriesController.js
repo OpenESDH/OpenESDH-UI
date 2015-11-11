@@ -60,9 +60,7 @@
                 locals: {
                     documentCategory: doc
                 }
-            }).then(function(response) {
-
-            });
+            })
         }
 
         function DocCategoryDialogController($scope, $mdDialog, documentCategory) {

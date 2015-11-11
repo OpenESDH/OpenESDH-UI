@@ -165,6 +165,7 @@
     "MY_DOCUMENTS": "Mine dokumenter",
     "CHOOSE_TEMPLATE": "Vælg skabelon",
     "TEMPLATE": {
+      "ARE_YOU_SURE_YOU_WANT_TO_DELETE_TEMPLATE": "Er du sikker på, at du vil slette skabelon '{{title}}' ?",
       "RECEIVER": "Modtager",
       "LABELS": {
         "TEMPLATES":"Skabeloner",
@@ -671,7 +672,7 @@
     "DISPLAY_NAME": "Titel",
     "CREATE_NEW_DOC_TYPE": "Opret ny dokumenttype",
     "CREATE_EDIT_DOC_TYPE": "Opret / redigér dokumenttype",
-    "ARE_YOU_SURE_YOU_WANT_TO_DELETE_DOCUMENT_TYPE_X": "Er du sikker på at du vil slette dokumenttype '{{title}}'?"
+    "ARE_YOU_SURE_YOU_WANT_TO_DELETE_DOCUMENT_TYPE_X": "Er du sikker på, at du vil slette dokumenttype '{{title}}'?"
   },
   "DOCUMENT_CATEGORIES": {
     "DOCUMENT_CATEGORIES": "Dokument kategorier",
@@ -679,7 +680,7 @@
     "DISPLAY_NAME": "Titel",
     "CREATE_NEW_DOC_CATEGORY": "Opret ny dokumentkategori",
     "CREATE_EDIT_DOC_CATEGORY": "Opret / redigér document category",
-    "ARE_YOU_SURE_YOU_WANT_TO_DELETE_DOCUMENT_CATEGORY_X": "Er du sikker på at du vil slette dokumentkategori '{{title}}'?"
+    "ARE_YOU_SURE_YOU_WANT_TO_DELETE_DOCUMENT_CATEGORY_X": "Er du sikker på, at du vil slette dokumentkategori '{{title}}'?"
   },
   "SYSTEM_SETTINGS": {
     "SYSTEM_SETTINGS": "Systemopsætning"

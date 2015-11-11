@@ -35,6 +35,7 @@
             'openeApp.common.directives',
             'openeApp.common.directives.filter',
             'm43nu.auto-height',
+            'dcbImgFallback',
             'openeApp.activities'
         ])
         .constant('USER_ROLES', {
@@ -272,7 +273,9 @@
             },
             views: {
                 'systemsettings': {
-                    templateUrl: '/app/src/system_settings/menu/system_settings.html'
+                    templateUrl: '/app/src/system_settings/menu/system_settings.html',
+                    controller: 'SystemsettingsController',
+                    controllerAs: 'vm'
                 }
             }
         }).state('administration.systemsettings.doctypes', {
