@@ -5,6 +5,7 @@
         <a class="md-button global-tools__link" ui-sref="dashboard"><i class="material-icons">dashboard</i> <span hide show-gt-md>{{ 'COMMON.HOME' | translate }}</span></a>
         <a class="md-button global-tools__link" ui-sref="cases"><i class="material-icons">folder_open</i> <span hide show-gt-md>{{ 'CASE.CASES' | translate }}</span></a>
         <a class="md-button global-tools__link" ui-sref="tasks"><i class="material-icons">assignment</i> <span hide show-gt-md>{{ 'TASK.TASKS' | translate }}</span></a>
+        <a class="md-button global-tools__link" ui-sref="activities"><i class="material-icons">announcement</i> <span hide show-gt-md>{{ 'ACTIVITIES.NOTIFICATIONS' | translate }}</span></a>
     </div>
     
     <md-menu ng-controller="AuthController as vm"
@@ -33,7 +34,7 @@
             </md-menu-item>
             <md-menu-divider></md-menu-divider>
             <md-menu-item>
-                <md-button ng-click="vm.logout()">
+                <md-button id="logout" ng-click="vm.logout()">
                     {{ 'MENU.LOGOUT' | translate }}
                 </md-button>
             </md-menu-item>

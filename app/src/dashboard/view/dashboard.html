@@ -70,6 +70,27 @@
           </md-card-content>
         </md-card>
       
+        <md-card ng-controller="activitiesController as actContrl">
+            <md-card-content>
+                <h2 class="md-title">{{ 'ACTIVITIES.RECENT_ACTIVITIES' | translate }}</h2>
+                <div style="min-height: 150px;">
+                  <div ng-repeat="activity in actContrl.activities" class="repeat-item" style="margin: 15px" >
+                      {{activitySummary=activity.activitySummary;""}}
+                      <a translate="ACTIVITIES.{{activity.activityType}}"
+                           translate-value-user="{{activitySummary.modifierDisplayName}}"
+                           translate-value-case="{{activitySummary.caseTitle}}"
+                           translate-value-case-id="{{activitySummary.caseId}}"
+                           translate-value-member="{{activitySummary.member}}"
+                           translate-value-role="{{activitySummary.role}}"
+                           translate-value-document="{{activitySummary.docTitle}}"
+                           translate-value-attachment="{{activitySummary.attachmentTitle}}"
+                           translate-value-workflow-description="{{activitySummary.workflowDescription}}"
+                           ui-sref="caseinfo({'caseId': activitySummary.caseId})">
+                      </a>
+                  </div>
+                </div>
+            </md-virtual-repeat-container>
+        </md-card>
     </div>
   
     <div flex="100" flex-gt-md="33">
