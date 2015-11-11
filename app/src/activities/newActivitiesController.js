@@ -2,18 +2,16 @@ angular
         .module('openeApp.activities')
         .controller('newActivitiesController', newActivitiesController);
     
-    function newActivitiesController($timeout, activitiesService){
+    function newActivitiesController($interval, activitiesService){
         var vm = this;
-        
-        (function poll(){
+        vm.pollInterval = $interval(poll, 10000);
+        function poll(){
             activitiesService.countCurrentUserNewActivities().then(function(result){
                 if(result.count == "0"){
                     vm.newActivitiesCount = "";
                 }else{
                     vm.newActivitiesCount = "(" + result.count + ")";
                 }
-                //$timeout(poll, 60000);
             });
-        })();
-        
+        }
     }
