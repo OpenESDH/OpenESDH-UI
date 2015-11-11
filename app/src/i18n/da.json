@@ -35,6 +35,7 @@
     "NO_MATCHES": "Ingen match",
     "EMAIL": "Email",
     "SAVE": "Gem",
+    "SAVE_EMAIL": "Arkiver e-mail",
     "VIEW_DETAILS": "Vis detaljer",
     "SHOW": "Vis",
     "DELETE": "Slet",
@@ -504,6 +505,10 @@
     "DELETE_USER_SUCCESS": "Bruger slettet",
     "DELETE_USER_FAILURE": "Bruger kunne ikke slettes",
     "CREATE_USER": "Opret bruger",
+    "ERROR": {
+        "USERNAME_EXISTS": "Brugernavn finnes allerede",
+        "EMAIL_EXISTS": "Email finnes allerede"
+    },
     "ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER": "Er du sikker på, at du vil slette '{{user}}'?"
   },
   "GROUP": {
@@ -579,8 +584,9 @@
     "FORGOT_PASSWORD": "Glemt kodeord",
     "VERIFY_PASSWORD": "Gentag kodeord",
     "INVALID_EMAIL": "Add a valid email address",
-    "FORGOT_PASSWORD_SUCCESS": "Instruktioner er blevet sendt til den email forudsat. Tjek din email og følg vejledningen.",
-    "FORGOT_PASSWORD_PROMPT": "Indtast din emailadresse og vi sender dig oplysninger om, hvordan du nulstiller din adgangskode."
+    "PASSWORD_NOMATCH": "Kodeord matcher ikke",
+    "FORGOT_PASSWORD_SUCCESS": "Instruktioner er blevet sendt til den email forudsat. Tjek din e-mail og følg vejledningen.",
+    "FORGOT_PASSWORD_PROMPT": "Indtast din e-mailadresse og vi sender dig oplysninger om, hvordan du nulstiller din adgangskode."
   },
   "MEMBER": {
     "MEMBERS": "Medlemmer",
