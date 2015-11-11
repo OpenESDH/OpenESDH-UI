@@ -26,6 +26,7 @@
                 </md-input-container>
 
                 <div layout="column" layout-align="start center">
+                    <div ng-if="vm.errorMsg" role="alert" flex="grow"> {{ vm.errorMsg }} </div>
                 
                     <md-button type="submit" class="md-raised md-primary" 
                                 ng-click="vm.login(vm.credentials)" 
@@ -34,10 +35,9 @@
                     </md-button>
                     
                 </div>
-
             </form>
-            
         </md-card-content>
+
         <md-card-footer layout="row" layout-align="center">
             <a href="#" ng-click="vm.showForgotDialog($event)">
                 {{ 'LOGIN.FORGOT_PASSWORD' | translate }}?

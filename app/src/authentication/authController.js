@@ -3,25 +3,28 @@ angular
     .module('openeApp')
     .controller('AuthController', AuthController);
 
-function AuthController($scope, $state, authService, userService, $mdDialog) {
+function AuthController($scope, $state, $stateParams, $translate, authService, userService, $mdDialog) {
     var vm = this;
+    var loginErrorMessage = angular.fromJson($stateParams.error);
 
     vm.login = login;
     vm.logout = logout;
     vm.loggedin = loggedin;
     vm.getUserInfo = getUserInfo;
+    vm.errorMsg = loginErrorMessage ? loginErrorMessage: "";
     vm.showForgotDialog = showForgotDialog;
 
     function login(credentials) {
         authService.login(credentials.username, credentials.password).then(function(response) {
-            userService.getPerson(credentials.username).then(function(response) {
-                vm.user = response;
-            });
-            console.log('tostate: ' + $scope.returnToState);
-            if ($scope.returnToState) {
-                $state.go($scope.returnToState.name, $scope.returnToStateParams);
-            } else {
-                $state.go('dashboard');
+            if(response.status == 200) {
+                userService.getPerson(credentials.username).then(function (response) {
+                    vm.user = response;
+                    $state.go('dashboard');
+                });
+            }
+            else {
+                vm.errorMsg = (response.status == 403)? $translate.instant('LOGIN.AUTH_FAILURE') : $translate.instant('LOGIN.SESSION_TIMEOUT');
+                $state.go("login");
             }
         });
     }
