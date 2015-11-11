@@ -34,7 +34,7 @@
         }
         
         function setCurrentUserLastReadActivityFeedId(feedId){
-            var url = "/api/openesdh/activities/feed/last/read/id/" + feedId;
+            var url = "/alfresco/s/api/openesdh/activities/feed/last/read/id/" + feedId;
             return $http.post(url).then(function(result){
                 return result.data;
             });

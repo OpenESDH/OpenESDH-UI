@@ -12,7 +12,7 @@ angular
                 }else{
                     vm.newActivitiesCount = "(" + result.count + ")";
                 }
-                $timeout(poll, 2000);
+                $timeout(poll, 10000);
             });
         })();
         
