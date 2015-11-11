@@ -69,25 +69,25 @@ angular
 
 	    function handleCreateEditError(response) {
 
-	    	console.log(response)
+	    	console.log(response);
+            var cStack = response.data.callstack[1];
+            var msg = (cStack) ? cStack.substring(cStack.lastIndexOf(":")+2, cStack.length) : response.data.message;
 
         	// If conflict
         	if(response.status === 409) {
-
-        		var msg = response.data.message;
-        		
         		// Username already exists
         		if(msg.indexOf('User name already exists') > -1) {
         			ucd.form.userName.$error.exists = true;
         			ucd.form.userName.$error.message = msg;
         		}
-
-        		// Email already exists
-        		if(msg.indexOf('Email already exists') > -1) {
-        			ucd.form.email.$error.exists = true;
-        			ucd.form.email.$error.message = msg;
-        		}
-
         	}
+
+			if(response.status === 500) {
+				// Email already exists
+				if (msg.indexOf('Email') > -1) {
+					ucd.form.email.$error.exists = true;
+					ucd.form.email.$error.message = msg;
+				}
+			}
         }
 	}
