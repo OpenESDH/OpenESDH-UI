@@ -23,7 +23,7 @@
                     <label>{{ 'COMMON.EMAIL' | translate }}</label>
                     <input type="email" ng-model="ucd.user.email" name="email" required focus-me="false">
                     <div ng-messages="ucd.form.email.$error" ng-if="ucd.form.email.$dirty" role="alert">
-                        <div ng-message="exists">{{ ucd.form.userName.$error.message }}</div>
+                        <div ng-message="exists">{{ ucd.form.email.$error.message }}</div>
                     </div>
                 </md-input-container>
             </div>

@@ -78,7 +78,7 @@ angular
         		// Username already exists
         		if(msg.indexOf('User name already exists') > -1) {
         			ucd.form.userName.$error.exists = true;
-        			ucd.form.userName.$error.message = msg;
+        			ucd.form.userName.$error.message = $translate.instant('USER.ERROR.USERNAME_EXISTS');
         		}
         	}
 
@@ -86,7 +86,7 @@ angular
 				// Email already exists
 				if (msg.indexOf('Email') > -1) {
 					ucd.form.email.$error.exists = true;
-					ucd.form.email.$error.message = msg;
+					ucd.form.email.$error.message = $translate.instant('USER.ERROR.EMAIL_EXISTS');
 				}
 			}
         }
