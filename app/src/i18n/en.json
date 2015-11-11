@@ -1,5 +1,6 @@
 {
     "COMMON": {
+        "CASE_ID": "Case Id",
         "CONFIRM": "Confirm",
         "OK": "OK",
         "YES": "Yes",
@@ -521,6 +522,10 @@
         "DELETE_USER_SUCCESS": "User successfully deleted",
         "DELETE_USER_FAILURE": "User could not be deleted",
         "CREATE_USER": "Create user",
+        "ERROR": {
+            "USERNAME_EXISTS": "Username already exists",
+            "EMAIL_EXISTS": "Email already exists"
+        },
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER": "Are you sure you want to delete '{{user}}'?"
     },
     "GROUP": {
@@ -596,6 +601,7 @@
         "FORGOT_PASSWORD": "Forgot password",
         "VERIFY_PASSWORD": "Verify password",
         "INVALID_EMAIL": "Email address is invalid",
+        "PASSWORD_NOMATCH": "Password is not matching",
         "FORGOT_PASSWORD_SUCCESS": "Instructions have been sent to the email provided. Check your email and follow the instructions.",
         "FORGOT_PASSWORD_PROMPT": "Enter your email address and we'll send you information regarding how to reset your password. "
     },
@@ -713,6 +719,52 @@
         "FIND_PERSON": "Find persons",
         "FIND_ORGANISATION": "Find organizations",
         "NO_MATCHES": "No matches"
+    },
+    "ACTIVITIES": {
+        "NOTIFICATIONS": "Notifications",
+        "RECENT_ACTIVITIES": "Recent Activities",
+        "PERFORMER": "Performer",
+        "DATE":"Date",
+        "dk.openesdh.case-update": "{{user}} updated case \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.member-add": "{{user}} added member {{member}} of role {{role}} to the case \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.member-remove": "{{user}} removed member {{member}} of role {{role}} from the case \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.document-upload": "{{user}} uploaded a new document \"{{document}}\" to the case \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.document.new.version-upload": "{{user}} uploaded a new version of the document \"{{document}}\" to the case \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.document.attachment-upload": "{{user}} uploaded an attachment \"{{attachment}}\" for the document \"{{document}}\" to the case \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.document.attachment.new.version-upload": "{{user}} uploaded a new version of the attachment \"{{attachment}}\" for the document \"{{document}}\" to the case \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.workflow-start": "{{user}} started workflow \"{{workflowDescription}}\" for the case \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.workflow-cancel": "{{user}} canceled workflow \"{{workflowDescription}}\" for the case \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.workflow.task-end": "{{user}} completed the task \"{{workflowDescription}}\" for the case \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.workflow.task-approve": "{{user}} approved the task \"{{workflowDescription}}\" for the case \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.workflow.task-reject": "{{user}} rejected the task \"{{workflowDescription}}\" for the case \"{{case}} ({{caseId}})\"",
+        "LIST":{
+            "dk.openesdh.case-update": "Updated case properties",
+            "dk.openesdh.case.member-add": "Added member {{member}} of role {{role}}",
+            "dk.openesdh.case.member-remove": "Removed member {{member}} of role {{role}}",
+            "dk.openesdh.case.document-upload": "Uploaded a new document \"{{document}}\"",
+            "dk.openesdh.case.document.new.version-upload": "Uploaded a new version of the document \"{{document}}\"",
+            "dk.openesdh.case.document.attachment-upload": "Uploaded an attachment \"{{attachment}}\" for the document \"{{document}}\"",
+            "dk.openesdh.case.document.attachment.new.version-upload": "Uploaded a new version of the attachment \"{{attachment}}\" for the document \"{{document}}\"",
+            "dk.openesdh.case.workflow-start": "Started workflow \"{{workflowDescription}}\"",
+            "dk.openesdh.case.workflow-cancel": "Canceled workflow \"{{workflowDescription}}\"",
+            "dk.openesdh.case.workflow.task-end": "Completed the task \"{{workflowDescription}}\"",
+            "dk.openesdh.case.workflow.task-approve": "Approved the task \"{{workflowDescription}}\"",
+            "dk.openesdh.case.workflow.task-reject": "Rejected the task \"{{workflowDescription}}\""
+        },
+        "TYPE":{
+            "dk.openesdh.case-update": "Case",
+            "dk.openesdh.case.member-add": "Case Member",
+            "dk.openesdh.case.member-remove": "Case Member",
+            "dk.openesdh.case.document-upload": "Document",
+            "dk.openesdh.case.document.new.version-upload": "Document",
+            "dk.openesdh.case.document.attachment-upload": "Document",
+            "dk.openesdh.case.document.attachment.new.version-upload": "Document",
+            "dk.openesdh.case.workflow-start": "Workflow",
+            "dk.openesdh.case.workflow-cancel": "Workflow",
+            "dk.openesdh.case.workflow.task-end": "Workflow",
+            "dk.openesdh.case.workflow.task-approve": "Workflow",
+            "dk.openesdh.case.workflow.task-reject": "Workflow"
+        }
     },
     "faceted-search.date.one-week.label": "Last week",
     "faceted-search.date.one-month.label": "Last month",

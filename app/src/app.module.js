@@ -35,7 +35,8 @@
             'openeApp.common.directives',
             'openeApp.common.directives.filter',
             'm43nu.auto-height',
-            'dcbImgFallback'
+            'dcbImgFallback',
+            'openeApp.activities'
         ])
         .constant('USER_ROLES', {
             admin: 'admin',
@@ -318,6 +319,18 @@
             views: {
                 'content@': {
                     templateUrl: '/app/src/search/view/search.html'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
+            }
+        }).state('activities', {
+            url: '/activities',
+            views: {
+                'content@': {
+                    templateUrl: '/app/src/activities/view/activities.html',
+                    controller: 'activitiesController',
+                    controllerAs: 'actCtrl'
                 }
             },
             data: {

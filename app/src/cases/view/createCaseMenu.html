@@ -1,5 +1,6 @@
 <md-menu ng-controller="CreateCaseMenuController as ctrl">
-    <md-button class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="{{ 'CASE.CREATE_NEW_CASE' | translate }}">
+    <md-button id="create-case-btn" class="md-primary" ng-click="$mdOpenMenu($event)" 
+                aria-label="{{ 'CASE.CREATE_NEW_CASE' | translate }}">
         <i class="material-icons">add</i>
         {{ 'CASE.CREATE_NEW_CASE' | translate }}
     </md-button>

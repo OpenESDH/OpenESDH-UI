@@ -11,8 +11,6 @@ function userService(ALFRESCO_URI, $http, $resource) {
         getHome: getHome,
         getAuthorities: getAuthorities,
         getCaseAuthorities: getCaseAuthorities,
-        getPreferences: getPreferences,
-        setPreferences: setPreferences,
         createUser: createUser,
         updateUser: updateUser,
         getPersons: getPersons,
@@ -60,20 +58,6 @@ function userService(ALFRESCO_URI, $http, $resource) {
             return Object.keys(items).map(function(key) {
                 return items[key];
             });
-        });
-    }
-
-    function getPreferences(username, params) {
-        return $http.get('/alfresco/s/api/people/' + username + '/preferences', {
-            params: params
-        }).then(function(response) {
-            return response.data;
-        });
-    }
-
-    function setPreferences(username, preferences) {
-        return $http.post('/alfresco/s/api/people/' + username + '/preferences', preferences).then(function(response) {
-            return response.data;
         });
     }
 
