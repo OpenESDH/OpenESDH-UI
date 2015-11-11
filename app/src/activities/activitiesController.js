@@ -10,5 +10,8 @@ angular
                 activity.activitySummary = angular.fromJson(activity.activitySummary);
             });
             vm.activities = result;
+            if(result.length > 0 ){
+                activitiesService.setCurrentUserLastReadActivityFeedId(result[0].id);
+            }
         });
     }
