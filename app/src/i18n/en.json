@@ -1,5 +1,6 @@
 {
     "COMMON": {
+        "CASE_ID": "Case Id",
         "CONFIRM": "Confirm",
         "OK": "OK",
         "YES": "Yes",
@@ -35,7 +36,6 @@
         "NO_MATCHES": "No matches",
         "EMAIL": "Email",
         "SAVE": "Save",
-        "SAVE_EMAIL": "Save email",
         "VIEW_DETAILS": "View details",
         "SHOW": "Show",
         "DELETE": "Delete",
@@ -55,7 +55,10 @@
         "STATE": "State",
         "COMMENT": "Comment",
         "FILL_ALL_REQUIRED_FIELDS": "Fill all required fields!",
-        "OPEN": "Open"
+        "OPEN": "Open",
+        "TO": "To",
+        "SUBJECT": "Subject",
+        "MESSAGE": "Message"
     },
     "CASE": {
         "CONFIRM_CLOSE_CASE": "Do you want to close this case?",
@@ -162,7 +165,11 @@
         "MY_DOCUMENTS": "My documents",
         "CHOOSE_TEMPLATE": "Choose template",
         "TEMPLATE": {
-            "RECEIVER": "Reciever"
+            "RECEIVER": "Receiver",
+            "LABELS": {
+                "TEMPLATES":"Templates",
+                "UPLOAD_NEW_TEMPLATE": "Upload new template"
+            }
         },
         "DOWNLOAD_RENDERED_FROM_TEMPLATE": "Download rendered from template",
         "SAVE_RENDERED_TEMPLATE_TO_CASE": "Save rendered template to case",
@@ -496,7 +503,8 @@
         "ASSIGN_TO": "Assign to",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_TASK_AND_WORKFLOW": "Are you sure you want to delete the task '{{task_description}}' and cancel the workflow?",
         "WORKFLOW_DETAILS": "Workflow details",
-        "STARTED": "started"
+        "STARTED": "started",
+        "WORKFLOW_INSTANCE_DIAGRAM": "Workflow Instance Diagram"
     },
     "ADMIN": {
         "ADMINISTRATION_PAGES": "Administration pages",
@@ -641,6 +649,7 @@
     "TASK": {
         "MY_TASKS": "My tasks",
         "TASKS": "Tasks",
+        "TASK": "Task",
         "SAVE_AND_CLOSE": "Save and close",
         "TASK_DONE": "Task done",
         "APPROVE": "Approve",
@@ -661,7 +670,8 @@
         "TASK_HAS_BEEN_CLAIMED": "Task has been claimed",
         "TASK_HAS_BEEN_RELEASED": "Task has been released",
         "THIS_TASK_IS_UNASSIGNED": "This task is unassigned",
-        "TASK_CREATED_ON_BY": "Created on {{on}} by {{by}}"
+        "TASK_CREATED_ON_BY": "Created on {{on}} by {{by}}",
+        "SHOW_ALL_OPEN_TASKS": "Show all open tasks"
     },
     "MENU": {
         "OPEN_MENU": "Open menu",
@@ -669,8 +679,8 @@
         "LOGOUT": "Logout"
     },
     "OFFICE": {
-        "SAVE_EMAIL_IN_OPENESDH": "SAVE e-mail in OpenESDH",
-        "SAVE_DOCUMENT_IN_OPENESDH": "SAVE document in OpenESDH"
+        "SAVE_EMAIL_IN_OPENESDH": "Save email in OpenESDH",
+        "SAVE_DOCUMENT_IN_OPENESDH": "Save document in OpenESDH"
     },
     "DOCUMENT_TYPE": {
         "CREATE_EDIT_DOC_TYPE": "Create / edit document type",
@@ -681,7 +691,20 @@
         "DOCUMENT_TYPES": "Document types",
         "NAME": "Name",
         "DISPLAY_NAME": "Display name",
-        "CREATE_NEW_DOC_TYPE": "Create new document type"
+        "CREATE_NEW_DOC_TYPE": "Create new document type",
+        "CREATE_EDIT_DOC_TYPE": "Create / edit document type",
+        "ARE_YOU_SURE_YOU_WANT_TO_DELETE_DOCUMENT_TYPE_X": "Are you sure you want to delete document type '{{title}}'?"
+    },
+    "DOCUMENT_CATEGORIES": {
+        "DOCUMENT_CATEGORIES": "Document categories",
+        "NAME": "Name",
+        "DISPLAY_NAME": "Title",
+        "CREATE_NEW_DOC_CATEGORY": "Create new document category",
+        "CREATE_EDIT_DOC_CATEGORY": "Create / edit document category",
+        "ARE_YOU_SURE_YOU_WANT_TO_DELETE_DOCUMENT_CATEGORY_X": "Are you sure you want to delete document category '{{title}}'?"
+    },
+    "SYSTEM_SETTINGS": {
+        "SYSTEM_SETTINGS": "System settings"
     },
     "SEARCH": {
         "SEARCH": "Search",
@@ -691,6 +714,52 @@
         "FIND_PERSON": "Find persons",
         "FIND_ORGANISATION": "Find organizations",
         "NO_MATCHES": "No matches"
+    },
+    "ACTIVITIES": {
+        "NOTIFICATIONS": "Notifications",
+        "RECENT_ACTIVITIES": "Recent Activities",
+        "PERFORMER": "Performer",
+        "DATE":"Date",
+        "dk.openesdh.case-update": "{{user}} updated case \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.member-add": "{{user}} added member {{member}} of role {{role}} to the case \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.member-remove": "{{user}} removed member {{member}} of role {{role}} from the case \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.document-upload": "{{user}} uploaded a new document \"{{document}}\" to the case \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.document.new.version-upload": "{{user}} uploaded a new version of the document \"{{document}}\" to the case \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.document.attachment-upload": "{{user}} uploaded an attachment \"{{attachment}}\" for the document \"{{document}}\" to the case \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.document.attachment.new.version-upload": "{{user}} uploaded a new version of the attachment \"{{attachment}}\" for the document \"{{document}}\" to the case \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.workflow-start": "{{user}} started workflow \"{{workflowDescription}}\" for the case \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.workflow-cancel": "{{user}} canceled workflow \"{{workflowDescription}}\" for the case \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.workflow.task-end": "{{user}} completed the task \"{{workflowDescription}}\" for the case \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.workflow.task-approve": "{{user}} approved the task \"{{workflowDescription}}\" for the case \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.workflow.task-reject": "{{user}} rejected the task \"{{workflowDescription}}\" for the case \"{{case}} ({{caseId}})\"",
+        "LIST":{
+            "dk.openesdh.case-update": "Updated case properties",
+            "dk.openesdh.case.member-add": "Added member {{member}} of role {{role}}",
+            "dk.openesdh.case.member-remove": "Removed member {{member}} of role {{role}}",
+            "dk.openesdh.case.document-upload": "Uploaded a new document \"{{document}}\"",
+            "dk.openesdh.case.document.new.version-upload": "Uploaded a new version of the document \"{{document}}\"",
+            "dk.openesdh.case.document.attachment-upload": "Uploaded an attachment \"{{attachment}}\" for the document \"{{document}}\"",
+            "dk.openesdh.case.document.attachment.new.version-upload": "Uploaded a new version of the attachment \"{{attachment}}\" for the document \"{{document}}\"",
+            "dk.openesdh.case.workflow-start": "Started workflow \"{{workflowDescription}}\"",
+            "dk.openesdh.case.workflow-cancel": "Canceled workflow \"{{workflowDescription}}\"",
+            "dk.openesdh.case.workflow.task-end": "Completed the task \"{{workflowDescription}}\"",
+            "dk.openesdh.case.workflow.task-approve": "Approved the task \"{{workflowDescription}}\"",
+            "dk.openesdh.case.workflow.task-reject": "Rejected the task \"{{workflowDescription}}\""
+        },
+        "TYPE":{
+            "dk.openesdh.case-update": "Case",
+            "dk.openesdh.case.member-add": "Case Member",
+            "dk.openesdh.case.member-remove": "Case Member",
+            "dk.openesdh.case.document-upload": "Document",
+            "dk.openesdh.case.document.new.version-upload": "Document",
+            "dk.openesdh.case.document.attachment-upload": "Document",
+            "dk.openesdh.case.document.attachment.new.version-upload": "Document",
+            "dk.openesdh.case.workflow-start": "Workflow",
+            "dk.openesdh.case.workflow-cancel": "Workflow",
+            "dk.openesdh.case.workflow.task-end": "Workflow",
+            "dk.openesdh.case.workflow.task-approve": "Workflow",
+            "dk.openesdh.case.workflow.task-reject": "Workflow"
+        }
     },
     "faceted-search.date.one-week.label": "Last week",
     "faceted-search.date.one-month.label": "Last month",

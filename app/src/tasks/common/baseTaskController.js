@@ -27,6 +27,8 @@
             return taskService.getTaskDetails(vm.taskId).then(function(result){
                 vm.task = result;
                 vm.taskProperties = angular.extend({}, result.properties);
+                vm.workflowInstanceDiagramUrl = '/alfresco/s/api/workflow-instances/' + vm.task.workflowInstance.id + '/diagram?nocache=' + new Date().getTime() 
+                    +'&alf_ticket=' + sessionService.getUserInfo().ticket;
             });
         }
         
@@ -129,4 +131,5 @@
             }
             return item.nodeRef;
         }
+        
     }

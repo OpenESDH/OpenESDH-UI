@@ -128,6 +128,20 @@
             
             loadDocumentConstraints($scope);
 
+            $scope.$watch(function (scope) {
+                return $scope.fileToUpload;
+            }, function (newValue, oldValue) {
+                if (typeof newValue !== 'undefined' && newValue != null) {
+                    // Automatically set the name of the document to the
+                    // filename, unless the user has already set a name.
+                    if (typeof $scope.documentProperties.title === 'undefined'
+                            || $scope.documentProperties.title == null
+                            || $scope.documentProperties.title == "") {
+                        $scope.documentProperties.title = newValue.name;
+                    }
+                }
+            });
+
             $scope.fromFileObject = fromFileObject;
 
             $scope.documentProperties = {

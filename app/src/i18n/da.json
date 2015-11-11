@@ -55,7 +55,10 @@
     "STATE": "Status",
     "COMMENT": "Kommentar",
     "FILL_ALL_REQUIRED_FIELDS": "Udfyld de obligatoriske felter",
-    "OPEN": "Åbne"
+    "OPEN": "Åbne",
+    "TO": "Til",
+    "SUBJECT": "Emne",
+    "MESSAGE": "Meddelelse"
   },
   "CASE": {
     "CONFIRM_CLOSE_CASE": "Vil du lukke denne sag?",
@@ -162,7 +165,11 @@
     "MY_DOCUMENTS": "Mine dokumenter",
     "CHOOSE_TEMPLATE": "Vælg skabelon",
     "TEMPLATE": {
-      "RECEIVER": "Modtager"
+      "RECEIVER": "Modtager",
+      "LABELS": {
+        "TEMPLATES":"Skabeloner",
+        "UPLOAD_NEW_TEMPLATE": "Upload ny skabelon"
+      }
     },
     "DOWNLOAD_RENDERED_FROM_TEMPLATE": "Download fra skabelon",
     "SAVE_RENDERED_TEMPLATE_TO_CASE": "Gem til sag",
@@ -479,8 +486,9 @@
     "CHOOSE_ASSIGNEES": "Vælg udførere",
     "ASSIGN_TO": "Tildel til",
     "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_TASK_AND_WORKFLOW": "Er du sikker på, at du vil slette opgaven '{{task_description}}' og standse dets workflow?",
-    "WORKFLOW_DETAILS": "Workflow detaljer",
-    "STARTED": "startet"
+    "WORKFLOW_DETAILS": "Workflow-detaljer",
+    "STARTED": "startet",
+    "WORKFLOW_INSTANCE_DIAGRAM": "Workflow-overblik"
   },
   "ADMIN": {
     "ADMINISTRATION_PAGES": "Administrationssider",
@@ -625,6 +633,7 @@
   "TASK": {
     "MY_TASKS": "Mine opgaver",
     "TASKS": "Opgaver",
+    "TASK": "Opgave",
     "SAVE_AND_CLOSE": "Gem og luk",
     "TASK_DONE": "Opgave færdig",
     "APPROVE": "Godkend",
@@ -640,7 +649,8 @@
     "REQUIRED_APPROVAL_PERCENTAGE": "Nødvendig godkendelsesprocent",
     "REVIEWERS_WHO_APPROVED": "Antal godkendelser",
     "ACTUAL_APPROVAL_PERCENTAGE": "Aktuel godkendelsesprocent",
-    "TASK_CREATED_ON_BY": "Oprettet d. {{on}} af {{by}}"
+    "TASK_CREATED_ON_BY": "Oprettet d. {{on}} af {{by}}",
+    "SHOW_ALL_OPEN_TASKS": "Alle opgaver"
   },
   "MENU": {
     "OPEN_MENU": "Åben menu",
@@ -648,18 +658,27 @@
     "LOGOUT": "Log ud"
   },
   "OFFICE": {
-    "SAVE_EMAIL_IN_OPENESDH": "Gem Email i OpenESDH"
-  },
-  "DOCUMENT_TYPE": {
-    "CREATE_EDIT_DOC_TYPE": "Opret / redigér dokumenttype",
-    "NAME": "Navn",
-    "DISPLAY_NAME": "Titel"
+    "SAVE_EMAIL_IN_OPENESDH": "Gem email i OpenESDH",
+    "SAVE_DOCUMENT_IN_OPENESDH": "Gem dokument i OpenESDH"
   },
   "DOCUMENT_TYPES": {
     "DOCUMENT_TYPES": "Dokumenttyper",
     "NAME": "Navn",
     "DISPLAY_NAME": "Titel",
-    "CREATE_NEW_DOC_TYPE": "Opret ny dokumenttype"
+    "CREATE_NEW_DOC_TYPE": "Opret ny dokumenttype",
+    "CREATE_EDIT_DOC_TYPE": "Opret / redigér dokumenttype",
+    "ARE_YOU_SURE_YOU_WANT_TO_DELETE_DOCUMENT_TYPE_X": "Er du sikker på at du vil slette dokumenttype '{{title}}'?"
+  },
+  "DOCUMENT_CATEGORIES": {
+    "DOCUMENT_CATEGORIES": "Dokument kategorier",
+    "NAME": "Navn",
+    "DISPLAY_NAME": "Titel",
+    "CREATE_NEW_DOC_CATEGORY": "Opret ny dokumentkategori",
+    "CREATE_EDIT_DOC_CATEGORY": "Opret / redigér document category",
+    "ARE_YOU_SURE_YOU_WANT_TO_DELETE_DOCUMENT_CATEGORY_X": "Er du sikker på at du vil slette dokumentkategori '{{title}}'?"
+  },
+  "SYSTEM_SETTINGS": {
+    "SYSTEM_SETTINGS": "Systemopsætning"
   },
   "SEARCH": {
     "SEARCH": "Søg",

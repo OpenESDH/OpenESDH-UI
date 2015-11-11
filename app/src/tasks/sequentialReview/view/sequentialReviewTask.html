@@ -37,7 +37,7 @@
                                     <dd flex="66">{{ taskCtrl.task.description }}</dd>
                                     
                                     <dt flex="20">{{ 'COMMON.COMMENT' | translate }}</dt>
-                                    <dd flex="66"><textarea ng-model="taskCtrl.task.properties.bpm_comment" style="width: 600px; height:130px;" required="required"></textarea></dd>
+                                    <dd flex="66"><textarea flex="grow" ng-model="taskCtrl.task.properties.bpm_comment" required="required"></textarea></dd>
                                 </dl>
                             </md-card-content>
                             <div class="md-actions" layout="row">
@@ -80,12 +80,6 @@
                 </md-content>
             </md-tab-body>
         </md-tab>
-        <md-tab>
-            <md-tab-label>
-                <span>{{ 'WORKFLOW.WORKFLOW_DETAILS' | translate }}</span>
-            </md-tab-label>
-            <md-tab-body layout="column">
-            </md-tab-body>
-        </md-tab>
+        <ng-include src="'app/src/tasks/common/view/workflowDetails.html'"></ng-include>
     </md-tabs>
 </md-content>

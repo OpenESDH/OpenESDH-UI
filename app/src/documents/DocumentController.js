@@ -144,6 +144,9 @@
                   // Backend still expects objects with nodeRef property
                   toList.push({nodeRef: vm.to[person].nodeRef});
                 }
+                if (vm.message == null) {
+                    vm.message = "";
+                }
                 caseService.sendEmail(caseId, {
                     'to': toList,
                     'subject': vm.subject,
@@ -203,7 +206,7 @@
                 $scope.$watch(function (scope) {
                     return vm.receiver;
                 }, function (newValue, oldValue) {
-                    if (typeof newValue !== 'undefined' && newValue != null && newValue.entries.length > 0) {
+                    if (typeof newValue !== 'undefined' && newValue != null) {
                         // Update the field values based on the selected
                         // contact info.
                         var nodeRefParts = alfrescoNodeUtils.processNodeRef(newValue.nodeRef);
@@ -237,7 +240,9 @@
                     function getPropValue(prop) {
                         if (prop in caseInfo.properties && typeof caseInfo.properties[prop] !== null) {
                             var val = caseInfo.properties[prop];
-                            if ("displayValue" in val) {
+                            if (typeof val != "object") {
+                                return null;
+                            } else if ("displayValue" in val) {
                                 return val.displayValue;
                             } else if ("value" in val) {
                                 return val.value;
