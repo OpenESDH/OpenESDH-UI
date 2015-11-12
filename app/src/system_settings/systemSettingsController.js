@@ -2,7 +2,7 @@
 
 	angular
 		.module('openeApp.systemsettings')
-		.controller('SytemsettingsController', SystemsettingsCtrl);
+		.controller('SystemsettingsController', SystemsettingsCtrl);
 
 	function SystemsettingsCtrl ($scope) {
 		

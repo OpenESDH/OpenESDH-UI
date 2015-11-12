@@ -34,7 +34,9 @@
             'openeApp.search.component.filter',
             'openeApp.common.directives',
             'openeApp.common.directives.filter',
-            'm43nu.auto-height'
+            'm43nu.auto-height',
+            'dcbImgFallback',
+            'openeApp.activities'
         ])
         .constant('USER_ROLES', {
             admin: 'admin',
@@ -271,7 +273,9 @@
             },
             views: {
                 'systemsettings': {
-                    templateUrl: '/app/src/system_settings/menu/system_settings.html'
+                    templateUrl: '/app/src/system_settings/menu/system_settings.html',
+                    controller: 'SystemsettingsController',
+                    controllerAs: 'vm'
                 }
             }
         }).state('administration.systemsettings.doctypes', {
@@ -315,6 +319,18 @@
             views: {
                 'content@': {
                     templateUrl: '/app/src/search/view/search.html'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
+            }
+        }).state('activities', {
+            url: '/activities',
+            views: {
+                'content@': {
+                    templateUrl: '/app/src/activities/view/activities.html',
+                    controller: 'activitiesController',
+                    controllerAs: 'actCtrl'
                 }
             },
             data: {
