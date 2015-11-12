@@ -189,3 +189,29 @@ To only build the scripts and css files, for example, if you are deploying to Ap
 ```
 $ gulp build
 ```
+
+
+## Running on Apache
+
+Here is a sample virtual host configuration for Apache 2.4 (on Ubuntu):
+
+    <VirtualHost *:80>
+            ServerAdmin webmaster@localhost
+            DocumentRoot /var/www/OpenESDH-UI
+    
+            ErrorLog ${APACHE_LOG_DIR}/error.log
+            CustomLog ${APACHE_LOG_DIR}/access.log combined
+    
+            ProxyPass /alfresco ajp://localhost:8009/alfresco
+            ProxyPassReverse /alfresco ajp://localhost:8009/alfresco
+    
+            <Location />
+                    Header merge Cache-Control no-cache
+    
+                    # Make sure that if it is an XHR request,
+                    # we don't send back basic authentication header.
+                    # This is to prevent the browser from displaying a basic auth login dialog.
+                    # The UI will handle redirecting to a login page.
+                    Header unset WWW-Authenticate "expr=req('X-Requested-With') == 'XMLHttpRequest' && resp('WWW-Authenticate') =~ /^Basic/"
+            </Location>
+    </VirtualHost>
