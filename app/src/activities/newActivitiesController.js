@@ -4,7 +4,7 @@ angular
     
     function newActivitiesController($interval, activitiesService){
         var vm = this;
-        vm.pollInterval = $interval(poll, 10000);
+        vm.pollInterval = $interval(poll, 1000000);
         function poll(){
             activitiesService.countCurrentUserNewActivities().then(function(result){
                 if(result.count == "0"){

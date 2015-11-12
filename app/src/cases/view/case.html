@@ -11,7 +11,7 @@
                 <md-button ng-href="#/cases" ng-aria="{{ 'CASE.CASES' | translate }}">
                     <i class="material-icons" style="vertical-align: middle;">arrow_back</i> {{ 'CASE.CASES' | translate }}
                 </md-button>
-                <h1 class="md-headline" layout-margin>
+                <h1 class="md-headline case-page-title" layout-margin>
                     {{ case["cm:title"].value }} <span class="muted">{{ case["oe:id"].value }}</span>
                     <span class="muted" ng-hide="case['oe:status'].value === 'active'">
                         ({{case['oe:status'].value | caseStatus}})
