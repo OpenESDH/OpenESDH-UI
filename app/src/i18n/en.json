@@ -468,9 +468,6 @@
         "ZW": "Zimbabwe",
         "AX": "Åland Islands"
     },
-    "AUTHENTICATION": {
-        "SESSION_EXPIRED": "Session expired"
-    },
     "WORKFLOW": {
         "TASK": {
             "PRIORITY": {

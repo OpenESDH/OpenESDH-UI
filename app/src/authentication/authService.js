@@ -49,7 +49,7 @@ function httpTicketInterceptor($injector, $translate, $window, $q, sessionServic
             notificationUtilsService = $injector.get('notificationUtilsService');
         $mdDialog.cancel();
         $window.location = "/#/login";
-        notificationUtilsService.notify($translate.instant('AUTHENTICATION.SESSION_EXPIRED'));
+        notificationUtilsService.notify($translate.instant('LOGIN.SESSION_TIMEOUT'));
         delete window._openESDHSessionExpired;
     }
 }

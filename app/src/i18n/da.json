@@ -452,9 +452,6 @@
     "GQ": "Ækvatorialguinea",
     "AT": "Østrig"
   },
-  "AUTHENTICATION": {
-    "SESSION_EXPIRED": "Session udløbet"
-  },
   "WORKFLOW": {
     "TASK": {
       "PRIORITY": {
