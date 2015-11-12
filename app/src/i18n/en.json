@@ -5,6 +5,8 @@
         "OK": "OK",
         "YES": "Yes",
         "CANCEL": "Cancel",
+        "ERROR": "Error",
+        "SUCCESS": "Success",
         "BACK": "Back",
         "NEXT": "Next",
         "DONE": "Done",
@@ -522,6 +524,9 @@
         "DELETE_USER_SUCCESS": "User successfully deleted",
         "DELETE_USER_FAILURE": "User could not be deleted",
         "CREATE_USER": "Create user",
+        "UPLOAD_USERS": "Upload users (csv)",
+        "UPLOAD_USERS_NOTE": "Upload users. CSV files only",
+        "FAILED_TO_UPLOAD_MSG": "{{failedNumberOfUsers}} user(s) were not added for the following reasons:",
         "ERROR": {
             "USERNAME_EXISTS": "Username already exists",
             "EMAIL_EXISTS": "Email already exists"
