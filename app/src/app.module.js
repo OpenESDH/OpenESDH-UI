@@ -35,6 +35,7 @@
             'openeApp.common.directives',
             'openeApp.common.directives.filter',
             'm43nu.auto-height',
+            'dcbImgFallback',
             'openeApp.activities'
         ])
         .constant('USER_ROLES', {

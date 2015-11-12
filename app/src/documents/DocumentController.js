@@ -198,6 +198,7 @@
                 }, function (newValue, oldValue) {
                     if (typeof newValue !== 'undefined' && newValue != null) {
                         officeTemplateService.getTemplate(newValue.nodeRef).then(function (template) {
+                            console.log(template)
                             vm.currentTemplate = template;
                         });
                     }

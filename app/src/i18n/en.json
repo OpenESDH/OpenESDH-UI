@@ -525,6 +525,10 @@
         "DELETE_USER_SUCCESS": "User successfully deleted",
         "DELETE_USER_FAILURE": "User could not be deleted",
         "CREATE_USER": "Create user",
+        "ERROR": {
+            "USERNAME_EXISTS": "Username already exists",
+            "EMAIL_EXISTS": "Email already exists"
+        },
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER": "Are you sure you want to delete '{{user}}'?"
     },
     "GROUP": {
@@ -602,6 +606,7 @@
         "AUTH_FAILURE": "Incorrect authentication details",
         "SESSION_TIMEOUT": "Your session has expired",
         "INVALID_EMAIL": "Email address is invalid",
+        "PASSWORD_NOMATCH": "Password is not matching",
         "FORGOT_PASSWORD_SUCCESS": "Instructions have been sent to the email provided. Check your email and follow the instructions.",
         "FORGOT_PASSWORD_PROMPT": "Enter your email address and we'll send you information regarding how to reset your password. "
     },
