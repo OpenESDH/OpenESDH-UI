@@ -10,7 +10,7 @@ function config($httpProvider) {
     $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 }
 
-function httpTicketInterceptor($window, $q, sessionService) {
+function httpTicketInterceptor($injector, $translate, $window, $q, sessionService) {
     return {
         request: request,
         response: response,
@@ -18,6 +18,9 @@ function httpTicketInterceptor($window, $q, sessionService) {
     };
 
     function request(config) {
+        if (typeof window._openESDHSessionExpired !== 'undefined') {
+            return $q.reject("Session expired");
+        }
         if (sessionService.getUserInfo()) {
             config.params = config.params || {};
             config.params.alf_ticket = sessionService.getUserInfo().ticket;
@@ -26,21 +29,31 @@ function httpTicketInterceptor($window, $q, sessionService) {
     }
 
     function response (response) {
-
-        if (response.status == 401 || response.status == 403 ) {
-            console.log("Not Authorized. Please first");
-            sessionService.setUserInfo(null);
-            $window.location = "/#";
+        if (response.status == 401) {
+            sessionExpired();
         }
         return response || $q.when(response);
     }
 
     function responseError(rejection) {
-        if (rejection.status == 401 || response.status == 403 ) {
-            $window.location = "/#";
-            sessionService.setUserInfo(null);
+        if (rejection.status == 401) {
+            sessionExpired();
         }
         return $q.reject(rejection);
+    }
+
+    function sessionExpired() {
+        if (typeof window._openESDHSessionExpired !== 'undefined') {
+            return;
+        }
+        window._openESDHSessionExpired = true;
+        sessionService.setUserInfo(null);
+        var $mdDialog = $injector.get('$mdDialog'),
+            notificationUtilsService = $injector.get('notificationUtilsService');
+        $mdDialog.cancel();
+        $window.location = "/#/login";
+        notificationUtilsService.notify($translate.instant('AUTHENTICATION.SESSION_EXPIRED'));
+        delete window._openESDHSessionExpired;
     }
 }
 
