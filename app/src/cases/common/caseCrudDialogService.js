@@ -13,6 +13,7 @@
         this.$get = caseCrudDialogService;
         
         this.caseCrudForm = caseCrudForm;
+        this.getCaseCrudFormConfig = getCaseCrudFormConfig;
         
         function caseCrudForm(caseCrudFormConfig){
             serviceConfig.push(caseCrudFormConfig);
@@ -36,6 +37,7 @@
             return {
                 getRegisteredCaseTypes: getRegisteredCaseTypes,
                 getCaseInfoTemplateUrl: getCaseInfoTemplateUrl,
+                getCaseControllerName: getCaseControllerName,
                 createCase: createCase,
                 editCase: editCase
             };
@@ -51,7 +53,12 @@
                 return config.caseInfoTemplateUrl;
             }
             
-            function createCase(caseType, callback) {
+            function getCaseControllerName(caseType){
+                var config = getCaseCrudFormConfig(caseType);
+                return config.controller;
+            }
+            
+            function createCase(caseType) {
                 var formConfig = getCaseCrudFormConfig(caseType);
                 if(formConfig == null){
                     return;
@@ -62,20 +69,15 @@
                     type: formConfig.type
                 };
                 showDialog(formConfig, caseInfo).then(function(caseId) {
-                    if (callback) {
-                        callback(caseId);
-                    } else {
-                        $location.path("/cases/case/" + caseId);
-                    }
+                    $location.path("/cases/case/" + caseId);
                 });
             }
             
             function editCase(caseInfo){
-                var formConfig = getCaseCrudFormConfig(caseInfo.properties.type);
-                if(formConfig == null){
+                var formConfig = getCaseCrudFormConfig(caseInfo.type);
+                if(!formConfig){
                     return;
                 }
-                
                 return showDialog(formConfig, caseInfo);
             }
             

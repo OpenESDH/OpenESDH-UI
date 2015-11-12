@@ -54,7 +54,13 @@
           <div flex="100" flex-gt-md="25">
             <md-card>
               <md-card-content>
-                <h3 class="md-title">{{ 'COMMON.INFORMATION' | translate }}</h3>
+                <h3 class="md-title">
+                    {{ 'COMMON.INFORMATION' | translate }}
+                    <div style="float: right">
+                        <md-button ng-hide="vm.isFavourite" ng-click="vm.addCaseToFavourites()"><i class="material-icons">star_border</i></md-button>
+                        <md-button ng-show="vm.isFavourite" ng-click="vm.removeCaseFromFavourites()"><i class="material-icons" style="background-color: yellow">star_border</i></md-button>
+                    </div>
+                </h3>
                 <dl layout="row" layout-wrap ng-include="vm.caseInfoTemplateUrl"></dl>
               </md-card-content>
               <div class="md-actions" layout="column" layout-padding layout-align="start start">
@@ -210,6 +216,14 @@
       </md-tab-body>
     </md-tab>
     
+    <md-tab md-on-select="vm.onTabChange('tasks')">
+      <md-tab-label>
+        <span><i class="material-icons">assignment</i> {{ 'TASK.TASKS'| translate }}</span>
+      </md-tab-label>
+      <md-tab-body layout="column">
+        <div  ng-controller="CaseTasksController as tasksCtrl" ng-include="'app/src/tasks/view/tasksDisplay.html'"></div>
+      </md-tab-body>
+    </md-tab>
   </md-tabs>
 
 </md-content>

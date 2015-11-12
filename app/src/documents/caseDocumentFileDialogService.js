@@ -29,9 +29,9 @@
                         formData.fileToUpload = fileObject;
                     }
                     
-                    caseDocumentsService.getDocumentsFolderNodeRef(caseId).then(function(res){
-                        caseDocumentsService.uploadCaseDocument(formData.fileToUpload, res.caseDocsFolderNodeRef, formData.documentProperties).then(function(result){
-                            resolve(result);
+                    return caseDocumentsService.getDocumentsFolderNodeRef(caseId).then(function(res){
+                        return caseDocumentsService.uploadCaseDocument(formData.fileToUpload, res.caseDocsFolderNodeRef, formData.documentProperties).then(function(result){
+                            return resolve(result);
                         });
                     });
                     
@@ -128,6 +128,20 @@
             
             loadDocumentConstraints($scope);
 
+            $scope.$watch(function (scope) {
+                return $scope.fileToUpload;
+            }, function (newValue, oldValue) {
+                if (typeof newValue !== 'undefined' && newValue != null) {
+                    // Automatically set the name of the document to the
+                    // filename, unless the user has already set a name.
+                    if (typeof $scope.documentProperties.title === 'undefined'
+                            || $scope.documentProperties.title == null
+                            || $scope.documentProperties.title == "") {
+                        $scope.documentProperties.title = newValue.name;
+                    }
+                }
+            });
+
             $scope.fromFileObject = fromFileObject;
 
             $scope.documentProperties = {
@@ -155,6 +169,7 @@
             $scope.documentProperties = {
                     doc_type: document.typeId,
                     doc_category: document.categoryId,
+                    description: document.description,
                     majorVersion: "false"
             };
             
@@ -179,7 +194,8 @@
             $scope.documentProperties = {
                     title: document.title,
                     doc_type: document.typeId,
-                    doc_category: document.categoryId
+                    doc_category: document.categoryId,
+                    description: document.description
             };
             
             $scope.cancel = function() {

@@ -1,0 +1,31 @@
+<md-tab>
+    <md-tab-label>
+        <span>{{ 'WORKFLOW.WORKFLOW_DETAILS' | translate }}</span>
+    </md-tab-label>
+    <md-tab-body layout="column">
+        <md-content layout="row">
+            <md-card>
+                <md-card-content>
+                    <dl layout="row" layout-wrap>
+
+                      <dt flex="20">{{ 'COMMON.TITLE' | translate }}</dt>
+                      <dd flex="66">{{ taskCtrl.task.workflowInstance.title}}</dd>
+
+                      <dt flex="20">{{ 'COMMON.DESCRIPTION' | translate }}</dt>
+                      <dd flex="66">{{ taskCtrl.task.workflowInstance.description }}</dd>
+                      
+                      <dt flex="20">{{ 'WORKFLOW.ASSIGNEES' | translate }}</dt>
+                      <dd flex="66">
+                        <span ng-repeat="assignee in taskCtrl.task.workflowInstance.workflowAssignees">
+                            <span ng-hide="$first">, </span>{{assignee.firstName}} {{assignee.lastName}}                            
+                        </span>
+                      </dd>
+                    </dl>
+                
+                    <h3>{{ 'WORKFLOW.WORKFLOW_INSTANCE_DIAGRAM' | translate }}</h3>
+                    <img ng-src="{{taskCtrl.workflowInstanceDiagramUrl}}" />
+                </md-card-content>
+            </md-card>
+        </md-content>
+    </md-tab-body>
+</md-tab>

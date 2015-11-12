@@ -18,7 +18,7 @@
         function initCasePropsForEdit(){
             var vm = this;
             vm.initCommonCasePropsForEdit();
-            var c = vm.caseInfo.allProps.properties;
+            var c = vm.caseInfo.properties;
             angular.extend(vm.case, {
                 prop_staff_hireDate: this.getDateValue(c['staff:hireDate']),
                 prop_staff_resignationDate: this.getDateValue(c['staff:resignationDate']),
@@ -33,7 +33,7 @@
                 var contacts = result.items.map(function(item){
                     return item.firstName + ' ' + item.lastName + ' CPR: ' + item.cprNumber;
                 });
-                return userService.getPeople(vm.employeeSearchText).then(function(result){
+                return userService.getPeople("?filter=" + vm.employeeSearchText).then(function(result){
                     var people = result.people.map(function(item){
                         return item.firstName + ' ' + item.lastName;
                     });

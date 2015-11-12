@@ -1,0 +1,23 @@
+<div layout layout-wrap>
+    
+    <md-card ng-repeat="temp in tmplCtrl.templates" flex class="template-card">
+        <md-card-content layout layout-padding layout-fill>
+            <div class="template-card__preview" flex="initial">
+                <span ng-bind="tmplCtrl.getFileExtension(temp.name)"></span>
+                <img ng-src="{{::tmplCtrl.getThumbnail(temp.nodeRef)}}" fallback-src class="md-card-image" alt="preview thumbnail for template">
+            </div>
+            <div layout="column" class="template-card__crud" flex>
+                <h2 class="md-title" ng-bind="temp.title" flex></h2>
+                <p flex>Some template information</p>
+                <div class="md-actions" layout="column" layout-align="end end">
+                    <md-button ng-click="tmplCtrl.deleteTemplate($event, temp)">{{'COMMON.DELETE' | translate}}</md-button>
+                </div>
+            </div>
+        </md-card-content>
+    </md-card>
+
+</div>
+<md-button class="md-primary" ng-click="tmplCtrl.uploadNewTemplate()">
+    <i class="material-icons">file_upload</i>
+    {{ 'DOCUMENT.TEMPLATE.LABELS.UPLOAD_NEW_TEMPLATE' | translate }}
+</md-button>

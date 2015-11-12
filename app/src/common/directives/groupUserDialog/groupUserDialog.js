@@ -64,7 +64,7 @@
             };
 
             function createUserSearchQuery(queryterm) {
-                var query = encodeURIComponent(queryterm);
+                var query = "?filter=" + encodeURIComponent(queryterm);
                 query += "&sortBy=" + scope.sortBy + '&dir=' + scope.sortOrder + '&maxResults=' + scope.maxResults;
                 return query;
             }

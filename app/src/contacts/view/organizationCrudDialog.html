@@ -1,93 +1,103 @@
-<md-dialog aria-label="Create / edit organization">
-  <form name="orgForm">
-    <md-toolbar>
-      <div class="md-toolbar-tools">
-        <h1>{{ 'ORG.CRUD_ORG' | translate }}</h1>
-        <span flex></span>
-        <md-button class="md-icon-button" ng-click="cancel()">
-          <md-icon aria-label="Close dialog"></md-icon>
-        </md-button>
-      </div>
-    </md-toolbar>
-    <md-dialog-content style="max-width:40em;max-height:410px; ">
-      <div layout="row">
-        <md-input-container>
-          <label>{{ 'ORG.COMPANY_NAME' | translate }}</label>
-          <input type="text" ng-model="organization.organizationName" required ng-maxlength="50" autofocus>
-        </md-input-container>
-        <md-input-container>
-          <label>{{ 'ORG.DEPARTMENT' | translate }}</label>
-          <input type="text" ng-model="organization.department" ng-maxlength="50">
-        </md-input-container>
-      </div>
-      <md-input-container>
-        <label>{{ 'ORG.ADDRESS_1' | translate }}</label>
-        <input type="text" ng-model="organization.addressLine1" ng-maxlength="34">
-      </md-input-container>
-      <md-input-container>
-        <label>{{ 'ORG.ADDRESS_2' | translate }}</label>
-        <input type="text" ng-model="organization.addressLine2"ng-maxlength="34">
-      </md-input-container>
-      <md-input-container>
-        <label>{{ 'ORG.POSTAL_CODE' | translate }}</label>
-        <input type="number" ng-model="organization.postCode" ng-minlength="4" ng-maxlength="4">
-      </md-input-container>
-      <div layout="row">
-        <md-input-container>
-          <label>{{ 'ORG.CITY' | translate }}</label>
-          <input type="text" ng-model="organization.cityName" ng-maxlength="34">
-        </md-input-container>
-        <md-input-container>
-          <label>{{ 'ORG.COUNTRY' | translate }}</label>
-          <md-select ng-model="organization.countryCode">
-            <md-option ng-value="countryCode" ng-repeat="countryCode in countries">{{ countryCode| countryCodeToName }}</md-option>
-          </md-select>
-        </md-input-container>
-      </div>
-      <md-input-container>
-        <label>{{ 'ORG.VAT_NO' | translate }}</label>
-        <input type="text" ng-model="organization.cvrNumber" required ng-minlength="8" ng-maxlength="8">
-      </md-input-container>
-      <md-input-container>
-        <label>{{ 'COMMON.EMAIL' | translate }}</label>
-        <input name="email" type="email" ng-model="organization.email" required>
-      </md-input-container>
-      <div layout="row">
-        <md-input-container>
-          <label>{{ 'ORG.PHONE' | translate }}</label>
-          <input type="text" ng-model="organization.phone" ng-minlength="4" ng-pattern="PATTERNS.phone">
-        </md-input-container>
-        <md-input-container>
-          <label>{{ 'ORG.MOBILE_PHONE' | translate }}</label>
-          <input type="text" ng-model="organization.mobile" ng-minlength="4" ng-pattern="PATTERNS.phone">
-        </md-input-container>
-      </div>
-      <md-input-container>
-        <label>{{ 'ORG.WEBSITE' | translate }}</label>
-        <input type="text" ng-model="organization.website" ng-maxlength="70">
-      </md-input-container>
-      <div layout="row">
-        <md-input-container>
-          <label>{{ 'ORG.LINKEDIN' | translate }}</label>
-          <input type="text" ng-model="organization.linkedin" ng-maxlength="70">
-        </md-input-container>
-        <md-input-container>
-          <label>{{ 'ORG.IM' | translate }}</label>
-          <input type="text" ng-model="organization.IM" ng-maxlength="70">
-        </md-input-container>
-      </div>
-      <md-input-container>
-        <label>{{ 'NOTE.NOTES' | translate }}</label>
-        <textarea ng-model="organization.notes" ng-maxlength="2000" rows="3"></textarea>
-      </md-input-container>
-    </md-dialog-content>
-    <div class="md-actions" layout="row">
-      <md-button class="md-primary" ng-click="save(orgForm)">
-        {{ 'COMMON.SAVE' | translate }}
-      </md-button>
-      <md-button ng-click="cancel()">
-        {{ 'COMMON.CANCEL' | translate }}
-      </md-button>
-    </div>
-  </form>
+<md-dialog class="dialog-large" aria-label="Create / edit organization">
+    <form name="orgForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h1>{{ 'ORG.CRUD_ORG' | translate }}</h1>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div layout>
+                <md-input-container flex>
+                    <label>{{ 'ORG.COMPANY_NAME' | translate }}</label>
+                    <input type="text" ng-model="organization.organizationName" required ng-maxlength="50" autofocus>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>{{ 'ORG.DEPARTMENT' | translate }}</label>
+                    <input type="text" ng-model="organization.department" ng-maxlength="50">
+                </md-input-container>
+            </div>
+            <div layout>
+                <md-input-container flex>
+                    <label>{{ 'ORG.ADDRESS_1' | translate }}</label>
+                    <input type="text" ng-model="organization.addressLine1" ng-maxlength="34">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>{{ 'ORG.ADDRESS_2' | translate }}</label>
+                    <input type="text" ng-model="organization.addressLine2" ng-maxlength="34">
+                </md-input-container>
+            </div>
+            <div layout>
+                <md-input-container flex>
+                    <label>{{ 'ORG.POSTAL_CODE' | translate }}</label>
+                    <input type="number" ng-model="organization.postCode" ng-minlength="4" ng-maxlength="4">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>{{ 'ORG.CITY' | translate }}</label>
+                    <input type="text" ng-model="organization.cityName" ng-maxlength="34">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>{{ 'ORG.COUNTRY' | translate }}</label>
+                    <md-select ng-model="organization.countryCode" flex>
+                        <md-option ng-value="countryCode" ng-repeat="countryCode in countries">{{ countryCode| countryCodeToName }}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div layout>
+                <md-input-container flex>
+                    <label>{{ 'ORG.VAT_NO' | translate }}</label>
+                    <input type="text" ng-model="organization.cvrNumber" required ng-minlength="8" ng-maxlength="8">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>{{ 'COMMON.EMAIL' | translate }}</label>
+                    <input name="email" type="email" ng-model="organization.email" required>
+                </md-input-container>
+            </div>
+            <div layout>
+                <md-input-container flex>
+                    <label>{{ 'ORG.PHONE' | translate }}</label>
+                    <input type="text" ng-model="organization.phone" ng-minlength="4" ng-pattern="PATTERNS.phone">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>{{ 'ORG.MOBILE_PHONE' | translate }}</label>
+                    <input type="text" ng-model="organization.mobile" ng-minlength="4" ng-pattern="PATTERNS.phone">
+                </md-input-container>
+            </div>
+            <div layout>
+                <md-input-container flex>
+                    <label>{{ 'ORG.WEBSITE' | translate }}</label>
+                    <input type="text" ng-model="organization.website" ng-maxlength="70">
+                </md-input-container>
+            </div>
+            <div layout>
+                <md-input-container flex>
+                    <label>{{ 'ORG.LINKEDIN' | translate }}</label>
+                    <input type="text" ng-model="organization.linkedin" ng-maxlength="70">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>{{ 'ORG.IM' | translate }}</label>
+                    <input type="text" ng-model="organization.IM" ng-maxlength="70">
+                </md-input-container>
+            </div>
+            <div layout>
+                <md-input-container flex>
+                    <label>{{ 'NOTE.NOTES' | translate }}</label>
+                    <textarea ng-model="organization.notes" ng-maxlength="2000" rows="3"></textarea>
+                </md-input-container>
+            </div>
+
+        </md-dialog-content>
+        
+        <div class="md-actions" layout>
+            <md-button class="md-primary" ng-click="save(orgForm)">
+                {{ 'COMMON.SAVE' | translate }}
+            </md-button>
+            <md-button ng-click="cancel()">
+                {{ 'COMMON.CANCEL' | translate }}
+            </md-button>
+        </div>
+    </form>
 </md-dialog>

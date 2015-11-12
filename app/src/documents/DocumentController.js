@@ -144,6 +144,9 @@
                   // Backend still expects objects with nodeRef property
                   toList.push({nodeRef: vm.to[person].nodeRef});
                 }
+                if (vm.message == null) {
+                    vm.message = "";
+                }
                 caseService.sendEmail(caseId, {
                     'to': toList,
                     'subject': vm.subject,
@@ -195,6 +198,7 @@
                 }, function (newValue, oldValue) {
                     if (typeof newValue !== 'undefined' && newValue != null) {
                         officeTemplateService.getTemplate(newValue.nodeRef).then(function (template) {
+                            console.log(template)
                             vm.currentTemplate = template;
                         });
                     }
@@ -237,7 +241,9 @@
                     function getPropValue(prop) {
                         if (prop in caseInfo.properties && typeof caseInfo.properties[prop] !== null) {
                             var val = caseInfo.properties[prop];
-                            if ("displayValue" in val) {
+                            if (typeof val != "object") {
+                                return null;
+                            } else if ("displayValue" in val) {
                                 return val.displayValue;
                             } else if ("value" in val) {
                                 return val.value;
@@ -253,7 +259,7 @@
                         "case.description": getPropValue("cm:description"),
                         "case.journalKey": getPropValue("oe:journalKey"),
                         "case.journalFacet": getPropValue("oe:journalFacet"),
-                        "case.type": $filter('caseType')(caseInfo.allProps.TYPE)
+                        "case.type": $filter('caseType')(caseInfo.type)
                     });
                 });
 

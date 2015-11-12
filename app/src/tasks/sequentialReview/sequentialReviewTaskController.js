@@ -14,7 +14,7 @@
             vm.reviewOutcomeApprove = 'Approve';
             vm.reviewOutcomeReject = 'Reject';
             vm.init().then(function(result){
-                var commentsJson = vm.task.properties['wf_comments'];
+                var commentsJson = vm.task.properties['oewf_comments'];
                 if(commentsJson == null){
                     vm.taskComments = [];
                 }else{

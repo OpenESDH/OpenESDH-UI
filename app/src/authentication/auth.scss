@@ -1,4 +1,28 @@
-md-content > .login-form {
-	height: 100%;
-	min-height: auto;
+.login-form {
+    height: 100%;
+    
+    .login-form__logo {
+        width: 5rem;
+    }
+    
+    .login-form__card {
+        max-width: 20rem;
+    }
+    
+    md-input-container {
+        width: 100%;
+    }
+    
+	.form-login__new-pwd-link {
+		font-size: 0.8rem;
+	}
+    
+}
+
+.forgot-password-form {
+    
+    md-input-container {
+        width: 100%;
+    }
+    
 }
