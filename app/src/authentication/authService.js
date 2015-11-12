@@ -7,6 +7,7 @@ angular
 function config($httpProvider) {
     $httpProvider.interceptors.push('httpTicketInterceptor');
     $httpProvider.defaults.headers.common.Authorization = undefined;
+    $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 }
 
 function httpTicketInterceptor($window, $q, sessionService) {
