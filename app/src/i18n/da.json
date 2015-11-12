@@ -589,6 +589,8 @@
     "PASSWORD": "Kodeord",
     "FORGOT_PASSWORD": "Glemt kodeord",
     "VERIFY_PASSWORD": "Gentag kodeord",
+    "AUTH_FAILURE": "Forkerte detaljer autentifikationssystemer",
+    "SESSION_TIMEOUT": "Din session er udløbet",
     "INVALID_EMAIL": "Add a valid email address",
     "PASSWORD_NOMATCH": "Kodeord matcher ikke",
     "FORGOT_PASSWORD_SUCCESS": "Instruktioner er blevet sendt til den email forudsat. Tjek din e-mail og følg vejledningen.",
