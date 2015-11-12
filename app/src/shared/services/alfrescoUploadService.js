@@ -6,7 +6,8 @@
     function AlfrescoUploadService($http, notificationUtilsService) {
         
         var service = {
-            uploadFile: uploadFile
+            uploadFile: uploadFile,
+            uploadUsersCSVFile: uploadUsersCSVFile
         };
         return service;
         
@@ -49,6 +50,21 @@
                 return response;
             }, function (response){
                 notificationUtilsService.alert(response.data.message);
+            });
+        }
+
+        function uploadUsersCSVFile(file){
+
+            var formData = new FormData();
+            formData.append("filedata", file);
+            formData.append("filename", file.name);
+            formData.append("destination", null);
+
+            return $http.post("/alfresco/service/api/people/upload.json", formData,  {
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}
+            }).then(function(response){
+                return response.data.data;
             });
         }
         
