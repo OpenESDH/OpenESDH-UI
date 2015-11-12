@@ -18,9 +18,6 @@ function httpTicketInterceptor($injector, $translate, $window, $q, sessionServic
     };
 
     function request(config) {
-        if (typeof window._openESDHSessionExpired !== 'undefined') {
-            return $q.reject("Session expired");
-        }
         if (sessionService.getUserInfo()) {
             config.params = config.params || {};
             config.params.alf_ticket = sessionService.getUserInfo().ticket;
@@ -29,7 +26,7 @@ function httpTicketInterceptor($injector, $translate, $window, $q, sessionServic
     }
 
     function response (response) {
-        if (response.status == 401) {
+        if (response.status == 401 && typeof window._openESDHSessionExpired === 'undefined') {
             sessionExpired();
         }
         return response || $q.when(response);
