@@ -8,8 +8,16 @@ var LoginPage = function () {
      * Default login as admin.
      */
     public.login = function() {
-        public.loginAs(browser.params.loginDetails.username, browser.params.loginDetails.password);
+        public.loginAs(browser.params.loginDetails.admin.username, browser.params.loginDetails.admin.password);
     };
+
+    public.loginAsAdmin = function () {
+        public.loginAs(browser.params.loginDetails.admin.username, browser.params.loginDetails.admin.password);
+    };
+
+    public.loginAsUser = function () {
+        public.loginAs(browser.params.loginDetails.user.username, browser.params.loginDetails.user.password);
+    }
 
     /**
      * Lpgin as an arbitral user

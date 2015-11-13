@@ -5,7 +5,7 @@ describe('openESDH case page tests', function () {
 
     //Executed before each of the "it" tests
     beforeEach(function () {
-        loginPage.login();
+        loginPage.loginAsAdmin();
     });
 
     //logout and wait for 2 secs

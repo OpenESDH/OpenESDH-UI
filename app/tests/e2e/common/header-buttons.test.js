@@ -5,7 +5,7 @@ describe('openESDH header', function() {
 
     //Executed before each of the "it" tests
     beforeEach(function() {
-        loginPage.login();
+        loginPage.loginAsAdmin();
     });
 
     it('should display all widgets in the global header', function() {
