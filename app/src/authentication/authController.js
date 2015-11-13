@@ -3,26 +3,34 @@ angular
     .module('openeApp')
     .controller('AuthController', AuthController);
 
-function AuthController($scope, $state, authService, userService, $mdDialog) {
+function AuthController($scope, $state, $stateParams, $translate, authService, userService, $mdDialog) {
     var vm = this;
+    var loginErrorMessage = angular.fromJson($stateParams.error);
 
     vm.login = login;
     vm.logout = logout;
     vm.loggedin = loggedin;
     vm.getUserInfo = getUserInfo;
+    vm.errorMsg = loginErrorMessage ? loginErrorMessage: "";
     vm.showForgotDialog = showForgotDialog;
 
     function login(credentials) {
         authService.login(credentials.username, credentials.password).then(function(response) {
-            userService.getPerson(credentials.username).then(function(response) {
-                vm.user = response;
-            });
-            console.log('tostate: ' + $scope.returnToState);
-            if ($scope.returnToState) {
-                $state.go($scope.returnToState.name, $scope.returnToStateParams);
-            } else {
-                $state.go('dashboard');
+
+            // Logged in
+            if(response.userName) {
+                userService.getPerson(credentials.username).then(function (response) {
+                    vm.user = response;
+                    $state.go('dashboard');
+                });
             }
+
+            // If incorrect values            
+            if(response.status == 403) {
+                vm.form.password.$setDirty();
+                vm.form.password.$error.failure = true;
+            }
+
         });
     }
 

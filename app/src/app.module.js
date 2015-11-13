@@ -145,7 +145,7 @@
             }
         }).state('login', {
             parent: 'site',
-            url: '/login',
+            url: '/login?error',
             views: {
                 'content@': {
                     templateUrl: '/app/src/authentication/view/login.html',
