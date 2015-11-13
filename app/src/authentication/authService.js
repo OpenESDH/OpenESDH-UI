@@ -49,6 +49,7 @@ function httpTicketInterceptor($injector, $translate, $window, $q, sessionServic
         $mdDialog.cancel();
         $window.location = "/#/login";
         notificationUtilsService.notify($translate.instant('LOGIN.SESSION_TIMEOUT'));
+        delete $window._openESDHSessionExpired;
     }
 }
 
@@ -75,7 +76,6 @@ function authService($http, $window, $state, sessionService, $translate, userSer
     }
 
     function login(username, password) {
-        delete $window._openESDHSessionExpired;
         return $http.post("/alfresco/service/api/login", {
             username: username,
             password: password
@@ -85,6 +85,7 @@ function authService($http, $window, $state, sessionService, $translate, userSer
                 sessionService.setUserInfo(userInfo);
                 return userService.getPerson(username);
         }).then(function (response) {
+            delete $window._openESDHSessionExpired;
             userInfo['user'] = response;
             sessionService.setUserInfo(userInfo);
             return response;
