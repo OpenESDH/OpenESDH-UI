@@ -589,7 +589,7 @@
     "PASSWORD": "Kodeord",
     "FORGOT_PASSWORD": "Glemt kodeord",
     "VERIFY_PASSWORD": "Gentag kodeord",
-    "AUTH_FAILURE": "Forkerte detaljer autentifikationssystemer",
+    "AUTH_FAILURE": "Forkerte loginoplysninger",
     "SESSION_TIMEOUT": "Din session er udløbet",
     "INVALID_EMAIL": "Add a valid email address",
     "PASSWORD_NOMATCH": "Kodeord matcher ikke",
