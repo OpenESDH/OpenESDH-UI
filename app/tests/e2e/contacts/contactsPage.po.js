@@ -35,41 +35,15 @@ var AdminPage = function () {
     }*/
 
     /**
-     * Go to the cases page. Have to manually switch through the tab name and select the right one for now.
-     * For the moment there is now way to target the tabs by ids.
+     * Go to the cases page.
      */
     function goToPage(tabName) {
         globalHeaderMenu.getHeaderMenuItem().userMenuBtn.click().then(function () {
-            var adminBtn = element(by.xpath('//a[@ui-sref=\'administration.users\']'));
+            var adminBtn = element(by.xpath('//a[@ui-sref=\'administration.'+tabName+'\']'));
             expect(adminBtn);
             adminBtn.click();
+            browser.waitForAngular();
             browser.driver.sleep(1000);
-            //The tab link
-            //var tabBtn = element(by.id("admin-tab-"+tabName));
-            var tabBtns = element.all(by.css("md-tab-item"));
-            expect(tabBtns.length > 0);
-            switch (tabName){
-                case "users":
-                    tabBtns.get(0).click();
-                    expect(element(by.cssContainingText("h3 .md-title", "Users")) );
-                    break;
-                case "groups":
-                    tabBtns.get(1).click();
-                    expect(element(by.cssContainingText("h3 .md-title", "Groups")) );
-                    break;
-                case "organizations":
-                    tabBtns.get(2).click();
-                    expect(element(by.cssContainingText("h3 .md-title", "Organisations")) );
-                    break;
-                case "contacts":
-                    tabBtns.get(3).click();
-                    expect(element(by.cssContainingText("h3 .md-title", "Contacts")) );
-                    break;
-                case "systemsettings":
-                    tabBtns.get(4).click();
-                    expect(element(by.id("system-settings-ctrl-panel")) );
-                    break;
-            }
         });
     }
 

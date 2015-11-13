@@ -8,7 +8,7 @@
 
     <md-tabs md-dynamic-height md-selected="currentTab">
 
-        <md-tab ui-sref="administration.users">
+        <md-tab ui-sref="administration.users" id="admin-tab-users">
             <md-tab-label>
                 <span><i class="material-icons">person</i> {{ 'USER.USERS' | translate }}</span>
             </md-tab-label>
@@ -17,7 +17,7 @@
             </md-tab-body>
         </md-tab>
 
-        <md-tab ui-sref="administration.groups">
+        <md-tab ui-sref="administration.groups" id="admin-tab-groups">
             <md-tab-label>
                 <span><i class="material-icons">group</i> {{ 'GROUP.GROUPS' | translate }}</span>
             </md-tab-label>
@@ -26,7 +26,7 @@
             </md-tab-body>
         </md-tab>
 
-        <md-tab ui-sref="administration.organizations">
+        <md-tab ui-sref="administration.organizations" id="admin-tab-organizations">
             <md-tab-label>
                 <span><i class="material-icons">account_balance</i> {{ 'ORG.ORGANIZATIONS' | translate }}</span>
             </md-tab-label>
@@ -35,7 +35,7 @@
             </md-tab-body>
         </md-tab>
 
-        <md-tab ui-sref="administration.contacts">
+        <md-tab ui-sref="administration.contacts" id="admin-tab-contacts">
             <md-tab-label>
                 <span><i class="material-icons">perm_contact_calendar</i> {{ 'CONTACT.CONTACTS' | translate }}</span>
             </md-tab-label>
@@ -44,7 +44,7 @@
             </md-tab-body>
         </md-tab>
 
-        <md-tab ui-sref="administration.systemsettings">
+        <md-tab ui-sref="administration.systemsettings" id="admin-tab-systemsettings">
             <md-tab-label>
                 <span><i class="material-icons">settings</i> {{ 'SYSTEM_SETTINGS.SYSTEM_SETTINGS' | translate }}</span>
             </md-tab-label>
