@@ -26,7 +26,7 @@ function httpTicketInterceptor($injector, $translate, $window, $q, sessionServic
     }
 
     function response (response) {
-        if (response.status == 401 && typeof window._openESDHSessionExpired === 'undefined') {
+        if (response.status == 401 && typeof $window._openESDHSessionExpired === 'undefined') {
             sessionExpired();
         }
         return response || $q.when(response);
@@ -40,17 +40,15 @@ function httpTicketInterceptor($injector, $translate, $window, $q, sessionServic
     }
 
     function sessionExpired() {
-        if (typeof window._openESDHSessionExpired !== 'undefined') {
-            return;
-        }
-        window._openESDHSessionExpired = true;
+        if (typeof $window._openESDHSessionExpired !== 'undefined') return;
+
+        $window._openESDHSessionExpired = true;
         sessionService.setUserInfo(null);
         var $mdDialog = $injector.get('$mdDialog'),
             notificationUtilsService = $injector.get('notificationUtilsService');
         $mdDialog.cancel();
         $window.location = "/#/login";
         notificationUtilsService.notify($translate.instant('LOGIN.SESSION_TIMEOUT'));
-        delete window._openESDHSessionExpired;
     }
 }
 
@@ -77,6 +75,7 @@ function authService($http, $window, $state, sessionService, $translate, userSer
     }
 
     function login(username, password) {
+        delete $window._openESDHSessionExpired;
         return $http.post("/alfresco/service/api/login", {
             username: username,
             password: password
