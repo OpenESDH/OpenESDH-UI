@@ -15,7 +15,6 @@
         
         function init(){
             taskService.getCaseTasks($stateParams.caseId).then(function(result){
-                console.log("tasks", result);
                 vm.tasks = result;
             });
         }

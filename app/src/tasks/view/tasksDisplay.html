@@ -30,7 +30,10 @@
                        layout="row">
                         <span class="tlist__cell tlist__cell_icon" flex="5"><i class="material-icons">assignment</i></span>
                         <span class="tlist__cell" flex>{{ task.properties.bpm_description }}</span>
-                        <span class="tlist__cell muted" flex="25"><span class="cell__label">{{ 'COMMON.DESCRIPTION' | translate }}</span>{{ task.description }}</span>
+                        <span class="tlist__cell muted" flex="25">
+                            <span class="cell__label">{{ 'COMMON.DESCRIPTION' | translate }}</span>
+                            {{ task.description != task.properties.bpm_description ? task.description : task.workflowInstance.message }}
+                        </span>
                         <span class="tlist__cell muted" flex="15"><span class="cell__label">{{ 'COMMON.STATUS' | translate }}</span> {{ task.properties.bpm_status | workflowTaskStatus}}</span>
                         <span class="tlist__cell muted" flex="15"><span class="cell__label">{{ 'COMMON.DUE_DATE' | translate }}</span>{{ task.properties.bpm_dueDate | date }}</span>
                         <span class="tlist__cell muted" flex="15" ng-show="tasksCtrl.case_tasks"><span class="cell__label">{{ 'ACTIVITIES.PERFORMER' | translate }}</span>{{ task.owner.firstName + " " + task.owner.lastName }}</span>
