@@ -20,6 +20,7 @@
                 <span class="tlist__cell" flex="25">{{ 'COMMON.DESCRIPTION' | translate }}</span>
                 <span class="tlist__cell" flex="15">{{ 'COMMON.STATUS' | translate }}</span>
                 <span class="tlist__cell" flex="15">{{ 'COMMON.DUE_DATE' | translate }}</span>
+                <span class="tlist__cell" flex="15" ng-show="tasksCtrl.case_tasks">{{ 'ACTIVITIES.PERFORMER' | translate }}</span>
                 <span class="tlist__cell" flex="10">{{ 'COMMON.PRIORITY' | translate }}</span>
             </div>
             <md-virtual-repeat-container class="tlist__body" auto-height>
@@ -32,6 +33,7 @@
                         <span class="tlist__cell muted" flex="25"><span class="cell__label">{{ 'COMMON.DESCRIPTION' | translate }}</span>{{ task.description }}</span>
                         <span class="tlist__cell muted" flex="15"><span class="cell__label">{{ 'COMMON.STATUS' | translate }}</span> {{ task.properties.bpm_status | workflowTaskStatus}}</span>
                         <span class="tlist__cell muted" flex="15"><span class="cell__label">{{ 'COMMON.DUE_DATE' | translate }}</span>{{ task.properties.bpm_dueDate | date }}</span>
+                        <span class="tlist__cell muted" flex="15" ng-show="tasksCtrl.case_tasks"><span class="cell__label">{{ 'ACTIVITIES.PERFORMER' | translate }}</span>{{ task.owner.firstName + " " + task.owner.lastName }}</span>
                         <span class="tlist__cell muted" flex="10"><span class="cell__label">{{ 'COMMON.PRIORITY' | translate }}</span>{{ task.properties.bpm_priority | workflowTaskPriority}}</span>
                         <div class="tlist__item__createinfo muted" 
                              translate="TASK.TASK_CREATED_ON_BY" 
