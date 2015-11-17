@@ -1,86 +1,103 @@
-var globalHeaderMenu = require('../common/globalHeader.po.js');
+var adminPage = require('../admin/adminPage.po.js');
 var oeUtils = require('../common/utils');
 
-var AdminPage = function () {
+var ContactsPage = function () {
 
     //All input fields in the dialog encapsulated in an object
-    var userCUInputFields = {
-        firstName: element(by.model('ucd.user.firstName')),
-        lastName: element(by.model('ucd.user.lastName')),
-        email: element(by.model('ucd.user.email')),
-        enabled: element(by.model('ucd.user.enabled')),
-        userName: element(by.model('ucd.user.userName')),
-        password: element(by.model('ucd.user.password')),
-        verifypassword: element(by.model('ucd.user.verifypassword')),
-        desc: element(by.model('ucd.user.desc')),
-        cuOkBtn: element(by.id('create-user-dialog-ok-btn')),
-        cuCancelBtn: element(by.id('create-user-dialog-cancel-btn'))
+    var contactPersonDlg = {
+        firstName: element(by.model('person.firstName')),
+        middleName: element(by.model('person.middleName')),
+        lastName: element(by.model('person.lastName')),
+        email: element(by.model('person.email')),
+        addressLine1: element(by.model('person.addressLine1')),
+        addressLine2: element(by.model('person.addressLine2')),
+        postCode: element(by.model('person.postCode')),
+        cityName: element(by.model('person.cityName')),
+        countryCode: element(by.model('person.countryCode')),
+        cprNumber: element(by.model('person.cprNumber')),
+        phone: element(by.model('person.phone')),
+        mobile: element(by.model('person.mobile')),
+        website: element(by.model('person.website')),
+        linkedin: element(by.model('person.linkedin')),
+        im: element(by.model('person.IM')),
+        notes: element(by.model('person.notes')),
+        cuOkBtn: element(by.css('[ng-click="save(personForm)"]')),
+        cuDeleteBtn: element(by.css('[ng-click="delete($event, person)"]')),
+        cuCancelBtn: element(by.css('[ng-click="cancel()"]'))
     };
+    var contactSearchInput = element(by.model('vm.searchQuery'));
 
     return {
-        goToPage: goToPage
+        searchFilterInput: contactSearchInput,
+        goToContactsPage: goToContactsPage,
+        createContact: createContact,
+        updateContact: updateContact
     };
 
     /**
-     * Go to the cases page.
+     * Go to the contacts page.
      */
-/*    function goToUsersPage() {
-        globalHeaderMenu.getHeaderMenuItem().userMenuBtn.click().then(function () {
-            var adminBtn = element(by.xpath('//a[@ui-sref=\'administration.users\']'));
-            expect(adminBtn);
-            adminBtn.click();
-            browser.waitForAngular();
-            browser.driver.sleep(1000);
-        });
-    }*/
-
-    /**
-     * Go to the cases page.
-     */
-    function goToPage(tabName) {
-        globalHeaderMenu.getHeaderMenuItem().userMenuBtn.click().then(function () {
-            var adminBtn = element(by.xpath('//a[@ui-sref=\'administration.'+tabName+'\']'));
-            expect(adminBtn);
-            adminBtn.click();
-            browser.waitForAngular();
-            browser.driver.sleep(1000);
-        });
+    function goToContactsPage() {
+        adminPage.goToPage("contacts");
     }
 
-    function createUser() {
-        var createUserBtn = element(by.css('[ng-click="vm.createUser($event)"]'));
+    function createContact() {
+        var createUserBtn = element(by.css('[ng-click="vm.showPersonEdit($event, null)"]'));
         expect(createUserBtn);
-        createUserBtn.click().then(function () {
-            browser.wait(protractor.ExpectedConditions.visibilityOf(userCUInputFields.firstName), 10000).then(function () {
-                var userNameTxt= oeUtils.generateRandomString(4);
-                var password= oeUtils.generateRandomString(10);
-                var email= oeUtils.getRandomEmail();
-                userCUInputFields.firstName.sendKeys(oeUtils.generateRandomString(5));
-                userCUInputFields.lastName.sendKeys(oeUtils.generateRandomString(5));
-                userCUInputFields.userName.sendKeys(userNameTxt);
-                userCUInputFields.password.sendKeys(password);
-                userCUInputFields.verifypassword.sendKeys(password);
-                userCUInputFields.desc.sendKeys(oeUtils.generateRandomString(20));
-                userCUInputFields.email.sendKeys(email);
+        return createUserBtn.click().then(function () {
+            browser.wait(protractor.ExpectedConditions.visibilityOf(contactPersonDlg.firstName), 10000).then(function () {
+                var firstName = oeUtils.generateRandomAlphabetString(5);
+                var lastName = oeUtils.generateRandomAlphabetString(8);
+                var cprNumber = oeUtils.getRandomNumber(10);
+                var email = oeUtils.getRandomEmail();
+
+                contactPersonDlg.firstName.sendKeys(firstName);
+                contactPersonDlg.middleName.sendKeys(oeUtils.generateRandomAlphabetString(5));
+                contactPersonDlg.lastName.sendKeys(lastName);
+                contactPersonDlg.addressLine1.sendKeys(oeUtils.generateRandomAlphaNumericString(11));
+                contactPersonDlg.addressLine2.sendKeys(oeUtils.generateRandomAlphabetString(9));
+                contactPersonDlg.postCode.sendKeys(oeUtils.getRandomNumber(4));
+                contactPersonDlg.cityName.sendKeys("Copenhagen");
+                contactPersonDlg.countryCode.sendKeys("DK");
+                contactPersonDlg.cprNumber.sendKeys(cprNumber);
+                contactPersonDlg.email.sendKeys(email);
+                contactPersonDlg.phone.sendKeys(oeUtils.getRandomNumber(8));
+                contactPersonDlg.mobile.sendKeys(oeUtils.getRandomNumber(8));
+                contactPersonDlg.notes.sendKeys(oeUtils.generateRandomAlphaNumericString(20));
                 browser.wait(function () {
-                    return userCUInputFields.cuOkBtn.isEnabled();
+                    return contactPersonDlg.cuOkBtn.isEnabled();
                 });
-                userCUInputFields.cuOkBtn.click().then(function () {
-                    //console.log("****** User name: "+ userNameTxt+" *******");
-                    //console.log("****** User password: "+ password+" *******");
-                    //console.log("****** User email: "+ email+" *******");
+                contactPersonDlg.cuOkBtn.click().then(function () {
+                    browser.driver.sleep(7000);//Wait a bit so the indexer can catch up in the backend
+                    contactSearchInput.sendKeys(cprNumber);
+                    //element.all(by.repeater('person in vm.persons.items').row(0)
+                    //    .column('person.cprNumber')).getText().then(function(elem){
+                    //        browser.driver.sleep(5000); // Have to wait so that the indexer catches up. Otherwise it fails
+                    //    });
                 });
-                //browser.wait(function () {
-                //    return $$("md-dialog").count().then(function (count) {
-                //        console.log("count " + count);
-                //        return count === 0;
-                //    });
-                //});
-                //TODO fix assertion
-                //expect(element(by.xpath('//h1')).getText().toEqual(caseTxtTitle));
             });
         });
     }
+
+    function updateContact(cprNumber, field, newValue) {
+        browser.waitForAngular();
+        var editBtn = element(by.css('[ng-click="vm.showPersonEdit($event, person)"]'));
+        return browser.wait(protractor.ExpectedConditions.visibilityOf(editBtn), 7000).then(function () {
+            editBtn.click().then(function () {
+                browser.wait(protractor.ExpectedConditions.visibilityOf(contactPersonDlg.firstName), 7000).then(function () {
+                    contactPersonDlg[field].clear();
+                    contactPersonDlg[field].sendKeys(newValue);
+                    browser.wait(function () {
+                        return contactPersonDlg.cuOkBtn.isEnabled();
+                    });
+                    contactPersonDlg.cuOkBtn.click().then(function () {
+                        browser.driver.sleep(7000);//Wait a bit so the indexer can catch up in the backend
+                        //contactSearchInput.clear();
+                    });
+                })
+            });
+        })
+    }
 };
 
-module.exports = AdminPage();
+module.exports = ContactsPage();

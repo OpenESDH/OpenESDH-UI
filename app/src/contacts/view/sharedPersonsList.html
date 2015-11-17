@@ -2,7 +2,7 @@
     <thead>
         <th>{{ 'CONTACT.FIRST_NAME' | translate }}</th>
         <th>{{ 'CONTACT.LAST_NAME' | translate }}</th>
-        <th>{{ 'CONTACT.DEPARTMENT' | translate }}</th>
+        <th>{{ 'CONTACT.CPR_NO' | translate }}</th>
         <th>{{ 'CONTACT.STREET' | translate }}</th>
         <th>{{ 'CONTACT.POSTAL_CODE' | translate }}</th>
         <th>{{ 'CONTACT.CITY' | translate }}</th>
@@ -13,8 +13,8 @@
         <tr ng-repeat="person in vm.persons.items">
             <td>{{person.firstName}}</td>
             <td>{{person.lastName}}</td>
-            <td>{{person.department}}</td>
-            <td>{{person.address}}</td>
+            <td>{{person.cprNumber}}</td>
+            <td>{{person.addressLine1}} {{person.addressLine2}}</td>
             <td>{{person.postCode}}</td>
             <td>{{person.cityName}}</td>
             <td>{{person.countryCode ? (person.countryCode| countryCodeToName) : null}}</td>

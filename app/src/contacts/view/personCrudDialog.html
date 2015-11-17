@@ -88,10 +88,10 @@
             </md-input-container>
         </md-dialog-content>
         <div class="md-actions" layout="row">
-            <md-button class="md-primary" ng-click="save(personForm)">
+            <md-button id="save-contact-person" class="md-primary" ng-click="save(personForm)">
                 {{ 'COMMON.SAVE' | translate }}
             </md-button>
-            <md-button ng-click="delete($event, person)" ng-show="person.id">
+            <md-button id="delete-contact-person" ng-click="delete($event, person)" ng-show="person.id">
                 {{ 'COMMON.DELETE' | translate }}
             </md-button>
             <md-button ng-click="cancel()">

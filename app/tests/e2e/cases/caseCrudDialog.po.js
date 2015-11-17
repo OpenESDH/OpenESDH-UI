@@ -15,13 +15,13 @@ var CaseCrudDialog = function () {
     };
 
     function fillCrudDialog() {
-        var caseTxtTitle = oeUtils.generateRandomString(8);
+        var caseTxtTitle = oeUtils.generateRandomAlphaNumericString(8);
         browser.waitForAngular().then(function(){
             console.log("Popped Up. Waiting...");
             browser.wait(protractor.ExpectedConditions.visibilityOf(caseTitle), 10000).then(function() {
                 caseTitle.sendKeys(caseTxtTitle);
                 caseOwner.sendKeys("la");
-                caseDescription.sendKeys(oeUtils.generateRandomString(20));
+                caseDescription.sendKeys(oeUtils.generateRandomAlphabetString(20));
                 browser.wait(function () {
                     return okDialogBtn.isEnabled().then(function (value) {
                         return value;

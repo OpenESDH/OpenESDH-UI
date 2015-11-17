@@ -40,15 +40,15 @@ var UserPage = function () {
         expect(createUserBtn);
         createUserBtn.click().then(function () {
             browser.wait(protractor.ExpectedConditions.visibilityOf(userCUInputFields.firstName), 10000).then(function () {
-                var userNameTxt= oeUtils.generateRandomString(4);
-                var password= oeUtils.generateRandomString(10);
+                var userNameTxt= oeUtils.generateRandomAlphabetString(7);
+                var password= oeUtils.generateRandomAlphaNumericString(10);
                 var email= oeUtils.getRandomEmail();
-                userCUInputFields.firstName.sendKeys(oeUtils.generateRandomString(5));
-                userCUInputFields.lastName.sendKeys(oeUtils.generateRandomString(5));
+                userCUInputFields.firstName.sendKeys(oeUtils.generateRandomAlphabetString(5));
+                userCUInputFields.lastName.sendKeys(oeUtils.generateRandomAlphabetString(7));
                 userCUInputFields.userName.sendKeys(userNameTxt);
                 userCUInputFields.password.sendKeys(password);
                 userCUInputFields.verifypassword.sendKeys(password);
-                userCUInputFields.desc.sendKeys(oeUtils.generateRandomString(20));
+                userCUInputFields.desc.sendKeys(oeUtils.generateRandomAlphabetString(20));
                 userCUInputFields.email.sendKeys(email);
                 browser.wait(function () {
                     return userCUInputFields.cuOkBtn.isEnabled();
