@@ -26,7 +26,10 @@
                               <dd flex="66">{{ taskCtrl.task.workflowInstance.startDate | date }}</dd>
 
                               <dt flex="20">{{ 'COMMON.DESCRIPTION' | translate }}</dt>
-                              <dd flex="66">{{ taskCtrl.task.description }}</dd>
+                              <dd flex="66">
+                                {{ task=taskCtrl.task; "" }}
+                                {{ task.description != task.properties.bpm_description ? task.description : task.workflowInstance.message }}
+                              </dd>
 
                             </dl>
                           </md-card-content>
