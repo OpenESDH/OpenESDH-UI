@@ -5,6 +5,7 @@
     function CaseTasksController($scope, $stateParams, taskService){
         var vm = this;
         vm.statuses = taskService.getTaskStatuses();
+        vm.case_tasks = true;
         
         $scope.$on('tabSelectEvent', function(event, args) {
             if (args.tab === 'tasks') {
@@ -14,6 +15,7 @@
         
         function init(){
             taskService.getCaseTasks($stateParams.caseId).then(function(result){
+                console.log("tasks", result);
                 vm.tasks = result;
             });
         }
