@@ -32,7 +32,7 @@ function createWebserver(config) {
 					target: config.proxy + '/alfresco'
 				}]
 			}));
-};
+}
 
 // Script tasks
 gulp.task('scripts', function () {

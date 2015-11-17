@@ -80,23 +80,28 @@ var ContactsPage = function () {
     }
 
     function updateContact(cprNumber, field, newValue) {
-        browser.waitForAngular();
-        var editBtn = element(by.css('[ng-click="vm.showPersonEdit($event, person)"]'));
-        return browser.wait(protractor.ExpectedConditions.visibilityOf(editBtn), 7000).then(function () {
-            editBtn.click().then(function () {
-                browser.wait(protractor.ExpectedConditions.visibilityOf(contactPersonDlg.firstName), 7000).then(function () {
-                    contactPersonDlg[field].clear();
-                    contactPersonDlg[field].sendKeys(newValue);
-                    browser.wait(function () {
-                        return contactPersonDlg.cuOkBtn.isEnabled();
-                    });
-                    contactPersonDlg.cuOkBtn.click().then(function () {
-                        browser.driver.sleep(7000);//Wait a bit so the indexer can catch up in the backend
-                        //contactSearchInput.clear();
-                    });
-                })
+        browser.driver.sleep(500);
+        //contactSearchInput.clear();
+        console.log("---------> Cleared before update");
+        //return contactSearchInput.sendKeys(cprNumber).then(function(){
+            browser.waitForAngular();
+            var editBtn = element(by.css('[ng-click="vm.showPersonEdit($event, person)"]'));
+             return browser.wait(protractor.ExpectedConditions.visibilityOf(editBtn), 7000).then(function () {
+                editBtn.click().then(function () {
+                    browser.wait(protractor.ExpectedConditions.visibilityOf(contactPersonDlg.firstName), 7000).then(function () {
+                        contactPersonDlg[field].clear();
+                        contactPersonDlg[field].sendKeys(newValue);
+                        browser.wait(function () {
+                            return contactPersonDlg.cuOkBtn.isEnabled();
+                        });
+                        contactPersonDlg.cuOkBtn.click().then(function () {
+                            browser.driver.sleep(3000);//Wait a bit so the indexer can catch up in the backend
+                            //contactSearchInput.clear();
+                        });
+                    })
+                });
             });
-        })
+        //});
     }
 };
 

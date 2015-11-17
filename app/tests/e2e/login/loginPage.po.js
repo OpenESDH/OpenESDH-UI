@@ -17,7 +17,7 @@ var LoginPage = function () {
 
     public.loginAsUser = function () {
         public.loginAs(browser.params.loginDetails.user.username, browser.params.loginDetails.user.password);
-    }
+    };
 
     /**
      * Lpgin as an arbitral user

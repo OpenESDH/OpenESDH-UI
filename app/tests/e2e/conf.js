@@ -1,5 +1,5 @@
 var HtmlScreenshotReporter = require('protractor-jasmine2-screenshot-reporter');
-var loginDetails = require('../../../../loginDetails.json');;
+var loginDetails = require('../../../../loginDetails.json');
 
 exports.config = {
     capabilities: {'browserName': 'chrome'},
@@ -17,7 +17,7 @@ exports.config = {
     jasmineNodeOpts: {
         showColors: true,
         isVerbose: true,
-        includeStackTrace: true,
+        includeStackTrace: true
     },
     seleniumPort: 4840,
 
