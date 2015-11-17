@@ -2,12 +2,12 @@ var casePage = require('./casePage.po.js');
 var loginPage = require('../login/loginPage.po.js');
 var oeUtils = require('../common/utils');
 
-describe('openESDH case page tests as admin', function () {
+fdescribe('openESDH case page tests as admin', function () {
 
     //<editor-fold desc="Before and after procedure">
     //Executed before each of the "it" tests
     beforeEach(function () {
-        loginPage.login();
+        loginPage.loginAsAdmin();
     });
 
     //logout and wait for 2 secs
@@ -79,7 +79,7 @@ describe('openESDH case page tests as a CaseCreator group member', function () {
     //<editor-fold desc="Before and after procedure">
     //Executed before each of the "it" tests
     beforeEach(function () {
-        loginPage.loginAs("lanre", "test");
+        loginPage.loginAsUser();
     });
 
     //logout and wait for 2 secs
@@ -130,7 +130,7 @@ describe('openESDH case page tests as a CaseCreator group member', function () {
                         browser.waitForAngular().then(function(){
                             //browser.driver.sleep(2000);
                             //TODO fix assertion
-                            var caseTitleHeader = element(by.cssContainingText('.case-page-title',caseTxtTitle));
+                            var caseTitleHeader = element(by.cssContainingText('.case-page-title', caseTxtTitle));
                             caseTitleHeader.getText().then(function(text){
                                 console.log("==> The case title test is:", text);
                                 expect(text.indexOf(caseTitleHeader) >=0);
