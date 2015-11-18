@@ -32,7 +32,7 @@
                         <span class="tlist__cell" flex>{{ task.properties.bpm_description }}</span>
                         <span class="tlist__cell muted" flex="25">
                             <span class="cell__label">{{ 'COMMON.DESCRIPTION' | translate }}</span>
-                            {{ task.description != task.properties.bpm_description ? task.description : task.workflowInstance.message }}
+                            {{ task | taskDescription }}
                         </span>
                         <span class="tlist__cell muted" flex="15"><span class="cell__label">{{ 'COMMON.STATUS' | translate }}</span> {{ task.properties.bpm_status | workflowTaskStatus}}</span>
                         <span class="tlist__cell muted" flex="15"><span class="cell__label">{{ 'COMMON.DUE_DATE' | translate }}</span>{{ task.properties.bpm_dueDate | date }}</span>

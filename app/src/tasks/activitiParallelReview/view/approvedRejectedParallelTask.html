@@ -6,7 +6,7 @@
       <dt flex="20">{{ 'COMMON.OWNER' | translate }}</dt><dd flex="66">{{taskCtrl.task.owner.firstName + ' ' + taskCtrl.task.owner.lastName}}</dd>
       <dt flex="20">{{ 'COMMON.DUE_DATE' | translate }}</dt><dd flex="66">{{ taskCtrl.task.workflowInstance.dueDate | date }}</dd>
       <dt flex="20">{{ 'COMMON.PRIORITY' | translate }}</dt><dd flex="66">{{ taskCtrl.task.workflowInstance.priority | workflowTaskPriority}}</dd>
-      <dt flex="20">{{ 'COMMON.DESCRIPTION' | translate }}</dt><dd flex="66">{{ taskCtrl.task.description }}</dd>
+      <dt flex="20">{{ 'COMMON.DESCRIPTION' | translate }}</dt><dd flex="66">{{ taskCtrl.task | taskDescription }}</dd>
       <dt flex="20">{{ 'COMMON.STATUS' | translate }}</dt><dd flex="66">{{ taskCtrl.task.properties.bpm_status | workflowTaskStatus}}</dd>
     </dl>
     <p>{{ 'TASK.OUTCOME' | translate }}</p>

@@ -27,8 +27,7 @@
 
                               <dt flex="20">{{ 'COMMON.DESCRIPTION' | translate }}</dt>
                               <dd flex="66">
-                                {{ task=taskCtrl.task; "" }}
-                                {{ task.description != task.properties.bpm_description ? task.description : task.workflowInstance.message }}
+                                {{ taskCtrl.task | taskDescription }}
                               </dd>
 
                             </dl>
