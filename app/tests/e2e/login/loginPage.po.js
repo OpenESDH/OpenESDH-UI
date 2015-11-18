@@ -15,8 +15,8 @@ var LoginPage = function () {
         public.loginAs(browser.params.loginDetails.admin.username, browser.params.loginDetails.admin.password);
     };
 
-    public.loginAsUser = function () {
-        public.loginAs(browser.params.loginDetails.user.username, browser.params.loginDetails.user.password);
+    public.loginAsUser = function (user) {
+        public.loginAs(browser.params.loginDetails[user].username, browser.params.loginDetails[user].password);
     };
 
     /**
