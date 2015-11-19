@@ -13,7 +13,7 @@ var origFn = browser.driver.controlFlow().execute;
  return origFn.apply(browser.driver.controlFlow(), args);
  };*/
 
-fdescribe('openESDH case page tests', function () {
+describe('openESDH case page tests', function () {
 
     //Executed before each of the "it" tests
     beforeEach(function () {
@@ -26,7 +26,7 @@ fdescribe('openESDH case page tests', function () {
         loginPage.logout();
     });
 
-    fit('should create contact person as admin and then delete the contact', function () {
+    it('should create contact person as admin and then delete the contact', function () {
         var cCprNumber;
         contactsPage.goToContactsPage(); //assertion is done in the adminPage.goToPage method
         contactsPage.createContact()
