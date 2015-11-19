@@ -1,6 +1,7 @@
 {
   "COMMON": {
     "CONFIRM": "Bekræft",
+    "WARNING": "Advarsel!",
     "OK": "OK",
     "YES": "Ja",
     "CANCEL": "Annullér",
@@ -515,7 +516,8 @@
         "USERNAME_EXISTS": "Brugernavn finnes allerede",
         "EMAIL_EXISTS": "Email finnes allerede"
     },
-    "ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER": "Er du sikker på, at du vil slette '{{user}}'?"
+    "ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER": "Er du sikker på, at du vil slette '{{user}}'?",
+    "CAN_NOT_DELETE_ADMIN_USER": "Sletning af admin brugeren er ikke tilladt"
   },
   "GROUP": {
     "GROUPS": "Grupper",
