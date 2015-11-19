@@ -2,6 +2,7 @@
     "COMMON": {
         "CASE_ID": "Case Id",
         "CONFIRM": "Confirm",
+        "WARNING": "Warning!",
         "OK": "OK",
         "YES": "Yes",
         "CANCEL": "Cancel",
@@ -531,7 +532,8 @@
             "USERNAME_EXISTS": "Username already exists",
             "EMAIL_EXISTS": "Email already exists"
         },
-        "ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER": "Are you sure you want to delete '{{user}}'?"
+        "ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER": "Are you sure you want to delete '{{user}}'?",
+        "CAN_NOT_DELETE_ADMIN_USER": "Deletion of the admin user is not permitted."
     },
     "GROUP": {
         "GROUPS": "Groups",
