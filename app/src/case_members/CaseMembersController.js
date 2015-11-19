@@ -32,7 +32,7 @@
         function removeMember(ev, member) {
             var confirm = $mdDialog.confirm()
                     .title($translate.instant('COMMON.CONFIRM'))
-                    .content($translate.instant('MEMBER.ARE_YOU_SURE_YOU_WANT_TO_REMOVE_MEMBER', member))
+                    .textContent($translate.instant('MEMBER.ARE_YOU_SURE_YOU_WANT_TO_REMOVE_MEMBER', member))
                     .targetEvent(ev)
                     .ok($translate.instant('COMMON.YES'))
                     .cancel($translate.instant('COMMON.CANCEL'));

@@ -101,7 +101,7 @@ function GroupController($scope, $mdDialog, groupService, $stateParams, $transla
     function removeMemberFromGroup(group_shortName, authType, memberName, ev) {
         var confirmDel = $mdDialog.confirm()
                 .title('Remove member')
-                .content('Remove ' + memberName + ' from ' + group_shortName + ' group?')
+                .textContent('Remove ' + memberName + ' from ' + group_shortName + ' group?')
                 .ariaLabel('Delete group')
                 .targetEvent(ev)
                 .ok('Delete')
@@ -138,7 +138,7 @@ function GroupController($scope, $mdDialog, groupService, $stateParams, $transla
     function deleteGroup(shortName, ev) {
         var confirmDel = $mdDialog.confirm()
                 .title('Delete group')
-                .content('Delete ' + shortName + '?')
+                .textContent('Delete ' + shortName + '?')
                 .ariaLabel('Delete group')
                 .targetEvent(ev)
                 .ok('Delete')
