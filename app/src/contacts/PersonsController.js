@@ -64,7 +64,7 @@
             $scope.delete = function(ev, person) {
                 var confirm = $mdDialog.confirm()
                         .title($translate.instant('COMMON.CONFIRM'))
-                        .content($translate.instant('CONTACT.ARE_YOU_SURE_YOU_WANT_TO_DELETE_PERSON_CONTACT', person))
+                        .textContent($translate.instant('CONTACT.ARE_YOU_SURE_YOU_WANT_TO_DELETE_PERSON_CONTACT', person))
                         .targetEvent(ev)
                         .ok($translate.instant('COMMON.YES'))
                         .cancel($translate.instant('COMMON.CANCEL'));

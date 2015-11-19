@@ -52,15 +52,25 @@
 
             var confirm = $mdDialog.confirm()
                 .title($translate.instant('COMMON.CONFIRM'))
-                .content($translate.instant('USER.ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER', {user: user.firstName +" "+user.lastName+" ("+user.userName+")"}))
+                .textContent($translate.instant('USER.ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER', {
+                    user: user.firstName + " " + user.lastName + " (" + user.userName + ")"
+                }))
                 .ariaLabel('')
-                .targetEvent(null)
+                .targetEvent(ev)
                 .ok($translate.instant('COMMON.YES'))
                 .cancel($translate.instant('COMMON.CANCEL'));
 
-            $mdDialog.show(confirm).then(function() {
-                userService.deleteUser(user.userName).then(function(response){
-                    var responseMessage = (Object.keys(response).length == 0) ? $translate.instant('USER.DELETE_USER_SUCCESS') : $translate.instant('USER.DELETE_USER_FAILURE');
+            var warning = $mdDialog.confirm()
+                .title($translate.instant('COMMON.WARNING'))
+                .textContent($translate.instant('USER.CAN_NOT_DELETE_ADMIN_USER'))
+                .ariaLabel('')
+                .targetEvent(ev)
+                .ok($translate.instant('COMMON.OK'));
+
+            if(user.userName != "admin") {
+                $mdDialog.show(confirm).then(function () {
+                    userService.deleteUser(user.userName).then(function (response) {
+                        var responseMessage = (Object.keys(response).length == 0) ? $translate.instant('USER.DELETE_USER_SUCCESS') : $translate.instant('USER.DELETE_USER_FAILURE');
                         getAllSystemUsers();
                         $mdToast.show(
                             $mdToast.simple()
@@ -68,8 +78,11 @@
                                 .position('top right')
                                 .hideDelay(3000)
                         );
-                })
-            });
+                    })
+                });
+            } else {
+                $mdDialog.show(warning);
+            }
 
         }   
 

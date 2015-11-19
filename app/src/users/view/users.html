@@ -30,7 +30,7 @@
                     <md-button class="md-primary" ng-click="vm.editUser($event, user)" aria-label="Edit user">
                         {{ 'USER.EDIT_USER' | translate }}
                     </md-button>
-                    <md-button class="md-primary" ng-click="vm.deleteUser($event, user)" aria-label="Delete user">
+                    <md-button class="md-primary" ng-if="user.userName !== 'admin'" ng-click="vm.deleteUser($event, user)" aria-label="Delete user">
                         {{ 'COMMON.DELETE' | translate }}
                     </md-button>
                 </td>
