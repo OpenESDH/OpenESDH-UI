@@ -52,17 +52,19 @@
 
             var confirm = $mdDialog.confirm()
                 .title($translate.instant('COMMON.CONFIRM'))
-                .content($translate.instant('USER.ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER', {user: user.firstName + " " + user.lastName + " (" + user.userName + ")"}))
+                .textContent($translate.instant('USER.ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER', {
+                    user: user.firstName + " " + user.lastName + " (" + user.userName + ")"
+                }))
                 .ariaLabel('')
-                .targetEvent(null)
+                .targetEvent(ev)
                 .ok($translate.instant('COMMON.YES'))
                 .cancel($translate.instant('COMMON.CANCEL'));
 
             var warning = $mdDialog.confirm()
                 .title($translate.instant('COMMON.WARNING'))
-                .content($translate.instant('USER.CAN_NOT_DELETE_ADMIN_USER'))
+                .textContent($translate.instant('USER.CAN_NOT_DELETE_ADMIN_USER'))
                 .ariaLabel('')
-                .targetEvent(null)
+                .targetEvent(ev)
                 .ok($translate.instant('COMMON.OK'));
 
             if(user.userName != "admin") {
@@ -78,11 +80,8 @@
                         );
                     })
                 });
-            }
-            else{
-                $mdDialog.show(warning).then(function () {
-                    getAllSystemUsers();
-                });
+            } else {
+                $mdDialog.show(warning);
             }
 
         }   

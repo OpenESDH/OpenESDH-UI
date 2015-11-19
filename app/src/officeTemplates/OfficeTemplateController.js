@@ -45,7 +45,7 @@
         function deleteTemplate(ev, template) {
             var confirm = $mdDialog.confirm()
                     .title($translate.instant('COMMON.CONFIRM'))
-                    .content($translate.instant('DOCUMENT.TEMPLATE.ARE_YOU_SURE_YOU_WANT_TO_DELETE_TEMPLATE', {title: template.title}))
+                    .textContent($translate.instant('DOCUMENT.TEMPLATE.ARE_YOU_SURE_YOU_WANT_TO_DELETE_TEMPLATE', {title: template.title}))
                     .targetEvent(ev)
                     .ok($translate.instant('COMMON.YES'))
                     .cancel($translate.instant('COMMON.CANCEL'));

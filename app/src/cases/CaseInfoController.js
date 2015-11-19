@@ -71,7 +71,7 @@
 
         var confirm = $mdDialog.confirm()
             .title($translate.instant("COMMON.CONFIRM"))
-            .content($translate.instant("CASE.CONFIRM_CLOSE_CASE"))
+            .textContent($translate.instant("CASE.CONFIRM_CLOSE_CASE"))
             .ariaLabel($translate.instant("CASE.CONFIRM_CLOSE_CASE"))
             .ok($translate.instant("COMMON.OK"))
             .cancel($translate.instant("COMMON.CANCEL"));

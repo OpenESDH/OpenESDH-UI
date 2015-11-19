@@ -76,7 +76,7 @@
         function deleteDocument(document){
             var confirm = $mdDialog.confirm()
                 .title($translate.instant('COMMON.CONFIRM'))
-                .content($translate.instant('DOCUMENT.ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_DOCUMENT', {document_title: document["cm:title"]}))
+                .textContent($translate.instant('DOCUMENT.ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_DOCUMENT', {document_title: document["cm:title"]}))
                 .ariaLabel('')
                 .targetEvent(null)
                 .ok($translate.instant('COMMON.YES'))
