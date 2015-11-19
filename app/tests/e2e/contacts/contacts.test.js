@@ -13,7 +13,7 @@ var origFn = browser.driver.controlFlow().execute;
  return origFn.apply(browser.driver.controlFlow(), args);
  };*/
 
-describe('openESDH case page tests', function () {
+fdescribe('openESDH case page tests', function () {
 
     //Executed before each of the "it" tests
     beforeEach(function () {
@@ -26,30 +26,34 @@ describe('openESDH case page tests', function () {
         loginPage.logout();
     });
 
-    it('should create contact person as admin and then delete the contact', function () {
+    fit('should create contact person as admin and then delete the contact', function () {
         var cCprNumber;
         contactsPage.goToContactsPage(); //assertion is done in the adminPage.goToPage method
-        contactsPage.createContact().then(function () {
-            contactsPage.searchFilterInput.getAttribute('value').then(function (textValue) {
-                cCprNumber = textValue;
-                browser.waitForAngular();
-                //search field should have been pre-filled from the create method thus the table should be already updated
-                var editButtton = element(by.css('[ng-click="vm.showPersonEdit($event, person)"]'));
-                editButtton.click().then(function () {
-                    var dlgDeleteBtn = element(by.css('[ng-click="delete($event, person)"]'));
-                    expect(dlgDeleteBtn);
-                    dlgDeleteBtn.click().then(function () {
-                        var delConfirmBtn = element(by.css('[ng-click="dialog.hide()"]'));
-                        expect(delConfirmBtn);
-                        delConfirmBtn.click().then(function () {
-                            //expect(element.all(by.repeater('person in vm.persons.items').row(0))).toEqual(undefined);
-                        });
-                    });
-                });
+        contactsPage.createContact()
 
-            });
+        contactsPage.searchFilterInput.getAttribute('value').then(function (textValue) {
+            cCprNumber = textValue;
+
+            browser.waitForAngular();
+            
+            var editButtton = element(by.css('[ng-click="vm.showPersonEdit($event, person)"]'));
+            browser.wait(EC.visibilityOf(editButtton), 10000);
+            editButtton.click()
+
+            browser.waitForAngular();
+
+            var dlgDeleteBtn = element(by.css('[ng-click="delete($event, person)"]'));
+            browser.wait(EC.visibilityOf(dlgDeleteBtn), 5000);
+            expect(dlgDeleteBtn);
+            dlgDeleteBtn.click()
+
+            var delConfirmBtn = element(by.css('[ng-click="dialog.hide()"]'));
+            browser.wait(EC.visibilityOf(delConfirmBtn), 5000);
+            expect(delConfirmBtn);
+            delConfirmBtn.click()
+
         });
-    });
+    }, 60 * 1000);
 
     it('should create contact person as admin update the CPR number and then delete the contact', function () {
         contactsPage.goToContactsPage();

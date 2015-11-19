@@ -68,12 +68,8 @@ var ContactsPage = function () {
                     return contactPersonDlg.cuOkBtn.isEnabled();
                 });
                 contactPersonDlg.cuOkBtn.click().then(function () {
-                    browser.driver.sleep(7000);//Wait a bit so the indexer can catch up in the backend
+                    browser.driver.sleep(15000);//Wait a bit so the indexer can catch up in the backend
                     contactSearchInput.sendKeys(cprNumber);
-                    //element.all(by.repeater('person in vm.persons.items').row(0)
-                    //    .column('person.cprNumber')).getText().then(function(elem){
-                    //        browser.driver.sleep(5000); // Have to wait so that the indexer catches up. Otherwise it fails
-                    //    });
                 });
             });
         });

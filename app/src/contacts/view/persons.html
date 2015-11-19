@@ -5,7 +5,9 @@
         
         <md-input-container>
             <label>{{ 'CONTACT.SEARCH_FOR_CONTACTS' | translate }}</label>
-            <input type="text" ng-model="vm.searchQuery" ng-change="vm.doFilter()">
+            <input type="text" ng-model="vm.searchQuery" 
+            		ng-model-options='{ debounce: 350 }' 
+            		ng-change="vm.doFilter()">
         </md-input-container>
         
         <div ng-include="'app/src/contacts/view/sharedPersonsList.html'" ></div>

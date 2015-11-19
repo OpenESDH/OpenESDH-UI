@@ -35,6 +35,18 @@ exports.config = {
         // in the parent directory of the OpenESDH-UI root
         browser.params.loginDetails = loginDetails;
 
+        // Adding global Protractor expected conditions
+        global.EC = protractor.ExpectedConditions;
+
+        // Disable animations so e2e tests run more quickly
+        var disableNgAnimate = function() {
+            angular.module('disableNgAnimate', []).run(['$animate', function($animate) {
+                $animate.enabled(false);
+            }]);
+        };
+
+        browser.addMockModule('disableNgAnimate', disableNgAnimate);
+
         
         // Add a screenshot reporter and store screenshots to `/tmp/screnshots`:
         //see https://github.com/mlison/protractor-jasmine2-screenshot-reporter/issues/4

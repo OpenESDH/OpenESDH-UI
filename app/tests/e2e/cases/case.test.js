@@ -2,7 +2,7 @@ var casePage = require('./casePage.po.js');
 var loginPage = require('../login/loginPage.po.js');
 var oeUtils = require('../common/utils');
 
-fdescribe('openESDH case page tests as admin', function () {
+describe('openESDH case page tests as admin', function () {
 
     //<editor-fold desc="Before and after procedure">
     //Executed before each of the "it" tests

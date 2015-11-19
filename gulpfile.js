@@ -64,12 +64,21 @@ gulp.task('css', function () {
 });
 
 // UI-test
+var counter = 0;
+console.log("GULP UI-TEST - RUNNING IN REPEAT!")
 gulp.task('e2e-tests', function() {
 	gulp.src(paths.e2e_tests)
 	    .pipe($.protractor.protractor({
 	        configFile: paths.protractorConfigFile
 	    }))
-	    .on('error', function(e) { throw e })
+	    .on('error', function(e) { 
+	    	console.log("Ran " + counter + " tests before failing.")
+	    	throw e 
+	    })
+	    .on('end', function () {
+	    	counter++;
+	    	gulp.start('e2e-tests');
+	    })
 });
 
 // Set up watchers

@@ -15,8 +15,15 @@
         initList();
 
         function initList() {
-            vm.persons.length = 0;
-            contactsService.getPersons(vm.searchQuery, vm.pagingParams).then(function(response) {
+            vm.persons = [];
+            var params = {
+                pageSize: vm.pagingParams.pageSize,
+                page: vm.pagingParams.page,
+                totalRecords: vm.pagingParams.totalRecords,
+                sortField: vm.pagingParams.sortField,
+                sortAscending: vm.pagingParams.sortAscending
+            };
+            contactsService.getPersons(vm.searchQuery, params).then(function(response) {
                 vm.persons = response;
                 vm.pagingParams.totalRecords = response.totalRecords;
             }, error);
