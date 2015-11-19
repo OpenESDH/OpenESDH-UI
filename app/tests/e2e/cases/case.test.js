@@ -73,13 +73,14 @@ describe('openESDH case page tests as admin', function () {
 
 /**
  * This test requires that the user be part of the CaseSimpleCreator group
+ * as well as CaseSimpleWriter group.
  */
 describe('openESDH case page tests as a CaseCreator group member', function () {
 
     //<editor-fold desc="Before and after procedure">
     //Executed before each of the "it" tests
     beforeEach(function () {
-        loginPage.loginAsUser();
+        loginPage.loginAsUser("lanre");
     });
 
     //logout and wait for 2 secs
