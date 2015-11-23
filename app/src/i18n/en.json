@@ -775,6 +775,12 @@
             "dk.openesdh.case.workflow.task-reject": "Workflow"
         }
     },
+    "ADDO":{
+        "USER":{
+            "PASSWORD":"ADDO password",
+            "INCORECT_PASSWORD":"Incorect ADDO password"
+        }
+    },
     "faceted-search.date.one-week.label": "Last week",
     "faceted-search.date.one-month.label": "Last month",
     "faceted-search.date.six-months.label": "Last six months",
