@@ -3,12 +3,12 @@
       <tr>
         <th></th>
         <th>{{'COMMON.TITLE' | translate}}</th>
-        <th>{{'COMMON.NO' | translate}}</th>
+        <!-- <th>{{'COMMON.NO' | translate}}</th>
         <th>{{'COMMON.TYPE' | translate}}</th>
-        <th>{{'COMMON.CATEGORY' | translate}}</th>
+        <th>{{'COMMON.CATEGORY' | translate}}</th> -->
         <th>{{'COMMON.STATE' | translate}}</th>
         <th>{{'COMMON.OWNER' | translate}}</th>
-        <th>{{'COMMON.CREATED' | translate}}</th>
+        <!-- <th>{{'COMMON.CREATED' | translate}}</th> -->
         <th>{{'COMMON.MODIFIED' | translate}}</th>
       </tr>
     </thead>
@@ -21,15 +21,14 @@
             <td>
                 <div style="display: inline-flex;">
                     <md-checkbox ng-model="doc.selected" aria-label="checkbox">{{doc.title}}</md-checkbox>
-                    <!-- <span style="margin-top: 12px;">{{doc.title}}</span> -->
                 </div>
             </td>
-            <td></td>
+            <!-- <td></td>
             <td>{{doc.typeDisplayName}}</td>
-            <td>{{doc.categoryDisplayName}}</td>
+            <td>{{doc.categoryDisplayName}}</td> -->
             <td>{{doc.status | docStatus}}</td>
             <td>{{doc.owner.firstName + " " + doc.owner.lastName}}</td>
-            <td>{{doc.created | date}}</td>
+            <!-- <td>{{doc.created | date}}</td> -->
             <td>{{doc.modified | date}}</td>
         </tr>
         <tr ng-if="doc.attachments.length > 0 && doc.expanded" ng-repeat-end="">
@@ -38,10 +37,8 @@
                     <md-checkbox ng-model="attachment.selected"  aria-label="checkbox">
                         {{attachment.name}}
                     </md-checkbox>
-<!--                        <span style="margin-top: 12px;">{{attachment.name}}</span>-->
                 </div>
             </td>
         </tr>
-        <!-- <tr style="display:none" ng-repeat-end></tr> -->
     </tbody>
 </table>
