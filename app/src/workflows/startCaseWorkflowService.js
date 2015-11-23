@@ -93,7 +93,7 @@
                     workflow.workflowType = workflowDef.id;
                     workflowService.startWorkflow(workflow).then(function(result){
                        //print workflow path id 
-                       //console.log("workflow result", result); 
+                       // console.log("workflow result", result); 
                     });
                 });
             }

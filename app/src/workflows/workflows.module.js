@@ -25,10 +25,10 @@
             directive.template = function (scope, element, attributes) {
                 var template =
                     '<div layout="column" class="md-whiteframe-z1" layout-padding>' +
-                    ' <div layout="row"  layout-sm="column" layout-align="space-between start" layout-margin>' +
+                    ' <div ng-if="curentStepTitle" layout="row" layout-sm="column" layout-align="space-between start" layout-margin>' +
                     '  <div><h3>{{curentStepTitle}}</h3></div>' +
                     ' </div>' +
-                    '<md-divider ></md-divider>' +
+                    '<md-divider ng-if="curentStepTitle"></md-divider>' +
                     ' <div layout="row"  class="wizard-container" ng-transclude ></div>' +
                     ' <div layout="row" layout-align="end center" >' +
                     '  <md-button class="md-primary" aria-label="cancel" ng-click="onCancel()" ng-show="selectedIndex == 0 ">{{"COMMON.CANCEL" | translate}}</md-button>' +
