@@ -8,7 +8,7 @@
     
     <mt-wizard chevrons-always-visible="false" on-finish="dlg.submit()" on-cancel="dlg.cancel()" is-valid="dlg.isValid(currentStep)">
         
-        <mt-wz-step title="{{'WORKFLOW.INFORMATION' | translate}}" class="workflowWizardStep">
+        <mt-wz-step class="workflowWizardStep">
             <form name="wfForm">
                 <div ng-init="dlg.appendForm(wfForm)">
                     <label hide>{{'WORKFLOW.ASSIGNEES' | translate}}</label>
@@ -34,7 +34,7 @@
             </form>
         </mt-wz-step>
         
-        <mt-wz-step title="{{'WORKFLOW.SELECT_ITEMS' | translate}}" class="workflowWizardStep">
+        <mt-wz-step class="workflowWizardStep">
             <ng-include src="'app/src/workflows/view/selectCaseDocuments.html'"></ng-include>
         </mt-wz-step>
         
