@@ -9,14 +9,14 @@
             {{ 'CASE.SELECT_CASE_TYPE' | translate }}
           </md-button>
           <md-menu-content>
-            <md-menu-item>
-              <md-button ng-click="vm.setPartial()">existing case</md-button>
-            </md-menu-item>
             <md-menu-item ng-repeat="caseType in ctrl.registeredCaseTypes">
               <md-button ng-click="vm.setPartial(caseType)">{{ caseType | caseType | lowercase }}</md-button>
             </md-menu-item>
             <md-menu-item>
               <md-button ng-disabled="true">{{ 'CASE.CASETYPE_OTHER' | translate | lowercase }}</md-button>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button ng-click="vm.setPartial()">{{ 'CASE.SEARCH_EXISTING_CASE' | translate }}</md-button>
             </md-menu-item>
           </md-menu-content>
         </md-menu>

@@ -126,7 +126,8 @@
         "CASE_NOT_FOUND": "CASE_NOT_FOUND",
         "SEARCH_CASE": "Søg sag",
         "CREATE_FROM": "Opret en",
-        "SELECT_CASE_TYPE": "Vælg sagstype"
+        "SELECT_CASE_TYPE": "Vælg sagstype",
+        "SEARCH_EXISTING_CASE": "søg sag"
     },
     "DOCUMENT": {
         "STATUS_CHANGED_SUCCESS": "Status er ændret",
