@@ -1,0 +1,93 @@
+<md-dialog aria-label="Send for signing dialog">
+    <form name="form">
+        <md-toolbar layout="row">
+            <div class="md-toolbar-tools">
+                <h2>{{ 'ADDO.DOCUMENT.SEND_FOR_SIGNING' | translate }}</h2>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="max-height:810px; width:600px;">
+            <div layout>
+                <md-input-container>
+                    <label>{{ 'ADDO.DOCUMENT.SIGNATURE_TEMPLATE' | translate }}</label>
+                    <md-select ng-model="addoDialog.model.template" required focus-me>
+                        <md-option ng-repeat="addoTemplate in addoDialog.templates" ng-value="addoTemplate">{{addoTemplate.FriendlyName}}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div layout>
+                <md-chips ng-model="addoDialog.model.receivers" md-autocomplete-snap md-require-match="true">
+                    <md-autocomplete md-selected-item="addoDialog.selectedItem" md-search-text="addoDialog.searchText" md-items="item in addoDialog.querySearch(addoDialog.searchText)" md-item-text="item.name" md-no-cache="true" placeholder="{{ 'ADDO.DOCUMENT.CHOOSE_RECEIVERS'| translate }}">
+                        <span md-highlight-text="addoDialog.searchText">{{item.displayName}} ({{item.contactId}})</span>
+                    </md-autocomplete>
+                    <md-chip-template>
+                        <span>
+                            <strong>{{$chip.displayName}}</strong>
+                            <em>({{$chip.contactId}})</em>
+                        </span>
+                    </md-chip-template>
+                </md-chips>
+            </div>
+
+            <div layout>
+                <md-input-container>
+                    <md-checkbox ng-model="addoDialog.model.sequential" ng-show="addoDialog.model.receivers.length > 1">{{'ADDO.DOCUMENT.SEQUENTIAL_SIGNING'| translate}}</md-checkbox>
+                </md-input-container>
+            </div>
+
+            <h3>{{"DOCUMENT.DOCUMENTS"| translate}}</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 15px; text-align: center;"></th>
+                        <th>{{'COMMON.TITLE'| translate}}</th>
+                        <th style="width: 130px;">{{'COMMON.ACTIONS'| translate}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat-start="doc in addoDialog.documents">
+                        <td>
+                            <span ng-if="doc.attachments.length > 0 && doc.expanded" ng-click="doc.expanded = false" class="collapse"></span>
+                            <span ng-if="doc.attachments.length > 0 && !doc.expanded" ng-click="doc.expanded = true" class="expand"></span>
+                        </td>
+                        <td>
+                            <div style="display: inline-flex;">
+                                <md-checkbox ng-model="doc.selected" aria-label="select document" ng-change="addoDialog.toggleDocument(doc)">{{doc.title}}</md-checkbox>
+                            </div>
+                        </td>
+                        <td>
+                <md-select ng-model="doc.sign" ng-required="doc.selected" ng-disabled="!doc.selected" ng-change="addoDialog.toggleDocument(doc)" style="margin: 0;" aria-label="action">
+                    <md-option ng-value="true">{{'ADDO.DOCUMENT.TO_BE_SIGNED'| translate}}</md-option>
+                    <md-option ng-value="false">{{'ADDO.DOCUMENT.ANEX'| translate}}</md-option>
+                </md-select>
+                </td>
+                </tr>
+                <tr ng-if="doc.attachments.length > 0 && doc.expanded" ng-repeat-end="" ng-repeat="attachment in doc.attachments">
+                    <td></td>
+                    <td style="padding-left: 30px;">
+                        <div >
+                            <md-checkbox ng-model="attachment.selected" aria-label="select document" ng-change="addoDialog.toggleDocument(attachment)">
+                                {{attachment.name}}
+                            </md-checkbox>
+                        </div>
+                    </td>
+                    <td>
+                <md-select ng-model="attachment.sign" ng-required="attachment.selected" ng-disabled="!attachment.selected" ng-change="addoDialog.toggleDocument(attachment)" style="margin: 0;" aria-label="action">
+                    <md-option ng-value="true">{{'ADDO.DOCUMENT.TO_BE_SIGNED'| translate}}</md-option>
+                    <md-option ng-value="false">{{'ADDO.DOCUMENT.ANEX'| translate}}</md-option>
+                </md-select>
+                </td>
+                </tr>       
+                </tbody>
+            </table>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button class="md-primary" ng-click="addoDialog.send(form)" ng-disabled="form.$invalid || !addoDialog.oneSigningDocSelected">
+                {{ 'ADDO.DOCUMENT.REQUEST_SIGNATURE' | translate }}
+            </md-button>
+            <md-button ng-click="addoDialog.cancel()">
+                {{ 'COMMON.CANCEL' | translate }}
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

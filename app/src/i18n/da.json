@@ -750,6 +750,23 @@
             "dk.openesdh.case.workflow.task-reject": "Opgave"
         }
     },
+    "ADDO": {
+        "USER": {
+            "PASSWORD": "ADDO password",
+            "INCORECT_PASSWORD": "Incorect ADDO password"
+        },
+        "DOCUMENT": {
+            "SEND_FOR_SIGNING": "Send til underskrift",
+            "SIGNATURE_TEMPLATE": "Underskriftsskabelon",
+            "CHOOSE_RECEIVERS": "Vælg modtagere",
+            "TO_BE_SIGNED": "Skal underskrives",
+            "ANEX": "Bilag",
+            "SEQUENTIAL_SIGNING": "Underskriv i rækkefølge",
+            "REQUEST_SIGNATURE": "Indhent underskrift",
+            "SENT_SUCCESSFULLY": "Documents sent for signing successfully",
+            "CANT_INITIALIZE": "Cannot initialize signing module"
+        }
+    },
     "faceted-search.date.one-week.label": "Sidste uge",
     "faceted-search.date.one-month.label": "Sidste måned",
     "faceted-search.date.six-months.label": "Sidste seks måneder",

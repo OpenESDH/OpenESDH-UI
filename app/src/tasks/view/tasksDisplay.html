@@ -4,7 +4,7 @@
     
         <h1 class="md-headline" layout-margin>{{ 'TASK.TASKS' | translate }}</h1>
 
-        <md-select ng-model="status" >
+        <md-select ng-model="status" aria-label="task-filter">
             <md-option value="" selected>{{ 'TASK.SHOW_ALL_OPEN_TASKS' | translate }}</md-option>
             <md-option ng-repeat="status in tasksCtrl.statuses" value="{{status}}">{{status | workflowTaskStatus}}</md-option>
         </md-select>
