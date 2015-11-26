@@ -127,6 +127,7 @@
         "SEARCH_CASE": "Search case",
         "CREATE_FROM": "Create from",
         "SELECT_CASE_TYPE": "Select case type",
+        "SEARCH_EXISTING_CASE": "search existing case",
         "ASSIGN_TO": "Assign to"
     },
     "DOCUMENT": {
