@@ -9,12 +9,14 @@
             <div layout>
                 <md-input-container flex>
                     <label>{{ 'USER.FIRST_NAME' | translate }}</label>
-                    <input type="text" ng-model="ucd.user.firstName" required focus-me="true">
+                    <input type="text" ng-model="ucd.user.firstName" name="firstName" required focus-me="true">
+                    <opene-error field="ucd.form.firstName"></opene-error>
                 </md-input-container>
 
                 <md-input-container flex>
                     <label>{{ 'USER.LAST_NAME' | translate }}</label>
-                    <input type="text" ng-model="ucd.user.lastName" required focus-me="false">
+                    <input type="text" ng-model="ucd.user.lastName" name="lastName" required focus-me="false">
+                    <opene-error field="ucd.form.lastName"></opene-error>
                 </md-input-container>
             </div>
 
@@ -22,22 +24,20 @@
                 <md-input-container flex>
                     <label>{{ 'COMMON.EMAIL' | translate }}</label>
                     <input type="email" ng-model="ucd.user.email" name="email" required focus-me="false">
-                    <div ng-messages="ucd.form.email.$error" ng-if="ucd.form.email.$dirty" role="alert">
-                        <div ng-message="exists">{{ ucd.form.email.$error.message }}</div>
-                    </div>
+                    <opene-error field="ucd.form.email"></opene-error>
                 </md-input-container>
             </div>
 
             <div layout>
                 <md-input-container flex="50">
                     <label>{{ 'LOGIN.USER_NAME' | translate }}</label>
-                    <input type="text" ng-model="ucd.user.userName" name="userName" required focus-me="false" ng-disabled="ucd.userExists" ng-change="ucd.form.userName.$error = {}">
-                    <div ng-messages="ucd.form.userName.$error" ng-if="ucd.form.userName.$dirty" role="alert">
-                        <div ng-message="exists">{{ ucd.form.userName.$error.message }}</div>
-                    </div>
+                    <input type="text" ng-model="ucd.user.userName" name="userName" required focus-me="false" 
+                            ng-disabled="ucd.userExists" ng-change="ucd.form.userName.$error = {}">
+                    <opene-error field="ucd.form.userName"></opene-error>
                 </md-input-container flex="50">
                 <div ng-show="ucd.userExists">
-                    <md-checkbox ng-model="ucd.user.enabled" ng-true-value="false" ng-false-value="true" aria-label="disable account" class="md-warn">
+                    <md-checkbox ng-model="ucd.user.enabled" ng-true-value="false" ng-false-value="true" 
+                                    aria-label="disable account" class="md-warn">
                         Disable Account
                     </md-checkbox>
                 </div>
@@ -51,10 +51,9 @@
                 </md-input-container>
                 <md-input-container flex>
                     <label>{{ 'LOGIN.VERIFY_PASSWORD' | translate }}</label>
-                    <input type="password" ng-model="ucd.user.verifypassword" opene-equals="ucd.user.password" ng-required="!ucd.userExists || undefined" focus-me="false" name="verify">
-                    <div ng-messages="ucd.form.verify.$error" ng-if="ucd.form.verify.$dirty" role="alert">
-                        <div ng-message="openeEquals">{{ 'LOGIN.PASSWORD_NOMATCH' | translate }}</div>
-                    </div>
+                    <input type="password" ng-model="ucd.user.verifypassword" opene-equals="ucd.user.password" 
+                            ng-required="!ucd.userExists || undefined" focus-me="false" name="verify">
+                    <opene-error field="ucd.form.verify"></opene-error>
                 </md-input-container>
             </div>
 

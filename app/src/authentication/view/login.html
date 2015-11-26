@@ -12,19 +12,13 @@
                 <md-input-container flex="grow">
                     <label>{{ 'LOGIN.USER_NAME' | translate }}</label>
                     <input type="text" ng-model="vm.credentials.username" name="username" required autofocus>
-                    <div ng-messages="vm.form.username.$error" ng-if="vm.form.username.$dirty">
-                        <div ng-message="required">{{ 'COMMON.FILL_ALL_REQUIRED_FIELDS' | translate }}</div>
-                    </div>
+                    <opene-error field="vm.form.username"></opene-error>
                 </md-input-container>
 
                 <md-input-container flex="grow">
                     <label>{{ 'LOGIN.PASSWORD' | translate }}</label>
-                    <input type="password" ng-model="vm.credentials.password" name="password" required>
-                    <div ng-messages="vm.form.password.$error" ng-if="vm.form.password.$dirty">
-                        <div ng-message="required">{{ 'COMMON.FILL_ALL_REQUIRED_FIELDS' | translate }}</div>
-                        <div ng-message="failure">{{ 'LOGIN.AUTH_FAILURE' | translate }}</div>
-                        <div ng-message="timeout">{{ 'LOGIN.SESSION_TIMEOUT' | translate }}</div>
-                    </div>
+                    <input type="password" ng-model="vm.credentials.password" name="password" required ng-change="vm.updateValidator()">
+                    <opene-error field="vm.form.password"></opene-error>
                 </md-input-container>
 
                 <div layout="column" layout-align="start center">

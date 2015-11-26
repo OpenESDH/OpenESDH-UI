@@ -57,7 +57,6 @@
         "NO": "No",
         "STATE": "State",
         "COMMENT": "Comment",
-        "FILL_ALL_REQUIRED_FIELDS": "Fill all required fields!",
         "OPEN": "Open",
         "TO": "To",
         "SUBJECT": "Subject",
@@ -529,10 +528,6 @@
         "UPLOAD_USERS": "Upload users (csv)",
         "UPLOAD_USERS_NOTE": "Upload users. CSV files only",
         "FAILED_TO_UPLOAD_MSG": "{{failedNumberOfUsers}} user(s) were not added for the following reasons:",
-        "ERROR": {
-            "USERNAME_EXISTS": "Username already exists",
-            "EMAIL_EXISTS": "Email already exists"
-        },
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER": "Are you sure you want to delete '{{user}}'?",
         "CAN_NOT_DELETE_ADMIN_USER": "Deletion of the admin user is not permitted."
     },
@@ -602,16 +597,24 @@
         "CONTACT_SAVED_SUCCESSFULLY": "Contact \"{{firstName}} {{lastName}}\" saved successfully",
         "CONTACT_DELETED_SUCCESSFULLY": "Contact \"{{firstName}} {{lastName}}\" deleted successfully"
     },
+    "ERROR": {
+        "REQUIRED": "This field is required",
+        "TOO_SHORT": "This field is too short",
+        "TOO_LONG": "This field is too long",
+        "INVALID_EMAIL": "Email address is invalid",
+        "PASSWORD_NOMATCH": "Password is not matching",
+        "EMAIL_NOT_EXISTS": "The email does not exist",
+        "EMAIL_EXISTS": "Email already exists",
+        "USERNAME_EXISTS": "Username already exists",
+        "AUTH_FAILURE": "Incorrect authentication details"
+    },
     "LOGIN": {
         "LOGIN": "Login",
         "USER_NAME": "Username",
         "PASSWORD": "Password",
         "FORGOT_PASSWORD": "Forgot password",
         "VERIFY_PASSWORD": "Verify password",
-        "AUTH_FAILURE": "Incorrect authentication details",
         "SESSION_TIMEOUT": "Your session has expired",
-        "INVALID_EMAIL": "Email address is invalid",
-        "PASSWORD_NOMATCH": "Password is not matching",
         "FORGOT_PASSWORD_SUCCESS": "Instructions have been sent to the email provided. Check your email and follow the instructions.",
         "FORGOT_PASSWORD_PROMPT": "Enter your email address and we'll send you information regarding how to reset your password. "
     },

@@ -64,23 +64,19 @@ angular
 
 	    	console.log(response);
             var cStack = response.data.callstack[1];
-            var msg = (cStack) ? cStack.substring(cStack.lastIndexOf(":")+2, cStack.length) : response.data.message;
+            var msg = (cStack) ? cStack : response.data.message;
 
         	// If conflict
         	if(response.status === 409) {
         		// Username already exists
-        		if(msg.indexOf('User name already exists') > -1) {
-        			ucd.form.userName.$error.exists = true;
-        			ucd.form.userName.$error.message = $translate.instant('USER.ERROR.USERNAME_EXISTS');
-        		}
+        		if(msg.indexOf('User name already exists') > -1) 
+        			ucd.form.userName.$setValidity("usernameExists", false);
         	}
 
 			if(response.status === 500) {
 				// Email already exists
-				if (msg.indexOf('Email') > -1) {
-					ucd.form.email.$error.exists = true;
-					ucd.form.email.$error.message = $translate.instant('USER.ERROR.EMAIL_EXISTS');
-				}
+				if (msg.indexOf('email: already exists') > -1)
+					ucd.form.email.$setValidity("emailExists", false);
 			}
         }
 	}
