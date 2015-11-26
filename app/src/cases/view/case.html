@@ -75,7 +75,7 @@
                     <i class="material-icons">mode_edit</i>
                     {{ 'CASE.EDIT_INFORMATION' | translate }}
                 </md-button>
-                <md-button class="md-primary" ng-click="vm.printCase()">{{ 'CASE.PRINT_CASE' | translate }}</md-button>
+                <md-button class="md-primary" ng-click="vm.printCase()"><i class="material-icons">print</i> {{ 'CASE.PRINT_CASE' | translate }}</md-button>
                 <md-button class="md-primary" ng-click="vm.startWorklfow()" ng-disabled="caseIsLocked">{{ 'CASE.START_WORKFLOW' | translate }}</md-button>
               </div>
             </md-card>
