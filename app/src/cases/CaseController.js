@@ -9,15 +9,18 @@
      * @param cases
      * @constructor
      */
-    function CaseController($controller, sessionService) {
+    function CaseController($controller, sessionService, $translate) {
         
         angular.extend(this, $controller('BaseCaseController'))
         
         var vm = this;
-        
-        var superGetFilter = vm.getFilter;
-        vm.getFilter = getFilter;
-        vm.superGetFilter = superGetFilter;
+        var userInfo = sessionService.getUserInfo();
+        vm.caseFilter.unshift({
+            name: $translate.instant('CASE.FILTER.MY_CASES'),
+            field: 'oe:owners',
+            value: userInfo.user.userName
+        });
+        vm.caseFilterChoice = vm.caseFilter[0];
         vm.onTabChange = onTabChange;
         vm.tab = "myCases";
                 
@@ -25,17 +28,6 @@
 
         function activate() {
             vm.getCases();
-        }
-        
-        function getFilter() {
-            var filters = vm.superGetFilter();
-            var userInfo = sessionService.getUserInfo();
-            filters.push({
-                name: "oe:owners",
-                value: userInfo.user.userName,
-                operator: "="
-            });
-            return filters;
         }
         
         function onTabChange(tab){
