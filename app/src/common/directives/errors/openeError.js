@@ -14,9 +14,10 @@
             },
             restrict: 'E',
             scope: {
+                form: '=',
                 field: '='
             },
-            template: '<div ng-messages="field.$error" ng-show="field.$touched" ng-if="field.$dirty && field.$invalid" role="alert">' +
+            template: '<div ng-messages="field.$error" ng-show="form.$submitted || (field.$touched && field.$invalid)" role="alert">' +
                            '<div ng-messages-include="app/src/common/directives/errors/error-messages.html"></div>' +
                       '</div>'
         }

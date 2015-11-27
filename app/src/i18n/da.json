@@ -591,7 +591,8 @@
         "EMAIL_NOT_EXISTS": "Email finnes ikke",
         "EMAIL_EXISTS": "Email finnes allerede",
         "USERNAME_EXISTS": "Brugernavn finnes allerede",
-        "AUTH_FAILURE": "Forkerte loginoplysninger"
+        "AUTH_FAILURE": "Forkerte loginoplysninger",
+        "NOT_EQUAL_PATTERN": "Feil input format"
     },
     "LOGIN": {
         "LOGIN": "Log ind",

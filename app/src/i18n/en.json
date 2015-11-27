@@ -606,7 +606,8 @@
         "EMAIL_NOT_EXISTS": "The email does not exist",
         "EMAIL_EXISTS": "Email already exists",
         "USERNAME_EXISTS": "Username already exists",
-        "AUTH_FAILURE": "Incorrect authentication details"
+        "AUTH_FAILURE": "Incorrect authentication details",
+        "NOT_EQUAL_PATTERN": "Wrong input format"
     },
     "LOGIN": {
         "LOGIN": "Login",

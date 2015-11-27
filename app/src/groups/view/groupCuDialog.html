@@ -1,20 +1,25 @@
-<md-dialog aria-label="Group create dialog">
-    <form name="form">
-        <md-toolbar layout="row">
+<md-dialog class="dialog-small" aria-label="Group create dialog">
+    <form name="form" novalidate>
+        <md-toolbar layout>
             <div class="md-toolbar-tools">
                 <h2>{{vm.dialogMode}} {{ 'GROUP.GROUP' | translate }}</h2>
             </div>
         </md-toolbar>
-        <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em;">
+        <md-dialog-content>
 
-            <md-input-container>
-                <label>{{ 'GROUP.DISPLAY_NAME' | translate }}</label>
-                <input type="text" ng-model="group.displayName" required focus-me="true">
-            </md-input-container>
-            <md-input-container>
-                <label>{{ 'GROUP.SHORT_NAME' | translate }}</label>
-                <input type="text" ng-model="group.shortName" required>
-            </md-input-container>
+            <div layout>
+                <md-input-container flex>
+                    <label>{{ 'GROUP.DISPLAY_NAME' | translate }} *</label>
+                    <input type="text" name="displayName" ng-model="group.displayName" required md-autofocus>
+                    <opene-error form="form" field="form.displayName"></opene-error>
+                </md-input-container>
+
+                <md-input-container flex>
+                    <label>{{ 'GROUP.SHORT_NAME' | translate }} *</label>
+                    <input type="text" name="shortName" ng-model="group.shortName" required>
+                    <opene-error form="form" field="form.shortName"></opene-error>
+                </md-input-container>
+            </div>
 
         </md-dialog-content>
         <div class="md-actions" layout="row">
