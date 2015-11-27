@@ -3,7 +3,12 @@ angular
         .module('openeApp')
         .factory('userService', userService);
 
-function userService(ALFRESCO_URI, $http, $resource) {
+function userService(ALFRESCO_URI, $http, $resource, $injector) {
+    //optional services
+    if ($injector.has('addoService')) {
+        var addoService = $injector.get('addoService');
+    }
+
     return {
         deleteUser: deletePerson,
         getPerson: getPerson,
@@ -15,7 +20,8 @@ function userService(ALFRESCO_URI, $http, $resource) {
         updateUser: updateUser,
         getPersons: getPersons,
         getGroups: getGroups,
-        changePassword: changePassword
+        changePassword: changePassword,
+        getCurrentUserCaseOwnersGroups: getCurrentUserCaseOwnersGroups
     };
 
     function deletePerson(userName) {
@@ -66,7 +72,7 @@ function userService(ALFRESCO_URI, $http, $resource) {
                 userObj
                 ).then(function(response) {
             console.log("Return success");
-            return response.data;
+            return _afterUserSave(userObj, response.data);
         });
     }
 
@@ -75,7 +81,7 @@ function userService(ALFRESCO_URI, $http, $resource) {
                 userObj
                 ).then(function(response) {
             console.log("Return success");
-            return response.data;
+            return _afterUserSave(userObj, response.data);
         });
     }
 
@@ -87,7 +93,7 @@ function userService(ALFRESCO_URI, $http, $resource) {
             return response.data;
         });
     }
-    
+
     function getPeople(filter) {
         return $http.get('/alfresco/s/api/people' + filter).then(function(response) {
             return response.data;
@@ -111,6 +117,24 @@ function userService(ALFRESCO_URI, $http, $resource) {
         }
         return $http.get(url).then(function(result) {
             return result.data.data.items;
+        });
+    }
+
+    function _afterUserSave(userObj, returnIfSuccess) {
+        if (addoService) {
+            return addoService
+                    .saveAddoPassword(userObj.userName, userObj.addoPassword)
+                    .then(function() {
+                        return returnIfSuccess;
+                    });
+        }
+        return returnIfSuccess;
+    }
+    
+    function getCurrentUserCaseOwnersGroups(){
+        var url = '/alfresco/s/api/openesdh/user/case/owners/groups';
+        return $http.get(url).then(function(result) {
+            return result.data;
         });
     }
 }

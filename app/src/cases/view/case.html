@@ -75,7 +75,7 @@
                     <i class="material-icons">mode_edit</i>
                     {{ 'CASE.EDIT_INFORMATION' | translate }}
                 </md-button>
-                <md-button class="md-primary" ng-click="vm.printCase()">{{ 'CASE.PRINT_CASE' | translate }}</md-button>
+                <md-button class="md-primary" ng-click="vm.printCase()"><i class="material-icons">print</i> {{ 'CASE.PRINT_CASE' | translate }}</md-button>
                 <md-button class="md-primary" ng-click="vm.startWorklfow()" ng-disabled="caseIsLocked">{{ 'CASE.START_WORKFLOW' | translate }}</md-button>
               </div>
             </md-card>
@@ -135,6 +135,9 @@
                   <md-menu-content>
                     <md-menu-item>
                       <md-button ng-disabled="docCtrl.noDocuments()" ng-click="docCtrl.emailDocuments()">{{ 'DOCUMENT.EMAIL_DOCUMENTS' | translate }}</md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                      <md-button ng-disabled="docCtrl.noDocuments()" ng-controller="AddoController as addoCtrl" ng-click="addoCtrl.execute($event)">{{ 'ADDO.DOCUMENT.SEND_FOR_SIGNING' | translate }}</md-button>
                     </md-menu-item>
                     <md-menu-item>
                       <md-button ng-disabled="true" ng-click="doSomething()">{{ 'DOCUMENT.DIGITAL_POST_DOCUMENTS' | translate }}</md-button>

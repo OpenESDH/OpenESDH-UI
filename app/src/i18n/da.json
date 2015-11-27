@@ -92,7 +92,7 @@
         "JOURNAL_FACET": "Journalfacet",
         "EDIT_INFORMATION": "Redigér information",
         "PRINT_CASE": "Print sag",
-        "START_WORKFLOW": "Start workflow",
+        "START_WORKFLOW": "Start opgave",
         "CASE_HISTORY": "Sagshistorik",
         "CREATE_CASE": "Opret sag",
         "EDIT_PROPERTIES": "Redigér sag",
@@ -753,6 +753,23 @@
             "dk.openesdh.case.workflow.task-end": "Opgave",
             "dk.openesdh.case.workflow.task-approve": "Opgave",
             "dk.openesdh.case.workflow.task-reject": "Opgave"
+        }
+    },
+    "ADDO": {
+        "USER": {
+            "PASSWORD": "ADDO password",
+            "INCORECT_PASSWORD": "Incorect ADDO password"
+        },
+        "DOCUMENT": {
+            "SEND_FOR_SIGNING": "Send til underskrift",
+            "SIGNATURE_TEMPLATE": "Underskriftsskabelon",
+            "CHOOSE_RECEIVERS": "Vælg modtagere",
+            "TO_BE_SIGNED": "Skal underskrives",
+            "ANEX": "Bilag",
+            "SEQUENTIAL_SIGNING": "Underskriv i rækkefølge",
+            "REQUEST_SIGNATURE": "Indhent underskrift",
+            "SENT_SUCCESSFULLY": "Documents sent for signing successfully",
+            "CANT_INITIALIZE": "Cannot initialize signing module"
         }
     },
     "faceted-search.date.one-week.label": "Sidste uge",
