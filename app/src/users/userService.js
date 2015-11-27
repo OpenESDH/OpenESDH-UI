@@ -20,7 +20,8 @@ function userService(ALFRESCO_URI, $http, $resource, $injector) {
         updateUser: updateUser,
         getPersons: getPersons,
         getGroups: getGroups,
-        changePassword: changePassword
+        changePassword: changePassword,
+        getCurrentUserCaseOwnersGroups: getCurrentUserCaseOwnersGroups
     };
 
     function deletePerson(userName) {
@@ -128,5 +129,12 @@ function userService(ALFRESCO_URI, $http, $resource, $injector) {
                     });
         }
         return returnIfSuccess;
+    }
+    
+    function getCurrentUserCaseOwnersGroups(){
+        var url = '/alfresco/s/api/openesdh/user/case/owners/groups';
+        return $http.get(url).then(function(result) {
+            return result.data;
+        });
     }
 }

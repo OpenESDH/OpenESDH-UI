@@ -23,7 +23,7 @@
             scope: {
                 list: '=',
                 choice: '=',
-                finished: '='
+                finished: '&finished'
             },
             templateUrl: '/app/src/common/directives/listFilter/view/listFilter.html'
         }

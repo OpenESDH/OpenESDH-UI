@@ -106,6 +106,7 @@
         "STARTDATE": "Start date",
         "ENDDATE": "End date",
         "MY_CASES": "My cases",
+        "GROUP_CASES": "Group cases",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_CASE": "Are you sure you want to delete the case '{{case_title}}'?",
         "VIEW_CASE_DETAILS": "View case",
         "STAFF": {
@@ -126,7 +127,8 @@
         "SEARCH_CASE": "Search case",
         "CREATE_FROM": "Create from",
         "SELECT_CASE_TYPE": "Select case type",
-        "SEARCH_EXISTING_CASE": "search existing case"
+        "SEARCH_EXISTING_CASE": "search existing case",
+        "ASSIGN_TO": "Assign to"
     },
     "DOCUMENT": {
         "STATUS_CHANGED_SUCCESS": "Status has been changed successfully",

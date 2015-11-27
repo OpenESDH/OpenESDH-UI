@@ -13,7 +13,7 @@
               
                   <opene-list-filter list="caseController.caseFilter" 
                                      choice="caseController.caseFilterChoice"
-                                     finished="caseController.getMyCases">
+                                     finished="caseController.getCases()">
                   </opene-list-filter>
               </div>
               
@@ -25,7 +25,7 @@
                       <span class="r" flex="20">{{ 'COMMON.MODIFIED' | translate }}</span>
                   </div>
                   <md-virtual-repeat-container md-auto-shrink style="height: 200px;">
-                      <div md-virtual-repeat="case in caseController.myCases" class="repeat-item">
+                      <div md-virtual-repeat="case in caseController.cases" class="repeat-item">
                           <a class="r-rowlink" ui-sref="caseinfo({'caseId': case['oe:id']})" layout="row">
                               <span class="r" flex="5"><i class="material-icons">folder_open</i></span>
                               <span class="r" flex>{{case["cm:title"]}}</span>

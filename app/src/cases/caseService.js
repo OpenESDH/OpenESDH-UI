@@ -14,7 +14,9 @@
             changeCaseStatus: changeCaseStatus,
             sendEmail: sendEmail,
             printCase: printCase,
-            getCaseDocumentsFolderNodeRef: getCaseDocumentsFolderNodeRef
+            getCaseDocumentsFolderNodeRef: getCaseDocumentsFolderNodeRef,
+            getGroupCases: getGroupCases,
+            getCasesGeneral: getCasesGeneral
         };
         return service;
 
@@ -27,13 +29,22 @@
         }
 
         function getCases(baseType, filters) {
+            return this.getCasesGeneral('/alfresco/s/api/openesdh/search', baseType, filters);
+        }
+        
+        function getGroupCases(baseType, filters) {
+            return this.getCasesGeneral('/alfresco/s/api/openesdh/group/cases/search', baseType, filters);
+        }
+        
+        function getCasesGeneral(url, baseType, filters){
             var params = {
-                baseType: baseType 
-            };
+                baseType: baseType,
+                sortBy: "-cm:modified"
+            };            
             if(filters != null && filters != undefined){
                 params.filters = filters;
             }
-            return $http.get('/alfresco/service/api/openesdh/search?sortBy=-cm:modified', {params: params}).then(getCasesComplete, getCasesFailed);
+            return $http.get(url, {params: params}).then(getCasesComplete, getCasesFailed);
 
             function getCasesComplete(response) {
                 return response.data;
