@@ -20,7 +20,7 @@
 
   <md-tabs md-dynamic-height>
     
-    <md-tab md-on-select="vm.onTabChange('myCases')">
+    <md-tab md-on-select="vm.onTabChange('myCases');vm.getCases()">
       <md-tab-label>
         <span>{{ 'CASE.MY_CASES' | translate }}</span>
       </md-tab-label>
@@ -68,7 +68,7 @@
           </md-card>
       </md-tab-body>
     </md-tab>
-    <md-tab md-on-select="vm.onTabChange('groupCases')">
+    <md-tab md-on-select="vm.onTabChange('groupCases');groupCaseCtrl.getCases()">
       <md-tab-label>
         <span>{{ 'CASE.GROUP_CASES' | translate }}</span>
       </md-tab-label>
@@ -100,7 +100,7 @@
                 </div>
                 <div class="repeat-item" layout="row">
                     <span flex="10">
-                        <md-button class="md-primary">{{ 'CASE.ASSIGN_TO' | translate }}</md-button>
+                        <md-button class="md-primary" ng-click="groupCaseCtrl.assignTo(case)">{{ 'CASE.ASSIGN_TO' | translate }}</md-button>
                     </span>
                     <span flex="10">
                         <md-button class="md-primary" href="#/cases/case/{{case['oe:id']}}">{{ 'CASE.VIEW_CASE_DETAILS' | translate }}</md-button>

@@ -1,0 +1,32 @@
+<md-dialog aria-label="">
+  <form name="assignToForm">
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">
+        <h2>{{ 'CASE.ASSIGN_TO' | translate }}</h2>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em">
+      <div layout>
+          <md-input-container flex="100">
+            <label>{{ 'CASE.OWNER' | translate }}</label>
+            <md-select ng-model="dlg.assign_to" required>
+              <md-optgroup label="Groups">
+                <md-option ng-value="auth.nodeRef" ng-repeat="auth in dlg.authorities | filter: {type: 'cm:authorityContainer' }" ng-disabled="!auth.selectable">{{ auth.name }}</md-option>
+              </md-optgroup>
+              <md-optgroup label="Users">
+                <md-option ng-value="auth.nodeRef" ng-repeat="auth in dlg.authorities | filter: {type: 'cm:person'}" ng-disabled="!auth.selectable">{{ auth.name }}</md-option>
+              </md-optgroup>
+            </md-select>
+          </md-input-container>
+      </div>
+    </md-dialog-content>
+    <div class="md-actions" layout="row">
+      <md-button class="md-primary" ng-click="dlg.assign()" ng-disabled="assignToForm.$invalid">
+        {{ 'CASE.ASSIGN_TO' | translate }}
+      </md-button>
+      <md-button ng-click="dlg.cancel()">
+        {{ 'COMMON.CANCEL' | translate }}
+      </md-button>
+    </div>
+  </form>
+</md-dialog>
