@@ -26,7 +26,7 @@ describe('openESDH case page tests', function () {
         loginPage.logout();
     });
 
-    it('should create contact person as admin and then delete the contact', function () {
+  /*  it('should create contact person as admin and then delete the contact', function () {
         var cCprNumber;
         contactsPage.goToContactsPage(); //assertion is done in the adminPage.goToPage method
         contactsPage.createContact()
@@ -54,7 +54,7 @@ describe('openESDH case page tests', function () {
 
         });
     }, 60 * 1000);
-
+*/
     it('should create contact person as admin update the CPR number and then delete the contact', function () {
         contactsPage.goToContactsPage();
         var cCprNumber, updatedCPRNumber = "2212972099";

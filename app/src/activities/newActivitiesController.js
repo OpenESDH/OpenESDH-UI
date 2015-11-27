@@ -4,11 +4,12 @@ angular
     
     function newActivitiesController(activitiesService){
         var vm = this;
-        vm.pollInterval = $interval(poll, 10000);
-        function poll(){
-            if(!sessionService.getUserInfo()) {
-                // Stop polling - if we got no session
-                return $interval.cancel(vm.pollInterval);
+
+        activitiesService.setActivitiesPoll(pollResult);
+
+        function pollResult(result){
+            if(result === undefined){
+                return;
             }
             
             if(result.count == "0"){

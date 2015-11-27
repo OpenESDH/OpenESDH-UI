@@ -21,7 +21,7 @@ var ContactsPage = function () {
         linkedin: element(by.model('person.linkedin')),
         im: element(by.model('person.IM')),
         notes: element(by.model('person.notes')),
-        cuOkBtn: element(by.css('[ng-click="save(personForm)"]')),
+        cuOkBtn: element(by.id('save-contact-person')),
         cuDeleteBtn: element(by.css('[ng-click="delete($event, person)"]')),
         cuCancelBtn: element(by.css('[ng-click="cancel()"]'))
     };
@@ -87,9 +87,9 @@ var ContactsPage = function () {
                     browser.wait(protractor.ExpectedConditions.visibilityOf(contactPersonDlg.firstName), 7000).then(function () {
                         contactPersonDlg[field].clear();
                         contactPersonDlg[field].sendKeys(newValue);
-                        browser.wait(function () {
+                        /*browser.wait(function () {
                             return contactPersonDlg.cuOkBtn.isEnabled();
-                        });
+                        });*/
                         contactPersonDlg.cuOkBtn.click().then(function () {
                             browser.driver.sleep(3000);//Wait a bit so the indexer can catch up in the backend
                             //contactSearchInput.clear();

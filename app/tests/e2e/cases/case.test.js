@@ -3,7 +3,7 @@ var loginPage = require('../login/loginPage.po.js');
 var oeUtils = require('../common/utils');
 
 // Wrapper for the openESDH case page
-fdescribe('Test: openESDH case page', function () {
+describe('Test: openESDH case page', function () {
     
     describe('when using case page as an admin user', function () {
 
@@ -83,7 +83,7 @@ fdescribe('Test: openESDH case page', function () {
         //<editor-fold desc="Before and after procedure">
         //Executed before each of the "it" tests
         beforeEach(function () {
-            loginPage.loginAsUser('testuser1');
+            loginPage.loginAsUser('torben');
         });
 
         //logout and wait for 2 secs
@@ -147,6 +147,5 @@ fdescribe('Test: openESDH case page', function () {
             });
         });
     });
-
 
 });
