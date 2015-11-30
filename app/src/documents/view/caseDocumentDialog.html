@@ -12,63 +12,66 @@
         <md-dialog-content>
             <div ng-hide="isEditProperties || fromFileObject" layout="column">
                 <div>
-                    <label class="label" for="doc-upload"><span class="md-warn">*</span> {{ 'DOCUMENT.DOCUMENT_TO_UPLOAD' | translate }}</label>
-                    <input type="file" file-model="fileToUpload" id="doc-upload" focus-me>
+                    <label class="label" for="doc-upload">{{ 'DOCUMENT.DOCUMENT_TO_UPLOAD' | translate }} *</label>
+                    <input type="file" file-model="fileToUpload" id="doc-upload">
                 </div>
-                <div>
-                    <md-input-container ng-show="newDocumentVersion">
-                        <label>{{ 'DOCUMENT.VERSIONTYPE' | translate }}</label>
-                        <md-select ng-model="documentProperties.majorVersion">
-                            <md-option ng-value="false">
-                                {{ 'DOCUMENT.MINOR_VERSION' | translate }}
-                            </md-option>
-                            <md-option ng-value="true">
-                                {{ 'DOCUMENT.MAJOR_VERSION' | translate }}
-                            </md-option>
-                        </md-select>
-                    </md-input-container>
-                </div>
+                <md-input-container flex ng-show="newDocumentVersion">
+                    <label>{{ 'DOCUMENT.VERSIONTYPE' | translate }}</label>
+                    <md-select ng-model="documentProperties.majorVersion">
+                        <md-option ng-value="false">
+                            {{ 'DOCUMENT.MINOR_VERSION' | translate }}
+                        </md-option>
+                        <md-option ng-value="true">
+                            {{ 'DOCUMENT.MAJOR_VERSION' | translate }}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
             </div>
 
-            <md-input-container layout ng-hide="isAttachment">
-                <label><span class="md-warn">*</span> {{ 'COMMON.NAME' | translate }}</label>
-                <input type="text" ng-model="documentProperties.title" focus-me>
-            </md-input-container>
+            <div layout layout-wrap ng-if="!isAttachment">
 
-            <div layout>
-                <md-input-container flex ng-hide="isAttachment">
-                    <label><span class="md-warn">*</span> {{ 'COMMON.TYPE' | translate }}</label>
-                    <md-select ng-model="documentProperties.doc_type" ng-disabled="newDocumentVersion">
+                <md-input-container flex="100">
+                    <label>{{ 'COMMON.NAME' | translate }} *</label>
+                    <input type="text" name="title" ng-model="documentProperties.title" required md-autofocus>
+                    <opene-error form="uploadForm" field="uploadForm.title"></opene-error>
+                </md-input-container>
+
+                <md-input-container flex="50">
+                    <label>{{ 'COMMON.TYPE' | translate }} *</label>
+                    <md-select name="doc_type" ng-model="documentProperties.doc_type" required ng-disabled="newDocumentVersion">
                         <md-option ng-repeat="type in documentConstraints.documentTypes" ng-value="type.nodeRef">
                             {{ type.displayName }}
                         </md-option>
                     </md-select>
+                    <opene-error form="uploadForm" field="uploadForm.doc_type"></opene-error>
                 </md-input-container>
-                <md-input-container flex ng-hide="isAttachment">
-                    <label><span class="md-warn">*</span> {{ 'COMMON.CATEGORY' | translate }}</label>
-                    <md-select ng-model="documentProperties.doc_category" ng-disabled="newDocumentVersion">
+
+                <md-input-container flex="50">
+                    <label>{{ 'COMMON.CATEGORY' | translate }} *</label>
+                    <md-select name="doc_category" ng-model="documentProperties.doc_category" required ng-disabled="newDocumentVersion">
                         <md-option ng-repeat="category in documentConstraints.documentCategories" ng-value="category.nodeRef">
                             {{ category.displayName }}
                         </md-option>
                     </md-select>
+                    <opene-error form="uploadForm" field="uploadForm.doc_category"></opene-error>
+                </md-input-container>
+
+                <md-input-container flex="100">
+                    <label>{{ 'COMMON.DESCRIPTION' | translate }}</label>
+                    <textarea ng-model="documentProperties.description" columns="1"></textarea>
                 </md-input-container>
             </div>
 
-            <md-input-container layout ng-hide="isAttachment">
-                <label>{{ 'COMMON.DESCRIPTION' | translate }}</label>
-                <textarea ng-model="documentProperties.description" columns="1"></textarea>
-            </md-input-container>
-
         </md-dialog-content>
 
-        <div class="md-actions" layout>
-            <md-button class="md-primary" ng-click="upload()">
+        <md-dialog-actions>
+            <md-button class="md-primary" type="submit" ng-disabled="uploadForm.$invalid" ng-click="upload()">
                 {{ 'COMMON.OK' | translate }}
             </md-button>
             <md-button ng-click="cancel()">
                 {{ 'COMMON.CANCEL' | translate }}
             </md-button>
-        </div>
+        </md-dialog-actions>
 
     </form>
 </md-dialog>

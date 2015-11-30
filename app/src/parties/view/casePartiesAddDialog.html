@@ -1,5 +1,5 @@
 <md-dialog class="dialog-small" aria-label="Case parties add dialog">
-    <form name="form">
+    <form name="form" novalidate>
 
         <md-toolbar layout>
             <div class="md-toolbar-tools">
@@ -7,10 +7,10 @@
             </div>
         </md-toolbar>
 
-        <md-dialog-content>
+        <md-dialog-content layout="column">
 
             <md-input-container>
-                <label>{{ 'PARTY.ROLE' | translate }}</label>
+                <label>{{ 'PARTY.ROLE' | translate }} *</label>
                 <md-select ng-model="ctrl.role" md-on-open="ctrl.loadRoles()" required>
                     <md-option ng-value="role" ng-repeat="role in ctrl.roles">{{role}}</md-option>
                 </md-select>
@@ -42,13 +42,14 @@
 
         </md-dialog-content>
 
-        <div class="md-actions" layout>
-            <md-button class="md-primary" ng-click="ctrl.save(ctrl.role, ctrl.selectedOrganizations, ctrl.selectedContacts)" ng-disabled="form.$invalid">
+        <md-dialog-actions>
+            <md-button class="md-primary" ng-click="ctrl.save(ctrl.role, ctrl.selectedOrganizations, ctrl.selectedContacts)" 
+                        ng-disabled="form.$invalid">
                 {{ 'COMMON.ADD' | translate }}
             </md-button>
             <md-button ng-click="ctrl.cancel()">
                 {{ 'COMMON.CANCEL' | translate }}
             </md-button>
-        </div>
+        </md-dialog-actions>
     </form>
 </md-dialog>

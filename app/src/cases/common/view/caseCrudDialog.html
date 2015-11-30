@@ -1,6 +1,7 @@
 <md-dialog class="dialog-large" aria-label="Case edit dialog">
-    <form name="form">
-        <md-toolbar layout="row">
+    <form name="form" novalidate>
+
+        <md-toolbar layout>
             <div class="md-toolbar-tools">
                 <h2 ng-hide="vm.editCase">
                     {{ 'COMMON.CREATE' | translate }} {{ vm.caseInfo.type | caseType | lowercase }}
@@ -8,16 +9,18 @@
                 <h2 ng-show="vm.editCase">{{ 'CASE.EDIT_PROPERTIES' | translate }}</h2>
             </div>
         </md-toolbar>
+        
         <md-dialog-content>
             <ng-include src="vm.formTemplateUrl" />
         </md-dialog-content>
-        <div class="md-actions" layout="row">
+
+        <md-dialog-actions>
             <md-button type="submit" class="md-primary" ng-click="vm.save()" ng-disabled="form.$invalid">
                 {{ 'COMMON.OK' | translate }}
             </md-button>
             <md-button type="button" ng-click="vm.cancel()">
                 {{ 'COMMON.CANCEL' | translate }}
             </md-button>
-        </div>
+        </md-dialog-actions>
     </form>
 </md-dialog>

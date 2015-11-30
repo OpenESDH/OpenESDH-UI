@@ -119,8 +119,7 @@
                 parent: angular.element(document.body),
                 targetEvent: null,
                 clickOutsideToClose: true,
-                locals: locals,
-                focusOnOpen: false
+                locals: locals
             });
         }
         

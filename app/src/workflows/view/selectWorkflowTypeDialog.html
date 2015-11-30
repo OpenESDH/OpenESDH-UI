@@ -17,12 +17,12 @@
         </md-list>
     </md-dialog-content>
 
-    <div class="md-actions" layout>
+    <md-dialog-actions>
         <md-button ng-click="dlg.cancel()">
             {{ 'COMMON.CANCEL' | translate }}
         </md-button>
         <md-button class="md-primary" ng-click="dlg.submit()" ng-disabled="dlg.selectedWorkflow == null">
             {{ 'COMMON.NEXT' | translate }}
         </md-button>
-    </div>
+    </md-dialog-actions>
 </md-dialog>
