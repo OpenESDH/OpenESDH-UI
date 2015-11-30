@@ -1,15 +1,17 @@
-<md-dialog aria-label="Send for signing dialog">
-    <form name="form">
-        <md-toolbar layout="row">
+<md-dialog class="dialog-large" aria-label="Send for signing dialog">
+    <form name="form" novalidate>
+    
+        <md-toolbar layout>
             <div class="md-toolbar-tools">
                 <h2>{{ 'ADDO.DOCUMENT.SEND_FOR_SIGNING' | translate }}</h2>
             </div>
         </md-toolbar>
-        <md-dialog-content style="max-height:810px; width:600px;">
+
+        <md-dialog-content>
             <div layout>
                 <md-input-container>
                     <label>{{ 'ADDO.DOCUMENT.SIGNATURE_TEMPLATE' | translate }}</label>
-                    <md-select ng-model="addoDialog.model.template" required focus-me>
+                    <md-select ng-model="addoDialog.model.template" required>
                         <md-option ng-repeat="addoTemplate in addoDialog.templates" ng-value="addoTemplate">{{addoTemplate.FriendlyName}}</md-option>
                     </md-select>
                 </md-input-container>
@@ -81,6 +83,7 @@
                 </tbody>
             </table>
         </md-dialog-content>
+
         <md-dialog-actions>
             <md-button class="md-primary" ng-click="addoDialog.send(form)" ng-disabled="form.$invalid || !addoDialog.oneSigningDocSelected">
                 {{ 'ADDO.DOCUMENT.REQUEST_SIGNATURE' | translate }}
