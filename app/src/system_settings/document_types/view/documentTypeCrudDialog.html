@@ -1,34 +1,38 @@
-<md-dialog aria-label="{{ 'DOCUMENT_TYPES.CREATE_EDIT_DOC_TYPE' | translate }}">
-  <form name="docTypeForm">
-    <md-toolbar>
-      <div class="md-toolbar-tools">
-        <h1>{{ 'DOCUMENT_TYPES.CREATE_EDIT_DOC_TYPE' | translate }}</h1>
-        <span flex></span>
-        <md-button class="md-icon-button" ng-click="dt.cancel()">
-          <md-icon aria-label="Close dialog"></md-icon>
-        </md-button>
-      </div>
-    </md-toolbar>
+<md-dialog class="dialog-small" aria-label="{{ 'DOCUMENT_TYPES.CREATE_EDIT_DOC_TYPE' | translate }}">
+    <form name="docTypeForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h1>{{ 'DOCUMENT_TYPES.CREATE_EDIT_DOC_TYPE' | translate }}</h1>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="dt.cancel()">
+                    <md-icon aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
 
-    <md-dialog-content style="max-width:40em;max-height:410px; ">
-      <md-input-container>
-        <label>{{ 'DOCUMENT_TYPES.NAME' | translate }}</label>
-        <input type="text" ng-model="dt.documentType.name" required ng-pattern="dt.PATTERNS.fileName" ng-disabled="dt.documentType.systemType">
-      </md-input-container>
-      
-      <md-input-container ng-repeat="avLang in dt.availableLanguages">
-        <label>{{ 'DOCUMENT_TYPES.DISPLAY_NAME' | translate }} ({{avLang}})</label>
-        <input type="text" ng-model="dt.documentType.mlDisplayNames[avLang]" required ng-maxlength="150">
-      </md-input-container>
-    </md-dialog-content>
+        <md-dialog-content>
+            <div layout="column">
+                <md-input-container flex>
+                    <label>{{ 'DOCUMENT_TYPES.NAME' | translate }} *</label>
+                    <input type="text" name="name" ng-model="dt.documentType.name" md-autofocus required ng-pattern="dt.PATTERNS.fileName" 
+                            ng-disabled="dt.documentType.systemType">
+                    <opene-error form="docTypeForm" field="docTypeForm.name"></opene-error>
+                </md-input-container>
+                <md-input-container flex ng-repeat="avLang in dt.availableLanguages">
+                    <label>{{ 'DOCUMENT_TYPES.DISPLAY_NAME' | translate }} ({{avLang}}) *</label>
+                    <input type="text" name="{{avLang}}" ng-model="dt.documentType.mlDisplayNames[avLang]" required ng-maxlength="150">
+                    <opene-error form="docTypeForm" field="docTypeForm[avLang]"></opene-error>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
 
-    <div class="md-actions" layout="row">
-      <md-button class="md-primary" ng-click="dt.save(docTypeForm)">
-        {{ 'COMMON.SAVE' | translate }}
-      </md-button>
-      <md-button ng-click="dt.cancel()">
-        {{ 'COMMON.CANCEL' | translate }}
-      </md-button>
-    </div>
-  </form>
+        <md-dialog-actions>
+            <md-button class="md-primary" type="submit" ng-disabled="docTypeForm.$invalid" ng-click="dt.save(docTypeForm)">
+                {{ 'COMMON.SAVE' | translate }}
+            </md-button>
+            <md-button ng-click="dt.cancel()">
+                {{ 'COMMON.CANCEL' | translate }}
+            </md-button>
+        </md-dialog-actions>
+    </form>
 </md-dialog>

@@ -592,7 +592,8 @@
         "EMAIL_EXISTS": "Email finnes allerede",
         "USERNAME_EXISTS": "Brugernavn finnes allerede",
         "AUTH_FAILURE": "Forkerte loginoplysninger",
-        "NOT_EQUAL_PATTERN": "Feil input format"
+        "NOT_EQUAL_PATTERN": "Feil input format",
+        "INCORECT_ADDO_PASSWORD": "Feil ADDO kodeord"
     },
     "LOGIN": {
         "LOGIN": "Log ind",

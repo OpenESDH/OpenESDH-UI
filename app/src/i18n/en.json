@@ -609,7 +609,8 @@
         "EMAIL_EXISTS": "Email already exists",
         "USERNAME_EXISTS": "Username already exists",
         "AUTH_FAILURE": "Incorrect authentication details",
-        "NOT_EQUAL_PATTERN": "Wrong input format"
+        "NOT_EQUAL_PATTERN": "Wrong input format",
+        "INCORECT_ADDO_PASSWORD": "Incorect ADDO password"
     },
     "LOGIN": {
         "LOGIN": "Login",
@@ -784,8 +785,7 @@
     },
     "ADDO": {
         "USER": {
-            "PASSWORD": "ADDO password",
-            "INCORECT_PASSWORD": "Incorect ADDO password"
+            "PASSWORD": "ADDO password"
         },
         "DOCUMENT": {
             "SEND_FOR_SIGNING": "Send for signing",
