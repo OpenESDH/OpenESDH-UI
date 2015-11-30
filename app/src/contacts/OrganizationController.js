@@ -99,10 +99,8 @@
             };
 
             $scope.save = function(orgForm) {
-                if (!orgForm.$valid) {
-                    notificationUtilsService.notify($translate.instant("COMMON.FILL_ALL_REQUIRED_FIELDS"));
-                    return;
-                }
+                if (!orgForm.$valid) return;
+                
                 if ($scope.organization.id) {
                     contactsService.updateOrganization($scope.organization)
                             .then(refreshInfoAfterSuccess, error);
@@ -182,10 +180,7 @@
             };
 
             $scope.save = function(personForm) {
-                if (!personForm.$valid) {
-                    notificationUtilsService.notify($translate.instant("COMMON.FILL_ALL_REQUIRED_FIELDS"));
-                    return;
-                }
+                if (!personForm.$valid) return;
                 if ($scope.person.id) {
                     contactsService.updatePerson($scope.person)
                             .then(refreshInfoAfterSave, error);

@@ -1,5 +1,5 @@
 <md-dialog class="dialog-large" aria-label="Create / edit contact">
-    <form name="personForm">
+    <form name="personForm" novalidate>
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h1>Create / edit contact</h1>
@@ -12,36 +12,43 @@
         <md-dialog-content>
             <div layout>
                 <md-input-container flex>
-                    <label>{{ 'CONTACT.FIRST_NAME' | translate }}</label>
-                    <input type="text" ng-model="person.firstName" required ng-maxlength="50" autofocus>
+                    <label>{{ 'CONTACT.FIRST_NAME' | translate }} *</label>
+                    <input type="text" ng-model="person.firstName" name="firstName" required ng-maxlength="50" md-autofocus>
+                    <opene-error form="personForm" field="personForm.firstName"></opene-error>
                 </md-input-container>
                 <md-input-container flex>
                     <label>{{ 'CONTACT.MIDDLE_NAME' | translate }}</label>
-                    <input type="text" ng-model="person.middleName" ng-maxlength="50">
+                    <input type="text" name="middleName" ng-model="person.middleName" ng-maxlength="50">
+                    <opene-error form="personForm" field="personForm.middleName"></opene-error>
                 </md-input-container>
                 <md-input-container>
-                    <label>{{ 'CONTACT.LAST_NAME' | translate }}</label>
-                    <input type="text" ng-model="person.lastName" required ng-maxlength="40">
+                    <label>{{ 'CONTACT.LAST_NAME' | translate }} *</label>
+                    <input type="text" ng-model="person.lastName" name="lastName" required ng-maxlength="40">
+                    <opene-error form="personForm" field="personForm.lastName"></opene-error>
                 </md-input-container>
             </div>
             <div layout>
                 <md-input-container flex>
                     <label>{{ 'CONTACT.ADDRESS_1' | translate }}</label>
-                    <input type="text" ng-model="person.addressLine1" ng-maxlength="34">
+                    <input type="text" name="addressLine1" ng-model="person.addressLine1" ng-maxlength="34">
+                    <opene-error form="personForm" field="personForm.addressLine1"></opene-error>
                 </md-input-container>
                 <md-input-container flex>
                     <label>{{ 'CONTACT.ADDRESS_2' | translate }}</label>
-                    <input type="text" ng-model="person.addressLine2" ng-maxlength="34">
+                    <input type="text" name="addressLine2" ng-model="person.addressLine2" ng-maxlength="34">
+                    <opene-error form="personForm" field="personForm.addressLine2"></opene-error>
                 </md-input-container>
             </div>
             <div layout>
                 <md-input-container flex>
                     <label>{{ 'CONTACT.POSTAL_CODE' | translate }}</label>
-                    <input type="number" ng-model="person.postCode" ng-minlength="4" ng-maxlength="4">
+                    <input type="number" name="postCode" ng-model="person.postCode" ng-minlength="4" ng-maxlength="4">
+                    <opene-error form="personForm" field="personForm.postCode"></opene-error>
                 </md-input-container>
                 <md-input-container flex>
                     <label>{{ 'CONTACT.CITY' | translate }}</label>
-                    <input type="text" ng-model="person.cityName" ng-maxlength="34">
+                    <input type="text" name="cityName" ng-model="person.cityName" ng-maxlength="34">
+                    <opene-error form="personForm" field="personForm.cityName"></opene-error>
                 </md-input-container>
                 <md-input-container flex>
                     <label>{{ 'CONTACT.COUNTRY' | translate }}</label>
@@ -51,44 +58,53 @@
                 </md-input-container>
             </div>
             <md-input-container>
-                <label>{{ 'CONTACT.CPR_NO' | translate }}</label>
-                <input type="text" ng-model="person.cprNumber" required ng-minlength="10" ng-maxlength="10" ng-pattern="/^\d{10}$/">
+                <label>{{ 'CONTACT.CPR_NO' | translate }} *</label>
+                <input type="text" ng-model="person.cprNumber" name="cprNumber" required ng-minlength="10" 
+                        ng-maxlength="10" ng-pattern="/^\d{10}$/">
+                <opene-error form="personForm" field="personForm.cprNumber"></opene-error>
             </md-input-container>
             <md-input-container>
-                <label>{{ 'COMMON.EMAIL' | translate }}</label>
+                <label>{{ 'COMMON.EMAIL' | translate }} *</label>
                 <input name="email" type="email" ng-model="person.email" required>
+                <opene-error form="personForm" field="personForm.email"></opene-error>
             </md-input-container>
             <div layout="row">
                 <md-input-container>
                     <label>{{ 'CONTACT.PHONE' | translate }}</label>
-                    <input type="text" ng-model="person.phone" ng-minlength="4" ng-pattern="PATTERNS.phone">
+                    <input type="text" name="phone" ng-model="person.phone" ng-minlength="4" ng-pattern="PATTERNS.phone">
+                    <opene-error form="personForm" field="personForm.phone"></opene-error>
                 </md-input-container>
                 <md-input-container>
                     <label>{{ 'CONTACT.MOBILE_PHONE' | translate }}</label>
-                    <input type="text" ng-model="person.mobile" ng-minlength="4" ng-pattern="PATTERNS.phone">
+                    <input type="text" name="mobile" ng-model="person.mobile" ng-minlength="4" ng-pattern="PATTERNS.phone">
+                    <opene-error form="personForm" field="personForm.mobile"></opene-error>
                 </md-input-container>
             </div>
             <md-input-container>
                 <label>{{ 'CONTACT.WEBSITE' | translate }}</label>
-                <input type="text" ng-model="person.website" ng-maxlength="70">
+                <input type="text" name="website" ng-model="person.website" ng-maxlength="70">
+                <opene-error form="personForm" field="personForm.website"></opene-error>
             </md-input-container>
             <div layout="row">
                 <md-input-container>
                     <label>{{ 'CONTACT.LINKEDIN' | translate }}</label>
-                    <input type="text" ng-model="person.linkedin" ng-maxlength="70">
+                    <input type="text" name="linkedin" ng-model="person.linkedin" ng-maxlength="70">
+                    <opene-error form="personForm" field="personForm.linkedin"></opene-error>
                 </md-input-container>
                 <md-input-container>
                     <label>{{ 'CONTACT.IM' | translate }}</label>
-                    <input type="text" ng-model="person.IM" ng-maxlength="70">
+                    <input type="text" name="im" ng-model="person.IM" ng-maxlength="70">
+                    <opene-error form="personForm" field="personForm.im"></opene-error>
                 </md-input-container>
             </div>
             <md-input-container>
                 <label>{{ 'NOTE.NOTES' | translate }}</label>
-                <textarea ng-model="person.notes" ng-maxlength="2000"></textarea>
+                <textarea ng-model="person.notes" name="notes" ng-maxlength="2000"></textarea>
+                <opene-error form="personForm" field="personForm.notes"></opene-error>
             </md-input-container>
         </md-dialog-content>
         <div class="md-actions" layout="row">
-            <md-button class="md-primary" ng-click="save(personForm)">
+            <md-button type="submit" class="md-primary" ng-disabled="personForm.$invalid" ng-click="save(personForm)">
                 {{ 'COMMON.SAVE' | translate }}
             </md-button>
             <md-button ng-click="delete($event, person)" ng-show="person.id">

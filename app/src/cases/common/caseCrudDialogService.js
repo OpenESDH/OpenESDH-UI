@@ -89,7 +89,6 @@
                     parent: angular.element(document.body),
                     targetEvent: null,
                     clickOutsideToClose: true,
-                    focusOnOpen: false,
                     locals: {
                         caseInfo: caseInfo
                     }

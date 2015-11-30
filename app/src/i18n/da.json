@@ -58,7 +58,6 @@
         "NO": "Nr",
         "STATE": "Status",
         "COMMENT": "Kommentar",
-        "FILL_ALL_REQUIRED_FIELDS": "Udfyld de obligatoriske felter",
         "OPEN": "Åbne",
         "TO": "Til",
         "SUBJECT": "Emne",
@@ -517,10 +516,6 @@
         "UPLOAD_USERS": "Upload brugere (csv)",
         "UPLOAD_USERS_NOTE": "Upload brugere. Kun CSV-filer",
         "FAILED_TO_UPLOAD_MSG": "{{failedNumberOfUsers}} bruger(e) blev ikke tilføjet af følgende grunde:",
-        "ERROR": {
-            "USERNAME_EXISTS": "Brugernavn finnes allerede",
-            "EMAIL_EXISTS": "Email finnes allerede"
-        },
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER": "Er du sikker på, at du vil slette '{{user}}'?",
         "CAN_NOT_DELETE_ADMIN_USER": "Sletning af admin brugeren er ikke tilladt"
     },
@@ -590,16 +585,26 @@
         "CONTACT_SAVED_SUCCESSFULLY": "Kontakt \"{{firstName}} {{lastName}}\" gemt",
         "CONTACT_DELETED_SUCCESSFULLY": "Kontakt \"{{firstName}} {{lastName}}\" slettet"
     },
+    "ERROR": {
+        "REQUIRED": "Obligatoriske felt",
+        "TOO_SHORT": "This field is too short",
+        "TOO_LONG": "This field is too long",
+        "INVALID_EMAIL": "Email address is invalid",
+        "PASSWORD_NOMATCH": "Kodeord matcher ikke",
+        "EMAIL_NOT_EXISTS": "Email finnes ikke",
+        "EMAIL_EXISTS": "Email finnes allerede",
+        "USERNAME_EXISTS": "Brugernavn finnes allerede",
+        "AUTH_FAILURE": "Forkerte loginoplysninger",
+        "NOT_EQUAL_PATTERN": "Feil input format",
+        "INCORECT_ADDO_PASSWORD": "Feil ADDO kodeord"
+    },
     "LOGIN": {
         "LOGIN": "Log ind",
         "USER_NAME": "Brugernavn",
         "PASSWORD": "Kodeord",
         "FORGOT_PASSWORD": "Glemt kodeord",
         "VERIFY_PASSWORD": "Gentag kodeord",
-        "AUTH_FAILURE": "Forkerte loginoplysninger",
         "SESSION_TIMEOUT": "Din session er udløbet",
-        "INVALID_EMAIL": "Add a valid email address",
-        "PASSWORD_NOMATCH": "Kodeord matcher ikke",
         "FORGOT_PASSWORD_SUCCESS": "Instruktioner er blevet sendt til den email forudsat. Tjek din e-mail og følg vejledningen.",
         "FORGOT_PASSWORD_PROMPT": "Indtast din e-mailadresse og vi sender dig oplysninger om, hvordan du nulstiller din adgangskode."
     },

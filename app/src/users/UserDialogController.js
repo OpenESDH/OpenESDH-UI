@@ -3,7 +3,7 @@ angular
         .module('openeApp.users')
         .controller('UserDialogController', UserDialogController);
 
-function UserDialogController($scope, $mdDialog, $mdToast, $translate, $injector, userService, user) {
+function UserDialogController($scope, $mdDialog, $mdToast, $translate, $injector, $timeout, notificationUtilsService, userService, user) {
     var ucd = this;
 
     // Data from the user creation form
@@ -64,45 +64,39 @@ function UserDialogController($scope, $mdDialog, $mdToast, $translate, $injector
     }
 
     function handleCreateEditError(response) {
-
+        var cStack, msg;
         console.log(response);
-        var cStack = response.data.callstack[1];
-        var msg = (cStack) ? cStack.substring(cStack.lastIndexOf(":") + 2, cStack.length) : response.data.message;
+
+        if(response.status === 404) {
+            notificationUtilsService.notify("Unknown error");
+        } else {
+            cStack = response.data.callstack[1];
+            msg = (cStack) ? cStack : response.data.message;
+        }
 
         // If conflict
         if (response.status === 409) {
             // Username already exists
-            if (msg.indexOf('User name already exists') > -1) {
-                setFormFieldError(
-                        ucd.form.userName,
-                        $translate.instant('USER.ERROR.USERNAME_EXISTS'));
-            }
+            if (msg.indexOf('User name already exists') > -1)
+                ucd.userForm.userName.$setValidity('usernameExists', false);
         }
 
         if (response.status === 500) {
             // Email already exists
-            if (cStack.indexOf('Error updating email: already exists') > -1) {
-                setFormFieldError(
-                        ucd.form.email,
-                        $translate.instant($translate.instant('USER.ERROR.EMAIL_EXISTS')));
-            }
-            if (msg.indexOf('ADDO.USER.') > -1) {
-                setFormFieldError(
-                        ucd.form.addoPassword,
-                        $translate.instant(msg.split(' ')[1]));
-            }
+            if (cStack.indexOf('Error updating email: already exists') > -1 || 
+                cStack.indexOf('Email must be unique and already exists.') > -1)
+                ucd.userForm.email.$setValidity('emailExists', false);
+
+            // Incorrect Addo password
+            if (msg.indexOf('ADDO.USER.') > -1)
+                ucd.userForm.addoPassword.$setValidity('incorrectAddoPass', false)
         }
 
     }
     
-    var setFormFieldError = function(field, errorText) {
-        field.$setValidity(field.$name, false);
-        field.$error.exists = true;
-        field.$error.message = $translate.instant(errorText);
-    };
-    
     function clearFieldValidation(field) {
-        field.$error = {};
-        field.$setValidity(field.$name, true);
+        if(field.$error.usernameExists) field.$setValidity('usernameExists', true);
+        if(field.$error.emailExists) field.$setValidity('emailExists', true);
+        if(field.$error.incorrectAddoPass) field.$setValidity('incorrectAddoPass', true);
     };
 }

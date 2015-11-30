@@ -3,7 +3,7 @@
         .module('openeApp.documents')
         .controller('DocumentDetailsController', DocumentDetailsController);
     
-    function DocumentDetailsController($scope, $stateParams, $mdDialog, $translate, caseDocumentDetailsService, 
+    function DocumentDetailsController($scope, $stateParams, $translate, caseDocumentDetailsService, 
                 documentPreviewService, caseDocumentFileDialogService, notificationUtilsService, alfrescoDownloadService) {
         
         var caseId = $stateParams.caseId;

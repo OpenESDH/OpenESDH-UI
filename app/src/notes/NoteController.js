@@ -32,7 +32,6 @@
                 controllerAs: 'vmNote',
                 templateUrl: 'app/src/notes/view/noteCrudDialog.html',
                 parent: angular.element(document.body),
-                focusOnOpen: false,
                 targetEvent: ev,
                 clickOutsideToClose: true
             }).then(function(note) {

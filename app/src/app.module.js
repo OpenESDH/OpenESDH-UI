@@ -31,7 +31,6 @@
             'openeApp.workflows',
             'openeApp.systemsettings',
             'openeApp.search',
-            'openeApp.search.component.filter',
             'openeApp.common.directives',
             'openeApp.common.directives.filter',
             'm43nu.auto-height',
@@ -54,7 +53,7 @@
             phone: /^[+]?[0-9\- ]+$/
         })
         .config(config)
-        .run(function ($rootScope, $state, $stateParams, authService) {
+        .run(function ($rootScope, $state, $stateParams, $mdDialog, authService) {
             $rootScope.$on('$stateChangeStart', function (event, next, params) {
                 $rootScope.toState = next;
                 $rootScope.toStateParams = params;
@@ -67,6 +66,9 @@
                     event.preventDefault();
                     $state.go('login');
                 }
+
+                // If we got any open dialogs, close them before route change
+                $mdDialog.cancel();
             });
         });
 

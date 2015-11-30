@@ -1,12 +1,13 @@
 <div layout>
     <md-input-container flex="65">
-        <label><span class="md-warn">*</span> {{ 'CASE.TITLE' | translate }}</label>
-        <input type="text" ng-model="vm.case.prop_cm_title" required focus-me>
+        <label>{{ 'CASE.TITLE' | translate }} *</label>
+        <input type="text" name="prop_cm_title" ng-model="vm.case.prop_cm_title" required md-autofocus>
+        <opene-error form="form" field="form.prop_cm_title"></opene-error>
     </md-input-container>
 
     <md-input-container flex="35">
-        <label><span class="md-warn">*</span> {{ 'CASE.OWNER' | translate }}</label>
-        <md-select ng-model="vm.case.assoc_base_owners_added" required>
+        <label>{{ 'CASE.OWNER' | translate }} *</label>
+        <md-select name="assoc_base_owners_added" ng-model="vm.case.assoc_base_owners_added" required>
             <md-optgroup label="Groups">
                 <md-option ng-value="auth.nodeRef" 
                             ng-repeat="auth in vm.authorities | filter: {type: 'cm:authorityContainer' }" 
@@ -18,6 +19,7 @@
                             ng-disabled="!auth.selectable">{{ auth.name }}</md-option>
             </md-optgroup>
         </md-select>
+        <opene-error form="form" field="form.assoc_base_owners_added"></opene-error>
     </md-input-container>
 </div>
 

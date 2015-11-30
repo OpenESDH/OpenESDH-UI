@@ -17,6 +17,7 @@
                 <th>{{ 'USER.USERNAME' | translate }}</th>
                 <th>{{ 'USER.FIRST_NAME' | translate }}</th>
                 <th>{{ 'USER.LAST_NAME' | translate }}</th>
+                <th>{{ 'COMMON.EMAIL' | translate }}</th>
                 <th>{{ 'COMMON.ACTION' | translate }}</th>
             </tr>
             </thead>
@@ -26,6 +27,7 @@
             <td>{{user.userName}}</td>
                 <td>{{user.firstName}}</td>
                 <td>{{user.lastName}}</td>
+                <td>{{user.email}}</td>
                 <td>
                     <md-button class="md-primary" ng-click="vm.editUser($event, user)" aria-label="Edit user">
                         {{ 'USER.EDIT_USER' | translate }}

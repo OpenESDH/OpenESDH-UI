@@ -13,6 +13,7 @@ function AuthController($scope, $state, $stateParams, $translate, authService, u
     vm.getUserInfo = getUserInfo;
     vm.errorMsg = loginErrorMessage ? loginErrorMessage: "";
     vm.showForgotDialog = showForgotDialog;
+    vm.updateValidator = updateValidator;
 
     function login(credentials) {
         authService.login(credentials.username, credentials.password).then(function(response) {
@@ -27,8 +28,7 @@ function AuthController($scope, $state, $stateParams, $translate, authService, u
 
             // If incorrect values            
             if(response.status == 403) {
-                vm.form.password.$setDirty();
-                vm.form.password.$error.failure = true;
+                vm.form.password.$setValidity("loginFailure", false);
             }
 
         });
@@ -45,6 +45,11 @@ function AuthController($scope, $state, $stateParams, $translate, authService, u
         return authService.loggedin();
     }
 
+    function updateValidator () {
+        if(vm.form.password.$error.loginFailure)
+            vm.form.password.$setValidity("loginFailure", true);
+    }
+
     function forgotPasswordCtrl($scope, $mdDialog) {
         var dlg = this;
         dlg.emailSent = false;
@@ -54,8 +59,8 @@ function AuthController($scope, $state, $stateParams, $translate, authService, u
         };
 
         dlg.updateValidators = function() {
-            if(dlg.form.email.$error.notExist)
-                delete dlg.form.email.$error.notExist;
+            if(dlg.form.email.$error.emailNotExists)
+                dlg.form.email.$setValidity("emailNotExists", true);
         };
 
         dlg.forgotPassword = function() {
@@ -69,11 +74,8 @@ function AuthController($scope, $state, $stateParams, $translate, authService, u
                 
                 function onError(response) {
                     // If email doesn't exist in system
-                    if( response.status !== 200 ){
-                        dlg.form.email.$setDirty();
-                        dlg.form.email.$error.notExist = true;
-                        dlg.form.email.$error.errMessage = response.data.message;
-                    }
+                    if( response.status !== 200 )
+                        dlg.form.email.$setValidity("emailNotExists", false);
                 }
             ); 
         }
