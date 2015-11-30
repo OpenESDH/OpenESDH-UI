@@ -78,6 +78,7 @@
             "in-progress": "In progress"
         },
         "FILTER": {
+            "MY_CASES": "My cases",
             "ALL_CASES": "All cases",
             "ACTIVE_CASES": "Active cases",
             "PASSIVE_CASES": "Passive cases",
