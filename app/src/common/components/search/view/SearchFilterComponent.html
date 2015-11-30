@@ -1,6 +1,0 @@
-<md-input-container layout>
-    <select ng-model="values.searchFilter" flex>
-        <option ng-repeat="item in values.selectOptions" value="{{item[values.optionValue]}}">{{item[values.optionLabel]}}</option>
-    </select>
-    <input flex type="text" ng-model="values.searchTerm" focus-me="false" ng-keypress="($event.which === 13)?sfc.constructQuery():0">
-</md-input-container>
