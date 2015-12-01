@@ -13,7 +13,7 @@
     "angular-ui-router": "",
     "angular-animate": "^1.4.x",
     "angular-aria": "^1.4.x",
-    "angular-material": "^1.0.0",
+    "angular-material": "1.0.0-rc5",
     "angular-sanitize": "1.4.x",
     "angular-encode-uri": "",
     "angular-translate": "",
@@ -32,6 +32,6 @@
   },
   "resolutions": {
     "angular": "^1.4.x",
-    "angular-material": "^1.0.0"
+    "angular-material": "1.0.0-rc5"
   }
 }
