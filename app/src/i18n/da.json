@@ -107,7 +107,7 @@
         "STARTDATE": "Startdato",
         "ENDDATE": "Slutdato",
         "MY_CASES": "Mine sager",
-        "GROUP_CASES": "Gruppe sager",
+        "GROUP_CASES": "Ikke tildelte sager",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_CASE": "Er du sikker på, at du vil slette '{{case_title}}'?",
         "VIEW_CASE_DETAILS": "Vis sag",
         "STAFF": {
