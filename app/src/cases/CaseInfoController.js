@@ -27,7 +27,7 @@ function CaseInfoController($scope, $stateParams, $mdDialog, $translate, $filter
 
     $scope.$filter = $filter;
 
-    if ($stateParams.alf_ticket) {
+    if ($stateParams.alf_ticket && !sessionService.getUserInfo()) {
         sessionService.setUserInfo({ticket: $stateParams.alf_ticket});
     }
 
