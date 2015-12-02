@@ -1,13 +1,16 @@
 angular
         .module('openeApp.addo')
-        .controller('AddoController', AddoController);
+        .factory('sendToAddoService', SendToAddoService);
 
-function AddoController($scope, $stateParams, $mdDialog, $filter, $q, $translate, notificationUtilsService,
+function SendToAddoService($stateParams, $mdDialog, $filter, $q, $translate, notificationUtilsService,
         addoService, caseDocumentsService, casePartiesService) {
-    var vm = this;
-    vm.execute = execute;
+    var service = {
+        showDialog: execute,
+        isVisible: isVisible
+    };
+    return service;
 
-    function execute(ev) {
+    function execute() {
         var data = {
             templates: [],
             parties: [],
@@ -34,20 +37,23 @@ function AddoController($scope, $stateParams, $mdDialog, $filter, $q, $translate
 
         //proceed when all promises are resolved
         $q.all([pTempl, pDocs, pParties]).then(function() {
-            showDialog(ev, data);
+            showDialog(data);
         }, function(){
             notificationUtilsService.alert($translate.instant('ADDO.DOCUMENT.CANT_INITIALIZE'));
         });
     }
-
-    function showDialog(ev, data) {
+    
+    function isVisible(){
+        return addoService.isAddoAccountConfigured();
+    }
+    
+    function showDialog(data) {
         $mdDialog.show({
             controller: AddoDialogController,
             controllerAs: "addoDialog",
             templateUrl: 'app/src/plugin/addo/view/sendToAddoDialog.html',
             parent: angular.element(document.body),
             focusOnOpen: false,
-            targetEvent: ev,
             clickOutsideToClose: true,
             locals: data
         }).then(function(response) {
@@ -55,7 +61,7 @@ function AddoController($scope, $stateParams, $mdDialog, $filter, $q, $translate
         });
     }
 
-    function AddoDialogController($scope, $mdDialog, templates, parties, documents) {
+    function AddoDialogController($mdDialog, templates, parties, documents) {
         var addoCtrl = this;
         addoCtrl.model = {
             template: null,
@@ -80,7 +86,7 @@ function AddoController($scope, $stateParams, $mdDialog, $filter, $q, $translate
         addoCtrl.send = send;
         addoCtrl.cancel = cancel;
 
-        function send(form) {
+        function send() {
             addoCtrl.model.sequential = addoCtrl.model.sequential && addoCtrl.model.receivers.length > 1;
             
             addoService.initiateSigning(addoCtrl.model).then(function() {

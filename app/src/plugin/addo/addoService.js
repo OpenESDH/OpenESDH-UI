@@ -6,7 +6,8 @@ function addoService($http, $q) {
     var service = {
         saveAddoPassword: saveAddoPassword,
         getSigningTemplates: getSigningTemplates,
-        initiateSigning: initiateSigning
+        initiateSigning: initiateSigning,
+        isAddoAccountConfigured: isAddoAccountConfigured
     };
     return service;
 
@@ -29,6 +30,12 @@ function addoService($http, $q) {
     function initiateSigning(data) {
         return $http.post('/alfresco/s/api/vismaaddo/InitiateSigning', data).then(function(response) {
             return response.data;
+        });
+    }
+    
+    function isAddoAccountConfigured() {
+        return $http.get('/alfresco/s/api/vismaaddo/isConfigured').then(function(response) {
+            return response.data.configured;
         });
     }
 }
