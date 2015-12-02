@@ -612,7 +612,7 @@
         "USERNAME_EXISTS": "Username already exists",
         "AUTH_FAILURE": "Incorrect authentication details",
         "NOT_EQUAL_PATTERN": "Wrong input format",
-        "INCORECT_ADDO_PASSWORD": "Incorect ADDO password"
+        "INCORECT_ADDO_PASSWORD": "Incorect ADDO username or password"
     },
     "LOGIN": {
         "LOGIN": "Login",
@@ -787,6 +787,7 @@
     },
     "ADDO": {
         "USER": {
+            "USERNAME": "ADDO username",
             "PASSWORD": "ADDO password"
         },
         "DOCUMENT": {
