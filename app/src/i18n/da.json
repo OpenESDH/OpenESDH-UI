@@ -61,7 +61,9 @@
         "OPEN": "Åbne",
         "TO": "Til",
         "SUBJECT": "Emne",
-        "MESSAGE": "Meddelelse"
+        "MESSAGE": "Meddelelse",
+        "LIST_VIEW": "Listevisning",
+        "GRID_VIEW": "Gittervisning"
     },
     "CASE": {
         "CONFIRM_CLOSE_CASE": "Vil du lukke denne sag?",

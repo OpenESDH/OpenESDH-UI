@@ -60,7 +60,9 @@
         "OPEN": "Open",
         "TO": "To",
         "SUBJECT": "Subject",
-        "MESSAGE": "Message"
+        "MESSAGE": "Message",
+        "LIST_VIEW": "List view",
+        "GRID_VIEW": "Grid view"
     },
     "CASE": {
         "CONFIRM_CLOSE_CASE": "Do you want to close this case?",

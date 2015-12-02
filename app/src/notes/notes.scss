@@ -14,3 +14,23 @@ ol.note_parties {
 	    padding-right: 3px; 
 	}
 }
+
+.opene-toggleview {
+	text-align: right;
+
+	.md-button.md-icon-button {
+		padding: 0px;
+		width: auto;
+		&.md-focused {
+			background-color: transparent;
+		}
+	}
+
+	.active .material-icons {
+		color: rgb(30,136,229);
+	}
+	
+	.material-icons {
+		color: rgba(0,0,0,0.26);
+	}
+}
