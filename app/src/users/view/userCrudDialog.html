@@ -2,7 +2,7 @@
     <form name="ucd.userForm" novalidate>
         <md-toolbar layout>
             <div class="md-toolbar-tools">
-                <h2>{{ucd.dialogMode | translate}}</h2>
+                <h2>{{ucd.dialogMode| translate}}</h2>
             </div>
         </md-toolbar>
         <md-dialog-content layout-padding>
@@ -32,13 +32,13 @@
                 <md-input-container flex="50">
                     <label>{{ 'LOGIN.USER_NAME' | translate }} *</label>
                     <input type="text" name="userName" ng-model="ucd.user.userName" required ng-disabled="ucd.userExists" 
-                            ng-change="ucd.clearFieldValidation(ucd.userForm.userName)">
+                           ng-change="ucd.clearFieldValidation(ucd.userForm.userName)">
                     <opene-error form="ucd.userForm" field="ucd.userForm.userName"></opene-error>
                 </md-input-container>
 
                 <div ng-show="ucd.userExists">
                     <md-checkbox ng-model="ucd.user.enabled" ng-true-value="false" ng-false-value="true" 
-                                    aria-label="disable account" class="md-warn">
+                                 aria-label="disable account" class="md-warn">
                         Disable Account
                     </md-checkbox>
                 </div>
@@ -54,7 +54,7 @@
                 <md-input-container flex>
                     <label>{{ 'LOGIN.VERIFY_PASSWORD' | translate }} *</label>
                     <input type="password" ng-model="ucd.user.verifypassword" opene-equals="ucd.user.password" 
-                            ng-required="!ucd.userExists || undefined" name="verify">
+                           ng-required="!ucd.userExists || undefined" name="verify">
                     <opene-error form="ucd.userForm" field="ucd.userForm.verify"></opene-error>
                 </md-input-container>
             </div>
@@ -67,11 +67,20 @@
             </div>
 
             <div layout ng-if="ucd.useAddo">
-                <md-input-container flex="50">
+                <md-input-container flex>
+                    <label>{{ 'ADDO.USER.USERNAME' | translate }}</label>
+                    <input type="text" name="addoUsername" ng-model="ucd.user.addoUsername" 
+                           ng-required="ucd.useAddo && ucd.user.addoPassword"
+                           ng-click="ucd.userForm.addoPassword.$setTouched()"
+                           ng-change="ucd.clearFieldValidation(ucd.userForm.addoUsername); ucd.clearFieldValidation(ucd.userForm.addoPassword)">
+                    <opene-error form="ucd.userForm" field="ucd.userForm.addoPassword"></opene-error>
+                </md-input-container>
+                <md-input-container flex>
                     <label>{{ 'ADDO.USER.PASSWORD' | translate }}</label>
                     <input type="password" name="addoPassword" ng-model="ucd.user.addoPassword" 
-                            ng-change="ucd.clearFieldValidation(ucd.userForm.addoPassword)">
-                    <opene-error form="ucd.userForm" field="ucd.userForm.addoPassword"></opene-error>
+                           ng-required="ucd.useAddo && ucd.user.addoUsername && ucd.userForm.addoUsername.$touched"
+                           ng-click="ucd.userForm.addoUsername.$setTouched()"
+                           ng-change="ucd.clearFieldValidation(ucd.userForm.addoUsername); ucd.clearFieldValidation(ucd.userForm.addoPassword)">
                 </md-input-container>
             </div>
 
@@ -79,7 +88,7 @@
         <md-dialog-actions>
             <md-button id="create-user-dialog-ok-btn" type="submit" class="md-primary" 
                        ng-click="ucd.update(ucd.user)" ng-disabled="ucd.userForm.$invalid">
-                {{ucd.dialogMode | translate}}
+                {{ucd.dialogMode| translate}}
             </md-button>
             <md-button id="create-user-dialog-cancel-btn" type="button" ng-click="ucd.cancel(ucd.userForm)">
                 {{ 'COMMON.CANCEL' | translate }}

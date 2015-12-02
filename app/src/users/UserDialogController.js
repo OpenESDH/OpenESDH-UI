@@ -14,6 +14,16 @@ function UserDialogController($scope, $mdDialog, $mdToast, $translate, $injector
     ucd.update = update;
     ucd.clearFieldValidation = clearFieldValidation;
     ucd.useAddo = $injector.has('addoService');
+    ucd.isAddoConfigured = false;
+
+    if (ucd.useAddo) {
+        var addoService = $injector.get('addoService');
+        if (ucd.userExists) {
+            addoService.getAddoUserProperties(user.userName).then(function(addoProps) {
+                ucd.user.addoUsername = addoProps.addoUsername;
+            });
+        }
+    }
 
     // When the form is submitted, show a notification:
     ucd.toastPosition = {
@@ -32,10 +42,20 @@ function UserDialogController($scope, $mdDialog, $mdToast, $translate, $injector
         if (ucd.userExists)
             ucd.user.disableAccount = !u.enabled;
         var promise = (ucd.userExists) ? userService.updateUser(ucd.user) : userService.createUser(ucd.user);
-        promise.then(function onSuccess(response) {
-            notifyUserSaved(response);
+        promise.then(function(userSaveResponse) {
+            if (ucd.useAddo && ucd.user.addoPassword) {
+                addoService
+                        .saveAddoUser(ucd.user.userName, ucd.user.addoUsername, ucd.user.addoPassword)
+                        .then(function() {
+                            notifyUserSaved(userSaveResponse);
+                        }, handleCreateEditError);
+            } else {
+                notifyUserSaved(userSaveResponse);
+            }
         }, handleCreateEditError);
     }
+
+
 
     function getToastPosition() {
         return Object.keys(ucd.toastPosition)
@@ -54,7 +74,7 @@ function UserDialogController($scope, $mdDialog, $mdToast, $translate, $injector
             msg += $translate.instant('COMMON.CREATED').toLowerCase();
         }
 
-        $mdDialog.hide(user, ucd.userExists);
+        $mdDialog.hide(angular.extend(user, {newUser: !ucd.userExists}));
         $mdToast.show(
                 $mdToast.simple()
                 .content(msg)
@@ -67,7 +87,7 @@ function UserDialogController($scope, $mdDialog, $mdToast, $translate, $injector
         var cStack, msg;
         console.log(response);
 
-        if(response.status === 404) {
+        if (response.status === 404) {
             notificationUtilsService.notify("Unknown error");
         } else {
             cStack = response.data.callstack[1];
@@ -83,20 +103,28 @@ function UserDialogController($scope, $mdDialog, $mdToast, $translate, $injector
 
         if (response.status === 500) {
             // Email already exists
-            if (cStack.indexOf('Error updating email: already exists') > -1 || 
-                cStack.indexOf('Email must be unique and already exists.') > -1)
+            if (cStack.indexOf('Error updating email: already exists') > -1 ||
+                    cStack.indexOf('Email must be unique and already exists.') > -1)
                 ucd.userForm.email.$setValidity('emailExists', false);
 
             // Incorrect Addo password
-            if (msg.indexOf('ADDO.USER.') > -1)
-                ucd.userForm.addoPassword.$setValidity('incorrectAddoPass', false)
+            if (msg.indexOf('ADDO.USER.') > -1) {
+                ucd.userForm.addoUsername.$setDirty();
+                ucd.userForm.addoUsername.$setValidity('incorrectAddoPass', false);
+                ucd.userForm.addoPassword.$setDirty();
+                ucd.userForm.addoPassword.$setValidity('incorrectAddoPass', false);
+            }
         }
-
     }
-    
+
     function clearFieldValidation(field) {
-        if(field.$error.usernameExists) field.$setValidity('usernameExists', true);
-        if(field.$error.emailExists) field.$setValidity('emailExists', true);
-        if(field.$error.incorrectAddoPass) field.$setValidity('incorrectAddoPass', true);
-    };
+        if (field.$valid)
+            return;
+        if (field.$error.usernameExists)
+            field.$setValidity('usernameExists', true);
+        if (field.$error.emailExists)
+            field.$setValidity('emailExists', true);
+        if (field.$error.incorrectAddoPass)
+            field.$setValidity('incorrectAddoPass', true);
+    }
 }
