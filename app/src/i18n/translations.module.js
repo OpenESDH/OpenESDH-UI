@@ -1,3 +1,5 @@
+angular
+        .module('openeApp.translations.init', []);
 
 angular
         .module('openeApp.translations', ['pascalprecht.translate'])
@@ -17,14 +19,12 @@ function AvailableLanguages() {
     return availableLanguages;
 }
 
-function config($translateProvider, $translateStaticFilesLoaderProvider) {
-
-    $translateProvider.useStaticFilesLoader({
-        prefix: '/app/src/i18n/',
-        suffix: '.json'
-    });
+function config($translateProvider, languageFilesProvider) {
+    languageFilesProvider.addFile('/app/src/i18n/','.json');
+    $translateProvider.useStaticFilesLoader(languageFilesProvider.getLanguageFiles());
 
     $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
+
     $translateProvider
             .registerAvailableLanguageKeys(availableLanguages.keys, availableLanguages.localesKeys)
             .determinePreferredLanguage();

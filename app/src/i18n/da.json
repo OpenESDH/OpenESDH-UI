@@ -596,8 +596,7 @@
         "EMAIL_EXISTS": "Email finnes allerede",
         "USERNAME_EXISTS": "Brugernavn finnes allerede",
         "AUTH_FAILURE": "Forkerte loginoplysninger",
-        "NOT_EQUAL_PATTERN": "Feil input format",
-        "INCORECT_ADDO_PASSWORD": "Feil ADDO kodeord"
+        "NOT_EQUAL_PATTERN": "Feil input format"
     },
     "LOGIN": {
         "LOGIN": "Log ind",
@@ -758,23 +757,6 @@
             "dk.openesdh.case.workflow.task-end": "Opgave",
             "dk.openesdh.case.workflow.task-approve": "Opgave",
             "dk.openesdh.case.workflow.task-reject": "Opgave"
-        }
-    },
-    "ADDO": {
-        "USER": {
-            "USERNAME": "ADDO Brugernavn",
-            "PASSWORD": "ADDO password"
-        },
-        "DOCUMENT": {
-            "SEND_FOR_SIGNING": "Send til underskrift",
-            "SIGNATURE_TEMPLATE": "Underskriftsskabelon",
-            "CHOOSE_RECEIVERS": "Vælg modtagere",
-            "TO_BE_SIGNED": "Skal underskrives",
-            "ANEX": "Bilag",
-            "SEQUENTIAL_SIGNING": "Underskriv i rækkefølge",
-            "REQUEST_SIGNATURE": "Indhent underskrift",
-            "SENT_SUCCESSFULLY": "Documents sent for signing successfully",
-            "CANT_INITIALIZE": "Cannot initialize signing module"
         }
     },
     "faceted-search.date.one-week.label": "Sidste uge",
