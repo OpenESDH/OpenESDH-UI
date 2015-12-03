@@ -1,14 +1,12 @@
 
     angular
-            .module('openeApp.contacts')
-            .factory('contactsService', contactsService);
+        .module('openeApp.contacts')
+        .factory('contactsService', contactsService);
     
     var DEFAULT_PAGE_SIZE = 20;
 
     function contactsService($http, $q) {
         var service = {
-            //common
-            createPagingParams: createPagingParams,
             //organizations
             getOrganizations: getOrganizations,
             getOrganization: getContact,
@@ -25,17 +23,6 @@
             deletePerson: deleteContact
         };
         return service;
-        
-        //common
-        function createPagingParams() {
-            return {
-                pageSize: DEFAULT_PAGE_SIZE,
-                page: 1,
-                totalRecords: null,
-                sortField: null,
-                sortAscending: true
-            };
-        }
 
         //organizations
         function getOrganizations(searchTerm, pagingParams) {

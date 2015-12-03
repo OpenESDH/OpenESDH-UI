@@ -26,7 +26,7 @@
 
         function postlink(scope, elem, attrs) {
             
-            scope.searchFilter = 'userName';
+            scope.searchFilter = scope.selectOptions[0].optionValue;
             scope.searchTerm = '';
 
             scope.constructQuery = function() {
@@ -41,8 +41,6 @@
             link: postlink,
             restrict: 'E',
             scope: {
-                optionLabel: '=',
-                optionValue: '=',
                 selectOptions: '=',
                 finished: '='
             },

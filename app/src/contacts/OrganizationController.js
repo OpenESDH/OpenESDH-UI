@@ -4,16 +4,13 @@
         .controller('OrganizationController', OrganizationController);
 
     function OrganizationController($scope, $stateParams, $mdDialog, $location, $translate,
-            contactsService, countriesService, PATTERNS, notificationUtilsService) {
+            contactsService, countriesService, PATTERNS, notificationUtilsService, VirtualRepeatLoader) {
+        
         var vm = this;
-        vm.doFilter = doFilter;
         vm.showOrganizationEdit = showOrganizationEdit;
         vm.deleteOrganization = deleteOrganization;
         vm.showPersonEdit = showPersonEdit;
         vm.initPersons = initPersons;
-        vm.searchQuery = null;
-        vm.organizations = [];
-        vm.pagingParams = contactsService.createPagingParams();
 
         if ($stateParams.uuid) {
             //infoForm
@@ -24,11 +21,7 @@
         }
 
         function initList() {
-            vm.organizations.length = 0;
-            contactsService.getOrganizations(vm.searchQuery, vm.pagingParams).then(function(response) {
-                vm.organizations = response;
-                vm.pagingParams.totalRecords = response.totalRecords;
-            }, error);
+            vm.dataLoader = new VirtualRepeatLoader(contactsService.getOrganizations, error);
         }
 
         function initInfo() {
@@ -48,11 +41,6 @@
             });
         }
 
-        function doFilter(page) {
-            vm.pagingParams.page = page || 1;
-            initList();
-        }
-
         function deleteOrganization(ev, organization) {
             var confirm = $mdDialog.confirm()
                     .title($translate.instant('COMMON.CONFIRM'))
@@ -69,20 +57,19 @@
         }
 
         function showOrganizationEdit(ev) {
-            $mdDialog
-                    .show({
-                        controller: DialogController,
-                        templateUrl: 'app/src/contacts/view/organizationCrudDialog.html',
-                        parent: angular.element(document.body),
-                        targetEvent: ev,
-                        clickOutsideToClose: true,
-                        locals: {
-                            organization: angular.copy(vm.organization)
-                        }
-                    })
-                    .then(function(response) {
-                        //
-                    });
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'app/src/contacts/view/organizationCrudDialog.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                locals: {
+                    organization: angular.copy(vm.organization)
+                }
+            })
+            .then(function(response) {
+                //
+            });
         }
 
         function DialogController($scope, $mdDialog, organization) {
@@ -112,7 +99,7 @@
 
             function refreshListAfterSuccess(savedOrganization) {
                 notificationUtilsService.notify($translate.instant("ORG.ORG_SAVED_SUCCESSFULLY", savedOrganization));
-                vm.doFilter();
+                vm.dataLoader.refresh();
                 $mdDialog.hide();
             }
 

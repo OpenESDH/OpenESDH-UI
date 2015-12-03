@@ -18,14 +18,11 @@
         vm.userExists = false;
 
         //For the search control filter
-        vm.userSearchFilters = [
-            {optionLabel:"First name", optionValue:"firstName"},
-            {optionLabel:"Last name", optionValue:"lastName"},
-            {optionLabel:"User name", optionValue:"userName"}
+        vm.selectOptions = [
+            {optionLabel:$translate.instant('USER.USERNAME'), optionValue:"userName"},
+            {optionLabel:$translate.instant('USER.FIRST_NAME'), optionValue:"firstName"},
+            {optionLabel:$translate.instant('USER.LAST_NAME'), optionValue:"lastName"}
         ];
-        vm.optionLabel = "optionLabel";
-        vm.optionValue = "optionValue";
-        vm.selectOptions = vm.userSearchFilters;
 
         vm.filterCallback = function (query) {
             console.log(query);
