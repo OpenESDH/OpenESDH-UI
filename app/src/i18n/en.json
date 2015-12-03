@@ -611,8 +611,7 @@
         "EMAIL_EXISTS": "Email already exists",
         "USERNAME_EXISTS": "Username already exists",
         "AUTH_FAILURE": "Incorrect authentication details",
-        "NOT_EQUAL_PATTERN": "Wrong input format",
-        "INCORECT_ADDO_PASSWORD": "Incorect ADDO username or password"
+        "NOT_EQUAL_PATTERN": "Wrong input format"
     },
     "LOGIN": {
         "LOGIN": "Login",
@@ -783,23 +782,6 @@
             "dk.openesdh.case.workflow.task-end": "Workflow",
             "dk.openesdh.case.workflow.task-approve": "Workflow",
             "dk.openesdh.case.workflow.task-reject": "Workflow"
-        }
-    },
-    "ADDO": {
-        "USER": {
-            "USERNAME": "ADDO username",
-            "PASSWORD": "ADDO password"
-        },
-        "DOCUMENT": {
-            "SEND_FOR_SIGNING": "Send for signing",
-            "SIGNATURE_TEMPLATE": "Signature template",
-            "CHOOSE_RECEIVERS": "Choose receivers",
-            "TO_BE_SIGNED": "To be signed",
-            "ANEX": "Anex",
-            "SEQUENTIAL_SIGNING": "Sequential signing transaction",
-            "REQUEST_SIGNATURE": "Request signature",
-            "SENT_SUCCESSFULLY": "Documents sent for signing successfully",
-            "CANT_INITIALIZE": "Cannot initialize signing module"
         }
     },
     "faceted-search.date.one-week.label": "Last week",
