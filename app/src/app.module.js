@@ -11,7 +11,7 @@
             'pdf',
             'swfobject',
             'isteven-multi-select',
-            'openeApp.translations',
+            'openeApp.translations.init',
             'openeApp.cases',
             'openeApp.cases.staff',
             'openeApp.cases.members',
@@ -36,8 +36,8 @@
             'm43nu.auto-height',
             'dcbImgFallback',
             'openeApp.addo',
-            'openeApp.activities'
-        ])
+            'openeApp.activities',
+            /*LAST*/ 'openeApp.translations'])// TRANSLATIONS IS ALWAYS LAST!
         .constant('USER_ROLES', {
             admin: 'admin',
             user: 'user'
@@ -284,7 +284,7 @@
         }).state('administration.systemsettings.doctypes', {
             url: '/document-types',
             data: {
-                authorizedRoles: [USER_ROLES.admin],
+                authorizedRoles: [USER_ROLES.admin]
             },
             views: {
                 'systemsetting-view': {
@@ -296,7 +296,7 @@
         }).state('administration.systemsettings.doccategories', {
             url: '/document-categories',
             data: {
-                authorizedRoles: [USER_ROLES.admin],
+                authorizedRoles: [USER_ROLES.admin]
             },
             views: {
                 'systemsetting-view': {

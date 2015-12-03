@@ -1,0 +1,22 @@
+{
+    "ERROR": {
+        "INCORECT_ADDO_PASSWORD": "Incorect ADDO username or password"
+    },
+    "ADDO": {
+        "USER": {
+            "USERNAME": "ADDO username",
+            "PASSWORD": "ADDO password"
+        },
+        "DOCUMENT": {
+            "SEND_FOR_SIGNING": "Send for signing",
+            "SIGNATURE_TEMPLATE": "Signature template",
+            "CHOOSE_RECEIVERS": "Choose receivers",
+            "TO_BE_SIGNED": "To be signed",
+            "ANEX": "Anex",
+            "SEQUENTIAL_SIGNING": "Sequential signing transaction",
+            "REQUEST_SIGNATURE": "Request signature",
+            "SENT_SUCCESSFULLY": "Documents sent for signing successfully",
+            "CANT_INITIALIZE": "Cannot initialize signing module"
+        }
+    }
+}
