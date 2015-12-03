@@ -5,7 +5,8 @@
 
     function caseService($http, userService, alfrescoNodeUtils) {
         var service = {
-            getCaseTypes: getCaseTypes,
+            getCaseTypes: getAllowableCaseCreateTypes,
+            getRegisteredCaseTypes: getRegisteredCaseTypes,
             getCases: getCases,
             getMyCases: getMyCases,
             createCase: createCase,
@@ -20,12 +21,27 @@
         };
         return service;
 
-        function getCaseTypes() {
+        /**
+         * Returns a list of casetypes that current user is permitted to create instances of
+         * @returns {*}
+         */
+        function getAllowableCaseCreateTypes() {
             return $http.get('/alfresco/service/api/openesdh/casetypes/casecreator').then(getCaseTypesComplete);
 
             function getCaseTypesComplete(response) {
                 return response.data;
             }
+        }
+
+        /**
+         * Returns the case types that are available on the system
+         * @returns {*}
+         */
+        function getRegisteredCaseTypes() {
+            return $http.get('/alfresco/service/api/openesdh/casetypes').then(function(response){
+                return response.data;
+            });
+
         }
 
         function getCases(baseType, filters) {
