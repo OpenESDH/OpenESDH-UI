@@ -97,12 +97,12 @@
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose: true
-            }).then(function onUpdateOrCreate(user, isExistingUser) {
-                if(isExistingUser) {
+            }).then(function onUpdateOrCreate(user) {
+                if(user.newUser) {
+                    vm.allSystemUsers.push(user);
+                } else {
                     vm.allSystemUsers = [];
                     getAllSystemUsers();
-                } else {
-                    vm.allSystemUsers.push(user);
                 }
             }, function onCancel() {
                 // Do nothing

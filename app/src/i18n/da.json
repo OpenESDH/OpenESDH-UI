@@ -61,7 +61,9 @@
         "OPEN": "Åbne",
         "TO": "Til",
         "SUBJECT": "Emne",
-        "MESSAGE": "Meddelelse"
+        "MESSAGE": "Meddelelse",
+        "LIST_VIEW": "Listevisning",
+        "GRID_VIEW": "Gittervisning"
     },
     "CASE": {
         "CONFIRM_CLOSE_CASE": "Vil du lukke denne sag?",
@@ -107,7 +109,7 @@
         "STARTDATE": "Startdato",
         "ENDDATE": "Slutdato",
         "MY_CASES": "Mine sager",
-        "GROUP_CASES": "Gruppe sager",
+        "GROUP_CASES": "Ikke tildelte sager",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_CASE": "Er du sikker på, at du vil slette '{{case_title}}'?",
         "VIEW_CASE_DETAILS": "Vis sag",
         "STAFF": {
@@ -167,7 +169,6 @@
         "UPLOAD_NEW_DOCUMENTS": "Upload nyt dokument",
         "SEND_DOCUMENTS": "Send dokumenter",
         "EMAIL_DOCUMENTS": "Email dokumenter",
-        "DIGITAL_POST_DOCUMENTS": "Til Digital Post",
         "CREATE_FROM_TEMPLATE": "Opret fra skabelon",
         "MY_DOCUMENTS": "Mine dokumenter",
         "CHOOSE_TEMPLATE": "Vælg skabelon",
@@ -761,8 +762,8 @@
     },
     "ADDO": {
         "USER": {
-            "PASSWORD": "ADDO password",
-            "INCORECT_PASSWORD": "Incorect ADDO password"
+            "USERNAME": "ADDO Brugernavn",
+            "PASSWORD": "ADDO password"
         },
         "DOCUMENT": {
             "SEND_FOR_SIGNING": "Send til underskrift",

@@ -60,7 +60,9 @@
         "OPEN": "Open",
         "TO": "To",
         "SUBJECT": "Subject",
-        "MESSAGE": "Message"
+        "MESSAGE": "Message",
+        "LIST_VIEW": "List view",
+        "GRID_VIEW": "Grid view"
     },
     "CASE": {
         "CONFIRM_CLOSE_CASE": "Do you want to close this case?",
@@ -166,7 +168,6 @@
         "UPLOAD_NEW_DOCUMENTS": "Upload new document",
         "SEND_DOCUMENTS": "Send documents",
         "EMAIL_DOCUMENTS": "Email documents",
-        "DIGITAL_POST_DOCUMENTS": "Digital Post",
         "CREATE_FROM_TEMPLATE": "Create from template",
         "MY_DOCUMENTS": "My documents",
         "CHOOSE_TEMPLATE": "Choose template",
@@ -611,7 +612,7 @@
         "USERNAME_EXISTS": "Username already exists",
         "AUTH_FAILURE": "Incorrect authentication details",
         "NOT_EQUAL_PATTERN": "Wrong input format",
-        "INCORECT_ADDO_PASSWORD": "Incorect ADDO password"
+        "INCORECT_ADDO_PASSWORD": "Incorect ADDO username or password"
     },
     "LOGIN": {
         "LOGIN": "Login",
@@ -786,6 +787,7 @@
     },
     "ADDO": {
         "USER": {
+            "USERNAME": "ADDO username",
             "PASSWORD": "ADDO password"
         },
         "DOCUMENT": {

@@ -1,34 +1,59 @@
 <md-card ng-controller="NoteController as caseNotes">
-  <md-card-content>
-    <h3 class="md-title">{{ 'NOTE.NOTES' | translate }}</h3>
-    <div layout="row" layout-wrap>
-      <div ng-repeat="note in caseNotes.notes" flex="33">
-        <h4 style="margin-bottom: 0;" class="md-title">{{ note.headline}}</h4>
-        <p>{{ note.content}}</p>
-        <div style="font-size: 0.8em;" class="muted">
-          {{ 'COMMON.CREATED' | translate }} {{ note.created | openeDate }} {{ 'COMMON.BY' | translate }} {{ note.authorInfo.firstName + ' ' + note.authorInfo.lastName}}<br>
-          <div ng-show="note.concernedPartiesInfo && note.concernedPartiesInfo.length > 0 ">{{ 'NOTE.RELATED' | translate }}:
-            <ol class="note_parties">
-              <li ng-repeat="relation in note.concernedPartiesInfo">{{ relation.name}}</li>
-            </ol>
-          </div>
+    <md-card-content>
+        <div layout layout-align="space-between center">
+            <h3 class="md-title" flex="75">{{ 'NOTE.NOTES' | translate }}</h3>
+            <div flex class="opene-toggleview">
+                <md-button class="md-icon-button md-accent" ng-class="{active: caseNotes.layout == 'grid'}" ng-click="caseNotes.layout = 'grid'" title="{{ 'COMMON.GRID_VIEW' | translate }}"><i class="material-icons">view_module</i></md-button>
+                <md-button class="md-icon-button md-accent" ng-class="{active: caseNotes.layout == 'list'}" ng-click="caseNotes.layout = 'list'" title="{{ 'COMMON.LIST_VIEW' | translate }}"><i class="material-icons">view_list</i></md-button>
+            </div>
         </div>
-      </div>                
-    </div>
-  </md-card-content>
-  <div class="md-actions">
-    <md-button class="md-primary"
-               ng-click="caseNotes.newNote()"
-               ng-disabled="caseIsLocked">
-      {{ 'NOTE.NEW_NOTE' | translate }}
-    </md-button>
-    <md-button class="md-primary" ng-disabled="true">{{ 'NOTE.PRINT_ALL_NOTES' | translate }}</md-button>
-    <div style="float: right;" ng-show="caseNotes.pagingParams.totalRecords > 0">
-      <span>{{caseNotes.pagingParams.getStartIndex()}} - {{caseNotes.pagingParams.getEndIndex()}} {{ 'COMMON.OF' | translate }} {{caseNotes.pagingParams.totalRecords}}</span>
-      <span>
+        <div layout="row" layout-wrap ng-show="caseNotes.layout == 'grid'">
+            <div ng-repeat="note in caseNotes.notes" flex="33">
+                <h4 style="margin-bottom: 0;" class="md-title">{{ note.headline}}</h4>
+                <p>{{ note.content}}</p>
+                <div style="font-size: 0.8em;" class="muted">
+                    {{ 'COMMON.CREATED' | translate }} {{ note.created | openeDate }} {{ 'COMMON.BY' | translate }} {{ note.authorInfo.firstName + ' ' + note.authorInfo.lastName}}
+                    <br>
+                    <div ng-show="note.concernedPartiesInfo && note.concernedPartiesInfo.length > 0 ">{{ 'NOTE.RELATED' | translate }}:
+                        <ol class="note_parties">
+                            <li ng-repeat="relation in note.concernedPartiesInfo">{{ relation.name}}</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="caseNotes.layout == 'list'">
+            <div class="repeat-table">
+                <div class="repeat-header" layout="row">
+                    <span class="r" flex="20">{{ 'NOTE.HEADLINE' | translate }}</span>
+                    <span class="r" flex>{{ 'NOTE.CONTENT' | translate }}</span>
+                    <span class="r" flex="20">{{ 'COMMON.CREATED' | translate }}</span>
+                    <span class="r" flex="20">{{ 'COMMON.CREATEDBY' | translate }}</span>
+                </div>
+                <md-virtual-repeat-container md-auto-shrink style="border-bottom:none">
+                    <div md-virtual-repeat="note in caseNotes.notes" class="repeat-item">
+                        <div class="layout-row">
+                            <span class="r" flex="20">{{ note.headline }}</span>
+                            <span class="r" flex>{{ note.content }}</span>
+                            <span class="r muted" flex="20">{{ note.created }}</span>
+                            <span class="r muted" flex="20">{{ note.authorInfo.firstName + ' ' + note.authorInfo.lastName }}</span>
+                        </div>
+                    </div>
+                </md-virtual-repeat-container>
+            </div>
+        </div>
+    </md-card-content>
+    <div class="md-actions">
+        <md-button class="md-primary" ng-click="caseNotes.newNote()" ng-disabled="caseIsLocked">
+            {{ 'NOTE.NEW_NOTE' | translate }}
+        </md-button>
+        <md-button class="md-primary" ng-disabled="true">{{ 'NOTE.PRINT_ALL_NOTES' | translate }}</md-button>
+        <div style="float: right;" ng-show="caseNotes.pagingParams.totalRecords > 0">
+            <span>{{caseNotes.pagingParams.getStartIndex()}} - {{caseNotes.pagingParams.getEndIndex()}} {{ 'COMMON.OF' | translate }} {{caseNotes.pagingParams.totalRecords}}</span>
+            <span>
         <md-button ng-click="caseNotes.loadNotes(caseNotes.pagingParams.page - 1)" ng-disabled="!caseNotes.pagingParams.hasPreviousPage()" title="Previos page">&lt;</md-button>
         <md-button ng-click="caseNotes.loadNotes(caseNotes.pagingParams.page + 1)" ng-disabled="!caseNotes.pagingParams.hasNextPage()" title="Next page">&gt;</md-button>
       </span>
+        </div>
     </div>
-  </div>
 </md-card>

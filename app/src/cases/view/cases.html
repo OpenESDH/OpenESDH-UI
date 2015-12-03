@@ -1,117 +1,134 @@
 <app-header></app-header>
-
 <md-content layout="column" ng-controller="GroupCasesController as groupCaseCtrl">
-  
     <div class="sub-toolbar" layout="row" layout-align="space-between center" layout-padding>
-    
-        <h1 class="md-headline" layout-margin>{{ 'CASE.CASES' | translate }}</h1>
-
-        <opene-list-filter list="vm.caseFilter" 
-                            choice="vm.caseFilterChoice"
-                            finished="vm.getCases()" ng-show="vm.tab == 'myCases'">
+        <h1 class="md-headline" layout-margin flex="75">{{ 'CASE.CASES' | translate }}</h1>
+        <div flex="10" class="opene-toggleview" ng-show="vm.tab == 'groupCases'">
+            <md-button class="md-icon-button md-accent" ng-class="{active: groupCaseCtrl.layout == 'stream'}" ng-click="groupCaseCtrl.layout = 'stream'" title="{{ 'COMMON.GRID_VIEW' | translate }}">
+                <i class="material-icons">view_stream</i>
+            </md-button>
+            <md-button class="md-icon-button md-accent" ng-class="{active: groupCaseCtrl.layout == 'list'}" ng-click="groupCaseCtrl.layout = 'list'" title="{{ 'COMMON.LIST_VIEW' | translate }}">
+                <i class="material-icons">view_list</i>
+            </md-button>
+        </div>
+        <opene-list-filter flex list="vm.caseFilter" choice="vm.caseFilterChoice" finished="vm.getCases()" ng-show="vm.tab == 'myCases'">
         </opene-list-filter>
-        
-        <opene-list-filter list="groupCaseCtrl.caseFilter" 
-                            choice="groupCaseCtrl.caseFilterChoice"
-                            finished="groupCaseCtrl.getCases()" ng-show="vm.tab == 'groupCases'">
+        <opene-list-filter flex list="groupCaseCtrl.caseFilter" choice="groupCaseCtrl.caseFilterChoice" finished="groupCaseCtrl.getCases()" ng-show="vm.tab == 'groupCases'">
         </opene-list-filter>
-    
     </div>
-
-  <md-tabs md-dynamic-height>
-    
-    <md-tab md-on-select="vm.onTabChange('myCases');vm.getCases()">
-      <md-tab-label>
-        <span>{{ 'CASE.MY_CASES' | translate }}</span>
-      </md-tab-label>
-      <md-tab-body>
-          <md-card>
-              <md-card-content>
-                
-                <div class="repeat-table">
-                    <div class="repeat-header" layout="row">
-                        <span layout="row" flex="95">
-                            <span class="r" flex="5"></span>
-                            <span class="r" flex>{{ 'COMMON.TITLE' | translate }}</span>
-                            <span class="r" flex="15">{{ 'COMMON.ID' | translate }}</span>
-                            <span class="r" flex="10">{{ 'COMMON.TYPE' | translate }}</span>
-                            <span class="r" flex="15">{{ 'COMMON.CREATED' | translate }}</span>
-                            <span class="r" flex="15">{{ 'COMMON.MODIFIED' | translate }}</span>
-                            <span class="r" flex="10">{{ 'COMMON.STATUS' | translate }}</span>
-                        </span>
-                        <span flex="5"></span>
-                    </div>
-                    <md-virtual-repeat-container md-auto-shrink style="height: 470px;">
-                        <div md-virtual-repeat="case in vm.cases" class="repeat-item" layout="row">
-                            <a class="r-rowlink"
-                               ui-sref="caseinfo({'caseId': case['oe:id']})"
-                               layout="row"
-                               class="{{ case['oe:status'] == 'passive' ? 'muted' : '' }}"
-                               ui-sref="caseinfo({'caseId': case['oe:id']})"
-                               flex="95">
-                                <span class="r" flex="5"><i class="material-icons">folder_open</i></span>
-                                <span class="r" flex>{{case["cm:title"]}}</span>
-                                <span class="r muted" flex="15">{{case["oe:id"]}}</span>
-                                <span class="r muted" flex="10">{{case["TYPE"] | caseType}}</span>
-                                <span class="r muted" flex="15">{{case["cm:created"] | openeDate}}</span>
-                                <span class="r muted" flex="15">{{case["cm:modified"] | openeDate}}</span>
-                                <span class="r muted" flex="10">{{ case["oe:status"] | caseStatus }}</span>
-                            </a>
-                            <span flex="5" ng-show="vm.isAdmin"><md-button class="md-primary" ng-click="vm.deleteCase(case)">{{ 'COMMON.DELETE' | translate }}</md-button></span>
+    <md-tabs md-dynamic-height>
+        <md-tab md-on-select="vm.onTabChange('myCases');vm.getCases()">
+            <md-tab-label>
+                <span>{{ 'CASE.MY_CASES' | translate }}</span>
+            </md-tab-label>
+            <md-tab-body>
+                <md-card>
+                    <md-card-content>
+                        <div class="repeat-table">
+                            <div class="repeat-header" layout="row">
+                                <span layout="row" flex="95">
+                                    <span class="r" flex="5"></span>
+                                    <span class="r" flex>{{ 'COMMON.TITLE' | translate }}</span>
+                                    <span class="r" flex="15">{{ 'COMMON.ID' | translate }}</span>
+                                    <span class="r" flex="10">{{ 'COMMON.TYPE' | translate }}</span>
+                                    <span class="r" flex="15">{{ 'COMMON.CREATED' | translate }}</span>
+                                    <span class="r" flex="15">{{ 'COMMON.MODIFIED' | translate }}</span>
+                                    <span class="r" flex="10">{{ 'COMMON.STATUS' | translate }}</span>
+                                </span>
+                                <span flex="5"></span>
+                            </div>
+                            <md-virtual-repeat-container md-auto-shrink style="border-bottom:0">
+                                <div md-virtual-repeat="case in vm.cases" class="repeat-item" layout="row">
+                                    <a class="r-rowlink" ui-sref="caseinfo({'caseId': case['oe:id']})" layout="row" class="{{ case['oe:status'] == 'passive' ? 'muted' : '' }}" flex="95">
+                                        <span class="r" flex="5"><i class="material-icons">folder_open</i></span>
+                                        <span class="r" flex>{{case["cm:title"]}}</span>
+                                        <span class="r muted" flex="15">{{case["oe:id"]}}</span>
+                                        <span class="r muted" flex="10">{{case["TYPE"] | caseType}}</span>
+                                        <span class="r muted" flex="15">{{case["cm:created"] | openeDate}}</span>
+                                        <span class="r muted" flex="15">{{case["cm:modified"] | openeDate}}</span>
+                                        <span class="r muted" flex="10">{{ case["oe:status"] | caseStatus }}</span>
+                                    </a>
+                                    <span flex="5" ng-show="vm.isAdmin"><md-button class="md-primary" ng-click="vm.deleteCase(case)">{{ 'COMMON.DELETE' | translate }}</md-button></span>
+                                </div>
+                            </md-virtual-repeat-container>
                         </div>
-                    </md-virtual-repeat-container>
-                </div>
-                
-                <ng-include src="'app/src/cases/view/createCaseMenu.html'"></ng-include>
-                
-              </md-card-content>
-          </md-card>
-      </md-tab-body>
-    </md-tab>
-    <md-tab md-on-select="vm.onTabChange('groupCases');groupCaseCtrl.getCases()">
-      <md-tab-label>
-        <span>{{ 'CASE.GROUP_CASES' | translate }}</span>
-      </md-tab-label>
-      <md-tab-body>
-          <md-card ng-repeat="case in groupCaseCtrl.cases">
-              <md-card-content>
-                <div layout layout-align="space-between center">
-                    <div flex="75">
-                        <span class="r muted">{{'CASE.CASE' | translate}}: {{case["oe:id"]}}</span>
-                    </div>
-                    <div flex="25">
-                        <div class="r muted" translate="CASE.CREATED_BY" translate-value-at="{{case['cm:created'] | openeDate}}" translate-value-by="{{case['cm:creator']}}"></div>
-                        <div class="r muted">{{'COMMON.STATUS' | translate}}: {{ case["oe:status"] | caseStatus }}</div>
-                        <div class="r muted">
-                            {{'COMMON.OWNER' | translate}}:
-                            <span ng-repeat="owner in case['base:owners']">{{owner.fullname}}</span> 
-                        </div>
-                    </div>
-                </div>
-                <h3>{{case["cm:title"]}}</h3>
-                {{case["cm:description"]}}
-                <div style="margin-top: 20px">
-                    <div ng-repeat="document in case.documents" layout="row">
-                        <span class="r muted" flex="10">{{document["cm:title"]}}</span>
-                        <span flex="10">
-                            <a href="javascript:void(0)" ng-click="groupCaseCtrl.previewDocument(document.mainDocNodeRef)">{{ 'COMMON.PREVIEW' | translate }}</a>
+                        <ng-include src="'app/src/cases/view/createCaseMenu.html'"></ng-include>
+                    </md-card-content>
+                </md-card>
+            </md-tab-body>
+        </md-tab>
+        <md-tab md-on-select="vm.onTabChange('groupCases');groupCaseCtrl.getCases()">
+            <md-tab-label>
+                <span>{{ 'CASE.GROUP_CASES' | translate }}</span>
+            </md-tab-label>
+            <md-tab-body>
+                <div ng-show="groupCaseCtrl.layout == 'stream'">
+                    <md-card ng-repeat="case in groupCaseCtrl.cases">
+                        <md-card-content>
+                            <div layout layout-align="space-between center">
+                                <div flex="75">
+                                    <span class="r muted">{{'CASE.CASE' | translate}}: {{case["oe:id"]}}</span>
+                                </div>
+                                <div flex="25">
+                                    <div class="r muted" translate="CASE.CREATED_BY" translate-value-at="{{case['cm:created'] | openeDate}}" translate-value-by="{{case['cm:creator']}}"></div>
+                                    <div class="r muted">{{'COMMON.STATUS' | translate}}: {{ case["oe:status"] | caseStatus }}</div>
+                                    <div class="r muted">
+                                        {{'COMMON.OWNER' | translate}}:
+                                        <span ng-repeat="owner in case['base:owners']">{{owner.fullname}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3>{{case["cm:title"]}}</h3> {{case["cm:description"]}}
+                            <div style="margin-top: 20px">
+                                <div ng-repeat="document in case.documents" layout="row">
+                                    <span class="r muted" flex="10">{{document["cm:title"]}}</span>
+                                    <span flex="10">
+                                        <a href="javascript:void(0)" ng-click="groupCaseCtrl.previewDocument(document.mainDocNodeRef)">{{ 'COMMON.PREVIEW' | translate }}</a>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="repeat-item" layout="row">
+                                <span flex="10">
+                                    <md-button class="md-primary" ng-click="groupCaseCtrl.assignTo(case)">{{ 'CASE.ASSIGN_TO' | translate }}</md-button>
+                                </span>
+                                <span flex="10">
+                            <md-button class="md-primary" href="#/cases/case/{{case['oe:id']}}">{{ 'CASE.VIEW_CASE_DETAILS' | translate }}</md-button>
                         </span>
-                    </div>
+                            </div>
+                        </md-card-content>
+                    </md-card>
                 </div>
-                <div class="repeat-item" layout="row">
-                    <span flex="10">
-                        <md-button class="md-primary" ng-click="groupCaseCtrl.assignTo(case)">{{ 'CASE.ASSIGN_TO' | translate }}</md-button>
-                    </span>
-                    <span flex="10">
-                        <md-button class="md-primary" href="#/cases/case/{{case['oe:id']}}">{{ 'CASE.VIEW_CASE_DETAILS' | translate }}</md-button>
-                    </span>
-                </div>
-              </md-card-content>
-          </md-card>
-      </md-tab-body>
-    </md-tab>
-  </md-tabs>
-
+                <md-card class="repeat-table" ng-show="groupCaseCtrl.layout == 'list'">
+                    <md-card-content>
+                        <div class="repeat-header" layout="row">
+                            <span layout="row" flex="95">
+                                <span class="r" flex="5"></span>
+                                <span class="r" flex>{{ 'COMMON.TITLE' | translate }}</span>
+                                <span class="r" flex="15">{{ 'CASE.CASE' | translate }}</span>
+                                <span class="r" flex="15">{{ 'COMMON.CREATED' | translate }}</span>
+                                <span class="r" flex="10">{{ 'COMMON.CREATED' | translate }} {{ 'COMMON.BY' | translate }}</span>
+                                <span class="r" flex="10">{{'COMMON.OWNER' | translate}}</span>
+                                <span class="r" flex="10">{{ 'COMMON.STATUS' | translate }}</span>
+                            </span>
+                            <span flex="5"></span>
+                        </div>
+                        <md-virtual-repeat-container md-auto-shrink style="border-bottom:0">
+                            <div md-virtual-repeat="case in groupCaseCtrl.cases" class="repeat-item" layout="row">
+                                <a class="r-rowlink" href="#/cases/case/{{case['oe:id']}}" layout="row" class="{{ case['oe:status'] == 'passive' ? 'muted' : '' }}" flex="95">
+                                    <span class="r" flex="5"><i class="material-icons">folder_open</i></span>
+                                    <span class="r" flex>{{case["cm:title"]}}</span>
+                                    <span class="r muted" flex="15">{{case["oe:id"]}}</span>
+                                    <span class="r muted" flex="15">{{case["cm:created"] | openeDate}}</span>
+                                    <span class="r muted" flex="10">{{case['cm:creator']}}</span>
+                                    <span class="r muted" flex="10"><span ng-repeat="owner in case['base:owners']">{{owner.fullname}}</span></span>
+                                    <span class="r muted" flex="10">{{ case["oe:status"] | caseStatus }}</span>
+                                </a>
+                                <span flex="5"><md-button class="md-primary" ng-click="groupCaseCtrl.assignTo(case)">{{ 'CASE.ASSIGN_TO' | translate }}</md-button></span>
+                            </div>
+                        </md-virtual-repeat-container>
+                    </md-card-content>
+                </md-card>
+            </md-tab-body>
+        </md-tab>
+    </md-tabs>
 </md-content>
-  
 <app-footer></app-footer>

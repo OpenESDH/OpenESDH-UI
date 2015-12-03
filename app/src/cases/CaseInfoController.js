@@ -1,19 +1,19 @@
 
-  angular
-       .module('openeApp.cases')
-       .controller('CaseInfoController', CaseInfoController);
-  
-  /*
-   * Main CaseInfoController for the Cases module
-   * @param $scope
-   * @param $stateParams
-   * @param $mdDialog
-   * @param $translate
-   * @param caseService
-   * @constructor
-   */
-  function CaseInfoController($scope, $stateParams, $mdDialog, $translate, $filter, sessionService, caseService, 
-              notificationUtilsService, startCaseWorkflowService, caseCrudDialogService, casePrintDialogService, preferenceService) {
+angular
+        .module('openeApp.cases')
+        .controller('CaseInfoController', CaseInfoController);
+
+/*
+ * Main CaseInfoController for the Cases module
+ * @param $scope
+ * @param $stateParams
+ * @param $mdDialog
+ * @param $translate
+ * @param caseService
+ * @constructor
+ */
+function CaseInfoController($scope, $stateParams, $mdDialog, $translate, $filter, sessionService, caseService,
+        notificationUtilsService, startCaseWorkflowService, caseCrudDialogService, casePrintDialogService, preferenceService) {
     var vm = this;
 
     vm.editCase = editCase;
@@ -23,16 +23,16 @@
     vm.printCase = printCase;
     vm.addCaseToFavourites = addCaseToFavourites;
     vm.removeCaseFromFavourites = removeCaseFromFavourites;
-    vm.checkFavourite = checkFavourite; 
-    
+    vm.checkFavourite = checkFavourite;
+
     $scope.$filter = $filter;
 
-    if ($stateParams.alf_ticket) {
+    if ($stateParams.alf_ticket && !sessionService.getUserInfo()) {
         sessionService.setUserInfo({ticket: $stateParams.alf_ticket});
-    }  
-      
+    }
+
     loadCaseInfo();
-    
+
     function loadCaseInfo() {
         caseService.getCaseInfo($stateParams.caseId).then(function(result) {
             vm.hasData = true;
@@ -41,9 +41,10 @@
             $scope.case = result.properties;
             $scope.caseIsLocked = result.isLocked;
             $scope.caseStatusChoices = result.statusChoices;
+            vm.checkFavourite();
         }, function(response) {
             vm.hasData = false;
-            if (response.status === 400){
+            if (response.status === 400) {
                 //bad reqest (might be handled exception)
                 //CASE.CASE_NOT_FOUND
                 var key = 'CASE.' + response.data.message.split(' ')[1];
@@ -54,76 +55,74 @@
             //other exceptions
             notificationUtilsService.alert(response.data.message);
         });
-        
-        vm.checkFavourite();
     }
-    
+
     function editCase(ev) {
-        caseCrudDialogService.editCase(vm.caseInfo).then(function(result){
+        caseCrudDialogService.editCase(vm.caseInfo).then(function(result) {
             loadCaseInfo();
         });
     }
 
     function changeCaseStatus(status) {
-      function confirmCloseCase() {
-        // TODO: Check if there are any unlocked documents in the case and
-        // notify the user in the confirmation dialog.
+        function confirmCloseCase() {
+            // TODO: Check if there are any unlocked documents in the case and
+            // notify the user in the confirmation dialog.
 
-        var confirm = $mdDialog.confirm()
-            .title($translate.instant("COMMON.CONFIRM"))
-            .textContent($translate.instant("CASE.CONFIRM_CLOSE_CASE"))
-            .ariaLabel($translate.instant("CASE.CONFIRM_CLOSE_CASE"))
-            .ok($translate.instant("COMMON.OK"))
-            .cancel($translate.instant("COMMON.CANCEL"));
-        return $mdDialog.show(confirm);
-      }
+            var confirm = $mdDialog.confirm()
+                    .title($translate.instant("COMMON.CONFIRM"))
+                    .textContent($translate.instant("CASE.CONFIRM_CLOSE_CASE"))
+                    .ariaLabel($translate.instant("CASE.CONFIRM_CLOSE_CASE"))
+                    .ok($translate.instant("COMMON.OK"))
+                    .cancel($translate.instant("COMMON.CANCEL"));
+            return $mdDialog.show(confirm);
+        }
 
-      var changeCaseStatusImpl = function () {
-        caseService.changeCaseStatus($stateParams.caseId, status).then(function (json) {
-          loadCaseInfo();
-          // TODO: Documents listing also needs to be reloaded
-          notificationUtilsService.notify($translate.instant("CASE.STATUS_CHANGED_SUCCESS"));
-        }, function (response) {
-          notificationUtilsService.alert(response.data.message);
-        });
-      };
+        var changeCaseStatusImpl = function() {
+            caseService.changeCaseStatus($stateParams.caseId, status).then(function(json) {
+                loadCaseInfo();
+                // TODO: Documents listing also needs to be reloaded
+                notificationUtilsService.notify($translate.instant("CASE.STATUS_CHANGED_SUCCESS"));
+            }, function(response) {
+                notificationUtilsService.alert(response.data.message);
+            });
+        };
 
-      if (status === "closed") {
-        confirmCloseCase().then(function () {
-          changeCaseStatusImpl();
-        });
-      } else {
-        changeCaseStatusImpl();
-      }
+        if (status === "closed") {
+            confirmCloseCase().then(function() {
+                changeCaseStatusImpl();
+            });
+        } else {
+            changeCaseStatusImpl();
+        }
     }
-    
-    function onTabChange(tabName){
-        $scope.$broadcast('tabSelectEvent', { tab: tabName});
+
+    function onTabChange(tabName) {
+        $scope.$broadcast('tabSelectEvent', {tab: tabName});
     }
-    
-    function startWorklfow(){
+
+    function startWorklfow() {
         startCaseWorkflowService.startWorkflow();
     }
-    
-    function printCase(){
+
+    function printCase() {
         casePrintDialogService.printCase($stateParams.caseId);
     }
-    
-    function addCaseToFavourites(){
-        preferenceService.addFavouriteCase($stateParams.caseId).then(function(){
+
+    function addCaseToFavourites() {
+        preferenceService.addFavouriteCase($stateParams.caseId).then(function() {
             vm.checkFavourite();
         });
     }
 
-    function removeCaseFromFavourites(){
-        preferenceService.removeFavouriteCase($stateParams.caseId).then(function(){
+    function removeCaseFromFavourites() {
+        preferenceService.removeFavouriteCase($stateParams.caseId).then(function() {
             vm.checkFavourite();
         });
     }
 
-    function checkFavourite(){
-        preferenceService.isFavouriteCase($stateParams.caseId).then(function(result){
-            vm.isFavourite = result; 
+    function checkFavourite() {
+        preferenceService.isFavouriteCase($stateParams.caseId).then(function(result) {
+            vm.isFavourite = result;
         });
     }
-  };
+}
