@@ -216,11 +216,19 @@ md-list md-list-item.active a {
 	}
 
 	.r {
-		padding: 0.5em 1em;
+		line-height: 3em;
 		display: block;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
+
+		a.md-button {
+			display: inline-flex;
+		}
+
+		i.material-icons, img.md-avatar {
+			vertical-align: middle;
+		}
 	}
 
 	.repeat-header {

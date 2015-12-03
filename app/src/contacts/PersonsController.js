@@ -1,31 +1,57 @@
 
     angular
-            .module('openeApp.contacts')
-            .controller('PersonsController', PersonsController);
+        .module('openeApp.contacts')
+        .controller('PersonsController', PersonsController);
 
     function PersonsController($mdDialog, $translate,
             contactsService, countriesService, PATTERNS, notificationUtilsService) {
         var vm = this;
-        vm.doFilter = doFilter;
         vm.showPersonEdit = showPersonEdit;
         vm.persons = [];
         vm.searchQuery = null;
-        vm.pagingParams = contactsService.createPagingParams();
 
-        initList();
+        vm.dynamicLoader = {
+            numLoaded_: 0,
+            toLoad_: 0,
+            topIndex: 0,
+            beenInitialized: false,
+            params: contactsService.createPagingParams(),
+            
+            // Required!!.
+            getItemAtIndex: function(index) {
+                if (index > vm.persons.length) {
+                    this.fetchMoreItems_(index);
+                    return null;
+                }
+                return vm.persons[index];
+            },
 
-        function initList() {
-            vm.persons.length = 0;
-            contactsService.getPersons(vm.searchQuery, vm.pagingParams).then(function(response) {
-                vm.persons = response;
-                vm.pagingParams.totalRecords = response.totalRecords;
-            }, error);
-        }
+            // Required!!.
+            getLength: function() {
+                return this.beenInitialized ? vm.persons.length : 999;
+            },
 
-        function doFilter(page) {
-            vm.pagingParams.page = page || 1;
-            initList();
-        }
+            refresh: function () {
+                vm.persons = [];
+                this.numLoaded_ = 0,
+                this.toLoad_ = 0;
+                this.topIndex = 0;
+                this.beenInitialized = false;
+            },
+
+            fetchMoreItems_: function(index) {
+                var self = this;
+                if (self.toLoad_ < index) {
+                    self.toLoad_ += 20;
+                    self.params.page = vm.persons.length === 0 ? 1 : self.params.page + 1;
+                    contactsService.getPersons(vm.searchQuery, self.params).then(function(response) {
+                        self.beenInitialized = true;
+                        vm.persons = vm.persons.concat(response.items);
+                        self.params.totalRecords = response.totalRecords;
+                    }, error);
+                }
+            }
+        };
 
         function showPersonEdit(ev, person) {
             $mdDialog.show({
@@ -89,7 +115,7 @@
 
             function refreshInfoAfterSuccessWithMsg(msg) {
                 notificationUtilsService.notify(msg);
-                vm.doFilter();
+                vm.dynamicLoader.refresh();
                 $mdDialog.hide();
             }
         }

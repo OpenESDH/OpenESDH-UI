@@ -1,7 +1,7 @@
 <md-card ng-controller="UsersController as vm">
     <md-card-content>
 
-        <div layout="row" layout-align="space-between center">
+        <div layout layout-align="space-between center">
             <h2 class="md-title" flex>{{ 'USER.USERS' | translate }}</h2>
             <opene-filter-search flex="15" 
                 option-label="vm.optionLabel"
@@ -11,36 +11,45 @@
             </opene-filter-search>
         </div>
 
-        <table>
-            <thead>
-            <tr>
-                <th>{{ 'USER.USERNAME' | translate }}</th>
-                <th>{{ 'USER.FIRST_NAME' | translate }}</th>
-                <th>{{ 'USER.LAST_NAME' | translate }}</th>
-                <th>{{ 'COMMON.EMAIL' | translate }}</th>
-                <th>{{ 'COMMON.ACTION' | translate }}</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            <tr ng-repeat="user in vm.allSystemUsers" ng-if="user.userName!='guest'" class="{{user.enabled ? 'enabled' : 'muted'}}">
-            <td>{{user.userName}}</td>
-                <td>{{user.firstName}}</td>
-                <td>{{user.lastName}}</td>
-                <td>{{user.email}}</td>
-                <td>
-                    <md-button class="md-primary" ng-click="vm.editUser($event, user)" aria-label="Edit user">
-                        {{ 'USER.EDIT_USER' | translate }}
-                    </md-button>
-                    <md-button class="md-primary" ng-if="user.userName !== 'admin'" ng-click="vm.deleteUser($event, user)" aria-label="Delete user">
-                        {{ 'COMMON.DELETE' | translate }}
-                    </md-button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="repeat-table">
+            <div class="repeat-header" layout>
+                <span layout="row" flex="95">
+                    <span class="r" flex="5"></span>
+                    <span class="r" flex="10">{{ 'USER.USERNAME' | translate }}</span>
+                    <span class="r" flex="15">{{ 'USER.FIRST_NAME' | translate }}</span>
+                    <span class="r" flex="15">{{ 'USER.LAST_NAME' | translate }}</span>
+                    <span class="r" flex>{{ 'COMMON.EMAIL' | translate }}</span>
+                    <span class="r" flex="15">{{ 'COMMON.ACTION' | translate }}</span>
+                </span>
+                <span flex="5"></span>
+            </div>
+            <md-virtual-repeat-container md-auto-shrink style="height: 450px;">
+                <div md-virtual-repeat="user in vm.allSystemUsers" class="repeat-item" layout="row">
+                    <a class="r-rowlink"
+                       layout="row"
+                       class="{{user.enabled ? 'enabled' : 'muted'}}"
+                       ng-show="user.userName != 'guest'"
+                       flex="95">
+                        <span class="r" flex="5"><i class="material-icons">account_box</i></span>
+                        <span class="r" flex="10">{{user.userName}}</span>
+                        <span class="r muted" flex="15">{{user.firstName}}</span>
+                        <span class="r muted" flex="15">{{user.lastName}}</span>
+                        <span class="r muted" flex>{{user.email}}</span>
+                        <span class="r muted" flex="15">
+                            <md-button class="md-primary" style="margin: 0;" ng-click="vm.editUser($event, user)" aria-label="Edit user">
+                                {{ 'USER.EDIT_USER' | translate }}
+                            </md-button>
+                            <md-button class="md-primary" style="margin: 0;" ng-if="user.userName !== 'admin'" ng-click="vm.deleteUser($event, user)" aria-label="Delete user">
+                                {{ 'COMMON.DELETE' | translate }}
+                            </md-button>
+                        </span>
+                    </a>
+                </div>
+            </md-virtual-repeat-container>
+        </div>
     </md-card-content>
-    <div class="md-actions" layout="row">
+
+    <div class="md-actions" layout>
         <md-button class="md-primary" ng-click="vm.createUser($event)" aria-label="Create new user">
             {{ 'USER.CREATE_USER' | translate }}
         </md-button>

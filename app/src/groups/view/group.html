@@ -1,40 +1,42 @@
 <md-card ng-controller="GroupController as vm">
-  <md-card-content>
-    <div layout="row">
-      <md-button ui-sref="administration.groups">
-        <i class="material-icons">arrow_back</i>
-      </md-button>
-      <h3>{{ 'GROUP.GROUP' | translate }}: {{ vm.group.displayName }}</h3>
-    </div>
-    <table>
-      <thead>
-        <tr>
-          <th></th>
-          <th>{{ 'COMMON.NAME' | translate }}</th>
-          <th>{{ 'COMMON.ACTIONS' | translate }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="m in vm.groups">
-          <td><i class="material-icons">{{ m.authorityType == 'USER' ? "person" : "group" }}</i></td>
-          <td>{{ m.displayName }}</td>
-          <td layout="row">
-            <md-button ng-show="{{ m.authorityType == 'GROUP' }}" ui-sref="administration.group({'shortName': m.shortName })">
-              {{ 'COMMON.VIEW_DETAILS' | translate }}
+    <md-card-content>
+        <div layout>
+            <md-button ui-sref="administration.groups" ng-aria="{{ 'GROUP.GROUPS' | translate }}">
+                <i class="material-icons" style="vertical-align: middle;">arrow_back</i> {{ 'GROUP.GROUPS' | translate }}
             </md-button>
-            <md-button ng-disabled="false" ng-click="vm.removeMemberFromGroup(vm.group.shortName, m.authorityType, m.shortName, $event)" >
-              {{ 'COMMON.REMOVE' | translate }}
-            </md-button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    
-  </md-card-content>
-  <md-card-footer>
-    
-    <opene-group-user-dialog search-type="users" get-selected-items="vm.addMembersToGroup"></opene-group-user-dialog>
-    <opene-group-user-dialog search-type="groups" get-selected-items="vm.addMembersToGroup"></opene-group-user-dialog>
-    
-  </md-card-footer>
+            <h3 class="md-headline" layout-margin>
+                {{ 'GROUP.GROUP' | translate }}: <span class="muted">{{ vm.group.displayName }}</span>
+            </h3>
+        </div>
+
+        <div class="repeat-table">
+            <div class="repeat-header" layout>
+                <span layout flex>
+                    <span class="r" flex="5"></span>
+                    <span class="r" flex="50">{{ 'COMMON.NAME' | translate }}</span>
+                    <span class="r" flex>{{ 'COMMON.ACTIONS' | translate }}</span>
+                </span>
+            </div>
+            <md-virtual-repeat-container md-auto-shrink style="height: 450px;">
+                <div md-virtual-repeat="m in vm.groups" class="repeat-item" layout>
+                    <span class="r" flex="5"><i class="material-icons">{{ m.authorityType == 'USER' ? "person" : "group" }}</i></span>
+                    <span class="r" flex="50">{{ m.displayName}}</span>
+              
+                    <span class="r" flex="25">
+                        <md-button ng-show="{{ m.authorityType == 'GROUP' }}" ui-sref="administration.group({'shortName': m.shortName })">
+                            {{ 'COMMON.VIEW_DETAILS' | translate }}
+                        </md-button>
+                        <md-button ng-disabled="false" ng-click="vm.removeMemberFromGroup(vm.group.shortName, m.authorityType, m.shortName, $event)">
+                            {{ 'COMMON.REMOVE' | translate }}
+                        </md-button>
+                    </span>
+                </div>
+            </md-virtual-repeat-container>
+        </div>
+    </md-card-content>
+
+    <md-card-footer>
+        <opene-group-user-dialog search-type="users" get-selected-items="vm.addMembersToGroup"></opene-group-user-dialog>
+        <opene-group-user-dialog search-type="groups" get-selected-items="vm.addMembersToGroup"></opene-group-user-dialog>
+    </md-card-footer>
 </md-card>

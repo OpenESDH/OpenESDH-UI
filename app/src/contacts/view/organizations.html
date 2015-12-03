@@ -24,11 +24,11 @@
                     <td>{{organization.address}}</td>
                     <td>{{organization.postCode}}</td>
                     <td>{{organization.cityName}}</td>
-                    <td>{{organization.countryCode ? (organization.countryCode| countryCodeToName) : null}}</td>
+                    <td>{{organization.countryCode ? (organization.countryCode | countryCodeToName) : null}}</td>
                     <td>
                         <a class="md-button md-primary" ui-sref="administration.organization({'storeProtocol': organization.storeType, 'storeIdentifier': organization.storeId, 'uuid': organization.id})">
-              {{ 'COMMON.VIEW_DETAILS' | translate }}
-            </a>
+                            {{ 'COMMON.VIEW_DETAILS' | translate }}
+                        </a>
                     </td>
                 </tr>
             </tbody>
@@ -38,9 +38,11 @@
             <div style="float: right;">
                 <span>{{vm.pagingParams.getStartIndex()}} - {{vm.pagingParams.getEndIndex()}} {{ 'COMMON.OF' | translate }} {{vm.pagingParams.totalRecords}}</span>
                 <span>
-          <md-button ng-click="vm.doFilter(vm.pagingParams.page - 1)" ng-disabled="!vm.pagingParams.hasPreviousPage()" title="Previos page">&lt;</md-button>
-          <md-button ng-click="vm.doFilter(vm.pagingParams.page + 1)" ng-disabled="!vm.pagingParams.hasNextPage()" title="Next page">&gt;</md-button>
-        </span>
+                  <md-button ng-click="vm.doFilter(vm.pagingParams.page - 1)" ng-disabled="!vm.pagingParams.hasPreviousPage()" title="Previos page">
+                    &lt;</md-button>
+                  <md-button ng-click="vm.doFilter(vm.pagingParams.page + 1)" ng-disabled="!vm.pagingParams.hasNextPage()" title="Next page">
+                    &gt;</md-button>
+                </span>
             </div>
         </div>
     </md-card-content>
