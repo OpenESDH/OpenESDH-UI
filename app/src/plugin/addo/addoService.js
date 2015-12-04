@@ -28,13 +28,13 @@ function addoService($http, $q) {
     }
 
     function getSigningTemplates() {
-        return $http.get('/alfresco/s/api/vismaaddo/SigningTemplates').then(function(response) {
+        return $http.get('/alfresco/s/api/openesdh/addo/SigningTemplates').then(function(response) {
             return response.data.SigningTemplateItems.SigningTemplate;
         });
     }
 
     function initiateSigning(data) {
-        return $http.post('/alfresco/s/api/vismaaddo/InitiateSigning', data).then(function(response) {
+        return $http.post('/alfresco/s/api/openesdh/addo/InitiateSigning', data).then(function(response) {
             return response.data;
         });
     }
