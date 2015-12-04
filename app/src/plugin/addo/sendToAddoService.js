@@ -64,6 +64,7 @@ function SendToAddoService($stateParams, $mdDialog, $filter, $q, $translate, not
     function AddoDialogController($mdDialog, templates, parties, documents) {
         var addoCtrl = this;
         addoCtrl.model = {
+            caseId: $stateParams.caseId,
             template: null,
             receivers: [],
             sequential: false,
