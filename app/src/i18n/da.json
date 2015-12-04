@@ -69,6 +69,7 @@
         "CONFIRM_CLOSE_CASE": "Vil du lukke denne sag?",
         "STATUS_CHANGED_SUCCESS": "Status er ændret",
         "CASETYPE_STANDARD": "Standard sag",
+        "RELATED_CASE_TYPES": "Relaterede sagstyper",
         "TYPE": {
             "simple_case": "Standardsag",
             "staff_case": "Personalesag"
@@ -587,17 +588,17 @@
         "CONTACT_DELETED_SUCCESSFULLY": "Kontakt \"{{firstName}} {{lastName}}\" slettet"
     },
     "ERROR": {
-        "REQUIRED": "Obligatoriske felt",
-        "TOO_SHORT": "This field is too short",
-        "TOO_LONG": "This field is too long",
-        "INVALID_EMAIL": "Email address is invalid",
+        "REQUIRED": "Obligatorisk felt",
+        "TOO_SHORT": "Det er for kort",
+        "TOO_LONG": "Det er for langt",
+        "INVALID_EMAIL": "Emailadresse dur ikke",
         "PASSWORD_NOMATCH": "Kodeord matcher ikke",
-        "EMAIL_NOT_EXISTS": "Email finnes ikke",
-        "EMAIL_EXISTS": "Email finnes allerede",
-        "USERNAME_EXISTS": "Brugernavn finnes allerede",
+        "EMAIL_NOT_EXISTS": "Email findes ikke",
+        "EMAIL_EXISTS": "Email findes allerede",
+        "USERNAME_EXISTS": "Brugernavn findes allerede",
         "AUTH_FAILURE": "Forkerte loginoplysninger",
-        "NOT_EQUAL_PATTERN": "Feil input format",
-        "INCORECT_ADDO_PASSWORD": "Feil ADDO kodeord"
+        "NOT_EQUAL_PATTERN": "Fejl i input format",
+        "INCORECT_ADDO_PASSWORD": "Fejl i ADDO kodeord"
     },
     "LOGIN": {
         "LOGIN": "Log ind",

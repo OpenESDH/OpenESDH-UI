@@ -68,6 +68,7 @@
         "CONFIRM_CLOSE_CASE": "Do you want to close this case?",
         "STATUS_CHANGED_SUCCESS": "Status has been changed successfully",
         "CASETYPE_STANDARD": "Standard case",
+        "RELATED_CASE_TYPES": "Related case types",
         "TYPE": {
             "simple_case": "Standard case",
             "staff_case": "Staff case"
