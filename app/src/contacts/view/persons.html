@@ -1,12 +1,16 @@
 <md-card ng-controller="PersonsController as vm">
     <md-card-content>
-      
-        <h3 class="md-title">{{ 'CONTACT.CONTACTS' | translate }}</h3>
-        
-        <md-input-container>
-            <label>{{ 'CONTACT.SEARCH_FOR_CONTACTS' | translate }}</label>
-            <input type="text" ng-model="vm.searchQuery" ng-change="vm.doFilter()">
-        </md-input-container>
+
+    	<div layout layout-align="space-between">
+	      
+	        <h3 class="md-title">{{ 'CONTACT.CONTACTS' | translate }}</h3>
+	        
+	        <md-input-container>
+	            <label>{{ 'CONTACT.SEARCH_FOR_CONTACTS' | translate }}</label>
+	            <input type="text" ng-model="vm.searchQuery" ng-model-options="{debounce: 300}" ng-change="vm.dataLoader.search(vm.searchQuery)">
+	        </md-input-container>
+
+	    </div>
         
         <div ng-include="'app/src/contacts/view/sharedPersonsList.html'" ></div>
     </md-card-content>

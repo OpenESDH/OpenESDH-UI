@@ -1,36 +1,30 @@
-<table>
-    <thead>
-        <th>{{ 'CONTACT.FIRST_NAME' | translate }}</th>
-        <th>{{ 'CONTACT.LAST_NAME' | translate }}</th>
-        <th>{{ 'CONTACT.DEPARTMENT' | translate }}</th>
-        <th>{{ 'CONTACT.STREET' | translate }}</th>
-        <th>{{ 'CONTACT.POSTAL_CODE' | translate }}</th>
-        <th>{{ 'CONTACT.CITY' | translate }}</th>
-        <th>{{ 'CONTACT.COUNTRY' | translate }}</th>
-        <th>{{ 'COMMON.ACTIONS' | translate }}</th>
-    </thead>
-    <tbody>
-        <tr ng-repeat="person in vm.persons.items">
-            <td>{{person.firstName}}</td>
-            <td>{{person.lastName}}</td>
-            <td>{{person.department}}</td>
-            <td>{{person.address}}</td>
-            <td>{{person.postCode}}</td>
-            <td>{{person.cityName}}</td>
-            <td>{{person.countryCode ? (person.countryCode| countryCodeToName) : null}}</td>
-            <td><md-button class="md-primary" ng-click="vm.showPersonEdit($event, person)">{{ 'COMMON.EDIT' | translate }}</md-button></td>
-        </tr>
-    </tbody>
-</table>
+<div class="repeat-table">
+    <div class="repeat-header" layout>
+        <span class="r" flex="10">{{ 'CONTACT.FIRST_NAME' | translate }}</span>
+        <span class="r" flex="10">{{ 'CONTACT.LAST_NAME' | translate }}</span>
+        <span class="r" flex="20">{{ 'CONTACT.DEPARTMENT' | translate }}</span>
+        <span class="r" flex="20">{{ 'CONTACT.STREET' | translate }}</span>
+        <span class="r" flex="10">{{ 'CONTACT.POSTAL_CODE' | translate }}</span>
+        <span class="r" flex="10">{{ 'CONTACT.CITY' | translate }}</span>
+        <span class="r" flex="10">{{ 'CONTACT.COUNTRY' | translate }}</span>
+        <span class="r" flex="10">{{ 'COMMON.ACTIONS' | translate }}</span>
+    </div>
+    <md-virtual-repeat-container style="height: 400px;">
+        <div md-virtual-repeat="person in vm.dataLoader" md-on-demand class="repeat-item" layout>
+            <span class="r" flex="10">{{person.firstName}}</span>
+            <span class="r" flex="10">{{person.lastName}}</span>
+            <span class="r" flex="20">{{person.department}}</span>
+            <span class="r" flex="20">{{person.address}}</span>
+            <span class="r" flex="10">{{person.postCode}}</span>
+            <span class="r" flex="10">{{person.cityName}}</span>
+            <span class="r" flex="10">{{person.countryCode ? (person.countryCode | countryCodeToName) : null}}</span>
+            <span class="r" flex="10">
+                <md-button class="md-primary" ng-click="vm.showPersonEdit($event, person)">{{ 'COMMON.EDIT' | translate }}</md-button>
+            </span>
+        </div>
+    </md-virtual-repeat-container>
+</div>
 
 <div class="md-actions">
-  <md-button class="md-primary" ng-click="vm.showPersonEdit($event, null)">{{ 'CONTACT.CREATE_NEW_CONTACT' | translate }}</md-button>
-  <!-- Here is a pager that we'd like to replace with md-virtual-repeat -->
-  <div style="float: right;" ng-show="vm.pagingParams && vm.pagingParams.totalRecords > 0">
-    <span>{{vm.pagingParams.getStartIndex()}} - {{vm.pagingParams.getEndIndex()}} {{ 'COMMON.OF' | translate }} {{vm.pagingParams.totalRecords}}</span>
-    <span>
-      <md-button ng-click="vm.doFilter(vm.pagingParams.page - 1)" ng-disabled="!vm.pagingParams.hasPreviousPage()" title="Previos page">&lt;</md-button>
-      <md-button ng-click="vm.doFilter(vm.pagingParams.page + 1)" ng-disabled="!vm.pagingParams.hasNextPage()" title="Next page">&gt;</md-button>
-    </span>
-  </div>
+    <md-button class="md-primary" ng-click="vm.showPersonEdit($event, null)">{{ 'CONTACT.CREATE_NEW_CONTACT' | translate }}</md-button>
 </div>

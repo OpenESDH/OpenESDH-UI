@@ -1,47 +1,47 @@
 <md-card ng-controller="OrganizationController as vm">
     <md-card-content>
-        <h3>{{ 'ORG.ORGANIZATIONS' | translate }}</h3>
-        <md-input-container>
-            <label>{{ 'ORG.SEARCH_FOR_ORG' | translate }}</label>
-            <input type="text" ng-model="vm.searchQuery" ng-change="vm.doFilter()">
-        </md-input-container>
-        <table>
-            <thead>
-                <th>{{ 'COMMON.NAME' | translate }}</th>
-                <th>{{ 'ORG.CVR_NO' | translate }}</th>
-                <th>{{ 'ORG.DEPARTMENT' | translate }}</th>
-                <th>{{ 'ORG.STREET' | translate }}</th>
-                <th>{{ 'ORG.POSTAL_CODE' | translate }}</th>
-                <th>{{ 'ORG.CITY' | translate }}</th>
-                <th>{{ 'ORG.COUNTRY' | translate }}</th>
-                <th>{{ 'COMMON.ACTIONS' | translate }}</th>
-            </thead>
-            <tbody>
-                <tr ng-repeat="organization in vm.organizations.items">
-                    <td>{{organization.organizationName}}</td>
-                    <td>{{organization.cvrNumber}}</td>
-                    <td></td>
-                    <td>{{organization.address}}</td>
-                    <td>{{organization.postCode}}</td>
-                    <td>{{organization.cityName}}</td>
-                    <td>{{organization.countryCode ? (organization.countryCode| countryCodeToName) : null}}</td>
-                    <td>
-                        <a class="md-button md-primary" ui-sref="administration.organization({'storeProtocol': organization.storeType, 'storeIdentifier': organization.storeId, 'uuid': organization.id})">
-              {{ 'COMMON.VIEW_DETAILS' | translate }}
-            </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+
+        <div layout layout-align="space-between">
+            <h3 class="md-title">{{ 'ORG.ORGANIZATIONS' | translate }}</h3>
+
+            <md-input-container>
+                <label>{{ 'ORG.SEARCH_FOR_ORG' | translate }}</label>
+                <input type="text" ng-model="vm.searchQuery" ng-model-options="{debounce: 300}" ng-change="vm.dataLoader.search(vm.searchQuery)">
+            </md-input-container>
+        </div>
+        
+
+        <div class="repeat-table">
+            <div class="repeat-header" layout>
+                <span layout flex>
+                    <span class="r" flex="10">{{ 'COMMON.NAME' | translate }}</span>
+                    <span class="r" flex="10">{{ 'ORG.CVR_NO' | translate }}</span>
+                    <span class="r" flex="20">{{ 'ORG.DEPARTMENT' | translate }}</span>
+                    <span class="r" flex="20">{{ 'ORG.STREET' | translate }}</span>
+                    <span class="r" flex="10">{{ 'ORG.POSTAL_CODE' | translate }}</span>
+                    <span class="r" flex="10">{{ 'ORG.CITY' | translate }}</span>
+                    <span class="r" flex="10">{{ 'ORG.COUNTRY' | translate }}</span>
+                    <span class="r" flex="10">{{ 'COMMON.ACTIONS' | translate }}</span>
+                </span>
+            </div>
+            <md-virtual-repeat-container style="height: 400px;">
+                <div md-virtual-repeat="organization in vm.dataLoader" md-on-demand class="repeat-item" layout>
+                    <span class="r" flex="10">{{organization.organizationName}}</span>
+                    <span class="r" flex="10">{{organization.cvrNumber}}</span>
+                    <span class="r" flex="20"></span>
+                    <span class="r" flex="20">{{organization.address}}</span>
+                    <span class="r" flex="10">{{organization.postCode}}</span>
+                    <span class="r" flex="10">{{organization.cityName}}</span>
+                    <span class="r" flex="10">{{organization.countryCode ? (organization.countryCode | countryCodeToName) : null}}</span>
+                    <span class="r" flex="10">
+                        <md-button class="md-primary" ui-sref="administration.organization({'storeProtocol': organization.storeType, 'storeIdentifier': organization.storeId, 'uuid': organization.id})">{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button>
+                    </span>
+                </div>
+            </md-virtual-repeat-container>
+        </div>
+
         <div class="md-actions">
             <md-button class="md-primary" ng-click="vm.showOrganizationEdit($event)">{{ 'ORG.CREATE_NEW_ORG' | translate }}</md-button>
-            <div style="float: right;">
-                <span>{{vm.pagingParams.getStartIndex()}} - {{vm.pagingParams.getEndIndex()}} {{ 'COMMON.OF' | translate }} {{vm.pagingParams.totalRecords}}</span>
-                <span>
-          <md-button ng-click="vm.doFilter(vm.pagingParams.page - 1)" ng-disabled="!vm.pagingParams.hasPreviousPage()" title="Previos page">&lt;</md-button>
-          <md-button ng-click="vm.doFilter(vm.pagingParams.page + 1)" ng-disabled="!vm.pagingParams.hasNextPage()" title="Next page">&gt;</md-button>
-        </span>
-            </div>
         </div>
     </md-card-content>
 </md-card>

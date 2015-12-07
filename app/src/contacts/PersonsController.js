@@ -1,31 +1,12 @@
 
     angular
-            .module('openeApp.contacts')
-            .controller('PersonsController', PersonsController);
+        .module('openeApp.contacts')
+        .controller('PersonsController', PersonsController);
 
-    function PersonsController($mdDialog, $translate,
-            contactsService, countriesService, PATTERNS, notificationUtilsService) {
+    function PersonsController($mdDialog, $translate, contactsService, countriesService, PATTERNS, notificationUtilsService, VirtualRepeatLoader) {
         var vm = this;
-        vm.doFilter = doFilter;
         vm.showPersonEdit = showPersonEdit;
-        vm.persons = [];
-        vm.searchQuery = null;
-        vm.pagingParams = contactsService.createPagingParams();
-
-        initList();
-
-        function initList() {
-            vm.persons.length = 0;
-            contactsService.getPersons(vm.searchQuery, vm.pagingParams).then(function(response) {
-                vm.persons = response;
-                vm.pagingParams.totalRecords = response.totalRecords;
-            }, error);
-        }
-
-        function doFilter(page) {
-            vm.pagingParams.page = page || 1;
-            initList();
-        }
+        vm.dataLoader = new VirtualRepeatLoader(contactsService.getPersons, error);
 
         function showPersonEdit(ev, person) {
             $mdDialog.show({
@@ -89,7 +70,7 @@
 
             function refreshInfoAfterSuccessWithMsg(msg) {
                 notificationUtilsService.notify(msg);
-                vm.doFilter();
+                vm.dynamicLoader.refresh();
                 $mdDialog.hide();
             }
         }

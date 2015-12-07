@@ -21,11 +21,9 @@
         return service;
 
         function getCaseTypes() {
-            return $http.get('/alfresco/service/api/openesdh/casetypes/casecreator').then(getCaseTypesComplete);
-
-            function getCaseTypesComplete(response) {
+            return $http.get('/alfresco/service/api/openesdh/casetypes/casecreator').then(function (response) {
                 return response.data;
-            }
+            });
         }
 
         function getCases(baseType, filters) {
@@ -44,14 +42,9 @@
             if(filters != null && filters != undefined){
                 params.filters = filters;
             }
-            return $http.get(url, {params: params}).then(getCasesComplete, getCasesFailed);
-
-            function getCasesComplete(response) {
+            return $http.get(url, {params: params}).then(function (reponse) {
                 return response.data;
-            }
-
-            function getCasesFailed(error) {
-            }
+            });
         }
 
         function getMyCases(baseType) {
