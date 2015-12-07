@@ -42,7 +42,7 @@
             if(filters != null && filters != undefined){
                 params.filters = filters;
             }
-            return $http.get(url, {params: params}).then(function (reponse) {
+            return $http.get(url, {params: params}).then(function (response) {
                 return response.data;
             });
         }
