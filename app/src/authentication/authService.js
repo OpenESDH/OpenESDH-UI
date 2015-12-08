@@ -179,7 +179,6 @@ function authService($http, $window, $state, sessionService, $translate, userSer
             delete $window._openESDHSessionExpired;
             var userInfo = sessionService.getUserInfo();
             userInfo['user'] = response;
-            userInfo['aaa'] = true;
             sessionService.setUserInfo(userInfo);
             return response;
         });
