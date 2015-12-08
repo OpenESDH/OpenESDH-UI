@@ -21,6 +21,8 @@ var dist = {
 	folder: './dist/'
 };
 
+var openeModules = [];
+
 // Setting up a local webserver
 function createWebserver(config) {
 	return gulp.src('./')
@@ -34,6 +36,14 @@ function createWebserver(config) {
 			}));
 };
 
+function includeOpeneModules(content){
+    if(openeModules.length == 0){
+        return content;
+    }
+    var modules = 'opene-modules\n            ' + openeModules.join() + ',';
+    return content.replace(/opene-modules/g, modules);
+}
+
 // Script tasks
 gulp.task('scripts', function () {
 	return gulp.src(paths.scripts)
@@ -41,6 +51,7 @@ gulp.task('scripts', function () {
 			//.pipe($.jshint('.jshintrc'))
 			//.pipe($.jshint.reporter('jshint-stylish'))
 			.pipe($.concat(dist.name + '.js'))
+			.pipe($.change(includeOpeneModules))
 			.pipe(gulp.dest(dist.folder))
 			.pipe($.rename({ suffix: '.min' }))
             .pipe($.stripDebug())
@@ -110,3 +121,8 @@ gulp.task('ui-test', ['e2e-tests']);
 	In other words, the default task is the 'dev' task
 */
 gulp.task('default', ['dev']);
+
+
+gulp.task('staff', function(){
+    openeModules.push("'openeApp.cases.staff'");
+});
