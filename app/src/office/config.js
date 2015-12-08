@@ -26,7 +26,7 @@
             views: {
                 'content@': {
                     templateUrl: '/app/src/office/view/caseInfo.html',
-                    controller: 'CaseInfoController',
+                    controller: 'OutlookCaseInfoController',
                     controllerAs: 'vm'
                 }
             },
