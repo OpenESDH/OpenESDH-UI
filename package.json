@@ -21,6 +21,7 @@
     "gulp-util": "^3.0.6",
     "gulp-webserver": "^0.9.1",
     "gulp-wrap": "^0.11.0",
+    "gulp-change": "",
     "jshint-stylish": "^2.0.1",
     "karma": "~0.13",
     "karma-jasmine": "^0.3.6",

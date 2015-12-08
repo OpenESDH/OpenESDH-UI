@@ -13,7 +13,6 @@
             'isteven-multi-select',
             'openeApp.translations.init',
             'openeApp.cases',
-            'openeApp.cases.staff',
             'openeApp.cases.members',
             'openeApp.cases.parties',
             'openeApp.classification',
@@ -37,6 +36,7 @@
             'dcbImgFallback',
             'openeApp.addo',
             'openeApp.activities',
+            //opene-modules
             /*LAST*/ 'openeApp.translations'])// TRANSLATIONS IS ALWAYS LAST!
         .constant('USER_ROLES', {
             admin: 'admin',
