@@ -12,10 +12,9 @@ angular
  * @param caseService
  * @constructor
  */
-function CaseInfoController($scope, $stateParams, $mdDialog, $translate, $filter, sessionService, caseService,
-        notificationUtilsService, startCaseWorkflowService, caseCrudDialogService, casePrintDialogService, preferenceService) {
+function CaseInfoController($scope, $stateParams, $mdDialog, $translate, caseService, notificationUtilsService,
+        startCaseWorkflowService, caseCrudDialogService, casePrintDialogService, preferenceService) {
     var vm = this;
-
     vm.editCase = editCase;
     vm.changeCaseStatus = changeCaseStatus;
     vm.onTabChange = onTabChange;
@@ -24,12 +23,6 @@ function CaseInfoController($scope, $stateParams, $mdDialog, $translate, $filter
     vm.addCaseToFavourites = addCaseToFavourites;
     vm.removeCaseFromFavourites = removeCaseFromFavourites;
     vm.checkFavourite = checkFavourite;
-
-    $scope.$filter = $filter;
-
-    if ($stateParams.alf_ticket && !sessionService.getUserInfo()) {
-        sessionService.setUserInfo({ticket: $stateParams.alf_ticket});
-    }
 
     loadCaseInfo();
 
