@@ -169,7 +169,7 @@ function useModuleTask(module){
 
 function useOpeneModule(opt){
     if(fs.existsSync('./app/src/modules/' + opt.moduleName)){
-        openeModules.push("'" + opt.moduleId + "'");
+        runOpeneModules.push("'" + opt.moduleId + "'");
         return;
     }
     throw "No module found: " + opt.moduleName + ". Use gulp " + opt.moduleName + "-install"; 
