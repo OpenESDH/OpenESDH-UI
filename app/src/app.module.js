@@ -34,9 +34,8 @@
             'openeApp.common.directives.filter',
             'm43nu.auto-height',
             'dcbImgFallback',
-            'openeApp.addo',
             'openeApp.activities',
-            //opene-modules
+/*DO NOT REMOVE MODULES PLACEHOLDER!!!*/ //opene-modules
             /*LAST*/ 'openeApp.translations'])// TRANSLATIONS IS ALWAYS LAST!
         .constant('USER_ROLES', {
             admin: 'admin',
