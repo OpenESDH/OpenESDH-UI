@@ -3,7 +3,7 @@ angular
     .module('openeApp')
     .controller('AuthController', AuthController);
 
-function AuthController($scope, $state, $stateParams, $translate, authService, userService, $mdDialog) {
+function AuthController($scope, $state, $stateParams, $translate, authService, userService, $mdDialog, sessionService, $window) {
     var vm = this;
     var loginErrorMessage = angular.fromJson($stateParams.error);
 
@@ -22,7 +22,12 @@ function AuthController($scope, $state, $stateParams, $translate, authService, u
             if(response.userName) {
                 userService.getPerson(credentials.username).then(function (response) {
                     vm.user = response;
-                    $state.go('dashboard');
+                    var retainedLocation = sessionService.getRetainedLocation();
+                    if(!retainedLocation || retainedLocation === undefined){
+                        $state.go('dashboard');                        
+                    }else{
+                        $window.location = retainedLocation;
+                    }
                 });
             }
 
