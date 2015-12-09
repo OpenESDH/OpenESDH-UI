@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
-	$ 	 = require('gulp-load-plugins')();
+	$ 	 = require('gulp-load-plugins')(),
+    fs = require('fs');
 
 // Config vars
 // If, after a while, there are a lot of config vars, we can move these to a separate file
@@ -21,7 +22,18 @@ var dist = {
 	folder: './dist/'
 };
 
-var openeModules = [];
+var openeModules = [{
+    sourceUrl: 'https://github.com/OpenESDH/openesdh-staff-ui.git',
+    moduleName: 'staff',
+    moduleId: 'openeApp.cases.staff'
+},
+{
+    sourceUrl: 'https://github.com/OpenESDH/openesdh-addo-ui.git',
+    moduleName: 'addo',
+    moduleId: 'openeApp.addo'
+}];
+
+var runOpeneModules = [];
 
 // Setting up a local webserver
 function createWebserver(config) {
@@ -37,10 +49,10 @@ function createWebserver(config) {
 };
 
 function includeOpeneModules(content){
-    if(openeModules.length == 0){
+    if(runOpeneModules.length == 0){
         return content;
     }
-    var modules = 'opene-modules\n            ' + openeModules.join() + ',';
+    var modules = 'opene-modules\n            ' + runOpeneModules.join() + ',';
     return content.replace(/opene-modules/g, modules);
 }
 
@@ -122,7 +134,58 @@ gulp.task('ui-test', ['e2e-tests']);
 */
 gulp.task('default', ['dev']);
 
+gulp.task('all-modules', openeModules.map(function(module){
+    return module.moduleName;
+}));
 
-gulp.task('staff', function(){
-    openeModules.push("'openeApp.cases.staff'");
-});
+gulp.task('all-modules-install', openeModules.map(function(module){
+    return module.moduleName + '-install';
+}));
+
+for(var i=0; i<openeModules.length; i++){
+    var module = openeModules[i];
+    installModuleTask(module);
+    useModuleTask(module);
+}
+
+function installModuleTask(module){
+    gulp.task(module.moduleName + '-install', function(){
+        console.log("Installing module", module.moduleName);
+        installModule({
+            sourceUrl: module.sourceUrl,
+            moduleName: module.moduleName
+        });
+    });
+}
+
+function useModuleTask(module){
+    gulp.task(module.moduleName, function(){
+        useOpeneModule({
+            moduleName: module.moduleName,
+            moduleId: module.moduleId
+        });
+    });
+}
+
+function useOpeneModule(opt){
+    if(fs.existsSync('./app/src/modules/' + opt.moduleName)){
+        runOpeneModules.push("'" + opt.moduleId + "'");
+        return;
+    }
+    throw "No module found: " + opt.moduleName + ". Use gulp " + opt.moduleName + "-install"; 
+}
+
+function installModule(opt){
+    if(fs.existsSync('./app/src/modules/' + opt.moduleName)){
+        $.git.pull('origin', 'develop',  {cwd: './app/src/modules/' + opt.moduleName}, function(err){
+            if(err) throw err;
+            console.log("Module "+opt.moduleName+" updated.")
+        });        
+    }else{
+        $.git.clone(opt.sourceUrl, {args: './app/src/modules/' + opt.moduleName}, function(err){
+            if(err) throw err;
+            console.log("Module "+opt.moduleName+" installed.")
+        });
+        
+    }
+}
