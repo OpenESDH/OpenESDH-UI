@@ -52,7 +52,7 @@
             phone: /^[+]?[0-9\- ]+$/
         })
         .config(config)
-        .run(function ($rootScope, $state, $stateParams, $mdDialog, authService) {
+        .run(function ($rootScope, $state, $stateParams, $mdDialog, authService, sessionService) {
             $rootScope.$on('$stateChangeStart', function (event, next, params) {
                 $rootScope.toState = next;
                 $rootScope.toStateParams = params;
@@ -63,6 +63,7 @@
                     //We do nothing. Attempting to transition to the actual state results in call stack exception
                 } else {
                     event.preventDefault();
+                    sessionService.retainCurrentLocation();
                     $state.go('login');
                 }
 

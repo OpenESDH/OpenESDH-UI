@@ -48,6 +48,7 @@ function httpTicketInterceptor($injector, $translate, $window, $q, sessionServic
         var $mdDialog = $injector.get('$mdDialog'),
                 notificationUtilsService = $injector.get('notificationUtilsService');
         $mdDialog.cancel();
+        sessionService.retainCurrentLocation();
         $window.location = "/#/login";
         notificationUtilsService.notify($translate.instant('LOGIN.SESSION_TIMEOUT'));
         delete $window._openESDHSessionExpired;
@@ -97,6 +98,7 @@ function authService($http, $window, $state, sessionService, $translate, userSer
         if (userInfo && userInfo.ticket) {
             return $http.delete('/alfresco/service/api/login/ticket/' + userInfo.ticket).then(function(response) {
                 sessionService.setUserInfo(null);
+                sessionService.clearRetainedLocation();
                 return response;
             });
         }
@@ -155,10 +157,12 @@ function authService($http, $window, $state, sessionService, $translate, userSer
                     // The ticket is expired or not valid for this user,
                     // Clear the session information
                     sessionService.setUserInfo(null);
+                    sessionService.retainCurrentLocation();
                     $state.go('login');
                 }
             }, function(e) {
                 sessionService.setUserInfo(null);
+                sessionService.retainCurrentLocation();
                 $state.go('login');
             }).then(function() {
                 if (!userInfo.user) {

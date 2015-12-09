@@ -7,7 +7,10 @@
         var service = {
             getUserInfo: getUserInfo,
             setUserInfo: setUserInfo,
-            isAdmin: isAdmin
+            isAdmin: isAdmin,
+            retainCurrentLocation: retainCurrentLocation,
+            getRetainedLocation: getRetainedLocation,
+            clearRetainedLocation: clearRetainedLocation 
         };
 
         init();
@@ -36,5 +39,22 @@
                 return false;
             }
             return userInfo.user.capabilities.isAdmin;
+        }
+        
+        function retainCurrentLocation(){
+            this.clearRetainedLocation();
+            var location = $window.location.hash;
+            if(location == '#/login'){
+                return;
+            }
+            $window.sessionStorage.setItem('retainedLocation', location);
+        }
+        
+        function getRetainedLocation(){
+            return $window.sessionStorage.getItem('retainedLocation');
+        }
+        
+        function clearRetainedLocation(){
+            $window.sessionStorage.setItem('retainedLocation', "");
         }
     }
