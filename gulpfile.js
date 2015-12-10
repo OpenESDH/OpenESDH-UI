@@ -49,7 +49,7 @@ function createWebserver(config) {
 };
 
 function includeOpeneModules(content){
-    if(runOpeneModules.length == 0){
+    if(runOpeneModules.length === 0){
         return content;
     }
     var modules = 'opene-modules\n            ' + runOpeneModules.join() + ',';
@@ -70,7 +70,7 @@ gulp.task('scripts', function () {
             .pipe($.ngAnnotate())
             .pipe($.uglify())
             .pipe(gulp.dest(dist.folder))
-            .on('error', $.util.log)
+            .on('error', $.util.log);
 });
 
 // Css
@@ -83,7 +83,7 @@ gulp.task('css', function () {
 			.pipe($.rename({ suffix: '.min' }))
 			.pipe($.minifyCss())
 			.pipe(gulp.dest(dist.folder))
-			.on('error', $.util.log)
+			.on('error', $.util.log);
 });
 
 // UI-test
@@ -92,7 +92,7 @@ gulp.task('e2e-tests', function() {
 	    .pipe($.protractor.protractor({
 	        configFile: paths.protractorConfigFile
 	    }))
-	    .on('error', function(e) { throw e })
+	    .on('error', function(e) { throw e; });
 });
 
 // Set up watchers
@@ -179,12 +179,12 @@ function installModule(opt){
     if(fs.existsSync('./app/src/modules/' + opt.moduleName)){
         $.git.pull('origin', 'develop',  {cwd: './app/src/modules/' + opt.moduleName}, function(err){
             if(err) throw err;
-            console.log("Module "+opt.moduleName+" updated.")
+            console.log("Module "+opt.moduleName+" updated.");
         });        
     }else{
         $.git.clone(opt.sourceUrl, {args: './app/src/modules/' + opt.moduleName}, function(err){
             if(err) throw err;
-            console.log("Module "+opt.moduleName+" installed.")
+            console.log("Module "+opt.moduleName+" installed.");
         });
         
     }
