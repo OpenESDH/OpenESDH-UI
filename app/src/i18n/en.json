@@ -206,8 +206,11 @@
         "DOWNLOAD_DOCUMENT": "Download document",
         "IMAGE_MAX_SIZE_EXCEEDED": "Image \"{{image}}\" is too large to display.",
         "PREVIEW_DOCUMENT": "Preview document",
-        "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_DOCUMENT": "Are you sure you want to delete the document '{{document_title}}' ?",
-        "VIEW_DOCUMENT_DETAILS": "View document"
+        "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_DOCUMENT": "Are you sure you want to delete the document \"{{document_title}}\" with all attachments?",
+        "VIEW_DOCUMENT_DETAILS": "View document",
+        "SENT_FROM_OUTLOOK": "Sent from Outlook",
+        "DELETE_DOC_SUCCESS": "Document successfully deleted",
+        "DELETE_DOC_FAILURE": "Document could not be deleted"
     },
     "COUNTRY": {
         "AF": "Afghanistan",

@@ -22,10 +22,9 @@
                 <span flex="5"></span>
             </div>
             <md-virtual-repeat-container md-auto-shrink style="height: 450px;">
-                <div md-virtual-repeat="user in vm.allSystemUsers" class="repeat-item" layout="row">
+                <div md-virtual-repeat="user in vm.allSystemUsers" class="repeat-item {{user.enabled ? 'enabled' : 'muted'}}" layout="row">
                     <a class="r-rowlink"
                        layout="row"
-                       class="{{user.enabled ? 'enabled' : 'muted'}}"
                        ng-show="user.userName != 'guest'"
                        flex="95">
                         <span class="r" flex="5"><i class="material-icons">account_box</i></span>

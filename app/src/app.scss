@@ -46,6 +46,10 @@ table th,
 	color: rgba(0,0,0,0.53);
 }
 
+.muted .r-rowlink {
+    background-color: #fbfbfb;
+}
+
 table {
 	width: 100%;
 	border-collapse: collapse;
@@ -67,7 +71,7 @@ table {
 	}
 
 	tr.muted {
-		background-color: #eee;
+		background-color: #fbfbfb;
 	}
 
 	.clickable-row {

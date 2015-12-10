@@ -47,7 +47,10 @@
                     <dl layout="row" layout-wrap flex="50">
                       <dt flex="33">{{ 'COMMON.TITLE' | translate }}</dt><dd flex="66">{{ docCtrl.doc.title }}</dd>
                       <dt flex="33">{{ 'COMMON.STATUS' | translate }}</dt><dd flex="66">{{ docCtrl.doc.status | docStatus }}</dd>
-                      <dt flex="33">{{ 'COMMON.TYPE' | translate }}</dt><dd flex="66">{{ docCtrl.doc.typeDisplayName }}</dd>
+                      <dt flex="33">{{ 'COMMON.TYPE' | translate }}</dt><dd flex="66">
+                          <i class="material-icons" ng-show="docCtrl.doc['fromOutlook']" title="{{ 'DOCUMENT.SENT_FROM_OUTLOOK' | translate}}" style="padding-right: 5px;">email</i>
+                          {{ docCtrl.doc.typeDisplayName }}
+                      </dd>
                       <dt flex="33">{{ 'COMMON.CATEGORY' | translate }}</dt><dd flex="66">{{ docCtrl.doc.categoryDisplayName }}</dd>
                       <dt flex="33">{{ 'COMMON.OWNER' | translate }}</dt><dd flex="66">{{ docCtrl.doc.owner }}</dd>
                       <dt flex="33">{{ 'COMMON.CREATED' | translate }}</dt><dd flex="66">{{ docCtrl.doc.created | openeDate }}</dd>
@@ -70,6 +73,7 @@
                   <md-button class="md-primary" ng-click="docCtrl.editDocumentProperties()" ng-disabled="docCtrl.doc.isLocked">{{ 'DOCUMENT.EDIT_PROPERTIES' | translate }}</md-button>
                   <md-button class="md-primary" ng-click="docCtrl.uploadDocNewVersion()" ng-disabled="docCtrl.doc.isLocked">{{'DOCUMENT.UPLOAD_NEW_VERSION' |translate }}</md-button>
                   <md-button class="md-primary" ng-click="docCtrl.downloadDocument()">{{ 'COMMON.DOWNLOAD' | translate }}</md-button>
+                  <md-button class="md-primary" ng-click="docCtrl.deleteDocument()" ng-disabled="docCtrl.doc.isLocked" ng-show="docCtrl.isAdmin">{{ 'COMMON.DELETE' | translate }}</md-button>
               </div>
           </md-card>
 

@@ -208,7 +208,10 @@
         "IMAGE_MAX_SIZE_EXCEEDED": "Billedet \"{{image}}\" er for stort til at blive vist.",
         "PREVIEW_DOCUMENT": "Preview dokument",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_DOCUMENT": "Er du sikker på, at du vil slette '{{document_title}}'?",
-        "VIEW_DOCUMENT_DETAILS": "Vis dokument"
+        "VIEW_DOCUMENT_DETAILS": "Vis dokument",
+        "SENT_FROM_OUTLOOK": "Sent from Outlook",
+        "DELETE_DOC_SUCCESS": "Dokument slettet",
+        "DELETE_DOC_FAILURE": "Dokument kunne ikke slettes"
     },
     "COUNTRY": {
         "AF": "Afghanistan",
