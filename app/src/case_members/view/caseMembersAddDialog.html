@@ -15,7 +15,9 @@
                 </md-select>
             </md-input-container>
             <md-chips ng-model="cmcAdd.selectedAuthorities" md-autocomplete-snap md-require-match="true">
-                <md-autocomplete md-selected-item="cmcAdd.selectedItem" md-search-text="cmcAdd.searchText" md-items="item in cmcAdd.querySearch(cmcAdd.searchText)" md-item-text="item.name" md-no-cache="true" md-icon="" placeholder="{{ 'MEMBER.CHOOSE_AUTHORITIES'| translate }}">
+                <md-autocomplete md-selected-item="cmcAdd.selectedItem" md-search-text="cmcAdd.searchText"
+                                 md-items="item in cmcAdd.querySearch(cmcAdd.searchText)" md-item-text="item.name"
+                                 md-no-cache="true" md-icon="" placeholder="{{ 'MEMBER.CHOOSE_AUTHORITIES'| translate }}">
                     <span md-highlight-text="ctrl.searchText">{{item.name}}</span>
                 </md-autocomplete>
                 <md-chip-template>

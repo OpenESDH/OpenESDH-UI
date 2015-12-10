@@ -1,6 +1,6 @@
 <md-dialog class="dialog-small" aria-label="">
     <form name="uploadTemplateForm">
-        
+
         <md-toolbar layout>
             <div class="md-toolbar-tools">
                 <h2>{{ 'COMMON.UPLOAD' | translate }}</h2>
@@ -14,8 +14,17 @@
                     <input type="file" file-model="fileToUpload" id="tmpl-upload">
                 </div>
 
+                <md-input-container>
+                    <label>{{ 'CASE.CASE_TYPES' | translate }}</label>
+                    <md-select multiple ng-model="dtdc.selectedTypes" md-on-open="dtdc.getRegisteredCaseTypes()" required>
+                        <md-option ng-value="type.Type" ng-repeat="type in dtdc.registeredTypes">{{type.Title}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+
                 <md-input-container flex ng-disabled="newTemplateVersion">
                     <label>{{ 'COMMON.NAME' | translate }} *</label>
+
                     <input type="text" name="title" ng-model="templateProperties.title" required md-autofocus>
                     <opene-error form="uploadTemplateForm" field="uploadTemplateForm.title"></opene-error>
                 </md-input-container>

@@ -88,6 +88,7 @@
             "CLOSED_CASES": "Lukkede sager"
         },
         "CASES": "Sager",
+        "CASE_TYPES": "Sagstyper",
         "CHANGE_STATUS": "Skift sagsstatus",
         "CASE": "Sag",
         "CASE_OWNER": "Sagsejer",

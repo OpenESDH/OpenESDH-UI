@@ -87,6 +87,7 @@
             "CLOSED_CASES": "Closed cases"
         },
         "CASES": "Cases",
+        "CASE_TYPES": "Case Types",
         "CHANGE_STATUS": "Change case status",
         "CASE": "Case",
         "CASE_OWNER": "Case owner",
