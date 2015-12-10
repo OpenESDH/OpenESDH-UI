@@ -11,9 +11,9 @@ var environment = {
 };
 
 var paths = {
-	scripts: ['app/src/**/*.module.js', 'app/src/**/*.js', '!app/src/**/*Spec.js'],
+	scripts: ['app/src/**/*.module.js', 'app/src/**/*.js', '!app/src/**/*Spec.js', '!app/src/modules/test/**/*.js', '!app/src/modules/**/tests/**/*.js'],
 	scss: ['app/src/app.scss', 'app/src/**/*.scss'],
-	e2e_tests: ['app/tests/e2e/**/*test.js'],
+	e2e_tests: ['app/tests/e2e/**/*test.js', 'app/src/modules/**/*test.js'],
 	protractorConfigFile: 'app/tests/e2e/conf.js'
 };
 
