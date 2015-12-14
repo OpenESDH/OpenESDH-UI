@@ -48,13 +48,15 @@
          ng-controller="AutosuggestController as asctrl"
          class="global-tools__search">
         <form ng-submit="asctrl.gotoSearchPage()">
-            <md-input-container md-no-float>
+
+            <label class="global-tools__search__extended-input" ng-class="{'context-scope': asctrl.context.getContext()}">
                 <i class="material-icons global-tools__search__icon">search</i>
+                <div class="global-tools__search__context-badge">{{asctrl.context.getContext().name | translate}}:</div>
                 <input type="text" ng-model="asctrl.searchTerm"
                        ng-change="asctrl.getLiveSearchResults(asctrl.searchTerm)"
                        ng-keydown="asctrl.keydown($event)" ng-model-options="{ debounce: 250 }"
                        placeholder="{{ 'SEARCH.SEARCH' | translate }}">
-            </md-input-container>
+            </label>
 
             <!-- Autocomplete dropdown -->
             <md-whiteframe class="md-whiteframe-z2" ng-if="asctrl.suggestionVisible()">

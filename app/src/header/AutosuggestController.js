@@ -8,7 +8,7 @@
      * @param $scope
      * @constructor
      */
-    function AutosuggestController($state, $q, $mdConstant, searchService, alfrescoNodeUtils, fileUtilsService) {
+    function AutosuggestController($state, $q, $mdConstant, searchService, alfrescoNodeUtils, fileUtilsService, ContextService) {
 
         var asctrl = this;
         asctrl.liveSearchResults = {
@@ -20,6 +20,7 @@
         asctrl.totalSuggestion = 0;
         asctrl.loading = false;
         asctrl.hidden = false;
+        asctrl.context = ContextService;
 
         asctrl.getLiveSearchResults = function (term) {
             if (term.length === 0 || asctrl.loading) return;
@@ -134,6 +135,9 @@
                     stopAndPrevent(event);
                     if(asctrl.selectedIndex > -1) asctrl.selectedIndex--;
                     //console.log("Selected index: ", asctrl.selectedIndex);
+                    break;
+                case $mdConstant.KEY_CODE.BACKSPACE:
+                    if(asctrl.searchTerm === '') ContextService.clearContext();
                     break;
                 case $mdConstant.KEY_CODE.TAB:
                 case $mdConstant.KEY_CODE.ENTER:

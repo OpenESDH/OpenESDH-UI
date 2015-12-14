@@ -13,7 +13,7 @@ angular
  * @constructor
  */
 function CaseInfoController($scope, $stateParams, $mdDialog, $translate, caseService, notificationUtilsService,
-        startCaseWorkflowService, caseCrudDialogService, casePrintDialogService, preferenceService) {
+        startCaseWorkflowService, caseCrudDialogService, casePrintDialogService, preferenceService, ContextService) {
     var vm = this;
     vm.editCase = editCase;
     vm.changeCaseStatus = changeCaseStatus;
@@ -23,6 +23,8 @@ function CaseInfoController($scope, $stateParams, $mdDialog, $translate, caseSer
     vm.addCaseToFavourites = addCaseToFavourites;
     vm.removeCaseFromFavourites = removeCaseFromFavourites;
     vm.checkFavourite = checkFavourite;
+
+    ContextService.setContext('cases');
 
     loadCaseInfo();
 
