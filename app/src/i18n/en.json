@@ -536,7 +536,8 @@
         "UPLOAD_USERS_NOTE": "Upload users. CSV files only",
         "FAILED_TO_UPLOAD_MSG": "{{failedNumberOfUsers}} user(s) were not added for the following reasons:",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER": "Are you sure you want to delete '{{user}}'?",
-        "CAN_NOT_DELETE_ADMIN_USER": "Deletion of the admin user is not permitted."
+        "CAN_NOT_DELETE_ADMIN_USER": "Deletion of the admin user is not permitted.",
+        "SAVE_USER_FAILURE": "User could not be saved"
     },
     "GROUP": {
         "GROUPS": "Groups",
