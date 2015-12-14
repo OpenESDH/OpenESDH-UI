@@ -42,7 +42,8 @@
         function removeParty(ev, party) {
             var confirm = $mdDialog.confirm()
                     .title($translate.instant('COMMON.CONFIRM'))
-                    .content($translate.instant('PARTY.ARE_YOU_SURE_YOU_WANT_TO_REMOVE_PARTY', party))
+                    .textContent($translate.instant('PARTY.ARE_YOU_SURE_YOU_WANT_TO_REMOVE_PARTY', party))
+                    .ariaLabel('delete confirmation')
                     .targetEvent(ev)
                     .ok($translate.instant('COMMON.YES'))
                     .cancel($translate.instant('COMMON.CANCEL'));
