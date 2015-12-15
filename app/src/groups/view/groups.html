@@ -45,6 +45,10 @@
             <md-button aria-label="Create new group" class="md-primary" ng-click="vm.createGroup($event)">
                 <i class="material-icons">group_add</i> {{ 'GROUP.CREATE_NEW_GROUP' | translate }}
             </md-button>
+            
+            <md-button class="md-primary" ng-click="vm.showCSVUploadDialog($event)" aria-label="Upload users">
+                {{ 'GROUP.UPLOAD_GROUPS' | translate }}
+            </md-button>
         </div>
 
     </md-card-content>

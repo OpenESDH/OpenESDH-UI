@@ -137,11 +137,14 @@
             $scope.upload = function(ev){
                 $mdDialog.hide();
 
-                alfrescoUploadService.uploadUsersCSVFile($scope.fileToUpload).then(function(response){
+                userService.uploadUsersCSVFile($scope.fileToUpload).then(function(response){
                     var returnedUsers = response.users;
                     var failedUsers=[], msg, dlgTitle;
                     var numOfFailedUsers = response.totalUsers - response.addedUsers;
-                    if (numOfFailedUsers > 0){
+                    if(response.error == "true"){
+                        dlgTitle = $translate.instant('COMMON.ERROR');
+                        msg = response.message;
+                    }else if (numOfFailedUsers > 0){
                         dlgTitle = $translate.instant('COMMON.ERROR');
                         //accumulate the failed users into a separate array
                         returnedUsers.forEach(function(user){
@@ -162,7 +165,7 @@
                             .parent(angular.element(document.querySelector('body')))
                             .clickOutsideToClose(true)
                             .title(dlgTitle)
-                            .content(msg)
+                            .textContent(msg)
                             .ariaLabel('User upload csv response.')
                             .ok("OK")
                             .targetEvent(ev)

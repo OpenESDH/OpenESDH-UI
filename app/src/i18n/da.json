@@ -535,7 +535,10 @@
         "FLT_SYS": "Systemgrupper",
         "FLT_OPENE": "OpenE-grupper",
         "FLT_SIMPLE": "Simpel sag-grupper",
-        "FLT_STAFF": "Medarbejdersag-grupper"
+        "FLT_STAFF": "Medarbejdersag-grupper",
+        "UPLOAD_GROUPS": "Upload grupper (csv)",
+        "UPLOAD_GROUPS_NOTE": "Upload grupper. Kun CSV-filer",
+        "UPLOAD_GROUPS_SUCCESS": "Grupper CSV uploadet"
     },
     "ORG": {
         "ORGANIZATIONS": "Organisationer",
