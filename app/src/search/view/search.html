@@ -3,17 +3,20 @@
 <md-content layout="column" ng-controller="SearchController as sctrl">
   
     <div class="sub-toolbar" layout-padding>
-        <h1 class="md-headline" layout-margin>{{ 'SEARCH.SEARCH' | translate }}</h1>
+        <h1 class="md-headline search__header">
+            <span class="muted">{{ 'SEARCH.SEARCHING_FOR' | translate }}:</span>
+            {{ sctrl.searchTerm }}
+        </h1>
     </div>
 
-    <div layout="row" layout-padding>
+    <div layout="row">
         
-        <div flex="25" layout-margin>
-            <form name="facets">
+        <div flex="25" class="menu">
+            <form name="facets" class="filters">
+                <span class="filter-title muted">{{ "SEARCH.FILTER_SEARCH" | translate }}</span>
                 <fieldset ng-repeat="(key, facet) in sctrl.fullSearchResults.facets"
                           ng-if="facet.length > 0">
-                    
-                    <legend class="toggle-btn closed" toggle-class="closed"><i class="material-icons">arrow_drop_down</i> {{key | translate}}</legend>
+                    <a class="toggle-btn closed" toggle-class="closed">{{ key | translate }} <i class="material-icons">arrow_drop_down</i></a>
                     <div class="toggle-obj">
                         <md-checkbox ng-repeat="hit in facet" aria-label="{{hit.value}}" 
                                         class="md-primary" 
@@ -26,39 +29,38 @@
             </form>
         </div>
         
-        <div flex="75">
-            <md-card ng-repeat="item in sctrl.fullSearchResults.results">
+        <div flex="75" class="search__list">
+            <div ng-repeat="item in sctrl.fullSearchResults.results">
                 
-                <md-card-content ng-if="item.type == 'case'">
-                    <div layout="row" layout-align="space-between start" class="muted" style="font-size: 0.9em;">
-                        <span>{{ "CASE.CASE" | translate }}: {{ item.case.caseId }}</span>
-                        <span>
-                            {{ "COMMON.MODIFIED_BY" | translate }} {{ item.modifiedBy }} {{ item.modifiedOn | date }}
-                        </span>
+                <div ng-if="item.type == 'case'" class="search__item-case">
+                    <div class="search__item__icon">
+                        <span class="material-icons">folder_open</span>
                     </div>
-                    <h2 class="md-title">{{ item.displayName }}</h2>
-                    <p>{{ item.description }}</p>
-                </md-card-content>
-                <md-actions ng-if="item.type == 'case'">
-                    <a class="md-button md-primary" href="#/cases/case/{{ item.case.caseId }}">{{ "CASE.VIEW_CASE_DETAILS" | translate }}</a>
-                </md-actions>
-            
-                <md-card-content ng-if="item.type == 'document'">
-                    <div layout="row" layout-align="space-between start" class="muted" style="font-size: 0.9em;">
-                        <span>{{ "DOCUMENT.DOCUMENT" | translate }}</span>
-                        <span>
-                            {{ "COMMON.MODIFIED_BY" | translate }} {{ item.modifiedBy }} {{ item.modifiedOn | date }}
-                        </span>
+                    <div class="search__item__info">
+                        <h2 class="md-title search__item__title">
+                            <span class="muted">{{ item.case.caseId }}</span>
+                            <a title="{{ 'CASE.VIEW_CASE_DETAILS' | translate }}" class="search__item__link md-hue-1" href="#/cases/case/{{ item.case.caseId }}">{{ item.displayName }}</a>
+                        </h2>
+                        <p class="search__item__desc">{{ item.description }}</p>
+                        <div class="search__item__changed muted">{{ "COMMON.MODIFIED_BY" | translate }} {{ item.modifiedBy }} {{ item.modifiedOn | date }}</div>
                     </div>
-                    <h2 class="md-title">{{ item.displayName }}</h2>
-                    <p>{{ item.description }}</p>
-                </md-card-content>
-                <md-actions ng-if="item.type == 'document' && item.case">
-                    <a class="md-button md-primary" href="#/cases/case/{{ item.case.caseId }}/doc/{{ item.docRecordNodeRef | nodeRefUri }}">{{ "DOCUMENT.VIEW_DOCUMENT_DETAILS" | translate }}</a>
-                    <a class="md-button" ng-disabled="true">{{ "COMMON.DOWNLOAD" | translate }}</a>
-                </md-actions>
+                </div>
             
-            </md-card>
+                <div ng-if="item.type == 'document'" class="search__item-document">
+                    <div class="search__item__icon">
+                        <span class="material-icons">insert_drive_file</span>
+                    </div>
+                    <div class="search__item__info">
+                        <h2 ng-if="item.type == 'document' && item.case" class="search__item__title">
+                            <span class="search__item__bonusinfo muted">{{ "CASE.CASE" | translate }}: {{ item.case.caseId }}</span>
+                            <a title="{{ 'DOCUMENT.VIEW_DOCUMENT_DETAILS' | translate }}" class="search__item__link md-hue-1" href="#/cases/case/{{ item.case.caseId }}/doc/{{ item.docRecordNodeRef | nodeRefUri }}">{{ item.displayName }}</a>
+                        </h2>
+                        <p class="search__item__desc">{{ item.description }}</p>
+                        <div class="search__item__changed muted">{{ "COMMON.MODIFIED_BY" | translate }} {{ item.modifiedBy }} {{ item.modifiedOn | date }}</div>
+                    </div>
+                </div>
+            
+            </div>
             
         </div>
         

@@ -735,6 +735,8 @@
     },
     "SEARCH": {
         "SEARCH": "Search",
+        "SEARCHING_FOR": "Searching for",
+        "FILTER_SEARCH": "Filter search",
         "FIND_USER": "Find user",
         "FIND_USERS": "Find users",
         "FIND_GROUPS": "Find groups",
