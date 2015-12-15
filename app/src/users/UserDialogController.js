@@ -48,7 +48,10 @@ function UserDialogController($scope, $mdDialog, $mdToast, $translate, $injector
                         .saveAddoUser(ucd.user.userName, ucd.user.addoUsername, ucd.user.addoPassword)
                         .then(function() {
                             notifyUserSaved(userSaveResponse);
-                        }, handleCreateEditError);
+                        }, function(response) {
+                            ucd.userExists = true;
+                            handleCreateEditError(response);
+                        });
             } else {
                 notifyUserSaved(userSaveResponse);
             }
@@ -97,15 +100,19 @@ function UserDialogController($scope, $mdDialog, $mdToast, $translate, $injector
         // If conflict
         if (response.status === 409) {
             // Username already exists
-            if (msg.indexOf('User name already exists') > -1)
+            if (msg.indexOf('User name already exists') > -1) {
                 ucd.userForm.userName.$setValidity('usernameExists', false);
+                return;
+            }
         }
 
         if (response.status === 500) {
             // Email already exists
             if (cStack.indexOf('Error updating email: already exists') > -1 ||
-                    cStack.indexOf('Email must be unique and already exists.') > -1)
+                    cStack.indexOf('Email must be unique and already exists.') > -1) {
                 ucd.userForm.email.$setValidity('emailExists', false);
+                return;
+            }
 
             // Incorrect Addo password
             if (msg.indexOf('ADDO.USER.') > -1) {
@@ -113,8 +120,10 @@ function UserDialogController($scope, $mdDialog, $mdToast, $translate, $injector
                 ucd.userForm.addoUsername.$setValidity('incorrectAddoPass', false);
                 ucd.userForm.addoPassword.$setDirty();
                 ucd.userForm.addoPassword.$setValidity('incorrectAddoPass', false);
+                return;
             }
         }
+        notificationUtilsService.alert($translate.instant('USER.SAVE_USER_FAILURE'));
     }
 
     function clearFieldValidation(field) {

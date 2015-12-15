@@ -70,7 +70,7 @@
 
             function refreshInfoAfterSuccessWithMsg(msg) {
                 notificationUtilsService.notify(msg);
-                vm.dynamicLoader.refresh();
+                vm.dataLoader.refresh();
                 $mdDialog.hide();
             }
         }
