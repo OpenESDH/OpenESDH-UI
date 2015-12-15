@@ -550,7 +550,10 @@
         "FLT_SYS": "System groups",
         "FLT_OPENE": "OpenE groups",
         "FLT_SIMPLE": "Simple case groups",
-        "FLT_STAFF": "Staff case groups"
+        "FLT_STAFF": "Staff case groups",
+        "UPLOAD_GROUPS": "Upload groups (csv)",
+        "UPLOAD_GROUPS_NOTE": "Upload groups. CSV files only",
+        "UPLOAD_GROUPS_SUCCESS": "Groups csv successfully uploaded"
     },
     "ORG": {
         "ORGANIZATIONS": "Organisations",

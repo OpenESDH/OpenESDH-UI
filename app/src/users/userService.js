@@ -16,7 +16,8 @@ function userService($http) {
         getPersons: getPersons,
         getGroups: getGroups,
         changePassword: changePassword,
-        getCurrentUserCaseOwnersGroups: getCurrentUserCaseOwnersGroups
+        getCurrentUserCaseOwnersGroups: getCurrentUserCaseOwnersGroups,
+        uploadUsersCSVFile: uploadUsersCSVFile
     };
 
     function deletePerson(userName) {
@@ -117,6 +118,21 @@ function userService($http) {
         var url = '/alfresco/s/api/openesdh/user/case/owners/groups';
         return $http.get(url).then(function(result) {
             return result.data;
+        });
+    }
+    
+    function uploadUsersCSVFile(file){
+
+        var formData = new FormData();
+        formData.append("filedata", file);
+        formData.append("filename", file.name);
+
+        return $http.post("/alfresco/s/api/openesdh/users/upload", formData,  {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        }).then(function(response){
+            console.log(response.data);
+            return response.data;
         });
     }
 }
