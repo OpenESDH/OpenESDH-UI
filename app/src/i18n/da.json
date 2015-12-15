@@ -535,7 +535,10 @@
         "FLT_SYS": "Systemgrupper",
         "FLT_OPENE": "OpenE-grupper",
         "FLT_SIMPLE": "Simpel sag-grupper",
-        "FLT_STAFF": "Medarbejdersag-grupper"
+        "FLT_STAFF": "Medarbejdersag-grupper",
+        "UPLOAD_GROUPS": "Upload grupper (csv)",
+        "UPLOAD_GROUPS_NOTE": "Upload grupper. Kun CSV-filer",
+        "UPLOAD_GROUPS_SUCCESS": "Grupper CSV uploadet"
     },
     "ORG": {
         "ORGANIZATIONS": "Organisationer",
@@ -709,6 +712,8 @@
     },
     "SEARCH": {
         "SEARCH": "Søg",
+        "SEARCHING_FOR": "Søger efter",
+        "FILTER_SEARCH": "Filtrér søgning",
         "FIND_USER": "Find bruger",
         "FIND_USERS": "Find brugere",
         "FIND_GROUPS": "Find grupper",
@@ -776,7 +781,7 @@
     "@{http://www.alfresco.org/model/content/1.0}created": "Oprettet",
     "@{http://www.alfresco.org/model/content/1.0}content.mimetype": "Filtype",
     "@{http://openesdh.dk/model/case/base/1.0}startDate": "Startdato",
-    "@{http://openesdh.dk/model/case/base/1.0}endDate": "Slutato",
+    "@{http://openesdh.dk/model/case/base/1.0}endDate": "Slutdato",
     "@{http://openesdh.dk/model/openesdh/1.0}journalKeyIndexed": "Journalnøgle",
     "@{http://openesdh.dk/model/openesdh/1.0}journalFacetIndexed": "Journalfacet"
 }
