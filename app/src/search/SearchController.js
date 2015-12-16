@@ -19,6 +19,12 @@
         function initFacets(){
             searchService.getConfiguredFacets().then(function(data){
                 sctrl.definedFacets = data;
+
+                // If we got a context
+                if(scrtl.currentContext) {
+
+                }
+
                 executeSearch();
             });
         }
