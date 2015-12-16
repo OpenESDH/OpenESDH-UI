@@ -321,7 +321,7 @@
                 authorizedRoles: [USER_ROLES.user]
             }
         }).state('search', {
-            url: '/search/:searchTerm',
+            url: '/search?query&ctx',
             views: {
                 'content@': {
                     templateUrl: '/app/src/search/view/search.html'

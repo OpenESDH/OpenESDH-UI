@@ -25,22 +25,49 @@
         asctrl.getLiveSearchResults = function (term) {
             if (term.length === 0 || asctrl.loading) return;
             asctrl.loading = true;
+            asctrl.totalSuggestion = 0;
             clearResult();
 
+            if(ContextService.getContext()) {
+                var ctxType = ContextService.getContext().id;
+                if(ctxType === 'cases') {
+                    searchService.liveSearchCases(term).then(parseCases).then(function () {
+                        asctrl.loading = false;
+                    });
+                } else if(ctxType === 'documents') {
+                    searchService.liveSearchCaseDocs(term).then(parseDocs).then(function () {
+                        asctrl.loading = false;
+                    })
+                }
+            }
+            else {
+                getGlobalSuggestions(term);
+            }
+        };
+
+        function parseDocs (res) {
+            asctrl.liveSearchResults.documents = res.data.documents;
+            asctrl.liveSearchResults.documents.forEach(function(document){
+                document.thumbNailURL = fileUtilsService.getFileIconByMimetype(document.fileMimeType,32);
+            });
+            asctrl.totalSuggestion += asctrl.liveSearchResults.documents.length;
+        }
+
+        function parseCases(res) {
+            asctrl.liveSearchResults.cases = res.data.cases;
+            asctrl.totalSuggestion += asctrl.liveSearchResults.cases.length;
+        }
+
+        function getGlobalSuggestions(term) {
             $q.all([
                 searchService.liveSearchCaseDocs(term),
                 searchService.liveSearchCases(term)
             ]).then(function (res) {
-                asctrl.liveSearchResults.documents = res[0].data.documents;
-                asctrl.liveSearchResults.documents.forEach(function(document){
-                    document.thumbNailURL = fileUtilsService.getFileIconByMimetype(document.fileMimeType,32);
-                });
-                asctrl.liveSearchResults.cases = res[1].data.cases;
-
-                asctrl.totalSuggestion = asctrl.liveSearchResults.documents.length + asctrl.liveSearchResults.cases.length - 1;
+                parseDocs(res[0]);
+                parseCases(res[1]);
                 asctrl.loading = false;
             });
-        };
+        }
 
         /**
          * Returns a bool, if the suggestion box should be visible
@@ -54,15 +81,24 @@
          * Return bool if the item is a document. 
          */
         asctrl.isDocument = function (item) {
-            if(!item) return false;
-            return item.hasOwnProperty('version');
+            return item && item.hasOwnProperty('version');
         };
 
         /**
          * This function is meant to be called to redirect user to the search page
          */
         asctrl.gotoSearchPage = function() {
-            $state.go('search', {'searchTerm': asctrl.searchTerm});
+
+            var queryObj = {
+                'query': asctrl.searchTerm
+            }
+
+            // Set context if exists
+            if(ContextService.getContext()) {
+                queryObj.ctx = ContextService.getContext().id;
+            }
+
+            $state.go('search', queryObj);
         };
 
         asctrl.goToSuggestion = function(item) {
@@ -127,7 +163,7 @@
                 case $mdConstant.KEY_CODE.DOWN_ARROW:
                     if (asctrl.loading) return;
                     stopAndPrevent(event);
-                    if(asctrl.selectedIndex < asctrl.totalSuggestion) asctrl.selectedIndex++;
+                    if(asctrl.selectedIndex < asctrl.totalSuggestion -1) asctrl.selectedIndex++;
                     //console.log("Selected index: ", asctrl.selectedIndex);
                     break;
                 case $mdConstant.KEY_CODE.UP_ARROW:
