@@ -11,6 +11,7 @@
     function SearchController($scope, $stateParams, searchService) {
         var sctrl = this;
         sctrl.searchTerm = $stateParams.query;
+        scrtl.currentContext = $stateParams.ctx;
         sctrl.selectedFilters = {}; //Keep track of the selected filters
         sctrl.filtersQueryString=""; // the selected filters as query string
         sctrl.definedFacets = searchService.getConfiguredFacets();
