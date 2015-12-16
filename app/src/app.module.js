@@ -51,15 +51,8 @@
             fileName: /^[a-zA-Z0-9_\-,!@#$%^&()=+ ]+$/,
             phone: /^[+]?[0-9\- ]+$/
         })
-        .constant('APP_CONFIG', {
-            appName: 'OpenESDH',
-            logoSrc: './app/assets/images/logo-light.svg'
-        })
         .config(config)
-        .run(function ($rootScope, $state, $mdDialog, authService, sessionService, APP_CONFIG) {
-            angular.element(window.document)[0].title = APP_CONFIG.appName;
-            $rootScope.logoSrc = APP_CONFIG.logoSrc;
-    
+        .run(function ($rootScope, $state, $stateParams, $mdDialog, authService, sessionService) {
             $rootScope.$on('$stateChangeStart', function (event, next, params) {
                 $rootScope.toState = next;
                 $rootScope.toStateParams = params;
@@ -76,6 +69,9 @@
 
                 // If we got any open dialogs, close them before route change
                 $mdDialog.cancel();
+
+                // Clear context
+                ContextService.clearContext();
             });
         });
 
@@ -325,7 +321,7 @@
                 authorizedRoles: [USER_ROLES.user]
             }
         }).state('search', {
-            url: '/search/:searchTerm',
+            url: '/search?query&ctx',
             views: {
                 'content@': {
                     templateUrl: '/app/src/search/view/search.html'
