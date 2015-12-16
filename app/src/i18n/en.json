@@ -62,7 +62,8 @@
         "SUBJECT": "Subject",
         "MESSAGE": "Message",
         "LIST_VIEW": "List view",
-        "GRID_VIEW": "Grid view"
+        "GRID_VIEW": "Grid view",
+        "DOWNLOAD_TEMPLATE_CSV": "Download template CSV"
     },
     "CASE": {
         "CONFIRM_CLOSE_CASE": "Do you want to close this case?",
