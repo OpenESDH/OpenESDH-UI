@@ -8,12 +8,12 @@
     <div layout="column">
         <div class="tlist">
             <div class="tlist__header" layout="row">
-                <span class="tlist__cell" flex="2"></span>
+                <span class="tlist__cell" flex="5"></span>
                 <span class="tlist__cell" flex="10">{{ 'COMMON.CASE_ID' | translate }}</span>
                 <span class="tlist__cell" flex="20">{{ 'COMMON.TITLE' | translate }}</span>
                 <span class="tlist__cell" flex>{{ 'COMMON.ACTION' | translate }}</span>
                 <span class="tlist__cell" flex="10">{{ 'ACTIVITIES.PERFORMER' | translate }}</span>
-                <span class="tlist__cell" flex="10">{{ 'ACTIVITIES.DATE' | translate }}</span>
+                <span class="tlist__cell" flex="15">{{ 'ACTIVITIES.DATE' | translate }}</span>
                 <span class="tlist__cell" flex="10">{{ 'COMMON.TYPE' | translate }}</span>
             </div>
             
@@ -23,7 +23,7 @@
                     <a class="tlist__item__link"
                        href="#/cases/case/{{activitySummary.caseId}}"
                        layout="row">
-                        <span class="tlist__cell tlist__cell_icon" flex="2"><i class="material-icons">announcement</i></span>
+                        <span class="tlist__cell tlist__cell_icon" flex="5"><i class="material-icons">announcement</i></span>
                         <span class="tlist__cell" flex="10">{{ activitySummary.caseId }}</span>
                         <span class="tlist__cell muted" flex="20">{{ activitySummary.caseTitle }}</span>
                         <span class="tlist__cell muted" flex
@@ -37,11 +37,10 @@
                             translate-value-attachment="{{activitySummary.attachmentTitle}}"
                             translate-value-workflow-description="{{activitySummary.workflowDescription}}">
                         </span>
-                        <span class="tlist__cell muted" flex="12">{{activitySummary.modifierDisplayName}}</span>
-                        <span class="tlist__cell muted" flex="10">{{activity.postDate | openeDate}}</span>
+                        <span class="tlist__cell muted" flex="10">{{activitySummary.modifierDisplayName}}</span>
+                        <span class="tlist__cell muted" flex="15">{{activity.postDate | openeDate}}</span>
                         <span class="tlist__cell muted" flex="10" translate="ACTIVITIES.TYPE.{{activity.activityType}}"></span>
                     </a>
-                    
                 </div>
             </md-virtual-repeat-container>
         </div>
