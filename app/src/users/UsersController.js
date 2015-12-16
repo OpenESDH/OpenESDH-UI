@@ -8,7 +8,7 @@
      * @param $scope
      * @constructor
      */
-    function UsersController($scope, $mdDialog, $mdToast, userService, $translate) {
+    function UsersController($scope, $mdDialog, $mdToast, userService, $translate, sessionService) {
         var vm = this;
 
         vm.createUser = createUser;
@@ -16,6 +16,7 @@
         vm.editUser = editUser;
         vm.showCSVUploadDialog = showCSVUploadDialog;
         vm.userExists = false;
+        vm.sessionTicket = sessionService.getUserInfo().ticket;
 
         //For the search control filter
         vm.selectOptions = [

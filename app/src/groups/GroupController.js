@@ -8,7 +8,7 @@ angular
  * @param $scope
  * @constructor
  */
-function GroupController($scope, $mdDialog, groupService, $stateParams, $translate) {
+function GroupController($scope, $mdDialog, groupService, $stateParams, $translate, sessionService) {
     var vm = this;
     vm.group = {};
     vm.groups = [];
@@ -18,6 +18,7 @@ function GroupController($scope, $mdDialog, groupService, $stateParams, $transla
     vm.addMembersToGroup = addMembersToGroup;
     vm.removeMemberFromGroup = removeMemberFromGroup;
     vm.showCSVUploadDialog = showCSVUploadDialog;
+    vm.sessionTicket = sessionService.getUserInfo().ticket;
 
     if ($stateParams && $stateParams.shortName && $stateParams.shortName !== 'ALL') {
         showGroup($stateParams.shortName);

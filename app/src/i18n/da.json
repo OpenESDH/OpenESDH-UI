@@ -63,7 +63,8 @@
         "SUBJECT": "Emne",
         "MESSAGE": "Meddelelse",
         "LIST_VIEW": "Listevisning",
-        "GRID_VIEW": "Gittervisning"
+        "GRID_VIEW": "Gittervisning",
+        "DOWNLOAD_TEMPLATE_CSV": "Download skabelon CSV"
     },
     "CASE": {
         "CONFIRM_CLOSE_CASE": "Vil du lukke denne sag?",
