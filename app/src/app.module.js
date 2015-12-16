@@ -51,8 +51,15 @@
             fileName: /^[a-zA-Z0-9_\-,!@#$%^&()=+ ]+$/,
             phone: /^[+]?[0-9\- ]+$/
         })
+        .constant('APP_CONFIG', {
+            appName: 'OpenESDH',
+            logoSrc: './app/assets/images/logo-light.svg'
+        })
         .config(config)
-        .run(function ($rootScope, $state, $stateParams, $mdDialog, authService, sessionService) {
+        .run(function ($rootScope, $state, $mdDialog, authService, sessionService, APP_CONFIG) {
+            angular.element(window.document)[0].title = APP_CONFIG.appName;
+            $rootScope.logoSrc = APP_CONFIG.logoSrc;
+    
             $rootScope.$on('$stateChangeStart', function (event, next, params) {
                 $rootScope.toState = next;
                 $rootScope.toStateParams = params;

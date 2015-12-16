@@ -1,7 +1,7 @@
 <md-toolbar id="global-toolbar" class="global-tools">
 
     <div class="global-tools__links">
-        <img class="md-toolbar-tools__logo" src="./app/assets/images/logo-light.svg" alt="">
+        <img class="md-toolbar-tools__logo" src="{{$root.logoSrc}}" alt="logo">
         <a class="md-button global-tools__link" ui-sref="dashboard"><i class="material-icons">dashboard</i> <span hide show-gt-md>{{ 'COMMON.HOME' | translate }}</span></a>
         <a class="md-button global-tools__link" ui-sref="cases"><i class="material-icons">folder_open</i> <span hide show-gt-md>{{ 'CASE.CASES' | translate }}</span></a>
         <a class="md-button global-tools__link" ui-sref="tasks"><i class="material-icons">assignment</i> <span hide show-gt-md>{{ 'TASK.TASKS' | translate }}</span></a>
