@@ -1,26 +1,24 @@
 <div class="repeat-table">
     <div class="repeat-header" layout>
-        <span class="r" flex="10">{{ 'CONTACT.FIRST_NAME' | translate }}</span>
-        <span class="r" flex="10">{{ 'CONTACT.LAST_NAME' | translate }}</span>
+        <span class="r" flex>{{ 'CONTACT.FIRST_NAME' | translate }}</span>
+        <span class="r" flex>{{ 'CONTACT.LAST_NAME' | translate }}</span>
         <span class="r" flex="20">{{ 'CONTACT.DEPARTMENT' | translate }}</span>
-        <span class="r" flex="20">{{ 'CONTACT.STREET' | translate }}</span>
+        <span class="r" flex>{{ 'CONTACT.STREET' | translate }}</span>
         <span class="r" flex="10">{{ 'CONTACT.POSTAL_CODE' | translate }}</span>
         <span class="r" flex="10">{{ 'CONTACT.CITY' | translate }}</span>
         <span class="r" flex="10">{{ 'CONTACT.COUNTRY' | translate }}</span>
-        <span class="r" flex="10">{{ 'COMMON.ACTIONS' | translate }}</span>
     </div>
-    <md-virtual-repeat-container style="height: 400px;">
-        <div md-virtual-repeat="person in vm.dataLoader" md-on-demand class="repeat-item" layout>
-            <span class="r" flex="10">{{person.firstName}}</span>
-            <span class="r" flex="10">{{person.lastName}}</span>
-            <span class="r" flex="20">{{person.department}}</span>
-            <span class="r" flex="20">{{person.address}}</span>
-            <span class="r" flex="10">{{person.postCode}}</span>
-            <span class="r" flex="10">{{person.cityName}}</span>
-            <span class="r" flex="10">{{person.countryCode ? (person.countryCode | countryCodeToName) : null}}</span>
-            <span class="r" flex="10">
-                <md-button class="md-primary" ng-click="vm.showPersonEdit($event, person)">{{ 'COMMON.EDIT' | translate }}</md-button>
-            </span>
+    <md-virtual-repeat-container md-auto-shrink>
+        <div md-virtual-repeat="person in vm.dataLoader" md-on-demand class="repeat-item">
+            <a class="r-rowlink" href ng-click="vm.showPersonEdit($event, person)" layout="row">
+                <span class="r" flex>{{person.firstName}}</span>
+                <span class="r" flex>{{person.lastName}}</span>
+                <span class="r" flex="20">{{person.department}}</span>
+                <span class="r" flex>{{person.address}}</span>
+                <span class="r" flex="10">{{person.postCode}}</span>
+                <span class="r" flex="10">{{person.cityName}}</span>
+                <span class="r" flex="10">{{person.countryCode ? (person.countryCode | countryCodeToName) : null}}</span>
+            </a>
         </div>
     </md-virtual-repeat-container>
 </div>

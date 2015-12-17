@@ -2,14 +2,13 @@
     <md-card-content>
 
         <div layout layout-align="space-between">
-            <h3 class="md-title">{{ 'ORG.ORGANIZATIONS' | translate }}</h3>
+            <h3 class="md-title" flex>{{ 'ORG.ORGANIZATIONS' | translate }}</h3>
 
-            <md-input-container>
+            <md-input-container flex="15">
                 <label>{{ 'ORG.SEARCH_FOR_ORG' | translate }}</label>
                 <input type="text" ng-model="vm.searchQuery" ng-model-options="{debounce: 300}" ng-change="vm.dataLoader.search(vm.searchQuery)">
             </md-input-container>
         </div>
-        
 
         <div class="repeat-table">
             <div class="repeat-header" layout>
@@ -21,21 +20,19 @@
                     <span class="r" flex="10">{{ 'ORG.POSTAL_CODE' | translate }}</span>
                     <span class="r" flex="10">{{ 'ORG.CITY' | translate }}</span>
                     <span class="r" flex="10">{{ 'ORG.COUNTRY' | translate }}</span>
-                    <span class="r" flex="10">{{ 'COMMON.ACTIONS' | translate }}</span>
                 </span>
             </div>
-            <md-virtual-repeat-container style="height: 400px;">
-                <div md-virtual-repeat="organization in vm.dataLoader" md-on-demand class="repeat-item" layout>
-                    <span class="r" flex="10">{{organization.organizationName}}</span>
-                    <span class="r" flex="10">{{organization.cvrNumber}}</span>
-                    <span class="r" flex="20"></span>
-                    <span class="r" flex="20">{{organization.address}}</span>
-                    <span class="r" flex="10">{{organization.postCode}}</span>
-                    <span class="r" flex="10">{{organization.cityName}}</span>
-                    <span class="r" flex="10">{{organization.countryCode ? (organization.countryCode | countryCodeToName) : null}}</span>
-                    <span class="r" flex="10">
-                        <md-button class="md-primary" ui-sref="administration.organization({'storeProtocol': organization.storeType, 'storeIdentifier': organization.storeId, 'uuid': organization.id})">{{ 'COMMON.VIEW_DETAILS' | translate }}</md-button>
-                    </span>
+            <md-virtual-repeat-container md-auto-shrink>
+                <div md-virtual-repeat="organization in vm.dataLoader" md-on-demand class="repeat-item">
+                    <a class="r-rowlink" href ui-sref="administration.organization({'storeProtocol': organization.storeType, 'storeIdentifier': organization.storeId, 'uuid': organization.id})" layout="row">
+                        <span class="r" flex="10">{{organization.organizationName}}</span>
+                        <span class="r" flex="10">{{organization.cvrNumber}}</span>
+                        <span class="r" flex="20"></span>
+                        <span class="r" flex="20">{{organization.address}}</span>
+                        <span class="r" flex="10">{{organization.postCode}}</span>
+                        <span class="r" flex="10">{{organization.cityName}}</span>
+                        <span class="r" flex="10">{{organization.countryCode ? (organization.countryCode | countryCodeToName) : null}}</span>
+                    </a>
                 </div>
             </md-virtual-repeat-container>
         </div>

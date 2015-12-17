@@ -3,9 +3,9 @@
 
     	<div layout layout-align="space-between">
 	      
-	        <h3 class="md-title">{{ 'CONTACT.CONTACTS' | translate }}</h3>
+	        <h3 class="md-title" flex>{{ 'CONTACT.CONTACTS' | translate }}</h3>
 	        
-	        <md-input-container>
+	        <md-input-container flex="15">
 	            <label>{{ 'CONTACT.SEARCH_FOR_CONTACTS' | translate }}</label>
 	            <input type="text" ng-model="vm.searchQuery" ng-model-options="{debounce: 300}" ng-change="vm.dataLoader.search(vm.searchQuery)">
 	        </md-input-container>
