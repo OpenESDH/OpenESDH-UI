@@ -2,15 +2,15 @@
     angular
         .module('openeApp.search')
         .constant('CONTEXTS', {
-        	'cases': {
+        	cases: {
         		name: 'CASE.CASES',
         		id: 'cases'
         	},
-        	'documents': {
+        	documents: {
         		name: 'DOCUMENT.DOCUMENTS',
         		id: 'documents'
         	},
-        	'templates': {
+        	templates: {
         		name: 'DOCUMENT.TEMPLATE.LABELS.TEMPLATES',
         		id: 'templates'
         	}

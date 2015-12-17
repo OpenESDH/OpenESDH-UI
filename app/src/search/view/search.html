@@ -6,6 +6,9 @@
         <h1 class="md-headline search__header">
             <span class="muted">{{ 'SEARCH.SEARCHING_FOR' | translate }}:</span>
             {{ sctrl.searchTerm }}
+            <span ng-if="sctrl.currentContext">
+                <span class="muted"> in </span> {{sctrl.currentContext.name | translate | lowercase }}
+            </span>
         </h1>
     </div>
 

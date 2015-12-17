@@ -8,10 +8,10 @@
      * @param $scope
      * @constructor
      */
-    function SearchController($scope, $stateParams, searchService) {
+    function SearchController($scope, $stateParams, searchService, CONTEXTS) {
         var sctrl = this;
         sctrl.searchTerm = $stateParams.query;
-        scrtl.currentContext = $stateParams.ctx;
+        sctrl.currentContext = CONTEXTS.hasOwnProperty($stateParams.ctx) ? CONTEXTS[$stateParams.ctx] : null;
         sctrl.selectedFilters = {}; //Keep track of the selected filters
         sctrl.filtersQueryString=""; // the selected filters as query string
         sctrl.definedFacets = searchService.getConfiguredFacets();
@@ -21,7 +21,7 @@
                 sctrl.definedFacets = data;
 
                 // If we got a context
-                if(scrtl.currentContext) {
+                if(sctrl.currentContext) {
                     // Set facets
                 }
 
