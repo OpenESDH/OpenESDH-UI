@@ -4,6 +4,7 @@ angular
     
     function activitiesController(activitiesService){
         var vm = this;
+        vm.activities = [];
         
         activitiesService.getUserActivities().then(function(result){
             angular.forEach(result, function(activity, key) {
