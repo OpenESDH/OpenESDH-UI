@@ -3,14 +3,12 @@
         .module('openeApp.contacts')
         .controller('OrganizationController', OrganizationController);
 
-    function OrganizationController($scope, $stateParams, $mdDialog, $location, $translate,
-            contactsService, countriesService, PATTERNS, notificationUtilsService, VirtualRepeatLoader) {
+    function OrganizationController($stateParams, $mdDialog, $location, $translate,
+            contactsService, countriesService, notificationUtilsService, VirtualRepeatLoader) {
         
         var vm = this;
         vm.showOrganizationEdit = showOrganizationEdit;
         vm.deleteOrganization = deleteOrganization;
-        vm.showPersonEdit = showPersonEdit;
-        vm.initPersons = initPersons;
 
         if ($stateParams.uuid) {
             //infoForm
@@ -27,17 +25,6 @@
         function initInfo() {
             contactsService.getOrganization($stateParams.storeProtocol, $stateParams.storeIdentifier, $stateParams.uuid).then(function(organization) {
                 vm.organization = organization;
-                vm.persons = {
-                    items: []
-                };
-                initPersons();
-            });
-        }
-
-        function initPersons() {
-            vm.persons.items.length = 0;
-            contactsService.getAssociations(vm.organization.nodeRefId).then(function(persons) {
-                vm.persons.items = persons;
             });
         }
 
@@ -75,7 +62,6 @@
         function DialogController($scope, $mdDialog, organization) {
             $scope.organization = organization;
             $scope.countries = countriesService.getCountries();
-            $scope.PATTERNS = PATTERNS;
 
             $scope.hide = function() {
                 $mdDialog.hide();
@@ -112,79 +98,5 @@
 
         function error(response) {
             notificationUtilsService.alert(response.data.message);
-        }
-
-
-        function showPersonEdit(ev, person) {
-            $mdDialog
-                    .show({
-                        controller: PersonDialogController,
-                        templateUrl: 'app/src/contacts/view/personCrudDialog.html',
-                        parent: angular.element(document.body),
-                        targetEvent: ev,
-                        clickOutsideToClose: true,
-                        locals: {
-                            person: angular.copy(person)
-                        }
-                    })
-                    .then(function(response) {
-                        console.log(response);
-                    }, function() {
-
-                    });
-        }
-
-        function PersonDialogController($scope, $mdDialog, person) {
-            if (!person) {
-                person = {
-                    parentNodeRefId: vm.organization.nodeRefId
-                };
-            }
-            $scope.person = person;
-            $scope.countries = countriesService.getCountries();
-            $scope.PATTERNS = PATTERNS;
-
-            $scope.hide = function() {
-                $mdDialog.hide();
-            };
-
-            $scope.cancel = function() {
-                $mdDialog.cancel();
-            };
-
-            $scope.delete = function(ev, person) {
-                var confirm = $mdDialog.confirm()
-                        .title($translate.instant('COMMON.CONFIRM'))
-                        .textContent($translate.instant('CONTACT.ARE_YOU_SURE_YOU_WANT_TO_DELETE_PERSON_CONTACT', person))
-                        .targetEvent(ev)
-                        .ok($translate.instant('COMMON.YES'))
-                        .cancel($translate.instant('COMMON.CANCEL'));
-                $mdDialog.show(confirm).then(function() {
-                    contactsService.deletePerson(person).then(function(){
-                        refreshInfoAfterSuccessWithMsg($translate.instant("CONTACT.CONTACT_DELETED_SUCCESSFULLY", person));
-                    }, error);
-                });
-            };
-
-            $scope.save = function(personForm) {
-                if (!personForm.$valid) return;
-                if ($scope.person.id) {
-                    contactsService.updatePerson($scope.person)
-                            .then(refreshInfoAfterSave, error);
-                } else {
-                    contactsService.createPerson($scope.person)
-                            .then(refreshInfoAfterSave, error);
-                }
-            };
-
-            function refreshInfoAfterSave(savedPerson) {
-                refreshInfoAfterSuccessWithMsg($translate.instant("CONTACT.CONTACT_SAVED_SUCCESSFULLY", savedPerson));
-            }
-
-            function refreshInfoAfterSuccessWithMsg(msg) {
-                notificationUtilsService.notify(msg);
-                vm.initPersons();
-                $mdDialog.hide();
-            }
         }
     };
