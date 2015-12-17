@@ -30,20 +30,23 @@
 
             if(ContextService.getContext()) {
                 var ctxType = ContextService.getContext().id;
+                
                 if(ctxType === 'cases') {
-                    searchService.liveSearchCases(term).then(parseCases).then(function () {
-                        asctrl.loading = false;
-                    });
+                    searchService.liveSearchCases(term).then(parseCases).then(stopLoading);
                 } else if(ctxType === 'documents') {
-                    searchService.liveSearchCaseDocs(term).then(parseDocs).then(function () {
-                        asctrl.loading = false;
-                    })
+                    searchService.liveSearchCaseDocs(term).then(parseDocs).then(stopLoading)
+                } else if(ctxType === 'templates') {
+                    searchService.liveSearchTemplates(term).then(parseTemplates).then(stopLoading)
                 }
             }
             else {
                 getGlobalSuggestions(term);
             }
         };
+
+        function stopLoading() {
+            asctrl.loading = false;
+        }
 
         function parseDocs (res) {
             asctrl.liveSearchResults.documents = res.data.documents;
@@ -56,6 +59,10 @@
         function parseCases(res) {
             asctrl.liveSearchResults.cases = res.data.cases;
             asctrl.totalSuggestion += asctrl.liveSearchResults.cases.length;
+        }
+
+        function parseTemplates(res) {
+            
         }
 
         function getGlobalSuggestions(term) {

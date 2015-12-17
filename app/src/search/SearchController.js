@@ -22,7 +22,7 @@
 
                 // If we got a context
                 if(scrtl.currentContext) {
-
+                    // Set facets
                 }
 
                 executeSearch();

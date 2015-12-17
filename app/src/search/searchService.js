@@ -20,6 +20,10 @@
         service.liveSearchCases = function (term) {
             return $http.get('/alfresco/service/openesdh/live-search-cases?t='+ term);
         };
+
+        service.liveSearchTemplates = function (term) {
+            return $http.get('' + term);
+        }
         //</editor-fold>
 
         /**
