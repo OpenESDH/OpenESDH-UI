@@ -8,7 +8,7 @@ angular
  * @param $scope
  * @constructor
  */
-function GroupController($scope, $mdDialog, groupService, $stateParams, $translate) {
+function GroupController($scope, $mdDialog, groupService, $stateParams, $translate, sessionService) {
     var vm = this;
     vm.group = {};
     vm.groups = [];
@@ -17,6 +17,8 @@ function GroupController($scope, $mdDialog, groupService, $stateParams, $transla
     vm.deleteGroup = deleteGroup;
     vm.addMembersToGroup = addMembersToGroup;
     vm.removeMemberFromGroup = removeMemberFromGroup;
+    vm.showCSVUploadDialog = showCSVUploadDialog;
+    vm.sessionTicket = sessionService.getUserInfo().ticket;
 
     if ($stateParams && $stateParams.shortName && $stateParams.shortName !== 'ALL') {
         showGroup($stateParams.shortName);
@@ -153,6 +155,52 @@ function GroupController($scope, $mdDialog, groupService, $stateParams, $transla
             console.log('Cancelled');
         });
     }
+    
+    function showCSVUploadDialog(){
+
+        return $mdDialog.show({
+            controller: groupsUploadCSVDialogController,
+            templateUrl: 'app/src/groups/view/groupsUploadDialog.html',
+            parent: angular.element(document.body),
+            targetEvent: null,
+            clickOutsideToClose: true,
+            focusOnOpen: false
+        }).then(function(){
+            loadList();
+        });
+    }
+    
+    function groupsUploadCSVDialogController($scope, $translate, $mdDialog) {
+
+        $scope.cancel = function() {
+            $mdDialog.cancel();
+        };
+
+        $scope.upload = function(ev){
+            $mdDialog.hide();
+            groupService.uploadGroupsCSVFile($scope.fileToUpload).then(function(response){
+                var failedUsers=[], msg, dlgTitle;
+                dlgTitle = $translate.instant('COMMON.SUCCESS');
+                msg = $translate.instant('GROUP.UPLOAD_GROUPS_SUCCESS');
+                if(response.STATUS == "FAILED"){
+                    msg = response.message;
+                    dlgTitle = $translate.instant('COMMON.ERROR');
+                }
+                
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('body')))
+                        .clickOutsideToClose(true)
+                        .title(dlgTitle)
+                        .textContent(msg)
+                        .ariaLabel('User upload csv response.')
+                        .ok("OK")
+                        .targetEvent(ev)
+                );
+            });
+        };
+    }
+    
 
     /**
      * Test if an object is empty ECMAScript 5+ compliant

@@ -14,7 +14,8 @@
             removeMemberFromGroup: removeMemberFromGroup,
             createGroup: createGroup,
             updateGroup: updateGroup,
-            deleteGroup: deleteGroup
+            deleteGroup: deleteGroup,
+            uploadGroupsCSVFile: uploadGroupsCSVFile
         };
 
         /**
@@ -133,5 +134,19 @@
                 return $q.reject(response);
             }
             return response.data || response;
+        }
+        
+        function uploadGroupsCSVFile(file){
+
+            var formData = new FormData();
+            formData.append("filedata", file);
+            formData.append("filename", file.name);
+
+            return $http.post("/alfresco/s/api/openesdh/groups/upload", formData,  {
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}
+            }).then(function(response){
+                return response.data;
+            });
         }
     }

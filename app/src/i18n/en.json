@@ -62,7 +62,8 @@
         "SUBJECT": "Subject",
         "MESSAGE": "Message",
         "LIST_VIEW": "List view",
-        "GRID_VIEW": "Grid view"
+        "GRID_VIEW": "Grid view",
+        "DOWNLOAD_TEMPLATE_CSV": "Download template CSV"
     },
     "CASE": {
         "CONFIRM_CLOSE_CASE": "Do you want to close this case?",
@@ -536,7 +537,8 @@
         "UPLOAD_USERS_NOTE": "Upload users. CSV files only",
         "FAILED_TO_UPLOAD_MSG": "{{failedNumberOfUsers}} user(s) were not added for the following reasons:",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER": "Are you sure you want to delete '{{user}}'?",
-        "CAN_NOT_DELETE_ADMIN_USER": "Deletion of the admin user is not permitted."
+        "CAN_NOT_DELETE_ADMIN_USER": "Deletion of the admin user is not permitted.",
+        "SAVE_USER_FAILURE": "User could not be saved"
     },
     "GROUP": {
         "GROUPS": "Groups",
@@ -550,7 +552,10 @@
         "FLT_SYS": "System groups",
         "FLT_OPENE": "OpenE groups",
         "FLT_SIMPLE": "Simple case groups",
-        "FLT_STAFF": "Staff case groups"
+        "FLT_STAFF": "Staff case groups",
+        "UPLOAD_GROUPS": "Upload groups (csv)",
+        "UPLOAD_GROUPS_NOTE": "Upload groups. CSV files only",
+        "UPLOAD_GROUPS_SUCCESS": "Groups csv successfully uploaded"
     },
     "ORG": {
         "ORGANIZATIONS": "Organisations",
@@ -734,6 +739,8 @@
     },
     "SEARCH": {
         "SEARCH": "Search",
+        "SEARCHING_FOR": "Searching for",
+        "FILTER_SEARCH": "Filter search",
         "FIND_USER": "Find user",
         "FIND_USERS": "Find users",
         "FIND_GROUPS": "Find groups",
