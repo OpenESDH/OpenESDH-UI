@@ -3,7 +3,7 @@
         <h3 class="md-title">{{ 'DOCUMENT.DOCUMENTS' | translate }}</h3>
 
         <div class="repeat-table">
-            <div class="repeat-header" layout="row">
+            <div class="repeat-header">
                 <span layout="row" flex>
                     <span class="r" flex="5"></span>
                     <span class="r" flex>{{ 'COMMON.TITLE' | translate }}</span>
@@ -14,7 +14,7 @@
                 </span>
             </div>
             <md-virtual-repeat-container md-auto-shrink>
-                <div md-virtual-repeat="doc in docCtrl.documents" class="repeat-item {{ doc['oe:lockedDate'] ? 'muted' : '' }}" ng-disabled="doc['oe:lockedDate']" layout="row">
+                <div md-virtual-repeat="doc in docCtrl.documents" class="repeat-item {{ doc['oe:lockedDate'] ? 'muted' : '' }}" ng-disabled="doc['oe:lockedDate']">
                     <a class="r-rowlink" 
                        href="#/cases/case/{{docCtrl.caseId}}/doc/{{doc.nodeRef| nodeRefUri}}" 
                        layout="row">
