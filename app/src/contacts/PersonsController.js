@@ -25,7 +25,10 @@ function PersonsController($mdDialog, $stateParams, $translate, contactsService,
         });
     }
 
-    function showPersonEdit(ev, person) {
+    function showPersonEdit(ev, person, organization) {
+        var edtPerson = person
+                ? angular.copy(person)
+                : (organization ? {parentNodeRefId: organization.nodeRefId} : {});
         $mdDialog.show({
             controller: DialogController,
             templateUrl: 'app/src/contacts/view/personCrudDialog.html',
@@ -33,7 +36,7 @@ function PersonsController($mdDialog, $stateParams, $translate, contactsService,
             targetEvent: ev,
             clickOutsideToClose: true,
             locals: {
-                person: angular.copy(person)
+                person: edtPerson
             }
         }).then(function(response) {
         });
