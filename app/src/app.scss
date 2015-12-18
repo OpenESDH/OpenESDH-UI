@@ -46,8 +46,9 @@ table th,
 	color: rgba(0,0,0,0.53);
 }
 
-.muted .r-rowlink {
-    background-color: #fbfbfb;
+.repeat-table .muted .r-rowlink:not(:hover) {
+        opacity: 0.7;
+        background-color: #eee;
 }
 
 table {
@@ -71,7 +72,7 @@ table {
 	}
 
 	tr.muted {
-		background-color: #fbfbfb;
+		background-color: #eee;
 	}
 
 	.clickable-row {
