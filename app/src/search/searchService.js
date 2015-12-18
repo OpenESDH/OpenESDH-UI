@@ -24,8 +24,7 @@
             return $http.get('/alfresco/service/api/openesdh/live-search/cases?t='+ term);
         };
 
-        service.liveSearchDoTemplates = function (term) {
-            //return $http.get('/alfresco/service/openesdh/live-search-cases?t='+ term);
+        service.liveSearchTemplates = function (term) {
             return $http.get('/alfresco/service/api/openesdh/live-search/templates?t='+ term);
         };
         //</editor-fold>
