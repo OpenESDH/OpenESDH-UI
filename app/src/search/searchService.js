@@ -9,16 +9,24 @@
 
         var Alfresco = {
             apiProxyUrl : '/alfresco/service/api/',
+            openesdhApiProxyUrl : '/alfresco/service/api/openesdh/',
             slingshotProxyUrl : '/alfresco/service/slingshot/'
         };
 
         //<editor-fold desc="liveSearch results">
         service.liveSearchCaseDocs = function (term) {
-            return $http.get('/alfresco/service/openesdh/live-search-caseDocs?t=' + term);
+            //return $http.get('/alfresco/service/openesdh/live-search-caseDocs?t=' + term);
+            return $http.get('/alfresco/service/api/openesdh/live-search/caseDocs?t=' + term);
         };
 
         service.liveSearchCases = function (term) {
-            return $http.get('/alfresco/service/openesdh/live-search-cases?t='+ term);
+            //return $http.get('/alfresco/service/openesdh/live-search-cases?t='+ term);
+            return $http.get('/alfresco/service/api/openesdh/live-search/cases?t='+ term);
+        };
+
+        service.liveSearchDoTemplates = function (term) {
+            //return $http.get('/alfresco/service/openesdh/live-search-cases?t='+ term);
+            return $http.get('/alfresco/service/api/openesdh/live-search/templates?t='+ term);
         };
         //</editor-fold>
 
@@ -47,13 +55,12 @@
                          facets.push(facet)
                      }
                  });
-
                  return rawFacets;
             });
         };
 
         service.findPersons = function (searchTerm) {
-            var url = ALFRESCO_URI + '/people';
+            var url = Alfresco.apiProxyUrl + 'people';
             if(searchTerm && searchTerm.length > 0){
                 url += searchTerm;
             }
@@ -63,6 +70,19 @@
                 return result.data.people;
             });
         };
+
+        service.executeContextualSearch =  function(context, searchTerm){
+            var url = Alfresco.openesdhApiProxyUrl+getContextURL(context);
+            url += searchTerm;
+
+            return $http.get(url).then(function(response){
+                return response.data;
+            });
+        };
+
+        function getContextURL(context){
+            return context[context].searchAPIUrl;
+        }
 
         return service;
     }

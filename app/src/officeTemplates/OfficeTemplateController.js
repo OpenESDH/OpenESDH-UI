@@ -9,7 +9,7 @@
      * @param cases
      * @constructor
      */
-    function OfficeTemplateController($scope, $mdDialog, $translate, officeTemplateService, FileSaver, Blob) {
+    function OfficeTemplateController($scope, $mdDialog, $translate, officeTemplateService, FileSaver, Blob, ContextService) {
         var vm = this;
 
         vm.getTemplates = getTemplates;
@@ -24,6 +24,7 @@
 
         function activate() {
             getTemplates();
+            ContextService.setContext('templates');
         }
 
         function getTemplates() {

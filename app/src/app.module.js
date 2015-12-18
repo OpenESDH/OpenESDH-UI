@@ -52,7 +52,7 @@
             phone: /^[+]?[0-9\- ]+$/
         })
         .config(config)
-        .run(function ($rootScope, $state, $stateParams, $mdDialog, authService, sessionService) {
+        .run(function ($rootScope, $state, $stateParams, $mdDialog, authService, sessionService, ContextService) {
             $rootScope.$on('$stateChangeStart', function (event, next, params) {
                 $rootScope.toState = next;
                 $rootScope.toStateParams = params;

@@ -27,21 +27,16 @@
             asctrl.loading = true;
             asctrl.totalSuggestion = 0;
             clearResult();
+            var searchContext = (ContextService.getContext() != null) ? ContextService.getContext().id : "default";
 
-            if(ContextService.getContext()) {
-                var ctxType = ContextService.getContext().id;
-                if(ctxType === 'cases') {
-                    searchService.liveSearchCases(term).then(parseCases).then(function () {
+            switch (searchContext) {
+                case "templates":
+                    searchService.liveSearchDoTemplates(term).then(parseTemplates).then(function () {
                         asctrl.loading = false;
                     });
-                } else if(ctxType === 'documents') {
-                    searchService.liveSearchCaseDocs(term).then(parseDocs).then(function () {
-                        asctrl.loading = false;
-                    })
-                }
-            }
-            else {
-                getGlobalSuggestions(term);
+                    break;
+                default:
+                    getDefaultSuggestions(term);
             }
         };
 
@@ -53,12 +48,20 @@
             asctrl.totalSuggestion += asctrl.liveSearchResults.documents.length;
         }
 
+        function parseTemplates (res) {
+            asctrl.liveSearchResults.documents = res.data.templates;
+            asctrl.liveSearchResults.documents.forEach(function(template){
+                template.thumbNailURL = fileUtilsService.getFileIconByMimetype(document.fileMimeType,32);
+            });
+            asctrl.totalSuggestion += asctrl.liveSearchResults.documents.length;
+        }
+
         function parseCases(res) {
             asctrl.liveSearchResults.cases = res.data.cases;
             asctrl.totalSuggestion += asctrl.liveSearchResults.cases.length;
         }
 
-        function getGlobalSuggestions(term) {
+        function getDefaultSuggestions(term) {
             $q.all([
                 searchService.liveSearchCaseDocs(term),
                 searchService.liveSearchCases(term)
@@ -78,7 +81,7 @@
         };
 
         /**
-         * Return bool if the item is a document. 
+         * Return bool if the item is a document.
          */
         asctrl.isDocument = function (item) {
             return item && item.hasOwnProperty('version');
@@ -122,7 +125,7 @@
 
             var totalDocs = asctrl.liveSearchResults.documents.length;
             var totalCases = asctrl.liveSearchResults.cases.length;
-            
+
             // Documents (first array)
             if(index <= (totalDocs - 1)) {
                 return asctrl.liveSearchResults.documents[index];
