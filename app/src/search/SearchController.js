@@ -14,6 +14,7 @@
         sctrl.selectedFilters = {}; //Keep track of the selected filters
         sctrl.filtersQueryString=""; // the selected filters as query string
         sctrl.definedFacets = searchService.getConfiguredFacets();
+        sctrl.layout = 'grid';
 
         function initFacets(){
             searchService.getConfiguredFacets().then(function(data){

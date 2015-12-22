@@ -62,6 +62,29 @@ a.search__item__link:visited {
     font-size: 0.8em;
 }
 
+/*
+ * View search results as table list
+ */
+ 
+.list-search {
+    table {
+        max-width: 100%;
+    }
+    th {
+        border-top: solid 1px #ddd;
+    }
+    td {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    td:first-child {
+        padding-left: 24px;
+    }
+    td:last-child {
+        padding-right: 24px;
+    }
+}
+
 
 /*
  * Search filter menu styles
