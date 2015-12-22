@@ -7,6 +7,10 @@
             <span class="muted">{{ 'SEARCH.SEARCHING_FOR' | translate }}:</span>
             {{ sctrl.searchTerm }}
         </h1>
+        <div flex class="opene-toggleview">
+            <md-button class="md-icon-button md-accent" ng-class="{active: sctrl.layout == 'grid'}" ng-click="sctrl.layout = 'grid'" title="{{ 'COMMON.GRID_VIEW' | translate }}"><i class="material-icons">view_stream</i></md-button>
+            <md-button class="md-icon-button md-accent" ng-class="{active: sctrl.layout == 'list'}" ng-click="sctrl.layout = 'list'" title="{{ 'COMMON.LIST_VIEW' | translate }}"><i class="material-icons">view_list</i></md-button>
+        </div>
     </div>
 
     <div layout="row">
@@ -30,7 +34,8 @@
         </div>
         
         <div flex="75" class="search__list">
-            <div ng-repeat="item in sctrl.fullSearchResults.results">
+            
+            <div ng-repeat="item in sctrl.fullSearchResults.results" ng-show="sctrl.layout == 'grid'">
                 
                 <div ng-if="item.type == 'case'" class="search__item-case">
                     <div class="search__item__icon">
@@ -61,6 +66,44 @@
                 </div>
             
             </div>
+            
+            <table ng-show="sctrl.layout == 'list'" class="list-search">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>{{ "COMMON.TITLE" | translate }}</th>
+                        <th>{{ "COMMON.DESCRIPTION" | translate }}</th>
+                        <th style="text-align: right; padding-right: 24px;">{{ "COMMON.MODIFIED_BY" | translate }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in sctrl.fullSearchResults.results" >
+                        <td>
+                            <div ng-if="item.type == 'case'">
+                                <span class="material-icons">folder_open</span>
+                            </div>
+                            <div ng-if="item.type == 'document'">
+                                <span class="material-icons">insert_drive_file</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-if="item.type == 'case'">
+                                <span class="muted">{{ item.case.caseId }}</span>
+                                <a title="{{ 'CASE.VIEW_CASE_DETAILS' | translate }}" class="search__item__link md-hue-1" href="#/cases/case/{{ item.case.caseId }}">{{ item.displayName }}</a>
+                            </div>
+                            <div ng-if="item.type == 'document' && item.case">
+                                <a title="{{ 'DOCUMENT.VIEW_DOCUMENT_DETAILS' | translate }}" class="search__item__link md-hue-1" href="#/cases/case/{{ item.case.caseId }}/doc/{{ item.docRecordNodeRef | nodeRefUri }}">{{ item.displayName }}</a>
+                            </div>
+                        </td>
+                        <td>
+                            {{ item.description }}
+                        </td>
+                        <td style="text-align: right;">
+                            <div class="muted">{{ "COMMON.MODIFIED_BY" | translate }} {{ item.modifiedBy }} {{ item.modifiedOn | date }}</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             
         </div>
         
