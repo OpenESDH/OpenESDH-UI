@@ -101,7 +101,7 @@ function CasePartiesController($scope, $stateParams, $mdDialog, $filter, $transl
 
     function AddPartyDialogController($mdDialog, roles, model) {
         var self = this;
-        self.model = model ? model : {
+        self.model = model || {
             role: null,
             selectedOrganizations: [],
             selectedContacts: []
