@@ -607,7 +607,9 @@
         "CREATE_NEW_CONTACT": "Create new contact",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_PERSON_CONTACT": "Are you sure you want to delete \"{{firstName}} {{lastName}}\" contact?",
         "CONTACT_SAVED_SUCCESSFULLY": "Contact \"{{firstName}} {{lastName}}\" saved successfully",
-        "CONTACT_DELETED_SUCCESSFULLY": "Contact \"{{firstName}} {{lastName}}\" deleted successfully"
+        "CONTACT_DELETED_SUCCESSFULLY": "Contact \"{{firstName}} {{lastName}}\" deleted successfully",
+        "PERSON": "Person",
+        "ORGANIZATION": "Organization"
     },
     "ERROR": {
         "REQUIRED": "This field is required",
@@ -675,7 +677,9 @@
         "PARTY_ADDED_SUCCESSFULLY": "Case party added successfully",
         "PARTIES_ADDED_SUCCESSFULLY": "{{count}} case parties added successfully",
         "PARTY_CHANGED_SUCCESSFULLY": "Case party changed successfully",
-        "PARTY_REMOVED_SUCCESSFULLY": "Case party removed successfully"
+        "PARTY_REMOVED_SUCCESSFULLY": "Case party removed successfully",
+        "NO_MATCHES": "No matches were found.",
+        "CREATE_CONTACT": "Create new contact"
     },
     "TASK": {
         "MY_TASKS": "My tasks",

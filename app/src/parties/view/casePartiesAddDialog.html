@@ -1,5 +1,5 @@
 <md-dialog class="dialog-small" aria-label="Case parties add dialog">
-    <form name="form" novalidate>
+    <form name="form">
 
         <md-toolbar layout>
             <div class="md-toolbar-tools">
@@ -11,14 +11,24 @@
 
             <md-input-container>
                 <label>{{ 'PARTY.ROLE' | translate }} *</label>
-                <md-select ng-model="ctrl.role" md-on-open="ctrl.loadRoles()" required>
+                <md-select ng-model="ctrl.model.role" required md-autofocus>
                     <md-option ng-value="role" ng-repeat="role in ctrl.roles">{{role}}</md-option>
                 </md-select>
             </md-input-container>
 
-            <md-chips ng-model="ctrl.selectedOrganizations" md-autocomplete-snap md-require-match="true">
-                <md-autocomplete md-selected-item="ctrl.selectedItem" md-search-text="ctrl.searchText" md-items="item in ctrl.querySearch(ctrl.searchText)" md-item-text="item.name" md-no-cache="true" md-icon="" placeholder="{{ 'PARTY.CHOOSE_ORG_CONTACTS'| translate }}">
-                    <span md-highlight-text="ctrl.searchText">{{item.organizationName}} ({{item.email}})</span>
+            <md-chips ng-model="ctrl.model.selectedOrganizations" md-autocomplete-snap md-require-match="true">
+                <md-autocomplete md-selected-item="ctrl.selectedItem" 
+                                 md-search-text="ctrl.searchText" 
+                                 md-items="item in ctrl.querySearch(ctrl.searchText)" 
+                                 md-item-text="item.name" 
+                                 md-no-cache="true" 
+                                 placeholder="{{ 'PARTY.CHOOSE_ORG_CONTACTS'| translate }}">
+                    <md-item-template>
+                        <span md-highlight-text="ctrl.searchText">{{item.organizationName}} ({{item.email}})</span>
+                    </md-item-template>
+                    <md-not-found>
+                        {{ 'PARTY.NO_MATCHES'| translate }}
+                    </md-not-found>
                 </md-autocomplete>
                 <md-chip-template>
                     <span>
@@ -28,23 +38,39 @@
                 </md-chip-template>
             </md-chips>
 
-            <md-chips ng-model="ctrl.selectedContacts" md-autocomplete-snap md-require-match="true">
-                <md-autocomplete md-selected-item="ctrl.selectedItemP" md-search-text="ctrl.searchTextP" md-items="item in ctrl.querySearchP(ctrl.searchTextP)" md-item-text="item.name" md-no-cache="true" placeholder="{{ 'PARTY.CHOOSE_PERSON_CONTACTS'| translate }}">
-                    <span md-highlight-text="ctrl.searchTextP">{{item.firstName}} {{item.lastName}} ({{item.email}})</span>
-                </md-autocomplete>
-                <md-chip-template>
-                    <span>
-                        <strong>{{$chip.firstName}} {{$chip.lastName}}</strong>
-                        <em>({{$chip.email}})</em>
-                    </span>
-                </md-chip-template>
-            </md-chips>
-
+            <div layout='row'>
+                <md-chips ng-model="ctrl.model.selectedContacts" md-autocomplete-snap md-require-match="true" flex>
+                    <md-autocomplete md-selected-item="ctrl.selectedItemP" 
+                                     md-search-text="ctrl.searchTextP" 
+                                     md-items="item in ctrl.querySearchP(ctrl.searchTextP)" 
+                                     md-item-text="item.name" 
+                                     md-no-cache="true" 
+                                     md-selected-item-change="ctrl.selectContact(item)"
+                                     placeholder="{{ 'PARTY.CHOOSE_PERSON_CONTACTS'| translate }}">
+                        <md-item-template>
+                            <span md-highlight-text="ctrl.searchTextP">{{item.firstName}} {{item.lastName}} ({{item.email}})</span>
+                        </md-item-template>
+                        <md-not-found>
+                            {{ 'PARTY.NO_MATCHES'| translate }}
+                        </md-not-found>
+                    </md-autocomplete>
+                    <md-chip-template>
+                        <span>
+                            <strong>{{$chip.firstName}} {{$chip.lastName}}</strong>
+                            <em>({{$chip.email}})</em>
+                        </span>
+                    </md-chip-template>
+                </md-chips>
+                <md-button ng-click="ctrl.newContact($event)" title="{{ 'PARTY.CREATE_CONTACT'| translate }}" 
+                           style='min-width: 15px; max-height: 36px;'>+</md-button>
+            </div>
         </md-dialog-content>
 
         <md-dialog-actions>
-            <md-button class="md-primary" ng-click="ctrl.save(ctrl.role, ctrl.selectedOrganizations, ctrl.selectedContacts)" 
-                        ng-disabled="form.$invalid">
+            <md-button class="md-primary" ng-click="ctrl.save()" 
+                       ng-disabled="form.$invalid ||
+                                   (ctrl.model.selectedOrganizations.length === 0
+                                           && ctrl.model.selectedContacts.length === 0)">
                 {{ 'COMMON.ADD' | translate }}
             </md-button>
             <md-button ng-click="ctrl.cancel()">

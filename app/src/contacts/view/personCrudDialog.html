@@ -103,7 +103,7 @@
                 <opene-error form="personForm" field="personForm.notes"></opene-error>
             </md-input-container>
         </md-dialog-content>
-        <div class="md-actions" layout="row">
+        <md-dialog-actions>
             <md-button type="submit" class="md-primary" ng-disabled="personForm.$invalid" ng-click="save(personForm)">
                 {{ 'COMMON.SAVE' | translate }}
             </md-button>
@@ -113,6 +113,6 @@
             <md-button ng-click="cancel()">
                 {{ 'COMMON.CANCEL' | translate }}
             </md-button>
-        </div>
+        </md-dialog-actions>
     </form>
 </md-dialog>
