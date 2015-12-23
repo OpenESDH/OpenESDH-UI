@@ -1,34 +1,34 @@
-<div layout>
+<div layout class="admin_sub_menu">
+    <md-card flex="20">
+        <md-card-content layout>
+            <md-list>
+                <md-subheader class="md-no-sticky">{{ 'ADMIN.SYS_SETTINGS.SETTINGS' | translate}}</md-subheader>
+                <md-list-item ui-sref="administration.systemsettings.general" ui-sref-active="active">
+                    <md-icon class="md-default-theme" class="material-icons">content_copy</md-icon>
+                    <p>{{ 'ADMIN.SYS_SETTINGS.GENERAL_CONFIG' | translate}}</p>
+                </md-list-item>
+                <md-list-item ui-sref="administration.systemsettings.doctypes" ui-sref-active="active">
+                    <md-icon class="md-default-theme" class="material-icons">content_copy</md-icon>
+                    <p>{{ 'DOCUMENT_TYPES.DOCUMENT_TYPES' | translate}}</p>
+                </md-list-item>
+                <md-list-item ui-sref="administration.systemsettings.doccategories" ui-sref-active="active">
+                    <md-icon class="md-default-theme" class="material-icons">content_copy</md-icon>
+                    <p>{{ 'DOCUMENT_CATEGORIES.DOCUMENT_CATEGORIES' | translate}}</p>
+                </md-list-item>
+                <md-list-item ui-sref="administration.systemsettings.templates" ui-sref-active="active">
+                    <md-icon class="md-default-theme" class="material-icons">content_copy</md-icon>
+                    <p>{{ 'DOCUMENT.TEMPLATE.LABELS.TEMPLATES' | translate}}</p>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-subheader class="md-no-sticky">{{ 'ADMIN.SYS_SETTINGS.MODULES' | translate}}</md-subheader>
+                <md-list-item ui-sref="administration.systemsettings.test" ui-sref-active="active">
+                    <md-icon class="md-default-theme" class="material-icons">widgets</md-icon>
+                    <p>Addo plugin</p>
+                </md-list-item>
+            </md-list>
+        </md-card-content>
+    </md-card> 
 
-	<md-card flex="20">
-	    <md-card-content layout>
-
-			<md-list>
-				<md-subheader class="md-no-sticky">Parameters</md-subheader>
-				<md-list-item ui-sref="administration.systemsettings.doctypes" ui-sref-active="active">
-					<md-icon class="md-default-theme" class="material-icons">content_copy</md-icon>
-	    			<p>{{ 'DOCUMENT_TYPES.DOCUMENT_TYPES' | translate}}</p>
-				</md-list-item>
-				<md-list-item ui-sref="administration.systemsettings.doccategories" ui-sref-active="active">
-					<md-icon class="md-default-theme" class="material-icons">content_copy</md-icon>
-	    			<p>{{ 'DOCUMENT_CATEGORIES.DOCUMENT_CATEGORIES' | translate}}</p>
-				</md-list-item>
-				<md-list-item ui-sref="administration.systemsettings.templates" ui-sref-active="active">
-					<md-icon class="md-default-theme" class="material-icons">content_copy</md-icon>
-	    			<p>{{ 'DOCUMENT.TEMPLATE.LABELS.TEMPLATES' | translate}}</p>
-				</md-list-item>
-				<md-divider></md-divider>
-				<md-subheader class="md-no-sticky">Modules</md-subheader>
-				<md-list-item ui-sref="administration.systemsettings.test" ui-sref-active="active">
-					<md-icon class="md-default-theme" class="material-icons">widgets</md-icon>
-	    			<p>Addo plugin</p>
-				</md-list-item>
-			</md-list>
-	        
-	    </md-card-content>
-	</md-card> 
-
-	
-	<div flex="grow" ui-view="systemsetting-view"></div>
+    <div flex="grow" ui-view="systemsetting-view"></div>
 </div>
 
