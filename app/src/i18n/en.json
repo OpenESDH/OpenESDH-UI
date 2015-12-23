@@ -520,7 +520,12 @@
     },
     "ADMIN": {
         "ADMINISTRATION_PAGES": "Administration pages",
-        "ADMINISTRATION": "Administration"
+        "ADMINISTRATION": "Administration",
+        "SYS_SETTINGS": {
+            "SETTINGS": "Settings",
+            "MODULES": "MODULES",
+            "GENERAL_CONFIG": "General configuration"
+        }
     },
     "USER": {
         "USERS": "Users",
