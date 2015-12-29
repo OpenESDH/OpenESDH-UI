@@ -7,7 +7,9 @@
         var fsvc = this;
         return {
             getFileIconByMimetype: getFileIconByMimetype,
-            getFileExtension: getFileExtension
+            getFileExtension: getFileExtension,
+            getMsProtocolForFileExtension: getMsProtocolForFileExtension,
+            getMsProtocolForFile: getMsProtocolForFile
         };
 
         fsvc.fileIcon.types = {
@@ -251,6 +253,44 @@
                 }
             }
             return prefix + "-" + type + "-" + iconSize + ".png";
+        }
+        
+        function getMsProtocolForFileExtension(fileExtension){
+           var msProtocolNames = {
+              'doc'  : 'ms-word',
+              'docx' : 'ms-word',
+              'docm' : 'ms-word',
+              'dot'  : 'ms-word',
+              'dotx' : 'ms-word',
+              'dotm' : 'ms-word',
+              'xls'  : 'ms-excel',
+              'xlsx' : 'ms-excel',
+              'xlsb' : 'ms-excel',
+              'xlsm' : 'ms-excel',
+              'xlt'  : 'ms-excel',
+              'xltx' : 'ms-excel',
+              'xltm' : 'ms-excel',
+              'xlsm' : 'ms-excel',
+              'ppt'  : 'ms-powerpoint',
+              'pptx' : 'ms-powerpoint',
+              'pot'  : 'ms-powerpoint',
+              'potx' : 'ms-powerpoint',
+              'potm' : 'ms-powerpoint',
+              'pptm' : 'ms-powerpoint',
+              'potm' : 'ms-powerpoint',
+              'pps'  : 'ms-powerpoint',
+              'ppsx' : 'ms-powerpoint',
+              'ppam' : 'ms-powerpoint',
+              'ppsm' : 'ms-powerpoint',
+              'sldx' : 'ms-powerpoint',
+              'sldm' : 'ms-powerpoint',
+           };
+           return msProtocolNames[fileExtension];
+        }
+        
+        function getMsProtocolForFile(filePath){
+            var ext = getFileExtension(filePath);
+            return getMsProtocolForFileExtension(ext);
         }
 
     }

@@ -3,7 +3,7 @@
         .module('openeApp.documents')
         .factory('caseDocumentDetailsService', CaseDocumentDetailsService);
 
-    function CaseDocumentDetailsService($http, httpUtils, alfrescoUploadService, alfrescoDownloadService, alfrescoNodeUtils) {
+    function CaseDocumentDetailsService($http, httpUtils, alfrescoUploadService, alfrescoDownloadService, alfrescoNodeUtils, fileUtilsService) {
         var service = {
             getCaseDocument: getCaseDocument,
             getDocumentVersionInfo: getDocumentVersionInfo,
@@ -14,7 +14,8 @@
             uploadAttachmentNewVersion: uploadAttachmentNewVersion,
             downloadAttachment: downloadAttachment,
             updateDocumentProperties: updateDocumentProperties,
-            changeDocumentStatus: changeDocumentStatus
+            changeDocumentStatus: changeDocumentStatus,
+            editOnlineDocument: editOnlineDocument
         };
         return service;
         
@@ -99,5 +100,11 @@
             return $http.post('/alfresco/service/api/openesdh/documents/' + alfrescoNodeUtils.processNodeRef(documentNodeRef).uri + '/status', {status: status}).then(function (response) {
                 return response.data;
             });
+        }
+        
+        function editOnlineDocument(docEditOnlinePath){
+            var msProtocol = fileUtilsService.getMsProtocolForFile(docEditOnlinePath);
+            var href = msProtocol + ":ofe|u|" + window.location.origin + "/alfresco" + docEditOnlinePath;
+            location.href = href;
         }
     }
