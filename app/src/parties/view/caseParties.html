@@ -15,7 +15,7 @@
                 <tr ng-repeat="party in cmCPC.parties">
                     <td>{{party.displayName}}</td>
                     <td>{{party.contactId}}</td>
-                    <td>{{party.contactType}}</td>
+                    <td>{{ 'CONTACT.' + party.contactType | translate}}</td>
                     <td>{{party.role}}</td>
                     <td>
                         <md-button class="md-primary" ng-click="cmCPC.showChangePartyDialog($event, party)" ng-disabled="caseIsLocked">{{ 'PARTY.CHANGE' | translate }}</md-button>
