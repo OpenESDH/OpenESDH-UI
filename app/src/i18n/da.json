@@ -64,7 +64,8 @@
         "MESSAGE": "Meddelelse",
         "LIST_VIEW": "Listevisning",
         "GRID_VIEW": "Gittervisning",
-        "DOWNLOAD_TEMPLATE_CSV": "Download skabelon CSV"
+        "DOWNLOAD_TEMPLATE_CSV": "Download skabelon CSV",
+        "LOCKED_BY": "Låst af {{locked_by}}"
     },
     "CASE": {
         "CONFIRM_CLOSE_CASE": "Vil du lukke denne sag?",
@@ -189,6 +190,7 @@
         "DOCUMENT_NAME": "Dokumentnavn",
         "VERSION_DESCRIPTION": "Versionsbeskrivelse",
         "EDIT_PROPERTIES": "Redigér information",
+        "EDIT_DOCUMENT": "Redigér dokument",
         "UPLOAD_NEW_VERSION": "Upload ny version",
         "PREVIEW": "Preview",
         "ATTACHMENTS": {
