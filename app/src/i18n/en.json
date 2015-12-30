@@ -63,7 +63,8 @@
         "MESSAGE": "Message",
         "LIST_VIEW": "List view",
         "GRID_VIEW": "Grid view",
-        "DOWNLOAD_TEMPLATE_CSV": "Download template CSV"
+        "DOWNLOAD_TEMPLATE_CSV": "Download template CSV",
+        "LOCKED_BY": "Locked by {{locked_by}}"
     },
     "CASE": {
         "CONFIRM_CLOSE_CASE": "Do you want to close this case?",
@@ -188,6 +189,7 @@
         "DOCUMENT_NAME": "Document name",
         "VERSION_DESCRIPTION": "Version description",
         "EDIT_PROPERTIES": "Edit information",
+        "EDIT_DOCUMENT": "Edit document",
         "UPLOAD_NEW_VERSION": "Upload new version",
         "PREVIEW": "Preview",
         "ATTACHMENTS": {

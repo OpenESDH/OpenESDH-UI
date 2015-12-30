@@ -50,7 +50,11 @@
                   <div layout="row">
                     <dl layout="row" layout-wrap flex="50">
                       <dt flex="33">{{ 'COMMON.TITLE' | translate }}</dt><dd flex="66">{{ docCtrl.doc.title }}</dd>
-                      <dt flex="33">{{ 'COMMON.STATUS' | translate }}</dt><dd flex="66">{{ docCtrl.doc.status | docStatus }}</dd>
+                      <dt flex="33">{{ 'COMMON.STATUS' | translate }}</dt>
+                        <dd flex="66">
+                            {{ docCtrl.doc.status | docStatus }}
+                            <span ng-show="docCtrl.doc.editLockState.isLocked">({{'COMMON.LOCKED_BY' | translate: {locked_by: docCtrl.doc.editLockState.lockOwnerInfo} }})</span>
+                        </dd>
                       <dt flex="33">{{ 'COMMON.TYPE' | translate }}</dt><dd flex="66">
                           <i class="material-icons" ng-show="docCtrl.doc['fromOutlook']" title="{{ 'DOCUMENT.SENT_FROM_OUTLOOK' | translate}}" style="padding-right: 5px;">email</i>
                           {{ docCtrl.doc.typeDisplayName }}
@@ -75,7 +79,8 @@
               </md-card-content>
               <div class="md-actions" layout="row" layout-padding>
                   <md-button class="md-primary" ng-click="docCtrl.editDocumentProperties()" ng-disabled="docCtrl.doc.isLocked">{{ 'DOCUMENT.EDIT_PROPERTIES' | translate }}</md-button>
-                  <md-button class="md-primary" ng-click="docCtrl.uploadDocNewVersion()" ng-disabled="docCtrl.doc.isLocked">{{'DOCUMENT.UPLOAD_NEW_VERSION' |translate }}</md-button>
+                  <md-button class="md-primary" ng-click="docCtrl.editOnlineDocument()" ng-disabled="docCtrl.doc.isLocked || docCtrl.doc.editLockState.isLocked" ng-show="docCtrl.canEditOnlineDocument">{{ 'DOCUMENT.EDIT_DOCUMENT' | translate }}</md-button>
+                  <md-button class="md-primary" ng-click="docCtrl.uploadDocNewVersion()" ng-disabled="docCtrl.doc.isLocked || docCtrl.doc.editLockState.isLocked">{{'DOCUMENT.UPLOAD_NEW_VERSION' |translate }}</md-button>
                   <md-button class="md-primary" ng-click="docCtrl.downloadDocument()">{{ 'COMMON.DOWNLOAD' | translate }}</md-button>
                   <md-button class="md-primary" ng-click="docCtrl.deleteDocument()" ng-disabled="docCtrl.doc.isLocked" ng-show="docCtrl.isAdmin">{{ 'COMMON.DELETE' | translate }}</md-button>
               </div>
@@ -101,15 +106,21 @@
                                   <span class="r" flex>{{attachment.name}}</span>
                                   <span class="r muted" flex="20">{{attachment.created | openeDate}}</span>
                                   <span class="r muted" flex="15">{{attachment.creator.firstName + ' ' + attachment.creator.lastName}}</span>
-                                  <span class="r muted" flex="20">{{attachment.versionLabel}}</span>
+                                  <span class="r muted" flex="20">
+                                      {{attachment.versionLabel}}
+                                      <i class="material-icons md-ligth" ng-show="attachment.locked" 
+                                        title="{{'COMMON.LOCKED_BY' | translate: {locked_by: attachment.lockOwnerInfo} }}">
+                                        lock_outline
+                                      </i>
+                                  </span>
                                   <span class="muted" flex="10">
                                       <md-menu>
                                            <md-button ng-click="$mdOpenMenu($event)">
                                               {{ 'COMMON.ACTIONS' | translate }}
                                            </md-button>
                                            <md-menu-content>
-                                              <md-menu-item><md-button ng-disabled="true">{{ 'DOCUMENT.ATTACHMENTS.EDIT_ATTACHMENT' | translate }}</md-button></md-menu-item>
-                                              <md-menu-item><md-button ng-click="docCtrl.uploadAttachmentNewVersion(attachment)" ng-disabled="docCtrl.doc.isLocked">{{ 'DOCUMENT.UPLOAD_NEW_VERSION' | translate }}</md-button></md-menu-item>
+                                              <md-menu-item><md-button ng-click="docCtrl.editOnlineAttachment(attachment)" ng-disabled="!docCtrl.canEditOnlineAttachment(attachment)">{{ 'DOCUMENT.ATTACHMENTS.EDIT_ATTACHMENT' | translate }}</md-button></md-menu-item>
+                                              <md-menu-item><md-button ng-click="docCtrl.uploadAttachmentNewVersion(attachment)" ng-disabled="docCtrl.doc.isLocked || attachment.locked">{{ 'DOCUMENT.UPLOAD_NEW_VERSION' | translate }}</md-button></md-menu-item>
                                               <md-menu-item><md-button ng-click="docCtrl.previewAttachment(attachment)">{{ 'DOCUMENT.OPEN_PREVIEW' | translate }}</md-button></md-menu-item>
                                               <md-menu-item><md-button ng-click="docCtrl.downloadAttachment(attachment)">{{ 'COMMON.DOWNLOAD' | translate }}</md-button></md-menu-item>
                                            </md-menu-content>
