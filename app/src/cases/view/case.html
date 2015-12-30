@@ -117,14 +117,14 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>{{ 'COMMON.ACTION' | translate }}</th>
-                                    <th>{{ 'COMMON.TYPE' | translate }}</th>
-                                    <th>{{ 'USER.USER' | translate }}</th>
-                                    <th>{{ 'COMMON.TIME' | translate }}</th>
+                                    <th sort-table="action">{{ 'COMMON.ACTION' | translate }}</th>
+                                    <th sort-table="type">{{ 'COMMON.TYPE' | translate }}</th>
+                                    <th sort-table="user">{{ 'USER.USER' | translate }}</th>
+                                    <th sort-table="time">{{ 'COMMON.TIME' | translate }}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="log in historyCtrl.history">
+                                <tr ng-repeat="log in historyCtrl.history | orderObjectBy:orderByAttribute:reverseOrder">
                                     <td>{{ log.action}}</td>
                                     <td>{{ log.type}}</td>
                                     <td>{{ log.user}}</td>

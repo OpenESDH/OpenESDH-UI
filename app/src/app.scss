@@ -417,3 +417,8 @@ md-input-container .md-input:-webkit-autofill ~ label {
 .admin_sub_menu .md-list-item-inner p {
     line-height: normal;
 }
+
+span[sort-table],
+th[sort-table] {
+	cursor: pointer;
+}
