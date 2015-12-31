@@ -3,10 +3,11 @@ angular
         .module('openeApp.systemsettings')
         .factory('oeParametersService', oeParametersService);
 
-function oeParametersService($http, $q, $window) {
+function oeParametersService($http, $window) {
     var service = {
         getParameters: getParameters,
         getParameter: getParameter,
+        loadParameters: loadParameters,
         saveParameters: saveParameters,
         clearOEParameters: clearOEParameters
     };
@@ -26,22 +27,13 @@ function oeParametersService($http, $q, $window) {
     }
 
     function getParameter(oeParameterName) {
-        if (_oeParameters[oeParameterName] !== undefined) {
-            return $q.resolve(_oeParameters[oeParameterName]);
-        }
-
-        return $http.get('/alfresco/service/api/openesdh/parameter/' + oeParameterName)
-                .then(function(response) {
-                    _oeParameters[response.data.name] = response.data.value;
-                    _saveOEParamsToSession(_oeParameters);
-                    return response.data.value;
-                });
+        return _oeParameters[oeParameterName];
     }
 
-    function saveParameters(oeParameters) {
-        return $http.post('/alfresco/service/api/openesdh/parameters', oeParameters)
+    function saveParameters(oeParams) {
+        return $http.post('/alfresco/service/api/openesdh/parameters', oeParams)
                 .then(function(response) {
-                    _saveOEParamsToSession(oeParameters);
+                    _saveOEParamsToSession(_transformParameters(oeParams));
                     return response.data;
                 });
     }
@@ -49,6 +41,20 @@ function oeParametersService($http, $q, $window) {
     function _saveOEParamsToSession(oeParameters) {
         _oeParameters = oeParameters;
         $window.sessionStorage.setItem('oeParameters', angular.toJson(_oeParameters));
+    }
+
+    function _transformParameters(oeParams) {
+        var params = {};
+        angular.forEach(oeParams, function(par) {
+            params[par.name] = par.value;
+        });
+        return params;
+    }
+
+    function loadParameters() {
+        getParameters().then(function(oeParams){
+            _saveOEParamsToSession(_transformParameters(oeParams));
+        });
     }
 
     function clearOEParameters() {

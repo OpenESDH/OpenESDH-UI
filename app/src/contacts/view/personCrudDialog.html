@@ -103,7 +103,7 @@
                 <opene-error form="personForm" field="personForm.notes"></opene-error>
             </md-input-container>
         </md-dialog-content>
-        <md-dialog-actions ng-show="allowNewContacts">
+        <md-dialog-actions ng-show="('can_create_contacts'|oeParam)">
             <md-button type="submit" class="md-primary" ng-disabled="personForm.$invalid" ng-click="save(personForm)" >
                 {{ 'COMMON.SAVE' | translate }}
             </md-button>
@@ -114,7 +114,7 @@
                 {{ 'COMMON.CANCEL' | translate }}
             </md-button>
         </md-dialog-actions>
-        <md-dialog-actions ng-hide="allowNewContacts">
+        <md-dialog-actions ng-hide="('can_create_contacts'|oeParam)">
             <md-button ng-click="cancel()">
                 {{ 'COMMON.CLOSE' | translate }}
             </md-button>

@@ -10,7 +10,7 @@
         
         <div ng-include="'app/src/contacts/view/sharedPersonsList.html'" ></div>
         
-        <div class="md-actions" ng-show="vm.allowNewContacts">
+        <div class="md-actions" ng-show="('can_create_contacts'|oeParam)">
             <md-button class="md-primary" ng-click="vm.showPersonEdit($event, null)">{{ 'CONTACT.CREATE_NEW_CONTACT' | translate }}</md-button>
         </div>
     </md-card-content>

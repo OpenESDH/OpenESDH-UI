@@ -2,15 +2,10 @@ angular
         .module('openeApp.contacts')
         .controller('PersonsController', PersonsController);
 
-function PersonsController($stateParams, contactsService, oeParametersService,
+function PersonsController($stateParams, contactsService,
         notificationUtilsService, VirtualRepeatLoader, personDialogService) {
     var vm = this;
     vm.showPersonEdit = showPersonEdit;
-
-    vm.allowNewContacts = false;
-    oeParametersService.getParameter('can_create_contacts').then(function(value) {
-        vm.allowNewContacts = value;
-    });
 
     vm.dataLoader = new VirtualRepeatLoader(loadPersons, error);
 

@@ -86,7 +86,7 @@ function authService($http, $window, $state, sessionService, userService, oePara
             var ticket = response.data.data.ticket;
             userInfo['ticket'] = ticket;
             sessionService.setUserInfo(userInfo);
-            return addUserToSession(username);
+            return addUserAndParamsToSession(username);
         }, function(reason) {
             console.log(reason);
             return reason;
@@ -175,16 +175,17 @@ function authService($http, $window, $state, sessionService, userService, oePara
 
     function revalidateUser() {
         return $http.get('/alfresco/service/api/openesdh/currentUser').then(function(response) {
-            addUserToSession(response.data.userName);
+            addUserAndParamsToSession(response.data.userName);
         });
     }
 
-    function addUserToSession(username) {
+    function addUserAndParamsToSession(username) {
         return userService.getPerson(username).then(function(response) {
             delete $window._openESDHSessionExpired;
             var userInfo = sessionService.getUserInfo();
             userInfo['user'] = response;
             sessionService.setUserInfo(userInfo);
+            oeParametersService.loadParameters();
             return response;
         });
     }

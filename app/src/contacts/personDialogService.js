@@ -28,15 +28,10 @@ function personDialogService($mdDialog, $translate, contactsService,
         });
     }
 
-    function DialogController($scope, $mdDialog, person, oeParametersService) {
+    function DialogController($scope, $mdDialog, person) {
         $scope.person = person;
         $scope.countries = countriesService.getCountries();
         $scope.PATTERNS = PATTERNS;
-
-        $scope.allowNewContacts = false;
-        oeParametersService.getParameter('can_create_contacts').then(function(value) {
-            $scope.allowNewContacts = value;
-        });
 
         $scope.hide = function() {
             $mdDialog.hide();

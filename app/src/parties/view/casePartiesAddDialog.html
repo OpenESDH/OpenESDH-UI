@@ -62,13 +62,12 @@
                     </md-chip-template>
                 </md-chips>
                 <md-button 
-                    ng-show="ctrl.allowNewContacts"
+                    ng-show="('can_create_contacts'|oeParam)"
                     ng-click="ctrl.newContact($event)" 
                     title="{{ 'PARTY.CREATE_CONTACT'| translate }}" 
                     style='min-width: 15px; max-height: 36px;'>+</md-button>
             </div>
         </md-dialog-content>
-
         <md-dialog-actions>
             <md-button class="md-primary" ng-click="ctrl.save()" 
                        ng-disabled="form.$invalid ||

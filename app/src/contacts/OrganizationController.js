@@ -4,17 +4,12 @@
         .controller('OrganizationController', OrganizationController);
 
     function OrganizationController($stateParams, $mdDialog, $location, $translate, VirtualRepeatLoader,
-            contactsService, countriesService, notificationUtilsService, oeParametersService) {
+            contactsService, countriesService, notificationUtilsService) {
         
         var vm = this;
         vm.showOrganizationEdit = showOrganizationEdit;
         vm.deleteOrganization = deleteOrganization;
         
-        vm.allowNewContacts = false;
-        oeParametersService.getParameter('can_create_contacts').then(function(value){
-            vm.allowNewContacts = value;
-        });
-
         if ($stateParams.uuid) {
             //infoForm
             initInfo();
