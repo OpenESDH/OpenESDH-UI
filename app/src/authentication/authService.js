@@ -55,7 +55,7 @@ function httpTicketInterceptor($injector, $translate, $window, $q, sessionServic
     }
 }
 
-function authService($http, $window, $state, sessionService, $translate, userService) {
+function authService($http, $window, $state, sessionService, userService, oeParametersService) {
     var service = {
         login: login,
         logout: logout,
@@ -99,6 +99,7 @@ function authService($http, $window, $state, sessionService, $translate, userSer
             return $http.delete('/alfresco/service/api/login/ticket/' + userInfo.ticket).then(function(response) {
                 sessionService.setUserInfo(null);
                 sessionService.clearRetainedLocation();
+                oeParametersService.clearOEParameters();
                 return response;
             });
         }

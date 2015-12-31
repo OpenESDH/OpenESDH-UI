@@ -37,7 +37,7 @@
             </md-virtual-repeat-container>
         </div>
 
-        <div class="md-actions">
+        <div class="md-actions" ng-show="vm.allowNewContacts">
             <md-button class="md-primary" ng-click="vm.showOrganizationEdit($event)">{{ 'ORG.CREATE_NEW_ORG' | translate }}</md-button>
         </div>
     </md-card-content>

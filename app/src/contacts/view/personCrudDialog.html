@@ -103,8 +103,8 @@
                 <opene-error form="personForm" field="personForm.notes"></opene-error>
             </md-input-container>
         </md-dialog-content>
-        <md-dialog-actions>
-            <md-button type="submit" class="md-primary" ng-disabled="personForm.$invalid" ng-click="save(personForm)">
+        <md-dialog-actions ng-show="allowNewContacts">
+            <md-button type="submit" class="md-primary" ng-disabled="personForm.$invalid" ng-click="save(personForm)" >
                 {{ 'COMMON.SAVE' | translate }}
             </md-button>
             <md-button ng-click="delete($event, person)" ng-show="person.id">
@@ -112,6 +112,11 @@
             </md-button>
             <md-button ng-click="cancel()">
                 {{ 'COMMON.CANCEL' | translate }}
+            </md-button>
+        </md-dialog-actions>
+        <md-dialog-actions ng-hide="allowNewContacts">
+            <md-button ng-click="cancel()">
+                {{ 'COMMON.CLOSE' | translate }}
             </md-button>
         </md-dialog-actions>
     </form>

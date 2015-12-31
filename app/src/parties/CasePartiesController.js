@@ -99,7 +99,7 @@ function CasePartiesController($scope, $stateParams, $mdDialog, $filter, $transl
         });
     }
 
-    function AddPartyDialogController($mdDialog, roles, model) {
+    function AddPartyDialogController($mdDialog, oeParametersService, roles, model) {
         var self = this;
         self.model = model || {
             role: null,
@@ -118,7 +118,11 @@ function CasePartiesController($scope, $stateParams, $mdDialog, $filter, $transl
         self.searchTextP = null;
         self.querySearchP = personsQuerySearch;
         self.newContact = newContact;
-
+        //params
+        self.allowNewContacts = false;
+        oeParametersService.getParameter('can_create_contacts').then(function(value){
+            self.allowNewContacts = value;
+        });
         //actions
         self.save = save;
         self.cancel = cancel;

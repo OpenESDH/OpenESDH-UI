@@ -61,8 +61,11 @@
                         </span>
                     </md-chip-template>
                 </md-chips>
-                <md-button ng-click="ctrl.newContact($event)" title="{{ 'PARTY.CREATE_CONTACT'| translate }}" 
-                           style='min-width: 15px; max-height: 36px;'>+</md-button>
+                <md-button 
+                    ng-show="ctrl.allowNewContacts"
+                    ng-click="ctrl.newContact($event)" 
+                    title="{{ 'PARTY.CREATE_CONTACT'| translate }}" 
+                    style='min-width: 15px; max-height: 36px;'>+</md-button>
             </div>
         </md-dialog-content>
 
