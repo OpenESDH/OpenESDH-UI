@@ -12,31 +12,32 @@
             getMsProtocolForFile: getMsProtocolForFile
         };
 
-        fsvc.fileIcon.types = {
-            "{http://www.alfresco.org/model/content/1.0}cmobject": "file",
-            "cm:cmobject": "file",
-            "{http://www.alfresco.org/model/content/1.0}content": "file",
-            "cm:content": "file",
-            "{http://www.alfresco.org/model/content/1.0}thumbnail": "file",
-            "cm:thumbnail": "file",
-            "{http://www.alfresco.org/model/content/1.0}folder": "folder",
-            "cm:folder": "folder",
-            "{http://www.alfresco.org/model/content/1.0}category": "category",
-            "cm:category": "category",
-            "{http://www.alfresco.org/model/content/1.0}person": "user",
-            "cm:person": "user",
-            "{http://www.alfresco.org/model/content/1.0}authorityContainer": "group",
-            "cm:authorityContainer": "group",
-            "tag": "tag",
-            "{http://www.alfresco.org/model/site/1.0}sites": "site",
-            "st:sites": "site",
-            "{http://www.alfresco.org/model/site/1.0}site": "site",
-            "st:site": "site",
-            "{http://www.alfresco.org/model/transfer/1.0}transferGroup": "server-group",
-            "trx:transferGroup": "server-group",
-            "{http://www.alfresco.org/model/transfer/1.0}transferTarget": "server",
-            "trx:transferTarget": "server"
-        };
+//UNUSED?
+//        fsvc.fileIcon.types = {
+//            "{http://www.alfresco.org/model/content/1.0}cmobject": "file",
+//            "cm:cmobject": "file",
+//            "{http://www.alfresco.org/model/content/1.0}content": "file",
+//            "cm:content": "file",
+//            "{http://www.alfresco.org/model/content/1.0}thumbnail": "file",
+//            "cm:thumbnail": "file",
+//            "{http://www.alfresco.org/model/content/1.0}folder": "folder",
+//            "cm:folder": "folder",
+//            "{http://www.alfresco.org/model/content/1.0}category": "category",
+//            "cm:category": "category",
+//            "{http://www.alfresco.org/model/content/1.0}person": "user",
+//            "cm:person": "user",
+//            "{http://www.alfresco.org/model/content/1.0}authorityContainer": "group",
+//            "cm:authorityContainer": "group",
+//            "tag": "tag",
+//            "{http://www.alfresco.org/model/site/1.0}sites": "site",
+//            "st:sites": "site",
+//            "{http://www.alfresco.org/model/site/1.0}site": "site",
+//            "st:site": "site",
+//            "{http://www.alfresco.org/model/transfer/1.0}transferGroup": "server-group",
+//            "trx:transferGroup": "server-group",
+//            "{http://www.alfresco.org/model/transfer/1.0}transferTarget": "server",
+//            "trx:transferTarget": "server"
+//        };
 
 
         /**
@@ -270,20 +271,18 @@
               'xlt'  : 'ms-excel',
               'xltx' : 'ms-excel',
               'xltm' : 'ms-excel',
-              'xlsm' : 'ms-excel',
               'ppt'  : 'ms-powerpoint',
               'pptx' : 'ms-powerpoint',
               'pot'  : 'ms-powerpoint',
               'potx' : 'ms-powerpoint',
               'potm' : 'ms-powerpoint',
               'pptm' : 'ms-powerpoint',
-              'potm' : 'ms-powerpoint',
               'pps'  : 'ms-powerpoint',
               'ppsx' : 'ms-powerpoint',
               'ppam' : 'ms-powerpoint',
               'ppsm' : 'ms-powerpoint',
               'sldx' : 'ms-powerpoint',
-              'sldm' : 'ms-powerpoint',
+              'sldm' : 'ms-powerpoint'
            };
            return msProtocolNames[fileExtension];
         }
