@@ -93,7 +93,7 @@
         $mdIconProvider.icon('md-calendar', '/app/assets/img/icons/today.svg');
 
         $urlRouterProvider
-            .when('/admin/system-settings','/admin/system-settings/document-types')
+            .when('/admin/system-settings','/admin/system-settings/general-configuration')
             .otherwise('/');
 
         $stateProvider.state('site', {
@@ -285,6 +285,18 @@
                 'systemsettings': {
                     templateUrl: '/app/src/system_settings/menu/system_settings.html',
                     controller: 'SystemsettingsController',
+                    controllerAs: 'vm'
+                }
+            }
+        }).state('administration.systemsettings.general', {
+            url: '/general-configuration',
+            data: {
+                authorizedRoles: [USER_ROLES.admin]
+            },
+            views: {
+                'systemsetting-view': {
+                    templateUrl: '/app/src/system_settings/general_configuration/view/generalConfiguration.html',
+                    controller: 'GeneralConfigurationController',
                     controllerAs: 'vm'
                 }
             }

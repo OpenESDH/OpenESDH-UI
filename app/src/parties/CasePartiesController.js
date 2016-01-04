@@ -118,7 +118,6 @@ function CasePartiesController($scope, $stateParams, $mdDialog, $filter, $transl
         self.searchTextP = null;
         self.querySearchP = personsQuerySearch;
         self.newContact = newContact;
-
         //actions
         self.save = save;
         self.cancel = cancel;
