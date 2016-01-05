@@ -268,7 +268,7 @@
                     force = "c=force";
                     
                     if(nodeRefAsLink.indexOf("versionStore") > -1){
-                        return "/alfresco/s/api/openesdh/case/document/" + nodeRefAsLink + "/thumbnail";
+                        return "/alfresco/s/api/openesdh/case/document/" + nodeRefAsLink + "/thumbnail?" + this._getSessionTicket();
                     }
                     
                     var lastModified = this._getLastThumbnailModification(item);
