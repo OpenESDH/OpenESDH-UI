@@ -6,12 +6,12 @@
             </h1>
         </md-toolbar>
         <md-card-content>
-            
+
             <form name="vm.form" novalidate>
-                
+
                 <md-input-container flex="grow">
                     <label>{{ 'LOGIN.USER_NAME' | translate }}</label>
-                    <input type="text" ng-model="vm.credentials.username" name="username" required autofocus>
+                    <input type="text" ng-model="vm.credentials.username" name="username" required autofocus ng-change="vm.updateValidator()">
                     <opene-error form="vm.form" field="vm.form.username"></opene-error>
                 </md-input-container>
 
@@ -22,15 +22,16 @@
                 </md-input-container>
 
                 <div layout="column" layout-align="start center">
-                
-                    <md-button type="submit" class="md-raised md-primary" 
-                                ng-click="vm.login(vm.credentials)" 
+
+                    <md-button type="submit" class="md-raised md-primary"
+                                ng-click="vm.login(vm.credentials)"
                                 ng-disabled="vm.form.$invalid">
                         {{ 'LOGIN.LOGIN' | translate }}
                     </md-button>
-                    
+
                 </div>
             </form>
+
         </md-card-content>
 
         <md-card-footer layout="row" layout-align="center">
