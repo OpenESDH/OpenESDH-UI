@@ -266,10 +266,16 @@
                     var nodeRefAsLink = this.nodeRef.replace(":/", ""),
                     noCache = "&noCache=" + new Date().getTime(),
                     force = "c=force";
+                    
+                    if(nodeRefAsLink.indexOf("versionStore") > -1){
+                        return "/alfresco/s/api/openesdh/case/document/" + nodeRefAsLink + "/thumbnail";
+                    }
+                    
                     var lastModified = this._getLastThumbnailModification(item);
                     
-                    return "/alfresco/s/api/node/" + nodeRefAsLink + "/content/thumbnails/" + this.thumbnail + (fileSuffix ? "/suffix" + fileSuffix : "") 
+                    var url = "/alfresco/s/api/node/" + nodeRefAsLink + "/content/thumbnails/" + this.thumbnail + (fileSuffix ? "/suffix" + fileSuffix : "") 
                         + "?" + force + lastModified + noCache + '&' + this._getSessionTicket();
+                    return url;
                 },
                 
                 _getLastThumbnailModification: function(item){

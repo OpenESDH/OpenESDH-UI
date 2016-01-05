@@ -42,8 +42,9 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
 
     function loadCaseDocumentInfo() {
         return loadCaseDocument().then(function(document) {
-            loadVersionDetails();
-            loadDocumentPreview();
+            loadVersionDetails().then(function(){
+                loadDocumentPreview();    
+            });
             loadAttachments();
         });
     }
@@ -57,7 +58,7 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
     }
 
     function loadVersionDetails() {
-        caseDocumentDetailsService.getDocumentVersionInfo(caseDocument.mainDocNodeRef).then(function(versions) {
+        return caseDocumentDetailsService.getDocumentVersionInfo(caseDocument.mainDocNodeRef).then(function(versions) {
             documentVersions = versions;
             vm.documentVersions = versions;
             vm.docVersion = versions[0];
@@ -84,7 +85,11 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
     }
 
     function loadDocumentPreview() {
-        documentPreviewService.previewDocumentPlugin(caseDocument.mainDocNodeRef).then(function(plugin) {
+        var nodeRef = caseDocument.mainDocNodeRef;
+        if(vm.documentVersions[0].nodeRef != vm.docVersion.nodeRef){
+            nodeRef = vm.docVersion.nodeRef;
+        }
+        documentPreviewService.previewDocumentPlugin(nodeRef).then(function(plugin) {
             vm.docPreviewControllerObj.setPreviewPlugin(plugin);
         });
     }
