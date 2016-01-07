@@ -67,7 +67,7 @@
                     <dl layout="row" layout-wrap flex="50" layout-align="start start">
                       <dt flex="40">{{ 'DOCUMENT.VERSION' | translate }}</dt>
                       <dd flex="60">
-                        <select ng-model="docCtrl.docVersion" ng-options="version.label for version in docCtrl.documentVersions" ng-change="docCtrl.refreshDocumentPreview()"></select>
+                        <select ng-model="docCtrl.docVersion" ng-options="version.label for version in docCtrl.documentVersions" ng-change="docCtrl.refreshDocumentView()"></select>
                       </dd>
                       <dt flex="40">{{ 'DOCUMENT.VERSION_ADDED' | translate }}</dt><dd flex="60">{{docCtrl.docVersion.createdDateISO | openeDate}}</dd>
                       <dt flex="40">{{ 'DOCUMENT.DOCUMENT_NAME' | translate }}</dt><dd flex="60">{{ docCtrl.docVersion.name}}</dd>
@@ -119,8 +119,8 @@
                                               {{ 'COMMON.ACTIONS' | translate }}
                                            </md-button>
                                            <md-menu-content>
-                                              <md-menu-item><md-button ng-click="docCtrl.editOnlineAttachment(attachment)" ng-disabled="!docCtrl.canEditOnlineAttachment(attachment)">{{ 'DOCUMENT.ATTACHMENTS.EDIT_ATTACHMENT' | translate }}</md-button></md-menu-item>
-                                              <md-menu-item><md-button ng-click="docCtrl.uploadAttachmentNewVersion(attachment)" ng-disabled="docCtrl.doc.isLocked || attachment.locked">{{ 'DOCUMENT.UPLOAD_NEW_VERSION' | translate }}</md-button></md-menu-item>
+                                              <md-menu-item><md-button ng-click="docCtrl.editOnlineAttachment(attachment)" ng-disabled="!docCtrl.canEditOnlineAttachment(attachment) || !docCtrl.isCaseDocVersionEditable()">{{ 'DOCUMENT.ATTACHMENTS.EDIT_ATTACHMENT' | translate }}</md-button></md-menu-item>
+                                              <md-menu-item><md-button ng-click="docCtrl.uploadAttachmentNewVersion(attachment)" ng-disabled="docCtrl.doc.isLocked || attachment.locked || !docCtrl.isCaseDocVersionEditable()">{{ 'DOCUMENT.UPLOAD_NEW_VERSION' | translate }}</md-button></md-menu-item>
                                               <md-menu-item><md-button ng-click="docCtrl.previewAttachment(attachment)">{{ 'DOCUMENT.OPEN_PREVIEW' | translate }}</md-button></md-menu-item>
                                               <md-menu-item><md-button ng-click="docCtrl.downloadAttachment(attachment)">{{ 'COMMON.DOWNLOAD' | translate }}</md-button></md-menu-item>
                                            </md-menu-content>
@@ -150,7 +150,7 @@
                   
               </md-card-content>
               <div class="md-actions" layout="row">
-                <md-button class="md-primary" ng-click="docCtrl.uploadAttachment()" ng-disabled="docCtrl.doc.isLocked">{{ 'DOCUMENT.ATTACHMENTS.UPLOAD_NEW_ATTACHMENT' | translate }}</md-button>
+                <md-button class="md-primary" ng-click="docCtrl.uploadAttachment()" ng-disabled="docCtrl.doc.isLocked || !docCtrl.isCaseDocVersionEditable()">{{ 'DOCUMENT.ATTACHMENTS.UPLOAD_NEW_ATTACHMENT' | translate }}</md-button>
               </div>
           </md-card>
        </div>
