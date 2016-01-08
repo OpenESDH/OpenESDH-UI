@@ -4,14 +4,14 @@
         <table>
             <thead>
                 <tr>
-                    <th>{{'MEMBER.NAME'| translate}}</th>
-                    <th>{{'MEMBER.TYPE'| translate}}</th>
-                    <th>{{'MEMBER.ROLE'| translate}}</th>
+                    <th sort-table="displayName">{{'MEMBER.NAME'| translate}}</th>
+                    <th sort-table="authorityType">{{'MEMBER.TYPE'| translate}}</th>
+                    <th sort-table="role">{{'MEMBER.ROLE'| translate}}</th>
                     <th>{{'COMMON.ACTIONS'| translate }}</th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="member in cmc.members">
+                <tr ng-repeat="member in cmc.members | orderObjectBy:orderByAttribute:reverseOrder">
                     <td>{{member.displayName}}</td> 
                     <td>{{member.authorityType}}</td>
                     <td>{{member.role}}</td>

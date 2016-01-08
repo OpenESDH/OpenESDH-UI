@@ -12,19 +12,18 @@
     </div>
 
     <div layout="column">
-        
         <div class="tlist">
             <div class="tlist__header" layout="row">
                 <span class="tlist__cell" flex="5"></span>
-                <span class="tlist__cell" flex>{{ 'TASK.TASK' | translate }}</span>
+                <span class="tlist__cell" flex sort-table="properties.bpm_description">{{ 'TASK.TASK' | translate }}</span>
                 <span class="tlist__cell" flex="25">{{ 'COMMON.DESCRIPTION' | translate }}</span>
-                <span class="tlist__cell" flex="15">{{ 'COMMON.STATUS' | translate }}</span>
-                <span class="tlist__cell" flex="15">{{ 'COMMON.DUE_DATE' | translate }}</span>
-                <span class="tlist__cell" flex="15" ng-show="tasksCtrl.case_tasks">{{ 'ACTIVITIES.PERFORMER' | translate }}</span>
-                <span class="tlist__cell" flex="10">{{ 'COMMON.PRIORITY' | translate }}</span>
+                <span class="tlist__cell" flex="15" sort-table="properties.bpm_status">{{ 'COMMON.STATUS' | translate }}</span>
+                <span class="tlist__cell" flex="15" sort-table="properties.bpm_dueDate">{{ 'COMMON.DUE_DATE' | translate }}</span>
+                <span class="tlist__cell" flex="15" ng-show="tasksCtrl.case_tasks" sort-table="owner.firstName">{{ 'ACTIVITIES.PERFORMER' | translate }}</span>
+                <span class="tlist__cell" flex="10" sort-table="properties.bpm_priority">{{ 'COMMON.PRIORITY' | translate }}</span>
             </div>
             <md-virtual-repeat-container class="tlist__body" auto-height>
-                <div md-virtual-repeat="task in tasksCtrl.tasks | filter:status" class="tlist__item" layout="column" flex>
+                <div md-virtual-repeat="task in tasksCtrl.tasks | orderObjectBy:orderByAttribute:reverseOrder | filter:status" class="tlist__item" layout="column" flex>
                     <a class="tlist__item__link"
                        href="#/tasks/task/{{task.name | encodeUri}}/{{task.id | encodeUri}}"
                        layout="row">

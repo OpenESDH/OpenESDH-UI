@@ -13,16 +13,16 @@
             <div class="repeat-header" layout>
                 <span layout="row" flex="95">
                     <span class="r" flex="5"></span>
-                    <span class="r" flex="10">{{ 'USER.USERNAME' | translate }}</span>
-                    <span class="r" flex="15">{{ 'USER.FIRST_NAME' | translate }}</span>
-                    <span class="r" flex="15">{{ 'USER.LAST_NAME' | translate }}</span>
-                    <span class="r" flex>{{ 'COMMON.EMAIL' | translate }}</span>
+                    <span class="r" flex="10" sort-table="userName">{{ 'USER.USERNAME' | translate }}</span>
+                    <span class="r" flex="15" sort-table="firstName">{{ 'USER.FIRST_NAME' | translate }}</span>
+                    <span class="r" flex="15" sort-table="lastName">{{ 'USER.LAST_NAME' | translate }}</span>
+                    <span class="r" flex sort-table="email">{{ 'COMMON.EMAIL' | translate }}</span>
                     <span class="r" flex="15">{{ 'COMMON.ACTION' | translate }}</span>
                 </span>
                 <span flex="5"></span>
             </div>
             <md-virtual-repeat-container md-auto-shrink style="height: 450px;">
-                <div md-virtual-repeat="user in vm.allSystemUsers" class="repeat-item {{user.enabled ? 'enabled' : 'muted'}}" layout="row">
+                <div md-virtual-repeat="user in vm.allSystemUsers | orderObjectBy:orderByAttribute:reverseOrder" class="repeat-item {{user.enabled ? 'enabled' : 'muted'}}" layout="row">
                     <a class="r-rowlink"
                        layout="row"
                        ng-show="user.userName != 'guest'"

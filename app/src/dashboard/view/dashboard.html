@@ -20,12 +20,12 @@
               <div class="repeat-table">
                   <div class="repeat-header" layout="row">
                       <span class="r" flex="5"></span>
-                      <span class="r" flex>{{ 'COMMON.TITLE' | translate }}</span>
-                      <span class="r" flex="20">{{ 'COMMON.ID' | translate }}</span>
-                      <span class="r" flex="20">{{ 'COMMON.MODIFIED' | translate }}</span>
+                      <span class="r" flex sort-table="cm:title">{{ 'COMMON.TITLE' | translate }}</span>
+                      <span class="r" flex="20" sort-table="oe:id">{{ 'COMMON.ID' | translate }}</span>
+                      <span class="r" flex="20" sort-table="cm:modified">{{ 'COMMON.MODIFIED' | translate }}</span>
                   </div>
                   <md-virtual-repeat-container md-auto-shrink style="height: 200px;">
-                      <div md-virtual-repeat="case in caseController.cases" class="repeat-item">
+                      <div md-virtual-repeat="case in caseController.cases | orderObjectBy:orderByAttribute:reverseOrder" class="repeat-item">
                           <a class="r-rowlink" ui-sref="caseinfo({'caseId': case['oe:id']})" layout="row">
                               <span class="r" flex="5"><i class="material-icons">folder_open</i></span>
                               <span class="r" flex>{{case["cm:title"]}}</span>
@@ -50,12 +50,12 @@
             <div class="repeat-table">
                   <div class="repeat-header" layout="row">
                       <span class="r" flex="5"></span>
-                      <span class="r" flex>{{ 'COMMON.TITLE' | translate }}</span>
-                      <span class="r" flex="20">{{ 'COMMON.MODIFIED' | translate }}</span>
-                      <span class="r" flex="20">{{ 'COMMON.MODIFIED_BY' | translate }}</span>
+                      <span class="r" flex sort-table="title">{{ 'COMMON.TITLE' | translate }}</span>
+                      <span class="r" flex="20" sort-table="modifiedOn">{{ 'COMMON.MODIFIED' | translate }}</span>
+                      <span class="r" flex="20" sort-table="modifiedBy">{{ 'COMMON.MODIFIED_BY' | translate }}</span>
                   </div>
                   <md-virtual-repeat-container md-auto-shrink style="min-height: 150px;">
-                      <div md-virtual-repeat="document in docCtrl.documents" class="repeat-item">
+                      <div md-virtual-repeat="document in docCtrl.documents | orderObjectBy:orderByAttribute:reverseOrder" class="repeat-item">
                           <a class="r-rowlink" href="#/cases/case/{{ document.caseId }}/doc/{{ document.location.parent.nodeRef | nodeRefUri }}" layout="row">
                               <span class="r" flex="5"><img class="md-avatar" ng-src="/app/assets/images/filetypes/{{document.thumbNailURL}}"/></span>
                               <span class="r" flex>{{ document.title }}</span>
