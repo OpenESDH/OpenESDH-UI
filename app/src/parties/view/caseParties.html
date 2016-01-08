@@ -4,15 +4,15 @@
         <table>
             <thead>
                 <tr>
-                    <th>{{ 'COMMON.NAME' | translate }}</th>
-                    <th>{{ 'COMMON.EMAIL' | translate }}</th>
-                    <th>{{ 'COMMON.TYPE' | translate }}</th>
-                    <th>{{ 'PARTY.ROLE' | translate }}</th>
+                    <th sort-table="displayName">{{ 'COMMON.NAME' | translate }}</th>
+                    <th sort-table="contactId">{{ 'COMMON.EMAIL' | translate }}</th>
+                    <th sort-table="contactType">{{ 'COMMON.TYPE' | translate }}</th>
+                    <th sort-table="role">{{ 'PARTY.ROLE' | translate }}</th>
                     <th>{{ 'COMMON.ACTIONS' | translate }}</th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="party in cmCPC.parties">
+                <tr ng-repeat="party in cmCPC.parties | orderObjectBy:orderByAttribute:reverseOrder">
                     <td>{{party.displayName}}</td>
                     <td>{{party.contactId}}</td>
                     <td>{{ 'CONTACT.' + party.contactType | translate}}</td>

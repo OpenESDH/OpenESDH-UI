@@ -32,7 +32,7 @@
                     <span class="r" flex="15" sort-table="authorInfo.firstName">{{ 'COMMON.CREATEDBY' | translate }}</span>
                 </div>
                 <md-virtual-repeat-container md-auto-shrink style="border-bottom:none">
-                    <div md-virtual-repeat="note in caseNotes.notes" class="repeat-item">
+                    <div md-virtual-repeat="note in caseNotes.notes | orderObjectBy:orderByAttribute:reverseOrder" class="repeat-item">
                         <div class="layout-row">
                             <span class="r" flex="20">{{ note.headline }}</span>
                             <span class="r" flex>{{ note.content }}</span>
