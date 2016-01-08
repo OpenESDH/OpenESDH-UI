@@ -56,9 +56,9 @@
             alfrescoDownloadService.downloadFile(documentVersion.nodeRef, documentVersion.name);
         }
         
-        function getDocumentAttachments(docRecordNodeRef, page, pageSize){
+        function getDocumentAttachments(mainDocVersionRef, page, pageSize){
             var requestConfig = { 
-                url: "/alfresco/service/api/openesdh/case/document/attachments/versions?nodeRef=" + docRecordNodeRef,
+                url: "/alfresco/s/api/openesdh/case/document/version/attachments?nodeRef=" + mainDocVersionRef,
                 method: "GET"
             };
             httpUtils.setXrangeHeader(requestConfig, page, pageSize);

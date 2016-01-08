@@ -526,7 +526,14 @@
         "SYS_SETTINGS": {
             "SETTINGS": "Settings",
             "MODULES": "MODULES",
-            "GENERAL_CONFIG": "General configuration"
+            "GENERAL": {
+                "GENERAL_CONFIG": "General configuration",
+                "SAVE_PARAMETERS": "Save parameters",
+                "PARAMETERS": "Parameters",
+                "can_create_contacts": "Allow to create contacts",
+                "ARE_YOU_SURE_YOU_WANT_TO_SAVE_PARAMETERS": "Are you sure you want to save parameters?",
+                "SAVED_SUCCESSFULLY": "Configuration saved successfully"
+            }
         }
     },
     "USER": {

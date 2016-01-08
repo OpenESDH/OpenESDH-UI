@@ -55,7 +55,7 @@ function httpTicketInterceptor($injector, $translate, $window, $q, sessionServic
     }
 }
 
-function authService($http, $window, $state, sessionService, $translate, userService) {
+function authService($http, $window, $state, sessionService, userService, oeParametersService) {
     var service = {
         login: login,
         logout: logout,
@@ -86,7 +86,7 @@ function authService($http, $window, $state, sessionService, $translate, userSer
             var ticket = response.data.data.ticket;
             userInfo['ticket'] = ticket;
             sessionService.setUserInfo(userInfo);
-            return addUserToSession(username);
+            return addUserAndParamsToSession(username);
         }, function(reason) {
             console.log(reason);
             return reason;
@@ -99,6 +99,7 @@ function authService($http, $window, $state, sessionService, $translate, userSer
             return $http.delete('/alfresco/service/api/login/ticket/' + userInfo.ticket).then(function(response) {
                 sessionService.setUserInfo(null);
                 sessionService.clearRetainedLocation();
+                oeParametersService.clearOEParameters();
                 return response;
             });
         }
@@ -174,16 +175,17 @@ function authService($http, $window, $state, sessionService, $translate, userSer
 
     function revalidateUser() {
         return $http.get('/alfresco/service/api/openesdh/currentUser').then(function(response) {
-            addUserToSession(response.data.userName);
+            addUserAndParamsToSession(response.data.userName);
         });
     }
 
-    function addUserToSession(username) {
+    function addUserAndParamsToSession(username) {
         return userService.getPerson(username).then(function(response) {
             delete $window._openESDHSessionExpired;
             var userInfo = sessionService.getUserInfo();
             userInfo['user'] = response;
             sessionService.setUserInfo(userInfo);
+            oeParametersService.loadParameters();
             return response;
         });
     }

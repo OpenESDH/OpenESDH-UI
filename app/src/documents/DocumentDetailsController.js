@@ -30,10 +30,12 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
     vm.deleteDocument = deleteDocument;
     vm.docPreviewController = DocPreviewController;
     vm.refreshDocumentPreview = loadDocumentPreview;
+    vm.refreshDocumentView = refreshDocumentView;
     vm.editOnlineDocument = editOnlineDocument;
     vm.editOnlineAttachment = editOnlineAttachment;
     vm.canEditOnlineDocument = false;
     vm.canEditOnlineAttachment = canEditOnlineAttachment;
+    vm.isCaseDocVersionEditable = isCaseDocVersionEditable; 
     activate();
 
     function activate() {
@@ -42,9 +44,9 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
 
     function loadCaseDocumentInfo() {
         return loadCaseDocument().then(function(document) {
-            loadVersionDetails();
-            loadDocumentPreview();
-            loadAttachments();
+            loadVersionDetails().then(function(){
+                refreshDocumentView();
+            });
         });
     }
     
@@ -57,12 +59,17 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
     }
 
     function loadVersionDetails() {
-        caseDocumentDetailsService.getDocumentVersionInfo(caseDocument.mainDocNodeRef).then(function(versions) {
+        return caseDocumentDetailsService.getDocumentVersionInfo(caseDocument.mainDocNodeRef).then(function(versions) {
             documentVersions = versions;
             vm.documentVersions = versions;
             vm.docVersion = versions[0];
             vm.canEditOnlineDocument = canEditOnline(versions[0].name);
         });
+    }
+    
+    function refreshDocumentView(){
+        loadDocumentPreview();
+        loadAttachments();
     }
 
     function DocPreviewController($scope) {
@@ -84,7 +91,11 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
     }
 
     function loadDocumentPreview() {
-        documentPreviewService.previewDocumentPlugin(caseDocument.mainDocNodeRef).then(function(plugin) {
+        var nodeRef = caseDocument.mainDocNodeRef;
+        if(vm.documentVersions[0].nodeRef != vm.docVersion.nodeRef){
+            nodeRef = vm.docVersion.nodeRef;
+        }
+        documentPreviewService.previewDocumentPlugin(nodeRef).then(function(plugin) {
             vm.docPreviewControllerObj.setPreviewPlugin(plugin);
         });
     }
@@ -93,7 +104,7 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
         if (!page) {
             page = 1;
         }
-        return caseDocumentDetailsService.getDocumentAttachments(documentNodeRef, page, vm.pageSize).then(function(attachments) {
+        return caseDocumentDetailsService.getDocumentAttachments(vm.docVersion.nodeRef, page, vm.pageSize).then(function(attachments) {
             vm.attachments = attachments.resultList;
             vm.attachmentsContentRange = attachments.contentRange;
             var pages = [];
@@ -119,7 +130,7 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
                 return;
             }
             caseDocumentFileDialogService.uploadCaseDocumentNewVersion(documentNodeRef).then(function(result) {
-                loadVersionDetails();
+                loadCaseDocumentInfo();
                 setTimeout(loadDocumentPreview, 500);
             });
         });
@@ -127,7 +138,7 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
 
     function uploadAttachment() {
         caseDocumentFileDialogService.uploadAttachment(documentNodeRef).then(function(result) {
-            loadAttachments();
+            loadCaseDocumentInfo();
         });
     }
 
@@ -198,6 +209,13 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
     function editOnline(documentName){
         caseDocumentDetailsService.editOnlineDocument(caseDocument.editOnlinePath + "/" + documentName);
         setTimeout(loadCaseDocumentInfo, 2000);
+    }
+    
+    function isCaseDocVersionEditable(){
+        if(!vm.documentVersions){
+            return false;
+        }
+        return vm.documentVersions[0].nodeRef == vm.docVersion.nodeRef;
     }
 
     function changeDocumentStatus(status) {
