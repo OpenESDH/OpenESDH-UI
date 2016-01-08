@@ -27,16 +27,20 @@
                 <div class="repeat-header" layout="row">
                     <span class="r" flex="20" sort-table="headline">{{ 'NOTE.HEADLINE' | translate }}</span>
                     <span class="r" flex sort-table="content">{{ 'NOTE.CONTENT' | translate }}</span>
-                    <span class="r" flex="20" sort-table="created">{{ 'COMMON.CREATED' | translate }}</span>
-                    <span class="r" flex="20" sort-table="authorInfo.firstName">{{ 'COMMON.CREATEDBY' | translate }}</span>
+                    <span class="r" flex>{{ 'NOTE.RELATED' | translate }}</span>
+                    <span class="r" flex="15" sort-table="created">{{ 'COMMON.CREATED' | translate }}</span>
+                    <span class="r" flex="15" sort-table="authorInfo.firstName">{{ 'COMMON.CREATEDBY' | translate }}</span>
                 </div>
                 <md-virtual-repeat-container md-auto-shrink style="border-bottom:none">
                     <div md-virtual-repeat="note in caseNotes.notes | orderObjectBy:orderByAttribute:reverseOrder" class="repeat-item">
                         <div class="layout-row">
                             <span class="r" flex="20">{{ note.headline }}</span>
                             <span class="r" flex>{{ note.content }}</span>
-                            <span class="r muted" flex="20">{{ note.created }}</span>
-                            <span class="r muted" flex="20">{{ note.authorInfo.firstName + ' ' + note.authorInfo.lastName }}</span>
+                            <span class="r" flex>
+                                <span ng-repeat="concernedParty in note.concernedPartiesInfo">{{ concernedParty.name }}{{ $last ? '' : ', ' }}</span>
+                            </span>
+                            <span class="r muted" flex="15">{{ note.created }}</span>
+                            <span class="r muted" flex="15">{{ note.authorInfo.firstName + ' ' + note.authorInfo.lastName }}</span>
                         </div>
                     </div>
                 </md-virtual-repeat-container>
