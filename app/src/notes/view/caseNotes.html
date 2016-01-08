@@ -25,11 +25,11 @@
         <div ng-show="caseNotes.layout == 'list'">
             <div class="repeat-table">
                 <div class="repeat-header" layout="row">
-                    <span class="r" flex="20">{{ 'NOTE.HEADLINE' | translate }}</span>
-                    <span class="r" flex>{{ 'NOTE.CONTENT' | translate }}</span>
+                    <span class="r" flex="20" sort-table="headline">{{ 'NOTE.HEADLINE' | translate }}</span>
+                    <span class="r" flex sort-table="content">{{ 'NOTE.CONTENT' | translate }}</span>
                     <span class="r" flex>{{ 'NOTE.RELATED' | translate }}</span>
-                    <span class="r" flex="15">{{ 'COMMON.CREATED' | translate }}</span>
-                    <span class="r" flex="15">{{ 'COMMON.CREATEDBY' | translate }}</span>
+                    <span class="r" flex="15" sort-table="created">{{ 'COMMON.CREATED' | translate }}</span>
+                    <span class="r" flex="15" sort-table="authorInfo.firstName">{{ 'COMMON.CREATEDBY' | translate }}</span>
                 </div>
                 <md-virtual-repeat-container md-auto-shrink style="border-bottom:none">
                     <div md-virtual-repeat="note in caseNotes.notes" class="repeat-item">
