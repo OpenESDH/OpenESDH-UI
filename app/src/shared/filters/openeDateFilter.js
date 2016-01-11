@@ -11,7 +11,7 @@
             
             var format = 'dd-MM-yyyy HH:mm';
             if(givenFormat == 'fullDate'){
-                format = 'dd-MM-yyyy hh:mm:ss';
+                format = 'dd-MM-yyyy HH:mm:ss';
             }
             
             return dateFilter(dateValue, format);
