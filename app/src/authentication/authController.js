@@ -14,6 +14,19 @@ function AuthController($scope, $state, $stateParams, $translate, authService, u
     vm.errorMsg = loginErrorMessage ? loginErrorMessage: "";
     vm.showForgotDialog = showForgotDialog;
     vm.updateValidator = updateValidator;
+    
+    if($stateParams.nosso !== "true"){
+        authService.ssoLogin().then(function(response){
+            if(response.status == 401 || authFailedSafari(response)){
+                return;
+            }
+            restoreLocation();
+        });    
+    }
+    
+    function authFailedSafari(response){
+        return response.data && response.data.indexOf('Safari') != -1;
+    }
 
     function login(credentials) {
         authService.login(credentials.username, credentials.password).then(function(response) {
@@ -22,12 +35,7 @@ function AuthController($scope, $state, $stateParams, $translate, authService, u
             if(response.userName) {
                 userService.getPerson(credentials.username).then(function (response) {
                     vm.user = response;
-                    var retainedLocation = sessionService.getRetainedLocation();
-                    if(!retainedLocation || retainedLocation === undefined){
-                        $state.go('dashboard');                        
-                    }else{
-                        $window.location = retainedLocation;
-                    }
+                    restoreLocation();
                 });
             }
 
@@ -37,6 +45,15 @@ function AuthController($scope, $state, $stateParams, $translate, authService, u
             }
 
         });
+    }
+    
+    function restoreLocation(){
+        var retainedLocation = sessionService.getRetainedLocation();
+        if(!retainedLocation || retainedLocation === undefined){
+            $state.go('dashboard');                        
+        }else{
+            $window.location = retainedLocation;
+        }
     }
 
     function logout() {
