@@ -3,7 +3,7 @@
         .module('openeApp')
         .factory('alfrescoDownloadService', AlfrescoDownloadService);
 
-    function AlfrescoDownloadService(alfrescoNodeUtils, sessionService) {
+    function AlfrescoDownloadService(alfrescoNodeUtils, sessionService, ALFRESCO_URI) {
         
         var service = {
             downloadFile: downloadFile
@@ -12,7 +12,7 @@
         
         function downloadFile(nodeRef, fileName){
             
-            var url = "/alfresco/service/api/node/content/" + alfrescoNodeUtils.processNodeRef(nodeRef).uri + "/" + fileName + "?a=true&alf_ticket=" + sessionService.getUserInfo().ticket;
+            var url = ALFRESCO_URI.webClientServiceProxy + "/api/node/content/" + alfrescoNodeUtils.processNodeRef(nodeRef).uri + "/" + fileName + "?a=true";
             
             var iframe = document.querySelector("#downloadFrame");
             if(iframe === null){

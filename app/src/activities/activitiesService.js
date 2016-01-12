@@ -42,7 +42,7 @@
             }
             
             function getUserActivities(skipCount, maxItems){
-                var url = "/alfresco/s/api/openesdh/activities/feed";
+                var url = "/api/openesdh/activities/feed";
                 var config = {
                     params: {}
                 };
@@ -58,7 +58,7 @@
             }
             
             function countCurrentUserNewActivities(){
-                var url = "/alfresco/s/api/openesdh/activities/feed/new/count";
+                var url = "/api/openesdh/activities/feed/new/count";
                 return $http.get(url).then(function(result){                    
                     return result.data;
                 }, function(error){
@@ -70,7 +70,7 @@
             }
             
             function setCurrentUserLastReadActivityFeedId(feedId){
-                var url = "/alfresco/s/api/openesdh/activities/feed/last/read/id/" + feedId;
+                var url = "/api/openesdh/activities/feed/last/read/id/" + feedId;
                 return $http.post(url).then(function(result){
                     return result.data;
                 });

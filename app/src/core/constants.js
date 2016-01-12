@@ -8,6 +8,6 @@
         })
         .constant('ALFRESCO_URI', {
             apiProxy: '/alfresco/api/',
-            serviceApiProxy: '/alfresco/service/api/',
-            serviceSlingshotProxy: '/alfresco/service/slingshot/'
+            serviceApiProxy: '/api/',
+            serviceSlingshotProxy: '/slingshot/'
         });

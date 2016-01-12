@@ -4,15 +4,16 @@
 
     function orderObjectBy() {
         return function(items, field, reverse) {
+            function index(obj, i) {
+                return obj[i];
+            }
+            
             if (field) {                    
                 var filtered = [];
                 angular.forEach(items, function(item) {
                     filtered.push(item);
                 });
 
-                function index(obj, i) {
-                    return obj[i];
-                }
                 filtered.sort(function(a, b) {
                     var comparator, reducedA, reducedB;
                     if (field) {

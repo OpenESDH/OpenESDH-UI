@@ -15,7 +15,7 @@
         
         function getDocumentsByCaseId(caseId, page, pageSize){
              var requestConfig = { 
-                 url: "/alfresco/service/api/openesdh/casedocumentssearch?caseId=" + caseId,
+                 url: "/api/openesdh/casedocumentssearch?caseId=" + caseId,
                  method: "GET"
              };
              
@@ -31,7 +31,7 @@
         
         function getDocumentsFolderNodeRef(caseId){
             var requestConfig = { 
-                    url: "/alfresco/service/api/openesdh/case/docfolder/noderef/" + caseId,
+                    url: "/api/openesdh/case/docfolder/noderef/" + caseId,
                     method: "GET"
                 };
             return $http(requestConfig).then(function(response){
@@ -59,7 +59,7 @@
         
         function getCaseDocumentsWithAttachments(caseId){
             var requestConfig = { 
-                url: "/alfresco/service/api/openesdh/case/" + caseId + "/documents/attachments",
+                url: "/api/openesdh/case/" + caseId + "/documents/attachments",
                 method: "GET"
             };
             return $http(requestConfig).then(function(response){
@@ -68,7 +68,7 @@
         }
         
         function getCaseDocumentConstraints(){
-            return $http.get("/alfresco/service/api/openesdh/case/document/constraints").then(function(response){
+            return $http.get("/api/openesdh/case/document/constraints").then(function(response){
                return response.data; 
             });
         }

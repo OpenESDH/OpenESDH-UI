@@ -44,8 +44,9 @@
         })
         .constant('ALFRESCO_URI', {
             apiProxy: '/alfresco/api/',
-            serviceApiProxy: '/alfresco/service/api/',
-            serviceSlingshotProxy: '/alfresco/service/slingshot/'
+            serviceApiProxy: '/api/',
+            serviceSlingshotProxy: '/slingshot/',
+            webClientServiceProxy: '/alfresco/wcs'
         })
         .constant('PATTERNS', {
             fileName: /^[a-zA-Z0-9_\-,!@#$%^&()=+ ]+$/,
@@ -66,6 +67,7 @@
                 if (next.data.authorizedRoles.length === 0) {
                     return;
                 }
+                
                 if (authService.isAuthenticated() && authService.isAuthorized(next.data.authorizedRoles)) {
                     //We do nothing. Attempting to transition to the actual state results in call stack exception
                 } else {
@@ -235,7 +237,7 @@
             }
         }).state('login', {
             parent: 'site',
-            url: '/login?error',
+            url: '/login?error&nosso',
             views: {
                 'content@': {
                     templateUrl: '/app/src/authentication/view/login.html',

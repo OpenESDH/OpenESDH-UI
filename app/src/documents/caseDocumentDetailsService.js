@@ -21,7 +21,7 @@
         
         function getCaseDocument(documentNodeRef){
              var requestConfig = { 
-                 url: "/alfresco/service/api/openesdh/documentInfo/" + alfrescoNodeUtils.processNodeRef(documentNodeRef).uri,
+                 url: "/api/openesdh/documentInfo/" + alfrescoNodeUtils.processNodeRef(documentNodeRef).uri,
                  method: "GET"
              };
              
@@ -32,7 +32,7 @@
         
         function getDocumentVersionInfo(mainDocNodeRef){
             var requestConfig = { 
-                url: "/alfresco/service/api/version?nodeRef=" + mainDocNodeRef,
+                url: "/api/version?nodeRef=" + mainDocNodeRef,
                 method: "GET"
             };
             
@@ -58,7 +58,7 @@
         
         function getDocumentAttachments(mainDocVersionRef, page, pageSize){
             var requestConfig = { 
-                url: "/alfresco/s/api/openesdh/case/document/version/attachments?nodeRef=" + mainDocVersionRef,
+                url: "/api/openesdh/case/document/version/attachments?nodeRef=" + mainDocVersionRef,
                 method: "GET"
             };
             httpUtils.setXrangeHeader(requestConfig, page, pageSize);
@@ -90,14 +90,14 @@
         }
         
         function updateDocumentProperties(document){
-            var url = "/alfresco/service/api/openesdh/case/document/properties";
+            var url = "/api/openesdh/case/document/properties";
             return $http.post(url, document).then(function(response){
                 return response;
             });
         }
 
         function changeDocumentStatus(documentNodeRef, status) {
-            return $http.post('/alfresco/service/api/openesdh/documents/' + alfrescoNodeUtils.processNodeRef(documentNodeRef).uri + '/status', {status: status}).then(function (response) {
+            return $http.post('/api/openesdh/documents/' + alfrescoNodeUtils.processNodeRef(documentNodeRef).uri + '/status', {status: status}).then(function (response) {
                 return response.data;
             });
         }

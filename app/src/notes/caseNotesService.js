@@ -36,7 +36,7 @@
         }
         
         function getNotesUrlForCase(caseId){
-            return "/alfresco/service/api/openesdh/case/" + caseId + "/notes";
+            return "/api/openesdh/case/" + caseId + "/notes";
         }
         
         function createPagingParams(){

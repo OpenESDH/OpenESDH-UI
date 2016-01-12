@@ -10,7 +10,7 @@
         return service;
 
         function getCaseRoles(caseId) {
-            return $http.get('/alfresco/service/api/openesdh/'+caseId+'/caseroles').then(successOrReject);
+            return $http.get('/api/openesdh/'+caseId+'/caseroles').then(successOrReject);
         }
         
         function successOrReject(response) {
