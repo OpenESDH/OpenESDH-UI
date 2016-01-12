@@ -1,0 +1,32 @@
+<md-card>
+    <md-card-content>
+        <h3>{{ 'CASE.CASE_HISTORY' | translate }}</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th sort-table="action">{{ 'COMMON.ACTION' | translate }}</th>
+                    <th sort-table="type">{{ 'COMMON.TYPE' | translate }}</th>
+                    <th sort-table="user">{{ 'USER.USER' | translate }}</th>
+                    <th sort-table="time">{{ 'COMMON.TIME' | translate }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="log in historyCtrl.history| orderObjectBy:orderByAttribute:reverseOrder">
+                    <td>{{ log.action}}</td>
+                    <td>{{ log.type}}</td>
+                    <td>{{ log.user}}</td>
+                    <td>{{ log.time | openeDate: 'fullDate'}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </md-card-content>
+    <div class="md-actions">
+        <div style="float: right;">
+            <span>{{historyCtrl.startIndex}} - {{historyCtrl.endIndex}} {{ 'COMMON.OF' | translate }} {{historyCtrl.totalItems}}</span>
+            <span>
+                <md-button ng-click="historyCtrl.loadPreviousPage()" ng-disabled="!historyCtrl.previousPage">&lt;</md-button>
+                <md-button ng-click="historyCtrl.loadNextPage()" ng-disabled="!historyCtrl.nextPage">&gt;</md-button>
+            </span>
+        </div>
+    </div>
+</md-card>
