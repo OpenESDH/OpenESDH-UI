@@ -31,7 +31,7 @@ function httpTicketInterceptor($injector, $translate, $window, $q, sessionServic
     }
     
     function prefixAlfrescoServiceUrl(url){
-        if(url.indexOf("/api/") != -1 || url.indexOf("/slingshot/") != -1 || url == "/touch" || url == "/dk-openesdh-case-email"){
+        if(url.indexOf("/api/") == 0 || url.indexOf("/slingshot/") == 0 || url == "/touch" || url == "/dk-openesdh-case-email"){
             return ALFRESCO_URI.webClientServiceProxy + url;
         }
         return url;
@@ -88,12 +88,16 @@ function authService($http, $window, $state, sessionService, userService, oePara
     
     function ssoLogin(){
         return $http.get("/touch").then(function(response){
-            if(response.status == 401){
+            if(response.status == 401 || authFailedSafari(response)){
                 return response;
             }
             sessionService.setUserInfo({});
             return revalidateUser();
         });
+    }
+    
+    function authFailedSafari(response){
+        return response.data && response.data.indexOf('Safari') != -1;
     }
 
     function login(username, password) {

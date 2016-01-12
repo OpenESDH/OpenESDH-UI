@@ -17,10 +17,9 @@ function AuthController($scope, $state, $stateParams, $translate, authService, u
     
     if($stateParams.nosso !== "true" && !authService.isAuthenticated()){
         authService.ssoLogin().then(function(response){
-            if(response.status == 401 || authFailedSafari(response)){
+            if(response.status == 401){
                 return;
             }
-            
             if(response.userName) {
                 userService.getPerson(response.userName).then(function (response) {
                     vm.user = response;
@@ -28,10 +27,6 @@ function AuthController($scope, $state, $stateParams, $translate, authService, u
                 });
             }
         });    
-    }
-    
-    function authFailedSafari(response){
-        return response.data && response.data.indexOf('Safari') != -1;
     }
 
     function login(credentials) {
