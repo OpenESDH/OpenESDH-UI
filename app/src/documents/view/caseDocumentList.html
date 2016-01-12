@@ -38,14 +38,14 @@
     <div class="md-actions" layout="row" layout-padding>
         <md-button class="md-primary"
                    ng-click="docCtrl.uploadDocument()"
-                   ng-disabled="caseIsLocked">
+                   ng-disabled="caseCtrl.caseIsLocked">
             <i class="material-icons">file_upload</i>
             {{ 'DOCUMENT.UPLOAD_NEW_DOCUMENTS' | translate }}
         </md-button>
         <div ng-include="'app/src/documents/view/caseDocumentsSend.html'"></div>
         <md-button class="md-primary"
                    ng-click="docCtrl.createDocumentFromTemplate()"
-                   ng-disabled="caseIsLocked">
+                   ng-disabled="caseCtrl.caseIsLocked">
             {{ 'DOCUMENT.CREATE_FROM_TEMPLATE' | translate }}
         </md-button>
     </div>

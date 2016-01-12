@@ -72,9 +72,9 @@
                     'storeType' : ref.storeType,
                     'storeId': ref.storeId,
                     'id': ref.id
-                })
+                });
             } else {
-                $state.go('caseinfo', {'caseId': item.caseId})
+                $state.go('case', {'caseId': item.caseId})
             }
         };
 

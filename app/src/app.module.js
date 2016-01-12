@@ -93,6 +93,7 @@
         $mdIconProvider.icon('md-calendar', '/app/assets/img/icons/today.svg');
 
         $urlRouterProvider
+            .when('/cases/case/:caseId','/cases/case/:caseId/info')
             .when('/admin/system-settings','/admin/system-settings/general-configuration')
             .otherwise('/');
 
@@ -120,25 +121,104 @@
             views: {
                 'content@': {
                     templateUrl: '/app/src/cases/view/cases.html',
-                    controller: 'CaseController',
+                    controller: 'CaseListController',
                     controllerAs: 'vm'
                 }
             },
             data: {
                 authorizedRoles: [USER_ROLES.user]
             }
-        }).state('caseinfo', {
+        }).state('case', {
             parent: 'site',
             url: '/cases/case/:caseId',
             views: {
                 'content@': {
                     templateUrl: '/app/src/cases/view/case.html',
-                    controller: 'CaseInfoController',
-                    controllerAs: 'vm'
+                    controller: 'CaseController',
+                    controllerAs: 'caseCtrl'
                 }
             },
             data: {
-                authorizedRoles: [USER_ROLES.user]
+                authorizedRoles: [USER_ROLES.user],
+                selectedTab: 0
+            }
+        }).state('case.info', {
+            url: '/info',
+            views: {
+                'caseInfo': {
+                    templateUrl: '/app/src/cases/view/case_info.html',
+                    controller: 'CaseInfoController',
+                    controllerAs: 'civm'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user],
+                selectedTab: 0
+            }
+        }).state('case.notes', {
+            url: '/notes',
+            views: {
+                'caseNotes': {
+                    templateUrl: '/app/src/notes/view/caseNotes.html',
+                    controller: 'NoteController',
+                    controllerAs: 'caseNotes'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user],
+                selectedTab: 1
+            }
+        }).state('case.members', {
+            url: '/members',
+            views: {
+                'caseMembers': {
+                    templateUrl: 'app/src/case_members/view/caseMembers.html',
+                    controller: 'CaseMembersController',
+                    controllerAs: 'cmc'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user],
+                selectedTab: 2
+            }
+        }).state('case.parties', {
+            url: '/parties',
+            views: {
+                'caseParties': {
+                    templateUrl: 'app/src/parties/view/caseParties.html',
+                    controller: 'CasePartiesController',
+                    controllerAs: 'cmCPC'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user],
+                selectedTab: 3
+            }
+        }).state('case.history', {
+            url: '/history',
+            views: {
+                'caseHistory': {
+                    templateUrl: 'app/src/history/view/caseHistory.html',
+                    controller: 'CaseHistoryController',
+                    controllerAs: 'historyCtrl'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user],
+                selectedTab: 4
+            }
+        }).state('case.tasks', {
+            url: '/tasks',
+            views: {
+                'caseTasks': {
+                    templateUrl: 'app/src/tasks/view/tasksDisplay.html',
+                    controller: 'CaseTasksController',
+                    controllerAs: 'tasksCtrl'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user],
+                selectedTab: 5
             }
         }).state('docDetails', {
             parent: 'site',
