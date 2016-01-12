@@ -13,17 +13,17 @@
         return service;
 
         function getCaseParties(caseId) {
-            return $http.get('/alfresco/service/api/openesdh/case/' + caseId + '/parties')
+            return $http.get('/api/openesdh/case/' + caseId + '/parties')
                     .then(successOrReject);
         }
 
         function createCaseParty(caseId, role, contacts) {
-            return $http.post('/alfresco/service/api/openesdh/case/' + caseId + '/party/' + role, {contactNodeRefs: contacts})
+            return $http.post('/api/openesdh/case/' + caseId + '/party/' + role, {contactNodeRefs: contacts})
                     .then(successOrReject);
         }
 
         function changeCaseParty(caseId, nodeRefId, oldRole, newRole) {
-            return $http.put('/alfresco/service/api/openesdh/case/' + caseId + '/party',
+            return $http.put('/api/openesdh/case/' + caseId + '/party',
                     {
                         partyId: nodeRefId,
                         oldRole: oldRole,
@@ -32,7 +32,7 @@
         }
 
         function deleteCaseParty(caseId, party) {
-            return $http.delete('/alfresco/service/api/openesdh/case/' + caseId + '/party/' + party.role, {params: {partyId: party.nodeRef}})
+            return $http.delete('/api/openesdh/case/' + caseId + '/party/' + party.role, {params: {partyId: party.nodeRef}})
                     .then(successOrReject);
         }
 

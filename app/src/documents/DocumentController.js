@@ -105,7 +105,6 @@ function DocumentController($state, $stateParams, $mdDialog, documentService, ca
             }, function(newValue, oldValue) {
                 if (typeof newValue !== 'undefined' && newValue != null) {
                     officeTemplateService.getTemplate(newValue.nodeRef).then(function(template) {
-                        console.log(template)
                         vm.currentTemplate = template;
                     });
                 }
@@ -114,12 +113,11 @@ function DocumentController($state, $stateParams, $mdDialog, documentService, ca
             $scope.$watch(function(scope) {
                 return vm.receiver;
             }, function(newValue, oldValue) {
-                if (typeof newValue !== 'undefined' && newValue != null) {
+                if (typeof newValue !== 'undefined' && newValue != null && newValue.length != 0) {
                     // Update the field values based on the selected
                     // contact info.
                     var nodeRefParts = alfrescoNodeUtils.processNodeRef(newValue.nodeRef);
                     contactsService.getContact(nodeRefParts.storeType, nodeRefParts.storeId, nodeRefParts.id).then(function(contact) {
-                        console.log(contact);
                         for (var prop in contact) {
                             if (!contact.hasOwnProperty(prop))
                                 continue;

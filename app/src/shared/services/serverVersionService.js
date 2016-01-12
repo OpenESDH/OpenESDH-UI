@@ -9,7 +9,7 @@
         };
 
         function getGitDetails() {
-            return $http.get("/alfresco/service/api/openesdh/getversion").then(function (response) {
+            return $http.get("/api/openesdh/getversion").then(function (response) {
                 return {
                     gitCommitId: response.data.scmCommitId,
                     gitBranch: response.data.scmBranchName

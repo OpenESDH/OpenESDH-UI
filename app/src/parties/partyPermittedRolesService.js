@@ -10,7 +10,7 @@
         return service;
 
         function getRoles() {
-            return $http.get("/alfresco/service/api/openesdh/case/party/permittedRoles")
+            return $http.get("/api/openesdh/case/party/permittedRoles")
                     .then(successOrReject);
         }
 

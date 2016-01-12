@@ -10,7 +10,7 @@
         return service;
 
         function saveEmail(data) {
-            return $http.post('/alfresco/service/dk-openesdh-case-email', data).then(function(response) {
+            return $http.post('/dk-openesdh-case-email', data).then(function(response) {
                 return response.data;
             }, function(error) {
             })

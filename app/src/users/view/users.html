@@ -53,7 +53,7 @@
         <md-button class="md-primary" ng-click="vm.showCSVUploadDialog($event)" aria-label="Upload users">
             {{ 'USER.UPLOAD_USERS' | translate }}
         </md-button>
-        <md-button class="md-primary" href="/alfresco/s/api/openesdh/users/upload/sample?alf_ticket={{vm.sessionTicket}}" aria-label="Example user upload CSV">
+        <md-button class="md-primary" href="{{vm.wcsPrefix}}/api/openesdh/users/upload/sample" aria-label="Example user upload CSV">
             {{ 'COMMON.DOWNLOAD_TEMPLATE_CSV' | translate }}
         </md-button>
     </div>

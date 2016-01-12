@@ -8,17 +8,17 @@
         var service = {};
 
         var Alfresco = {
-            apiProxyUrl : '/alfresco/service/api/',
-            slingshotProxyUrl : '/alfresco/service/slingshot/'
+            apiProxyUrl : '/api/',
+            slingshotProxyUrl : '/slingshot/'
         };
 
         //<editor-fold desc="liveSearch results">
         service.liveSearchCaseDocs = function (term) {
-            return $http.get('/alfresco/service/openesdh/live-search-caseDocs?t=' + term);
+            return $http.get('/openesdh/live-search-caseDocs?t=' + term);
         };
 
         service.liveSearchCases = function (term) {
-            return $http.get('/alfresco/service/openesdh/live-search-cases?t='+ term);
+            return $http.get('/openesdh/live-search-cases?t='+ term);
         };
         //</editor-fold>
 

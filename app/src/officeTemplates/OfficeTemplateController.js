@@ -28,7 +28,6 @@
 
         function getTemplates() {
             return officeTemplateService.getTemplates().then(function(templates) {
-                console.log("Templates: ", templates)
                 vm.templates = templates;
             });
         }

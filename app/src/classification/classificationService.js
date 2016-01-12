@@ -10,7 +10,7 @@
         return service;
 
         function search(query, field) {
-            return $http.get('/alfresco/service/api/openesdh/classification/search', {params: {term: query, field: field}}).then(function (response) {
+            return $http.get('/api/openesdh/classification/search', {params: {term: query, field: field}}).then(function (response) {
                 return response.data;
             });
         }

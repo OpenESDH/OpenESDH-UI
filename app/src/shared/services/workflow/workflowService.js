@@ -13,7 +13,7 @@
         return service;
         
         function getWorkflowDefinitions(exclude){
-            var url = "/alfresco/s/api/workflow-definitions";
+            var url = "/api/workflow-definitions";
             var config = {};
             if(exclude != undefined && exclude != null){
                 config.params.exclude = exclude;
@@ -29,14 +29,14 @@
          * }
          */
         function startWorkflow(workflow){
-           var url = "/alfresco/s/api/openesdh/workflow/start";
+           var url = "/api/openesdh/workflow/start";
            return $http.post(url, workflow).then(function(result){
                return result.data;
            });
         }
         
         function deleteWorkflow(workflowInstanceId, forced){
-            var url = "/alfresco/service/api/workflow-instances/"+ workflowInstanceId;
+            var url = "/api/workflow-instances/"+ workflowInstanceId;
             var config = {};
             if(forced){
                 config.params.forced = forced;

@@ -3,7 +3,7 @@
         .module('openeApp.tasks.common')
         .controller('baseTaskController', BaseTaskController);
     
-    function BaseTaskController(taskService, $stateParams, $location, documentPreviewService, sessionService, workflowService, $translate, $mdDialog, notificationUtilsService) {
+    function BaseTaskController(taskService, $stateParams, $location, documentPreviewService, sessionService, workflowService, $translate, $mdDialog, notificationUtilsService, ALFRESCO_URI) {
         var vm = this;
         vm.taskId = $stateParams.taskId;
         vm.init = init;
@@ -27,8 +27,7 @@
             return taskService.getTaskDetails(vm.taskId).then(function(result){
                 vm.task = result;
                 vm.taskProperties = angular.extend({}, result.properties);
-                vm.workflowInstanceDiagramUrl = '/alfresco/s/api/workflow-instances/' + vm.task.workflowInstance.id + '/diagram?nocache=' + new Date().getTime() 
-                    +'&alf_ticket=' + sessionService.getUserInfo().ticket;
+                vm.workflowInstanceDiagramUrl = ALFRESCO_URI.webClientServiceProxy + '/api/workflow-instances/' + vm.task.workflowInstance.id + '/diagram?nocache=' + new Date().getTime();
             });
         }
         

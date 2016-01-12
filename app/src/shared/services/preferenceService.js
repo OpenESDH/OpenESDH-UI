@@ -96,7 +96,7 @@ function preferenceService($http, $q, sessionService) {
                 return undefined;
             }
         }
-        var url = '/alfresco/s/api/people/' + username + '/preferences';
+        var url = '/api/people/' + username + '/preferences';
         return url;
     }
 }

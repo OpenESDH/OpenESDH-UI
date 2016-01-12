@@ -142,7 +142,7 @@
             formData.append("filedata", file);
             formData.append("filename", file.name);
 
-            return $http.post("/alfresco/s/api/openesdh/groups/upload", formData,  {
+            return $http.post("/api/openesdh/groups/upload", formData,  {
                 transformRequest: angular.identity,
                 headers: {'Content-Type': undefined}
             }).then(function(response){

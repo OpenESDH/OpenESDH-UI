@@ -11,7 +11,7 @@
 
         function getCaseHistory(caseId, page, pageSize) {
             var requestConfig = {
-                url: '/alfresco/service/api/openesdh/case/' + caseId + '/history',
+                url: '/api/openesdh/case/' + caseId + '/history',
                 method: "GET"
             };
             

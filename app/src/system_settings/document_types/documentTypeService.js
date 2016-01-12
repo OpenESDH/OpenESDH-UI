@@ -13,12 +13,12 @@
         return service;
 
         function getDocumentTypes() {
-            return $http.get('/alfresco/service/api/openesdh/document/types')
+            return $http.get('/api/openesdh/document/types')
                     .then(onSuccess);
         }
 
         function getDocumentType(nodeRefId) {
-            return $http.get('/alfresco/service/api/openesdh/document/type',
+            return $http.get('/api/openesdh/document/type',
                     {
                         params: {
                             nodeRefId: nodeRefId
@@ -27,7 +27,7 @@
         }
 
         function saveDocumentType(documentType) {
-            return $http.post('/alfresco/service/api/openesdh/document/type', null,
+            return $http.post('/api/openesdh/document/type', null,
                     {
                         params: {
                             nodeRefId: documentType.nodeRef,
@@ -38,7 +38,7 @@
         }
 
         function deleteDocumentType(nodeRefId) {
-            return $http.delete('/alfresco/service/api/openesdh/document/type',
+            return $http.delete('/api/openesdh/document/type',
                     {params: {
                             nodeRefId: nodeRefId
                         }
