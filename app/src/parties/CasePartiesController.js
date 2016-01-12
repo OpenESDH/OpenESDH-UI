@@ -13,12 +13,7 @@ function CasePartiesController($scope, $stateParams, $mdDialog, $filter, $transl
     vm.showAddPartiesDialog = showAddPartiesDialog;
     vm.showChangePartyDialog = showChangePartyDialog;
 
-    //lets init only when tab is selected
-    $scope.$on('tabSelectEvent', function(event, args) {
-        if (args.tab === 'parties') {
-            fillList();
-        }
-    });
+    fillList();
 
     function fillList() {
         vm.parties.length = 0;

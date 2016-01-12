@@ -1,4 +1,4 @@
-<md-card ng-controller="NoteController as caseNotes">
+<md-card>
     <md-card-content>
         <div layout layout-align="space-between center">
             <h3 class="md-title" flex="75">{{ 'NOTE.NOTES' | translate }}</h3>
@@ -48,7 +48,7 @@
         </div>
     </md-card-content>
     <div class="md-actions">
-        <md-button class="md-primary" ng-click="caseNotes.newNote()" ng-disabled="caseIsLocked">
+        <md-button class="md-primary" ng-click="caseNotes.newNote()" ng-disabled="caseCtrl.caseIsLocked">
             {{ 'NOTE.NEW_NOTE' | translate }}
         </md-button>
         <md-button class="md-primary" ng-disabled="true">{{ 'NOTE.PRINT_ALL_NOTES' | translate }}</md-button>

@@ -1,4 +1,4 @@
-<md-card ng-controller="CaseMembersController as cmc">
+<md-card>
     <md-card-content>
         <h3>{{'MEMBER.MEMBERS'| translate}}</h3>
         <table>
@@ -16,12 +16,12 @@
                     <td>{{member.authorityType}}</td>
                     <td>{{member.role}}</td>
                     <td>
-                        <md-button class="md-primary" ng-click="cmc.showChangeDialog($event, member)" ng-disabled="caseIsLocked">{{'MEMBER.CHANGE'| translate }}</md-button>
-                        <md-button class="md-primary" ng-click="cmc.removeMember($event, member)" ng-disabled="caseIsLocked">{{'COMMON.REMOVE'| translate }}</md-button>
+                        <md-button class="md-primary" ng-click="cmc.showChangeDialog($event, member)" ng-disabled="caseCtrl.caseIsLocked">{{'MEMBER.CHANGE'| translate }}</md-button>
+                        <md-button class="md-primary" ng-click="cmc.removeMember($event, member)" ng-disabled="caseCtrl.caseIsLocked">{{'COMMON.REMOVE'| translate }}</md-button>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <md-button class="md-primary" ng-click="cmc.showNewDialog($event)" ng-disabled="caseIsLocked">{{ 'COMMON.ADD_NEW' | translate }}</md-button>
+        <md-button class="md-primary" ng-click="cmc.showNewDialog($event)" ng-disabled="caseCtrl.caseIsLocked">{{ 'COMMON.ADD_NEW' | translate }}</md-button>
     </md-card-content>
 </md-card>

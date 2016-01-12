@@ -3,7 +3,7 @@ angular
         .module('openeApp.documents')
         .controller('DocumentController', DocumentController);
 
-function DocumentController($state, $stateParams, $mdDialog, documentService, caseDocumentsService,
+function DocumentController($scope, $state, $stateParams, $mdDialog, documentService, caseDocumentsService,
         documentPreviewService, caseDocumentFileDialogService, casePartiesService, caseService, fileUtilsService) {
 
     var caseId = $stateParams.caseId;

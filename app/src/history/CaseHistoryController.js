@@ -15,12 +15,7 @@
     vm.loadPreviousPage = loadPreviousPage;
     vm.loadNextPage = loadNextPage;
     
-    //lets init only when tab is selected
-    $scope.$on('tabSelectEvent', function(event, args) {
-        if (args.tab === 'history') {
-            loadHistory();
-        }
-    });
+    loadHistory();
     
     function loadHistory(page){
         if(!page){

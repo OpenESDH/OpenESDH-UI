@@ -15,12 +15,7 @@
         vm.changeMember = changeMember;
         vm.removeMember = removeMember;
 
-        //lets init only when tab is selected
-        $scope.$on('tabSelectEvent', function(event, args) {
-            if (args.tab === 'members') {
-                fillList();
-            }
-        });
+        fillList();
 
         function fillList() {
             vm.members.length = 0;

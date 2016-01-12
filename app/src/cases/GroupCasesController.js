@@ -11,7 +11,7 @@
      */
     function GroupCasesController($controller, userService, caseService, documentPreviewService, $mdDialog) {
         
-        angular.extend(this, $controller('BaseCaseController'))
+        angular.extend(this, $controller('BaseCaseListController'));
         
         var vm = this;
         
