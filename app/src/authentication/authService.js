@@ -10,7 +10,7 @@ function config($httpProvider) {
     $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 }
 
-function httpTicketInterceptor($injector, $translate, $window, $q, sessionService) {
+function httpTicketInterceptor($injector, $translate, $window, $q, sessionService, ALFRESCO_URI) {
     return {
         request: request,
         response: response,
@@ -18,18 +18,21 @@ function httpTicketInterceptor($injector, $translate, $window, $q, sessionServic
     };
 
     function request(config) {
+        
         config.url = prefixAlfrescoServiceUrl(config.url); 
         
         if (sessionService.getUserInfo()) {
             config.params = config.params || {};
             config.params.alf_ticket = sessionService.getUserInfo().ticket;
         }
+        
         return config;
+        
     }
     
     function prefixAlfrescoServiceUrl(url){
-        if(url.startsWith("/api/") || url.startsWith("/slingshot/") || url == "/touch" || url == "/dk-openesdh-case-email"){
-            return "/alfresco/wcs" + url;
+        if(url.indexOf("/api/") != -1 || url.indexOf("/slingshot/") != -1 || url == "/touch" || url == "/dk-openesdh-case-email"){
+            return ALFRESCO_URI.webClientServiceProxy + url;
         }
         return url;
     }
@@ -85,8 +88,11 @@ function authService($http, $window, $state, sessionService, userService, oePara
     
     function ssoLogin(){
         return $http.get("/touch").then(function(response){
-            console.log("sso", response);
-            return response;
+            if(response.status == 401){
+                return response;
+            }
+            sessionService.setUserInfo({});
+            return revalidateUser();
         });
     }
 
@@ -165,7 +171,7 @@ function authService($http, $window, $state, sessionService, userService, oePara
 
     function revalidateUser() {
         return $http.get('/api/openesdh/currentUser').then(function(response) {
-            addUserAndParamsToSession(response.data.userName);
+            return addUserAndParamsToSession(response.data.userName);
         });
     }
 

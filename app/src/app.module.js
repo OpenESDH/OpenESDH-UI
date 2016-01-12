@@ -45,7 +45,8 @@
         .constant('ALFRESCO_URI', {
             apiProxy: '/alfresco/api/',
             serviceApiProxy: '/api/',
-            serviceSlingshotProxy: '/slingshot/'
+            serviceSlingshotProxy: '/slingshot/',
+            webClientServiceProxy: '/alfresco/wcs'
         })
         .constant('PATTERNS', {
             fileName: /^[a-zA-Z0-9_\-,!@#$%^&()=+ ]+$/,

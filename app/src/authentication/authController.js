@@ -15,12 +15,18 @@ function AuthController($scope, $state, $stateParams, $translate, authService, u
     vm.showForgotDialog = showForgotDialog;
     vm.updateValidator = updateValidator;
     
-    if($stateParams.nosso !== "true"){
+    if($stateParams.nosso !== "true" && !authService.isAuthenticated()){
         authService.ssoLogin().then(function(response){
             if(response.status == 401 || authFailedSafari(response)){
                 return;
             }
-            restoreLocation();
+            
+            if(response.userName) {
+                userService.getPerson(response.userName).then(function (response) {
+                    vm.user = response;
+                    restoreLocation();
+                });
+            }
         });    
     }
     
