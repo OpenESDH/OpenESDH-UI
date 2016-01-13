@@ -37,7 +37,7 @@ function httpTicketInterceptor($injector, $translate, $window, $q, sessionServic
         return url;
     }
     
-    function response(response) {
+    function response(response) {        
         if (response.status == 401 && typeof $window._openESDHSessionExpired === 'undefined') {
             sessionExpired();
         }
@@ -45,8 +45,9 @@ function httpTicketInterceptor($injector, $translate, $window, $q, sessionServic
     }
 
     function responseError(rejection) {
-        if (rejection.status == 401) {
-            sessionExpired();
+        //Prevent from popping up the message on failed SSO attempt
+        if (rejection.status == 401 && rejection.config.url.indexOf("/touch") == -1) {
+            sessionExpired();    
         }
         return $q.reject(rejection);
     }
