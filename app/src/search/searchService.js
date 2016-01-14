@@ -1,86 +1,79 @@
+angular
+    .module('openeApp')
+    .factory('searchService', searchService);
 
-    angular
-        .module('openeApp')
-        .factory('searchService', searchService);
+function searchService($http, ALFRESCO_URI) {
 
-    function searchService($http) {
+    var service = {};
 
-        var service = {};
+    //<editor-fold desc="liveSearch results">
+    service.liveSearchCaseDocs = function (term) {
+        return $http.get(ALFRESCO_URI.apiOpenesdh + 'live-search/caseDocs?t=' + term);
+    };
 
-        var Alfresco = {
-            openesdhApiProxyUrl : '/api/openesdh/',
-            apiProxyUrl : '/api/',
-            slingshotProxyUrl : '/slingshot/'
-        };
+    service.liveSearchCases = function (term) {
+        return $http.get(ALFRESCO_URI.apiOpenesdh + 'live-search/cases?t=' + term);
+    };
 
-        //<editor-fold desc="liveSearch results">
-        service.liveSearchCaseDocs = function (term) {
-            return $http.get('/openesdh/live-search-caseDocs?t=' + term);
-        };
+    service.liveSearchTemplates = function (term) {
+        return $http.get(ALFRESCO_URI.apiOpenesdh + 'live-search/templates?t=' + term);
+    };
+    //</editor-fold>
 
-        service.liveSearchCases = function (term) {
-            return $http.get('/openesdh/live-search-cases?t='+ term);
-        };
+    /**
+     * Could we just use the live search results and return a concatenation of the results??
+     * Thoughts: What about faceting?
+     *
+     * @param term
+     * @returns {*}
+     */
+    service.search = function (term) {
+        return $http.get(ALFRESCO_URI.serviceSlingshotProxy + 'search?' + term).then(function (response) {
+            return response.data;
+        });
+    };
 
-        service.liveSearchTemplates = function (term) {
-            return $http.get('/alfresco/service/api/openesdh/live-search/templates?t='+ term);
-        };
-        //</editor-fold>
-
-        /**
-         * Could we just use the live search results and return a concatenation of the results??
-         * Thoughts: What about faceting?
-         *
-         * @param term
-         * @returns {*}
-         */
-        service.search = function (term) {
-            return $http.get(Alfresco.slingshotProxyUrl+'search?'+ term).then(function(response) {
-                return response.data;
+    /**
+     * This returns the list of facets configured in the repository for use with the returned results
+     */
+    service.getConfiguredFacets = function () {
+        return $http.get(ALFRESCO_URI.serviceApiProxy + "facet/facet-config").then(function (response) {
+            var rawFacets = response.data.facets;
+            var facets = [];
+            rawFacets.forEach(function (facet) {
+                if (facet.isEnabled) {
+                    facets.push(facet)
+                }
             });
-        };
 
-        /**
-         * This returns the list of facets configured in the repository for use with the returned results
-         */
-        service.getConfiguredFacets = function () {
-            return $http.get(Alfresco.apiProxyUrl+"facet/facet-config").then(function(response){
-                 var rawFacets = response.data.facets;
-                 var facets=[];
-                 rawFacets.forEach(function(facet){
-                     if (facet.isEnabled){
-                         facets.push(facet)
-                     }
-                 });
+            return rawFacets;
+        });
+    };
 
-                 return rawFacets;
-            });
-        };
-
-        service.findPersons = function (searchTerm) {
-            var url = ALFRESCO_URI + '/people';
-            if(searchTerm && searchTerm.length > 0){
-                url += searchTerm;
-            }
-            url +="?sortBy=lastName&dir=asc&filter=*&maxResults=250";
-
-            return $http.get(url).then(function(result){
-                return result.data.people;
-            });
-        };
-
-        service.executeContextualSearch =  function(context, searchTerm){
-            var url = Alfresco.openesdhApiProxyUrl+getContextURL(context);
+    service.findPersons = function (searchTerm) {
+        var url = ALFRESCO_URI + '/people';
+        if (searchTerm && searchTerm.length > 0) {
             url += searchTerm;
-
-            return $http.get(url).then(function(response){
-                return response.data;
-            });
-        };
-
-        function getContextURL(context){
-            return context[context].searchAPIUrl;
         }
+        url += "?sortBy=lastName&dir=asc&filter=*&maxResults=250";
 
-        return service;
+        return $http.get(url).then(function (result) {
+            return result.data.people;
+        });
+    };
+
+    service.executeContextualSearch = function (context, searchTerm) {
+        var url = ALFRESCO_URI.apiOpenesdh + getContextURL(context);
+        url += searchTerm;
+
+        return $http.get(url).then(function (response) {
+            return response.data;
+        });
+    };
+
+    function getContextURL(context) {
+        return context[context].searchAPIUrl;
     }
+
+    return service;
+}
