@@ -7,17 +7,16 @@ angular
  * Main CaseInfoController for the Cases module
  * @param $scope
  * @param $stateParams
- * @param $mdDialog
- * @param $translate
- * @param caseService
+ * @param startCaseWorkflowService
+ * @param caseCrudDialogService
+ * @param casePrintDialogService
+ * @param preferenceService
  * @constructor
  */
-function CaseInfoController($scope, $stateParams, $mdDialog, $translate, caseService, notificationUtilsService,
-        startCaseWorkflowService, caseCrudDialogService, casePrintDialogService, preferenceService, ContextService) {
+function CaseInfoController($scope, $stateParams, startCaseWorkflowService, caseCrudDialogService,
+        casePrintDialogService, preferenceService) {
     var vm = this;
     vm.editCase = editCase;
-    vm.changeCaseStatus = changeCaseStatus;
-    vm.onTabChange = onTabChange;
     vm.startWorklfow = startWorklfow;
     vm.printCase = printCase;
     vm.addCaseToFavourites = addCaseToFavourites;
@@ -29,70 +28,19 @@ function CaseInfoController($scope, $stateParams, $mdDialog, $translate, caseSer
     loadCaseInfo();
 
     function loadCaseInfo() {
-        caseService.getCaseInfo($stateParams.caseId).then(function(result) {
-            vm.hasData = true;
+        //get caseInfo from parent controler: CaseController as caseCtrl
+        $scope.caseCtrl.getCaseInfo($stateParams.caseId).then(function(result) {
             vm.caseInfo = result;
             vm.caseInfoTemplateUrl = caseCrudDialogService.getCaseInfoTemplateUrl(result.type);
             $scope.case = result.properties;
-            $scope.caseIsLocked = result.isLocked;
-            $scope.caseStatusChoices = result.statusChoices;
-            vm.checkFavourite();
-        }, function(response) {
-            vm.hasData = false;
-            if (response.status === 400) {
-                //bad reqest (might be handled exception)
-                //CASE.CASE_NOT_FOUND
-                var key = 'CASE.' + response.data.message.split(' ')[1];
-                var msg = $translate.instant(key);
-                notificationUtilsService.alert(msg === key ? response.data.message : msg);
-                return;
-            }
-            //other exceptions
-            notificationUtilsService.alert(response.data.message);
+            checkFavourite();
         });
     }
 
-    function editCase(ev) {
+    function editCase() {
         caseCrudDialogService.editCase(vm.caseInfo).then(function(result) {
             loadCaseInfo();
         });
-    }
-
-    function changeCaseStatus(status) {
-        function confirmCloseCase() {
-            // TODO: Check if there are any unlocked documents in the case and
-            // notify the user in the confirmation dialog.
-
-            var confirm = $mdDialog.confirm()
-                    .title($translate.instant("COMMON.CONFIRM"))
-                    .textContent($translate.instant("CASE.CONFIRM_CLOSE_CASE"))
-                    .ariaLabel($translate.instant("CASE.CONFIRM_CLOSE_CASE"))
-                    .ok($translate.instant("COMMON.OK"))
-                    .cancel($translate.instant("COMMON.CANCEL"));
-            return $mdDialog.show(confirm);
-        }
-
-        var changeCaseStatusImpl = function() {
-            caseService.changeCaseStatus($stateParams.caseId, status).then(function(json) {
-                loadCaseInfo();
-                // TODO: Documents listing also needs to be reloaded
-                notificationUtilsService.notify($translate.instant("CASE.STATUS_CHANGED_SUCCESS"));
-            }, function(response) {
-                notificationUtilsService.alert(response.data.message);
-            });
-        };
-
-        if (status === "closed") {
-            confirmCloseCase().then(function() {
-                changeCaseStatusImpl();
-            });
-        } else {
-            changeCaseStatusImpl();
-        }
-    }
-
-    function onTabChange(tabName) {
-        $scope.$broadcast('tabSelectEvent', {tab: tabName});
     }
 
     function startWorklfow() {
@@ -105,13 +53,13 @@ function CaseInfoController($scope, $stateParams, $mdDialog, $translate, caseSer
 
     function addCaseToFavourites() {
         preferenceService.addFavouriteCase($stateParams.caseId).then(function() {
-            vm.checkFavourite();
+            checkFavourite();
         });
     }
 
     function removeCaseFromFavourites() {
         preferenceService.removeFavouriteCase($stateParams.caseId).then(function() {
-            vm.checkFavourite();
+            checkFavourite();
         });
     }
 

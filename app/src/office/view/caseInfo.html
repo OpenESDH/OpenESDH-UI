@@ -1,9 +1,16 @@
 <md-card ng-show="vm.hasData">
+    <md-toolbar id="global-toolbar" style="padding: 0 1rem;">
+        <div class="global-tools__links">
+            <img class="md-toolbar-tools__logo" src="{{$root.logoSrc}}" alt="logo" />
+        </div>
+    </md-toolbar>
     <md-card-content>
-        <md-subheader>{{ 'CASE.CASE' | translate }}: {{ vm.case["oe:id"].value }}</md-subheader>
-        <div style="float: right; color: #999; white-space: nowrap;">
-            {{ 'CASE.CREATED_BY' | translate: {at:vm.dateFlt(vm.case["cm:created"].value), by:vm.case["cm:creator"].fullname} }}<br> 
-            {{ 'CASE.MODIFIED_BY' | translate: {at:vm.dateFlt(vm.case["cm:modified"].value), by:vm.case["cm:modifier"].fullname} }}
+        <div layout="row" layout-align="space-between start">
+            <div>{{ 'CASE.CASE' | translate }}: {{ vm.case["oe:id"].value }}</div>
+            <div style="text-align:right; color: #999; white-space: nowrap;">
+                <div>{{ 'CASE.CREATED_BY' | translate: {at:vm.dateFlt(vm.case["cm:created"].value), by:vm.case["cm:creator"].fullname} }}</div>
+                <div>{{ 'CASE.MODIFIED_BY' | translate: {at:vm.dateFlt(vm.case["cm:modified"].value), by:vm.case["cm:modifier"].fullname} }}</div>
+            </div>
         </div>
         <h2>{{ vm.case["cm:title"].value }}</h2>
         <p>{{ vm.case["cm:description"].value }}</p>

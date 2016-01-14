@@ -44,8 +44,9 @@
         })
         .constant('ALFRESCO_URI', {
             apiProxy: '/alfresco/api/',
-            serviceApiProxy: '/alfresco/service/api/',
-            serviceSlingshotProxy: '/alfresco/service/slingshot/'
+            serviceApiProxy: '/api/',
+            serviceSlingshotProxy: '/slingshot/',
+            webClientServiceProxy: '/alfresco/wcs'
         })
         .constant('PATTERNS', {
             fileName: /^[a-zA-Z0-9_\-,!@#$%^&()=+ ]+$/,
@@ -59,6 +60,7 @@
                 if (next.data.authorizedRoles.length === 0) {
                     return;
                 }
+                
                 if (authService.isAuthenticated() && authService.isAuthorized(next.data.authorizedRoles)) {
                     //We do nothing. Attempting to transition to the actual state results in call stack exception
                 } else {
@@ -89,7 +91,8 @@
         $mdIconProvider.icon('md-calendar', '/app/assets/img/icons/today.svg');
 
         $urlRouterProvider
-            .when('/admin/system-settings','/admin/system-settings/document-types')
+            .when('/cases/case/:caseId','/cases/case/:caseId/info')
+            .when('/admin/system-settings','/admin/system-settings/general-configuration')
             .otherwise('/');
 
         $stateProvider.state('site', {
@@ -116,25 +119,104 @@
             views: {
                 'content@': {
                     templateUrl: '/app/src/cases/view/cases.html',
-                    controller: 'CaseController',
+                    controller: 'CaseListController',
                     controllerAs: 'vm'
                 }
             },
             data: {
                 authorizedRoles: [USER_ROLES.user]
             }
-        }).state('caseinfo', {
+        }).state('case', {
             parent: 'site',
             url: '/cases/case/:caseId',
             views: {
                 'content@': {
                     templateUrl: '/app/src/cases/view/case.html',
-                    controller: 'CaseInfoController',
-                    controllerAs: 'vm'
+                    controller: 'CaseController',
+                    controllerAs: 'caseCtrl'
                 }
             },
             data: {
-                authorizedRoles: [USER_ROLES.user]
+                authorizedRoles: [USER_ROLES.user],
+                selectedTab: 0
+            }
+        }).state('case.info', {
+            url: '/info',
+            views: {
+                'caseInfo': {
+                    templateUrl: '/app/src/cases/view/case_info.html',
+                    controller: 'CaseInfoController',
+                    controllerAs: 'civm'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user],
+                selectedTab: 0
+            }
+        }).state('case.notes', {
+            url: '/notes',
+            views: {
+                'caseNotes': {
+                    templateUrl: '/app/src/notes/view/caseNotes.html',
+                    controller: 'NoteController',
+                    controllerAs: 'caseNotes'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user],
+                selectedTab: 1
+            }
+        }).state('case.members', {
+            url: '/members',
+            views: {
+                'caseMembers': {
+                    templateUrl: 'app/src/case_members/view/caseMembers.html',
+                    controller: 'CaseMembersController',
+                    controllerAs: 'cmc'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user],
+                selectedTab: 2
+            }
+        }).state('case.parties', {
+            url: '/parties',
+            views: {
+                'caseParties': {
+                    templateUrl: 'app/src/parties/view/caseParties.html',
+                    controller: 'CasePartiesController',
+                    controllerAs: 'cmCPC'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user],
+                selectedTab: 3
+            }
+        }).state('case.history', {
+            url: '/history',
+            views: {
+                'caseHistory': {
+                    templateUrl: 'app/src/history/view/caseHistory.html',
+                    controller: 'CaseHistoryController',
+                    controllerAs: 'historyCtrl'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user],
+                selectedTab: 4
+            }
+        }).state('case.tasks', {
+            url: '/tasks',
+            views: {
+                'caseTasks': {
+                    templateUrl: 'app/src/tasks/view/tasksDisplay.html',
+                    controller: 'CaseTasksController',
+                    controllerAs: 'tasksCtrl'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user],
+                selectedTab: 5
             }
         }).state('docDetails', {
             parent: 'site',
@@ -151,7 +233,7 @@
             }
         }).state('login', {
             parent: 'site',
-            url: '/login?error',
+            url: '/login?error&nosso',
             views: {
                 'content@': {
                     templateUrl: '/app/src/authentication/view/login.html',
@@ -281,6 +363,18 @@
                 'systemsettings': {
                     templateUrl: '/app/src/system_settings/menu/system_settings.html',
                     controller: 'SystemsettingsController',
+                    controllerAs: 'vm'
+                }
+            }
+        }).state('administration.systemsettings.general', {
+            url: '/general-configuration',
+            data: {
+                authorizedRoles: [USER_ROLES.admin]
+            },
+            views: {
+                'systemsetting-view': {
+                    templateUrl: '/app/src/system_settings/general_configuration/view/generalConfiguration.html',
+                    controller: 'GeneralConfigurationController',
                     controllerAs: 'vm'
                 }
             }

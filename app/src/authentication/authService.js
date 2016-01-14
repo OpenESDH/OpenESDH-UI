@@ -10,7 +10,7 @@ function config($httpProvider) {
     $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 }
 
-function httpTicketInterceptor($injector, $translate, $window, $q, sessionService) {
+function httpTicketInterceptor($injector, $translate, $window, $q, sessionService, ALFRESCO_URI) {
     return {
         request: request,
         response: response,
@@ -18,14 +18,26 @@ function httpTicketInterceptor($injector, $translate, $window, $q, sessionServic
     };
 
     function request(config) {
+        
+        config.url = prefixAlfrescoServiceUrl(config.url); 
+        
         if (sessionService.getUserInfo()) {
             config.params = config.params || {};
             config.params.alf_ticket = sessionService.getUserInfo().ticket;
         }
+        
         return config;
+        
     }
-
-    function response(response) {
+    
+    function prefixAlfrescoServiceUrl(url){
+        if(url.indexOf("/api/") == 0 || url.indexOf("/slingshot/") == 0 || url == "/touch" || url == "/dk-openesdh-case-email"){
+            return ALFRESCO_URI.webClientServiceProxy + url;
+        }
+        return url;
+    }
+    
+    function response(response) {        
         if (response.status == 401 && typeof $window._openESDHSessionExpired === 'undefined') {
             sessionExpired();
         }
@@ -33,8 +45,9 @@ function httpTicketInterceptor($injector, $translate, $window, $q, sessionServic
     }
 
     function responseError(rejection) {
-        if (rejection.status == 401) {
-            sessionExpired();
+        //Prevent from popping up the message on failed SSO attempt
+        if (rejection.status == 401 && rejection.config.url.indexOf("/touch") == -1) {
+            sessionExpired();    
         }
         return $q.reject(rejection);
     }
@@ -55,7 +68,7 @@ function httpTicketInterceptor($injector, $translate, $window, $q, sessionServic
     }
 }
 
-function authService($http, $window, $state, sessionService, $translate, userService) {
+function authService($http, $window, $state, sessionService, userService, oeParametersService) {
     var service = {
         login: login,
         logout: logout,
@@ -64,29 +77,38 @@ function authService($http, $window, $state, sessionService, $translate, userSer
         isAuthenticated: isAuthenticated,
         isAuthorized: isAuthorized,
         getUserInfo: getUserInfo,
-        revalidateTicket: revalidateTicket,
-        revalidateUser: revalidateUser
+        revalidateUser: revalidateUser,
+        ssoLogin: ssoLogin
     };
-
-    // Revalidate the ticket stored in the session on page load
-    angular.element($window).bind('load', revalidateTicket);
 
     return service;
 
     function getUserInfo() {
         return sessionService.getUserInfo();
     }
+    
+    function ssoLogin(){
+        return $http.get("/touch").then(function(response){
+            if(response.status == 401 || authFailedSafari(response)){
+                return response;
+            }
+            sessionService.setUserInfo({});
+            return revalidateUser();
+        });
+    }
+    
+    function authFailedSafari(response){
+        return response.data && response.data.indexOf('Safari') != -1;
+    }
 
     function login(username, password) {
         var userInfo = {};
-        return $http.post("/alfresco/service/api/login", {
+        return $http.post("/api/login", {
             username: username,
             password: password
         }).then(function(response) {
-            var ticket = response.data.data.ticket;
-            userInfo['ticket'] = ticket;
             sessionService.setUserInfo(userInfo);
-            return addUserToSession(username);
+            return addUserAndParamsToSession(username);
         }, function(reason) {
             console.log(reason);
             return reason;
@@ -95,13 +117,17 @@ function authService($http, $window, $state, sessionService, $translate, userSer
 
     function logout() {
         var userInfo = sessionService.getUserInfo();
-        if (userInfo && userInfo.ticket) {
-            return $http.delete('/alfresco/service/api/login/ticket/' + userInfo.ticket).then(function(response) {
-                sessionService.setUserInfo(null);
-                sessionService.clearRetainedLocation();
-                return response;
+
+        
+        if (userInfo){
+            return $http.post('/api/openesdh/logout').then(function(response) {
+              sessionService.setUserInfo(null);
+              sessionService.clearRetainedLocation();
+              oeParametersService.clearOEParameters();
+              return response;
             });
         }
+
     }
 
     function loggedin() {
@@ -115,7 +141,7 @@ function authService($http, $window, $state, sessionService, $translate, userSer
      * @returns {*}
      */
     function changePassword(email) {
-        return $http.post("/alfresco/service/api/openesdh/reset-user-password", {email: email}).then(function(response) {
+        return $http.post("/api/openesdh/reset-user-password", {email: email}).then(function(response) {
             return response;
         });
     }
@@ -148,42 +174,19 @@ function authService($http, $window, $state, sessionService, $translate, userSer
                 (authorizedRoles.length > 0 && authorizedRoles.indexOf('user') > -1);
     }
 
-    function revalidateTicket() {
-        // Re-validate the login ticket
-        var userInfo = sessionService.getUserInfo();
-        if (userInfo && 'ticket' in userInfo) {
-            return $http.get("/alfresco/service/api/login/ticket/" + userInfo.ticket).then(function(response) {
-                if (response.status !== 200) {
-                    // The ticket is expired or not valid for this user,
-                    // Clear the session information
-                    sessionService.setUserInfo(null);
-                    sessionService.retainCurrentLocation();
-                    $state.go('login');
-                }
-            }, function(e) {
-                sessionService.setUserInfo(null);
-                sessionService.retainCurrentLocation();
-                $state.go('login');
-            }).then(function() {
-                if (!userInfo.user) {
-                    revalidateUser();
-                }
-            });
-        }
-    }
-
     function revalidateUser() {
-        return $http.get('/alfresco/service/api/openesdh/currentUser').then(function(response) {
-            addUserToSession(response.data.userName);
+        return $http.get('/api/openesdh/currentUser').then(function(response) {
+            return addUserAndParamsToSession(response.data.userName);
         });
     }
 
-    function addUserToSession(username) {
+    function addUserAndParamsToSession(username) {
         return userService.getPerson(username).then(function(response) {
             delete $window._openESDHSessionExpired;
             var userInfo = sessionService.getUserInfo();
             userInfo['user'] = response;
             sessionService.setUserInfo(userInfo);
+            oeParametersService.loadParameters();
             return response;
         });
     }

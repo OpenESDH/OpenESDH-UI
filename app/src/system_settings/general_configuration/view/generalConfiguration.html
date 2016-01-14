@@ -1,0 +1,11 @@
+<md-card flex="grow">
+    <md-card-content>
+        <h2>{{ 'ADMIN.SYS_SETTINGS.GENERAL.PARAMETERS' | translate}}</h2>
+        <div ng-repeat="parameter in vm.parameters">
+            <input type="checkbox" id="oe_param_{{parameter.name}}" ng-model="parameter.value">
+            <label for="oe_param_{{parameter.name}}">{{ 'ADMIN.SYS_SETTINGS.GENERAL.' + parameter.name | translate}}</label>
+        </div>
+
+        <md-button class="md-primary" ng-click="vm.saveParameters($event)">{{ 'ADMIN.SYS_SETTINGS.GENERAL.SAVE_PARAMETERS' | translate}}</md-button>
+    </md-card-content>
+</md-card>

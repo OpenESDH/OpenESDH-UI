@@ -9,16 +9,16 @@
         <div class="tlist">
             <div class="tlist__header" layout="row">
                 <span class="tlist__cell" flex="5"></span>
-                <span class="tlist__cell" flex="10">{{ 'COMMON.CASE_ID' | translate }}</span>
-                <span class="tlist__cell" flex="20">{{ 'COMMON.TITLE' | translate }}</span>
+                <span class="tlist__cell" flex="10" sort-table="activitySummary.caseId">{{ 'COMMON.CASE_ID' | translate }}</span>
+                <span class="tlist__cell" flex="20" sort-table="activitySummary.caseTitle">{{ 'COMMON.TITLE' | translate }}</span>
                 <span class="tlist__cell" flex>{{ 'COMMON.ACTION' | translate }}</span>
-                <span class="tlist__cell" flex="10">{{ 'ACTIVITIES.PERFORMER' | translate }}</span>
-                <span class="tlist__cell" flex="15">{{ 'ACTIVITIES.DATE' | translate }}</span>
-                <span class="tlist__cell" flex="10">{{ 'COMMON.TYPE' | translate }}</span>
+                <span class="tlist__cell" flex="10" sort-table="activitySummary.modifierDisplayName">{{ 'ACTIVITIES.PERFORMER' | translate }}</span>
+                <span class="tlist__cell" flex="15" sort-table="postDate">{{ 'ACTIVITIES.DATE' | translate }}</span>
+                <span class="tlist__cell" flex="10" sort-table="activityType">{{ 'COMMON.TYPE' | translate }}</span>
             </div>
             
             <md-virtual-repeat-container class="tlist__body" auto-height>
-                <div md-virtual-repeat="activity in actCtrl.activities" class="tlist__item" layout="column" flex>
+                <div md-virtual-repeat="activity in actCtrl.activities | orderObjectBy:orderByAttribute:reverseOrder" class="tlist__item" layout="column" flex>
                     {{activitySummary=activity.activitySummary;""}}
                     <a class="tlist__item__link"
                        href="#/cases/case/{{activitySummary.caseId}}"

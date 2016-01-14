@@ -43,7 +43,7 @@
                 });
             }
             
-            return $http.post("/alfresco/service/api/upload", formData,  {
+            return $http.post("/api/upload", formData,  {
                 transformRequest: angular.identity,
                 headers: {'Content-Type': undefined}
             }).then(function(response){
@@ -60,7 +60,7 @@
             formData.append("filename", file.name);
             formData.append("destination", null);
 
-            return $http.post("/alfresco/service/api/people/upload.json", formData,  {
+            return $http.post("/api/people/upload.json", formData,  {
                 transformRequest: angular.identity,
                 headers: {'Content-Type': undefined}
             }).then(function(response){

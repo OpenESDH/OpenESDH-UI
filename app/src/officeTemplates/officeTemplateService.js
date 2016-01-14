@@ -3,7 +3,7 @@
         .module('openeApp.officeTemplates')
         .factory('officeTemplateService', officeTemplateService);
 
-    function officeTemplateService($http, userService, alfrescoNodeUtils, sessionService) {
+    function officeTemplateService($http, userService, alfrescoNodeUtils, sessionService, ALFRESCO_URI) {
 
         var lastFetch = 0;
 
@@ -17,13 +17,13 @@
         };
 
         function getTemplates() {
-            return $http.get('/alfresco/service/api/openesdh/officetemplates').then(function (response) {
+            return $http.get('/api/openesdh/officetemplates').then(function (response) {
                 return response.data;
             });
         }
 
         function getTemplate(nodeRef) {
-            return $http.get('/alfresco/service/api/openesdh/officetemplates/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri).then(function (response) {
+            return $http.get('/api/openesdh/officetemplates/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri).then(function (response) {
                 return response.data;
             });
         }
@@ -34,7 +34,7 @@
          * @returns {*}
          */
         function deleteTemplate(nodeRef) {
-            return $http.delete('/alfresco/service/api/openesdh/officeDocTemplate/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri).then(function (response) {
+            return $http.delete('/api/openesdh/officeDocTemplate/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri).then(function (response) {
                 return response.data;
             });
         }
@@ -49,7 +49,7 @@
          * @returns {*}
          */
         function fillTemplate(nodeRef, fieldData) {
-            return $http.post('/alfresco/service/api/openesdh/officetemplates/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri + "/fill",
+            return $http.post('/api/openesdh/officetemplates/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri + "/fill",
                 {fieldData: fieldData},
                 {responseType: 'arraybuffer'}
             ).then(function (response) {
@@ -67,7 +67,7 @@
                 tmplFileData.append(key, value);
             });
 
-            return $http.post('/alfresco/service/api/openesdh/officeDocTemplate', tmplFileData, {
+            return $http.post('/api/openesdh/officeDocTemplate', tmplFileData, {
                 transformRequest: angular.identity, headers: {'Content-Type': undefined}
             }).then(function(response) {
                 return response.data;
@@ -84,7 +84,6 @@
             var nodeRefAsLink = nodeRef.replace(":/", ""),
                 noCache = "&noCache=" + getTime(),
                 force = "c=force";
-            var url = "/alfresco/s/api/node/" + nodeRefAsLink + "/content/thumbnails/"+(thumbnailName ? thumbnailName : "cardViewThumbnail") + "?" + force + noCache;
-            return url + "&alf_ticket=" + sessionService.getUserInfo().ticket;
+            return ALFRESCO_URI.webClientServiceProxy + "/api/node/" + nodeRefAsLink + "/content/thumbnails/"+(thumbnailName ? thumbnailName : "cardViewThumbnail") + "?" + force + noCache;
         }
     }

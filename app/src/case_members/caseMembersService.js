@@ -13,12 +13,12 @@
         return service;
 
         function getCaseMembers(caseId) {
-            return $http.get('/alfresco/service/api/openesdh/case/' + caseId + '/members')
+            return $http.get('/api/openesdh/case/' + caseId + '/members')
                     .then(successOrReject);
         }
 
         function createCaseMembers(caseId, role, authorities) {
-            return $http.post('/alfresco/service/api/openesdh/case/' + caseId + '/members', null,
+            return $http.post('/api/openesdh/case/' + caseId + '/members', null,
                     {
                         params: {
                             authorityNodeRefs: authorities,
@@ -28,7 +28,7 @@
         }
 
         function changeCaseMember(caseId, authority, oldRole, newRole) {
-            return $http.post('/alfresco/service/api/openesdh/case/' + caseId + '/members', null,
+            return $http.post('/api/openesdh/case/' + caseId + '/members', null,
                     {
                         params: {
                             authority: authority,
@@ -39,7 +39,7 @@
         }
 
         function deleteCaseMember(caseId, authority, role) {
-            return $http.delete('/alfresco/service/api/openesdh/case/' + caseId + '/member',
+            return $http.delete('/api/openesdh/case/' + caseId + '/member',
                     {params: {
                             authority: authority,
                             role: role

@@ -13,12 +13,12 @@
         return service;
 
         function getDocumentCategories() {
-            return $http.get('/alfresco/service/api/openesdh/document/categories')
+            return $http.get('/api/openesdh/document/categories')
                     .then(onSuccess);
         }
 
         function getDocumentCategory(nodeRefId) {
-            return $http.get('/alfresco/service/api/openesdh/document/category',
+            return $http.get('/api/openesdh/document/category',
                     {
                         params: {
                             nodeRefId: nodeRefId
@@ -27,7 +27,7 @@
         }
 
         function saveDocumentCategory(documentCategory) {
-            return $http.post('/alfresco/service/api/openesdh/document/category', null,
+            return $http.post('/api/openesdh/document/category', null,
                     {
                         params: {
                             nodeRefId: documentCategory.nodeRef,
@@ -38,7 +38,7 @@
         }
 
         function deleteDocumentCategory(nodeRefId) {
-            return $http.delete('/alfresco/service/api/openesdh/document/category',
+            return $http.delete('/api/openesdh/document/category',
                     {params: {
                             nodeRefId: nodeRefId
                         }

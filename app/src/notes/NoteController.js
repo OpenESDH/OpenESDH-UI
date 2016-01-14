@@ -11,12 +11,7 @@
         vm.pagingParams = caseNotesService.createPagingParams();
         vm.layout = 'grid';
 
-        //lets init only when tab is selected
-        $scope.$on('tabSelectEvent', function(event, args) {
-            if (args.tab === 'notes') {
-                loadNotes(1);
-            }
-        });
+        loadNotes(1);
 
         function loadNotes(page) {
             var res = caseNotesService.getCaseNotes(caseId, page, vm.pagingParams.pageSize);

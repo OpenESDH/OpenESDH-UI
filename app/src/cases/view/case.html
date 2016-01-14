@@ -8,9 +8,9 @@
                     <i class="material-icons" style="vertical-align: middle;">arrow_back</i> {{ 'CASE.CASES' | translate }}
                 </md-button>
                 <h1 class="md-headline" layout-margin>
-                    {{ case["cm:title"].value }} <span class="muted">{{ case["oe:id"].value }}</span>
-                    <span class="muted" ng-hide="case['oe:status'].value === 'active'">
-                        ({{case['oe:status'].value| caseStatus}})
+                    {{ caseCtrl.case["cm:title"].value }} <span class="muted">{{ caseCtrl.case["oe:id"].value }}</span>
+                    <span class="muted" ng-hide="caseCtrl.case['oe:status'].value === 'active'">
+                        ({{caseCtrl.case['oe:status'].value| caseStatus}})
                     </span>
                 </h1>
             </div>
@@ -18,15 +18,15 @@
             <md-menu>
                 <md-button class="md-primary" ng-click="$mdOpenMenu($event)"
                            aria-label="{{ 'CASE.CHANGE_STATUS' | translate }}"
-                           ng-disabled="caseStatusChoices.length == 0">
+                           ng-disabled="caseCtrl.caseStatusChoices.length == 0">
                     {{ 'CASE.CHANGE_STATUS' | translate }}
                 </md-button>
                 <md-menu-content>
-                    <md-menu-item ng-repeat="choiceName in caseStatusChoices">
-                        <md-button ng-class="{'current-choice': choiceName === case['oe:status'].value}"
-                                   ng-disabled="choiceName === case['oe:status'].value"
+                    <md-menu-item ng-repeat="choiceName in caseCtrl.caseStatusChoices">
+                        <md-button ng-class="{'current-choice': choiceName === caseCtrl.case['oe:status'].value}"
+                                   ng-disabled="choiceName === caseCtrl.case['oe:status'].value"
                                    aria-label="{{ choiceName | caseStatus }}"
-                                   ng-click="vm.changeCaseStatus(choiceName)">
+                                   ng-click="caseCtrl.changeCaseStatus(choiceName)">
                             {{ choiceName | caseStatus }}
                         </md-button>
                     </md-menu-item>
@@ -35,123 +35,59 @@
         </div>
     </div>
 
-    <md-tabs md-dynamic-height>
+    <md-tabs md-dynamic-height md-selected="currentTab">
 
-        <md-tab md-on-select="vm.onTabChange('case')">
+        <md-tab ui-sref="case.info">
             <md-tab-label>
                 <span><i class="material-icons">folder_open</i> {{ 'CASE.CASE' | translate }}</span>
             </md-tab-label>
             <md-tab-body>
-
-                <div layout="row" layout-wrap>
-
-                    <div flex="100" flex-gt-md="25">
-                        <md-card>
-                            <md-card-content>
-                                <div layout layout-align="space-between center">
-                                    <h3 class="md-title" flex="75">
-                                        {{ 'COMMON.INFORMATION' | translate }}
-                                    </h3>
-                                    <div flex="25" class="opene-star">
-                                        <md-button ng-hide="vm.isFavourite" class="opene-star__passive" ng-click="vm.addCaseToFavourites()">
-                                            <i class="material-icons">star_border</i>
-                                        </md-button>
-                                        <md-button ng-show="vm.isFavourite" class="opene-star__active" ng-click="vm.removeCaseFromFavourites()">
-                                            <i class="material-icons">star</i>
-                                        </md-button>
-                                    </div>
-                                </div>
-                                <dl layout="row" layout-wrap ng-include="vm.caseInfoTemplateUrl"></dl>
-                            </md-card-content>
-                            <div class="md-actions" layout="column" layout-padding layout-align="start start">
-                                <md-button class="md-primary" ng-click="vm.editCase($event)"
-                                           ng-disabled="caseIsLocked">
-                                    <i class="material-icons">mode_edit</i>
-                                    {{ 'CASE.EDIT_INFORMATION' | translate }}
-                                </md-button>
-                                <md-button class="md-primary" ng-click="vm.printCase()"><i class="material-icons">print</i> {{ 'CASE.PRINT_CASE' | translate }}</md-button>
-                                <md-button class="md-primary" ng-click="vm.startWorklfow()" ng-disabled="caseIsLocked">{{ 'CASE.START_WORKFLOW' | translate }}</md-button>
-                            </div>
-                        </md-card>
-                    </div>
-                    <div flex="100" flex-gt-md="75" ng-include="'app/src/documents/view/caseDocumentList.html'"></div>
-                </div>
+                <div ui-view="caseInfo"></div>
             </md-tab-body>
         </md-tab>
 
-        <md-tab md-on-select="vm.onTabChange('notes')">
+        <md-tab ui-sref="case.notes">
             <md-tab-label>
                 <span><i class="material-icons">library_books</i> {{ 'NOTE.NOTES' | translate }}</span>
             </md-tab-label>
             <md-tab-body layout="column">
-                <div ng-include="'app/src/notes/view/caseNotes.html'"></div>
+                <div ui-view="caseNotes"></div>
             </md-tab-body>
         </md-tab>
 
-        <md-tab md-on-select="vm.onTabChange('members')">
+        <md-tab ui-sref="case.members">
             <md-tab-label>
                 <span><i class="material-icons">people</i> {{ 'MEMBER.MEMBERS' | translate }}</span>
             </md-tab-label>
             <md-tab-body layout="column">
-                <div ng-include="'app/src/case_members/view/caseMembers.html'"></div>
+                <div ui-view="caseMembers"></div>
             </md-tab-body>
         </md-tab>
 
-        <md-tab md-on-select="vm.onTabChange('parties')">
+        <md-tab ui-sref="case.parties">
             <md-tab-label>
                 <span><i class="material-icons">people_outline</i> {{ 'PARTY.PARTIES'| translate }}</span>
             </md-tab-label>
             <md-tab-body layout="column">
-                <div ng-include="'app/src/parties/view/caseParties.html'"></div>
+                <div ui-view="caseParties"></div>
             </md-tab-body>
         </md-tab>
 
-        <md-tab md-on-select="vm.onTabChange('history')">
+        <md-tab ui-sref="case.history">
             <md-tab-label>
                 <span><i class="material-icons">history</i> {{ 'COMMON.HISTORY' | translate }}</span>
             </md-tab-label>
             <md-tab-body layout="column">
-                <md-card ng-controller="CaseHistoryController as historyCtrl">
-                    <md-card-content>
-                        <h3>{{ 'CASE.CASE_HISTORY' | translate }}</h3>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>{{ 'COMMON.ACTION' | translate }}</th>
-                                    <th>{{ 'COMMON.TYPE' | translate }}</th>
-                                    <th>{{ 'USER.USER' | translate }}</th>
-                                    <th>{{ 'COMMON.TIME' | translate }}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="log in historyCtrl.history">
-                                    <td>{{ log.action}}</td>
-                                    <td>{{ log.type}}</td>
-                                    <td>{{ log.user}}</td>
-                                    <td>{{ log.time | openeDate: 'fullDate'}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </md-card-content>
-                    <div class="md-actions">
-                        <div style="float: right;">
-                            <span>{{historyCtrl.startIndex}} - {{historyCtrl.endIndex}} {{ 'COMMON.OF' | translate }} {{historyCtrl.totalItems}}</span>
-                            <span>
-                                <md-button ng-click="historyCtrl.loadPreviousPage()" ng-disabled="!historyCtrl.previousPage">&lt;</md-button>
-                                <md-button ng-click="historyCtrl.loadNextPage()" ng-disabled="!historyCtrl.nextPage">&gt;</md-button>
-                            </span>
-                        </div>
-                    </div>
-                </md-card>
+                <div ui-view="caseHistory"></div>
             </md-tab-body>
         </md-tab>
 
-        <md-tab md-on-select="vm.onTabChange('tasks')">
+        <md-tab ui-sref="case.tasks">
             <md-tab-label>
                 <span><i class="material-icons">assignment</i> {{ 'TASK.TASKS'| translate }}</span>
             </md-tab-label>
             <md-tab-body layout="column">
-                <div  ng-controller="CaseTasksController as tasksCtrl" ng-include="'app/src/tasks/view/tasksDisplay.html'"></div>
+                <div ui-view="caseTasks"></div>
             </md-tab-body>
         </md-tab>
     </md-tabs>

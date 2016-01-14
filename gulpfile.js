@@ -7,7 +7,10 @@ var gulp = require('gulp'),
 var environment = {
     test: {proxy: 'http://test.openesdh.dk'},
     demo: {proxy: 'http://demo.openesdh.dk'},
-    local: {proxy: 'http://localhost:8080'}
+    local: {
+        proxy: 'http://localhost:8080',
+        spp: 'http://localhost:7070'
+    }
 };
 
 var paths = {
@@ -42,6 +45,10 @@ function createWebserver(config) {
                 open: false, // Open up a browser automatically
                 host: '0.0.0.0', // hostname needed if you want to access the server from anywhere on your local network
                 proxies: [{
+                    source: '/alfresco/opene/cases',
+                    target: config.spp + '/alfresco/opene/cases'
+                },
+                {
                         source: '/alfresco',
                         target: config.proxy + '/alfresco'
                     }]

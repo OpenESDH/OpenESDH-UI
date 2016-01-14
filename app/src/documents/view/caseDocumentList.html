@@ -6,15 +6,15 @@
             <div class="repeat-header">
                 <span layout="row" flex>
                     <span class="r" flex="5"></span>
-                    <span class="r" flex>{{ 'COMMON.TITLE' | translate }}</span>
-                    <span class="r" flex="15">{{ 'COMMON.TYPE' | translate }}</span>
-                    <span class="r" flex="15">{{ 'COMMON.CATEGORY' | translate }}</span>
-                    <span class="r" flex="20">{{ 'COMMON.CREATEDBY' | translate }}</span>
-                    <span class="r" flex="20">{{ 'COMMON.MODIFIED' | translate }}</span>
+                    <span class="r" flex sort-table="cm:title">{{ 'COMMON.TITLE' | translate }}</span>
+                    <span class="r" flex="15" sort-table="doc:type">{{ 'COMMON.TYPE' | translate }}</span>
+                    <span class="r" flex="15" sort-table="doc:category">{{ 'COMMON.CATEGORY' | translate }}</span>
+                    <span class="r" flex="20" sort-table="doc:owner.0.fullname">{{ 'COMMON.CREATEDBY' | translate }}</span> <!-- might not be convenient to sort if multiple owner -->
+                    <span class="r" flex="20" sort-table="cm:modified">{{ 'COMMON.MODIFIED' | translate }}</span>
                 </span>
             </div>
             <md-virtual-repeat-container md-auto-shrink>
-                <div md-virtual-repeat="doc in docCtrl.documents" class="repeat-item {{ doc['oe:lockedDate'] ? 'muted' : '' }}" ng-disabled="doc['oe:lockedDate']">
+                <div md-virtual-repeat="doc in docCtrl.documents | orderObjectBy:orderByAttribute:reverseOrder" class="repeat-item {{ doc['oe:lockedDate'] ? 'muted' : '' }}" ng-disabled="doc['oe:lockedDate']">
                     <a class="r-rowlink" 
                        href="#/cases/case/{{docCtrl.caseId}}/doc/{{doc.nodeRef| nodeRefUri}}" 
                        layout="row">
@@ -38,14 +38,14 @@
     <div class="md-actions" layout="row" layout-padding>
         <md-button class="md-primary"
                    ng-click="docCtrl.uploadDocument()"
-                   ng-disabled="caseIsLocked">
+                   ng-disabled="caseCtrl.caseIsLocked">
             <i class="material-icons">file_upload</i>
             {{ 'DOCUMENT.UPLOAD_NEW_DOCUMENTS' | translate }}
         </md-button>
         <div ng-include="'app/src/documents/view/caseDocumentsSend.html'"></div>
         <md-button class="md-primary"
                    ng-click="docCtrl.createDocumentFromTemplate()"
-                   ng-disabled="caseIsLocked">
+                   ng-disabled="caseCtrl.caseIsLocked">
             {{ 'DOCUMENT.CREATE_FROM_TEMPLATE' | translate }}
         </md-button>
     </div>

@@ -12,7 +12,7 @@
         return service;
 
         function getDocuments() {
-            return $http.get('/alfresco/s/slingshot/doclib/doclist/documents/node/alfresco/company/home', {
+            return $http.get('/slingshot/doclib/doclist/documents/node/alfresco/company/home', {
                 params: {max: 50, filter: 'recentlyModifiedByMe'}
             }).then(function(response) {
                 return response.data;
@@ -20,7 +20,7 @@
         }
 
         function getFavoriteDocuments() {
-            return $http.get('/alfresco/s/slingshot/doclib/doclist/documents/node/alfresco/company/home', {
+            return $http.get('/slingshot/doclib/doclist/documents/node/alfresco/company/home', {
                 params: {max: 50, filter: 'favourites'}
             }).then(function(response) {
                 console.log(response);
@@ -29,7 +29,7 @@
         }
 
         function getEditingDocuments() {
-            return $http.get('/alfresco/s/slingshot/doclib/doclist/documents/node/alfresco/company/home', {
+            return $http.get('/slingshot/doclib/doclist/documents/node/alfresco/company/home', {
                 params: {
                     max: 50,
                     filter: 'editingMe'

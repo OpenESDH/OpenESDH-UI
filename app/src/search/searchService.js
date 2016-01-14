@@ -8,20 +8,18 @@
         var service = {};
 
         var Alfresco = {
-            apiProxyUrl : '/alfresco/service/api/',
-            openesdhApiProxyUrl : '/alfresco/service/api/openesdh/',
-            slingshotProxyUrl : '/alfresco/service/slingshot/'
+            openesdhApiProxyUrl : '/api/openesdh/',
+            apiProxyUrl : '/api/',
+            slingshotProxyUrl : '/slingshot/'
         };
 
         //<editor-fold desc="liveSearch results">
         service.liveSearchCaseDocs = function (term) {
-            //return $http.get('/alfresco/service/openesdh/live-search-caseDocs?t=' + term);
-            return $http.get('/alfresco/service/api/openesdh/live-search/caseDocs?t=' + term);
+            return $http.get('/openesdh/live-search-caseDocs?t=' + term);
         };
 
         service.liveSearchCases = function (term) {
-            //return $http.get('/alfresco/service/openesdh/live-search-cases?t='+ term);
-            return $http.get('/alfresco/service/api/openesdh/live-search/cases?t='+ term);
+            return $http.get('/openesdh/live-search-cases?t='+ term);
         };
 
         service.liveSearchTemplates = function (term) {
@@ -54,12 +52,13 @@
                          facets.push(facet)
                      }
                  });
+
                  return rawFacets;
             });
         };
 
         service.findPersons = function (searchTerm) {
-            var url = Alfresco.apiProxyUrl + 'people';
+            var url = ALFRESCO_URI + '/people';
             if(searchTerm && searchTerm.length > 0){
                 url += searchTerm;
             }

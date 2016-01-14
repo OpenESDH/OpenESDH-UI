@@ -9,7 +9,7 @@
         };
         
         function deleteFolder(nodeRef){
-            var url = '/alfresco/s/slingshot/doclib/action/folder/node/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri;
+            var url = '/slingshot/doclib/action/folder/node/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri;
             return $http.delete(url).then(function(result){
                 return result.data;
             })

@@ -34,7 +34,7 @@
         }
 
         function getAssociations(parentNodeRefId) {
-            return $http.get('/alfresco/service/api/openesdh/contact?parentNodeRefId=' + parentNodeRefId)
+            return $http.get('/api/openesdh/contact?parentNodeRefId=' + parentNodeRefId)
                     .then(successOrReject);
         }
 
@@ -49,32 +49,32 @@
 
         //contacts
         function getContacts(searchTerm, baseType, pagingParams) {
-            return $http.get('/alfresco/service/api/openesdh/contactsearch',
+            return $http.get('/api/openesdh/contactsearch',
                     {params: angular.extend({baseType: baseType, term: searchTerm || ''}, pagingParams)})
                     .then(successOrReject);
         }
 
         function getContact(storeProtocol, storeIdentifier, uuid) {
             //api/openesdh/contact/{store_type}/{store_id}/{id}
-            return $http.get('/alfresco/service/api/openesdh/contact/' + storeProtocol + '/' + storeIdentifier + '/' + uuid)
+            return $http.get('/api/openesdh/contact/' + storeProtocol + '/' + storeIdentifier + '/' + uuid)
                     .then(successOrReject);
         }
 
         function updateContact(contact) {
             //api/openesdh/contact/{store_type}/{store_id}/{id}
-            return $http.put('/alfresco/service/api/openesdh/contact/' + contact.storeType + '/' + contact.storeId + '/' + contact.id,
+            return $http.put('/api/openesdh/contact/' + contact.storeType + '/' + contact.storeId + '/' + contact.id,
                     contact).then(successOrReject);
         }
 
         function createContact(organization, contactType) {
             ///api/openesdh/contacts/create
-            return $http.post('/alfresco/service/api/openesdh/contacts/create',
+            return $http.post('/api/openesdh/contacts/create',
                     angular.extend({contactType: contactType}, organization))
                     .then(successOrReject);
         }
         function deleteContact(contact) {
             //api/openesdh/contact/{store_type}/{store_id}/{id}
-            return $http.delete('/alfresco/service/api/openesdh/contact/' + contact.storeType + '/' + contact.storeId + '/' + contact.id,
+            return $http.delete('/api/openesdh/contact/' + contact.storeType + '/' + contact.storeId + '/' + contact.id,
                     {}).then(successOrReject);
         }
 

@@ -1,7 +1,7 @@
 
     angular
         .module('openeApp.cases')
-        .controller('BaseCaseController', BaseCaseController);
+        .controller('BaseCaseListController', BaseCaseListController);
 
     /**
      * Main Controller for the Cases module
@@ -9,7 +9,7 @@
      * @param cases
      * @constructor
      */
-    function BaseCaseController($mdDialog, $location, $translate, caseService, caseCrudDialogService, alfrescoFolderService, sessionService) {
+    function BaseCaseListController($mdDialog, $translate, caseService, alfrescoFolderService, sessionService) {
         
         var vm = this;
         vm.cases = [];

@@ -8,7 +8,7 @@ angular
  * @param $scope
  * @constructor
  */
-function GroupController($scope, $mdDialog, groupService, $stateParams, $translate, sessionService) {
+function GroupController($scope, $mdDialog, groupService, $stateParams, $translate, sessionService, ALFRESCO_URI) {
     var vm = this;
     vm.group = {};
     vm.groups = [];
@@ -18,7 +18,7 @@ function GroupController($scope, $mdDialog, groupService, $stateParams, $transla
     vm.addMembersToGroup = addMembersToGroup;
     vm.removeMemberFromGroup = removeMemberFromGroup;
     vm.showCSVUploadDialog = showCSVUploadDialog;
-    vm.sessionTicket = sessionService.getUserInfo().ticket;
+    vm.wcsPrefix = ALFRESCO_URI.webClientServiceProxy;
 
     if ($stateParams && $stateParams.shortName && $stateParams.shortName !== 'ALL') {
         showGroup($stateParams.shortName);

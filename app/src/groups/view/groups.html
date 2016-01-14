@@ -14,13 +14,13 @@
             <div class="repeat-header" layout="row">
                 <span layout flex="75">
                     <span class="r" flex="5"></span>
-                    <span class="r" flex="25">{{ 'COMMON.NAME' | translate }}</span>
+                    <span class="r" flex="25" sort-table="displayName">{{ 'COMMON.NAME' | translate }}</span>
                     <span class="r" flex></span>
                 </span>
                 <span class="r" flex="25">{{ 'COMMON.ACTIONS' | translate }}</span>
             </div>
             <md-virtual-repeat-container md-auto-shrink style="height: 450px;">
-                <div md-virtual-repeat="g in vm.groups" class="repeat-item" layout="row">
+                <div md-virtual-repeat="g in vm.groups | orderObjectBy:orderByAttribute:reverseOrder" class="repeat-item" layout="row">
                     <a class="r-rowlink"
                         ui-sref="administration.group({'shortName': g.shortName })"
                         layout="row"
@@ -50,7 +50,7 @@
                 {{ 'GROUP.UPLOAD_GROUPS' | translate }}
             </md-button>
             
-            <md-button class="md-primary" href="/alfresco/s/api/openesdh/groups/upload/sample?alf_ticket={{vm.sessionTicket}}" aria-label="Example group upload CSV">
+            <md-button class="md-primary" href="{{vm.wcsPrefix}}/api/openesdh/groups/upload/sample" aria-label="Example group upload CSV">
                 {{ 'COMMON.DOWNLOAD_TEMPLATE_CSV' | translate }}
             </md-button>
         </div>

@@ -3,13 +3,13 @@
         .module('openeApp.contacts')
         .controller('OrganizationController', OrganizationController);
 
-    function OrganizationController($stateParams, $mdDialog, $location, $translate,
-            contactsService, countriesService, notificationUtilsService, VirtualRepeatLoader) {
+    function OrganizationController($stateParams, $mdDialog, $location, $translate, VirtualRepeatLoader,
+            contactsService, countriesService, notificationUtilsService) {
         
         var vm = this;
         vm.showOrganizationEdit = showOrganizationEdit;
         vm.deleteOrganization = deleteOrganization;
-
+        
         if ($stateParams.uuid) {
             //infoForm
             initInfo();

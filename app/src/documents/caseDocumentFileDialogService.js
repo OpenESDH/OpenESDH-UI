@@ -64,8 +64,10 @@
                     if(!formData.fileToUpload){
                         return;
                     }
-                    
-                    caseDocumentDetailsService.uploadDocumentAttachment(documentNodeRef, formData.fileToUpload, formData.documentProperties).then(function(result){
+                    var props = {
+                        overwrite: false
+                    };
+                    caseDocumentDetailsService.uploadDocumentAttachment(documentNodeRef, formData.fileToUpload, props).then(function(result){
                         resolve(result); 
                     });
                     

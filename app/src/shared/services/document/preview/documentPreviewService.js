@@ -3,7 +3,7 @@
         .module('openeApp')
         .factory('documentPreviewService', DocumentPreviewService);
 
-    function DocumentPreviewService($mdDialog, $timeout, alfrescoDocumentService, alfrescoDownloadService, sessionService, $http, $sce) {
+    function DocumentPreviewService($mdDialog, $timeout, alfrescoDocumentService, alfrescoDownloadService, sessionService, $http, $sce, ALFRESCO_URI) {
         
         var templatesUrl = 'app/src/shared/services/document/preview/view/';
         
@@ -240,7 +240,7 @@
                     this.fileName = item.location.file;
                     this.itemSize = item.node.size;
                     this.mimeType = item.node.mimetype;
-                    this.contentUrl = this._acceptsMimeType(item) ? this._getContentUrl(item) : this._getThumbnailUrl(item);
+                    this.contentUrl = ALFRESCO_URI.webClientServiceProxy + (this._acceptsMimeType(item) ? this._getContentUrl(item) : this._getThumbnailUrl(item));
                 },
                 
                 _acceptsMimeType: function(item){
@@ -259,17 +259,23 @@
                 },
                 
                 _getContentUrl: function(item){
-                    return '/alfresco/service' + item.node.contentURL + '?' + this._getSessionTicket();
+                    return item.node.contentURL;
                 },
                 
                 _getThumbnailUrl: function(item, fileSuffix){
                     var nodeRefAsLink = this.nodeRef.replace(":/", ""),
                     noCache = "&noCache=" + new Date().getTime(),
                     force = "c=force";
+                    
+                    if(nodeRefAsLink.indexOf("versionStore") > -1){
+                        return "/api/openesdh/case/document/" + nodeRefAsLink + "/thumbnail";
+                    }
+                    
                     var lastModified = this._getLastThumbnailModification(item);
                     
-                    return "/alfresco/s/api/node/" + nodeRefAsLink + "/content/thumbnails/" + this.thumbnail + (fileSuffix ? "/suffix" + fileSuffix : "") 
-                        + "?" + force + lastModified + noCache + '&' + this._getSessionTicket();
+                    var url = "/api/node/" + nodeRefAsLink + "/content/thumbnails/" + this.thumbnail + (fileSuffix ? "/suffix" + fileSuffix : "") 
+                        + "?" + force + lastModified + noCache;
+                    return url;
                 },
                 
                 _getLastThumbnailModification: function(item){
@@ -284,10 +290,6 @@
                         }
                     }
                     return "";
-                },
-                
-                _getSessionTicket: function(){
-                    return 'alf_ticket=' + sessionService.getUserInfo().ticket;
                 }
             };
         }

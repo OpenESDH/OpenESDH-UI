@@ -5,7 +5,7 @@ angular
 
 function DocumentDetailsController($stateParams, $translate, $mdDialog, $location, caseDocumentDetailsService,
         documentPreviewService, caseDocumentFileDialogService, notificationUtilsService,
-        alfrescoDownloadService, alfrescoFolderService, sessionService) {
+        alfrescoDownloadService, alfrescoFolderService, sessionService, fileUtilsService) {
 
     var caseId = $stateParams.caseId;
     var documentNodeRef = $stateParams.storeType + "://" + $stateParams.storeId + "/" + $stateParams.id;
@@ -30,6 +30,12 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
     vm.deleteDocument = deleteDocument;
     vm.docPreviewController = DocPreviewController;
     vm.refreshDocumentPreview = loadDocumentPreview;
+    vm.refreshDocumentView = refreshDocumentView;
+    vm.editOnlineDocument = editOnlineDocument;
+    vm.editOnlineAttachment = editOnlineAttachment;
+    vm.canEditOnlineDocument = false;
+    vm.canEditOnlineAttachment = canEditOnlineAttachment;
+    vm.isCaseDocVersionEditable = isCaseDocVersionEditable; 
     activate();
 
     function activate() {
@@ -37,21 +43,33 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
     }
 
     function loadCaseDocumentInfo() {
-        caseDocumentDetailsService.getCaseDocument(documentNodeRef).then(function(document) {
+        return loadCaseDocument().then(function(document) {
+            loadVersionDetails().then(function(){
+                refreshDocumentView();
+            });
+        });
+    }
+    
+    function loadCaseDocument(){
+        return caseDocumentDetailsService.getCaseDocument(documentNodeRef).then(function(document) {
             caseDocument = document;
             vm.doc = document;
-            loadVersionDetails();
-            loadDocumentPreview();
-            loadAttachments();
+            return document;
         });
     }
 
     function loadVersionDetails() {
-        caseDocumentDetailsService.getDocumentVersionInfo(caseDocument.mainDocNodeRef).then(function(versions) {
+        return caseDocumentDetailsService.getDocumentVersionInfo(caseDocument.mainDocNodeRef).then(function(versions) {
             documentVersions = versions;
             vm.documentVersions = versions;
             vm.docVersion = versions[0];
+            vm.canEditOnlineDocument = canEditOnline(versions[0].name);
         });
+    }
+    
+    function refreshDocumentView(){
+        loadDocumentPreview();
+        loadAttachments();
     }
 
     function DocPreviewController($scope) {
@@ -71,10 +89,13 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
             }
         };
     }
-    ;
 
     function loadDocumentPreview() {
-        documentPreviewService.previewDocumentPlugin(caseDocument.mainDocNodeRef).then(function(plugin) {
+        var nodeRef = caseDocument.mainDocNodeRef;
+        if(vm.documentVersions[0].nodeRef != vm.docVersion.nodeRef){
+            nodeRef = vm.docVersion.nodeRef;
+        }
+        documentPreviewService.previewDocumentPlugin(nodeRef).then(function(plugin) {
             vm.docPreviewControllerObj.setPreviewPlugin(plugin);
         });
     }
@@ -83,7 +104,7 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
         if (!page) {
             page = 1;
         }
-        caseDocumentDetailsService.getDocumentAttachments(documentNodeRef, page, vm.pageSize).then(function(attachments) {
+        return caseDocumentDetailsService.getDocumentAttachments(vm.docVersion.nodeRef, page, vm.pageSize).then(function(attachments) {
             vm.attachments = attachments.resultList;
             vm.attachmentsContentRange = attachments.contentRange;
             var pages = [];
@@ -104,21 +125,32 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
     }
 
     function uploadDocNewVersion() {
-        caseDocumentFileDialogService.uploadCaseDocumentNewVersion(documentNodeRef).then(function(result) {
-            loadVersionDetails();
-            setTimeout(loadDocumentPreview, 500);
+        loadCaseDocument().then(function(){
+            if(vm.doc.editLockState.isLocked){
+                return;
+            }
+            caseDocumentFileDialogService.uploadCaseDocumentNewVersion(documentNodeRef).then(function(result) {
+                loadCaseDocumentInfo();
+                setTimeout(loadDocumentPreview, 500);
+            });
         });
     }
 
     function uploadAttachment() {
         caseDocumentFileDialogService.uploadAttachment(documentNodeRef).then(function(result) {
-            loadAttachments();
+            loadCaseDocumentInfo();
         });
     }
 
     function uploadAttachmentNewVersion(attachment) {
-        caseDocumentFileDialogService.uploadAttachmentNewVersion(attachment.nodeRef).then(function(result) {
-            loadAttachments();
+        loadAttachments().then(function(){
+            var currAttachment = getAttachment(attachment.nodeRef);            
+            if(currAttachment == null || currAttachment.locked){
+                return;
+            }
+            caseDocumentFileDialogService.uploadAttachmentNewVersion(attachment.nodeRef).then(function(result) {
+                loadAttachments();
+            });
         });
     }
 
@@ -134,6 +166,56 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
         caseDocumentFileDialogService.editDocumentProperties(documentNodeRef).then(function(result) {
             loadCaseDocumentInfo();
         });
+    }
+    
+    function canEditOnlineAttachment(attachment){
+        return !attachment.locked && canEditOnline(attachment.name);
+    }
+    
+    function canEditOnline(documentName){
+        var msprotocol = fileUtilsService.getMsProtocolForFile(documentName);
+        return msprotocol != undefined && msprotocol != null;
+    }
+    
+    function editOnlineDocument(){
+        loadCaseDocument().then(function(){
+            if(vm.doc.isLocked){
+                return;
+            }
+            editOnline(vm.documentVersions[0].name);
+        });
+    }
+    
+    function editOnlineAttachment(attachment){
+        loadAttachments().then(function(){
+            var currAttachment = getAttachment(attachment.nodeRef);            
+            if(currAttachment == null || currAttachment.locked){
+                return;
+            }
+            editOnline(attachment.name);
+        });
+    }
+    
+    function getAttachment(nodeRef){
+        for(var i in vm.attachments){
+            var attach = vm.attachments[i];
+            if(attach.nodeRef == nodeRef){
+                return attach;
+            }
+        }
+        return null;
+    }
+    
+    function editOnline(documentName){
+        caseDocumentDetailsService.editOnlineDocument(caseDocument.editOnlinePath + "/" + documentName);
+        setTimeout(loadCaseDocumentInfo, 2000);
+    }
+    
+    function isCaseDocVersionEditable(){
+        if(!vm.documentVersions){
+            return false;
+        }
+        return vm.documentVersions[0].nodeRef == vm.docVersion.nodeRef;
     }
 
     function changeDocumentStatus(status) {
