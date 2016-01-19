@@ -4,6 +4,7 @@
         <img class="md-toolbar-tools__logo" src="{{$root.logoSrc}}" alt="logo">
         <a class="md-button global-tools__link" ui-sref="dashboard"><i class="material-icons">dashboard</i> <span hide show-gt-md>{{ 'COMMON.HOME' | translate }}</span></a>
         <a class="md-button global-tools__link" ui-sref="cases"><i class="material-icons">folder_open</i> <span hide show-gt-md>{{ 'CASE.CASES' | translate }}</span></a>
+        <a class="md-button global-tools__link" ui-sref="files"><i class="material-icons">folder_shared</i> <span hide show-gt-md>{{ 'FILE.FILES' | translate }}</span></a>
         <a class="md-button global-tools__link" ui-sref="tasks"><i class="material-icons">assignment</i> <span hide show-gt-md>{{ 'TASK.TASKS' | translate }}</span></a>
         <a class="md-button global-tools__link" ui-sref="activities">
             <i class="material-icons">announcement</i> <span hide show-gt-md>{{ 'ACTIVITIES.NOTIFICATIONS' | translate }}</span>
@@ -66,7 +67,7 @@
                                   ng-repeat="item in asctrl.liveSearchResults.documents"
                                   ng-mousedown="asctrl.goToSuggestion(item)"
                                   ng-class="{'activeSuggestion' : asctrl.selectedIndex == $index}">
-                        <img class="md-avatar" ng-src="/app/assets/images/filetypes/{{item.thumbNailURL}}" alt="">
+                        <img class="md-avatar" ng-src="app/assets/images/filetypes/{{item.thumbNailURL}}" alt="">
 
                         <div class="md-list-item-text" layout="column">
                             <h3 ng-bind="item.title"></h3>

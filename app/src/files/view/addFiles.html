@@ -1,0 +1,41 @@
+<md-dialog class="dialog-large" aria-label="{{ 'FILE.ADD_FILES' | translate }}">
+    <form name="addFilesForm" novalidate>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h1>{{ 'FILE.ADD_FILES' | translate }}</h1>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="addFilesForm.cancel()">
+                    <md-icon aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div layout>
+                <md-input-container flex>
+                    <label>{{ 'CASE.OWNER' | translate }} *</label>
+                    <md-select ng-model="addFileVm.owner" name="authorityName" required>
+                        <md-optgroup label="Groups">
+                            <md-option ng-value="auth.nodeRef" ng-repeat="auth in addFileVm.authorities| filter: {type: 'cm:authorityContainer', selectable: true }">{{ auth.name}}</md-option>
+                        </md-optgroup>
+                        <md-optgroup label="Users">
+                            <md-option ng-value="auth.nodeRef" ng-repeat="auth in addFileVm.authorities| filter: {type: 'cm:person', selectable: true }">{{ auth.name}}</md-option>
+                        </md-optgroup>
+                    </md-select>
+                    <opene-error form="form" field="form.authorityName"></opene-error>
+                </md-input-container>
+            </div>
+            <div layout>
+                    <label>{{ 'FILE.SELECT_FILE' | translate }} *</label>
+                    <input type="file" file-model="addFileVm.file" required>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions>
+            <md-button type="submit" class="md-primary" ng-disabled="addFilesForm.$invalid" ng-click="addFileVm.addFiles()" >
+                {{ 'COMMON.ADD' | translate }}
+            </md-button>
+            <md-button ng-click="addFileVm.cancel()">
+                {{ 'COMMON.CANCEL' | translate }}
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

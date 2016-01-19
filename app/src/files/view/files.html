@@ -1,0 +1,29 @@
+<app-header></app-header>
+
+<md-content layout="column">
+    <div class="sub-toolbar" layout="row" layout-align="space-between center" layout-padding>
+        <h3 class="md-headline" layout-margin>{{ 'FILE.FILES' | translate }}</h3>
+    </div>
+
+    <md-tabs md-dynamic-height>
+        <md-tab md-on-select="filesVm.tab = 'my_files'; filesVm.loadList()">
+            <md-tab-label>
+                <span>{{ 'FILE.MY_FILES' | translate }}</span>
+            </md-tab-label>
+            <md-tab-body>
+                <ng-include src="'app/src/files/view/filesList.html'"></ng-include>
+            </md-tab-body>
+        </md-tab>
+        <md-tab md-on-select="filesVm.tab = 'group_files'; filesVm.loadList()">
+            <md-tab-label>
+                <span>{{ 'FILE.GROUP_FILES' | translate }}</span>
+            </md-tab-label>
+            <md-tab-body>
+                <ng-include src="'app/src/files/view/filesList.html'"></ng-include>
+            </md-tab-body>
+        </md-tab>
+    </md-tabs>
+
+</md-content>
+
+<app-footer></app-footer>

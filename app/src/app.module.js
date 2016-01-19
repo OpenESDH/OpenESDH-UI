@@ -59,6 +59,7 @@
         .config(config)
         .run(function ($rootScope, $state, $mdDialog, authService, sessionService, APP_CONFIG) {
             angular.element(window.document)[0].title = APP_CONFIG.appName;
+            $rootScope.appName = APP_CONFIG.appName;
             $rootScope.logoSrc = APP_CONFIG.logoSrc;
     
             $rootScope.$on('$stateChangeStart', function (event, next, params) {
@@ -92,7 +93,7 @@
             .accentPalette('amber')
             .warnPalette('deep-orange');
 
-        $mdIconProvider.icon('md-calendar', '/app/assets/img/icons/today.svg');
+        $mdIconProvider.icon('md-calendar', 'app/assets/img/icons/today.svg');
 
         $urlRouterProvider
             .when('/cases/case/:caseId','/cases/case/:caseId/info')
@@ -435,6 +436,18 @@
                     templateUrl: 'app/src/activities/view/activities.html',
                     controller: 'activitiesController',
                     controllerAs: 'actCtrl'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
+            }
+        }).state('files', {
+            url: '/files',
+            views: {
+                'content@': {
+                    templateUrl: 'app/src/files/view/files.html',
+                    controller: 'filesController',
+                    controllerAs: 'filesVm'
                 }
             },
             data: {

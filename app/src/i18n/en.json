@@ -215,6 +215,20 @@
         "DELETE_DOC_SUCCESS": "Document successfully deleted",
         "DELETE_DOC_FAILURE": "Document could not be deleted"
     },
+    "FILE": {
+        "FILES": "Files",
+        "MY_FILES": "My files",
+        "GROUP_FILES": "Group files",
+        "SELECT_FILE": "Select file to upload",
+        "FILE_UPLOADED_SUCCESSFULLY": "File \"{{title}}\" uploaded successfully",
+        "FILE_ASSIGNED_SUCCESSFULLY": "File \"{{title}}\" assigned to {{authorityName}} successfully",
+        "ASSIGN_TO": "Assign to...",
+        "ADD_FILES": "Add file(s)",
+        "ASSIGN_FILE": "Assign file",
+        "ARE_YOU_SURE_YOU_WANT_TO_DELETE_FILE": "Are you sure you want to delete the file \"{{title}}\"?",
+        "DELETE_FILE_SUCCESS": "File successfully deleted",
+        "DELETE_FILE_FAILURE": "File could not be deleted"
+    },
     "COUNTRY": {
         "AF": "Afghanistan",
         "AL": "Albania",
