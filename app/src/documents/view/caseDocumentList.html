@@ -18,7 +18,7 @@
                     <a class="r-rowlink" 
                        href="#/cases/case/{{docCtrl.caseId}}/doc/{{doc.nodeRef| nodeRefUri}}" 
                        layout="row">
-                        <span class="r" flex="5"><img class="md-avatar" ng-src="/app/assets/images/filetypes/{{doc.thumbNailURL}}"/></span>
+                        <span class="r" flex="5"><img class="md-avatar" ng-src="app/assets/images/filetypes/{{doc.thumbNailURL}}"/></span>
                         <span class="r" flex>{{ doc["cm:title"] }}</span>
                         <span class="r muted" flex="15">
                             <i class="material-icons" ng-show="doc['office:fromOutlook']" title="{{ 'DOCUMENT.SENT_FROM_OUTLOOK' | translate}}" style="padding-right: 5px;">email</i>

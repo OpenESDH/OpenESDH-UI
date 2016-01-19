@@ -61,7 +61,7 @@ function FilesController(filesService, $translate, $mdDialog, notificationUtilsS
             $mdDialog.show({
                 controller: AddFileDialogController,
                 controllerAs: 'addFileVm',
-                templateUrl: '/app/src/files/view/addFiles.html',
+                templateUrl: 'app/src/files/view/addFiles.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose: true,
@@ -85,7 +85,7 @@ function FilesController(filesService, $translate, $mdDialog, notificationUtilsS
         function addFiles() {
             filesService.uploadFile(addFileVm.owner, addFileVm.file)
                     .then(function() {
-                        notificationUtilsService.notify($translate.instant("FILE.FILE_UPLOADED_SUCCESSFULLY"));
+                        notificationUtilsService.notify($translate.instant("FILE.FILE_UPLOADED_SUCCESSFULLY", { title: addFileVm.file.name}));
                         hide();
                     }, function(response) {
                         notificationUtilsService.alert(response.data.message || 'Unexpected exception');
@@ -106,7 +106,7 @@ function FilesController(filesService, $translate, $mdDialog, notificationUtilsS
             $mdDialog.show({
                 controller: AssignFileDialogController,
                 controllerAs: 'assignFileVm',
-                templateUrl: '/app/src/files/view/assignFile.html',
+                templateUrl: 'app/src/files/view/assignFile.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose: true,

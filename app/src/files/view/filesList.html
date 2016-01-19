@@ -17,10 +17,10 @@
                      title="{{ ('COMMON.DOWNLOAD' | translate) + ' ' + file.name}}"
                      layout="row">
                     <span class="tlist__cell tlist__cell__fileicon tlist__cardview__hide" flex="5">
-                        <img class="md-avatar" ng-src="/app/assets/images/filetypes/{{file.thumbNailURL}}"/>
+                        <img class="md-avatar" ng-src="app/assets/images/filetypes/{{file.thumbNailURL}}"/>
                     </span>
                     <span class="tlist__cell" flex>
-                        <img class="md-avatar tlist__cardview__show" ng-src="/app/assets/images/filetypes/{{file.thumbNailURL}}"/>
+                        <img class="md-avatar tlist__cardview__show" ng-src="app/assets/images/filetypes/{{file.thumbNailURL}}"/>
                         {{ file.name}}
                     </span>
                     <span class="tlist__cell muted" flex ng-show="filesVm.tab === 'group_files'">{{ file.group}}</span>
