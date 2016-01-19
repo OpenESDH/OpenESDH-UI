@@ -25,6 +25,6 @@
                 choice: '=',
                 finished: '&finished'
             },
-            templateUrl: '/app/src/common/directives/listFilter/view/listFilter.html'
+            templateUrl: 'app/src/common/directives/listFilter/view/listFilter.html'
         }
     }

@@ -20,7 +20,7 @@ function AvailableLanguages() {
 }
 
 function config($translateProvider, languageFilesProvider) {
-    languageFilesProvider.addFile('/app/src/i18n/','.json');
+    languageFilesProvider.addFile('app/src/i18n/','.json');
     $translateProvider.useStaticFilesLoader(languageFilesProvider.getLanguageFiles());
 
     $translateProvider.useSanitizeValueStrategy('sanitizeParameters');

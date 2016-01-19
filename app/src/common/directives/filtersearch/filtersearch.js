@@ -44,6 +44,6 @@
                 selectOptions: '=',
                 finished: '='
             },
-            templateUrl: '/app/src/common/directives/filtersearch/view/filtersearch.html'
+            templateUrl: 'app/src/common/directives/filtersearch/view/filtersearch.html'
         }
     }

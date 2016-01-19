@@ -10,7 +10,7 @@
             url: '/outlook?alf_ticket',
             views: {
                 'content@': {
-                    templateUrl: '/app/src/office/view/outlook.html',
+                    templateUrl: 'app/src/office/view/outlook.html',
                     controller: 'OfficeController',
                     controllerAs: 'vm'
                 }
@@ -25,7 +25,7 @@
             url: '/outlook/case/:caseId?alf_ticket',
             views: {
                 'content@': {
-                    templateUrl: '/app/src/office/view/caseInfo.html',
+                    templateUrl: 'app/src/office/view/caseInfo.html',
                     controller: 'OutlookCaseInfoController',
                     controllerAs: 'vm'
                 }
@@ -40,7 +40,7 @@
             url: '/office?alf_ticket',
             views: {
                 'content@': {
-                    templateUrl: '/app/src/office/view/office.html',
+                    templateUrl: 'app/src/office/view/office.html',
                     controller: 'OfficeController',
                     controllerAs: 'vm'
                 }

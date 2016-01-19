@@ -10,11 +10,11 @@
         
         taskFormConfigServiceProvider.taskForm({
             taskName: 'wf:approvedParallelTask',
-            templateUrl: '/app/src/tasks/activitiParallelReview/view/approvedRejectedParallelTask.html',
+            templateUrl: 'app/src/tasks/activitiParallelReview/view/approvedRejectedParallelTask.html',
             controller: 'simpleTaskController'
         }).taskForm({
             taskName: 'wf:rejectedParallelTask',
-            templateUrl: '/app/src/tasks/activitiParallelReview/view/approvedRejectedParallelTask.html',
+            templateUrl: 'app/src/tasks/activitiParallelReview/view/approvedRejectedParallelTask.html',
             controller: 'simpleTaskController'
         });
     }
