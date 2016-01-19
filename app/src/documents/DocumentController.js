@@ -76,7 +76,7 @@ function DocumentController($scope, $state, $stateParams, $mdDialog, documentSer
 
     function createDocumentFromTemplate() {
         $mdDialog.show({
-            templateUrl: '/app/src/documents/view/createDocumentFromTemplateDialog.html',
+            templateUrl: 'app/src/documents/view/createDocumentFromTemplateDialog.html',
             controller: CreateDocumentFromTemplateDialogController,
             controllerAs: 'vm',
             clickOutsideToClose: true,

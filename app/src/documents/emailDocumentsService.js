@@ -13,7 +13,7 @@ function EmailDocumentsService($mdDialog, caseDocumentsService, casePartiesServi
         caseDocumentsService.getDocumentsByCaseId(caseId, 1, 100).then(function(response) {
             var docs = response.documents;
             $mdDialog.show({
-                templateUrl: '/app/src/documents/view/emailDialog.html',
+                templateUrl: 'app/src/documents/view/emailDialog.html',
                 controller: EmailDocumentsDialogController,
                 controllerAs: 'vm',
                 clickOutsideToClose: true,

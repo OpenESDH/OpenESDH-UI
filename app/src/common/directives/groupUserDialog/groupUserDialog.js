@@ -15,7 +15,7 @@
                 $mdDialog.show({
                     scope: scope,
                     preserveScope: true,
-                    templateUrl: '/app/src/common/directives/groupUserDialog/view/groupUserDialog.html',
+                    templateUrl: 'app/src/common/directives/groupUserDialog/view/groupUserDialog.html',
                     parent: angular.element(document.body),
                     targetEvent: event,
                     clickOutsideToClose: true
