@@ -78,18 +78,28 @@ function FilesController(filesService, $translate, $mdDialog, notificationUtilsS
         var addFileVm = this;
         addFileVm.authorities = authorities || [];
         addFileVm.owner = null;
-        addFileVm.file = null;
+        addFileVm.files = null;
         addFileVm.addFiles = addFiles;
+        addFileVm.onFileSelect = onFileSelect;
         addFileVm.hide = hide;
         addFileVm.cancel = cancel;
+        
         function addFiles() {
-            filesService.uploadFile(addFileVm.owner, addFileVm.file)
+            filesService.uploadFiles(addFileVm.owner, addFileVm.files)
                     .then(function() {
-                        notificationUtilsService.notify($translate.instant("FILE.FILE_UPLOADED_SUCCESSFULLY", { title: addFileVm.file.name}));
+                        if (addFileVm.files.length > 1) {
+                            notificationUtilsService.notify($translate.instant("FILE.N_FILES_UPLOADED_SUCCESSFULLY", {'n': addFileVm.files.length}));
+                        } else {
+                            notificationUtilsService.notify($translate.instant("FILE.FILE_UPLOADED_SUCCESSFULLY", {'title': addFileVm.files[0].name}));
+                        }
                         hide();
                     }, function(response) {
                         notificationUtilsService.alert(response.data.message || 'Unexpected exception');
                     });
+        }
+        
+        function onFileSelect(files){
+            console.log(files);
         }
 
         function hide() {

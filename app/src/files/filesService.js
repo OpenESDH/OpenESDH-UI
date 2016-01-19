@@ -8,7 +8,7 @@ function FilesService($http, fileUtilsService, alfrescoNodeUtils) {
     return {
         getUserFiles: getUserFiles,
         getGroupFiles: getGroupFiles,
-        uploadFile: uploadFile,
+        uploadFiles: uploadFiles,
         deleteFile: deleteFile,
         moveFile: moveFile
     };
@@ -43,13 +43,15 @@ function FilesService($http, fileUtilsService, alfrescoNodeUtils) {
     /**
      * Uploads file and assigns it to specified user or group
      * @param owner - nodeRefId of user or group
-     * @param file
+     * @param files - multiple input files
      * @returns void
      */
-    function uploadFile(owner, file) {
+    function uploadFiles(owner, files) {
         var formData = new FormData();
         formData.append('owner', owner);
-        formData.append('file', file);
+        angular.forEach(files, function(file){
+            formData.append('file', file);
+        });
         return $http.post('/api/openesdh/files', formData, {
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
