@@ -1,0 +1,67 @@
+<div layout="column">
+    <div class="tlist">
+
+        <div class="tlist__header" layout="row">
+            <span class="tlist__cell tlist__cardview__hide" flex="5"></span>
+            <span class="tlist__cell" flex sort-table="name">{{ 'COMMON.TITLE' | translate }}</span>
+            <span class="tlist__cell" flex sort-table="group" ng-show="filesVm.tab === 'group_files'">{{ 'GROUP.GROUP' | translate }}</span>
+            <span class="tlist__cell" flex="15" sort-table="created">{{ 'COMMON.CREATED' | translate }}</span>
+            <span class="tlist__cell" flex="10" sort-table="creator">{{ 'COMMON.CREATEDBY' | translate }}</span>
+            <span class="tlist__cell" flex="15" sort-table="modified">{{ 'COMMON.MODIFIED' | translate }}</span>
+            <span class="tlist__cell" flex="10" sort-table="modifier">{{ 'COMMON.MODIFIED_BY' | translate }}</span>
+            <span class="tlist__cell" flex="10">{{ 'COMMON.ACTIONS' | translate }}</span>
+        </div>
+        <md-virtual-repeat-container class="tlist__body" md-auto-shrink>
+            <div md-virtual-repeat="file in filesVm.files | orderObjectBy:orderByAttribute:reverseOrder" class="tlist__item" layout="column" flex>
+                <div class="tlist__item__link"
+                     title="{{ ('COMMON.DOWNLOAD' | translate) + ' ' + file.name}}"
+                     layout="row">
+                    <span class="tlist__cell tlist__cell__fileicon tlist__cardview__hide" flex="5">
+                        <img class="md-avatar" ng-src="/app/assets/images/filetypes/{{file.thumbNailURL}}"/>
+                    </span>
+                    <span class="tlist__cell" flex>
+                        <img class="md-avatar tlist__cardview__show" ng-src="/app/assets/images/filetypes/{{file.thumbNailURL}}"/>
+                        {{ file.name}}
+                    </span>
+                    <span class="tlist__cell muted" flex ng-show="filesVm.tab === 'group_files'">{{ file.group}}</span>
+                    <span class="tlist__cell muted" flex="15">{{ file.created | openeDate}}</span>
+                    <span class="tlist__cell muted" flex="10">{{ file.creator}}</span>
+                    <span class="tlist__cell muted" flex="15">{{ file.modified | openeDate}}</span>
+                    <span class="tlist__cell muted" flex="10">{{ file.modifier}}</span>
+                    <span class="tlist__cell muted tlist__cell__menu" flex="10">
+                        <md-menu style="text-align: left;">
+                            <md-button aria-label="{{ 'MENU.OPEN_MENU' | translate }}" ng-click="$mdOpenMenu($event)">
+                                <i class="material-icons">more_vert</i>
+                            </md-button>
+                            <md-menu-content width="4">
+                                <md-menu-item>
+                                    <md-button ng-click="filesVm.previewFile(file)">
+                                        <md-icon>pageview</md-icon>{{ 'DOCUMENT.OPEN_PREVIEW' | translate }}
+                                    </md-button>
+                                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button ng-click="filesVm.downloadFile(file)">
+                                        <md-icon>file_download</md-icon>{{ 'COMMON.DOWNLOAD' | translate }}
+                                    </md-button>
+                                </md-menu-item>
+                                <md-menu-divider></md-menu-divider>
+                                <md-menu-item>
+                                    <md-button ng-click="filesVm.assignFile($event, file)">
+                                        <md-icon>send</md-icon>{{ 'FILE.ASSIGN_TO' | translate }}
+                                    </md-button>
+                                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button ng-click="filesVm.deleteFile(file)">
+                                        <md-icon>delete</md-icon>{{ 'COMMON.DELETE' | translate }}
+                                    </md-button>
+                                </md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
+                    </span>
+                </div>
+            </div>
+        </md-virtual-repeat-container>
+
+        <md-button class="md-primary" ng-click="filesVm.showAddFileDialog($event)">{{ 'COMMON.ADD_NEW' | translate }}</md-button>
+    </div>
+</div>

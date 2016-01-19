@@ -440,5 +440,17 @@
             data: {
                 authorizedRoles: [USER_ROLES.user]
             }
+        }).state('files', {
+            url: '/files',
+            views: {
+                'content@': {
+                    templateUrl: '/app/src/files/view/files.html',
+                    controller: 'filesController',
+                    controllerAs: 'filesVm'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
+            }
         });
     }

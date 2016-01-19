@@ -1,0 +1,41 @@
+<md-dialog class="dialog-large" aria-label="{{ 'FILE.ASSIGN_FILE' | translate }}">
+    <form name="assignFileForm" novalidate>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h1>{{ 'FILE.ASSIGN_FILE' | translate }}</h1>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="assignFileVm.cancel()">
+                    <md-icon aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div layout>
+                <md-input-container flex>
+                    <label>{{ 'CASE.OWNER' | translate }} *</label>
+                    <md-select ng-model="assignFileVm.owner" name="authority" required>
+                        <md-optgroup label="Groups">
+                            <md-option ng-value="auth" ng-repeat="auth in assignFileVm.authorities| filter: {type: 'cm:authorityContainer', selectable: true }">{{ auth.name}}</md-option>
+                        </md-optgroup>
+                        <md-optgroup label="Users">
+                            <md-option ng-value="auth" ng-repeat="auth in assignFileVm.authorities| filter: {type: 'cm:person', selectable: true }">{{ auth.name}}</md-option>
+                        </md-optgroup>
+                    </md-select>
+                    <opene-error form="assignFileForm" field="assignFileForm.owner"></opene-error>
+                </md-input-container>
+            </div>
+            <md-input-container flex>
+                <label>{{ 'COMMON.COMMENT' | translate }}</label>
+                <textarea ng-model="assignFileVm.comment" rows="5"></textarea>
+            </md-input-container>
+        </md-dialog-content>
+        <md-dialog-actions>
+            <md-button type="submit" class="md-primary" ng-disabled="assignFileForm.$invalid" ng-click="assignFileVm.assignFile()" >
+                {{ 'COMMON.ADD' | translate }}
+            </md-button>
+            <md-button ng-click="assignFileVm.cancel()">
+                {{ 'COMMON.CANCEL' | translate }}
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

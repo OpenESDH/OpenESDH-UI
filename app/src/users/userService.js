@@ -55,7 +55,7 @@ function userService($http) {
      * gets all authorities
      */
     function getAuthorities() {
-        return $http.get('/api/forms/picker/authority/children').then(function(response) {
+        return $http.get('/api/openesdh/authorities').then(function(response) {
             var items = response.data.data.items;
             return Object.keys(items).map(function(key) {
                 return items[key];

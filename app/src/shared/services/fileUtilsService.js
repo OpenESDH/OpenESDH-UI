@@ -1,44 +1,15 @@
 
     angular
         .module('openeApp')
-        .factory('fileUtilsService', fileService);
+        .factory('fileUtilsService', fileUtilsService);
 
-    function fileService() {
-        var fsvc = this;
+    function fileUtilsService() {
         return {
             getFileIconByMimetype: getFileIconByMimetype,
             getFileExtension: getFileExtension,
             getMsProtocolForFileExtension: getMsProtocolForFileExtension,
             getMsProtocolForFile: getMsProtocolForFile
         };
-
-//UNUSED?
-//        fsvc.fileIcon.types = {
-//            "{http://www.alfresco.org/model/content/1.0}cmobject": "file",
-//            "cm:cmobject": "file",
-//            "{http://www.alfresco.org/model/content/1.0}content": "file",
-//            "cm:content": "file",
-//            "{http://www.alfresco.org/model/content/1.0}thumbnail": "file",
-//            "cm:thumbnail": "file",
-//            "{http://www.alfresco.org/model/content/1.0}folder": "folder",
-//            "cm:folder": "folder",
-//            "{http://www.alfresco.org/model/content/1.0}category": "category",
-//            "cm:category": "category",
-//            "{http://www.alfresco.org/model/content/1.0}person": "user",
-//            "cm:person": "user",
-//            "{http://www.alfresco.org/model/content/1.0}authorityContainer": "group",
-//            "cm:authorityContainer": "group",
-//            "tag": "tag",
-//            "{http://www.alfresco.org/model/site/1.0}sites": "site",
-//            "st:sites": "site",
-//            "{http://www.alfresco.org/model/site/1.0}site": "site",
-//            "st:site": "site",
-//            "{http://www.alfresco.org/model/transfer/1.0}transferGroup": "server-group",
-//            "trx:transferGroup": "server-group",
-//            "{http://www.alfresco.org/model/transfer/1.0}transferTarget": "server",
-//            "trx:transferTarget": "server"
-//        };
-
 
         /**
          * Copied and adapted from Alfresco share for use in openESDH. The next 3 functions that is.
