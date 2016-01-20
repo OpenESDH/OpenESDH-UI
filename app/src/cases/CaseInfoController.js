@@ -35,9 +35,12 @@ function CaseInfoController($scope, $stateParams, startCaseWorkflowService, case
     }
 
     function editCase() {
-        caseCrudDialogService.editCase(vm.caseInfo).then(function(result) {
-            loadCaseInfo();
-        });
+        var promise = caseCrudDialogService.editCase(vm.caseInfo);
+        if(promise != null && promise != undefined){
+            promise.then(function(result) {
+                loadCaseInfo();
+            });            
+        }
     }
 
     function startWorklfow() {
