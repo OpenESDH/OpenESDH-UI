@@ -6,8 +6,8 @@
     function sortTable($compile){
         function sortLink(scope, element, attrs){
             element
-                .append('<i class="material-icons" ng-if="reverseOrder && sortType == \''+attrs.sortTable+'\'">keyboard_arrow_up</i>')
-                .append('<i class="material-icons" ng-if="!reverseOrder && sortType == \''+attrs.sortTable+'\'">keyboard_arrow_down</i>');
+                .append('<i class="material-icons" ng-if="reverseOrder && sortType == \''+attrs.sortTable+'\'">keyboard_arrow_down</i>')
+                .append('<i class="material-icons" ng-if="!reverseOrder && sortType == \''+attrs.sortTable+'\'">keyboard_arrow_up</i>');
 
             $compile(element.contents())(scope);
 
