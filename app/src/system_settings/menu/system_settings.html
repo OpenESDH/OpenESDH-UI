@@ -1,7 +1,7 @@
 <div layout class="admin_sub_menu">
     <md-card flex="20" >
         <md-card-content layout >
-            <md-list>
+            <md-list ng-controller="AuthController as ac">
                 <md-subheader class="md-no-sticky">{{ 'ADMIN.SYS_SETTINGS.SETTINGS' | translate}}</md-subheader>
                 <md-list-item ui-sref="administration.systemsettings.general" ui-sref-active="active">
                     <md-icon class="md-default-theme" class="material-icons">content_copy</md-icon>
@@ -19,7 +19,7 @@
                     <md-icon class="md-default-theme" class="material-icons">content_copy</md-icon>
                     <p>{{ 'DOCUMENT.TEMPLATE.LABELS.TEMPLATES' | translate}}</p>
                 </md-list-item>
-                <md-list-item ui-sref="administration.systemsettings.tenantsmodules" ui-sref-active="active">
+                <md-list-item ui-sref="administration.systemsettings.tenantsmodules" ui-sref-active="active" ng-hide="ac.isTenant()">
                     <md-icon class="md-default-theme" class="material-icons">content_copy</md-icon>
                     <p>{{ 'ADMIN.SYS_SETTINGS.TENANTS_MODULES.TITLE' | translate}}</p>
                 </md-list-item>

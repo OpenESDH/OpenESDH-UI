@@ -14,6 +14,7 @@ function AuthController($scope, $state, $stateParams, $translate, authService, u
     vm.errorMsg = loginErrorMessage ? loginErrorMessage: "";
     vm.showForgotDialog = showForgotDialog;
     vm.updateValidator = updateValidator;
+    vm.isTenant = isTenant;
     
     if($stateParams.nosso !== "true" && !authService.isAuthenticated()){
         authService.ssoLogin().then(function(response){
@@ -120,5 +121,10 @@ function AuthController($scope, $state, $stateParams, $translate, authService, u
     function getUserInfo() {
         var userInfo = authService.getUserInfo();
         return userInfo;
+    }
+    
+    function isTenant(){
+       var userName = getUserInfo().user.userName;
+       return userName.indexOf("@") != -1;
     }
 }
