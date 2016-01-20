@@ -50,6 +50,9 @@
             
             function getCaseInfoTemplateUrl(caseType){
                 var config = getCaseCrudFormConfig(caseType);
+                if(config == undefined){
+                    config = serviceConfig[0]; //retrieve simple case config by default
+                }
                 return config.caseInfoTemplateUrl;
             }
             

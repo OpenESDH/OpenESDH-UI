@@ -419,6 +419,18 @@
             data: {
                 authorizedRoles: [USER_ROLES.user]
             }
+        }).state('administration.systemsettings.tenantsmodules', {
+            url: '/tenantsmodules',
+            views: {
+                'systemsetting-view': {
+                    templateUrl: 'app/src/system_settings/tenant/view/tenantsModules.html',
+                    controller: 'TenantsModulesController',
+                    controllerAs: 'vm'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
+            }
         }).state('search', {
             url: '/search/:searchTerm',
             views: {
