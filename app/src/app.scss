@@ -313,11 +313,6 @@ md-list md-list-item.active a {
         padding: 0.4em 0 0!important;
         text-align: center;
     }
-    .md-virtual-repeat-container {
-        .md-virtual-repeat-scroller {
-            overflow-y: hidden;
-        }
-    }
 }
 .tlist__cardview__show{
     display: none;
@@ -384,11 +379,6 @@ md-list md-list-item.active a {
         .tlist__item__link {
             position: relative;
         }
-        .md-virtual-repeat-container {
-            .md-virtual-repeat-scroller {
-                overflow: auto;
-            }
-        } 
     }
 }
 

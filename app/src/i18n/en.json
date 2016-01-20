@@ -221,6 +221,7 @@
         "GROUP_FILES": "Group files",
         "SELECT_FILE": "Select file to upload",
         "FILE_UPLOADED_SUCCESSFULLY": "File \"{{title}}\" uploaded successfully",
+        "N_FILES_UPLOADED_SUCCESSFULLY": "{{n}} files uploaded successfully",
         "FILE_ASSIGNED_SUCCESSFULLY": "File \"{{title}}\" assigned to {{authorityName}} successfully",
         "ASSIGN_TO": "Assign to...",
         "ADD_FILES": "Add file(s)",
