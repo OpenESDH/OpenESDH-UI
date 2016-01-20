@@ -1,12 +1,8 @@
-<md-dialog class="dialog-large" aria-label="Create / edit contact">
+<md-dialog class="dialog-large" aria-label="{{(person.nodeRefId ? 'CONTACT.EDIT_CONTACT' : 'CONTACT.CREATE_NEW_CONTACT') | translate }}">
     <form name="personForm" novalidate>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h1>Create / edit contact</h1>
-                <span flex></span>
-                <md-button class="md-icon-button" ng-click="cancel()">
-                    <md-icon aria-label="Close dialog"></md-icon>
-                </md-button>
+                <h2>{{(person.nodeRefId ? 'CONTACT.EDIT_CONTACT' : 'CONTACT.CREATE_NEW_CONTACT') | translate }}</h2>
             </div>
         </md-toolbar>
         <md-dialog-content>
