@@ -458,7 +458,7 @@
             views: {
                 'content@': {
                     templateUrl: 'app/src/files/view/files.html',
-                    controller: 'filesController',
+                    controller: 'FilesController',
                     controllerAs: 'filesVm'
                 }
             },

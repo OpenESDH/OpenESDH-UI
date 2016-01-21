@@ -1,5 +1,5 @@
 <md-dialog class="dialog-small" aria-label="">
-    <form name="uploadForm">
+    <form name="newDocForm">
         
         <md-toolbar layout>
             <div class="md-toolbar-tools">
@@ -28,44 +28,15 @@
                 </md-input-container>
             </div>
 
-            <div layout layout-wrap ng-if="!isAttachment">
-
-                <md-input-container flex="100">
-                    <label>{{ 'COMMON.NAME' | translate }} *</label>
-                    <input type="text" name="title" ng-model="documentProperties.title" required>
-                    <opene-error form="uploadForm" field="uploadForm.title"></opene-error>
-                </md-input-container>
-
-                <md-input-container flex="50">
-                    <label>{{ 'COMMON.TYPE' | translate }} *</label>
-                    <md-select name="doc_type" ng-model="documentProperties.doc_type" required ng-disabled="newDocumentVersion">
-                        <md-option ng-repeat="type in documentConstraints.documentTypes" ng-value="type.nodeRef">
-                            {{ type.displayName }}
-                        </md-option>
-                    </md-select>
-                    <opene-error form="uploadForm" field="uploadForm.doc_type"></opene-error>
-                </md-input-container>
-
-                <md-input-container flex="50">
-                    <label>{{ 'COMMON.CATEGORY' | translate }} *</label>
-                    <md-select name="doc_category" ng-model="documentProperties.doc_category" required ng-disabled="newDocumentVersion">
-                        <md-option ng-repeat="category in documentConstraints.documentCategories" ng-value="category.nodeRef">
-                            {{ category.displayName }}
-                        </md-option>
-                    </md-select>
-                    <opene-error form="uploadForm" field="uploadForm.doc_category"></opene-error>
-                </md-input-container>
-
-                <md-input-container flex="100">
-                    <label>{{ 'COMMON.DESCRIPTION' | translate }}</label>
-                    <textarea ng-model="documentProperties.description" columns="1"></textarea>
-                </md-input-container>
+            <div layout layout-wrap 
+                 ng-if="!isAttachment" 
+                 ng-include="'app/src/documents/view/caseDocumentCreateProperties.html'">
             </div>
 
         </md-dialog-content>
 
         <md-dialog-actions>
-            <md-button class="md-primary" type="submit" ng-disabled="uploadForm.$invalid" ng-click="upload()">
+            <md-button class="md-primary" type="submit" ng-disabled="newDocForm.$invalid" ng-click="upload()">
                 {{ 'COMMON.OK' | translate }}
             </md-button>
             <md-button ng-click="cancel()">

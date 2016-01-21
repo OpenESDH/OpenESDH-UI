@@ -10,7 +10,8 @@ function FilesService($http, fileUtilsService, alfrescoNodeUtils) {
         getGroupFiles: getGroupFiles,
         uploadFiles: uploadFiles,
         deleteFile: deleteFile,
-        moveFile: moveFile
+        moveFile: moveFile,
+        addFileToCase: addFileToCase
     };
 
     /**
@@ -49,7 +50,7 @@ function FilesService($http, fileUtilsService, alfrescoNodeUtils) {
     function uploadFiles(owner, files) {
         var formData = new FormData();
         formData.append('owner', owner);
-        angular.forEach(files, function(file){
+        angular.forEach(files, function(file) {
             formData.append('file', file);
         });
         return $http.post('/api/openesdh/files', formData, {
@@ -74,8 +75,16 @@ function FilesService($http, fileUtilsService, alfrescoNodeUtils) {
                         owner: newOwner,
                         comment: comment
                     }})
-        .then(function(response) {
-            return response;
-        });
+                .then(function(response) {
+                    return response;
+                });
+    }
+
+    function addFileToCase(caseId, nodeRef, documentProperties) {
+        return $http.put('/api/openesdh/case/'+caseId+'/addFile', null,
+                {params: angular.extend(documentProperties, {nodeRef: nodeRef})})
+                .then(function(response) {
+                    return response;
+                });
     }
 }

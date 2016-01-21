@@ -1,7 +1,7 @@
 
 angular
         .module('openeApp.files')
-        .controller('filesController', FilesController);
+        .controller('FilesController', FilesController);
 
 function FilesController(filesService, $translate, $mdDialog, notificationUtilsService,
         alfrescoDownloadService, documentPreviewService, userService) {
@@ -14,6 +14,7 @@ function FilesController(filesService, $translate, $mdDialog, notificationUtilsS
     vm.previewFile = previewFile;
     vm.deleteFile = deleteFile;
     vm.assignFile = assignFile;
+    vm.addToCase = addToCase;
     loadList();
     function loadList() {
         vm.files = [];
@@ -59,7 +60,7 @@ function FilesController(filesService, $translate, $mdDialog, notificationUtilsS
     function showAddFileDialog(ev) {
         userService.getAuthorities().then(function(authorities) {
             $mdDialog.show({
-                controller: AddFileDialogController,
+                controller: 'AddFileDialogController',
                 controllerAs: 'addFileVm',
                 templateUrl: 'app/src/files/view/addFiles.html',
                 parent: angular.element(document.body),
@@ -74,47 +75,10 @@ function FilesController(filesService, $translate, $mdDialog, notificationUtilsS
         });
     }
 
-    function AddFileDialogController($mdDialog, authorities) {
-        var addFileVm = this;
-        addFileVm.authorities = authorities || [];
-        addFileVm.owner = null;
-        addFileVm.files = null;
-        addFileVm.addFiles = addFiles;
-        addFileVm.onFileSelect = onFileSelect;
-        addFileVm.hide = hide;
-        addFileVm.cancel = cancel;
-        
-        function addFiles() {
-            filesService.uploadFiles(addFileVm.owner, addFileVm.files)
-                    .then(function() {
-                        if (addFileVm.files.length > 1) {
-                            notificationUtilsService.notify($translate.instant("FILE.N_FILES_UPLOADED_SUCCESSFULLY", {'n': addFileVm.files.length}));
-                        } else {
-                            notificationUtilsService.notify($translate.instant("FILE.FILE_UPLOADED_SUCCESSFULLY", {'title': addFileVm.files[0].name}));
-                        }
-                        hide();
-                    }, function(response) {
-                        notificationUtilsService.alert(response.data.message || 'Unexpected exception');
-                    });
-        }
-        
-        function onFileSelect(files){
-            console.log(files);
-        }
-
-        function hide() {
-            $mdDialog.hide();
-        }
-
-        function cancel() {
-            $mdDialog.cancel();
-        }
-    }
-
     function assignFile(ev, file) {
         userService.getAuthorities().then(function(authorities) {
             $mdDialog.show({
-                controller: AssignFileDialogController,
+                controller: 'AssignFileDialogController',
                 controllerAs: 'assignFileVm',
                 templateUrl: 'app/src/files/view/assignFile.html',
                 parent: angular.element(document.body),
@@ -130,33 +94,19 @@ function FilesController(filesService, $translate, $mdDialog, notificationUtilsS
         });
     }
 
-    function AssignFileDialogController($mdDialog, authorities, file) {
-        var assignFileVm = this;
-        assignFileVm.authorities = authorities || [];
-        assignFileVm.owner = null;
-        assignFileVm.comment = null;
-
-        assignFileVm.assignFile = assignFile;
-        assignFileVm.hide = hide;
-        assignFileVm.cancel = cancel;
-
-        function assignFile() {
-            filesService.moveFile(file.nodeRef, assignFileVm.owner.nodeRef, assignFileVm.comment)
-                    .then(function() {
-                        notificationUtilsService.notify($translate.instant("FILE.FILE_ASSIGNED_SUCCESSFULLY",
-                                {title: file.name, authorityName: assignFileVm.owner.name}));
-                        hide();
-                    }, function(response) {
-                        notificationUtilsService.alert(response.data.message || 'Unexpected exception');
-                    });
-        }
-
-        function hide() {
-            $mdDialog.hide();
-        }
-
-        function cancel() {
-            $mdDialog.cancel();
-        }
+    function addToCase(ev, file) {
+        $mdDialog.show({
+            controller: 'AddFileToCaseDialogController',
+            controllerAs: 'addToCaseVm',
+            templateUrl: 'app/src/files/view/addFileToCase.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true,
+            locals: {
+                file: file
+            }
+        }).then(function() {
+            loadList();
+        });
     }
 }

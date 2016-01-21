@@ -125,17 +125,7 @@ function OfficeController($stateParams, $window, $controller, $translate, office
     /*
      * Autocomplete input
      */
-    vm.querySearch = querySearch;
-    function querySearch(query) {
-        return caseService.getCases('base:case').then(function(response) {
-            return query ? response.filter(createFilterFor(query)) : [];
-        });
-    }
-    function createFilterFor(query) {
-        return function filterFn(item) {
-            return (item['oe:id'].indexOf(query) !== -1 || item['cm:title'].indexOf(query) !== -1);
-        };
-    }
+    vm.querySearch = caseService.caseSearch;
 
     function loadDocumentConstraints() {
         caseDocumentsService.getCaseDocumentConstraints().then(function(documentConstraints) {
