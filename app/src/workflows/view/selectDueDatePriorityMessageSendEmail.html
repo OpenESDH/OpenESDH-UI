@@ -5,11 +5,8 @@
         <textarea ng-model="dlg.message" required></textarea>
     </md-input-container>
     
-    <div layout="row">
-        <md-input-container flex="50">
-            <label>{{'WORKFLOW.DUE_DATE' | translate}}</label>
-            <input type="date" ng-model="dlg.selectedDueDate" />
-        </md-input-container>
+    <div layout="row" layout-align="start center">
+        <md-datepicker flex="50" ng-model="dlg.selectedDueDate" md-placeholder="{{ 'WORKFLOW.DUE_DATE' | translate }}"></md-datepicker>
         
         <md-input-container flex="50">
             <label>{{'WORKFLOW.PRIORITY.PRIORITY' | translate}}</label>
@@ -21,9 +18,10 @@
         </md-input-container>
     </div>
     
-    <div style="display: inline-flex;">
-        <md-checkbox ng-model="dlg.sendEmailNotifications"  aria-label="checkbox"></md-checkbox>
-        <span style="margin-top: 12px;">{{'WORKFLOW.SEND_EMAIL_NOTIFICATIONS' | translate}}</span>
-    </div>
+    <md-input-container>
+        <md-checkbox ng-model="dlg.sendEmailNotifications"  aria-label="checkbox">
+            {{'WORKFLOW.SEND_EMAIL_NOTIFICATIONS' | translate}}
+        </md-checkbox>
+    </md-input-container>
 
 </div>
