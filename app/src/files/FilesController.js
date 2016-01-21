@@ -30,7 +30,7 @@ function FilesController(filesService, $translate, $mdDialog, notificationUtilsS
     }
 
     function downloadFile(file) {
-        alfrescoDownloadService.downloadFile(file.nodeRef, file.name);
+        alfrescoDownloadService.downloadFile(file.nodeRef, file.title);
     }
 
     function previewFile(file) {
