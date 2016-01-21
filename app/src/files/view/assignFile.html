@@ -1,4 +1,4 @@
-<md-dialog class="dialog-large" aria-label="{{ 'FILE.ASSIGN_FILE' | translate }}">
+<md-dialog class="dialog-small" aria-label="{{ 'FILE.ASSIGN_FILE' | translate }}">
     <form name="assignFileForm" novalidate>
         <md-toolbar>
             <div class="md-toolbar-tools">
@@ -20,9 +20,9 @@
                     <opene-error form="assignFileForm" field="assignFileForm.owner"></opene-error>
                 </md-input-container>
             </div>
-            <md-input-container flex>
+            <md-input-container flex='100'>
                 <label>{{ 'COMMON.COMMENT' | translate }}</label>
-                <textarea ng-model="assignFileVm.comment" rows="5"></textarea>
+                <textarea ng-model="assignFileVm.comment" rows="5" columns="1"></textarea>
             </md-input-container>
         </md-dialog-content>
         <md-dialog-actions>

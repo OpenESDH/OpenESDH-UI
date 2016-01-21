@@ -226,6 +226,8 @@
         "ASSIGN_TO": "Assign to...",
         "ADD_FILES": "Add file(s)",
         "ASSIGN_FILE": "Assign file",
+        "ADD_TO_CASE": "Add to case",
+        "FILE_ADDED_TO_CASE_SUCCESSFULLY": "File \"{{title}}\" added to case {{caseId}} successfully",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_FILE": "Are you sure you want to delete the file \"{{title}}\"?",
         "DELETE_FILE_SUCCESS": "File successfully deleted",
         "DELETE_FILE_FAILURE": "File could not be deleted"

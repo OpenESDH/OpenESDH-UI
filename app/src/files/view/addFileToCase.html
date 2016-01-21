@@ -1,0 +1,43 @@
+<style>
+    form[name='addToCaseForm'] md-autocomplete[md-floating-label] md-input-container {
+        padding-bottom: 0; 
+    }
+</style>
+<md-dialog class="dialog-small" aria-label="{{ 'FILE.ADD_TO_CASE' | translate }}" >
+    <form name="addToCaseForm" novalidate>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{ 'FILE.ADD_TO_CASE' | translate }}</h2>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div layout layout-wrap>
+                <md-autocomplete flex ng-required 
+                                 md-input-name="caseSelector"
+                                 md-input-minlength="2" 
+                                 md-selected-item="addToCaseVm.selectedCase" 
+                                 md-search-text="searchText" 
+                                 md-items="item in addToCaseVm.caseSearch(searchText)" 
+                                 md-item-text="item['oe:id'] + ' ' + item['cm:title']" 
+                                 md-floating-label="{{ (addToCaseVm.selectedCase ? 'CASE' : 'CASE.SEARCH_CASE') | translate}} *">
+                    <md-item-template>
+                        <span md-highlight-text="searchText">{{item['oe:id'] }} {{item['cm:title']}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        {{ 'COMMON.NO_MATCHES' | translate }}
+                    </md-not-found>
+                </md-autocomplete>
+            </div>
+            <div layout layout-wrap ng-include="'app/src/documents/view/caseDocumentCreateProperties.html'">
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions>
+            <md-button type="submit" class="md-primary" ng-disabled="addToCaseForm.$invalid" ng-click="addToCaseVm.execute()" >
+                {{ 'COMMON.ADD' | translate }}
+            </md-button>
+            <md-button ng-click="addToCaseVm.cancel()">
+                {{ 'COMMON.CANCEL' | translate }}
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

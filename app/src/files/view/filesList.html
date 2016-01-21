@@ -51,6 +51,11 @@
                                     </md-button>
                                 </md-menu-item>
                                 <md-menu-item>
+                                    <md-button ng-click="filesVm.addToCase($event, file)">
+                                        <md-icon>folder_open</md-icon>{{ 'FILE.ADD_TO_CASE' | translate }}
+                                    </md-button>
+                                </md-menu-item>
+                                <md-menu-item>
                                     <md-button ng-click="filesVm.deleteFile(file)">
                                         <md-icon>delete</md-icon>{{ 'COMMON.DELETE' | translate }}
                                     </md-button>
