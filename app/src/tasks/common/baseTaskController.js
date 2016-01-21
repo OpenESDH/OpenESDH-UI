@@ -26,8 +26,9 @@
             var vm = this;
             return taskService.getTaskDetails(vm.taskId).then(function(result){
                 vm.task = result;
+                console.log("task", result);
                 vm.taskProperties = angular.extend({}, result.properties);
-                vm.workflowInstanceDiagramUrl = ALFRESCO_URI.webClientServiceProxy + '/api/workflow-instances/' + vm.task.workflowInstance.id + '/diagram?nocache=' + new Date().getTime();
+                vm.workflowInstanceDiagramUrl = ALFRESCO_URI.webClientServiceProxy + '/api/openesdh/workflow/instance/' + vm.task.workflowInstance.id + '/diagram?nocache=' + new Date().getTime();
             });
         }
         
