@@ -550,6 +550,13 @@
                 "can_create_contacts": "Allow to create contacts",
                 "ARE_YOU_SURE_YOU_WANT_TO_SAVE_PARAMETERS": "Are you sure you want to save parameters?",
                 "SAVED_SUCCESSFULLY": "Configuration saved successfully"
+            },
+            "TENANTS_MODULES":{
+                "TITLE": "Tenants Modules",
+                "TENANT_MODULES": "Tenant modules",
+                "TENANT": "Tenant",
+                "MODULES": "Modules",
+                "ARE_YOU_SURE_YOU_WANT_TO_DELETE_TENANT_MODULES": "Are you sure you want to delete modules configuration for the tenant '{{tenant}}'"
             }
         }
     },
