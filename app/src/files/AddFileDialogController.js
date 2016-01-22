@@ -9,11 +9,12 @@ function AddFileDialogController($mdDialog, $translate, filesService, notificati
     addFileVm.authorities = authorities || [];
     addFileVm.owner = null;
     addFileVm.files = null;
+    addFileVm.comment = null;
     addFileVm.addFiles = addFiles;
     addFileVm.cancel = cancel;
 
     function addFiles() {
-        filesService.uploadFiles(addFileVm.owner, addFileVm.files)
+        filesService.uploadFiles(addFileVm.owner, addFileVm.files, addFileVm.comment)
                 .then(function() {
                     if (addFileVm.files.length > 1) {
                         notificationUtilsService.notify($translate.instant("FILE.N_FILES_UPLOADED_SUCCESSFULLY", {'n': addFileVm.files.length}));

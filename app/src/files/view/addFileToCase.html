@@ -12,7 +12,7 @@
         </md-toolbar>
         <md-dialog-content>
             <div layout layout-wrap>
-                <md-autocomplete flex ng-required 
+                <md-autocomplete flex required 
                                  md-input-name="caseSelector"
                                  md-input-minlength="2" 
                                  md-selected-item="addToCaseVm.selectedCase" 
@@ -32,7 +32,9 @@
             </div>
         </md-dialog-content>
         <md-dialog-actions>
-            <md-button type="submit" class="md-primary" ng-disabled="addToCaseForm.$invalid" ng-click="addToCaseVm.execute()" >
+            <md-button type="submit" class="md-primary" 
+                       ng-disabled="addToCaseForm.$invalid  || !(addToCaseVm.selectedCase || addToCaseVm.selectedCase['oe:id'])" 
+                       ng-click="addToCaseVm.execute()" >
                 {{ 'COMMON.ADD' | translate }}
             </md-button>
             <md-button ng-click="addToCaseVm.cancel()">
