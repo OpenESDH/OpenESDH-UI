@@ -5,6 +5,7 @@
             <span class="tlist__cell tlist__cardview__hide" flex="5"></span>
             <span class="tlist__cell" flex sort-table="title">{{ 'COMMON.TITLE' | translate }}</span>
             <span class="tlist__cell" flex sort-table="group" ng-show="filesVm.tab === 'group_files'">{{ 'GROUP.GROUP' | translate }}</span>
+            <span class="tlist__cell" flex sort-table="comment[0]">{{ 'COMMON.COMMENT' | translate }}</span>
             <span class="tlist__cell" flex="15" sort-table="created">{{ 'COMMON.CREATED' | translate }}</span>
             <span class="tlist__cell" flex="10" sort-table="creator">{{ 'COMMON.CREATEDBY' | translate }}</span>
             <span class="tlist__cell" flex="15" sort-table="modified">{{ 'COMMON.MODIFIED' | translate }}</span>
@@ -24,6 +25,7 @@
                         {{ file.title}}
                     </span>
                     <span class="tlist__cell muted" flex ng-show="filesVm.tab === 'group_files'">{{ file.group}}</span>
+                    <span class="tlist__cell muted" flex>{{ file.comments[0].comment}}</span>
                     <span class="tlist__cell muted" flex="15">{{ file.created | openeDate}}</span>
                     <span class="tlist__cell muted" flex="10">{{ file.creator}}</span>
                     <span class="tlist__cell muted" flex="15">{{ file.modified | openeDate}}</span>
