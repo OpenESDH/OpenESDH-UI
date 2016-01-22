@@ -291,6 +291,8 @@ md-list md-list-item.active a {
         }
     }
     .tlist__header {
+        margin-right: 1em; /*to compensate scroll*/
+
         .tlist__cell {
             color: rgba(0,0,0,0.54);
             font-weight: 700;
@@ -463,4 +465,10 @@ th[sort-table] {
 
 .h3_sized_select {
     margin: 0;
+}
+
+@media screen and (max-width: 45em) {
+    app-footer{
+        display: none;
+    }
 }

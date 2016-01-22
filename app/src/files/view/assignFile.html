@@ -6,8 +6,8 @@
             </div>
         </md-toolbar>
         <md-dialog-content>
-            <div layout>
-                <md-input-container flex>
+            <div layout="column">
+                <md-input-container>
                     <label>{{ 'CASE.OWNER' | translate }} *</label>
                     <md-select ng-model="assignFileVm.owner" name="authority" required>
                         <md-optgroup label="Groups">
@@ -19,11 +19,11 @@
                     </md-select>
                     <opene-error form="assignFileForm" field="assignFileForm.owner"></opene-error>
                 </md-input-container>
-            </div>
-            <md-input-container flex='100'>
+            <md-input-container>
                 <label>{{ 'COMMON.COMMENT' | translate }}</label>
                 <textarea ng-model="assignFileVm.comment" rows="5" columns="1"></textarea>
             </md-input-container>
+            </div>
         </md-dialog-content>
         <md-dialog-actions>
             <md-button type="submit" class="md-primary" ng-disabled="assignFileForm.$invalid" ng-click="assignFileVm.assignFile()" >
