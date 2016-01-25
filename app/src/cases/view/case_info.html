@@ -1,5 +1,5 @@
 <div layout layout-wrap>
-    <div flex="25" flex-md="100" flex-gt-md="noshrink" id="caseInfoWrapper">
+    <div layout-xs="noshrink" flex-md="100" flex-gt-md="25" class="case-info-card">
         <md-card>
             <md-card-content>
                 <div layout layout-align="space-between center">
@@ -17,16 +17,16 @@
                 </div>
                 <dl layout="row" layout-wrap ng-include="civm.caseInfoTemplateUrl"></dl>
             </md-card-content>
-            <div class="md-actions" layout="column" layout-padding layout-align="start start">
-                <md-button class="md-primary" ng-click="civm.editCase($event)"
-                           ng-disabled="caseCtrl.caseIsLocked">
-                    <i class="material-icons">mode_edit</i>
-                    {{ 'CASE.EDIT_INFORMATION' | translate }}
-                </md-button>
-                <md-button class="md-primary" ng-click="civm.printCase()"><i class="material-icons">print</i> {{ 'CASE.PRINT_CASE' | translate }}</md-button>
-                <md-button class="md-primary" ng-click="civm.startWorklfow()" ng-disabled="caseCtrl.caseIsLocked">{{ 'CASE.START_WORKFLOW' | translate }}</md-button>
+            <div class="md-actions" layout="row" layout-gt-md="column"  layout-xs="column" layout-padding layout-align="start start" >
+                <md-button class="md-primary" ng-click="civm.editCase($event)"ng-disabled="caseCtrl.caseIsLocked">
+                    <i class="material-icons">mode_edit</i>{{ 'CASE.EDIT_INFORMATION' | translate }}</md-button>
+                <md-button class="md-primary" ng-click="civm.printCase()">
+                    <i class="material-icons">print</i> {{ 'CASE.PRINT_CASE' | translate }}</md-button>
+                <md-button class="md-primary" ng-click="civm.startWorklfow()" ng-disabled="caseCtrl.caseIsLocked">
+                    {{ 'CASE.START_WORKFLOW' | translate }}</md-button>
             </div>
         </md-card>
     </div>
-    <div flex-md="100" flex-gt-md="auto" ng-include="'app/src/documents/view/caseDocumentList.html'"></div>
+    <div layout-xs="noshrink" flex flex-md="100" class="case-info-card"
+         ng-include="'app/src/documents/view/caseDocumentList.html'"></div>
 </div>
