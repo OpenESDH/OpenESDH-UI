@@ -1,12 +1,12 @@
-<div layout="row" layout-wrap>
-    <div flex-md="100" flex-gt-md="noshrink" id="caseInfoWrapper">
+<div layout layout-wrap>
+    <div flex="25" flex-md="100" flex-gt-md="noshrink" id="caseInfoWrapper">
         <md-card>
             <md-card-content>
                 <div layout layout-align="space-between center">
-                    <h3 class="md-title" flex="75">
+                    <h3 class="md-title">
                         {{ 'COMMON.INFORMATION' | translate }}
                     </h3>
-                    <div flex="25" class="opene-star">
+                    <div class="opene-star" style="float: right;">
                         <md-button ng-hide="civm.isFavourite" class="opene-star__passive" ng-click="civm.addCaseToFavourites()">
                             <i class="material-icons">star_border</i>
                         </md-button>
