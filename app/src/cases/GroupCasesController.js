@@ -29,7 +29,7 @@
             userService.getCurrentUserCaseOwnersGroups().then(function(result){
                 vm.currentUserCaseOwnersGroups = result;
                 vm.getCases();
-            })
+            });
         }
         
         function getCases() {
@@ -58,39 +58,27 @@
         }
         
         function assignTo(caseObj){
-            getAuthorities(caseObj.TYPE).then(function(authorities){
-                $mdDialog.show({
-                    controller: CaseAssignToDialogController,
-                    controllerAs: 'dlg',
-                    templateUrl: 'app/src/cases/view/caseAssignToDialog.html',
-                    parent: angular.element(document.body),
-                    targetEvent: null,
-                    clickOutsideToClose: true,
-                    locals: {
-                        authorities: authorities
-                    },
-                    focusOnOpen: false
-                }).then(function(assign_to){
-                    var props = {
-                        assoc_base_owners_added: assign_to,
-                        assoc_base_owners_removed: caseObj['base:owners'][0].nodeRef
-                    };
-                    caseService.updateCase(caseObj.nodeRef, props).then(function(result){
-                        vm.getCases();
-                    });
-                });    
-            });
-            
+            $mdDialog.show({
+                controller: CaseAssignToDialogController,
+                controllerAs: 'dlg',
+                templateUrl: 'app/src/cases/view/caseAssignToDialog.html',
+                parent: angular.element(document.body),
+                targetEvent: null,
+                clickOutsideToClose: true,
+                focusOnOpen: false
+            }).then(function(assign_to){
+                var props = {
+                    assoc_base_owners_added: assign_to,
+                    assoc_base_owners_removed: caseObj['base:owners'][0].nodeRef
+                };
+                caseService.updateCase(caseObj.nodeRef, props).then(function(result){
+                    vm.getCases();
+                });
+            });    
         }
         
-        function getAuthorities(type) {
-            var caseType = type;
-            return userService.getCaseAuthorities(caseType.split(':')[0].toUpperCase());
-        }
-        
-        function CaseAssignToDialogController($mdDialog, authorities){
+        function CaseAssignToDialogController($mdDialog){
             var vm = this;
-            vm.authorities = authorities;
             
             vm.cancel = function() {
                 $mdDialog.cancel();
@@ -98,6 +86,6 @@
             
             vm.assign = function(){
                 $mdDialog.hide(vm.assign_to);
-            }
+            };
         }
   };

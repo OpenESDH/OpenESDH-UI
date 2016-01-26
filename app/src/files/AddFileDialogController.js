@@ -4,9 +4,8 @@ angular
         .controller('AddFileDialogController', AddFileDialogController);
 
 
-function AddFileDialogController($mdDialog, $translate, filesService, notificationUtilsService, authorities) {
+function AddFileDialogController($mdDialog, $translate, filesService, notificationUtilsService) {
     var addFileVm = this;
-    addFileVm.authorities = authorities || [];
     addFileVm.owner = null;
     addFileVm.files = null;
     addFileVm.comment = null;

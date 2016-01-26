@@ -3,9 +3,8 @@ angular
         .module('openeApp.files')
         .controller('AssignFileDialogController', AssignFileDialogController);
 
-function AssignFileDialogController($mdDialog, $translate, filesService, notificationUtilsService, authorities, file) {
+function AssignFileDialogController($mdDialog, $translate, filesService, notificationUtilsService, file) {
     var assignFileVm = this;
-    assignFileVm.authorities = authorities || [];
     assignFileVm.owner = null;
     assignFileVm.comment = null;
 
