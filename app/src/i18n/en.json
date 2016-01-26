@@ -556,7 +556,13 @@
                 "TENANT_MODULES": "Tenant modules",
                 "TENANT": "Tenant",
                 "MODULES": "Modules",
-                "ARE_YOU_SURE_YOU_WANT_TO_DELETE_TENANT_MODULES": "Are you sure you want to delete modules configuration for the tenant '{{tenant}}'"
+                "ARE_YOU_SURE_YOU_WANT_TO_DELETE_TENANT_MODULES": "Are you sure you want to delete modules configuration for the tenant '{{tenant}}'?",
+                "TENANT_DOMAIN": "Tenant domain",
+                "TENANT_ADMIN_PASSWORD": "Tenant admin password",
+                "TENANT_CONTENT_STORE_ROOT": "Tenant content store root",
+                "CREATE_TENANT": "Create tenant",
+                "ASSIGN_MODULES": "Assign modules",
+                "TENANT_CREATED": "Tenant created: {{tenantDomain}}"
             }
         }
     },
