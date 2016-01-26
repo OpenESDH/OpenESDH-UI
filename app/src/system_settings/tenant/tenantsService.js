@@ -9,7 +9,8 @@
             getAllTenantsModules: getAllTenantsModules,
             saveTenantModules: saveTenantModules,
             getOpeneModules: getOpeneModules,
-            deleteTenantModules: deleteTenantModules
+            deleteTenantModules: deleteTenantModules,
+            createTenant: createTenant
         };
         return service;
         
@@ -42,5 +43,9 @@
         
         function deleteTenantModules(tenant){
             return $http.delete('/api/openesdh/tenant/' + tenant + '/modules');
+        }
+        
+        function createTenant(tenant){
+            return $http.post('/api/tenants', tenant);
         }
     }

@@ -1,0 +1,44 @@
+<md-dialog class="dialog-small" aria-label="{{ 'ADMIN.SYS_SETTINGS.TENANTS_MODULES.CREATE_TENANT' | translate }}">
+    <form name="tenantForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h1>{{ 'ADMIN.SYS_SETTINGS.TENANTS_MODULES.CREATE_TENANT' | translate }}</h1>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="tc.cancel()">
+                    <md-icon aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div layout="column">
+
+                <md-input-container flex>
+                    <label>{{ 'ADMIN.SYS_SETTINGS.TENANTS_MODULES.TENANT_DOMAIN' | translate }} *</label>
+                    <input type="text" name="tenantDomain" ng-model="tc.tenant.tenantDomain" md-autofocus required>
+                </md-input-container>
+                
+                <md-input-container flex>
+                    <label>{{ 'ADMIN.SYS_SETTINGS.TENANTS_MODULES.TENANT_ADMIN_PASSWORD' | translate }} *</label>
+                    <input type="text" name="tenantAdminPassword" ng-model="tc.tenant.tenantAdminPassword" required>
+                </md-input-container>
+                
+                <md-input-container flex>
+                    <label>{{ 'ADMIN.SYS_SETTINGS.TENANTS_MODULES.TENANT_CONTENT_STORE_ROOT' | translate }} *</label>
+                    <input type="text" name="tenantContentStoreRoot" ng-model="tc.tenant.tenantContentStoreRoot" required>
+                </md-input-container>
+
+            </div>
+            
+        </md-dialog-content>
+
+        <md-dialog-actions>
+            <md-button class="md-primary" type="submit" ng-disabled="tenantForm.$invalid" ng-click="tc.save(tenantForm)">
+                {{ 'COMMON.SAVE' | translate }}
+            </md-button>
+            <md-button ng-click="tc.cancel()">
+                {{ 'COMMON.CANCEL' | translate }}
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
