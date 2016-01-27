@@ -4,7 +4,7 @@ angular
         .controller('FilesController', FilesController);
 
 function FilesController(filesService, $translate, $mdDialog, notificationUtilsService,
-        alfrescoDownloadService, documentPreviewService, userService) {
+        alfrescoDownloadService, documentPreviewService) {
     var vm = this;
     vm.tab = 'my_files';
     vm.files = [];
@@ -58,39 +58,31 @@ function FilesController(filesService, $translate, $mdDialog, notificationUtilsS
     }
 
     function showAddFileDialog(ev) {
-        userService.getAuthorities().then(function(authorities) {
-            $mdDialog.show({
-                controller: 'AddFileDialogController',
-                controllerAs: 'addFileVm',
-                templateUrl: 'app/src/files/view/addFiles.html',
-                parent: angular.element(document.body),
-                targetEvent: ev,
-                clickOutsideToClose: true,
-                locals: {
-                    authorities: authorities
-                }
-            }).then(function() {
-                loadList();
-            });
+        $mdDialog.show({
+            controller: 'AddFileDialogController',
+            controllerAs: 'addFileVm',
+            templateUrl: 'app/src/files/view/addFiles.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true,
+        }).then(function() {
+            loadList();
         });
     }
 
     function assignFile(ev, file) {
-        userService.getAuthorities().then(function(authorities) {
-            $mdDialog.show({
-                controller: 'AssignFileDialogController',
-                controllerAs: 'assignFileVm',
-                templateUrl: 'app/src/files/view/assignFile.html',
-                parent: angular.element(document.body),
-                targetEvent: ev,
-                clickOutsideToClose: true,
-                locals: {
-                    authorities: authorities,
-                    file: file
-                }
-            }).then(function() {
-                loadList();
-            });
+        $mdDialog.show({
+            controller: 'AssignFileDialogController',
+            controllerAs: 'assignFileVm',
+            templateUrl: 'app/src/files/view/assignFile.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true,
+            locals: {
+                file: file
+            }
+        }).then(function() {
+            loadList();
         });
     }
 

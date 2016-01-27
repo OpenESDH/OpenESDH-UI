@@ -1,0 +1,6 @@
+<md-optgroup label="Groups" ng-if="authCtrl.groups.length">
+    <md-option ng-value="auth.nodeRef" ng-repeat="auth in authCtrl.groups">{{ auth.name}}</md-option>
+</md-optgroup>
+<md-optgroup label="Users">
+    <md-option ng-value="auth.nodeRef" ng-repeat="auth in authCtrl.users">{{ auth.name}}</md-option>
+</md-optgroup>

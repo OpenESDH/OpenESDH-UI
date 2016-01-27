@@ -10,12 +10,8 @@
                 <md-input-container>
                     <label>{{ 'CASE.OWNER' | translate }} *</label>
                     <md-select ng-model="assignFileVm.owner" name="authority" required>
-                        <md-optgroup label="Groups">
-                            <md-option ng-value="auth" ng-repeat="auth in assignFileVm.authorities| filter: {type: 'cm:authorityContainer', selectable: true }">{{ auth.name}}</md-option>
-                        </md-optgroup>
-                        <md-optgroup label="Users">
-                            <md-option ng-value="auth" ng-repeat="auth in assignFileVm.authorities| filter: {type: 'cm:person', selectable: true }">{{ auth.name}}</md-option>
-                        </md-optgroup>
+                        <ng-include src="'app/src/common/components/authoritySelector/view/authoritySelectorOptions.html'"
+                                    ng-controller="AuthoritySelectorController as authCtrl"></ng-include>
                     </md-select>
                     <opene-error form="assignFileForm" field="assignFileForm.owner"></opene-error>
                 </md-input-container>
