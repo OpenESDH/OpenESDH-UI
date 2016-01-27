@@ -43,12 +43,16 @@ function userService($http) {
     function getAuthorities() {
         return $http.get('/api/openesdh/authorities').then(function(response) {
             var items = response.data;
+            //TODO: remove this temp fix:
+            if (items.data && items.data.items){
+                items = items.data.items;
+            }
             return Object.keys(items).map(function(key) {
                 return items[key];
             });
         });
     }
-
+    
     function createUser(userObj) {
         return $http.post('/api/people',
                 userObj
