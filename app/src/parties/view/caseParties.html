@@ -1,29 +1,62 @@
 <md-card>
     <md-card-content>
-        <h3>{{ 'PARTY.PARTIES' | translate }}</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th sort-table="displayName">{{ 'COMMON.NAME' | translate }}</th>
-                    <th sort-table="contactId">{{ 'COMMON.EMAIL' | translate }}</th>
-                    <th sort-table="contactType">{{ 'COMMON.TYPE' | translate }}</th>
-                    <th sort-table="role">{{ 'PARTY.ROLE' | translate }}</th>
-                    <th>{{ 'COMMON.ACTIONS' | translate }}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="party in cmCPC.parties | orderObjectBy:orderByAttribute:reverseOrder">
-                    <td>{{party.displayName}}</td>
-                    <td>{{party.contactId}}</td>
-                    <td>{{ 'CONTACT.' + party.contactType | translate}}</td>
-                    <td>{{party.role}}</td>
-                    <td>
+        <div layout layout-align="space-between center">
+            <h3>{{ 'PARTY.PARTIES' | translate }}</h3>
+            <div flex class="opene-toggleview">
+                <md-button class="md-icon-button md-accent" ng-class="{active: cmCPC.layout == 'grid'}" ng-click="cmCPC.layout = 'grid'" title="{{ 'COMMON.GRID_VIEW' | translate }}"><i class="material-icons">view_module</i></md-button>
+                <md-button class="md-icon-button md-accent" ng-class="{active: cmCPC.layout == 'list'}" ng-click="cmCPC.layout = 'list'" title="{{ 'COMMON.LIST_VIEW' | translate }}"><i class="material-icons">view_list</i></md-button>
+            </div>
+        </div>
+
+        <div layout="row" layout-wrap ng-show="cmCPC.layout == 'grid'">
+            <div ng-repeat="party in cmCPC.parties | orderObjectBy:orderByAttribute:reverseOrder" flex-gt-md="33" flex="50" flex-sm="100">
+                <h4 style="margin-bottom: 0;" class="md-title">{{ party.displayName}}</h4>
+                <dl layout="row" layout-wrap>
+
+                    <dt flex="20">{{ 'COMMON.EMAIL' | translate }}</dt>
+                    <dd flex="80"><a style="color:#1E88E5" href ng-click="cmCPC.showPersonReadOnly($event, party.nodeRef)">{{ party.contactId }}</a></dd>
+                    
+                    <dt flex="20">{{ 'COMMON.TYPE' | translate }}</dt>
+                    <dd flex="80">{{ 'CONTACT.' + party.contactType | translate }}</dd>
+                    
+                    <dt flex="20">{{ 'PARTY.ROLE' | translate }}</dt>
+                    <dd flex="80">{{ party.role }}</dd>
+                    
+                    <div layout="row" layout-padding>
                         <md-button class="md-primary" ng-click="cmCPC.showChangePartyDialog($event, party)" ng-disabled="caseCtrl.caseIsLocked">{{ 'PARTY.CHANGE' | translate }}</md-button>
-                        <md-button class="md-primary" ng-click="cmCPC.removeParty($event, party)" ng-disabled="caseCtrl.caseIsLocked">{{ 'COMMON.REMOVE' | translate }}</md-button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                        <md-button class="md-primary" ng-click="cmCPC.removeParty($event, party)" ng-disabled="caseCtrl.caseIsLocked">{{ 'COMMON.REMOVE' | translate }}</md-button>                        
+                    </div>
+                </dl>
+            </div>
+        </div>
+
+        <div ng-show="cmCPC.layout == 'list'">
+            <table>
+                <thead>
+                    <tr>
+                        <th sort-table="displayName">{{ 'COMMON.NAME' | translate }}</th>
+                        <th sort-table="contactId">{{ 'COMMON.EMAIL' | translate }}</th>
+                        <th sort-table="contactType">{{ 'COMMON.TYPE' | translate }}</th>
+                        <th sort-table="role">{{ 'PARTY.ROLE' | translate }}</th>
+                        <th>{{ 'COMMON.ACTIONS' | translate }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="party in cmCPC.parties | orderObjectBy:orderByAttribute:reverseOrder">
+                        <td>{{party.displayName}}</td>
+                        <td>
+                            <a style="color:#1E88E5" href ng-click="cmCPC.showPersonReadOnly($event, party.nodeRef)">{{party.contactId}}</a>
+                        </td>
+                        <td>{{ 'CONTACT.' + party.contactType | translate}}</td>
+                        <td>{{party.role}}</td>
+                        <td>
+                            <md-button class="md-primary" ng-click="cmCPC.showChangePartyDialog($event, party)" ng-disabled="caseCtrl.caseIsLocked">{{ 'PARTY.CHANGE' | translate }}</md-button>
+                            <md-button class="md-primary" ng-click="cmCPC.removeParty($event, party)" ng-disabled="caseCtrl.caseIsLocked">{{ 'COMMON.REMOVE' | translate }}</md-button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <md-button class="md-primary" ng-click="cmCPC.showAddPartiesDialog($event)" ng-disabled="caseCtrl.caseIsLocked">{{ 'COMMON.ADD_NEW' | translate }}</md-button>
     </md-card-content>
 </md-card>
