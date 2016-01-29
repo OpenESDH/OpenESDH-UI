@@ -6,7 +6,8 @@ angular
 function personDialogService($mdDialog, $translate, contactsService,
         countriesService, PATTERNS, notificationUtilsService) {
     var service = {
-        showPersonEdit: showPersonEdit
+        showPersonEdit: showPersonEdit,
+        showContactReadOnly: showContactReadOnly
     };
     return service;
 
@@ -21,17 +22,35 @@ function personDialogService($mdDialog, $translate, contactsService,
             targetEvent: ev,
             clickOutsideToClose: true,
             locals: {
-                person: edtPerson
+                person: edtPerson,
+                readOnly: false
             }
         }).then(function(response) {
             return response;
         });
     }
 
-    function DialogController($scope, $mdDialog, person) {
+    function showContactReadOnly(ev, contact) {
+        return $mdDialog.show({
+            controller: DialogController,
+            templateUrl: 'app/src/contacts/view/personCrudDialog.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true,
+            locals: {
+                person: contact,
+                readOnly: true
+            }
+        }).then(function(response) {
+            return response;
+        });        
+    }
+
+    function DialogController($scope, $mdDialog, person, readOnly) {
         $scope.person = person;
         $scope.countries = countriesService.getCountries();
         $scope.PATTERNS = PATTERNS;
+        $scope.readOnly = readOnly;
 
         $scope.hide = function() {
             $mdDialog.hide();

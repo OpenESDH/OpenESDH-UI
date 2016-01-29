@@ -1,10 +1,9 @@
-
 angular
-        .module('openeApp.cases.parties')
-        .controller('CasePartiesController', CasePartiesController);
+    .module('openeApp.cases.parties')
+    .controller('CasePartiesController', CasePartiesController);
 
 function CasePartiesController($scope, $stateParams, $mdDialog, $filter, $translate, personDialogService,
-        casePartiesService, partyPermittedRolesService, contactsService, notificationUtilsService) {
+    casePartiesService, partyPermittedRolesService, contactsService, notificationUtilsService, alfrescoNodeUtils) {
     var vm = this;
     vm.parties = [];
     vm.removeParty = removeParty;
@@ -12,6 +11,8 @@ function CasePartiesController($scope, $stateParams, $mdDialog, $filter, $transl
     vm.changeCaseParty = changeCaseParty;
     vm.showAddPartiesDialog = showAddPartiesDialog;
     vm.showChangePartyDialog = showChangePartyDialog;
+    vm.showPersonReadOnly = showPersonReadOnly;
+    vm.layout = 'list';
 
     fillList();
 
@@ -36,12 +37,12 @@ function CasePartiesController($scope, $stateParams, $mdDialog, $filter, $transl
 
     function removeParty(ev, party) {
         var confirm = $mdDialog.confirm()
-                .title($translate.instant('COMMON.CONFIRM'))
-                .textContent($translate.instant('PARTY.ARE_YOU_SURE_YOU_WANT_TO_REMOVE_PARTY', party))
-                .ariaLabel('delete confirmation')
-                .targetEvent(ev)
-                .ok($translate.instant('COMMON.YES'))
-                .cancel($translate.instant('COMMON.CANCEL'));
+            .title($translate.instant('COMMON.CONFIRM'))
+            .textContent($translate.instant('PARTY.ARE_YOU_SURE_YOU_WANT_TO_REMOVE_PARTY', party))
+            .ariaLabel('delete confirmation')
+            .targetEvent(ev)
+            .ok($translate.instant('COMMON.YES'))
+            .cancel($translate.instant('COMMON.CANCEL'));
         $mdDialog.show(confirm).then(function() {
             casePartiesService.deleteCaseParty($stateParams.caseId, party).then(function(response) {
                 //remove from list
@@ -91,6 +92,18 @@ function CasePartiesController($scope, $stateParams, $mdDialog, $filter, $transl
             }
         }).then(function(response) {
             //
+        });
+    }
+
+    function showPersonReadOnly(ev, nodeRef) {
+        var nodeRefParts = alfrescoNodeUtils.processNodeRef(nodeRef);
+        contactsService.getContact(nodeRefParts.storeType, nodeRefParts.storeId, nodeRefParts.id).then(function(contact) {
+
+            personDialogService
+                .showContactReadOnly(ev, contact)
+                .then(function() {
+                    // vm.dataLoader.refresh();
+                });
         });
     }
 
@@ -163,7 +176,9 @@ function CasePartiesController($scope, $stateParams, $mdDialog, $filter, $transl
             vm.createCaseParty(self.model.role, contacts).then(function() {
                 $mdDialog.hide();
                 if (contacts.length > 1) {
-                    notificationUtilsService.notify($translate.instant("PARTY.PARTIES_ADDED_SUCCESSFULLY", {count: contacts.length}));
+                    notificationUtilsService.notify($translate.instant("PARTY.PARTIES_ADDED_SUCCESSFULLY", {
+                        count: contacts.length
+                    }));
                 } else {
                     notificationUtilsService.notify($translate.instant("PARTY.PARTY_ADDED_SUCCESSFULLY"));
                 }
@@ -176,13 +191,13 @@ function CasePartiesController($scope, $stateParams, $mdDialog, $filter, $transl
 
         function newContact(ev) {
             personDialogService
-                    .showPersonEdit(ev)
-                    .then(function(response) {
-                        self.model.selectedContacts.push(response);
-                        showAddPartiesDialog(ev, self.model);
-                    }, function() {
-                        showAddPartiesDialog(ev, self.model);
-                    });
+                .showPersonEdit(ev)
+                .then(function(response) {
+                    self.model.selectedContacts.push(response);
+                    showAddPartiesDialog(ev, self.model);
+                }, function() {
+                    showAddPartiesDialog(ev, self.model);
+                });
         }
     }
 
