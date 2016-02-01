@@ -17,13 +17,13 @@
                 </div>
                 <dl layout="row" layout-wrap ng-include="civm.caseInfoTemplateUrl"></dl>
             </md-card-content>
-            <div class="md-actions" layout="row" layout-gt-md="column"  layout-xs="column" layout-padding layout-align="start start" >
-                <md-button class="md-primary" ng-click="civm.editCase($event)"ng-disabled="caseCtrl.caseIsLocked">
-                    <i class="material-icons">mode_edit</i>{{ 'CASE.EDIT_INFORMATION' | translate }}</md-button>
+            <div class="md-actions" layout="column" layout-md="row" layout-xs="column" layout-padding layout-align="start start" >
+                <md-button class="md-primary" ng-click="civm.editCase($event)" ng-disabled="caseCtrl.caseIsLocked">
+                    <i class="material-icons">mode_edit</i> {{ 'CASE.EDIT_INFORMATION' | translate }}</md-button>
                 <md-button class="md-primary" ng-click="civm.printCase()">
                     <i class="material-icons">print</i> {{ 'CASE.PRINT_CASE' | translate }}</md-button>
                 <md-button class="md-primary" ng-click="civm.startWorklfow()" ng-disabled="caseCtrl.caseIsLocked">
-                    {{ 'CASE.START_WORKFLOW' | translate }}</md-button>
+                    <i class="material-icons">device_hub</i> {{ 'CASE.START_WORKFLOW' | translate }}</md-button>
             </div>
         </md-card>
     </div>
