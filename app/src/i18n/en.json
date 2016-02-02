@@ -112,6 +112,8 @@
         "MY_CASES": "My cases",
         "GROUP_CASES": "Group cases",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_CASE": "Are you sure you want to delete the case '{{case_title}}'?",
+        "DELETE_CASE_SUCCESS": "Case successfully deleted",
+        "DELETE_CASE_FAILURE": "Case could not be deleted",
         "VIEW_CASE_DETAILS": "View case",
         "STAFF": {
             "EMPLOYEE": "Employee",

@@ -1,22 +1,23 @@
 
-    angular
+angular
         .module('openeApp.cases')
         .controller('BaseCaseListController', BaseCaseListController);
 
-    /**
-     * Main Controller for the Cases module
-     * @param $scope
-     * @param cases
-     * @constructor
-     */
-    function BaseCaseListController($mdDialog, $translate, caseService, alfrescoFolderService, sessionService) {
-        
-        var vm = this;
-        vm.cases = [];
-        vm.caseFilter = [{
+/**
+ * Main Controller for the Cases module
+ * @param $scope
+ * @param cases
+ * @constructor
+ */
+function BaseCaseListController($mdDialog, $translate, caseService, alfrescoFolderService, sessionService,
+        notificationUtilsService) {
+
+    var vm = this;
+    vm.cases = [];
+    vm.caseFilter = [{
             name: $translate.instant('CASE.FILTER.ALL_CASES'),
             value: 'all'
-        },{
+        }, {
             name: $translate.instant('CASE.FILTER.ACTIVE_CASES'),
             field: 'oe:status',
             value: 'active'
@@ -29,55 +30,59 @@
             field: 'oe:status',
             value: 'passive'
         }];
-        vm.caseFilterChoice = vm.caseFilter[0];
+    vm.caseFilterChoice = vm.caseFilter[0];
 
-        vm.getCases = getCases;
-        vm.deleteCase = deleteCase;
-        vm.isAdmin = sessionService.isAdmin();
-        vm.getFilter = getFilter;
+    vm.getCases = getCases;
+    vm.deleteCase = deleteCase;
+    vm.isAdmin = sessionService.isAdmin();
+    vm.getFilter = getFilter;
 
-        function getCases() {
-            var vm = this;
-            var filters = vm.getFilter();
-            return caseService.getCases('base:case', filters).then(function(response) {
-                vm.cases = response;
-                return vm.cases;
-            }, function(error) {
-                console.log(error);
-            });
-        }
-        
-        function getFilter() {
-            var vm = this;
-            var filters = [];
-            
-            // Handling 'show all'
-            if(vm.caseFilterChoice.value !== 'all') {
-                filters = [{'name': vm.caseFilterChoice.field, 'operator':'=', 'value':vm.caseFilterChoice.value}];
-            }
+    function getCases() {
+        var vm = this;
+        var filters = vm.getFilter();
+        return caseService.getCases('base:case', filters).then(function(response) {
+            vm.cases = response;
+            return vm.cases;
+        }, function(error) {
+            console.log(error);
+        });
+    }
 
-            return filters;
+    function getFilter() {
+        var vm = this;
+        var filters = [];
+
+        // Handling 'show all'
+        if (vm.caseFilterChoice.value !== 'all') {
+            filters = [{'name': vm.caseFilterChoice.field, 'operator': '=', 'value': vm.caseFilterChoice.value}];
         }
 
-        function getCaseTypes() {
-            return caseService.getCaseTypes().then(function(response) {
-                return response;
-            });
-        }
-        
-        function deleteCase(caseObj){
-            var confirm = $mdDialog.confirm()
+        return filters;
+    }
+
+    function getCaseTypes() {
+        return caseService.getCaseTypes().then(function(response) {
+            return response;
+        });
+    }
+
+    function deleteCase(caseObj) {
+        var confirm = $mdDialog.confirm()
                 .title($translate.instant('COMMON.CONFIRM'))
                 .textContent($translate.instant('CASE.ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_CASE', {case_title: caseObj["cm:title"]}))
                 .ariaLabel('')
                 .targetEvent(null)
                 .ok($translate.instant('COMMON.YES'))
                 .cancel($translate.instant('COMMON.CANCEL'));
-            $mdDialog.show(confirm).then(function() {
-                alfrescoFolderService.deleteFolder(caseObj.nodeRef).then(function(result){
-                   setTimeout(getCases, 500); 
-                });
+        $mdDialog.show(confirm).then(function() {
+            alfrescoFolderService.deleteFolder(caseObj.nodeRef).then(function(response) {
+                notificationUtilsService.notify($translate.instant('CASE.DELETE_CASE_SUCCESS'));
+                setTimeout(getCases, 500);
+            }, function(response) {
+                console.log(response);
+                notificationUtilsService.alert($translate.instant('CASE.DELETE_CASE_FAILURE'));
             });
-        }
-  
-  };
+        });
+    }
+
+}
