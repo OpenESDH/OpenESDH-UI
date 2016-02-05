@@ -189,6 +189,9 @@ md-dialog {
     &.dialog-large {
         min-width: 550px;
     }
+    &.dialog-large-fixed {
+        width: 550px;
+    }
     &.dialog-small {
         width: 400px;
     }

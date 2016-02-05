@@ -7,25 +7,29 @@
             </div>
         </md-toolbar>
 
-        <md-dialog-content layout="column">
-            <md-chips flex ng-model="vm.to" md-require-match="true">
-                <md-autocomplete md-selected-item="vm.selectedItem" md-search-text="vm.searchText" md-items="item in vm.querySearch(vm.searchText)" md-item-text="item.displayName" placeholder="{{ 'COMMON.TO' | translate }}">
-                    <span md-highlight-text="vm.searchText">{{ item.displayName }} :: {{ item.contactId }}</span>
+        <md-dialog-content >
+            <md-chips flex ng-model="vm.to" md-require-match="true" layout="column">
+                <md-autocomplete md-selected-item="vm.selectedItem" 
+                                 md-search-text="vm.searchText" 
+                                 md-items="item in vm.querySearch(vm.searchText)" 
+                                 placeholder="{{ 'COMMON.TO' | translate }}">
+                    <span md-highlight-text="vm.searchText">{{item.firstName + ' ' + item.lastName}} ({{item.cprNumber}}, {{item.email}})</span>
                 </md-autocomplete>
                 <md-chip-template>
                     <span>
-                        <strong>{{ $chip.displayName }}</strong>
+                        <strong>{{$chip.firstName + ' ' + $chip.lastName}}</strong>
+                        <em>({{$chip.email}})</em>
                     </span>
                 </md-chip-template>
             </md-chips>
 
-            <md-input-container flex>
+            <md-input-container layout="column">
                 <label>{{ 'COMMON.SUBJECT' | translate }}</label>
                 <input type="text" name="subject" ng-model="vm.subject" required>
                 <opene-error form="form" field="form.subject"></opene-error>
             </md-input-container>
 
-            <md-input-container flex>
+            <md-input-container layout="column">
                 <label>{{ 'COMMON.MESSAGE' | translate }}</label>
                 <textarea ng-model="vm.message"></textarea>
             </md-input-container>
@@ -35,16 +39,16 @@
                     <md-checkbox ng-model="document.selected" aria-label="{{document['cm:title']}}"></md-checkbox>
                     <label>{{document['cm:title']}}</label>
                 </md-list-item>
-            <md-list>
-        </md-dialog-content>
+                <md-list>
+                    </md-dialog-content>
 
-        <md-dialog-actions>
-            <md-button type="submit" class="md-primary" ng-click="vm.emailDocuments()" ng-disabled="form.$invalid">
-                {{ 'DOCUMENT.EMAIL_DOCUMENTS' | translate }}
-            </md-button>
-            <md-button type="button" ng-click="vm.cancel(form)">
-                {{ 'COMMON.CANCEL' | translate }}
-            </md-button>
-        </md-dialog-actions>
-    </form>
-</md-dialog>
+                    <md-dialog-actions>
+                        <md-button type="submit" class="md-primary" ng-click="vm.emailDocuments()" ng-disabled="form.$invalid">
+                            {{ 'DOCUMENT.EMAIL_DOCUMENTS' | translate }}
+                        </md-button>
+                        <md-button type="button" ng-click="vm.cancel(form)">
+                            {{ 'COMMON.CANCEL' | translate }}
+                        </md-button>
+                    </md-dialog-actions>
+                    </form>
+                    </md-dialog>
