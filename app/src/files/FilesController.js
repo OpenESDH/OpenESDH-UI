@@ -15,6 +15,7 @@ function FilesController(filesService, $translate, $mdDialog, notificationUtilsS
     vm.deleteFile = deleteFile;
     vm.assignFile = assignFile;
     vm.addToCase = addToCase;
+    vm.showComments = showComments;
     loadList();
     function loadList() {
         vm.files = [];
@@ -99,6 +100,21 @@ function FilesController(filesService, $translate, $mdDialog, notificationUtilsS
             }
         }).then(function() {
             loadList();
+        });
+    }
+    
+    function showComments(ev, file){
+        $mdDialog.show({
+            controller: 'FileCommentsDialogController',
+            controllerAs: 'fileCommentsVm',
+            templateUrl: 'app/src/files/view/fileComments.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true,
+            locals: {
+                file: file
+            }
+        }).then(function() {
         });
     }
 }

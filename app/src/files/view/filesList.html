@@ -14,9 +14,7 @@
         </div>
         <md-virtual-repeat-container class="tlist__body" md-auto-shrink>
             <div md-virtual-repeat="file in filesVm.files | orderObjectBy:orderByAttribute:reverseOrder" class="tlist__item" layout="column" flex>
-                <div class="tlist__item__link"
-                     title="{{ ('COMMON.DOWNLOAD' | translate) + ' ' + file.name}}"
-                     layout="row">
+                <div class="tlist__item__link" layout="row">
                     <span class="tlist__cell tlist__cell__fileicon tlist__cardview__hide" flex="5">
                         <img class="md-avatar" ng-src="app/assets/images/filetypes/{{file.thumbNailURL}}"/>
                     </span>
@@ -25,7 +23,10 @@
                         {{ file.title}}
                     </span>
                     <span class="tlist__cell muted" flex ng-show="filesVm.tab === 'group_files'">{{ file.group}}</span>
-                    <span class="tlist__cell muted" flex>{{ file.comments[0].comment}}</span>
+                    <span class="tlist__cell muted" flex>
+                        <a style="color:#1E88E5" href ng-click="filesVm.showComments($event, file)" title="{{ 'FILE.VIEW_COMMENTS' | translate}}">
+                            {{ file.comments[0].comment}}</a>
+                    </span>
                     <span class="tlist__cell muted" flex="15">{{ file.created | openeDate}}</span>
                     <span class="tlist__cell muted" flex="10">{{ file.creator}}</span>
                     <span class="tlist__cell muted" flex="15">{{ file.modified | openeDate}}</span>
