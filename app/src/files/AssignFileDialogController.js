@@ -12,7 +12,7 @@ function AssignFileDialogController($mdDialog, $translate, filesService, notific
     assignFileVm.cancel = cancel;
 
     function assignFile() {
-        filesService.moveFile(file.nodeRef, assignFileVm.owner.nodeRef, assignFileVm.comment)
+        filesService.moveFile(file.nodeRef, assignFileVm.owner, assignFileVm.comment)
                 .then(function() {
                     notificationUtilsService.notify($translate.instant("FILE.FILE_ASSIGNED_SUCCESSFULLY",
                             {title: file.title, authorityName: assignFileVm.owner.name}));

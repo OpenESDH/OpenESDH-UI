@@ -59,7 +59,9 @@ function FilesService($http, fileUtilsService, alfrescoNodeUtils) {
     function uploadFiles(owner, files, comment) {
         var formData = new FormData();
         formData.append('owner', owner);
-        formData.append('comment', comment);
+        if (comment) {
+            formData.append('comment', comment);
+        }
         angular.forEach(files, function(file) {
             formData.append('file', file);
         });
@@ -83,7 +85,7 @@ function FilesService($http, fileUtilsService, alfrescoNodeUtils) {
                 null, {params: {
                         nodeRef: nodeRef,
                         owner: newOwner,
-                        comment: comment
+                        comment: comment || ''
                     }})
                 .then(function(response) {
                     return response;
