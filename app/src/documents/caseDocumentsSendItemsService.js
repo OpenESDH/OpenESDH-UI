@@ -7,10 +7,18 @@ function CaseDocumentsSendItemsServiceProvider() {
     this.addMenuItem = addMenuItem;
     this.$get = CaseDocumentsSendItemsService;
 
-    function addMenuItem(labelKey, serviceName) {
+    /**
+     * 
+     * @param labelKey - key for translation
+     * @param serviceName - for injector
+     * @param lockedWithCase - true - menu will be disabled on locked cases
+     * @returns {CaseDocumentsSendItemsServiceProvider}
+     */
+    function addMenuItem(labelKey, serviceName, lockedWithCase) {
         availableItems.push({
             labelKey: labelKey,
-            serviceName: serviceName
+            serviceName: serviceName,
+            lockedWithCase: lockedWithCase || false
         });
         return this;
     }
