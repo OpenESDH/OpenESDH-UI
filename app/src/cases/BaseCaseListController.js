@@ -36,6 +36,8 @@ function BaseCaseListController($mdDialog, $translate, caseService, alfrescoFold
     vm.deleteCase = deleteCase;
     vm.isAdmin = sessionService.isAdmin();
     vm.getFilter = getFilter;
+    vm.filterArray = {};
+    vm.columnFilter = columnFilter;
 
     function getCases() {
         var vm = this;
@@ -83,6 +85,63 @@ function BaseCaseListController($mdDialog, $translate, caseService, alfrescoFold
                 notificationUtilsService.alert($translate.instant('CASE.DELETE_CASE_FAILURE'));
             });
         });
+    }
+
+    function columnFilter(item) {
+        if (vm.filterArray.caseName) {
+            var searchText = new RegExp(vm.filterArray.caseName, "i");
+            var caseName = item["cm:title"];
+            if (caseName.search(searchText) < 0)
+                return;
+        }
+
+        if (vm.filterArray.id) {
+            var searchText = new RegExp(vm.filterArray.id, "i");
+            var caseId = item["oe:id"];
+            if (caseId.search(searchText) < 0)
+                return;
+        }
+
+        if (vm.filterArray.type && vm.filterArray.type.length > 0) {
+            var arr = vm.filterArray.type;
+            if (arr.indexOf(item["TYPE"]) < 0)
+                return;
+        }
+
+        if (vm.filterArray.created !== undefined) {
+            if (!vm.filterArray.created)
+                return item;
+            var d1a = Date.parse(vm.filterArray.created);
+            var d1b = d1a + (24 * 60 * 60 * 1000);
+            var d2 = item["cm:created"];
+            if (!(d2 >= d1a && d2 < d1b))
+                return;
+        }
+
+        if (vm.filterArray.creator) {
+            var searchText = new RegExp(vm.filterArray.creator, "i");
+            var creator = item["cm:creator"];
+            if (creator.search(searchText) < 0)
+                return;
+        }
+
+        if (vm.filterArray.modified !== undefined) {
+            if (!vm.filterArray.modified)
+                return item;
+            var d1a = Date.parse(vm.filterArray.modified);
+            var d1b = d1a + (24 * 60 * 60 * 1000);
+            var d2 = item["cm:modified"];
+            if (!(d2 >= d1a && d2 < d1b))
+                return;
+        }
+
+        if (vm.filterArray.status && vm.filterArray.status.length > 0) {
+            var arr = vm.filterArray.status;
+            if (arr.indexOf(item["oe:status"]) < 0)
+                return;
+        }
+
+        return item;
     }
 
 }

@@ -23,21 +23,69 @@
             <md-tab-body>
                 <md-card>
                     <md-card-content>
+                        <div layout="row" layout-align="end start">
+                            <md-input-container md-no-float>
+                                <i class="material-icons" style="position:absolute;top:0.5rem;left:0.5rem;color:rgba(0, 0, 0, 0.25)">search</i>
+                                <input type="text" ng-model="freeTextSearch" placeholder="Filter" style="padding:0.5rem 0.5rem 0.5rem 2rem" />
+                            </md-input-container>
+                        </div>
                         <div class="repeat-table">
                             <div class="repeat-header" layout="row">
-                                <span layout="row" flex="{{vm.isAdmin ? 90 : 100}}">
-                                    <span class="r" flex="5"></span>
-                                    <span class="r" flex sort-table="cm:title">{{ 'COMMON.TITLE' | translate }}</span>
-                                    <span class="r" flex="15" sort-table="oe:id">{{ 'COMMON.ID' | translate }}</span>
-                                    <span class="r" flex="10" sort-table="TYPE">{{ 'COMMON.TYPE' | translate }}</span>
-                                    <span class="r" flex="15" sort-table="cm:created">{{ 'COMMON.CREATED' | translate }}</span>
-                                    <span class="r" flex="15" sort-table="cm:modified">{{ 'COMMON.MODIFIED' | translate }}</span>
-                                    <span class="r" flex="10" sort-table="oe:status">{{ 'COMMON.STATUS' | translate }}</span>
-                                </span>
-                                <span flex="10" ng-show="vm.isAdmin"></span>
+                                <div layout="row" flex="{{vm.isAdmin ? 90 : 100}}">
+                                    <div class="r" flex="5"></div>
+                                    <div class="r" flex>
+                                        <div layout="row" layout-align="space-between center">
+                                            <span sort-table="cm:title">
+                                                {{ 'COMMON.TITLE' | translate }}
+                                            </span>
+                                            <opene-column-filter type="text" filter="vm.filterArray" value="caseName" />
+                                        </div>
+                                    </div>
+                                    <div class="r" flex="15">
+                                        <div layout="row" layout-align="space-between center">
+                                            <span sort-table="oe:id">
+                                                {{ 'COMMON.ID' | translate }}
+                                            </span>
+                                            <opene-column-filter type="text" filter="vm.filterArray" value="id" />
+                                        </div>
+                                    </div>
+                                    <div class="r" flex="10">
+                                        <div layout="row" layout-align="space-between center">
+                                            <span sort-table="TYPE">
+                                                {{ 'COMMON.TYPE' | translate }}
+                                            </span>
+                                            <opene-column-filter type="checkbox" list="vm.caseTypes" filter="vm.filterArray" value="type" />
+                                        </div>
+                                    </div>
+                                    <div class="r" flex="15">
+                                        <div layout="row" layout-align="space-between center">
+                                            <span sort-table="cm:created">
+                                                {{ 'COMMON.CREATED' | translate }}
+                                            </span>
+                                            <opene-column-filter type="date" filter="vm.filterArray" value="created" />
+                                        </div>
+                                    </div>
+                                    <div class="r" flex="15">
+                                        <div layout="row" layout-align="space-between center">
+                                            <span sort-table="cm:modified">
+                                                {{ 'COMMON.MODIFIED' | translate }}
+                                            </span>
+                                            <opene-column-filter type="date" filter="vm.filterArray" value="modified" />
+                                        </div>
+                                    </div>
+                                    <div class="r" flex="10">
+                                        <div layout="row" layout-align="space-between center">
+                                            <span sort-table="oe:status">
+                                                {{ 'COMMON.STATUS' | translate }}
+                                            </span>
+                                            <opene-column-filter type="checkbox" list="vm.caseStatuses" filter="vm.filterArray" value="status" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div flex="10" ng-show="vm.isAdmin"></div>
                             </div>
                             <md-virtual-repeat-container md-auto-shrink style="border-bottom:0">
-                                <div md-virtual-repeat="case in vm.cases | orderObjectBy:orderByAttribute:reverseOrder" class="repeat-item" layout="row">
+                                <div md-virtual-repeat="case in vm.cases | orderObjectBy:orderByAttribute:reverseOrder | filter:vm.columnFilter | filter:freeTextSearch" class="repeat-item" layout="row">
                                     <a class="r-rowlink" ui-sref="case({'caseId': case['oe:id']})" layout="row" class="{{ case['oe:status'] == 'passive' ? 'muted' : '' }}" flex="{{vm.isAdmin ? 90 : 100}}">
                                         <span class="r" flex="5"><i class="material-icons">folder_open</i></span>
                                         <span class="r" flex>{{case["cm:title"]}}</span>
@@ -100,19 +148,54 @@
                 <md-card class="repeat-table" ng-show="groupCaseCtrl.layout == 'list'">
                     <md-card-content>
                         <div class="repeat-header" layout="row">
-                            <span layout="row" flex="95">
-                                <span class="r" flex="5"></span>
-                                <span class="r" flex sort-table="cm:title">{{ 'COMMON.TITLE' | translate }}</span>
-                                <span class="r" flex="15" sort-table="oe:id">{{ 'CASE.CASE' | translate }}</span>
-                                <span class="r" flex="15" sort-table="cm:created">{{ 'COMMON.CREATED' | translate }}</span>
-                                <span class="r" flex="10" sort-table="cm:creator">{{ 'COMMON.CREATED' | translate }} {{ 'COMMON.BY' | translate }}</span>
-                                <span class="r" flex="10" sort-table="base:owners.0.fullname">{{'COMMON.OWNER' | translate}}</span>
-                                <span class="r" flex="10" sort-table="oe:status">{{ 'COMMON.STATUS' | translate }}</span>
-                            </span>
-                            <span flex="5"></span>
+                            <div layout="row" flex="95">
+                                <div class="r" flex="5"></div>
+                                <div class="r" flex>
+                                    <div layout="row" layout-align="space-between center">
+                                        <span sort-table="cm:title">
+                                            {{ 'COMMON.TITLE' | translate }}
+                                        </span>
+                                        <opene-column-filter type="text" filter="vm.filterArray" value="caseName" />
+                                    </div>
+                                </div>
+                                <div class="r" flex="15">
+                                    <div layout="row" layout-align="space-between center">
+                                        <span sort-table="oe:id">
+                                            {{ 'COMMON.ID' | translate }}
+                                        </span>
+                                        <opene-column-filter type="text" filter="vm.filterArray" value="id" />
+                                    </div>
+                                </div>
+                                <div class="r" flex="15">
+                                    <div layout="row" layout-align="space-between center">
+                                        <span sort-table="cm:created">
+                                            {{ 'COMMON.CREATED' | translate }}
+                                        </span>
+                                        <opene-column-filter type="date" filter="vm.filterArray" value="created" />
+                                    </div>
+                                </div>
+                                <div class="r" flex="10">
+                                    <div layout="row" layout-align="space-between center">
+                                        <span sort-table="cm:creator">
+                                            {{ 'COMMON.CREATED' | translate }} {{ 'COMMON.BY' | translate }}
+                                        </span>
+                                        <opene-column-filter type="text" filter="vm.filterArray" value="creator" />
+                                    </div>
+                                </div>
+                                <div class="r" flex="10" sort-table="base:owners.0.fullname">{{'COMMON.OWNER' | translate}}</div>
+                                <div class="r" flex="10">
+                                    <div layout="row" layout-align="space-between center">
+                                        <span sort-table="oe:status">
+                                            {{ 'COMMON.STATUS' | translate }}
+                                        </span>
+                                        <opene-column-filter type="checkbox" list="vm.caseStatuses" filter="vm.filterArray" value="status" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div flex="5"></div>
                         </div>
                         <md-virtual-repeat-container md-auto-shrink style="border-bottom:0">
-                            <div md-virtual-repeat="case in groupCaseCtrl.cases | orderObjectBy:orderByAttribute:reverseOrder" class="repeat-item" layout="row">
+                            <div md-virtual-repeat="case in groupCaseCtrl.cases | orderObjectBy:orderByAttribute:reverseOrder | filter:vm.columnFilter" class="repeat-item" layout="row">
                                 <a class="r-rowlink" href="#/cases/case/{{case['oe:id']}}" layout="row" class="{{ case['oe:status'] == 'passive' ? 'muted' : '' }}" flex="95">
                                     <span class="r" flex="5"><i class="material-icons">folder_open</i></span>
                                     <span class="r" flex>{{case["cm:title"]}}</span>

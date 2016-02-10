@@ -16,6 +16,10 @@ function FilesController(filesService, $translate, $mdDialog, notificationUtilsS
     vm.assignFile = assignFile;
     vm.addToCase = addToCase;
     vm.showComments = showComments;
+
+    vm.filterArray = {};
+    vm.columnFilter = columnFilter;
+
     loadList();
     function loadList() {
         vm.files = [];
@@ -116,5 +120,65 @@ function FilesController(filesService, $translate, $mdDialog, notificationUtilsS
             }
         }).then(function() {
         });
+    }
+
+    function columnFilter(item) {
+        if (vm.filterArray.title) {
+            var searchText = new RegExp(vm.filterArray.title, "i");
+            var title = item["title"];
+            if (title.search(searchText) < 0)
+                return;
+        }
+
+        if (vm.filterArray.group) {
+            var searchText = new RegExp(vm.filterArray.group, "i");
+            var group = item["group"];
+            if (group.search(searchText) < 0)
+                return;
+        }
+
+        if (vm.filterArray.comment) {
+            var searchText = new RegExp(vm.filterArray.comment, "i");
+            var comment = item["comments"][0]["comment"];
+            if (comment.search(searchText) < 0)
+                return;
+        }
+
+
+        if (vm.filterArray.created !== undefined) {
+            if (!vm.filterArray.created)
+                return item;
+            var d1a = Date.parse(vm.filterArray.created);
+            var d1b = d1a + (24 * 60 * 60 * 1000);
+            var d2 = item["created"];
+            if (!(d2 >= d1a && d2 < d1b))
+                return;
+        }
+
+        if (vm.filterArray.creator) {
+            var searchText = new RegExp(vm.filterArray.creator, "i");
+            var creator = item["creator"];
+            if (creator.search(searchText) < 0)
+                return;
+        }
+
+        if (vm.filterArray.modified !== undefined) {
+            if (!vm.filterArray.modified)
+                return item;
+            var d1a = Date.parse(vm.filterArray.modified);
+            var d1b = d1a + (24 * 60 * 60 * 1000);
+            var d2 = item["modified"];
+            if (!(d2 >= d1a && d2 < d1b))
+                return;
+        }
+
+        if (vm.filterArray.modifier) {
+            var searchText = new RegExp(vm.filterArray.modifier, "i");
+            var modifier = item["modifier"];
+            if (modifier.search(searchText) < 0)
+                return;
+        }
+
+        return item;
     }
 }
