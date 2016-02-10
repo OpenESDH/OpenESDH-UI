@@ -52,9 +52,15 @@
                 $mdDialog.hide(printInfo);
             }
             
-            vm.onSelectionChanged = function(){
-                vm.formDisabled = !_isAnythingSelected();
+            vm.onSelectionChanged = onSelectionChanged;
+            
+            vm.onDocSelectionChanged = function(){
+                onSelectionChanged();
             };
+            
+            function onSelectionChanged(){
+                vm.formDisabled = !_isAnythingSelected();
+            }
             
             function _isAnythingSelected(){
                 return vm.caseDetails === true 

@@ -228,7 +228,7 @@
             url: '/cases/case/:caseId/doc/:storeType/:storeId/:id',
             views: {
                 'content@': {
-                    controller: 'DocumentDetailsController',
+                    controller: 'CaseDocumentDetailsController',
                     templateUrl: 'app/src/documents/view/document.html',
                     controllerAs: 'docCtrl'
                 }

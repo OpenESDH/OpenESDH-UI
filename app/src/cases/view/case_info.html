@@ -16,6 +16,9 @@
                     </div>
                 </div>
                 <dl layout="row" layout-wrap ng-include="civm.caseInfoTemplateUrl"></dl>
+                <span ng-repeat="extra in civm.extras">
+                    <ng-include src="extra.caseInfoPropsUrl"></ng-include>
+                </span>
             </md-card-content>
             <div class="md-actions" layout="column" layout-md="row" layout-xs="column" layout-padding layout-align="start start" >
                 <md-button class="md-primary" ng-click="civm.editCase($event)" ng-disabled="caseCtrl.caseIsLocked">
@@ -24,6 +27,11 @@
                     <i class="material-icons">print</i> {{ 'CASE.PRINT_CASE' | translate }}</md-button>
                 <md-button class="md-primary" ng-click="civm.startWorklfow()" ng-disabled="caseCtrl.caseIsLocked">
                     <i class="material-icons">device_hub</i> {{ 'CASE.START_WORKFLOW' | translate }}</md-button>
+                    
+                <span ng-repeat="extra in civm.extras" style="padding: 0">
+                    <ng-include src="extra.caseInfoActionsUrl"></ng-include>
+                </span>
+                
             </div>
         </md-card>
     </div>

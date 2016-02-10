@@ -1,7 +1,8 @@
-<md-card ng-controller="DocumentController as docCtrl">
+<md-card ng-controller="CaseDocumentsController as docCtrl">
+    
     <md-card-content style="min-height: 400px;">
         <h3 class="md-title">{{ 'DOCUMENT.DOCUMENTS' | translate }}</h3>
-
+    
         <div class="tlist">
                 <div class="tlist__header" layout="row">
                     <span class="tlist__cell tlist__cardview__hide" flex="5"></span>
@@ -16,7 +17,7 @@
                      layout="column" flex
                      class="tlist__item {{ doc['oe:lockedDate'] ? 'muted' : '' }}" ng-disabled="doc['oe:lockedDate']">
                     <a class="tlist__item__link" 
-                       href="#/cases/case/{{docCtrl.caseId}}/doc/{{doc.nodeRef| nodeRefUri}}" 
+                       href="{{docCtrl.docDetailsUrl}}/{{doc.nodeRef| nodeRefUri}}" 
                        layout="row">
                         <span class="tlist__cell tlist__cell__fileicon tlist__cardview__hide" flex="5"><img class="md-avatar" ng-src="app/assets/images/filetypes/{{doc.thumbNailURL}}"/></span>
                         <span class="tlist__cell" flex>
@@ -36,6 +37,7 @@
             </md-virtual-repeat-container>
         </div>
     </md-card-content>
+    
     <div class="md-actions" layout="row" layout-xs="column" layout-padding layout-align="start start">
         <md-button class="md-primary"
                    ng-click="docCtrl.uploadDocument()"
