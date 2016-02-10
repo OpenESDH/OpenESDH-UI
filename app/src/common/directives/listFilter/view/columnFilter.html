@@ -1,0 +1,22 @@
+<md-menu class="filter-menu" md-position-mode="target-right target" md-offset="0 37">
+    <i class="material-icons" ng-click="$mdOpenMenu($event)" ng-class="{active:!(filter[value].length == 0 || filter[value] == null)}">
+        {{ (filter[value].length == 0 || filter[value] == null) ? 'filter_list' : 'check' }}
+    </i>
+    <md-menu-content>
+        <md-menu-item ng-if="type == 'text'">
+            <md-input-container md-no-float>
+                <input type="text" placeholder="Filter" ng-model="filter[value]" />
+            </md-input-container>
+        </md-menu-item>
+        <md-menu-item ng-if="type == 'checkbox'" ng-repeat="item in list">
+            <md-input-container class="md-block">
+                <md-checkbox ng-click="selectCheckbox(item.value)" md-prevent-menu-close="md-prevent-menu-close">
+                    {{ item.name }}
+                </md-checkbox>
+            </md-input-container>
+        </md-menu-item>
+        <md-menu-item ng-if="type == 'date'">
+            <md-datepicker md-placeholder="Enter date" ng-model="filter[value]"></md-datepicker>
+        </md-menu-item>
+    </md-menu-content>
+</md-menu>
