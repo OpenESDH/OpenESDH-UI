@@ -6,8 +6,14 @@ var gulp = require('gulp'),
 // Config vars
 // If, after a while, there are a lot of config vars, we can move these to a separate file
 var environment = {
-    test: {proxy: 'http://test.openesdh.dk'},
-    demo: {proxy: 'http://demo.openesdh.dk'},
+    test: {
+        proxy: 'http://test.openesdh.dk',
+        spp: 'http://test.openesdh.dk:7070'
+    },
+    demo: {
+        proxy: 'http://demo.openesdh.dk',
+        spp: 'http://demo.openesdh.dk:7070'    
+    },
     local: {
         proxy: 'http://localhost:8080',
         spp: 'http://localhost:7070'
