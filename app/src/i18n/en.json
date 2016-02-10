@@ -64,7 +64,8 @@
         "LIST_VIEW": "List view",
         "GRID_VIEW": "Grid view",
         "DOWNLOAD_TEMPLATE_CSV": "Download template CSV",
-        "LOCKED_BY": "Locked by {{locked_by}}"
+        "LOCKED_BY": "Locked by {{locked_by}}",
+        "CONGRATULATIONS": "Congratulations!"
     },
     "CASE": {
         "CONFIRM_CLOSE_CASE": "Do you want to close this case?",
