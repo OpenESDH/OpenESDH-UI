@@ -2,7 +2,7 @@
         .module('openeApp.documents')
         .controller('CaseDocumentDetailsController', CaseDocumentDetailsController);
 
-    function CaseDocumentDetailsController($scope, $stateParams, $controller, $location, projectRoomsService){
+    function CaseDocumentDetailsController($scope, $stateParams, $controller, $location, caseDocumentDetailsExtrasService){
         angular.extend(this, $controller('DocumentDetailsController'));
         var vm = this;
         var caseId = $stateParams.caseId;
@@ -13,13 +13,7 @@
         
         function init(){            
             vm.activate();
-            projectRoomsService.getCaseSites(vm.caseId).then(function(sites){
-                if(sites.length == 0){
-                    vm.hasProjectRoom = false;
-                    return;
-                }
-                vm.hasProjectRoom = true;
-            });
+            vm.extrasControllers = caseDocumentDetailsExtrasService.getExtrasControllers();
         }
         
         function afterDocumentDelete(){
