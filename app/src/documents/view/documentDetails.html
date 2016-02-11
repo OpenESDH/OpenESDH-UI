@@ -11,7 +11,7 @@
                         <dd flex="66">
                             {{ docCtrl.doc.status | docStatus }}
                             <span ng-show="docCtrl.doc.editLockState.isLocked && !docCtrl.hasProjectRoom" class="muted">({{'COMMON.LOCKED_BY'| translate: {locked_by: docCtrl.doc.editLockState.lockOwnerInfo} }})</span>
-                            <span ng-show="docCtrl.doc.editLockState.isLocked && docCtrl.hasProjectRoom" class="muted">({{'CASE.PROJECT_ROOM.LOCKED_FOR_PROJECT_ROOM'| translate }})</span>
+                            <span ng-show="docCtrl.doc.editLockState.isLocked && docCtrl.hasProjectRoom" class="muted">({{'PROJECT_ROOM.LOCKED_FOR_PROJECT_ROOM'| translate }})</span>
                         </dd>
                         <dt flex="33">{{ 'COMMON.TYPE' | translate }}</dt><dd flex="66">
                             <i class="material-icons" ng-show="docCtrl.doc['fromOutlook']" title="{{ 'DOCUMENT.SENT_FROM_OUTLOOK' | translate}}" style="padding-right: 5px;">email</i>
