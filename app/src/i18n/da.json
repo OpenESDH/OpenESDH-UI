@@ -64,7 +64,6 @@
         "MESSAGE": "Meddelelse",
         "LIST_VIEW": "Listevisning",
         "GRID_VIEW": "Gittervisning",
-        "DOWNLOAD_TEMPLATE_CSV": "Download skabelon CSV",
         "LOCKED_BY": "Låst af {{locked_by}}"
     },
     "CASE": {
@@ -173,19 +172,7 @@
         "UPLOAD_NEW_DOCUMENTS": "Upload nyt dokument",
         "SEND_DOCUMENTS": "Send dokumenter",
         "EMAIL_DOCUMENTS": "Email dokumenter",
-        "CREATE_FROM_TEMPLATE": "Opret fra skabelon",
         "MY_DOCUMENTS": "Mine dokumenter",
-        "CHOOSE_TEMPLATE": "Vælg skabelon",
-        "TEMPLATE": {
-            "ARE_YOU_SURE_YOU_WANT_TO_DELETE_TEMPLATE": "Er du sikker på, at du vil slette skabelon '{{title}}' ?",
-            "RECEIVER": "Modtager",
-            "LABELS": {
-                "TEMPLATES": "Skabeloner",
-                "UPLOAD_NEW_TEMPLATE": "Upload ny skabelon"
-            }
-        },
-        "DOWNLOAD_RENDERED_FROM_TEMPLATE": "Download fra skabelon",
-        "SAVE_RENDERED_TEMPLATE_TO_CASE": "Gem til sag",
         "CHANGE_STATUS": "Skift status",
         "VERSION": "Version",
         "VERSION_ADDED": "Version tilføjet",

@@ -1,1 +1,0 @@
-angular.module('openeApp.officeTemplates', [ 'ngMaterial', 'ngFileSaver']);

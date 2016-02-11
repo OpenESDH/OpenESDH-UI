@@ -3,7 +3,7 @@ angular
     .module('openeApp')
     .controller('AuthController', AuthController);
 
-function AuthController($scope, $state, $stateParams, $translate, authService, userService, $mdDialog, sessionService, $window) {
+function AuthController($state, $stateParams, authService, userService, $mdDialog, sessionService, $window) {
     var vm = this;
     var loginErrorMessage = angular.fromJson($stateParams.error);
 
@@ -14,7 +14,6 @@ function AuthController($scope, $state, $stateParams, $translate, authService, u
     vm.errorMsg = loginErrorMessage ? loginErrorMessage: "";
     vm.showForgotDialog = showForgotDialog;
     vm.updateValidator = updateValidator;
-    vm.isTenant = isTenant;
     
     if($stateParams.nosso !== "true" && !authService.isAuthenticated()){
         authService.ssoLogin().then(function(response){
@@ -102,9 +101,7 @@ function AuthController($scope, $state, $stateParams, $translate, authService, u
                         dlg.form.email.$setValidity("emailNotExists", false);
                 }
             ); 
-        }
-
-
+        };
     };
 
     function showForgotDialog(ev) {
@@ -121,10 +118,5 @@ function AuthController($scope, $state, $stateParams, $translate, authService, u
     function getUserInfo() {
         var userInfo = authService.getUserInfo();
         return userInfo;
-    }
-    
-    function isTenant(){
-       var userName = getUserInfo().user.userName;
-       return userName.indexOf("@") != -1;
     }
 }

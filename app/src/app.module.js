@@ -24,7 +24,6 @@
             'openeApp.contacts',
             'openeApp.administration',
             'openeApp.office',
-            'openeApp.officeTemplates',
             'openeApp.groups',
             'openeApp.users',
             'openeApp.workflows',
@@ -367,7 +366,7 @@
             views: {
                 'systemsettings': {
                     templateUrl: 'app/src/system_settings/menu/system_settings.html',
-                    controller: 'SystemsettingsController',
+                    controller: 'SystemSettingsController',
                     controllerAs: 'vm'
                 }
             }
@@ -406,18 +405,6 @@
                     controller: 'DocumentCategoriesController',
                     controllerAs: 'vm'
                 }
-            }
-        }).state('administration.systemsettings.templates', {
-            url: '/templates',
-            views: {
-                'systemsetting-view': {
-                    templateUrl: 'app/src/officeTemplates/view/templates.html',
-                    controller: 'OfficeTemplateController',
-                    controllerAs: 'tmplCtrl'
-                }
-            },
-            data: {
-                authorizedRoles: [USER_ROLES.user]
             }
         }).state('administration.systemsettings.tenantsmodules', {
             url: '/tenantsmodules',

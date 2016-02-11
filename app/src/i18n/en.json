@@ -173,19 +173,7 @@
         "UPLOAD_NEW_DOCUMENTS": "Upload new document",
         "SEND_DOCUMENTS": "Send documents",
         "EMAIL_DOCUMENTS": "Email documents",
-        "CREATE_FROM_TEMPLATE": "Create from template",
         "MY_DOCUMENTS": "My documents",
-        "CHOOSE_TEMPLATE": "Choose template",
-        "TEMPLATE": {
-            "ARE_YOU_SURE_YOU_WANT_TO_DELETE_TEMPLATE": "Are you sure you want to delete the template '{{title}}' ?",
-            "RECEIVER": "Receiver",
-            "LABELS": {
-                "TEMPLATES": "Templates",
-                "UPLOAD_NEW_TEMPLATE": "Upload new template"
-            }
-        },
-        "DOWNLOAD_RENDERED_FROM_TEMPLATE": "Download rendered from template",
-        "SAVE_RENDERED_TEMPLATE_TO_CASE": "Save rendered template to case",
         "CHANGE_STATUS": "Change status",
         "VERSION": "Version",
         "VERSION_ADDED": "Version added",

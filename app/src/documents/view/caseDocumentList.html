@@ -44,12 +44,6 @@
                    ng-disabled="caseCtrl.caseIsLocked">
             <i class="material-icons">file_upload</i>{{ 'DOCUMENT.UPLOAD_NEW_DOCUMENTS' | translate }}
         </md-button>
-        <span ng-include="'app/src/documents/view/caseDocumentsSend.html'" style="padding: 0"></span>
-        <md-button class="md-primary"
-                   ng-click="docCtrl.createDocumentFromTemplate()"
-                   ng-disabled="caseCtrl.caseIsLocked">
-            <i class="material-icons">note_add</i>
-            {{ 'DOCUMENT.CREATE_FROM_TEMPLATE' | translate }}
-        </md-button>
+        <span ng-include="'app/src/documents/view/caseDocumentActions.html'" style="padding: 0"></span>
     </div>
 </md-card>
