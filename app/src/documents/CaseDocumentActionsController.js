@@ -1,11 +1,12 @@
 angular
         .module('openeApp.documents')
-        .controller('CaseDocumentsSendController', CaseDocumentsSendController);
+        .controller('CaseDocumentActionsController', CaseDocumentActionsController);
 
-function CaseDocumentsSendController($injector, $q, caseDocumentsSendItemsService) {
+function CaseDocumentActionsController($injector, $q, caseDocumentActionsService) {
     var vm = this;
     vm.execute = execute;
-    vm.menuItems = caseDocumentsSendItemsService.getMenuItems();
+    vm.menuItems = caseDocumentActionsService.getMenuItems();
+    vm.otherButtons = caseDocumentActionsService.getButtons();
 
     vm.menuItems.map(function(item) {
         isVisible(item).then(function(result) {
@@ -13,9 +14,9 @@ function CaseDocumentsSendController($injector, $q, caseDocumentsSendItemsServic
         });
     });
 
-    function execute(caseId, menuItem) {
+    function execute(caseId, menuItem, docCtrl) {
         var service = $injector.get(menuItem.serviceName);
-        service.showDialog(caseId);
+        service.showDialog(caseId, docCtrl);
     }
 
     function isVisible(menuItem) {
