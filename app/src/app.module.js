@@ -12,11 +12,12 @@
             'swfobject',
             'isteven-multi-select',
             'openeApp.translations.init',
+            'openeApp.header',
+            'openeApp.dashboard',
             'openeApp.cases',
             'openeApp.cases.members',
             'openeApp.cases.parties',
             'openeApp.classification',
-            'openeApp.dashboard',
             'openeApp.files',
             'openeApp.tasks',
             'openeApp.documents',
@@ -111,7 +112,8 @@
             views: {
                 'content@': {
                     templateUrl: 'app/src/dashboard/view/dashboard.html',
-                    controller: 'DashboardController'
+                    controller: 'DashboardController',
+                    controllerAs: 'vm'    
                 }
             },
             data: {
