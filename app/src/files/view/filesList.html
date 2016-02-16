@@ -61,7 +61,7 @@
             </div>
             <div class="tlist__cell" flex="10">{{ 'COMMON.ACTIONS' | translate }}</div>
         </div>
-        <md-virtual-repeat-container class="tlist__body" md-auto-shrink>
+        <md-virtual-repeat-container class="tlist__body" flex-height>
             <div md-virtual-repeat="file in filesVm.files | orderObjectBy:orderByAttribute:reverseOrder | filter:filesVm.columnFilter" class="tlist__item" layout="column" flex>
                 <div class="tlist__item__link" layout="row">
                     <span class="tlist__cell tlist__cell__fileicon tlist__cardview__hide" flex="5">

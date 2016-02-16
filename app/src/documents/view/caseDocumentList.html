@@ -5,7 +5,7 @@
     
         <div class="tlist">
                 <div class="tlist__header" layout="row">
-                    <span class="tlist__cell tlist__cardview__hide" flex="5"></span>
+                    <span class="tlist__cell tlist__cardview__hide icon" flex="none"></span>
                     <span class="tlist__cell" flex sort-table="cm:title">{{ 'COMMON.TITLE' | translate }}</span>
                     <span class="tlist__cell" flex="15" sort-table="doc:type">{{ 'COMMON.TYPE' | translate }}</span>
                     <span class="tlist__cell" flex="15" sort-table="doc:category">{{ 'COMMON.CATEGORY' | translate }}</span>
@@ -19,7 +19,7 @@
                     <a class="tlist__item__link" 
                        href="{{docCtrl.docDetailsUrl}}/{{doc.nodeRef| nodeRefUri}}" 
                        layout="row">
-                        <span class="tlist__cell tlist__cell__fileicon tlist__cardview__hide" flex="5"><img class="md-avatar" ng-src="app/assets/images/filetypes/{{doc.thumbNailURL}}"/></span>
+                        <span class="tlist__cell tlist__cell__fileicon tlist__cardview__hide icon" flex="none"><img class="md-avatar" ng-src="app/assets/images/filetypes/{{doc.thumbNailURL}}"/></span>
                         <span class="tlist__cell" flex>
                             <img class="md-avatar tlist__cardview__show" ng-src="app/assets/images/filetypes/{{doc.thumbNailURL}}"/>
                             {{ doc["cm:title"] }}</span>

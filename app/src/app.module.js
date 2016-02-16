@@ -215,7 +215,7 @@
             url: '/tasks',
             views: {
                 'caseTasks': {
-                    templateUrl: 'app/src/tasks/view/tasksDisplay.html',
+                    templateUrl: 'app/src/tasks/view/tasks.html',
                     controller: 'CaseTasksController',
                     controllerAs: 'tasksCtrl'
                 }

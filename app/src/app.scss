@@ -219,7 +219,6 @@ md-list md-list-item.active a {
 
 .repeat-table { /* Deprecated. Use .tlist instead */
 
-    .md-virtual-repeat-container,
     .repeat-header,
     .repeat-item {
         border-bottom: 1px solid #ddd;
@@ -238,6 +237,15 @@ md-list md-list-item.active a {
 
         i.material-icons, img.md-avatar {
             vertical-align: middle;
+        }
+
+        &.icon {
+            padding: 0.5em 0;
+            width: 24px;
+
+            & + * {
+                padding-left: 0.5em;
+            }
         }
     }
 
@@ -268,7 +276,6 @@ md-list md-list-item.active a {
     background-color: #fff;
     position: relative;
     .tlist__header,
-    .tlist__body,
     .tlist__item {
         border-bottom: 1px solid #ddd;
     }
@@ -280,6 +287,15 @@ md-list md-list-item.active a {
         white-space: nowrap;
         .cell__label {
             display: none;
+        }
+
+        &.tlist__cell_icon {
+            padding: 0.5em 0 0.5em 1em;
+            width: 40px;
+
+            & + * {
+                padding-left: 0.5em;
+            }
         }
 
     }
@@ -294,7 +310,6 @@ md-list md-list-item.active a {
         }
     }
     .tlist__header {
-        margin-right: 1em; /*to compensate scroll*/
 
         .tlist__cell {
             color: rgba(0,0,0,0.54);
