@@ -1,124 +1,128 @@
-<div layout="column">
-    <div class="tlist">
+<md-card>
+    <md-card-content>
+        <div layout="column">
+            <div class="tlist">
 
-        <div class="tlist__header" layout="row">
-            <div class="tlist__cell tlist__cardview__hide" flex="5"></div>
-            <div class="tlist__cell" flex>
-                <div layout="row" layout-align="space-between center">
-                    <span sort-table="title">
-                        {{ 'COMMON.TITLE' | translate }}
-                    </span>
-                    <opene-column-filter type="text" filter="filesVm.filterArray" value="title" />
+                <div class="tlist__header" layout="row">
+                    <div class="tlist__cell tlist__cardview__hide" flex="5"></div>
+                    <div class="tlist__cell" flex>
+                        <div layout="row" layout-align="space-between center">
+                            <span sort-table="title">
+                                {{ 'COMMON.TITLE' | translate }}
+                            </span>
+                            <opene-column-filter type="text" filter="filesVm.filterArray" value="title" />
+                        </div>
+                    </div>
+                    <div class="tlist__cell" flex ng-show="filesVm.tab === 'group_files'">
+                        <div layout="row" layout-align="space-between center">
+                            <span sort-table="group">
+                                {{ 'GROUP.GROUP' | translate }}
+                            </span>
+                            <opene-column-filter type="text" filter="filesVm.filterArray" value="group" />
+                        </div>
+                    </div>
+                    <div class="tlist__cell" flex>
+                        <div layout="row" layout-align="space-between center">
+                            <span sort-table="comment[0]">
+                                {{ 'COMMON.COMMENT' | translate }}
+                            </span>
+                            <opene-column-filter type="text" filter="filesVm.filterArray" value="comment" />
+                        </div>
+                    </div>
+                    <div class="tlist__cell" flex="15">
+                        <div layout="row" layout-align="space-between center">
+                            <span sort-table="created">
+                                {{ 'COMMON.CREATED' | translate }}
+                            </span>
+                            <opene-column-filter type="date" filter="filesVm.filterArray" value="created" />
+                        </div>
+                    </div>
+                    <div class="tlist__cell" flex="10">
+                        <div layout="row" layout-align="space-between center">
+                            <span sort-table="creator">
+                                {{ 'COMMON.CREATEDBY' | translate }}
+                            </span>
+                            <opene-column-filter type="text" filter="filesVm.filterArray" value="creator" />
+                        </div>
+                    </div>
+                    <div class="tlist__cell" flex="15">
+                        <div layout="row" layout-align="space-between center">
+                            <span sort-table="modified">
+                                {{ 'COMMON.MODIFIED' | translate }}
+                            </span>
+                            <opene-column-filter type="date" filter="filesVm.filterArray" value="modified" />
+                        </div>
+                    </div>
+                    <div class="tlist__cell" flex="10">
+                        <div layout="row" layout-align="space-between center">
+                            <span sort-table="modifier">
+                                {{ 'COMMON.MODIFIED_BY' | translate }}
+                            </span>
+                            <opene-column-filter type="text" filter="filesVm.filterArray" value="modifier" />
+                        </div>
+                    </div>
+                    <div class="tlist__cell" flex="10">{{ 'COMMON.ACTIONS' | translate }}</div>
                 </div>
+                <md-virtual-repeat-container class="tlist__body" flex-height>
+                    <div md-virtual-repeat="file in filesVm.files | orderObjectBy:orderByAttribute:reverseOrder | filter:filesVm.columnFilter" class="tlist__item" layout="column" flex>
+                        <div class="tlist__item__link" layout="row">
+                            <span class="tlist__cell tlist__cell__fileicon tlist__cardview__hide" flex="5">
+                                <img class="md-avatar" ng-src="app/assets/images/filetypes/{{file.thumbNailURL}}"/>
+                            </span>
+                            <span class="tlist__cell" flex>
+                                <img class="md-avatar tlist__cardview__show" ng-src="app/assets/images/filetypes/{{file.thumbNailURL}}"/>
+                                {{ file.title}}
+                            </span>
+                            <span class="tlist__cell muted" flex ng-show="filesVm.tab === 'group_files'">{{ file.group}}</span>
+                            <span class="tlist__cell muted" flex>
+                                <a style="color:#1E88E5" href ng-click="filesVm.showComments($event, file)" title="{{ 'FILE.VIEW_COMMENTS' | translate}}">
+                                    {{ file.comments[0].comment}}</a>
+                            </span>
+                            <span class="tlist__cell muted" flex="15">{{ file.created | openeDate}}</span>
+                            <span class="tlist__cell muted" flex="10">{{ file.creator}}</span>
+                            <span class="tlist__cell muted" flex="15">{{ file.modified | openeDate}}</span>
+                            <span class="tlist__cell muted" flex="10">{{ file.modifier}}</span>
+                            <span class="tlist__cell muted tlist__cell__menu" flex="10">
+                                <md-menu style="text-align: left;">
+                                    <md-button aria-label="{{ 'MENU.OPEN_MENU' | translate }}" ng-click="$mdOpenMenu($event)">
+                                        <i class="material-icons">more_vert</i>
+                                    </md-button>
+                                    <md-menu-content width="4">
+                                        <md-menu-item>
+                                            <md-button ng-click="filesVm.previewFile(file)">
+                                                <md-icon>pageview</md-icon>{{ 'DOCUMENT.OPEN_PREVIEW' | translate }}
+                                            </md-button>
+                                        </md-menu-item>
+                                        <md-menu-item>
+                                            <md-button ng-click="filesVm.downloadFile(file)">
+                                                <md-icon>file_download</md-icon>{{ 'COMMON.DOWNLOAD' | translate }}
+                                            </md-button>
+                                        </md-menu-item>
+                                        <md-menu-divider></md-menu-divider>
+                                        <md-menu-item>
+                                            <md-button ng-click="filesVm.assignFile($event, file)">
+                                                <md-icon>send</md-icon>{{ 'FILE.ASSIGN_TO' | translate }}
+                                            </md-button>
+                                        </md-menu-item>
+                                        <md-menu-item>
+                                            <md-button ng-click="filesVm.addToCase($event, file)">
+                                                <md-icon>folder_open</md-icon>{{ 'FILE.ADD_TO_CASE' | translate }}
+                                            </md-button>
+                                        </md-menu-item>
+                                        <md-menu-item>
+                                            <md-button ng-click="filesVm.deleteFile(file)">
+                                                <md-icon>delete</md-icon>{{ 'COMMON.DELETE' | translate }}
+                                            </md-button>
+                                        </md-menu-item>
+                                    </md-menu-content>
+                                </md-menu>
+                            </span>
+                        </div>
+                    </div>
+                </md-virtual-repeat-container>
+
+                <md-button class="md-primary" ng-click="filesVm.showAddFileDialog($event)">{{ 'COMMON.ADD_NEW' | translate }}</md-button>
             </div>
-            <div class="tlist__cell" flex ng-show="filesVm.tab === 'group_files'">
-                <div layout="row" layout-align="space-between center">
-                    <span sort-table="group">
-                        {{ 'GROUP.GROUP' | translate }}
-                    </span>
-                    <opene-column-filter type="text" filter="filesVm.filterArray" value="group" />
-                </div>
-            </div>
-            <div class="tlist__cell" flex>
-                <div layout="row" layout-align="space-between center">
-                    <span sort-table="comment[0]">
-                        {{ 'COMMON.COMMENT' | translate }}
-                    </span>
-                    <opene-column-filter type="text" filter="filesVm.filterArray" value="comment" />
-                </div>
-            </div>
-            <div class="tlist__cell" flex="15">
-                <div layout="row" layout-align="space-between center">
-                    <span sort-table="created">
-                        {{ 'COMMON.CREATED' | translate }}
-                    </span>
-                    <opene-column-filter type="date" filter="filesVm.filterArray" value="created" />
-                </div>
-            </div>
-            <div class="tlist__cell" flex="10">
-                <div layout="row" layout-align="space-between center">
-                    <span sort-table="creator">
-                        {{ 'COMMON.CREATEDBY' | translate }}
-                    </span>
-                    <opene-column-filter type="text" filter="filesVm.filterArray" value="creator" />
-                </div>
-            </div>
-            <div class="tlist__cell" flex="15">
-                <div layout="row" layout-align="space-between center">
-                    <span sort-table="modified">
-                        {{ 'COMMON.MODIFIED' | translate }}
-                    </span>
-                    <opene-column-filter type="date" filter="filesVm.filterArray" value="modified" />
-                </div>
-            </div>
-            <div class="tlist__cell" flex="10">
-                <div layout="row" layout-align="space-between center">
-                    <span sort-table="modifier">
-                        {{ 'COMMON.MODIFIED_BY' | translate }}
-                    </span>
-                    <opene-column-filter type="text" filter="filesVm.filterArray" value="modifier" />
-                </div>
-            </div>
-            <div class="tlist__cell" flex="10">{{ 'COMMON.ACTIONS' | translate }}</div>
         </div>
-        <md-virtual-repeat-container class="tlist__body" flex-height>
-            <div md-virtual-repeat="file in filesVm.files | orderObjectBy:orderByAttribute:reverseOrder | filter:filesVm.columnFilter" class="tlist__item" layout="column" flex>
-                <div class="tlist__item__link" layout="row">
-                    <span class="tlist__cell tlist__cell__fileicon tlist__cardview__hide" flex="5">
-                        <img class="md-avatar" ng-src="app/assets/images/filetypes/{{file.thumbNailURL}}"/>
-                    </span>
-                    <span class="tlist__cell" flex>
-                        <img class="md-avatar tlist__cardview__show" ng-src="app/assets/images/filetypes/{{file.thumbNailURL}}"/>
-                        {{ file.title}}
-                    </span>
-                    <span class="tlist__cell muted" flex ng-show="filesVm.tab === 'group_files'">{{ file.group}}</span>
-                    <span class="tlist__cell muted" flex>
-                        <a style="color:#1E88E5" href ng-click="filesVm.showComments($event, file)" title="{{ 'FILE.VIEW_COMMENTS' | translate}}">
-                            {{ file.comments[0].comment}}</a>
-                    </span>
-                    <span class="tlist__cell muted" flex="15">{{ file.created | openeDate}}</span>
-                    <span class="tlist__cell muted" flex="10">{{ file.creator}}</span>
-                    <span class="tlist__cell muted" flex="15">{{ file.modified | openeDate}}</span>
-                    <span class="tlist__cell muted" flex="10">{{ file.modifier}}</span>
-                    <span class="tlist__cell muted tlist__cell__menu" flex="10">
-                        <md-menu style="text-align: left;">
-                            <md-button aria-label="{{ 'MENU.OPEN_MENU' | translate }}" ng-click="$mdOpenMenu($event)">
-                                <i class="material-icons">more_vert</i>
-                            </md-button>
-                            <md-menu-content width="4">
-                                <md-menu-item>
-                                    <md-button ng-click="filesVm.previewFile(file)">
-                                        <md-icon>pageview</md-icon>{{ 'DOCUMENT.OPEN_PREVIEW' | translate }}
-                                    </md-button>
-                                </md-menu-item>
-                                <md-menu-item>
-                                    <md-button ng-click="filesVm.downloadFile(file)">
-                                        <md-icon>file_download</md-icon>{{ 'COMMON.DOWNLOAD' | translate }}
-                                    </md-button>
-                                </md-menu-item>
-                                <md-menu-divider></md-menu-divider>
-                                <md-menu-item>
-                                    <md-button ng-click="filesVm.assignFile($event, file)">
-                                        <md-icon>send</md-icon>{{ 'FILE.ASSIGN_TO' | translate }}
-                                    </md-button>
-                                </md-menu-item>
-                                <md-menu-item>
-                                    <md-button ng-click="filesVm.addToCase($event, file)">
-                                        <md-icon>folder_open</md-icon>{{ 'FILE.ADD_TO_CASE' | translate }}
-                                    </md-button>
-                                </md-menu-item>
-                                <md-menu-item>
-                                    <md-button ng-click="filesVm.deleteFile(file)">
-                                        <md-icon>delete</md-icon>{{ 'COMMON.DELETE' | translate }}
-                                    </md-button>
-                                </md-menu-item>
-                            </md-menu-content>
-                        </md-menu>
-                    </span>
-                </div>
-            </div>
-        </md-virtual-repeat-container>
-
-        <md-button class="md-primary" ng-click="filesVm.showAddFileDialog($event)">{{ 'COMMON.ADD_NEW' | translate }}</md-button>
-    </div>
-</div>
+    </md-card-content>
+</md-card>

@@ -5,6 +5,7 @@
     function TasksOverviewController($filter, taskService) {
         var vm = this;
         vm.tasks = [];
+        vm.displayHeader = true;
         vm.filterArray = {};
         vm.columnFilter = columnFilter;
 
