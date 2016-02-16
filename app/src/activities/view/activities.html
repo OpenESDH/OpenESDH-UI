@@ -52,7 +52,7 @@
                 </div>
             </div>
             
-            <md-virtual-repeat-container class="tlist__body" auto-height>
+            <md-virtual-repeat-container class="tlist__body" flex-height>
                 <div md-virtual-repeat="activity in actCtrl.activities | orderObjectBy:orderByAttribute:reverseOrder | filter:actCtrl.columnFilter" class="tlist__item" layout="column" flex>
                     {{activitySummary=activity.activitySummary;""}}
                     <a class="tlist__item__link"

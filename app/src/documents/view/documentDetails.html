@@ -57,7 +57,7 @@
 
                 <div class="repeat-table">
                     <div class="repeat-header" layout="row">
-                        <span class="r" flex="5"></span>
+                        <span class="r icon" flex="none"></span>
                         <span class="r" flex>{{ 'COMMON.TITLE' | translate }}</span>
                         <span class="r" flex="20">{{ 'COMMON.ADDED' | translate }}</span>
                         <span class="r" flex="15">{{ 'COMMON.ADDED_BY' | translate }}</span>
@@ -67,7 +67,7 @@
                     <md-virtual-repeat-container>
                         <div md-virtual-repeat="attachment in docCtrl.attachments">
                             <div class="repeat-item" layout="row">
-                                <span class="r" flex="5"><i class="material-icons">attachment</i></span>
+                                <span class="r icon" flex="none"><i class="material-icons">attachment</i></span>
                                 <span class="r" flex>{{attachment.name}}</span>
                                 <span class="r muted" flex="20">{{attachment.created| openeDate}}</span>
                                 <span class="r muted" flex="15">{{attachment.creator.firstName + ' ' + attachment.creator.lastName}}</span>

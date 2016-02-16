@@ -21,7 +21,7 @@
                 </span>
                 <span flex="5"></span>
             </div>
-            <md-virtual-repeat-container md-auto-shrink style="height: 450px;">
+            <md-virtual-repeat-container flex-height style="height: 450px;">
                 <div md-virtual-repeat="user in vm.allSystemUsers | orderObjectBy:orderByAttribute:reverseOrder" class="repeat-item {{user.enabled ? 'enabled' : 'muted'}}" layout="row">
                     <a class="r-rowlink"
                        layout="row"
