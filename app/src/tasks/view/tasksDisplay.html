@@ -1,0 +1,76 @@
+<md-content layout="column">
+    <div ng-if="tasksCtrl.displayHeader" class="sub-toolbar md-whiteframe-3dp" layout="row" layout-align="space-between center" layout-padding>
+        <h3 class="md-headline" layout-margin>{{ 'TASK.TASKS' | translate }}</h3>
+    </div>
+    <div layout="column">
+        <md-card>
+            <md-card-content>
+                <div layout="row" layout-align="end start">
+                    <md-input-container md-no-float style="margin:0.75rem 1rem;padding:4px">
+                        <i class="material-icons" style="position:absolute;top:0.5rem;left:0.5rem;color:rgba(0, 0, 0, 0.25)">search</i>
+                        <input type="text" ng-model="freeTextSearch" placeholder="Filter" style="padding:0.5rem 0.5rem 0.5rem 2rem" />
+                    </md-input-container>
+                </div>
+                <div class="tlist">
+                    <div class="tlist__header" layout="row" style="border-bottom:0">
+                        <span class="tlist__cell tlist__cell_icon" flex="none">
+                        </span>
+                        <div class="tlist__cell" flex>
+                            <div layout="row" layout-align="space-between center">
+                                <span sort-table="properties.bpm_description">{{ 'TASK.TASK' | translate }}</span>
+                                <opene-column-filter type="text" filter="tasksCtrl.filterArray" value="taskName" />
+                            </div>
+                        </div>
+                        <div class="tlist__cell" flex="25">
+                            <div layout="row" layout-align="space-between center">
+                                <span>{{ 'COMMON.DESCRIPTION' | translate }}</span>
+                                <opene-column-filter type="text" filter="tasksCtrl.filterArray" value="description" />
+                            </div>
+                        </div>
+                        <div class="tlist__cell" flex="15">
+                            <div layout="row" layout-align="space-between center">
+                                <span sort-table="properties.bpm_status">{{ 'COMMON.STATUS' | translate }}</span>
+                                <opene-column-filter type="checkbox" list="tasksCtrl.taskStatuses" filter="tasksCtrl.filterArray" value="status" />
+                            </div>
+                        </div>
+                        <div class="tlist__cell" flex="15">
+                            <div layout="row" layout-align="space-between start">
+                                <span sort-table="properties.bpm_dueDate">{{ 'COMMON.DUE_DATE' | translate }}</span>
+                                <opene-column-filter type="date" filter="tasksCtrl.filterArray" value="dueDate" />
+                            </div>
+                        </div>
+                        <div class="tlist__cell" flex="15" ng-show="tasksCtrl.case_tasks">
+                            <div layout="row" layout-align="space-between start">
+                                <span sort-table="owner.firstName">{{ 'ACTIVITIES.PERFORMER' | translate }}</span>
+                                <opene-column-filter type="text" filter="tasksCtrl.filterArray" value="performer" />
+                            </div>
+                        </div>
+                        <div class="tlist__cell" flex="10">
+                            <div layout="row" layout-align="space-between start">
+                                <span sort-table="properties.bpm_priority">{{ 'COMMON.PRIORITY' | translate }}</span>
+                                <opene-column-filter type="checkbox" list="tasksCtrl.taskPriorities" filter="tasksCtrl.filterArray" value="priority" />
+                            </div>
+                        </div>
+                    </div>
+                    <md-virtual-repeat-container class="tlist__body" flex-height>
+                        <div md-virtual-repeat="task in tasksCtrl.tasks | orderObjectBy:orderByAttribute:reverseOrder | filter:tasksCtrl.columnFilter | filter:freeTextSearch" class="tlist__item" layout="column" flex>
+                            <a class="tlist__item__link" href="#/tasks/task/{{task.name | encodeUri}}/{{task.id | encodeUri}}" layout="row">
+                                <span class="tlist__cell tlist__cell_icon" flex="none"><i class="material-icons">assignment</i></span>
+                                <span class="tlist__cell" flex>{{ task.properties.bpm_description }}</span>
+                                <span class="tlist__cell muted" flex="25">
+                            <span class="cell__label">{{ 'COMMON.DESCRIPTION' | translate }}</span> {{ task | taskDescription }}
+                                </span>
+                                <span class="tlist__cell muted" flex="15"><span class="cell__label">{{ 'COMMON.STATUS' | translate }}</span> {{ task.properties.bpm_status | workflowTaskStatus}}</span>
+                                <span class="tlist__cell muted" flex="15"><span class="cell__label">{{ 'COMMON.DUE_DATE' | translate }}</span>{{ task.properties.bpm_dueDate | date }}</span>
+                                <span class="tlist__cell muted" flex="15" ng-show="tasksCtrl.case_tasks"><span class="cell__label">{{ 'ACTIVITIES.PERFORMER' | translate }}</span>{{ task.owner.firstName + " " + task.owner.lastName }}</span>
+                                <span class="tlist__cell muted" flex="10"><span class="cell__label">{{ 'COMMON.PRIORITY' | translate }}</span>{{ task.properties.bpm_priority | workflowTaskPriority}}</span>
+                                <div class="tlist__item__createinfo muted" translate="TASK.TASK_CREATED_ON_BY" translate-value-on="{{ task.properties.cm_created | openeDate }}" translate-value-by="{{ task.workflowInstance.initiator.firstName + ' ' + task.workflowInstance.initiator.lastName }}">
+                                </div>
+                            </a>
+                        </div>
+                    </md-virtual-repeat-container>
+                </div>
+            </md-card-content>
+        </md-card>
+    </div>
+</md-content>
