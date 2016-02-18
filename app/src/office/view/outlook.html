@@ -2,7 +2,6 @@
     <md-card-content>
         <h1 class="md-headline">{{ 'OFFICE.SAVE_EMAIL_IN_OPENESDH' | translate }}</h1>
         <form name="form">
-
             <label>{{ 'CASE.CREATE_FROM' | translate }}
                 <md-menu ng-controller="CreateCaseMenuController as ctrl">
                     <md-button class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="{{ 'CASE.SELECT_CASE_TYPE' | translate }}">
@@ -61,6 +60,7 @@
                            ng-disabled="form.$invalid || !(vm.newCase || vm.selectedCase || vm.selectedCase['oe:id'])">
                     {{ 'COMMON.SAVE' | translate }}</md-button>
                 <md-button type="button" ng-click="vm.cancel(form)">{{ 'COMMON.CANCEL' | translate }}</md-button>
+                <md-button ng-click="vm.debug()">DEBUG</md-button>
             </div>
 
         </form>
