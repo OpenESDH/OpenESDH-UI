@@ -6,15 +6,9 @@
             </div>
         </md-toolbar>
         <md-dialog-content>
-            <div layout="column">
-                <md-input-container>
-                    <label>{{ 'CASE.OWNER' | translate }} *</label>
-                    <md-select ng-model="assignFileVm.owner" name="authority" required>
-                        <ng-include src="'app/src/common/components/authoritySelector/view/authoritySelectorOptions.html'"
-                                    ng-controller="AuthoritySelectorController as authCtrl"></ng-include>
-                    </md-select>
-                    <opene-error form="assignFileForm" field="assignFileForm.owner"></opene-error>
-                </md-input-container>
+            <div layout="column" class="opene-autocomplete-wrapper">
+                <opene-autocomplete datasource="assignFileVm.owner" controller-name="AuthoritySelectorController" required="true" name="authority" label="{{'CASE.OWNER' | translate}} *"></opene-autocomplete>
+                <opene-error form="assignFileForm" field="assignFileForm.authority"></opene-error>
             <md-input-container>
                 <label>{{ 'COMMON.COMMENT' | translate }}</label>
                 <textarea ng-model="assignFileVm.comment" rows="5" columns="1"></textarea>
