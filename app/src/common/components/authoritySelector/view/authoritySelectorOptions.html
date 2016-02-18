@@ -1,6 +1,20 @@
-<md-optgroup label="Groups" ng-if="authCtrl.groups.length">
-    <md-option ng-value="auth.nodeRef" ng-repeat="auth in authCtrl.groups">{{ auth.name}}</md-option>
-</md-optgroup>
-<md-optgroup label="Users">
-    <md-option ng-value="auth.nodeRef" ng-repeat="auth in authCtrl.users">{{ auth.name}}</md-option>
-</md-optgroup>
+<md-autocomplete
+	md-selected-item="selectedItem" 
+	md-selected-item-change="vm.selectedItemChange(item)" 
+	md-min-length="0" 
+	md-search-text="searchText" 
+	md-search-text-change="vm.searchTextChange(searchText)" 
+	md-items="item in vm.querySearch(searchText)" 
+	md-item-text="item.name" 
+	md-floating-label="{{vm.label}}"
+	ng-required="{{vm.required}}",
+	md-input-name="{{vm.name}}"
+	>
+
+    <md-item-template>
+        <span md-highlight-text="searchText">{{ item.name }}</span>
+    </md-item-template>
+    <md-not-found>
+        {{ 'COMMON.NO_MATCHES' | translate }}
+    </md-not-found>
+</md-autocomplete>

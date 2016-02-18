@@ -8,12 +8,10 @@
         <mt-wz-step class="workflowWizardStep">
             <form name="wfForm">
                 <div ng-init="dlg.appendForm(wfForm)">
-                    <md-input-container layout>
-                        <label>* {{'WORKFLOW.ASSIGN_TO' | translate}}</label>
-                        <md-select flex="50" ng-model="dlg.selectedRecipient" required>
-                            <md-option ng-repeat="recipient in dlg.recipients" value="{{recipient.nodeRef}}">{{recipient.name}}</md-option>
-                        </md-select>
-                    </md-input-container>
+                    <div class="opene-autocomplete-wrapper">
+                        <opene-autocomplete datasource="dlg.selectedRecipient" controller-name="GenericWizardController" required="true" name="recipient" list="dlg.recipients" label="* {{'WORKFLOW.ASSIGN_TO' | translate}}"></opene-autocomplete>
+                        <opene-error form="wfForm" field="wfForm.recipient"></opene-error>
+                    </div>
                 </div>
                 <ng-include src="'app/src/workflows/view/selectDueDatePriorityMessageSendEmail.html'"></ng-include>
             </form>
