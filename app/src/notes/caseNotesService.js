@@ -10,6 +10,8 @@
         var service = {
             getCaseNotes: getCaseNotes,
             addNewNote: addNewNote,
+            updateNote: updateNote,
+            deleteNote: deleteNote,
             createPagingParams: createPagingParams
         };
         return service;
@@ -33,6 +35,22 @@
         function addNewNote(caseId, note){
             var url = getNotesUrlForCase(caseId);
             return $http.post(url, note);
+        }
+        
+        function updateNote(note){
+            var nodeRef = note.nodeRef;
+            var data = {
+                    content: note.content,
+                    headline: note.headline,
+                    author: note.author
+            };
+            var url = '/api/openesdh/note/node/' + nodeRef.storeRef.protocol + '/' + nodeRef.storeRef.identifier + '/' + nodeRef.id;
+            return $http.put(url, data);
+        }
+        
+        function deleteNote(nodeRef){
+            var url = '/api/openesdh/note/node/' + nodeRef.storeRef.protocol + '/' + nodeRef.storeRef.identifier + '/' + nodeRef.id;
+            return $http.delete(url);
         }
         
         function getNotesUrlForCase(caseId){
