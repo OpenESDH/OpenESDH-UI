@@ -8,7 +8,7 @@
             </div>
         </div>
         <div layout="row" layout-wrap ng-show="caseNotes.layout == 'grid'">
-            <div ng-repeat="note in caseNotes.notes" flex="33">
+            <div ng-repeat="note in caseNotes.notes" flex="33" ng-click="caseNotes.editNote($event, note)">
                 <h4 style="margin-bottom: 0;" class="md-title">{{ note.headline}}</h4>
                 <p>{{ note.content}}</p>
                 <div style="font-size: 0.8em;" class="muted">
@@ -33,7 +33,7 @@
                 </div>
                 <md-virtual-repeat-container md-auto-shrink style="border-bottom:none">
                     <div md-virtual-repeat="note in caseNotes.notes | orderObjectBy:orderByAttribute:reverseOrder" class="repeat-item">
-                        <div class="layout-row">
+                        <a href class="layout-row r-rowlink" ng-click="caseNotes.editNote($event, note)">
                             <span class="r" flex="20">{{ note.headline }}</span>
                             <span class="r" flex>{{ note.content }}</span>
                             <span class="r" flex>
@@ -41,7 +41,7 @@
                             </span>
                             <span class="r muted" flex="15">{{ note.created }}</span>
                             <span class="r muted" flex="15">{{ note.authorInfo.firstName + ' ' + note.authorInfo.lastName }}</span>
-                        </div>
+                        </a>
                     </div>
                 </md-virtual-repeat-container>
             </div>

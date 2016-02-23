@@ -27,13 +27,19 @@
 
             <md-input-container>
                 <label>{{ 'NOTE.CONTENT' | translate }} *</label>
-                <textarea name="content" ng-model="vmNote.content" rows="5" required></textarea>
+                <textarea name="content" ng-model="vmNote.content" rows="10" required></textarea>
                 <opene-error form="form" field="form.content"></opene-error>
             </md-input-container>
         </md-dialog-content>
 
         <md-dialog-actions>
-            <md-button class="md-primary" ng-click="vmNote.addNote()" ng-disabled="form.$invalid">
+            <md-button class="md-primary" ng-click="vmNote.updateNote()" ng-disabled="form.$invalid" ng-if="vmNote.editMode">
+                {{ 'COMMON.SAVE' | translate }}
+            </md-button>
+            <md-button class="md-primary" ng-click="vmNote.deleteNote()" ng-if="vmNote.editMode">
+                {{ 'COMMON.DELETE' | translate }}
+            </md-button>
+            <md-button class="md-primary" ng-click="vmNote.addNote()" ng-disabled="form.$invalid" ng-if="!vmNote.editMode">
                 {{ 'NOTE.ADD_NOTE' | translate }}
             </md-button>
             <md-button ng-click="vmNote.cancel()">

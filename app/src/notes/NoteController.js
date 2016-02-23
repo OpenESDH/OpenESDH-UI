@@ -3,10 +3,12 @@
             .module('openeApp.notes')
             .controller('NoteController', NoteController);
 
-    function NoteController($scope, $stateParams, $mdDialog, caseNotesService, casePartiesService) {
+    function NoteController($scope, $stateParams, $mdDialog, $translate, caseNotesService, casePartiesService) {
         var vm = this;
         var caseId = $stateParams.caseId;
+        vm.editMode;
         vm.newNote = newNote;
+        vm.editNote = editNote;
         vm.loadNotes = loadNotes;
         vm.pagingParams = caseNotesService.createPagingParams();
         vm.layout = 'grid';
@@ -29,7 +31,10 @@
                 templateUrl: 'app/src/notes/view/noteCrudDialog.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
-                clickOutsideToClose: true
+                clickOutsideToClose: true,
+                locals: {
+                    note: null
+                }
             }).then(function(note) {
                 addNote(note);
             }, function() {
@@ -46,21 +51,70 @@
             });
         }
 
-        function DialogController($scope, $mdDialog) {
+        function editNote(ev, note) {
+            $mdDialog.show({
+                controller: DialogController,
+                controllerAs: 'vmNote',
+                templateUrl: 'app/src/notes/view/noteCrudDialog.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                locals: {
+                    note: note
+                }
+            }).then(function(note) {
+                addNote(note);
+            }, function() {
+                //on cancel dialog
+            });
+        }
+
+        function DialogController($scope, $mdDialog, note) {
             var vmNote = this;
             //values
-            vmNote.concernedParties = [];
-            vmNote.headline = null;
-            vmNote.content = null;
+            if (note) {
+                angular.extend(vmNote, angular.copy(note), {editMode: true});
+                var partyNames = vmNote.concernedPartiesInfo.map(function(party){
+                    party.displayName = party.name;
+                    return party;
+                });
+                vmNote.concernedParties = angular.copy(partyNames);
+            } else {
+                vmNote.editMode = false;
+                vmNote.concernedParties = [];
+                vmNote.headline = null;
+                vmNote.content = null;
+            }
+
             vmNote.querySearch = querySearch;
-            //
             loadParties();
             //actions
             vmNote.cancel = cancel;
             vmNote.addNote = addNote;
+            vmNote.updateNote = updateNote;
+            vmNote.deleteNote = deleteNote;
 
             function cancel() {
                 $mdDialog.cancel();
+            }
+
+            function updateNote() {
+                var partiesNodeRefs = vmNote.concernedParties.map(function(party){
+                    return party.nodeRef;
+                });
+
+                var data = {
+                    nodeRef: vmNote.nodeRef,
+                    author: vmNote.author,
+                    headline: vmNote.headline,
+                    content: vmNote.content,
+                    concernedParties: partiesNodeRefs
+                };
+
+                caseNotesService.updateNote(data).then(function(response) {
+                    loadNotes(vm.pagingParams.page);
+                })
+                $mdDialog.hide();
             }
 
             function addNote() {
@@ -76,6 +130,19 @@
                 $mdDialog.hide(note);
             }
 
+            function deleteNote() {
+                var confirm = window.confirm($translate.instant('NOTE.COMFIRM_DELETE'));
+
+                if (confirm == true) {
+                    caseNotesService.deleteNote(vmNote.nodeRef).then(function(response) {
+                        loadNotes(vm.pagingParams.page);
+                    });
+                    $mdDialog.hide();
+                }
+
+            }
+
+
             function querySearch(query) {
                 var results = query ? vmNote.caseParties.filter(createFilterFor(query)) : [];
                 return results;
@@ -84,7 +151,7 @@
             function createFilterFor(query) {
                 var lowercaseQuery = angular.lowercase(query);
                 return function(party) {
-                    return (party._lowername.indexOf(lowercaseQuery) === 0);
+                    return (party._lowername ? party._lowername.indexOf(lowercaseQuery) === 0 : false);
                 };
             }
 
