@@ -2,7 +2,7 @@
         .module('openeApp.tasks')
         .controller('tasksOverviewController', TasksOverviewController);
 
-    function TasksOverviewController($filter, taskService) {
+    function TasksOverviewController($filter, $translate, taskService) {
         var vm = this;
         vm.tasks = [];
         vm.displayHeader = true;
@@ -10,30 +10,30 @@
         vm.columnFilter = columnFilter;
 
         vm.taskPriorities = [{
-            name: "High",
+            name: $translate.instant('WORKFLOW.TASK.PRIORITY.1'),
             value: 1
         }, {
-            name: "Medium",
+            name: $translate.instant('WORKFLOW.TASK.PRIORITY.2'),
             value: 2
         }, {
-            name: "Low",
+            name: $translate.instant('WORKFLOW.TASK.PRIORITY.3'),
             value: 3
         }];
 
         vm.taskStatuses = [{
-            name: "Not Yet Started",
+            name: $translate.instant('WORKFLOW.TASK.STATUS.NotYetStarted'),
             value: "Not Yet Started"
         }, {
-            name: "In Progres",
+            name: $translate.instant('WORKFLOW.TASK.STATUS.InProgres'),
             value: "In Progres"
         }, {
-            name: "On Hold",
+            name: $translate.instant('WORKFLOW.TASK.STATUS.OnHold'),
             value: "On Hold"
         }, {
-            name: "Cancelled",
+            name: $translate.instant('WORKFLOW.TASK.STATUS.Cancelled'),
             value: "Cancelled"
         }, {
-            name: "Completed",
+            name: $translate.instant('WORKFLOW.TASK.STATUS.Completed'),
             value: "Completed"
         }];
 

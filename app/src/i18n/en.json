@@ -1,4 +1,4 @@
-{
+﻿{
     "COMMON": {
         "CASE_ID": "Case Id",
         "CONFIRM": "Confirm",
@@ -510,7 +510,7 @@
         "DUE_DATE": "Due date",
         "PRIORITY": {
             "PRIORITY": "Priority",
-            "HIGH": "Hight",
+            "HIGH": "High",
             "MEDIUM": "Medium",
             "LOW": "Low"
         },
@@ -689,7 +689,7 @@
         "MEMBER_REMOVED_SUCCESSFULLY": "Case member removed successfully"
     },
     "NOTE": {
-        "NOTES": "Journal notes",
+        "NOTES": "Notes",
         "RELATED": "Related",
         "NEW_NOTE": "New note",
         "PRINT_ALL_NOTES": "Print all notes",
@@ -752,8 +752,8 @@
         "LOGOUT": "Logout"
     },
     "OFFICE": {
-        "SAVE_EMAIL_IN_OPENESDH": "Save email in OpenESDH",
-        "SAVE_DOCUMENT_IN_OPENESDH": "Save document in OpenESDH"
+        "SAVE_EMAIL_IN_OPENESDH": "Save email in Visma Case",
+        "SAVE_DOCUMENT_IN_OPENESDH": "Save document in Visma Case"
     },
     "DOCUMENT_TYPE": {
         "CREATE_EDIT_DOC_TYPE": "Create / edit document type",
