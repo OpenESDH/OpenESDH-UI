@@ -3,7 +3,7 @@
         .module('openeApp.tasks.common')
         .factory('taskService', TaskService);
 
-    function TaskService($http, sessionService) {
+    function TaskService($http, $translate, sessionService) {
         return {
             getTasks: getTasks,
             getCaseTasks: getCaseTasks,
@@ -59,7 +59,13 @@
         }
         
         function getTaskStatuses(){
-            return  ["Not Yet Started", "In Progres", "On Hold", "Cancelled", "Completed"];
+            return [
+                $translate.instant('WORKFLOW.TASK.STATUS.NotYetStarted'),
+                $translate.instant('WORKFLOW.TASK.STATUS.InProgres'),
+                $translate.instant('WORKFLOW.TASK.STATUS.OnHold'),
+                $translate.instant('WORKFLOW.TASK.STATUS.Cancelled'),
+                $translate.instant('WORKFLOW.TASK.STATUS.Completed')
+            ];
         }
 
     }

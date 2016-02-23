@@ -16,7 +16,7 @@
             </md-input-container>
         </md-menu-item>
         <md-menu-item ng-if="type == 'date'">
-            <md-datepicker md-placeholder="Enter date" ng-model="filter[value]"></md-datepicker>
+            <md-datepicker md-placeholder="{{ 'ACTIVITIES.DATE' | translate }}" ng-model="filter[value]"></md-datepicker>
         </md-menu-item>
     </md-menu-content>
 </md-menu>
