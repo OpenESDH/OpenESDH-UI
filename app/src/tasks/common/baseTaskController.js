@@ -17,7 +17,7 @@
         vm.previewDocument = previewDocument;
         vm.deleteWorkflow = deleteWorkflow;
         vm.documentNodeRefToOpen = documentNodeRefToOpen;
-        vm.statuses = [$translate.instant('WORKFLOW.TASK.STATUS.NotYetStarted'), $translate.instant('WORKFLOW.TASK.STATUS.InProgres'), $translate.instant('WORKFLOW.TASK.STATUS.OnHold')];
+        vm.statuses = ["Not Yet Started", "In Progres", "On Hold"];
         vm.toggleStatus = {item: -1};
         vm.isAdmin = sessionService.isAdmin();
         vm._copyTaskProperties = _copyTaskProperties;
