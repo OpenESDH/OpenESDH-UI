@@ -680,7 +680,8 @@
         "HEADLINE": "Overskrift",
         "CONTENT": "Indhold",
         "CONCERNED_PARTIES": "Relaterede parter",
-        "ADD_NOTE": "Tilføj note"
+        "ADD_NOTE": "Tilføj note",
+        "COMFIRM_DELETE": "Er du sikker på, at du vil slette denne note?"
     },
     "PARTY": {
         "PARTIES": "Parter",
