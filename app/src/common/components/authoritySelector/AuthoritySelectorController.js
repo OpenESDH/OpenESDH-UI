@@ -5,20 +5,14 @@ angular
 
 function AuthoritySelectorController(userService) {
     var vm = this;
-    vm.groups = [];
-    vm.users = [];
+    vm.authorities = [];
     vm.querySearch = querySearch;
     vm.selectedItemChange = selectedItemChange;
     loadAuthorities();
-
-    userService.getAuthorities().then(function(response) {
-        vm.groups = filterSelectableWithType(response, 'cm:authorityContainer');
-        vm.users = filterSelectableWithType(response, 'cm:person');
-    });
-
-    function filterSelectableWithType(authorities, type){
-        return authorities.filter(function(item){
-            return item.selectable && item.type === type;
+    
+    function loadAuthorities() {
+        return userService.getAuthorities().then(function(response) {
+            vm.authorities = response;
         });
     }
 
@@ -40,12 +34,4 @@ function AuthoritySelectorController(userService) {
             return (item.name.toLowerCase().indexOf(lowercaseQuery) > -1);
         };
     }
-
-    function loadAuthorities() {
-        return userService.getAuthorities().then(function(response) {
-            vm.authorities = response;
-        });
-    }
-
-
 }
