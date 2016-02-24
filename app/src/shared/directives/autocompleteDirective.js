@@ -19,5 +19,5 @@ function autocomplete(){
         name: 'controllerName',
       	bindToController: true,
         templateUrl: 'app/src/common/components/authoritySelector/view/authoritySelectorOptions.html'
-    }
+    };
 }
