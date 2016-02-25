@@ -10,7 +10,6 @@ function userService($http) {
         getPeople: getPeople,
         getHome: getHome,
         getAuthorities: getAuthorities,
-        getCaseAuthorities: getCaseAuthorities,
         createUser: createUser,
         updateUser: updateUser,
         getPersons: getPersons,
@@ -39,30 +38,21 @@ function userService($http) {
     }
 
     /*
-     * gets available authorities for selected case type
-     */
-    function getCaseAuthorities(caseType, filter) {
-        return $http.get('/api/openesdh/' + caseType + '/authorities', {filter: filter})
-                .then(function(response) {
-                    var items = response.data.data.items;
-                    return Object.keys(items).map(function(key) {
-                        return items[key];
-                    });
-                });
-    }
-
-    /*
      * gets all authorities
      */
     function getAuthorities() {
-        return $http.get('/api/forms/picker/authority/children').then(function(response) {
-            var items = response.data.data.items;
+        return $http.get('/api/openesdh/authorities').then(function(response) {
+            var items = response.data;
+            //TODO: remove this temp fix:
+            if (items.data && items.data.items){
+                items = items.data.items;
+            }
             return Object.keys(items).map(function(key) {
                 return items[key];
             });
         });
     }
-
+    
     function createUser(userObj) {
         return $http.post('/api/people',
                 userObj

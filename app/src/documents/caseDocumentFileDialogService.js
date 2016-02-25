@@ -14,7 +14,7 @@
         
         return service;
         
-        function uploadCaseDocument(caseId, fileObject){
+        function uploadCaseDocument(docsFolderNodeRef, fileObject){
             return $q(function(resolve, reject){
                 var fromFileObject = typeof fileObject !== "undefined" && fileObject instanceof Blob;
                 showDialog(NewCaseDocumentDialogController, {
@@ -29,12 +29,9 @@
                         formData.fileToUpload = fileObject;
                     }
                     
-                    return caseDocumentsService.getDocumentsFolderNodeRef(caseId).then(function(res){
-                        return caseDocumentsService.uploadCaseDocument(formData.fileToUpload, res.caseDocsFolderNodeRef, formData.documentProperties).then(function(result){
-                            return resolve(result);
-                        });
+                    return caseDocumentsService.uploadCaseDocument(formData.fileToUpload, docsFolderNodeRef, formData.documentProperties).then(function(result){
+                        return resolve(result);
                     });
-                    
                 });
             });
         }

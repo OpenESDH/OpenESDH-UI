@@ -12,11 +12,12 @@
             'swfobject',
             'isteven-multi-select',
             'openeApp.translations.init',
+            'openeApp.header',
+            'openeApp.dashboard',
             'openeApp.cases',
             'openeApp.cases.members',
             'openeApp.cases.parties',
             'openeApp.classification',
-            'openeApp.dashboard',
             'openeApp.files',
             'openeApp.tasks',
             'openeApp.documents',
@@ -24,7 +25,6 @@
             'openeApp.contacts',
             'openeApp.administration',
             'openeApp.office',
-            'openeApp.officeTemplates',
             'openeApp.groups',
             'openeApp.users',
             'openeApp.workflows',
@@ -52,8 +52,16 @@
             fileName: /^[a-zA-Z0-9_\-,!@#$%^&()=+ ]+$/,
             phone: /^[+]?[0-9\- ]+$/
         })
+        .constant('APP_CONFIG', {
+            appName: 'OpenESDH',
+            logoSrc: './app/assets/images/logo-light.svg'
+        })
         .config(config)
-        .run(function ($rootScope, $state, $stateParams, $mdDialog, authService, sessionService, ContextService) {
+        .run(function ($rootScope, $state, $stateParams, $mdDialog, authService, sessionService, ContextService, APP_CONFIG) {
+            angular.element(window.document)[0].title = APP_CONFIG.appName;
+            $rootScope.appName = APP_CONFIG.appName;
+            $rootScope.logoSrc = APP_CONFIG.logoSrc;
+
             $rootScope.$on('$stateChangeStart', function (event, next, params) {
                 $rootScope.toState = next;
                 $rootScope.toStateParams = params;
@@ -88,7 +96,7 @@
             .accentPalette('amber')
             .warnPalette('deep-orange');
 
-        $mdIconProvider.icon('md-calendar', '/app/assets/img/icons/today.svg');
+        $mdIconProvider.icon('md-calendar', 'app/assets/img/icons/today.svg');
 
         $urlRouterProvider
             .when('/cases/case/:caseId','/cases/case/:caseId/info')
@@ -106,8 +114,9 @@
             url: '/',
             views: {
                 'content@': {
-                    templateUrl: '/app/src/dashboard/view/dashboard.html',
-                    controller: 'DashboardController'
+                    templateUrl: 'app/src/dashboard/view/dashboard.html',
+                    controller: 'DashboardController',
+                    controllerAs: 'vm'
                 }
             },
             data: {
@@ -118,7 +127,7 @@
             url: '/cases',
             views: {
                 'content@': {
-                    templateUrl: '/app/src/cases/view/cases.html',
+                    templateUrl: 'app/src/cases/view/cases.html',
                     controller: 'CaseListController',
                     controllerAs: 'vm'
                 }
@@ -131,7 +140,7 @@
             url: '/cases/case/:caseId',
             views: {
                 'content@': {
-                    templateUrl: '/app/src/cases/view/case.html',
+                    templateUrl: 'app/src/cases/view/case.html',
                     controller: 'CaseController',
                     controllerAs: 'caseCtrl'
                 }
@@ -144,7 +153,7 @@
             url: '/info',
             views: {
                 'caseInfo': {
-                    templateUrl: '/app/src/cases/view/case_info.html',
+                    templateUrl: 'app/src/cases/view/case_info.html',
                     controller: 'CaseInfoController',
                     controllerAs: 'civm'
                 }
@@ -157,7 +166,7 @@
             url: '/notes',
             views: {
                 'caseNotes': {
-                    templateUrl: '/app/src/notes/view/caseNotes.html',
+                    templateUrl: 'app/src/notes/view/caseNotes.html',
                     controller: 'NoteController',
                     controllerAs: 'caseNotes'
                 }
@@ -223,7 +232,7 @@
             url: '/cases/case/:caseId/doc/:storeType/:storeId/:id',
             views: {
                 'content@': {
-                    controller: 'DocumentDetailsController',
+                    controller: 'CaseDocumentDetailsController',
                     templateUrl: 'app/src/documents/view/document.html',
                     controllerAs: 'docCtrl'
                 }
@@ -236,7 +245,7 @@
             url: '/login?error&nosso',
             views: {
                 'content@': {
-                    templateUrl: '/app/src/authentication/view/login.html',
+                    templateUrl: 'app/src/authentication/view/login.html',
                     controller: 'AuthController',
                     controllerAs: 'vm'
                 }
@@ -249,7 +258,7 @@
             url: '/tasks',
             views: {
                 'content@': {
-                    templateUrl: '/app/src/tasks/view/tasks.html',
+                    templateUrl: 'app/src/tasks/view/tasks.html',
                     controller: 'tasksOverviewController',
                     controllerAs: 'tasksCtrl'
                 }
@@ -262,7 +271,7 @@
             url: '/tasks/task/:taskName/:taskId',
             views: {
                 'content@': {
-                    templateUrl : '/app/src/tasks/common/view/taskContainer.html',
+                    templateUrl : 'app/src/tasks/common/view/taskContainer.html',
                     controller : 'taskFormLoaderController',
                     controllerAs: 'ctrl'
                 }
@@ -275,7 +284,7 @@
             url: '/admin',
             views: {
                 'content@': {
-                    templateUrl: '/app/src/admin/view/admin.html',
+                    templateUrl: 'app/src/admin/view/admin.html',
                     controller: 'AdminController',
                     controllerAs: 'vm'
                 }
@@ -292,7 +301,7 @@
             },
             views: {
                 'users': {
-                    templateUrl: '/app/src/users/view/users.html'
+                    templateUrl: 'app/src/users/view/users.html'
                 }
             }
         }).state('administration.groups', {
@@ -303,7 +312,7 @@
             },
             views: {
                 'groups': {
-                    templateUrl: '/app/src/groups/view/groups.html'
+                    templateUrl: 'app/src/groups/view/groups.html'
                 }
             }
         }).state('administration.group', {
@@ -315,7 +324,7 @@
             },
             views: {
                 'groups': {
-                    templateUrl: '/app/src/groups/view/group.html'
+                    templateUrl: 'app/src/groups/view/group.html'
                 }
             }
         }).state('administration.organizations', {
@@ -327,7 +336,7 @@
             },
             views: {
                 'organizations': {
-                    templateUrl: '/app/src/contacts/view/organizations.html'
+                    templateUrl: 'app/src/contacts/view/organizations.html'
                 }
             }
         }).state('administration.organization', {
@@ -338,7 +347,7 @@
             },
             views: {
                 'organizations': {
-                    templateUrl: '/app/src/contacts/view/organization.html'
+                    templateUrl: 'app/src/contacts/view/organization.html'
                 }
             }
         }).state('administration.contacts', {
@@ -350,7 +359,7 @@
             },
             views: {
                 'contacts': {
-                    templateUrl: '/app/src/contacts/view/persons.html'
+                    templateUrl: 'app/src/contacts/view/persons.html'
                 }
             }
         }).state('administration.systemsettings', {
@@ -361,8 +370,8 @@
             },
             views: {
                 'systemsettings': {
-                    templateUrl: '/app/src/system_settings/menu/system_settings.html',
-                    controller: 'SystemsettingsController',
+                    templateUrl: 'app/src/system_settings/menu/system_settings.html',
+                    controller: 'SystemSettingsController',
                     controllerAs: 'vm'
                 }
             }
@@ -373,7 +382,7 @@
             },
             views: {
                 'systemsetting-view': {
-                    templateUrl: '/app/src/system_settings/general_configuration/view/generalConfiguration.html',
+                    templateUrl: 'app/src/system_settings/general_configuration/view/generalConfiguration.html',
                     controller: 'GeneralConfigurationController',
                     controllerAs: 'vm'
                 }
@@ -385,7 +394,7 @@
             },
             views: {
                 'systemsetting-view': {
-                    templateUrl: '/app/src/system_settings/document_types/view/documentTypes.html',
+                    templateUrl: 'app/src/system_settings/document_types/view/documentTypes.html',
                     controller: 'DocumentTypesController',
                     controllerAs: 'vm'
                 }
@@ -397,18 +406,18 @@
             },
             views: {
                 'systemsetting-view': {
-                    templateUrl: '/app/src/system_settings/document_categories/view/documentCategories.html',
+                    templateUrl: 'app/src/system_settings/document_categories/view/documentCategories.html',
                     controller: 'DocumentCategoriesController',
                     controllerAs: 'vm'
                 }
             }
-        }).state('administration.systemsettings.templates', {
-            url: '/templates',
+        }).state('administration.systemsettings.tenantsmodules', {
+            url: '/tenantsmodules',
             views: {
                 'systemsetting-view': {
-                    templateUrl: '/app/src/officeTemplates/view/templates.html',
-                    controller: 'OfficeTemplateController',
-                    controllerAs: 'tmplCtrl'
+                    templateUrl: 'app/src/system_settings/tenant/view/tenantsModules.html',
+                    controller: 'TenantsModulesController',
+                    controllerAs: 'vm'
                 }
             },
             data: {
@@ -418,7 +427,7 @@
             url: '/search?query&ctx',
             views: {
                 'content@': {
-                    templateUrl: '/app/src/search/view/search.html'
+                    templateUrl: 'app/src/search/view/search.html'
                 }
             },
             data: {
@@ -428,9 +437,21 @@
             url: '/activities',
             views: {
                 'content@': {
-                    templateUrl: '/app/src/activities/view/activities.html',
+                    templateUrl: 'app/src/activities/view/activities.html',
                     controller: 'activitiesController',
                     controllerAs: 'actCtrl'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
+            }
+        }).state('files', {
+            url: '/files',
+            views: {
+                'content@': {
+                    templateUrl: 'app/src/files/view/files.html',
+                    controller: 'FilesController',
+                    controllerAs: 'filesVm'
                 }
             },
             data: {

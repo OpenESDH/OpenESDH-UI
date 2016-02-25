@@ -1,0 +1,20 @@
+<md-dialog class="dialog-large" aria-label="file-comments">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 translate="FILE.COMMENTS_OF" translate-value-filename="{{fileCommentsVm.file.title}}"></h2>
+        </div>
+    </md-toolbar>
+    <md-dialog-content layout="column" style="margin-top: 1em; padding-bottom: 0;">
+        <md-input-container ng-repeat="comment in fileCommentsVm.file.comments">
+            <label translate="FILE.USER_TIMESTAMP"
+                   translate-value-date="{{comment.created|openeDate}}"
+                   translate-value-name="{{comment.creator}}"></label>
+            <textarea readonly ng-model="comment.comment" rows="50" columns="1"></textarea>
+        </md-input-container>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <md-button ng-click="fileCommentsVm.close()">
+            {{ 'COMMON.CLOSE' | translate }}
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

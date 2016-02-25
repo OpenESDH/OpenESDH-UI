@@ -29,7 +29,7 @@
             <td>{{doc.status | docStatus}}</td>
             <td>{{doc.owner.firstName + " " + doc.owner.lastName}}</td>
             <!-- <td>{{doc.created | date}}</td> -->
-            <td>{{doc.modified | date}}</td>
+            <td>{{doc.modified | openeDate}}</td>
         </tr>
         <tr ng-if="doc.attachments.length > 0 && doc.expanded" ng-repeat-end="">
             <td style="padding-left: 50px;" colspan="9">

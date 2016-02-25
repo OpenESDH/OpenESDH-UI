@@ -1,0 +1,27 @@
+<md-card flex="grow">
+    <md-card-content>
+        <h2>{{ 'ADMIN.SYS_SETTINGS.TENANTS_MODULES.TITLE' | translate}}</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>{{ 'ADMIN.SYS_SETTINGS.TENANTS_MODULES.TENANT' | translate }}</th>
+                    <th>{{ 'ADMIN.SYS_SETTINGS.TENANTS_MODULES.MODULES' | translate }}</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="(tenant,modules) in vm.tenantsModules" class="clickable-row" ng-click="vm.editTenantModules($event, tenant, modules)">
+                    <td>{{tenant}}</td>
+                    <td><span ng-repeat="module in modules" style="margin-right: 5px">{{module}}<span ng-show="!$last">,</span></span></td>
+                    <td>
+                        <md-button class="md-primary" ng-click="vm.deleteModules($event, tenant)">
+                            {{ 'COMMON.DELETE' | translate }}
+                        </md-button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <md-button class="md-primary" ng-click="vm.createTenant($event)">{{ 'ADMIN.SYS_SETTINGS.TENANTS_MODULES.CREATE_TENANT' | translate }}</md-button>
+        <md-button class="md-primary" ng-click="vm.newTenantModules($event)">{{ 'ADMIN.SYS_SETTINGS.TENANTS_MODULES.ASSIGN_MODULES' | translate }}</md-button>
+    </md-card-content>
+</md-card>

@@ -33,7 +33,7 @@ describe('openESDH case page tests', function () {
             stdCaseTypeBtn.click().then(function () {
                 //Fill the crud form and click create
                 var caseTitle = element(by.model('vm.case.prop_cm_title'));
-                var caseOwner = element(by.model('vm.case.assoc_base_owners_added'));
+                var caseOwner = element(by.model('$mdAutocompleteCtrl.scope.searchText'));
                 var caseJournalKey = element(by.model('vm.case.prop_oe_journalKey'));//Need to be tested later
                 var caseJournalFacet = element(by.model('vm.case.prop_oe_journalFacet'));//Need to be tested later
                 var caseDescription = element(by.model('vm.case.prop_cm_description'));
@@ -45,6 +45,7 @@ describe('openESDH case page tests', function () {
                         var caseTxtTitle = oeUtils.generateRandomString(8);
                         caseTitle.sendKeys(caseTxtTitle);
                         caseOwner.sendKeys("la");
+                        element(by.css('[ng-click="$mdAutocompleteCtrl.select($index)"]')).click();
                         caseDescription.sendKeys(oeUtils.generateRandomString(20));
                         //browser.driver.sleep(2000);
                         //browser.waitForAngular();

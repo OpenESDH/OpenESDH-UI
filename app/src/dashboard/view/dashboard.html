@@ -1,116 +1,16 @@
 <app-header></app-header>
 
-<section layout="column" layout-gt-md="row">
-  
-    <div flex="100" flex-gt-md="66" layout="column">
-      
-        <md-card ng-controller="CaseListController as caseListController">
-          <md-card-content>
-
-              <div layout="row" layout-align="space-between center" layout-padding>
-                  
-                  <h2 class="md-title">{{ 'CASE.MY_CASES' | translate }}</h2>
-              
-                  <opene-list-filter list="caseListController.caseFilter" 
-                                     choice="caseListController.caseFilterChoice"
-                                     finished="caseListController.getCases()">
-                  </opene-list-filter>
-              </div>
-              
-              <div class="repeat-table">
-                  <div class="repeat-header" layout="row">
-                      <span class="r" flex="5"></span>
-                      <span class="r" flex sort-table="cm:title">{{ 'COMMON.TITLE' | translate }}</span>
-                      <span class="r" flex="20" sort-table="oe:id">{{ 'COMMON.ID' | translate }}</span>
-                      <span class="r" flex="20" sort-table="cm:modified">{{ 'COMMON.MODIFIED' | translate }}</span>
-                  </div>
-                  <md-virtual-repeat-container md-auto-shrink style="height: 200px;">
-                      <div md-virtual-repeat="case in caseListController.cases | orderObjectBy:orderByAttribute:reverseOrder" class="repeat-item">
-                          <a class="r-rowlink" ui-sref="case({'caseId': case['oe:id']})" layout="row">
-                              <span class="r" flex="5"><i class="material-icons">folder_open</i></span>
-                              <span class="r" flex>{{case["cm:title"]}}</span>
-                              <span class="r muted" flex="20">{{case["oe:id"]}}</span>
-                              <span class="r muted" flex="20">{{case["cm:modified"] | openeDate}}</span>
-                          </a>
-                      </div>
-                  </md-virtual-repeat-container>
-              </div>
-            
-          </md-card-content>
-          <div class="md-actions" layout="row" layout-padding>
-            <ng-include src="'app/src/cases/view/createCaseMenu.html'"></ng-include>
-          </div>
-        </md-card>
-
-        <md-card ng-controller="DocumentController as docCtrl">
-          <md-card-content>
-            
-            <h2 class="md-title">{{ 'DOCUMENT.MY_DOCUMENTS' | translate }}</h2>
-            
-            <div class="repeat-table">
-                  <div class="repeat-header" layout="row">
-                      <span class="r" flex="5"></span>
-                      <span class="r" flex sort-table="title">{{ 'COMMON.TITLE' | translate }}</span>
-                      <span class="r" flex="20" sort-table="modifiedOn">{{ 'COMMON.MODIFIED' | translate }}</span>
-                      <span class="r" flex="20" sort-table="modifiedBy">{{ 'COMMON.MODIFIED_BY' | translate }}</span>
-                  </div>
-                  <md-virtual-repeat-container md-auto-shrink style="min-height: 150px;">
-                      <div md-virtual-repeat="document in docCtrl.documents | orderObjectBy:orderByAttribute:reverseOrder" class="repeat-item">
-                          <a class="r-rowlink" href="#/cases/case/{{ document.caseId }}/doc/{{ document.location.parent.nodeRef | nodeRefUri }}" layout="row">
-                              <span class="r" flex="5"><img class="md-avatar" ng-src="/app/assets/images/filetypes/{{document.thumbNailURL}}"/></span>
-                              <span class="r" flex>{{ document.title }}</span>
-                              <span class="r muted" flex="20">{{ document.modifiedOn | openeDate}}</span>
-                              <span class="r muted" flex="20">{{ document.modifiedBy }}</span>
-                              
-                          </a>
-                      </div>
-                  </md-virtual-repeat-container>
-              </div>
-
-          </md-card-content>
-        </md-card>
-      
-        <md-card ng-controller="activitiesController as actContrl">
-            <md-card-content>
-                <h2 class="md-title">{{ 'ACTIVITIES.RECENT_ACTIVITIES' | translate }}</h2>
-                <div style="min-height: 150px;">
-                  <div ng-repeat="activity in actContrl.activities" class="repeat-item" style="margin: 15px" >
-                      {{activitySummary=activity.activitySummary;""}}
-                      <a translate="ACTIVITIES.{{activity.activityType}}"
-                           translate-value-user="{{activitySummary.modifierDisplayName}}"
-                           translate-value-case="{{activitySummary.caseTitle}}"
-                           translate-value-case-id="{{activitySummary.caseId}}"
-                           translate-value-member="{{activitySummary.member}}"
-                           translate-value-role="{{activitySummary.role}}"
-                           translate-value-document="{{activitySummary.docTitle}}"
-                           translate-value-attachment="{{activitySummary.attachmentTitle}}"
-                           translate-value-workflow-description="{{activitySummary.workflowDescription}}"
-                           ui-sref="case({'caseId': activitySummary.caseId})">
-                      </a>
-                  </div>
-                </div>
-            </md-virtual-repeat-container>
-        </md-card>
+<section layout="row" layout-wrap>
+    <div flex="100" flex-gt-md="66">
+        <span ng-repeat="dashlet in vm.dashlets | orderBy: 'order' | filter:{position:'left'}">
+            <ng-include src="dashlet.templateUrl"></ng-include>
+        </span>
     </div>
-  
     <div flex="100" flex-gt-md="33">
-
-        <md-card ng-controller="tasksOverviewController as tasksCtrl" style="min-height: 850px;">
-          <md-card-content>
-            <h2 class="md-title">{{ 'TASK.MY_TASKS' | translate }}</h2>
-            <md-list>
-              <md-list-item class="md-2-line" ng-repeat="task in tasksCtrl.tasks">
-                <md-button class="md-list-item-text task-btn" ui-sref="workflowtask({ taskName: task.name, taskId : task.id })">
-                  <h3>{{task.properties.bpm_description}}</h3>
-                  <p>{{task | taskDescription}}</p>
-                </md-button>
-              </md-list-item>
-            </md-list>
-          </md-card-content>
-        </md-card>
-
+        <span ng-repeat="dashlet in vm.dashlets | orderBy: 'order' | filter:{position:'right'}">
+            <ng-include src="dashlet.templateUrl"></ng-include>
+        </span>
     </div>
-  
 </section>
 
 <app-footer></app-footer>

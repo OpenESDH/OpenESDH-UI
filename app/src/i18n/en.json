@@ -1,4 +1,4 @@
-{
+﻿{
     "COMMON": {
         "CASE_ID": "Case Id",
         "CONFIRM": "Confirm",
@@ -64,7 +64,8 @@
         "LIST_VIEW": "List view",
         "GRID_VIEW": "Grid view",
         "DOWNLOAD_TEMPLATE_CSV": "Download template CSV",
-        "LOCKED_BY": "Locked by {{locked_by}}"
+        "LOCKED_BY": "Locked by {{locked_by}}",
+        "CONGRATULATIONS": "Congratulations!"
     },
     "CASE": {
         "CONFIRM_CLOSE_CASE": "Do you want to close this case?",
@@ -112,6 +113,8 @@
         "MY_CASES": "My cases",
         "GROUP_CASES": "Group cases",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_CASE": "Are you sure you want to delete the case '{{case_title}}'?",
+        "DELETE_CASE_SUCCESS": "Case successfully deleted",
+        "DELETE_CASE_FAILURE": "Case could not be deleted",
         "VIEW_CASE_DETAILS": "View case",
         "STAFF": {
             "EMPLOYEE": "Employee",
@@ -170,19 +173,7 @@
         "UPLOAD_NEW_DOCUMENTS": "Upload new document",
         "SEND_DOCUMENTS": "Send documents",
         "EMAIL_DOCUMENTS": "Email documents",
-        "CREATE_FROM_TEMPLATE": "Create from template",
         "MY_DOCUMENTS": "My documents",
-        "CHOOSE_TEMPLATE": "Choose template",
-        "TEMPLATE": {
-            "ARE_YOU_SURE_YOU_WANT_TO_DELETE_TEMPLATE": "Are you sure you want to delete the template '{{title}}' ?",
-            "RECEIVER": "Receiver",
-            "LABELS": {
-                "TEMPLATES": "Templates",
-                "UPLOAD_NEW_TEMPLATE": "Upload new template"
-            }
-        },
-        "DOWNLOAD_RENDERED_FROM_TEMPLATE": "Download rendered from template",
-        "SAVE_RENDERED_TEMPLATE_TO_CASE": "Save rendered template to case",
         "CHANGE_STATUS": "Change status",
         "VERSION": "Version",
         "VERSION_ADDED": "Version added",
@@ -214,6 +205,26 @@
         "SENT_FROM_OUTLOOK": "Sent from Outlook",
         "DELETE_DOC_SUCCESS": "Document successfully deleted",
         "DELETE_DOC_FAILURE": "Document could not be deleted"
+    },
+    "FILE": {
+        "FILES": "Files",
+        "MY_FILES": "My files",
+        "GROUP_FILES": "Group files",
+        "SELECT_FILE": "Select file(s) to upload",
+        "FILE_UPLOADED_SUCCESSFULLY": "File \"{{title}}\" uploaded successfully",
+        "N_FILES_UPLOADED_SUCCESSFULLY": "{{n}} files uploaded successfully",
+        "FILE_ASSIGNED_SUCCESSFULLY": "File \"{{title}}\" assigned to {{authorityName}} successfully",
+        "ASSIGN_TO": "Assign to...",
+        "ADD_FILES": "Add file(s)",
+        "ASSIGN_FILE": "Assign file",
+        "ADD_TO_CASE": "Add to case",
+        "FILE_ADDED_TO_CASE_SUCCESSFULLY": "File \"{{title}}\" added to case {{caseId}} successfully",
+        "ARE_YOU_SURE_YOU_WANT_TO_DELETE_FILE": "Are you sure you want to delete the file \"{{title}}\"?",
+        "DELETE_FILE_SUCCESS": "File successfully deleted",
+        "DELETE_FILE_FAILURE": "File could not be deleted",
+        "COMMENTS_OF": "Comments of {{filename}}",
+        "USER_TIMESTAMP": "{{date}} by {{name}}",
+        "VIEW_COMMENTS": "Read comments"
     },
     "COUNTRY": {
         "AF": "Afghanistan",
@@ -499,7 +510,7 @@
         "DUE_DATE": "Due date",
         "PRIORITY": {
             "PRIORITY": "Priority",
-            "HIGH": "Hight",
+            "HIGH": "High",
             "MEDIUM": "Medium",
             "LOW": "Low"
         },
@@ -533,6 +544,19 @@
                 "can_create_contacts": "Allow to create contacts",
                 "ARE_YOU_SURE_YOU_WANT_TO_SAVE_PARAMETERS": "Are you sure you want to save parameters?",
                 "SAVED_SUCCESSFULLY": "Configuration saved successfully"
+            },
+            "TENANTS_MODULES":{
+                "TITLE": "Tenants Modules",
+                "TENANT_MODULES": "Tenant modules",
+                "TENANT": "Tenant",
+                "MODULES": "Modules",
+                "ARE_YOU_SURE_YOU_WANT_TO_DELETE_TENANT_MODULES": "Are you sure you want to delete modules configuration for the tenant '{{tenant}}'?",
+                "TENANT_DOMAIN": "Tenant domain",
+                "TENANT_ADMIN_PASSWORD": "Tenant admin password",
+                "TENANT_CONTENT_STORE_ROOT": "Tenant content store root",
+                "CREATE_TENANT": "Create tenant",
+                "ASSIGN_MODULES": "Assign modules",
+                "TENANT_CREATED": "Tenant created: {{tenantDomain}}"
             }
         }
     },
@@ -590,7 +614,6 @@
         "EDIT_ORG": "Edit organisation",
         "DELETE_ORG": "Delete organisation",
         "EMPLOYEES": "Employees",
-        "CRUD_ORG": "Create / edit organisation",
         "SEARCH_FOR_ORG": "Search for organisation",
         "CVR_NO": "CVR No",
         "STREET": "Street",
@@ -619,6 +642,7 @@
         "DEPARTMENT": "Department",
         "STREET": "Street",
         "CREATE_NEW_CONTACT": "Create new contact",
+        "EDIT_CONTACT": "Edit contact",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_PERSON_CONTACT": "Are you sure you want to delete \"{{firstName}} {{lastName}}\" contact?",
         "CONTACT_SAVED_SUCCESSFULLY": "Contact \"{{firstName}} {{lastName}}\" saved successfully",
         "CONTACT_DELETED_SUCCESSFULLY": "Contact \"{{firstName}} {{lastName}}\" deleted successfully",
@@ -665,7 +689,7 @@
         "MEMBER_REMOVED_SUCCESSFULLY": "Case member removed successfully"
     },
     "NOTE": {
-        "NOTES": "Journal notes",
+        "NOTES": "Notes",
         "RELATED": "Related",
         "NEW_NOTE": "New note",
         "PRINT_ALL_NOTES": "Print all notes",
@@ -673,7 +697,8 @@
         "HEADLINE": "Headline",
         "CONTENT": "Content",
         "CONCERNED_PARTIES": "Concerned parties",
-        "ADD_NOTE": "Add note"
+        "ADD_NOTE": "Add note",
+        "COMFIRM_DELETE": "Are you sure you want to delete this note?"
     },
     "PARTY": {
         "PARTIES": "Parties",
@@ -728,8 +753,8 @@
         "LOGOUT": "Logout"
     },
     "OFFICE": {
-        "SAVE_EMAIL_IN_OPENESDH": "Save email in OpenESDH",
-        "SAVE_DOCUMENT_IN_OPENESDH": "Save document in OpenESDH"
+        "SAVE_EMAIL_IN_OPENESDH": "Save email in Visma Case",
+        "SAVE_DOCUMENT_IN_OPENESDH": "Save document in Visma Case"
     },
     "DOCUMENT_TYPE": {
         "CREATE_EDIT_DOC_TYPE": "Create / edit document type",

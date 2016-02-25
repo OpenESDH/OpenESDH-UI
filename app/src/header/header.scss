@@ -34,8 +34,13 @@
     min-width: auto;
     display: inline-block;
     vertical-align: middle;
-    padding: 1rem;
-    margin: 0;
+    margin: 1rem;
+    padding: 0;
+
+    &.active {
+        border-bottom: 2px solid #fff;
+        border-radius: 0;
+    }
 }
 
 .logged-in-user {

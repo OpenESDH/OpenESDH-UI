@@ -16,7 +16,8 @@
             printCase: printCase,
             getCaseDocumentsFolderNodeRef: getCaseDocumentsFolderNodeRef,
             getGroupCases: getGroupCases,
-            getCasesGeneral: getCasesGeneral
+            getCasesGeneral: getCasesGeneral,
+            caseSearch: caseSearch
         };
         return service;
 
@@ -25,22 +26,32 @@
                 return response.data;
             });
         }
+        
+        function caseSearch(query) {
+            var q = '*' + query + '*';
+            var filters = [
+                {'name': 'oe:id', 'operator':'=', 'value':q},
+                {'name': 'cm:title', 'operator': '=', 'value': q}
+            ];
+            return getCasesGeneral('/api/openesdh/search', 'base:case', filters, 'OR');
+        }
 
-        function getCases(baseType, filters) {
-            return this.getCasesGeneral('/api/openesdh/search', baseType, filters);
+        function getCases(baseType, filters, filterType) {
+            return this.getCasesGeneral('/api/openesdh/search', baseType, filters, filterType);
         }
         
         function getGroupCases(baseType, filters) {
             return this.getCasesGeneral('/api/openesdh/group/cases/search', baseType, filters);
         }
         
-        function getCasesGeneral(url, baseType, filters){
+        function getCasesGeneral(url, baseType, filters, filterType){
             var params = {
                 baseType: baseType,
                 sortBy: "-cm:modified"
             };            
             if(filters != null && filters != undefined){
                 params.filters = filters;
+                params.filterType = filterType; // 'AND'/'OR'
             }
             return $http.get(url, {params: params}).then(function (response) {
                 return response.data;

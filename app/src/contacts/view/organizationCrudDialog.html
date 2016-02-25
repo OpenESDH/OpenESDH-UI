@@ -1,12 +1,8 @@
-<md-dialog class="dialog-large" aria-label="Create / edit organization">
+<md-dialog class="dialog-large" aria-label="{{(organization.nodeRefId ? 'ORG.EDIT_ORG' : 'ORG.CREATE_NEW_ORG') | translate }}">
     <form name="orgForm" novalidate>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h1>{{ 'ORG.CRUD_ORG' | translate }}</h1>
-                <span flex></span>
-                <md-button class="md-icon-button" ng-click="cancel()">
-                    <md-icon aria-label="Close dialog"></md-icon>
-                </md-button>
+                <h2>{{(organization.nodeRefId ? 'ORG.EDIT_ORG' : 'ORG.CREATE_NEW_ORG') | translate }}</h2>
             </div>
         </md-toolbar>
         <md-dialog-content>

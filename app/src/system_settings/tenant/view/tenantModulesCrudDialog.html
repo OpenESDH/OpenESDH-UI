@@ -1,0 +1,41 @@
+<md-dialog class="dialog-small" aria-label="{{ 'ADMIN.SYS_SETTINGS.TENANTS_MODULES.TENANT_MODULES' | translate }}">
+    <form name="tenantModulesForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h1>{{ 'ADMIN.SYS_SETTINGS.TENANTS_MODULES.TENANT_MODULES' | translate }}</h1>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="tm.cancel()">
+                    <md-icon aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <p>
+                <label>{{ 'ADMIN.SYS_SETTINGS.TENANTS_MODULES.TENANT' | translate }}: </label>
+                <select ng-model="tm.tenant" ng-options="tenant as tenant for tenant in tm.tenants" ng-show="tm.isNew"></select>
+                <span ng-show="!tm.isNew">{{tm.tenant}}</span>
+            </p>
+            <label>{{ 'ADMIN.SYS_SETTINGS.TENANTS_MODULES.MODULES' | translate }}</label>
+            <md-list>
+                <md-list-item class="md-3-line" ng-repeat="module in tm.openeModules">
+                    <md-checkbox ng-model="module.selected" ng-change="tm.moduleSelected(module)" aria-label="{{module.id}}"></md-checkbox>
+                    <div class="md-list-item-text">
+                        {{ module.id }}
+                    </div>
+                </md-list-item>
+            </md-list>
+            
+            
+        </md-dialog-content>
+
+        <md-dialog-actions>
+            <md-button class="md-primary" type="submit" ng-disabled="!tm.canSave()" ng-click="tm.save(tenantModulesForm)">
+                {{ 'COMMON.SAVE' | translate }}
+            </md-button>
+            <md-button ng-click="tm.cancel()">
+                {{ 'COMMON.CANCEL' | translate }}
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

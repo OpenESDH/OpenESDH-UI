@@ -1,12 +1,12 @@
-<div layout="row" layout-wrap>
-    <div flex="100" flex-gt-md="25">
+<div layout layout-wrap>
+    <div layout-xs="noshrink" flex-md="100" flex-gt-md="25" class="case-info-card">
         <md-card>
             <md-card-content>
                 <div layout layout-align="space-between center">
-                    <h3 class="md-title" flex="75">
+                    <h3 class="md-title">
                         {{ 'COMMON.INFORMATION' | translate }}
                     </h3>
-                    <div flex="25" class="opene-star">
+                    <div class="opene-star" style="float: right;">
                         <md-button ng-hide="civm.isFavourite" class="opene-star__passive" ng-click="civm.addCaseToFavourites()">
                             <i class="material-icons">star_border</i>
                         </md-button>
@@ -16,17 +16,25 @@
                     </div>
                 </div>
                 <dl layout="row" layout-wrap ng-include="civm.caseInfoTemplateUrl"></dl>
+                <span ng-repeat="extra in civm.extras">
+                    <ng-include src="extra.caseInfoPropsUrl"></ng-include>
+                </span>
             </md-card-content>
-            <div class="md-actions" layout="column" layout-padding layout-align="start start">
-                <md-button class="md-primary" ng-click="civm.editCase($event)"
-                           ng-disabled="caseCtrl.caseIsLocked">
-                    <i class="material-icons">mode_edit</i>
-                    {{ 'CASE.EDIT_INFORMATION' | translate }}
-                </md-button>
-                <md-button class="md-primary" ng-click="civm.printCase()"><i class="material-icons">print</i> {{ 'CASE.PRINT_CASE' | translate }}</md-button>
-                <md-button class="md-primary" ng-click="civm.startWorklfow()" ng-disabled="caseCtrl.caseIsLocked">{{ 'CASE.START_WORKFLOW' | translate }}</md-button>
+            <div class="md-actions" layout="column" layout-md="row" layout-xs="column" layout-padding layout-align="start start" >
+                <md-button class="md-primary" ng-click="civm.editCase($event)" ng-disabled="caseCtrl.caseIsLocked">
+                    <i class="material-icons">mode_edit</i> {{ 'CASE.EDIT_INFORMATION' | translate }}</md-button>
+                <md-button class="md-primary" ng-click="civm.printCase()">
+                    <i class="material-icons">print</i> {{ 'CASE.PRINT_CASE' | translate }}</md-button>
+                <md-button class="md-primary" ng-click="civm.startWorklfow()" ng-disabled="caseCtrl.caseIsLocked">
+                    <i class="material-icons">device_hub</i> {{ 'CASE.START_WORKFLOW' | translate }}</md-button>
+                    
+                <span ng-repeat="extra in civm.extras" style="padding: 0">
+                    <ng-include src="extra.caseInfoActionsUrl"></ng-include>
+                </span>
+                
             </div>
         </md-card>
     </div>
-    <div flex="100" flex-gt-md="75" ng-include="'app/src/documents/view/caseDocumentList.html'"></div>
+    <div layout-xs="noshrink" flex flex-md="100" class="case-info-card"
+         ng-include="'app/src/documents/view/caseDocumentList.html'"></div>
 </div>

@@ -14,16 +14,13 @@ angular
  * @constructor
  */
 function CaseInfoController($scope, $stateParams, startCaseWorkflowService, caseCrudDialogService,
-        casePrintDialogService, preferenceService) {
+        casePrintDialogService, preferenceService, caseInfoExtrasService) {
     var vm = this;
     vm.editCase = editCase;
     vm.startWorklfow = startWorklfow;
     vm.printCase = printCase;
     vm.addCaseToFavourites = addCaseToFavourites;
     vm.removeCaseFromFavourites = removeCaseFromFavourites;
-    vm.checkFavourite = checkFavourite;
-
-    ContextService.setContext('cases');
 
     loadCaseInfo();
 
@@ -38,9 +35,12 @@ function CaseInfoController($scope, $stateParams, startCaseWorkflowService, case
     }
 
     function editCase() {
-        caseCrudDialogService.editCase(vm.caseInfo).then(function(result) {
-            loadCaseInfo();
-        });
+        var promise = caseCrudDialogService.editCase(vm.caseInfo);
+        if(promise != null && promise != undefined){
+            promise.then(function(result) {
+                loadCaseInfo();
+            });            
+        }
     }
 
     function startWorklfow() {

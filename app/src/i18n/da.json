@@ -1,4 +1,4 @@
-{
+﻿{
     "COMMON": {
         "CASE_ID": "Sag Id",
         "CONFIRM": "Bekræft",
@@ -64,8 +64,9 @@
         "MESSAGE": "Meddelelse",
         "LIST_VIEW": "Listevisning",
         "GRID_VIEW": "Gittervisning",
-        "DOWNLOAD_TEMPLATE_CSV": "Download skabelon CSV",
-        "LOCKED_BY": "Låst af {{locked_by}}"
+	"DOWNLOAD_TEMPLATE_CSV": "Hent CSV skabelon",
+        "LOCKED_BY": "Låst af {{locked_by}}",
+	"CONGRATULATIONS": "Tillykke!"
     },
     "CASE": {
         "CONFIRM_CLOSE_CASE": "Vil du lukke denne sag?",
@@ -113,6 +114,8 @@
         "MY_CASES": "Mine sager",
         "GROUP_CASES": "Ikke tildelte sager",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_CASE": "Er du sikker på, at du vil slette '{{case_title}}'?",
+        "DELETE_CASE_SUCCESS": "Sag slettet",
+        "DELETE_CASE_FAILURE": "Sag kunne ikke slettes",
         "VIEW_CASE_DETAILS": "Vis sag",
         "STAFF": {
             "EMPLOYEE": "Medarbejder",
@@ -138,8 +141,8 @@
     "DOCUMENT": {
         "STATUS_CHANGED_SUCCESS": "Status er ændret",
         "CATEGORY": {
-            "annex": "Annex",
-            "proof": "Proof",
+            "annex": "Bilag",
+            "proof": "Bevis",
             "contract": "Kontrakt",
             "note": "Note",
             "report": "Rapport",
@@ -157,7 +160,7 @@
             "final": "Endelig",
             "received": "Modtaget",
             "distributed": "Distribueret",
-            "under-review": "Under gennemlæsning",
+            "under-review": "Til review",
             "published": "Publiceret",
             "finalised": "Færdiggjort",
             "submitted": "Indmeldt"
@@ -171,19 +174,7 @@
         "UPLOAD_NEW_DOCUMENTS": "Upload nyt dokument",
         "SEND_DOCUMENTS": "Send dokumenter",
         "EMAIL_DOCUMENTS": "Email dokumenter",
-        "CREATE_FROM_TEMPLATE": "Opret fra skabelon",
         "MY_DOCUMENTS": "Mine dokumenter",
-        "CHOOSE_TEMPLATE": "Vælg skabelon",
-        "TEMPLATE": {
-            "ARE_YOU_SURE_YOU_WANT_TO_DELETE_TEMPLATE": "Er du sikker på, at du vil slette skabelon '{{title}}' ?",
-            "RECEIVER": "Modtager",
-            "LABELS": {
-                "TEMPLATES": "Skabeloner",
-                "UPLOAD_NEW_TEMPLATE": "Upload ny skabelon"
-            }
-        },
-        "DOWNLOAD_RENDERED_FROM_TEMPLATE": "Download fra skabelon",
-        "SAVE_RENDERED_TEMPLATE_TO_CASE": "Gem til sag",
         "CHANGE_STATUS": "Skift status",
         "VERSION": "Version",
         "VERSION_ADDED": "Version tilføjet",
@@ -215,6 +206,26 @@
         "SENT_FROM_OUTLOOK": "Sent from Outlook",
         "DELETE_DOC_SUCCESS": "Dokument slettet",
         "DELETE_DOC_FAILURE": "Dokument kunne ikke slettes"
+    },
+    "FILE": {
+        "FILES": "Filer",
+        "MY_FILES": "Mine filer",
+        "GROUP_FILES": "Fælles filer",
+        "SELECT_FILE": "Upload fil(er)",
+        "FILE_UPLOADED_SUCCESSFULLY": "Filen \"{{title}}\" oploadet succesfuldt",
+        "N_FILES_UPLOADED_SUCCESSFULLY": "{{n}} filer uploadet succesfuldt",
+        "FILE_ASSIGNED_SUCCESSFULLY": "Filen \"{{title}}\" tildelt {{authorityName}}",
+        "ASSIGN_TO": "Tildel til...",
+        "ADD_FILES": "Tilføj fil(er)",
+        "ASSIGN_FILE": "Tildel fil",
+        "ADD_TO_CASE": "Tilføj til sag",
+        "FILE_ADDED_TO_CASE_SUCCESSFULLY": "Filen \"{{title}}\" er tilføjet sagen {{caseId}}",
+        "ARE_YOU_SURE_YOU_WANT_TO_DELETE_FILE": "Er du sikker på at du vil slette filen \"{{title}}\"?",
+        "DELETE_FILE_SUCCESS": "Filen er slettet",
+        "DELETE_FILE_FAILURE": "Filen kunne ikke slettes",
+        "COMMENTS_OF": "Kommentar til {{filename}}",
+        "USER_TIMESTAMP": "{{date}} af {{name}}",
+        "VIEW_COMMENTS": "Læs kommentar"
     },
     "COUNTRY": {
         "AF": "Afghanistan",
@@ -507,7 +518,32 @@
     },
     "ADMIN": {
         "ADMINISTRATION_PAGES": "Administrationssider",
-        "ADMINISTRATION": "Administration"
+        "ADMINISTRATION": "Administration",
+        "SYS_SETTINGS": {
+            "SETTINGS": "Indstillinger",
+            "MODULES": "MODULER",
+            "GENERAL": {
+                "GENERAL_CONFIG": "Standard konfiguration",
+                "SAVE_PARAMETERS": "Gem parametre",
+                "PARAMETERS": "Parametre",
+                "can_create_contacts": "Tildel brugere at oprettet kontakter",
+                "ARE_YOU_SURE_YOU_WANT_TO_SAVE_PARAMETERS": "Er du sikker på at du vil gemme indstillingerne?",
+                "SAVED_SUCCESSFULLY": "Indstillinger gemt1"
+            },
+            "TENANTS_MODULES":{
+                "TITLE": "Lejermodul",
+                "TENANT_MODULES": "Lejermodul",
+                "TENANT": "Lejer",
+                "MODULES": "Moduler",
+                "ARE_YOU_SURE_YOU_WANT_TO_DELETE_TENANT_MODULES": "Er du sikker på at du vil slette modulerne for denne lejer '{{tenant}}'?",
+                "TENANT_DOMAIN": "Lejer domæne",
+                "TENANT_ADMIN_PASSWORD": "Lejer admin kodeord",
+                "TENANT_CONTENT_STORE_ROOT": "Lejer content store root",
+                "CREATE_TENANT": "Opret lejer",
+                "ASSIGN_MODULES": "Tildel moduler",
+                "TENANT_CREATED": "Lejer oprettet: {{tenantDomain}}"
+            }
+        }
     },
     "USER": {
         "USERS": "Brugere",
@@ -562,7 +598,6 @@
         "EDIT_ORG": "Redigér organisation",
         "DELETE_ORG": "Slet organisation",
         "EMPLOYEES": "Ansatte",
-        "CRUD_ORG": "Opret / redigér organisation",
         "SEARCH_FOR_ORG": "Søg i organisationer",
         "CVR_NO": "CVR-nr",
         "STREET": "Gade",
@@ -593,19 +628,21 @@
         "CREATE_NEW_CONTACT": "Opret ny kontakt",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_PERSON_CONTACT": "Er du sikker på, at du vil slette \"{{firstName}} {{lastName}}\"?",
         "CONTACT_SAVED_SUCCESSFULLY": "Kontakt \"{{firstName}} {{lastName}}\" gemt",
-        "CONTACT_DELETED_SUCCESSFULLY": "Kontakt \"{{firstName}} {{lastName}}\" slettet"
+        "CONTACT_DELETED_SUCCESSFULLY": "Kontakt \"{{firstName}} {{lastName}}\" slettet",
+	"PERSON": "Person",
+        "ORGANIZATION": "Organisation"
     },
     "ERROR": {
         "REQUIRED": "Obligatoriske felt",
-        "TOO_SHORT": "This field is too short",
-        "TOO_LONG": "This field is too long",
-        "INVALID_EMAIL": "Email address is invalid",
+        "TOO_SHORT": "Indhold for kort",
+        "TOO_LONG": "Indhold for langt",
+        "INVALID_EMAIL": "Invalid e-mail adresse",
         "PASSWORD_NOMATCH": "Kodeord matcher ikke",
-        "EMAIL_NOT_EXISTS": "Email finnes ikke",
-        "EMAIL_EXISTS": "Email finnes allerede",
-        "USERNAME_EXISTS": "Brugernavn finnes allerede",
-        "AUTH_FAILURE": "Forkerte loginoplysninger",
-        "NOT_EQUAL_PATTERN": "Feil input format"
+        "EMAIL_NOT_EXISTS": "Email findes ikke",
+        "EMAIL_EXISTS": "Email findes allerede",
+        "USERNAME_EXISTS": "Brugernavn findes allerede",
+        "AUTH_FAILURE": "Forkert loginoplysninger",
+        "NOT_EQUAL_PATTERN": "Forkert format"
     },
     "LOGIN": {
         "LOGIN": "Log ind",
@@ -635,15 +672,16 @@
         "MEMBER_REMOVED_SUCCESSFULLY": "Medlem fjernet"
     },
     "NOTE": {
-        "NOTES": "Journalnoter",
+        "NOTES": "Noter",
         "RELATED": "Relateret",
-        "NEW_NOTE": "Ny journalnote",
-        "PRINT_ALL_NOTES": "Print alle journalnoter",
-        "CREATE_NOTE": "Opret journalnote",
+        "NEW_NOTE": "Ny note",
+        "PRINT_ALL_NOTES": "Print alle noter",
+        "CREATE_NOTE": "Opret note",
         "HEADLINE": "Overskrift",
         "CONTENT": "Indhold",
         "CONCERNED_PARTIES": "Relaterede parter",
-        "ADD_NOTE": "Tilføj journalnote"
+        "ADD_NOTE": "Tilføj note",
+        "COMFIRM_DELETE": "Er du sikker på, at du vil slette denne note?"
     },
     "PARTY": {
         "PARTIES": "Parter",
@@ -673,7 +711,7 @@
         "REJECT": "Afvis",
         "VIEW_TASK_DETAILS": "Vis opgavedetaljer",
         "TASK_DETAILS": "Opgavedetaljer",
-        "ITEMS": "Vedlægninger",
+        "ITEMS": "Vedhæftninger",
         "DELETE_TASK": "Slet opgave",
         "TASK_APPROVED": "Opgaven blev godkendt",
         "TASK_REJECTED": "Opgaven blev afvist",
@@ -691,8 +729,8 @@
         "LOGOUT": "Log ud"
     },
     "OFFICE": {
-        "SAVE_EMAIL_IN_OPENESDH": "Gem email i OpenESDH",
-        "SAVE_DOCUMENT_IN_OPENESDH": "Gem dokument i OpenESDH"
+        "SAVE_EMAIL_IN_OPENESDH": "Gem e-mail i Visma Case",
+        "SAVE_DOCUMENT_IN_OPENESDH": "Gem dokument i Visma Case"
     },
     "DOCUMENT_TYPES": {
         "DOCUMENT_TYPES": "Dokumenttyper",
@@ -736,8 +774,8 @@
         "dk.openesdh.case.document.new.version-upload": "{{user}} uploadede en ny version af dokumentet \"{{document}}\" til sagen \"{{case}} ({{caseId}})\"",
         "dk.openesdh.case.document.attachment-upload": "{{user}} uploadede en vedhæftningen \"{{attachment}}\" til dokumentet \"{{document}}\" til sagen \"{{case}} ({{caseId}})\"",
         "dk.openesdh.case.document.attachment.new.version-upload": "{{user}} uploadede en ny version af vedhæftningen \"{{attachment}}\" til dokumentet \"{{document}}\" til sagen \"{{case}} ({{caseId}})\"",
-        "dk.openesdh.case.workflow-start": "{{user}} ingangsatte en opgave \"{{workflowDescription}}\" på sagen \"{{case}} ({{caseId}})\"",
-        "dk.openesdh.case.workflow-cancel": "{{user}} annulerede opgaven \"{{workflowDescription}}\" på sagen \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.workflow-start": "{{user}} igangsatte en opgave \"{{workflowDescription}}\" på sagen \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.workflow-cancel": "{{user}} annullerede opgaven \"{{workflowDescription}}\" på sagen \"{{case}} ({{caseId}})\"",
         "dk.openesdh.case.workflow.task-end": "{{user}} afsluttede opgaven \"{{workflowDescription}}\" på sagen \"{{case}} ({{caseId}})\"",
         "dk.openesdh.case.workflow.task-approve": "{{user}} godkendte opgaven \"{{workflowDescription}}\" på sagen \"{{case}} ({{caseId}})\"",
         "dk.openesdh.case.workflow.task-reject": "{{user}} afviste opgaven \"{{workflowDescription}}\" på sagen \"{{case}} ({{caseId}})\"",

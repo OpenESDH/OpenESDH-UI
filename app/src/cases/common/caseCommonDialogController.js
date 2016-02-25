@@ -2,7 +2,7 @@
         .module('openeApp.cases.common')
         .controller('CaseCommonDialogController', CaseCommonDialogController);
     
-    function CaseCommonDialogController($mdDialog, $translate, userService, caseService, notificationUtilsService, caseInfo) {
+    function CaseCommonDialogController($mdDialog, $translate, caseService, notificationUtilsService, caseInfo) {
         var vm = this;
         vm.formTemplateUrl = "app/src/cases/common/view/caseCrudForm.html";
         // Data from the case creation form
@@ -14,7 +14,6 @@
         vm._afterCaseCreated = null;//if assigned, then will be called after case creation _afterCaseCreated(caseId)
         vm._update = _update;
         vm.init = init;
-        vm.getAuthorities = getAuthorities;
         vm.initCasePropsForEdit = initCasePropsForEdit;
         vm.getPropsToSave = getPropsToSave;
         vm.getDateValue = getDateValue;
@@ -35,18 +34,8 @@
                     prop_oe_journalFacet: []
                 };
             }
-            vm.getAuthorities();
         }
 
-        function getAuthorities(type) {
-            var vm = this;
-            var caseType = type || vm.caseInfo.type;
-            return userService.getCaseAuthorities(caseType.split(':')[0].toUpperCase()).then(function(response) {
-                vm.authorities = response;
-                return response;
-            });
-        }
-        
         function initCasePropsForEdit(){
             var vm = this;
             var c = vm.caseInfo.properties;

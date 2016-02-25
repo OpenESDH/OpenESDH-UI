@@ -3,13 +3,15 @@
         .module('openeApp.notes')
         .factory('caseNotesService', CaseNotesService);
 
-    function CaseNotesService($http, httpUtils) {
+    function CaseNotesService($http, httpUtils, alfrescoNodeUtils) {
         
         var DEFAULT_NOTES_PAGE_SIZE = 6;
 
         var service = {
             getCaseNotes: getCaseNotes,
             addNewNote: addNewNote,
+            updateNote: updateNote,
+            deleteNote: deleteNote,
             createPagingParams: createPagingParams
         };
         return service;
@@ -33,6 +35,23 @@
         function addNewNote(caseId, note){
             var url = getNotesUrlForCase(caseId);
             return $http.post(url, note);
+        }
+        
+        function updateNote(note){
+            var nodeRef = note.nodeRef;
+            var data = {
+                    content: note.content,
+                    headline: note.headline,
+                    author: note.author,
+                    concernedParties: note.concernedParties
+            };
+            var url = '/api/openesdh/note/node/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri;
+            return $http.put(url, data);
+        }
+        
+        function deleteNote(nodeRef){
+            var url = '/api/openesdh/note/node/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri;
+            return $http.delete(url);
         }
         
         function getNotesUrlForCase(caseId){

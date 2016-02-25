@@ -1,0 +1,27 @@
+<md-card ng-controller="MyDocumentsController as docCtrl">
+  <md-card-content>
+    
+    <h2 class="md-title">{{ 'DOCUMENT.MY_DOCUMENTS' | translate }}</h2>
+    
+    <div class="repeat-table">
+          <div class="repeat-header" layout="row">
+              <span class="r icon" flex="none"></span>
+              <span class="r" flex sort-table="title">{{ 'COMMON.TITLE' | translate }}</span>
+              <span class="r" flex="20" sort-table="modifiedOn">{{ 'COMMON.MODIFIED' | translate }}</span>
+              <span class="r" flex="20" sort-table="modifiedBy">{{ 'COMMON.MODIFIED_BY' | translate }}</span>
+          </div>
+          <md-virtual-repeat-container md-auto-shrink style="min-height: 150px;">
+              <div md-virtual-repeat="document in docCtrl.documents | orderObjectBy:orderByAttribute:reverseOrder" class="repeat-item">
+                  <a class="r-rowlink" href="#/cases/case/{{ document.caseId }}/doc/{{ document.location.parent.nodeRef | nodeRefUri }}" layout="row">
+                      <span class="r icon" flex="none"><img class="md-avatar" ng-src="app/assets/images/filetypes/{{document.thumbNailURL}}"/></span>
+                      <span class="r" flex>{{ document.title }}</span>
+                      <span class="r muted" flex="20">{{ document.modifiedOn | openeDate}}</span>
+                      <span class="r muted" flex="20">{{ document.modifiedBy }}</span>
+                      
+                  </a>
+              </div>
+          </md-virtual-repeat-container>
+      </div>
+
+  </md-card-content>
+</md-card>

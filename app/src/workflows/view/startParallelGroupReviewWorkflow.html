@@ -9,12 +9,11 @@
             <mt-wz-step class="workflowWizardStep">
                 <form name="wfForm">
                     <div ng-init="dlg.appendForm(wfForm)" layout>
-                        <md-input-container flex="66">
-                            <label>* {{'WORKFLOW.REVIEW_GROUP' | translate}}</label>
-                            <md-select ng-model="dlg.selectedRecipient" required>
-                              <md-option ng-repeat="recipient in dlg.recipients" value="{{recipient.nodeRef}}">{{recipient.name}}</md-option>
-                            </md-select>
-                        </md-input-container>
+                        <div class="opene-autocomplete-wrapper" flex="66">
+                            <opene-autocomplete datasource="dlg.selectedRecipient" controller-name="GenericWizardController" required="true" name="recipient" list="dlg.recipients" label="* {{'WORKFLOW.REVIEW_GROUP' | translate}}"></opene-autocomplete>
+                            <opene-error form="wfForm" field="wfForm.recipient"></opene-error>
+                        </div>
+
                         <md-input-container flex="33">
                             <label>{{'WORKFLOW.REQUIRED_APPROVAL_PERCENTAGE.REQUIRED_APPROVAL_PERCENTAGE' | translate}}</label>
                             <input type="number" ng-model="dlg.requiredApprovalPercentage" name="requiredApprovalPercentage" min="1" max="100" value="50"/>

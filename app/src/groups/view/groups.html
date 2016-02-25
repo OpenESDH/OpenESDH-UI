@@ -19,7 +19,7 @@
                 </span>
                 <span class="r" flex="25">{{ 'COMMON.ACTIONS' | translate }}</span>
             </div>
-            <md-virtual-repeat-container md-auto-shrink style="height: 450px;">
+            <md-virtual-repeat-container flex-height style="height: 450px;">
                 <div md-virtual-repeat="g in vm.groups | orderObjectBy:orderByAttribute:reverseOrder" class="repeat-item" layout="row">
                     <a class="r-rowlink"
                         ui-sref="administration.group({'shortName': g.shortName })"
