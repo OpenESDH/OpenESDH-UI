@@ -7,6 +7,7 @@ var gulp = require('gulp'),
 var environment = {
     test: {proxy: 'http://test.openesdh.dk'},
     demo: {proxy: 'http://demo.openesdh.dk'},
+    dev: {proxy: 'http://dev.openesdh.dk:8080'},
     local: {
         proxy: 'http://localhost:8080',
         spp: 'http://localhost:7070'
@@ -134,7 +135,7 @@ gulp.task('watch', function() {
 gulp.task('build', ['scripts', 'css']);
 
 gulp.task('dev', ['build', 'watch'], function() {
-    createWebserver(environment.test);
+    createWebserver(environment.dev);
 });
 
 gulp.task('demo', ['build', 'watch'], function() {
@@ -143,6 +144,10 @@ gulp.task('demo', ['build', 'watch'], function() {
 
 gulp.task('local', ['build', 'watch'], function() {
     createWebserver(environment.local);
+});
+
+gulp.task('test', ['build', 'watch'], function() {
+    createWebserver(environment.test);
 });
 
 /* Tests */
