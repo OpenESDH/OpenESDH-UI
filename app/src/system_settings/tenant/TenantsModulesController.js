@@ -6,14 +6,13 @@
         var vm = this;
         vm.deleteModules = deleteModules;
         vm.editTenantModules = editTenantModules;
-        vm.newTenantModules = newTenantModules;
         vm.createTenant = createTenant;
         
         loadList();
         
         function loadList(){
-            tenantsService.getAllTenantsModules().then(function(data){
-                vm.tenantsModules = data;
+            tenantsService.getTenantsInfo().then(function(data){
+                vm.tenantsInfo = data;
             });
             
             tenantsService.getOpeneModules().then(function(data){
@@ -26,7 +25,7 @@
             
             var confirm = $mdDialog.confirm()
                     .title($translate.instant('COMMON.CONFIRM'))
-                    .textContent($translate.instant('ADMIN.SYS_SETTINGS.TENANTS_MODULES.ARE_YOU_SURE_YOU_WANT_TO_DELETE_TENANT_MODULES', {tenant: tenant}))
+                    .textContent($translate.instant('ADMIN.SYS_SETTINGS.TENANTS_MODULES.ARE_YOU_SURE_YOU_WANT_TO_DISABLE_TENANT_MODULES', {tenant: tenant}))
                     .targetEvent(ev)
                     .ok($translate.instant('COMMON.YES'))
                     .cancel($translate.instant('COMMON.CANCEL'));
@@ -37,17 +36,8 @@
             });
         }
         
-        function editTenantModules(ev, tenant, modules){
-            showDialog(ev, tenant, modules);    
-        }
-        
-        function newTenantModules(ev){
-            tenantsService.getAllTenants().then(function(tenants){
-                vm.tenants = tenants.filter(function(tenant){
-                    return vm.tenantsModules[tenant] == undefined;
-                });
-                showDialog(ev);
-            });
+        function editTenantModules(ev, tenantInfo){
+            showDialog(ev, tenantInfo);    
         }
         
         function createTenant(ev){
@@ -78,6 +68,7 @@
                 $mdDialog.hide();
                 tenantsService.createTenant(tc.tenant).then(function(response){
                     notificationUtilsService.notify($translate.instant('ADMIN.SYS_SETTINGS.TENANTS_MODULES.TENANT_CREATED', tc.tenant));
+                    loadList();
                 }, saveError);
             }
             
@@ -86,7 +77,7 @@
             }
         }
         
-        function showDialog(ev, tenant, modules){
+        function showDialog(ev, tenantInfo){
             $mdDialog.show({
                 controller: TenantModulesDialogController,
                 controllerAs: 'tm',
@@ -95,29 +86,27 @@
                 targetEvent: ev,
                 clickOutsideToClose: true,
                 locals: {
-                    tenant: tenant,
-                    modules: modules
+                    tenantInfo: tenantInfo
                 }
+            }).then(function(){
+                loadList();
             });
         }
         
-        function TenantModulesDialogController($scope, $mdDialog, tenant, modules) {
+        function TenantModulesDialogController($scope, $mdDialog, tenantInfo) {
             var tm = this;
-            tm.tenant = tenant;
+            tm.tenantDomain = tenantInfo.tenantDomain;
+            tm.tenantUIContext = tenantInfo.tenantUIContext;
             tm.cancel = cancel;
             tm.save = save;
             tm.openeModules = vm.openeModules.map(function(module){
-                var selected = false;
-                if(tenant != undefined){
-                    selected = modules.indexOf(module) != -1;
-                }
+                var selected = tenantInfo.modules.indexOf(module) != -1;
                 return {id:module, selected:selected};
             });
             tm.tenants = vm.tenants;
-            tm.isNew = (tenant == undefined);
             tm.moduleSelected = moduleSelected;
             tm.canSave = canSave;
-            tm.tenantModules = (tenant == undefined) ? [] : modules.slice();
+            tm.tenantModules = tenantInfo.modules.slice();
             
             function moduleSelected(module){
                 if(module.selected === true){
@@ -137,22 +126,26 @@
                 if (!form.$valid) {
                     return;
                 }
+                var data = {
+                        tenantDomain: tenantInfo.tenantDomain,
+                        tenantUIContext: tm.tenantUIContext,
+                        modules: tm.tenantModules
+                };
                 tenantsService
-                    .saveTenantModules(tm.tenant, tm.tenantModules)
+                    .saveTenantInfo(data)
                     .then(refreshInfoAfterSuccess, saveError);
             }
 
             function refreshInfoAfterSuccess(savedDocumentCategory) {
                 $mdDialog.hide();
-                loadList();
             }
 
             function saveError(response) {
                 console.log(response);
             }
             
-            function canSave(){
-                return tm.tenant != undefined && tm.tenantModules.length > 0;
+            function canSave(form){                
+                return form != undefined && form.$valid && tm.tenantModules.length > 0;
             }
         }
     }
