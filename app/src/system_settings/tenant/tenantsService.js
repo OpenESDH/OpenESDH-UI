@@ -6,8 +6,8 @@
     function tenantsService($http){
         var service = {
             getAllTenants: getAllTenants,
-            getAllTenantsModules: getAllTenantsModules,
-            saveTenantModules: saveTenantModules,
+            getTenantsInfo: getTenantsInfo,
+            saveTenantInfo: saveTenantInfo,
             getOpeneModules: getOpeneModules,
             deleteTenantModules: deleteTenantModules,
             createTenant: createTenant
@@ -23,14 +23,14 @@
             });
         }
         
-        function getAllTenantsModules(){
-            return $http.get('/api/openesdh/tenant/all/modules').then(function(response){
+        function getTenantsInfo(){
+            return $http.get('/api/openesdh/tenants').then(function(response){
                 return response.data;
             });
         }
         
-        function saveTenantModules(tenant, modules){
-            return $http.post('/api/openesdh/tenant/' + tenant + '/modules', modules).then(function(response){
+        function saveTenantInfo(tenant){
+            return $http.post('/api/openesdh/tenant/update', tenant).then(function(response){
                 return response.data;
             });
         }
@@ -46,6 +46,8 @@
         }
         
         function createTenant(tenant){
-            return $http.post('/api/tenants', tenant);
+            //replace windows path
+            tenant.tenantContentStoreRoot = tenant.tenantContentStoreRoot.replace(/\\/g, "/");
+            return $http.post('/api/openesdh/tenant', tenant);
         }
     }
