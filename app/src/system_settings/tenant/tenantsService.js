@@ -46,6 +46,8 @@
         }
         
         function createTenant(tenant){
+            //replace windows path
+            tenant.tenantContentStoreRoot = tenant.tenantContentStoreRoot.replace(/\\/g, "/");
             return $http.post('/api/openesdh/tenant', tenant);
         }
     }

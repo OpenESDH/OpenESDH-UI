@@ -55,7 +55,11 @@
             var tc = this;
             tc.cancel = cancel;
             tc.save = save;
-            tc.tenant = {};
+            tc.tenant = {
+                tenantDomain: null,
+                tenantAdminPassword: null,
+                tenantContentStoreRoot: null
+            };
             
             function cancel(){
                 $mdDialog.cancel();
