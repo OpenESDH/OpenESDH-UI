@@ -32,7 +32,7 @@
                         <div class="repeat-table">
                             <div class="repeat-header" layout="row">
                                 <div layout="row" flex="{{vm.isAdmin ? 90 : 100}}">
-                                    <div class="r" flex="5"></div>
+                                    <div class="r icon" flex="none"></div>
                                     <div class="r" flex>
                                         <div layout="row" layout-align="space-between center">
                                             <span sort-table="cm:title">
@@ -84,10 +84,10 @@
                                 </div>
                                 <div flex="10" ng-show="vm.isAdmin"></div>
                             </div>
-                            <md-virtual-repeat-container md-auto-shrink style="border-bottom:0">
+                            <md-virtual-repeat-container flex-height style="border-bottom:0">
                                 <div md-virtual-repeat="case in vm.cases | orderObjectBy:orderByAttribute:reverseOrder | filter:vm.columnFilter | filter:freeTextSearch" class="repeat-item" layout="row">
                                     <a class="r-rowlink" ui-sref="case({'caseId': case['oe:id']})" layout="row" class="{{ case['oe:status'] == 'passive' ? 'muted' : '' }}" flex="{{vm.isAdmin ? 90 : 100}}">
-                                        <span class="r" flex="5"><i class="material-icons">folder_open</i></span>
+                                        <span class="r icon" flex="none"><i class="material-icons">folder_open</i></span>
                                         <span class="r" flex>{{case["cm:title"]}}</span>
                                         <span class="r muted" flex="15">{{case["oe:id"]}}</span>
                                         <span class="r muted" flex="10">{{case["TYPE"] | caseType}}</span>
@@ -149,7 +149,7 @@
                     <md-card-content>
                         <div class="repeat-header" layout="row">
                             <div layout="row" flex="95">
-                                <div class="r" flex="5"></div>
+                                <div class="r icon" flex="none"></div>
                                 <div class="r" flex>
                                     <div layout="row" layout-align="space-between center">
                                         <span sort-table="cm:title">
@@ -197,7 +197,7 @@
                         <md-virtual-repeat-container md-auto-shrink style="border-bottom:0">
                             <div md-virtual-repeat="case in groupCaseCtrl.cases | orderObjectBy:orderByAttribute:reverseOrder | filter:vm.columnFilter" class="repeat-item" layout="row">
                                 <a class="r-rowlink" href="#/cases/case/{{case['oe:id']}}" layout="row" class="{{ case['oe:status'] == 'passive' ? 'muted' : '' }}" flex="95">
-                                    <span class="r" flex="5"><i class="material-icons">folder_open</i></span>
+                                    <span class="r icon" flex="none"><i class="material-icons">folder_open</i></span>
                                     <span class="r" flex>{{case["cm:title"]}}</span>
                                     <span class="r muted" flex="15">{{case["oe:id"]}}</span>
                                     <span class="r muted" flex="15">{{case["cm:created"] | openeDate}}</span>

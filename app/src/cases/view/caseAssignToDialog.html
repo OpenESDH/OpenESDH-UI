@@ -5,16 +5,10 @@
                 <h2>{{ 'CASE.ASSIGN_TO' | translate }}</h2>
             </div>
         </md-toolbar>
-        <md-dialog-content>
-            <div layout>
-                <md-input-container flex="100">
-                    <label>{{ 'CASE.OWNER' | translate }} *</label>
-                    <md-select name="assign_to" ng-model="dlg.assign_to" required>
-                        <ng-include src="'app/src/common/components/authoritySelector/view/authoritySelectorOptions.html'"
-                                    ng-controller="AuthoritySelectorController as authCtrl"></ng-include>
-                    </md-select>
-                    <opene-error form="assignToForm" field="assignToForm.assign_to"></opene-error>
-                </md-input-container>
+        <md-dialog-content layout>
+            <div flex class="opene-autocomplete-wrapper">
+                <opene-autocomplete datasource="dlg.assign_to" controller-name="AuthoritySelectorController" required="true" name="assign_to" label="{{'CASE.OWNER' | translate}} *"></opene-autocomplete>
+                <opene-error form="assignToForm" field="assignToForm.assign_to"></opene-error>
             </div>
         </md-dialog-content>
 

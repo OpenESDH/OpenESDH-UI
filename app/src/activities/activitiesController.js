@@ -2,7 +2,7 @@ angular
     .module('openeApp.activities')
     .controller('activitiesController', activitiesController);
 
-function activitiesController(activitiesService) {
+function activitiesController(activitiesService, $translate) {
     var vm = this;
     vm.activities = [];
 
@@ -10,16 +10,16 @@ function activitiesController(activitiesService) {
     vm.columnFilter = columnFilter;
 
     vm.activityTypes = [{
-        name: "Case",
+        name: $translate.instant('ACTIVITIES.TYPE.dk.openesdh.case-update'),
         value: "dk.openesdh.case-update"
     },{
-        name: "Case member",
+        name: $translate.instant('ACTIVITIES.TYPE.dk.openesdh.case.member-add'),
         value: "dk.openesdh.case.member"
     },{
-        name: "Document",
+        name: $translate.instant('ACTIVITIES.TYPE.dk.openesdh.case.document-upload'),
         value: "dk.openesdh.case.document"
     },{
-        name: "Workflow",
+        name: $translate.instant('ACTIVITIES.TYPE.dk.openesdh.case.workflow-start'),
         value: "dk.openesdh.case.Workflow"
     }];
 

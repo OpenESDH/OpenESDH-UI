@@ -6,7 +6,7 @@
     function HeaderDirective() {
 
         function postlink(scope, elem, attr) {
-
+            scope.toState = scope.$root.toState.name;
         }
 
         return {

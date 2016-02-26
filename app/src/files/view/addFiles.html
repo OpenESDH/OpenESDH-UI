@@ -6,15 +6,9 @@
             </div>
         </md-toolbar>
         <md-dialog-content>
-            <div layout="column">
-                <md-input-container>
-                    <label>{{ 'CASE.OWNER' | translate }} *</label>
-                    <md-select ng-model="addFileVm.owner" name="authorityName" required>
-                        <ng-include src="'app/src/common/components/authoritySelector/view/authoritySelectorOptions.html'"
-                                    ng-controller="AuthoritySelectorController as authCtrl"></ng-include>
-                    </md-select>
-                    <opene-error form="addFilesForm" field="addFilesForm.authorityName"></opene-error>
-                </md-input-container>
+            <div layout="column" class="opene-autocomplete-wrapper">
+                <opene-autocomplete datasource="addFileVm.owner" controller-name="AuthoritySelectorController" required="true" name="authorityName" label="{{'CASE.OWNER' | translate}} *"></opene-autocomplete>
+                <opene-error form="addFilesForm" field="addFilesForm.authorityName"></opene-error>
                 <div>
                     <label class="label" for="oefile-upload">{{ 'FILE.SELECT_FILE' | translate }} *</label>
                     <input type="file" id="oefile-upload" file-model="addFileVm.files" multiple required>
@@ -26,7 +20,7 @@
             </div>
         </md-dialog-content>
         <md-dialog-actions>
-            <md-button type="submit" class="md-primary" ng-disabled="addFilesForm.$invalid || !(addFileVm.files && addFileVm.files.length > 0)" ng-click="addFileVm.addFiles()" >
+            <md-button type="submit" class="md-primary" ng-disabled="addFilesForm.$invalid || !(addFileVm.files && addFileVm.files.length > 0)" ng-click="addFileVm.addFiles()">
                 {{ 'COMMON.ADD' | translate }}
             </md-button>
             <md-button ng-click="addFileVm.cancel()">

@@ -13,8 +13,11 @@
         <md-dialog-content>
             <p>
                 <label>{{ 'ADMIN.SYS_SETTINGS.TENANTS_MODULES.TENANT' | translate }}: </label>
-                <select ng-model="tm.tenant" ng-options="tenant as tenant for tenant in tm.tenants" ng-show="tm.isNew"></select>
-                <span ng-show="!tm.isNew">{{tm.tenant}}</span>
+                <span>{{tm.tenantDomain}}</span>
+            </p>
+            <p>
+                <label>{{ 'ADMIN.SYS_SETTINGS.TENANTS_MODULES.TENANT_UI_CONTEXT' | translate }} *</label>
+                <input type="text" name="tenantUIContext" ng-model="tm.tenantUIContext" required>
             </p>
             <label>{{ 'ADMIN.SYS_SETTINGS.TENANTS_MODULES.MODULES' | translate }}</label>
             <md-list>
@@ -30,7 +33,7 @@
         </md-dialog-content>
 
         <md-dialog-actions>
-            <md-button class="md-primary" type="submit" ng-disabled="!tm.canSave()" ng-click="tm.save(tenantModulesForm)">
+            <md-button class="md-primary" type="submit" ng-disabled="!tm.canSave(tenantModulesForm)" ng-click="tm.save(tenantModulesForm)">
                 {{ 'COMMON.SAVE' | translate }}
             </md-button>
             <md-button ng-click="tm.cancel()">
