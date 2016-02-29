@@ -10,6 +10,6 @@
         
         modulesMenuServiceProvider.addItem({
             templateUrl: 'app/src/activities/view/menuItem.html',
-            order: 1
+            order: 4
         });
     }

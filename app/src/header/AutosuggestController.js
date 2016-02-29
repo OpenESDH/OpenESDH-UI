@@ -8,7 +8,7 @@
      * @param $scope
      * @constructor
      */
-    function AutosuggestController($state, $q, $mdConstant, searchService, alfrescoNodeUtils, fileUtilsService) {
+    function AutosuggestController($state, $q, $mdConstant, searchService, alfrescoNodeUtils, fileUtilsService, sessionService) {
 
         var asctrl = this;
         asctrl.liveSearchResults = {
@@ -20,6 +20,7 @@
         asctrl.totalSuggestion = 0;
         asctrl.loading = false;
         asctrl.hidden = false;
+        asctrl.isExtUser = sessionService.isExternalUser();
 
         asctrl.getLiveSearchResults = function (term) {
             if (term.length === 0 || asctrl.loading) return;
