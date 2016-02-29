@@ -9,4 +9,10 @@
             position: 'left',
             order: 2
         });
+        
+        dashboardServiceProvider.addExtUserDashlet({
+            templateUrl: 'app/src/documents/view/myDocumentsDashlet.html',
+            position: 'left',
+            order: 2
+        });
     }

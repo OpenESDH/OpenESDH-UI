@@ -10,7 +10,8 @@
             isAdmin: isAdmin,
             retainCurrentLocation: retainCurrentLocation,
             getRetainedLocation: getRetainedLocation,
-            clearRetainedLocation: clearRetainedLocation 
+            clearRetainedLocation: clearRetainedLocation,
+            isExternalUser: isExternalUser
         };
 
         init();
@@ -56,5 +57,13 @@
         
         function clearRetainedLocation(){
             $window.sessionStorage.setItem('retainedLocation', "");
+        }
+        
+        function isExternalUser(){
+            if(userInfo == null || userInfo == undefined){
+                return false;
+            }
+            var externalUserNameRe = /.+_(@.+)?$/
+            return externalUserNameRe.test(userInfo.user.userName);
         }
     }
