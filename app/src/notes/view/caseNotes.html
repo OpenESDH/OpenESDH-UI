@@ -49,7 +49,7 @@
     </md-card-content>
     <div class="md-actions">
         <md-button class="md-primary" ng-click="caseNotes.newNote()" ng-disabled="caseCtrl.caseIsLocked">
-            {{ 'NOTE.NEW_NOTE' | translate }}
+            <i class="material-icons ng-scope">add</i> {{ 'NOTE.NEW_NOTE' | translate }}
         </md-button>
         <md-button class="md-primary" ng-disabled="true">{{ 'NOTE.PRINT_ALL_NOTES' | translate }}</md-button>
         <div style="float: right;" ng-show="caseNotes.pagingParams.totalRecords > 0">
