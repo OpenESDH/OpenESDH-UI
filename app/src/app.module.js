@@ -44,7 +44,7 @@
         })
         .constant('ALFRESCO_URI', {
             apiProxy: '/alfresco/api/',
-            serviceApiProxy: '/api/',
+            serviceApiProxy: '/alfresco/s',
             serviceSlingshotProxy: '/slingshot/',
             webClientServiceProxy: '/alfresco/wcs'
         })
