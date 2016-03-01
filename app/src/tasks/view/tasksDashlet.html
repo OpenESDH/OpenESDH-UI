@@ -10,7 +10,7 @@
                             <p class="single-line">{{task | taskDescription}}</p>
                         </div>
                         <div flex style="text-align:right">
-                            <p>{{ 'COMMON.DUE_DATE' | translate }}: {{ task.properties.bpm_dueDate | date }}</p>
+                            <p>&#160;{{ task.properties.bpm_dueDate | date }}</p>
                             <p>{{ task.properties.bpm_status | workflowTaskStatus}}</p>
                         </div>
                     </div>
