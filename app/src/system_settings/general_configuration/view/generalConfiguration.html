@@ -6,6 +6,6 @@
             <label for="oe_param_{{parameter.name}}">{{ 'ADMIN.SYS_SETTINGS.GENERAL.' + parameter.name | translate}}</label>
         </div>
 
-        <md-button class="md-primary" ng-click="vm.saveParameters($event)">{{ 'ADMIN.SYS_SETTINGS.GENERAL.SAVE_PARAMETERS' | translate}}</md-button>
+        <md-button class="md-primary" ng-click="vm.saveParameters($event)"><i class="material-icons">save</i> {{ 'ADMIN.SYS_SETTINGS.GENERAL.SAVE_PARAMETERS' | translate}}</md-button>
     </md-card-content>
 </md-card>
