@@ -12,7 +12,8 @@ function autocomplete(){
             required: '=',
             name: '@',
             list: '=',
-            label: '@'
+            label: '@',
+            selected: '='
         },
         controllerAs: 'vm',
         controller: '@',
