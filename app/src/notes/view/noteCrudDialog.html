@@ -1,8 +1,9 @@
-<md-dialog class="dialog-large" aria-label="Case edit dialog">
+<md-dialog class="dialog-large" aria-label="Note edit dialog">
     <form name="form">
         <md-toolbar layout>
             <div class="md-toolbar-tools">
-                <h2>{{ 'NOTE.CREATE_NOTE' | translate }}</h2>
+                <h2 ng-hide="vmNote.editMode">{{ 'NOTE.CREATE_NOTE' | translate }}</h2>
+                <h2 ng-show="vmNote.editMode">{{ 'NOTE.EDIT_NOTE' | translate }}</h2>
             </div>
         </md-toolbar>
 
@@ -27,7 +28,7 @@
 
             <md-input-container>
                 <label>{{ 'NOTE.CONTENT' | translate }} *</label>
-                <textarea name="content" ng-model="vmNote.content" rows="10" required></textarea>
+                <textarea name="content" ng-model="vmNote.content" rows="10" required md-maxlength="1000"></textarea>
                 <opene-error form="form" field="form.content"></opene-error>
             </md-input-container>
         </md-dialog-content>
@@ -36,7 +37,7 @@
             <md-button class="md-primary" ng-click="vmNote.updateNote()" ng-disabled="form.$invalid" ng-if="vmNote.editMode">
                 {{ 'COMMON.SAVE' | translate }}
             </md-button>
-            <md-button class="md-primary" ng-click="vmNote.deleteNote()" ng-if="vmNote.editMode">
+            <md-button class="md-primary" ng-click="vmNote.deleteNote($event)" ng-if="vmNote.editMode">
                 {{ 'COMMON.DELETE' | translate }}
             </md-button>
             <md-button class="md-primary" ng-click="vmNote.addNote()" ng-disabled="form.$invalid" ng-if="!vmNote.editMode">

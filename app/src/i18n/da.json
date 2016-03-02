@@ -64,9 +64,9 @@
         "MESSAGE": "Meddelelse",
         "LIST_VIEW": "Listevisning",
         "GRID_VIEW": "Gittervisning",
-	"DOWNLOAD_TEMPLATE_CSV": "Hent CSV skabelon",
+    "DOWNLOAD_TEMPLATE_CSV": "Hent CSV skabelon",
         "LOCKED_BY": "Låst af {{locked_by}}",
-	"CONGRATULATIONS": "Tillykke!"
+    "CONGRATULATIONS": "Tillykke!"
     },
     "CASE": {
         "CONFIRM_CLOSE_CASE": "Vil du lukke denne sag?",
@@ -208,7 +208,6 @@
         "DELETE_DOC_FAILURE": "Dokument kunne ikke slettes"
     },
     "FILE": {
-        "FILE": "Fil",
         "FILES": "Filer",
         "MY_FILES": "Mine filer",
         "GROUP_FILES": "Fælles filer",
@@ -630,7 +629,7 @@
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_PERSON_CONTACT": "Er du sikker på, at du vil slette \"{{firstName}} {{lastName}}\"?",
         "CONTACT_SAVED_SUCCESSFULLY": "Kontakt \"{{firstName}} {{lastName}}\" gemt",
         "CONTACT_DELETED_SUCCESSFULLY": "Kontakt \"{{firstName}} {{lastName}}\" slettet",
-	"PERSON": "Person",
+    "PERSON": "Person",
         "ORGANIZATION": "Organisation"
     },
     "ERROR": {
@@ -656,7 +655,6 @@
         "FORGOT_PASSWORD_PROMPT": "Indtast din e-mailadresse og vi sender dig oplysninger om, hvordan du nulstiller din adgangskode."
     },
     "MEMBER": {
-        "MEMBER": "Medlem",
         "MEMBERS": "Medlemmer",
         "NAME": "Navn",
         "TYPE": "Type",
@@ -679,14 +677,15 @@
         "NEW_NOTE": "Ny note",
         "PRINT_ALL_NOTES": "Print alle noter",
         "CREATE_NOTE": "Opret note",
+        "EDIT_NOTE": "Redigér note",
         "HEADLINE": "Overskrift",
         "CONTENT": "Indhold",
         "CONCERNED_PARTIES": "Relaterede parter",
         "ADD_NOTE": "Tilføj note",
-        "COMFIRM_DELETE": "Er du sikker på, at du vil slette denne note?"
+        "DELETE_NOTE": "Slet note",
+        "CONFIRM_DELETE": "Er du sikker på, at du vil slette denne note?"
     },
     "PARTY": {
-        "PARTY": "Part",
         "PARTIES": "Parter",
         "ROLE": "Rolle",
         "CHANGE": "Skift",
