@@ -38,6 +38,12 @@ var openeModules = [{
         moduleId: 'openeApp.cases.staff'
     },
     {
+        sourceUrl: 'https://github.com/OpenESDH/openesdh-doc-templates-ui.git',
+        moduleName: 'doctemplates',
+        moduleId: 'openeApp.doctemplates'
+    },
+    {
+        //must be introduced after 'doctemplates'
         sourceUrl: 'https://github.com/OpenESDH/openesdh-addo-ui.git',
         moduleName: 'addo',
         moduleId: 'openeApp.addo'
@@ -46,11 +52,6 @@ var openeModules = [{
         sourceUrl: 'https://github.com/OpenESDH/openesdh-project-rooms-ui.git',
         moduleName: 'projectRooms',
         moduleId: 'openeApp.projectRooms'
-    },
-    {
-        sourceUrl: 'https://github.com/OpenESDH/openesdh-doc-templates-ui.git',
-        moduleName: 'doctemplates',
-        moduleId: 'openeApp.doctemplates'
     }];
 
 var runOpeneModules = [];
