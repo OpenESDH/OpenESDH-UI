@@ -130,15 +130,23 @@
                 $mdDialog.hide(note);
             }
 
-            function deleteNote() {
-                var confirm = window.confirm($translate.instant('NOTE.COMFIRM_DELETE'));
+            function deleteNote(ev) {
+                var confirm = $mdDialog.confirm()
+                    .title($translate.instant('NOTE.DELETE_NOTE'))
+                    .textContent($translate.instant('NOTE.CONFIRM_DELETE'))
+                    .targetEvent(ev)
+                    .ok($translate.instant('COMMON.DELETE'))
+                    .cancel($translate.instant('COMMON.CANCEL'));
 
-                if (confirm == true) {
+                $mdDialog.show(confirm).then(function() {
                     caseNotesService.deleteNote(vmNote.nodeRef).then(function(response) {
                         loadNotes(vm.pagingParams.page);
                     });
                     $mdDialog.hide();
-                }
+                }, function() {
+                    vm.editNote(ev, vmNote);
+                });
+
 
             }
 

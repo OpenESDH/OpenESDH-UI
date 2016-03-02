@@ -694,11 +694,13 @@
         "NEW_NOTE": "New note",
         "PRINT_ALL_NOTES": "Print all notes",
         "CREATE_NOTE": "Create note",
+        "EDIT_NOTE": "Edit note",
         "HEADLINE": "Headline",
         "CONTENT": "Content",
         "CONCERNED_PARTIES": "Concerned parties",
         "ADD_NOTE": "Add note",
-        "COMFIRM_DELETE": "Are you sure you want to delete this note?"
+        "DELETE_NOTE": "Delete note",
+        "CONFIRM_DELETE": "Are you sure you want to delete this note?"
     },
     "PARTY": {
         "PARTIES": "Parties",

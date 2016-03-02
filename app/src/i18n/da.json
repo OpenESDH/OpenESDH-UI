@@ -677,11 +677,13 @@
         "NEW_NOTE": "Ny note",
         "PRINT_ALL_NOTES": "Print alle noter",
         "CREATE_NOTE": "Opret note",
+        "EDIT_NOTE": "Redigér note",
         "HEADLINE": "Overskrift",
         "CONTENT": "Indhold",
         "CONCERNED_PARTIES": "Relaterede parter",
         "ADD_NOTE": "Tilføj note",
-        "COMFIRM_DELETE": "Er du sikker på, at du vil slette denne note?"
+        "DELETE_NOTE": "Slet note",
+        "CONFIRM_DELETE": "Er du sikker på, at du vil slette denne note?"
     },
     "PARTY": {
         "PARTIES": "Parter",
