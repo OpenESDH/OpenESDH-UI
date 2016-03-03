@@ -9,6 +9,7 @@
 	md-floating-label="{{vm.label}}"
 	ng-required="{{vm.required}}"
 	md-input-name="{{vm.name}}"
+	ng-init="vm.selected?searchText=vm.selected:''"
 	>
 
     <md-item-template>

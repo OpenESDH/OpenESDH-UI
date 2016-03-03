@@ -2,7 +2,7 @@
         .module('openeApp.cases.common')
         .controller('CaseCommonDialogController', CaseCommonDialogController);
     
-    function CaseCommonDialogController($mdDialog, $translate, caseService, notificationUtilsService, caseInfo) {
+    function CaseCommonDialogController($mdDialog, $translate, $filter, caseService, notificationUtilsService, sessionService, userService, caseInfo) {
         var vm = this;
         vm.formTemplateUrl = "app/src/cases/common/view/caseCrudForm.html";
         // Data from the case creation form
@@ -19,13 +19,18 @@
         vm.getDateValue = getDateValue;
         vm.getNumberValue = getNumberValue;
         vm.getValue = getValue;
+
+        function getUserInfo(){
+            return sessionService.getUserInfo();
+        }
         
         function init(){
             var vm = this;
-            
+
             if(vm.editCase === true){
                 vm.initCasePropsForEdit();
                 vm.oldCase = angular.copy(vm.case);
+                angular.extend(vm.case, {'owner': vm.caseInfo.properties.owners[0].displayName});
             }else{
                 vm.case = {
                     prop_base_startDate: new Date(),
@@ -33,6 +38,11 @@
                     prop_oe_journalKey: [],
                     prop_oe_journalFacet: []
                 };
+
+                userService.getAuthorities().then(function(response) {
+                    var currentAuthority = $filter("filter")(response, {shortName: getUserInfo().user.userName})[0];
+                    angular.extend(vm.case, {'owner': currentAuthority.name, 'assoc_base_owners_added': currentAuthority.nodeRef});
+                });
             }
         }
 

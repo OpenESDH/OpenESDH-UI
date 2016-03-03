@@ -5,7 +5,7 @@
         <opene-error form="form" field="form.prop_cm_title"></opene-error>
     </md-input-container>
     <div class="opene-autocomplete-wrapper" flex>
-        <opene-autocomplete datasource="vm.case.assoc_base_owners_added" controller-name="AuthoritySelectorController" required="true" name="assoc_base_owners_added" label="{{'CASE.OWNER' | translate}} *"></opene-autocomplete>
+        <opene-autocomplete datasource="vm.case.assoc_base_owners_added" controller-name="AuthoritySelectorController" required="true" name="assoc_base_owners_added" label="{{'CASE.OWNER' | translate}} *" selected="vm.case.owner"></opene-autocomplete>
         <opene-error form="form" field="form.assoc_base_owners_added"></opene-error>
     </div>
 </div>
@@ -46,8 +46,8 @@
         </md-chip-template>
     </md-chips>
 </div>
-<md-datepicker flex ng-model="vm.case.prop_base_startDate" md-placeholder="{{ 'CASE.START_DATE' | translate }}"></md-datepicker>
-<md-datepicker flex ng-model="vm.case.prop_base_endDate" md-placeholder="{{ 'CASE.EXPECTED_END_DATE' | translate }}"></md-datepicker>
+<md-datepicker flex ng-model="vm.case.prop_base_startDate" md-max-date="vm.case.prop_base_endDate" md-placeholder="{{ 'CASE.START_DATE' | translate }}"></md-datepicker>
+<md-datepicker flex ng-model="vm.case.prop_base_endDate" md-min-date="vm.case.prop_base_startDate" md-placeholder="{{ 'CASE.EXPECTED_END_DATE' | translate }}"></md-datepicker>
 
 <div layout>
     <md-input-container flex>
