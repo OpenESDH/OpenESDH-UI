@@ -63,7 +63,7 @@
             if(userInfo == null || userInfo == undefined){
                 return false;
             }
-            var externalUserNameRe = /.+_(@.+)?$/
+            var externalUserNameRe = /.+_.+(@.+)?$/
             return externalUserNameRe.test(userInfo.user.userName);
         }
     }
