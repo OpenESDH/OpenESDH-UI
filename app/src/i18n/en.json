@@ -97,7 +97,7 @@
         "JOURNAL_FACET": "Journal facet",
         "EDIT_INFORMATION": "Edit information",
         "PRINT_CASE": "Print case",
-        "START_WORKFLOW": "Start workflow",
+        "START_WORKFLOW": "Create task",
         "CASE_HISTORY": "Case history",
         "CREATE_CASE": "Create case",
         "EDIT_PROPERTIES": "Edit properties",
@@ -207,6 +207,7 @@
         "DELETE_DOC_FAILURE": "Document could not be deleted"
     },
     "FILE": {
+        "FILE": "File",
         "FILES": "Files",
         "MY_FILES": "My files",
         "GROUP_FILES": "Group files",
@@ -516,7 +517,7 @@
         },
         "MESSAGE": "Message",
         "SEND_EMAIL_NOTIFICATIONS": "Send email notifications",
-        "SELECT_WORKFLOW_TYPE": "Select workflow type",
+        "SELECT_WORKFLOW_TYPE": "Select type of task",
         "SELECT_ITEMS": "Select items",
         "INFORMATION": "Information",
         "REVIEW_GROUP": "Review group",
@@ -550,13 +551,15 @@
                 "TENANT_MODULES": "Tenant modules",
                 "TENANT": "Tenant",
                 "MODULES": "Modules",
-                "ARE_YOU_SURE_YOU_WANT_TO_DELETE_TENANT_MODULES": "Are you sure you want to delete modules configuration for the tenant '{{tenant}}'?",
+                "ARE_YOU_SURE_YOU_WANT_TO_DISABLE_TENANT_MODULES": "Are you sure you want to disable modules for the tenant '{{tenant}}'?",
                 "TENANT_DOMAIN": "Tenant domain",
                 "TENANT_ADMIN_PASSWORD": "Tenant admin password",
                 "TENANT_CONTENT_STORE_ROOT": "Tenant content store root",
                 "CREATE_TENANT": "Create tenant",
                 "ASSIGN_MODULES": "Assign modules",
-                "TENANT_CREATED": "Tenant created: {{tenantDomain}}"
+                "TENANT_CREATED": "Tenant created: {{tenantDomain}}",
+                "TENANT_UI_CONTEXT": "UI context",
+                "DISABLE_ALL_MODULES": "Disable all modules"
             }
         }
     },
@@ -672,6 +675,7 @@
         "FORGOT_PASSWORD_PROMPT": "Enter your email address and we'll send you information regarding how to reset your password. "
     },
     "MEMBER": {
+        "MEMBER": "Member",
         "MEMBERS": "Members",
         "NAME": "Name",
         "TYPE": "Type",
@@ -701,6 +705,7 @@
         "COMFIRM_DELETE": "Are you sure you want to delete this note?"
     },
     "PARTY": {
+        "PARTY": "Party",
         "PARTIES": "Parties",
         "ROLE": "Role",
         "CHANGE": "Change",

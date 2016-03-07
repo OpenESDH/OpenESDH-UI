@@ -20,7 +20,7 @@
                                     </dd>
 
                                     <dt flex="20">{{ 'COMMON.DUE_DATE' | translate }}</dt>
-                                    <dd flex="66">{{ taskCtrl.task.workflowInstance.dueDate | date }}</dd>
+                                    <dd flex="66">{{ taskCtrl.task.workflowInstance.dueDate | openeDate }}</dd>
 
                                     <dt flex="20">{{ 'COMMON.PRIORITY' | translate }}</dt>
                                     <dd flex="66">{{ taskCtrl.task.workflowInstance.priority | workflowTaskPriority}}</dd>
@@ -29,7 +29,7 @@
                                     <dd flex="66">{{ taskCtrl.task.workflowInstance.initiator.firstName }} {{ taskCtrl.task.workflowInstance.initiator.lastName }}</dd>
 
                                     <dt flex="20">{{ 'COMMON.CREATED' | translate }}</dt>
-                                    <dd flex="66">{{ taskCtrl.task.workflowInstance.startDate | date }}</dd>
+                                    <dd flex="66">{{ taskCtrl.task.workflowInstance.startDate | openeDate }}</dd>
 
                                     <dt flex="20">{{ 'COMMON.DESCRIPTION' | translate }}</dt>
                                     <dd flex="66">{{ taskCtrl.task.description }}</dd>

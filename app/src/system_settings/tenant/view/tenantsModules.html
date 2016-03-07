@@ -5,23 +5,24 @@
             <thead>
                 <tr>
                     <th>{{ 'ADMIN.SYS_SETTINGS.TENANTS_MODULES.TENANT' | translate }}</th>
+                    <th>{{ 'ADMIN.SYS_SETTINGS.TENANTS_MODULES.TENANT_UI_CONTEXT' | translate }}</th>
                     <th>{{ 'ADMIN.SYS_SETTINGS.TENANTS_MODULES.MODULES' | translate }}</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="(tenant,modules) in vm.tenantsModules" class="clickable-row" ng-click="vm.editTenantModules($event, tenant, modules)">
-                    <td>{{tenant}}</td>
-                    <td><span ng-repeat="module in modules" style="margin-right: 5px">{{module}}<span ng-show="!$last">,</span></span></td>
+                <tr ng-repeat="tenantInfo in vm.tenantsInfo" class="clickable-row" ng-click="vm.editTenantModules($event, tenantInfo)">
+                    <td>{{tenantInfo.tenantDomain}}</td>
+                    <td>{{tenantInfo.tenantUIContext}}</td>
+                    <td><span ng-repeat="module in tenantInfo.modules" style="margin-right: 5px">{{module}}<span ng-show="!$last">,</span></span></td>
                     <td>
-                        <md-button class="md-primary" ng-click="vm.deleteModules($event, tenant)">
-                            {{ 'COMMON.DELETE' | translate }}
+                        <md-button class="md-primary" ng-click="vm.deleteModules($event, tenantInfo.tenantDomain)">
+                            {{ 'ADMIN.SYS_SETTINGS.TENANTS_MODULES.DISABLE_ALL_MODULES' | translate }}
                         </md-button>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <md-button class="md-primary" ng-click="vm.createTenant($event)">{{ 'ADMIN.SYS_SETTINGS.TENANTS_MODULES.CREATE_TENANT' | translate }}</md-button>
-        <md-button class="md-primary" ng-click="vm.newTenantModules($event)">{{ 'ADMIN.SYS_SETTINGS.TENANTS_MODULES.ASSIGN_MODULES' | translate }}</md-button>
+        <md-button class="md-primary" ng-click="vm.createTenant($event)"><i class="material-icons ng-scope">add</i> {{ 'ADMIN.SYS_SETTINGS.TENANTS_MODULES.CREATE_TENANT' | translate }}</md-button>
     </md-card-content>
 </md-card>

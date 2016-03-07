@@ -460,8 +460,13 @@ md-virtual-repeat-container {
     background-color: #fff;
 }
 
+.md-datepicker-button.md-icon-button {
+    margin-right: 0;
+}
+
 .md-datepicker-input-container {
     min-width: 150px;
+    margin-left: 0;
 }
 
 .material-icons {
@@ -485,7 +490,6 @@ md-virtual-repeat-container {
 
 .workflowWizardStep {
     max-width:1000px;
-    max-height:531px;
     min-width:400px;
     min-height:331px;
 }
@@ -534,4 +538,18 @@ md-input-container .md-input:-webkit-autofill ~ label {
     app-footer{
         display: none;
     }
+}
+
+.oe-menu-button {
+    padding-right: 0;
+    .md-menu > .md-button {  
+        padding: 0;
+        margin: 0;
+        width: 25px;
+        height: 25px;
+        border-radius: 0;
+        &:hover:not(:disabled) {
+            background-color: rgba(158,158,158,0.4);
+        }
+    } 
 }

@@ -233,7 +233,9 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
     function editOnline(documentName){
         var vm = this;
         caseDocumentDetailsService.editOnlineDocument(vm.caseDocument.editOnlinePath + "/" + documentName);
-        setTimeout(loadCaseDocumentInfo, 2000);
+        setTimeout(function(){
+            vm.loadCaseDocumentInfo();
+        }, 2000);
     }
     
     function isCaseDocVersionEditable(){

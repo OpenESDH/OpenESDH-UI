@@ -4,7 +4,9 @@
     
     function dashboardServiceProvider(){
         var dashlets = [];
+        var extUserDashlets = [];
         this.addDashlet = addDashlet;
+        this.addExtUserDashlet = addExtUserDashlet;
         this.$get = dashboardService;
         
         function addDashlet(dashlet){
@@ -12,12 +14,22 @@
             return this;
         }
         
-        function dashboardService(){
+        function addExtUserDashlet(dashlet){
+            extUserDashlets.push(dashlet);
+            return this;
+        }
+        
+        function dashboardService(sessionService){
             return {
                 getDashlets: getDashlets
             };
             
             function getDashlets(){
+                
+                if(sessionService.isExternalUser()){
+                    return extUserDashlets;
+                }
+                
                 return dashlets;
             }
         }

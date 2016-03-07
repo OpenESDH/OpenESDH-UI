@@ -5,12 +5,12 @@
             <md-list-item class="md-2-line" ng-repeat="task in tasksCtrl.tasks">
                 <md-button class="md-list-item-text task-btn" ui-sref="workflowtask({ taskName: task.name, taskId : task.id })">
                     <div layout="row" layout-align="space-between start">
-                        <div>
+                        <div flex="60">
                             <h3>{{task.properties.bpm_description}}</h3>
-                            <p>{{task | taskDescription}}</p>
+                            <p class="single-line">{{task | taskDescription}}</p>
                         </div>
-                        <div style="text-align:right">
-                            <p>{{ 'COMMON.DUE_DATE' | translate }}: {{ task.properties.bpm_dueDate | date }}</p>
+                        <div flex style="text-align:right">
+                            <p>&#160;{{ task.properties.bpm_dueDate | date }}</p>
                             <p>{{ task.properties.bpm_status | workflowTaskStatus}}</p>
                         </div>
                     </div>
