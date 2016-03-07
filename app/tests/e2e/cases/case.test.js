@@ -44,7 +44,7 @@ describe('openESDH case page tests', function () {
                     browser.wait(protractor.ExpectedConditions.visibilityOf(caseTitle), 10000).then(function(){
                         var caseTxtTitle = oeUtils.generateRandomString(8);
                         caseTitle.sendKeys(caseTxtTitle);
-                        caseOwner.sendKeys("la");
+                        caseOwner.clear().sendKeys("la");
                         element(by.css('[ng-click="$mdAutocompleteCtrl.select($index)"]')).click();
                         caseDescription.sendKeys(oeUtils.generateRandomString(20));
                         //browser.driver.sleep(2000);

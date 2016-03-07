@@ -498,9 +498,15 @@ md-virtual-repeat-container {
     font-weight: 700;
 }
 
-md-input-container .md-input:-webkit-autofill ~ label {
-    -webkit-transform: translate3d(0, 6px, 0) scale(0.75);
-    transform: translate3d(0, 6px, 0) scale(0.75);
+md-input-container {
+    .md-input:-webkit-autofill ~ label {
+        -webkit-transform: translate3d(0, 6px, 0) scale(0.75);
+        transform: translate3d(0, 6px, 0) scale(0.75);
+    }
+
+    .md-errors-spacer {
+        min-height: 0;
+    }
 }
 
 .md-virtual-repeat-container.md-autocomplete-suggestions-container {
