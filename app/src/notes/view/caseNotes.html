@@ -1,8 +1,8 @@
 <md-card>
     <md-card-content>
         <div layout layout-align="space-between center">
-            <h3 class="md-title" flex="75">{{ 'NOTE.NOTES' | translate }}</h3>
-            <div flex class="opene-toggleview">
+            <h3 class="md-title" flex>{{ 'NOTE.NOTES' | translate }}</h3>
+            <div class="opene-toggleview">
                 <md-button class="md-icon-button md-accent" ng-class="{active: caseNotes.layout == 'grid'}" ng-click="caseNotes.layout = 'grid'" title="{{ 'COMMON.GRID_VIEW' | translate }}"><i class="material-icons">view_module</i></md-button>
                 <md-button class="md-icon-button md-accent" ng-class="{active: caseNotes.layout == 'list'}" ng-click="caseNotes.layout = 'list'" title="{{ 'COMMON.LIST_VIEW' | translate }}"><i class="material-icons">view_list</i></md-button>
             </div>

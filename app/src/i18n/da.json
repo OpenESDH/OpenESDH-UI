@@ -208,6 +208,7 @@
         "DELETE_DOC_FAILURE": "Dokument kunne ikke slettes"
     },
     "FILE": {
+        "FILE": "Fil",
         "FILES": "Filer",
         "MY_FILES": "Mine filer",
         "GROUP_FILES": "Fælles filer",
@@ -656,6 +657,7 @@
         "FORGOT_PASSWORD_PROMPT": "Indtast din e-mailadresse og vi sender dig oplysninger om, hvordan du nulstiller din adgangskode."
     },
     "MEMBER": {
+        "MEMBER": "Medlem",
         "MEMBERS": "Medlemmer",
         "NAME": "Navn",
         "TYPE": "Type",
@@ -687,6 +689,7 @@
         "CONFIRM_DELETE": "Er du sikker på, at du vil slette denne note?"
     },
     "PARTY": {
+        "PARTY": "Part",
         "PARTIES": "Parter",
         "ROLE": "Rolle",
         "CHANGE": "Skift",
