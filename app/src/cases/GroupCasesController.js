@@ -21,7 +21,7 @@
         vm.getCases = getCases;
         vm.previewDocument = previewDocument;
         vm.assignTo = assignTo;
-        vm.layout = 'stream';
+        vm.layout = 'grid';
                 
         activate();
 

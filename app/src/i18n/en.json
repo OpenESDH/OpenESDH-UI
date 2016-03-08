@@ -207,6 +207,7 @@
         "DELETE_DOC_FAILURE": "Document could not be deleted"
     },
     "FILE": {
+        "FILE": "File",
         "FILES": "Files",
         "MY_FILES": "My files",
         "GROUP_FILES": "Group files",
@@ -673,6 +674,7 @@
         "FORGOT_PASSWORD_PROMPT": "Enter your email address and we'll send you information regarding how to reset your password. "
     },
     "MEMBER": {
+        "MEMBER": "Member",
         "MEMBERS": "Members",
         "NAME": "Name",
         "TYPE": "Type",
@@ -704,6 +706,7 @@
         "CONFIRM_DELETE": "Are you sure you want to delete this note?"
     },
     "PARTY": {
+        "PARTY": "Party",
         "PARTIES": "Parties",
         "ROLE": "Role",
         "CHANGE": "Change",
