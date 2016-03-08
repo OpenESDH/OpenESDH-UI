@@ -55,7 +55,10 @@ function UserDialogController($scope, $mdDialog, $mdToast, $translate, $injector
             } else {
                 notifyUserSaved(userSaveResponse);
             }
-        }, handleCreateEditError);
+        }, handleCreateEditError)
+        .then(function(){
+            userService.setEmailFeedDisabled(ucd.user);
+        });
     }
 
 

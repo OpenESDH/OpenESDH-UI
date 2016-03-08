@@ -560,7 +560,8 @@
         "UPLOAD_USERS_NOTE": "Upload brugere. Kun CSV-filer",
         "FAILED_TO_UPLOAD_MSG": "{{failedNumberOfUsers}} bruger(e) blev ikke tilføjet af følgende grunde:",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER": "Er du sikker på, at du vil slette '{{user}}'?",
-        "CAN_NOT_DELETE_ADMIN_USER": "Sletning af admin brugeren er ikke tilladt"
+        "CAN_NOT_DELETE_ADMIN_USER": "Sletning af admin brugeren er ikke tilladt",
+        "EMAIL_FEED_ENABLED": "E-mail-feed aktiveret"
     },
     "GROUP": {
         "GROUPS": "Grupper",
