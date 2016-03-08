@@ -32,16 +32,15 @@
                 vm.oldCase = angular.copy(vm.case);
                 angular.extend(vm.case, {'owner': vm.caseInfo.properties.owners[0].displayName});
             }else{
-                vm.case = {
-                    prop_base_startDate: new Date(),
-                    prop_base_endDate: '',
-                    prop_oe_journalKey: [],
-                    prop_oe_journalFacet: []
-                };
-
-                userService.getAuthorities().then(function(response) {
-                    var currentAuthority = $filter("filter")(response, {shortName: getUserInfo().user.userName})[0];
-                    angular.extend(vm.case, {'owner': currentAuthority.name, 'assoc_base_owners_added': currentAuthority.nodeRef});
+                userService.getCurrentUser().then(function(response) {
+                    vm.case = {
+                        prop_base_startDate: new Date(),
+                        prop_base_endDate: null,
+                        prop_oe_journalKey: [],
+                        prop_oe_journalFacet: [],
+                        owner: sessionService.getUserInfo().user.firstName + ' ' + sessionService.getUserInfo().user.lastName,
+                        assoc_base_owners_added: response.nodeRef
+                    };
                 });
             }
         }

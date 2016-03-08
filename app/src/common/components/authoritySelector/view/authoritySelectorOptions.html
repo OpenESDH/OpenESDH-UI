@@ -2,18 +2,17 @@
 	md-selected-item="selectedItem" 
 	md-selected-item-change="vm.selectedItemChange(item)" 
 	md-min-length="0" 
-	md-search-text="searchText" 
-	md-search-text-change="vm.searchTextChange(searchText)" 
-	md-items="item in vm.querySearch(searchText)" 
+	md-search-text="vm.selected" 
+	md-search-text-change="vm.searchTextChange(vm.selected)" 
+	md-items="item in vm.querySearch(vm.selected)" 
 	md-item-text="item.name" 
 	md-floating-label="{{vm.label}}"
 	ng-required="{{vm.required}}"
 	md-input-name="{{vm.name}}"
-	ng-init="vm.selected?searchText=vm.selected:''"
 	>
 
     <md-item-template>
-        <span md-highlight-text="searchText">{{ item.name }}</span>
+        <span md-highlight-text="vm.selected">{{ item.name }}</span>
     </md-item-template>
     <md-not-found>
         {{ 'COMMON.NO_MATCHES' | translate }}

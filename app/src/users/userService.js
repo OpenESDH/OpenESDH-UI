@@ -5,6 +5,7 @@ angular
 
 function userService($http) {
     return {
+        getCurrentUser: getCurrentUser,
         deleteUser: deletePerson,
         getPerson: getPerson,
         getPeople: getPeople,
@@ -12,12 +13,19 @@ function userService($http) {
         getAuthorities: getAuthorities,
         createUser: createUser,
         updateUser: updateUser,
+        setEmailFeedDisabled: setEmailFeedDisabled,
         getPersons: getPersons,
         getGroups: getGroups,
         changePassword: changePassword,
         getCurrentUserCaseOwnersGroups: getCurrentUserCaseOwnersGroups,
         uploadUsersCSVFile: uploadUsersCSVFile
     };
+
+    function getCurrentUser() {
+        return $http.get('/api/openesdh/currentUser').then(function(response) {
+            return response.data;
+        });
+    }
 
     function deletePerson(userName) {
         return $http.delete('/api/people/' + userName).then(function(response) {
@@ -65,6 +73,12 @@ function userService($http) {
     function updateUser(userObj) {
         return $http.put('/api/people/' + encodeURIComponent(userObj.userName), userObj).then(function(response) {
             console.log("Return success");
+            return response.data;
+        });
+    }
+    
+    function setEmailFeedDisabled(userObj){
+        return $http.put('/api/openesdh/users/' + userObj.userName + '/emailfeeddisabled/' + userObj.emailFeedDisabled).then(function(response){
             return response.data;
         });
     }

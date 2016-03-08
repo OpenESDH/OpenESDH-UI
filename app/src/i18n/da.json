@@ -64,9 +64,9 @@
         "MESSAGE": "Meddelelse",
         "LIST_VIEW": "Listevisning",
         "GRID_VIEW": "Gittervisning",
-	"DOWNLOAD_TEMPLATE_CSV": "Hent CSV skabelon",
+    "DOWNLOAD_TEMPLATE_CSV": "Hent CSV skabelon",
         "LOCKED_BY": "Låst af {{locked_by}}",
-	"CONGRATULATIONS": "Tillykke!"
+    "CONGRATULATIONS": "Tillykke!"
     },
     "CASE": {
         "CONFIRM_CLOSE_CASE": "Vil du lukke denne sag?",
@@ -561,7 +561,8 @@
         "UPLOAD_USERS_NOTE": "Upload brugere. Kun CSV-filer",
         "FAILED_TO_UPLOAD_MSG": "{{failedNumberOfUsers}} bruger(e) blev ikke tilføjet af følgende grunde:",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER": "Er du sikker på, at du vil slette '{{user}}'?",
-        "CAN_NOT_DELETE_ADMIN_USER": "Sletning af admin brugeren er ikke tilladt"
+        "CAN_NOT_DELETE_ADMIN_USER": "Sletning af admin brugeren er ikke tilladt",
+        "EMAIL_FEED_ENABLED": "E-mail-feed aktiveret"
     },
     "GROUP": {
         "GROUPS": "Grupper",
@@ -630,7 +631,7 @@
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_PERSON_CONTACT": "Er du sikker på, at du vil slette \"{{firstName}} {{lastName}}\"?",
         "CONTACT_SAVED_SUCCESSFULLY": "Kontakt \"{{firstName}} {{lastName}}\" gemt",
         "CONTACT_DELETED_SUCCESSFULLY": "Kontakt \"{{firstName}} {{lastName}}\" slettet",
-	"PERSON": "Person",
+    "PERSON": "Person",
         "ORGANIZATION": "Organisation"
     },
     "ERROR": {
@@ -679,11 +680,13 @@
         "NEW_NOTE": "Ny note",
         "PRINT_ALL_NOTES": "Print alle noter",
         "CREATE_NOTE": "Opret note",
+        "EDIT_NOTE": "Redigér note",
         "HEADLINE": "Overskrift",
         "CONTENT": "Indhold",
         "CONCERNED_PARTIES": "Relaterede parter",
         "ADD_NOTE": "Tilføj note",
-        "COMFIRM_DELETE": "Er du sikker på, at du vil slette denne note?"
+        "DELETE_NOTE": "Slet note",
+        "CONFIRM_DELETE": "Er du sikker på, at du vil slette denne note?"
     },
     "PARTY": {
         "PARTY": "Part",
