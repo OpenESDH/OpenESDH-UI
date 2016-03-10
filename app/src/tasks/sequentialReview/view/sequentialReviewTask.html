@@ -34,7 +34,7 @@
                                     <dd flex="66">{{ taskCtrl.task.workflowInstance.startDate | date }}</dd>
 
                                     <dt flex="20">{{ 'COMMON.DESCRIPTION' | translate }}</dt>
-                                    <dd flex="66">{{ taskCtrl.task.description }}</dd>
+                                    <dd flex="66">{{ taskCtrl.task | taskDescription }}</dd>
                                     
                                     <dt flex="20">{{ 'COMMON.COMMENT' | translate }}</dt>
                                     <dd flex="66"><textarea flex="grow" ng-model="taskCtrl.task.properties.bpm_comment" required="required"></textarea></dd>
