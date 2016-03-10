@@ -6,7 +6,7 @@
                 <md-button class="md-list-item-text task-btn" ui-sref="workflowtask({ taskName: task.name, taskId : task.id })">
                     <div layout="row" layout-align="space-between start">
                         <div flex="60">
-                            <h3>{{task.properties.bpm_description}}</h3>
+                            <h3>{{task | taskTitle}}</h3>
                             <p class="single-line">{{task | taskDescription}}</p>
                         </div>
                         <div flex style="text-align:right">

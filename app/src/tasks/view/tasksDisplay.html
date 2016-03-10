@@ -53,7 +53,7 @@
                         <div md-virtual-repeat="task in tasksCtrl.tasks | orderObjectBy:orderByAttribute:reverseOrder | filter:tasksCtrl.columnFilter | filter:freeTextSearch" class="tlist__item" layout="column" flex>
                             <a class="tlist__item__link" href="#/tasks/task/{{task.name | encodeUri}}/{{task.id | encodeUri}}" layout="row">
                                 <span class="tlist__cell tlist__cell_icon" flex="none"><i class="material-icons">assignment</i></span>
-                                <span class="tlist__cell" flex>{{ task.properties.bpm_description }}</span>
+                                <span class="tlist__cell" flex>{{ task | taskTitle }}</span>
                                 <span class="tlist__cell muted" flex="25">
                             <span class="cell__label">{{ 'COMMON.DESCRIPTION' | translate }}</span> {{ task | taskDescription }}
                                 </span>
