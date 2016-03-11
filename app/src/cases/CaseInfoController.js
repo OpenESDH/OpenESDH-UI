@@ -23,7 +23,7 @@ function CaseInfoController($scope, $stateParams, startCaseWorkflowService, case
     vm.removeCaseFromFavourites = removeCaseFromFavourites;
     vm.checkFavourite = checkFavourite;
 
-    ContextService.setContext('cases');
+    //ContextService.setContext('cases');
 
     loadCaseInfo();
 

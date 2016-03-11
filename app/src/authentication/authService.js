@@ -32,7 +32,7 @@ function httpTicketInterceptor($injector, $translate, $window, $q, sessionServic
     
     function prefixAlfrescoServiceUrl(url){
         if(url.indexOf("/api/") == 0 || url.indexOf("/slingshot/") == 0 || url == "/touch" || url == "/dk-openesdh-case-email"){
-            return ALFRESCO_URI.webClientServiceProxy + url;
+            return ALFRESCO_URI.serviceApiProxy + url;
         }
         return url;
     }

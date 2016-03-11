@@ -1,13 +1,23 @@
 var gulp = require('gulp'),
         $ = require('gulp-load-plugins')(),
-        fs = require('fs');
+        fs = require('fs'),
+        proxy = require('http-proxy-middleware');
 
 // Config vars
 // If, after a while, there are a lot of config vars, we can move these to a separate file
 var environment = {
-    test: {proxy: 'http://test.openesdh.dk'},
-    demo: {proxy: 'http://demo.openesdh.dk'},
-    dev: {proxy: 'http://dev.openesdh.dk:8080'},
+    test: {
+        proxy: 'http://test.openesdh.dk',
+        spp: 'http://test.openesdh.dk:7070'
+    },
+    demo: {
+        proxy: 'http://demo.openesdh.dk',
+        spp: 'http://demo.openesdh.dk:7070'
+    },
+    dev: {
+        proxy: 'http://dev.openesdh.dk',
+        spp: 'http://dev.openesdh.dk:7070'
+    },
     local: {
         proxy: 'http://localhost:8080',
         spp: 'http://localhost:7070'
@@ -32,9 +42,20 @@ var openeModules = [{
         moduleId: 'openeApp.cases.staff'
     },
     {
+        sourceUrl: 'https://github.com/OpenESDH/openesdh-doc-templates-ui.git',
+        moduleName: 'doctemplates',
+        moduleId: 'openeApp.doctemplates'
+    },
+    {
+        //must be introduced after 'doctemplates'
         sourceUrl: 'https://github.com/OpenESDH/openesdh-addo-ui.git',
         moduleName: 'addo',
         moduleId: 'openeApp.addo'
+    },
+    {
+        sourceUrl: 'https://github.com/OpenESDH/openesdh-project-rooms-ui.git',
+        moduleName: 'projectRooms',
+        moduleId: 'openeApp.projectRooms'
     }];
 
 var runOpeneModules = [];
@@ -45,6 +66,9 @@ function createWebserver(config) {
             .pipe($.webserver({
                 open: false, // Open up a browser automatically
                 host: '0.0.0.0', // hostname needed if you want to access the server from anywhere on your local network
+                middleware: [
+                   proxy('/alfresco/**/documentLibrary/**', {target: config.spp, changeOrigin: true})
+                ],
                 proxies: [{
                     source: '/alfresco/opene/cases',
                     target: config.spp + '/alfresco/opene/cases'
@@ -158,7 +182,7 @@ gulp.task('ui-test', ['e2e-tests']);
  is equal to running '$ gulp dev'
  In other words, the default task is the 'dev' task
  */
-gulp.task('default', ['dev']);
+gulp.task('default', ['local']);
 
 gulp.task('all-modules', openeModules.map(function(module) {
     return module.moduleName;

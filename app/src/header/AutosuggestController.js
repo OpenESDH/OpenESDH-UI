@@ -64,10 +64,6 @@ function AutosuggestController($state, $q, $mdConstant, searchService, alfrescoN
         asctrl.totalSuggestion += asctrl.liveSearchResults.cases.length;
     }
 
-    function parseTemplates(res) {
-
-    }
-
     function getDefaultSuggestions(term) {
         $q.all([
             searchService.liveSearchCaseDocs(term),

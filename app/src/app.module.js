@@ -43,7 +43,7 @@ angular
     })
     .constant('ALFRESCO_URI', {
         apiOpenesdh: '/api/openesdh/',
-        serviceApiProxy: '/api/',
+        serviceApiProxy: '/alfresco/s',
         serviceSlingshotProxy: '/slingshot/',
         webClientServiceProxy: '/alfresco/wcs'
     })
