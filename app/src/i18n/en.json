@@ -204,7 +204,8 @@
         "VIEW_DOCUMENT_DETAILS": "View document",
         "SENT_FROM_OUTLOOK": "Sent from Outlook",
         "DELETE_DOC_SUCCESS": "Document successfully deleted",
-        "DELETE_DOC_FAILURE": "Document could not be deleted"
+        "DELETE_DOC_FAILURE": "Document could not be deleted",
+        "NO_DOCUMENTS_ADDED_YET": "No documents added yet"
     },
     "FILE": {
         "FILE": "File",
