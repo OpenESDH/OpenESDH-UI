@@ -14,7 +14,7 @@ angular
  * @constructor
  */
 function CaseInfoController($scope, $stateParams, startCaseWorkflowService, caseCrudDialogService,
-        casePrintDialogService, preferenceService, caseInfoExtrasService) {
+        casePrintDialogService, preferenceService, caseInfoExtrasService, notificationUtilsService, $translate) {
     var vm = this;
     vm.editCase = editCase;
     vm.startWorklfow = startWorklfow;
@@ -55,6 +55,7 @@ function CaseInfoController($scope, $stateParams, startCaseWorkflowService, case
     function addCaseToFavourites() {
         preferenceService.addFavouriteCase($stateParams.caseId).then(function() {
             checkFavourite();
+            notificationUtilsService.alert($translate.instant('CASE.CASE_ADDED_TO_FAVORITE'));
         });
     }
 
