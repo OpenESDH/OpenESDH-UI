@@ -34,6 +34,9 @@
                         <span class="tlist__cell muted" flex="20">{{ doc["cm:modified"] | openeDate }}</span>
                     </a>
                 </div>
+                <div ng-show="docCtrl.documents.length == 0">
+                    <span class="tlist__cell" flex translate="DOCUMENT.NO_DOCUMENTS_ADDED_YET"></span>
+                </div>
             </md-virtual-repeat-container>
         </div>
     </md-card-content>
