@@ -136,7 +136,8 @@
         "CREATE_FROM": "Opret en",
         "SELECT_CASE_TYPE": "Vælg sagstype",
         "SEARCH_EXISTING_CASE": "søg sag",
-        "ASSIGN_TO": "Tildel til"
+        "ASSIGN_TO": "Tildel til",
+        "CASE_ADDED_TO_FAVORITE": "Sagen er føjet til dine favoritter og du bliver notificeret når der sker nye hændelser på sagen"
     },
     "DOCUMENT": {
         "STATUS_CHANGED_SUCCESS": "Status er ændret",
