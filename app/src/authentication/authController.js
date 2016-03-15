@@ -43,6 +43,8 @@ function AuthController($state, $stateParams, authService, userService, $mdDialo
             // If incorrect values            
             if(response.status == 403) {
                 vm.form.password.$setValidity("loginFailure", false);
+            } else if(response.status == 500) {
+                vm.form.password.$setValidity("loginError", false);
             }
 
         });

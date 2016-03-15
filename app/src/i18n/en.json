@@ -662,6 +662,7 @@
         "EMAIL_EXISTS": "Email already exists",
         "USERNAME_EXISTS": "Username already exists",
         "AUTH_FAILURE": "Incorrect authentication details",
+        "AUTH_ERROR": "Internal login error",
         "NOT_EQUAL_PATTERN": "Wrong input format"
     },
     "LOGIN": {
