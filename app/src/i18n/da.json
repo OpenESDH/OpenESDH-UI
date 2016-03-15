@@ -68,14 +68,13 @@
         "LOCKED_BY": "Låst af {{locked_by}}",
     "CONGRATULATIONS": "Tillykke!"
     },
+    "SIMPLE_CASE": {
+        "TYPE": "Standardsag"
+    },
     "CASE": {
         "CONFIRM_CLOSE_CASE": "Vil du lukke denne sag?",
         "STATUS_CHANGED_SUCCESS": "Status er ændret",
         "CASETYPE_STANDARD": "Standard sag",
-        "TYPE": {
-            "simple_case": "Standardsag",
-            "staff_case": "Personalesag"
-        },
         "STATUS": {
             "active": "Aktiv",
             "passive": "Passiv",
