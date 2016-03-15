@@ -182,13 +182,18 @@ function authService($http, $window, $state, sessionService, userService, oePara
     }
 
     function addUserAndParamsToSession(username) {
-        return userService.getPerson(username).then(function(response) {
+        return userService.getPerson(username).then(function(user) {
             delete $window._openESDHSessionExpired;
-            var userInfo = sessionService.getUserInfo();
-            userInfo['user'] = response;
-            sessionService.setUserInfo(userInfo);
-            oeParametersService.loadParameters();
-            return response;
+            
+            return userService.getCapabilities().then(function(capabilities){
+               angular.merge(user.capabilities, capabilities);
+               var userInfo = sessionService.getUserInfo();
+               userInfo['user'] = user;
+               sessionService.setUserInfo(userInfo);
+               oeParametersService.loadParameters();
+               return user;
+            });
+            
         });
     }
 }

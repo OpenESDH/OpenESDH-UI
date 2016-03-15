@@ -8,7 +8,7 @@
             if (typeof type === 'undefined') {
                 return "";
             }
-            return $translate.instant('CASE.TYPE.' + type.replace(":", "_"));
+            return $translate.instant(type.replace(":", "_").toUpperCase() + '.TYPE');
         }
         return caseTypeFilter;
     }
