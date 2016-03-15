@@ -73,7 +73,7 @@
                             <span class="tlist__cell tlist__cell__fileicon tlist__cardview__hide" flex="5">
                                 <img class="md-avatar" ng-src="app/assets/images/filetypes/{{file.thumbNailURL}}"/>
                             </span>
-                            <span class="tlist__cell" flex>
+                            <span class="tlist__cell" flex title="{{file.version}}">
                                 <img class="md-avatar tlist__cardview__show" ng-src="app/assets/images/filetypes/{{file.thumbNailURL}}"/>
                                 {{ file.title}}
                             </span>
@@ -116,6 +116,12 @@
                                         <md-menu-item>
                                             <md-button ng-click="filesVm.deleteFile(file)">
                                                 <md-icon>delete</md-icon>{{ 'COMMON.DELETE' | translate }}
+                                            </md-button>
+                                        </md-menu-item>
+                                        <!-- dynamic module actions -->
+                                        <md-menu-item ng-repeat="actionItem in filesVm.actionItems" ng-show="actionItem.isVisible(file)">
+                                            <md-button ng-click="filesVm.executeAction(file, actionItem)">
+                                                <md-icon>{{ actionItem.icon }}</md-icon>{{ actionItem.labelKey | translate }}
                                             </md-button>
                                         </md-menu-item>
                                     </md-menu-content>

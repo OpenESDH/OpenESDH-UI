@@ -3,12 +3,13 @@ angular
         .module('openeApp.files')
         .controller('FilesController', FilesController);
 
-function FilesController(filesService, $translate, $mdDialog, notificationUtilsService,
-        alfrescoDownloadService, documentPreviewService) {
+function FilesController($scope, $injector, filesService, $translate, $mdDialog, notificationUtilsService,
+        alfrescoDownloadService, documentPreviewService, fileListItemActionService) {
     var vm = this;
     vm.tab = 'my_files';
     vm.files = [];
     vm.loadList = loadList;
+    
     vm.showAddFileDialog = showAddFileDialog;
     vm.downloadFile = downloadFile;
     vm.previewFile = previewFile;
@@ -16,7 +17,10 @@ function FilesController(filesService, $translate, $mdDialog, notificationUtilsS
     vm.assignFile = assignFile;
     vm.addToCase = addToCase;
     vm.showComments = showComments;
-
+    
+    vm.actionItems = fileListItemActionService.getItems();
+    vm.executeAction = executeAction;
+    
     vm.filterArray = {};
     vm.columnFilter = columnFilter;
 
@@ -28,12 +32,9 @@ function FilesController(filesService, $translate, $mdDialog, notificationUtilsS
                 : filesService.getGroupFiles;
         listF().then(function(files) {
             vm.files = files;
-        }, function(error) {
-            notificationUtilsService.alert(error.data.message || 'Unexpected exception');
-            console.log(error);
-        });
+        }, showError);
     }
-
+    
     function downloadFile(file) {
         alfrescoDownloadService.downloadFile(file.nodeRef, file.title);
     }
@@ -69,10 +70,8 @@ function FilesController(filesService, $translate, $mdDialog, notificationUtilsS
             templateUrl: 'app/src/files/view/addFiles.html',
             parent: angular.element(document.body),
             targetEvent: ev,
-            clickOutsideToClose: true,
-        }).then(function() {
-            loadList();
-        });
+            clickOutsideToClose: true
+        }).then(loadList);
     }
 
     function assignFile(ev, file) {
@@ -86,9 +85,7 @@ function FilesController(filesService, $translate, $mdDialog, notificationUtilsS
             locals: {
                 file: file
             }
-        }).then(function() {
-            loadList();
-        });
+        }).then(loadList);
     }
 
     function addToCase(ev, file) {
@@ -102,12 +99,10 @@ function FilesController(filesService, $translate, $mdDialog, notificationUtilsS
             locals: {
                 file: file
             }
-        }).then(function() {
-            loadList();
-        });
+        }).then(loadList);
     }
-    
-    function showComments(ev, file){
+
+    function showComments(ev, file) {
         $mdDialog.show({
             controller: 'FileCommentsDialogController',
             controllerAs: 'fileCommentsVm',
@@ -120,6 +115,16 @@ function FilesController(filesService, $translate, $mdDialog, notificationUtilsS
             }
         }).then(function() {
         });
+    }
+    
+     function executeAction(file, menuItem){
+        var service = $injector.get(menuItem.serviceName);
+        service.executeFileAction(file, $scope, loadList, showError);
+    }
+
+    function showError(error){
+        console.log(error);
+        notificationUtilsService.alert(error.data.message || error.statusText);
     }
 
     function columnFilter(item) {
