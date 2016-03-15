@@ -18,9 +18,10 @@ function userService($http) {
         getGroups: getGroups,
         changePassword: changePassword,
         getCurrentUserCaseOwnersGroups: getCurrentUserCaseOwnersGroups,
-        uploadUsersCSVFile: uploadUsersCSVFile
+        uploadUsersCSVFile: uploadUsersCSVFile,
+        getCapabilities: getCapabilities
     };
-
+    
     function getCurrentUser() {
         return $http.get('/api/openesdh/currentUser').then(function(response) {
             return response.data;
@@ -136,6 +137,12 @@ function userService($http) {
             headers: {'Content-Type': undefined}
         }).then(function(response){
             console.log(response.data);
+            return response.data;
+        });
+    }
+    
+    function getCapabilities(){
+        return $http.get('/api/openesdh/capabilities').then(function(response) {
             return response.data;
         });
     }
