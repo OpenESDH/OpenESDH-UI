@@ -24,7 +24,6 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
     vm.filterArray = {};
     vm.columnFilter = columnFilter;
 
-    loadList();
     function loadList() {
         vm.files = [];
         var listF = vm.tab === 'my_files'
@@ -36,7 +35,7 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
     }
     
     function downloadFile(file) {
-        alfrescoDownloadService.downloadFile(file.nodeRef, file.title);
+        alfrescoDownloadService.downloadFile(file.nodeRef, file.cm.title);
     }
 
     function previewFile(file) {
@@ -46,7 +45,7 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
     function deleteFile(file) {
         var confirm = $mdDialog.confirm()
                 .title($translate.instant('COMMON.CONFIRM'))
-                .textContent($translate.instant('FILE.ARE_YOU_SURE_YOU_WANT_TO_DELETE_FILE', {title: file.title}))
+                .textContent($translate.instant('FILE.ARE_YOU_SURE_YOU_WANT_TO_DELETE_FILE', {title: file.cm.title}))
                 .ariaLabel('File delete confirmation')
                 .targetEvent(null)
                 .ok($translate.instant('COMMON.YES'))
@@ -124,7 +123,7 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
 
     function showError(error){
         console.log(error);
-        notificationUtilsService.alert(error.data.message || error.statusText);
+        notificationUtilsService.alert(error.message || error.data.message || error.statusText);
     }
 
     function columnFilter(item) {

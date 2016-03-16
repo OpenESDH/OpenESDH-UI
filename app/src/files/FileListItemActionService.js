@@ -13,14 +13,16 @@ function FileListItemActionServiceProvider() {
      * @param icon - icon key
      * @param serviceName - for injector
      * @param isVisible - gets called with argument 'file'
+     * @param isDisabled - gets called with argument 'file'
      * @returns {FileListItemActionServiceProvider}
      */
-    function addItem(labelKey, icon, serviceName, isVisible) {
+    function addItem(labelKey, icon, serviceName, isVisible, isDisabled) {
         availableItems.push({
             labelKey: labelKey,
             icon: icon,
             serviceName: serviceName,
-            isVisible: isVisible
+            isVisible: isVisible,
+            isDisabled: isDisabled
         });
         return this;
     }

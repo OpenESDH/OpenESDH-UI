@@ -37,7 +37,7 @@ function FilesService($http, fileUtilsService, alfrescoNodeUtils) {
 
     function _fileListResponse(response) {
         return response.data.map(function(file) {
-            file.thumbNailURL = fileUtilsService.getFileIconByMimetype(file.mimetype, 24);
+            file.thumbNailURL = fileUtilsService.getFileIconByMimetype(file.cm.content.mimetype, 24);
             return file;
         });
     }

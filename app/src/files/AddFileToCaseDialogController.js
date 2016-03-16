@@ -14,7 +14,7 @@ function AddFileToCaseDialogController($mdDialog, $scope, $translate,
     addToCaseVm.caseSearch = caseService.caseSearch;
 
     $scope.documentProperties = {
-        title: file.title,
+        title: file.cm.title,
         doc_type: null,
         doc_category: null,
         description: null
