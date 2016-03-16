@@ -30,6 +30,12 @@
                                 <opene-column-filter type="checkbox" list="tasksCtrl.taskStatuses" filter="tasksCtrl.filterArray" value="status" />
                             </div>
                         </div>
+                        <div class="tlist__cell" flex="10">
+                            <div layout="row" layout-align="space-between center">
+                                <span>{{ 'CASE.CASE' | translate }}</span>
+                                <opene-column-filter type="text" filter="tasksCtrl.filterArray" value="caseId" />
+                            </div>
+                        </div>
                         <div class="tlist__cell" flex="15">
                             <div layout="row" layout-align="space-between start">
                                 <span sort-table="properties.bpm_dueDate">{{ 'COMMON.DUE_DATE' | translate }}</span>
@@ -58,6 +64,7 @@
                             <span class="cell__label">{{ 'COMMON.DESCRIPTION' | translate }}</span> {{ task | taskDescription }}
                                 </span>
                                 <span class="tlist__cell muted" flex="15"><span class="cell__label">{{ 'COMMON.STATUS' | translate }}</span> {{ task.properties.bpm_status | workflowTaskStatus}}</span>
+                                <span class="tlist__cell muted" flex="10"><span class="cell__label">{{ 'CASE.CASE' | translate }}</span> {{ task.caseId}}</span>
                                 <span class="tlist__cell muted" flex="15"><span class="cell__label">{{ 'COMMON.DUE_DATE' | translate }}</span>{{ task.properties.bpm_dueDate | date }}</span>
                                 <span class="tlist__cell muted" flex="15" ng-show="tasksCtrl.case_tasks"><span class="cell__label">{{ 'ACTIVITIES.PERFORMER' | translate }}</span>{{ task.owner.firstName + " " + task.owner.lastName }}</span>
                                 <span class="tlist__cell muted" flex="10"><span class="cell__label">{{ 'COMMON.PRIORITY' | translate }}</span>{{ task.properties.bpm_priority | workflowTaskPriority}}</span>
