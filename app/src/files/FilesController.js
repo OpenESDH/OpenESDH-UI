@@ -9,7 +9,7 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
     vm.tab = 'my_files';
     vm.files = [];
     vm.loadList = loadList;
-    
+
     vm.showAddFileDialog = showAddFileDialog;
     vm.downloadFile = downloadFile;
     vm.previewFile = previewFile;
@@ -17,10 +17,10 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
     vm.assignFile = assignFile;
     vm.addToCase = addToCase;
     vm.showComments = showComments;
-    
+
     vm.actionItems = fileListItemActionService.getItems();
     vm.executeAction = executeAction;
-    
+
     vm.filterArray = {};
     vm.columnFilter = columnFilter;
 
@@ -33,7 +33,7 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
             vm.files = files;
         }, showError);
     }
-    
+
     function downloadFile(file) {
         alfrescoDownloadService.downloadFile(file.nodeRef, file.cm.title);
     }
@@ -115,13 +115,13 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
         }).then(function() {
         });
     }
-    
-     function executeAction(file, menuItem){
+
+    function executeAction(file, menuItem) {
         var service = $injector.get(menuItem.serviceName);
         service.executeFileAction(file, $scope, loadList, showError);
     }
 
-    function showError(error){
+    function showError(error) {
         console.log(error);
         notificationUtilsService.alert(error.message || error.data.message || error.statusText);
     }
