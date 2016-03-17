@@ -106,7 +106,6 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
                 }
             };
         }
-        ;
     }
 
     function loadDocumentPreview() {

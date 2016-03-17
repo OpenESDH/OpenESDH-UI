@@ -12,8 +12,8 @@ function CaseDocumentEditActionsServiceProvider() {
      * @param labelKey - key for translation
      * @param icon - icon key
      * @param serviceName - for injector
-     * @param isVisible - gets called with argument 'file'
-     * @param isDisabled - gets called with argument 'file'
+     * @param isVisible - gets called with argument 'doc'
+     * @param isDisabled - gets called with argument 'doc'
      * @returns {CaseDocumentEditActionsServiceProvider}
      */
     function addItem(labelKey, icon, serviceName, isVisible, isDisabled) {
