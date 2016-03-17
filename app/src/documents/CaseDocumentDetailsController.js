@@ -5,6 +5,7 @@
     function CaseDocumentDetailsController($scope, $stateParams, $controller, $location, caseDocumentDetailsExtrasService){
         angular.extend(this, $controller('DocumentDetailsController'));
         var vm = this;
+        vm._scope = $scope;
         var caseId = $stateParams.caseId;
         vm.caseId = caseId;
         vm.afterDocumentDelete = afterDocumentDelete;

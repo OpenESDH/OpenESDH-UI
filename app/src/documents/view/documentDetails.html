@@ -18,7 +18,7 @@
                                     </span>)
                                 </span>
                             </span>
-                            
+
                         </dd>
                         <dt flex="33">{{ 'COMMON.TYPE' | translate }}</dt><dd flex="66">
                             <i class="material-icons" ng-show="docCtrl.doc['fromOutlook']" title="{{ 'DOCUMENT.SENT_FROM_OUTLOOK' | translate}}" style="padding-right: 5px;">email</i>
@@ -44,10 +44,30 @@
             </md-card-content>
             <div class="md-actions" layout="row" layout-padding>
                 <md-button class="md-primary" ng-click="docCtrl.editDocumentProperties()" ng-disabled="docCtrl.doc.isLocked">{{ 'DOCUMENT.EDIT_PROPERTIES' | translate }}</md-button>
-                <md-button class="md-primary" ng-click="docCtrl.editOnlineDocument()" ng-disabled="docCtrl.doc.isLocked || docCtrl.doc.editLockState.isLocked" ng-show="docCtrl.canEditOnlineDocument">{{ 'DOCUMENT.EDIT_DOCUMENT' | translate }}</md-button>
                 <md-button class="md-primary" ng-click="docCtrl.uploadDocNewVersion()" ng-disabled="docCtrl.doc.isLocked || docCtrl.doc.editLockState.isLocked">{{'DOCUMENT.UPLOAD_NEW_VERSION'|translate }}</md-button>
                 <md-button class="md-primary" ng-click="docCtrl.downloadDocument()">{{ 'COMMON.DOWNLOAD' | translate }}</md-button>
                 <md-button class="md-primary" ng-click="docCtrl.deleteDocument()" ng-disabled="docCtrl.doc.isLocked" ng-show="docCtrl.isAdmin">{{ 'COMMON.DELETE' | translate }}</md-button>
+
+                <md-menu>
+                    <md-button class="md-primary" aria-label="{{ 'MENU.OPEN_MENU' | translate }}" ng-click="$mdOpenMenu($event)">
+                        <md-icon>edit</md-icon>
+                        {{ 'DOCUMENT.EDIT_DOCUMENT' | translate }}
+                    </md-button>
+                    <md-menu-content>
+                        <md-menu-item ng-show="docCtrl.canEditOnlineDocument">
+                            <md-button ng-click="docCtrl.editOnlineDocument()" ng-disabled="docCtrl.doc.isLocked || docCtrl.doc.editLockState.isLocked">
+                                <md-icon md-menu-align-target>description</md-icon>
+                                {{ 'DOCUMENT.EDIT_DOCUMENT_SHAREPOINT' | translate }}
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item ng-repeat="actionItem in docCtrl.documentEditActions" ng-show="actionItem.isVisible(docCtrl.doc)">
+                            <md-button ng-click="docCtrl.executeEditAction(actionItem)" ng-disabled="actionItem.isDisabled(docCtrl.doc)">
+                                <md-icon>{{ actionItem.icon}}</md-icon>{{ actionItem.labelKey | translate }}
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+
             </div>
         </md-card>
 
