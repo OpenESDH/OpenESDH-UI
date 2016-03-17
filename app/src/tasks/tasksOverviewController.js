@@ -59,6 +59,13 @@
                 if (description.search(searchText) < 0)
                     return;
             }
+            
+            if (vm.filterArray.caseId !== undefined) {
+                var searchText = new RegExp(vm.filterArray.caseId, "i");
+                var caseId = item.caseId;
+                if (caseId == undefined || caseId.search(searchText) < 0)
+                    return;
+            }
 
             if (vm.filterArray.status && vm.filterArray.status.length > 0) {
                 var arr = vm.filterArray.status;
