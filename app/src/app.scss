@@ -500,6 +500,15 @@ md-virtual-repeat-container {
     font-weight: 700;
 }
 
+md-checkbox.md-default-theme.md-checked .md-icon,
+md-checkbox.md-checked .md-icon {
+    background-color: rgb(30,136,229);
+}
+
+md-checkbox.md-checked .md-icon:after {
+    border-color: #fff;
+}
+
 md-input-container {
     .md-input:-webkit-autofill ~ label {
         -webkit-transform: translate3d(0, 6px, 0) scale(0.75);
