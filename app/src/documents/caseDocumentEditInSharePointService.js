@@ -15,8 +15,7 @@ function caseDocumentEditInSharePointService(caseDocumentDetailsService) {
                 return;
             }
             return caseDocumentDetailsService.getDocumentVersionInfo(document.mainDocNodeRef).then(function(versions) {
-                caseDocumentDetailsService.editOnlineDocument(document.editOnlinePath + "/" + versions[0].name);
-                setTimeout(onSuccess, 2000);
+                caseDocumentDetailsService.editOnlineDocument(document.editOnlinePath, versions[0].name, onSuccess);
             });
         });
     }

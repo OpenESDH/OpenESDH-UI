@@ -14,8 +14,7 @@
             uploadAttachmentNewVersion: uploadAttachmentNewVersion,
             downloadAttachment: downloadAttachment,
             updateDocumentProperties: updateDocumentProperties,
-            changeDocumentStatus: changeDocumentStatus,
-            editOnlineDocument: editOnlineDocument
+            changeDocumentStatus: changeDocumentStatus
         };
         return service;
         
@@ -100,11 +99,5 @@
             return $http.post('/api/openesdh/documents/' + alfrescoNodeUtils.processNodeRef(documentNodeRef).uri + '/status', {status: status}).then(function (response) {
                 return response.data;
             });
-        }
-        
-        function editOnlineDocument(docEditOnlinePath){
-            var msProtocol = fileUtilsService.getMsProtocolForFile(docEditOnlinePath);
-            var href = msProtocol + ":ofe|u|" + window.location.origin + "/alfresco" + docEditOnlinePath;
-            location.href = href;
         }
     }
