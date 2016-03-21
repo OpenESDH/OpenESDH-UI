@@ -16,7 +16,7 @@
               <span class="r icon" flex="none"></span>
               <span class="r" flex sort-table="cm:title">{{ 'COMMON.TITLE' | translate }}</span>
               <span class="r" flex="20" sort-table="oe:id">{{ 'COMMON.ID' | translate }}</span>
-              <span class="r" flex="20" sort-table="cm:modified">{{ 'COMMON.MODIFIED' | translate }}</span>
+              <span class="r" flex="20" sort-table="cm:modified" sort-default="reverse">{{ 'COMMON.MODIFIED' | translate }}</span>
           </div>
           <md-virtual-repeat-container flex-height style="height: 200px;">
               <div md-virtual-repeat="case in caseListController.cases | orderObjectBy:orderByAttribute:reverseOrder" class="repeat-item">

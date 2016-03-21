@@ -6,6 +6,18 @@ $opene-secondary-color: #FFD740;
  * Body styles
  */
 
+ #loader {
+    visibility: hidden;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    -moz-opacity: 0.7;
+ }
+
 .body {
     background-color: #ddd;
 }
@@ -290,7 +302,8 @@ md-list md-list-item.active a {
             display: none;
         }
 
-        &.tlist__cell_icon {
+        &.tlist__cell_icon,
+        &.tlist__cell__fileicon {
             padding: 0.5em 0 0.5em 1em;
             width: 40px;
 
@@ -498,6 +511,15 @@ md-virtual-repeat-container {
 
 .md-checked .md-label {
     font-weight: 700;
+}
+
+md-checkbox.md-default-theme.md-checked .md-icon,
+md-checkbox.md-checked .md-icon {
+    background-color: rgb(30,136,229);
+}
+
+md-checkbox.md-checked .md-icon:after {
+    border-color: #fff;
 }
 
 md-input-container {

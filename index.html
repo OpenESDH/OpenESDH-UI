@@ -47,6 +47,9 @@
   </head>
 
   <body ng-app="openeApp" layout="column" class="body">
+    <div id="loader" layout="column" layout-align="center center">
+        <md-progress-circular md-diameter="200" flex="initial"></md-progress-circular>
+    </div>
     <md-content class="body__content" ui-view="content"></md-content>
   </body>
 

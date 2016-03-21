@@ -11,6 +11,11 @@
 
             $compile(element.contents())(scope);
 
+            if ('sortDefault' in attrs) {
+                scope.orderByAttribute = attrs.sortTable;
+                scope.reverseOrder = attrs.sortDefault=='reverse' ? true : false;
+            }
+
             element.bind('click', function(element){
                 scope.orderByAttribute = attrs.sortTable;
                 scope.reverseOrder = !scope.reverseOrder;
