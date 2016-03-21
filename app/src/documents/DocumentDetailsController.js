@@ -6,7 +6,7 @@ angular
 function DocumentDetailsController($stateParams, $translate, $mdDialog, $location, caseDocumentDetailsService,
         documentPreviewService, caseDocumentFileDialogService, notificationUtilsService,
         alfrescoDownloadService, alfrescoFolderService, sessionService, sharePointProtocolService,
-        caseDocumentEditActionsService, $injector) {
+        documentEditActionsService, $injector) {
 
     var vm = this;
     vm.documentNodeRef = $stateParams.storeType + "://" + $stateParams.storeId + "/" + $stateParams.id;
@@ -14,7 +14,7 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
     vm.pageSize = 100;
     vm.isAdmin = sessionService.isAdmin();
 
-    vm.documentEditActions = caseDocumentEditActionsService.getActionItems();
+    vm.documentEditActions = documentEditActionsService.getActionItems();
     vm.executeEditAction = executeEditAction;
 
     vm.uploadDocNewVersion = uploadDocNewVersion;
@@ -183,13 +183,16 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
     function executeEditAction(menuItem) {
         var vm = this;
         var service = $injector.get(menuItem.serviceName);
-        service.executeCaseDocAction(vm.doc, vm._scope, function() {
+        service.executeCaseDocAction(vm.doc, function() {
             vm.loadCaseDocumentInfo();
-        }, showError);
+            vm.refreshDocumentView();
+        }, showError, vm._scope);
     }
 
     function showError(error) {
-        console.log(error);
-        notificationUtilsService.alert(error.message || error.data.message || error.statusText);
+        if (error) {
+            console.log(error);
+            notificationUtilsService.alert(error.message || error.data.message || error.statusText);
+        }
     }
 }

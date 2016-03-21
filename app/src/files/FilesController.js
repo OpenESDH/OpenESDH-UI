@@ -118,12 +118,14 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
 
     function executeAction(file, menuItem) {
         var service = $injector.get(menuItem.serviceName);
-        service.executeFileAction(file, $scope, loadList, showError);
+        service.executeFileAction(file, loadList, showError, $scope);
     }
 
     function showError(error) {
-        console.log(error);
-        notificationUtilsService.alert(error.message || error.data.message || error.statusText);
+        if (error) {
+            console.log(error);
+            notificationUtilsService.alert(error.message || error.data.message || error.statusText);
+        }
     }
 
     function columnFilter(item) {

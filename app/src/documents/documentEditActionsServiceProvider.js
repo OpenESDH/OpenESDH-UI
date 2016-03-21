@@ -1,11 +1,11 @@
 angular
         .module('openeApp.documents')
-        .provider('caseDocumentEditActionsService', CaseDocumentEditActionsServiceProvider);
+        .provider('documentEditActionsService', DocumentEditActionsServiceProvider);
 
-function CaseDocumentEditActionsServiceProvider() {
+function DocumentEditActionsServiceProvider() {
     var availableItems = [];
     this.addItem = addItem;
-    this.$get = CaseDocumentEditActionsService;
+    this.$get = DocumentEditActionsService;
 
     /**
      * 
@@ -14,7 +14,7 @@ function CaseDocumentEditActionsServiceProvider() {
      * @param serviceName - for injector
      * @param isVisible - gets called with argument 'doc'
      * @param isDisabled - gets called with argument 'doc'
-     * @returns {CaseDocumentEditActionsServiceProvider}
+     * @returns {DocumentEditActionsServiceProvider}
      */
     function addItem(labelKey, icon, serviceName, isVisible, isDisabled) {
         availableItems.push({
@@ -28,7 +28,7 @@ function CaseDocumentEditActionsServiceProvider() {
     }
 
 
-    function CaseDocumentEditActionsService() {
+    function DocumentEditActionsService() {
         var service = {
             getActionItems: getActionItems
         };

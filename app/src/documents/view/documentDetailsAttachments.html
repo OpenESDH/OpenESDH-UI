@@ -9,7 +9,7 @@
                 <span class="r" flex="20">{{ 'COMMON.ADDED' | translate }}</span>
                 <span class="r" flex="15">{{ 'COMMON.ADDED_BY' | translate }}</span>
                 <span class="r" flex="20">{{ 'DOCUMENT.ATTACHMENTS.CURRENT_VERSION' | translate }}</span>
-                <span class="r" flex="10"></span>
+                <span class="r" flex="15"></span>
             </div>
             <md-virtual-repeat-container>
                 <div md-virtual-repeat="attachment in docAttCtrl.attachments">
@@ -25,27 +25,32 @@
                                 lock_outline
                             </i>
                         </span>
-                        <span class="muted" flex="10">
+                        <span class="muted" flex="15">
                             <md-menu>
                                 <md-button ng-click="$mdOpenMenu($event)">
                                     {{ 'COMMON.ACTIONS' | translate }}
                                 </md-button>
                                 <md-menu-content>
-                                    <md-menu-item><md-button ng-click="docAttCtrl.editOnlineAttachment(attachment)" ng-disabled="!docAttCtrl.canEditOnlineAttachment(attachment) || !docAttCtrl.isDocumentEditable">{{ 'DOCUMENT.ATTACHMENTS.EDIT_ATTACHMENT' | translate }}</md-button></md-menu-item>
                                     <md-menu-item><md-button ng-click="docAttCtrl.uploadAttachmentNewVersion(attachment)" ng-disabled="!docAttCtrl.isDocumentEditable || attachment.locked">{{ 'DOCUMENT.UPLOAD_NEW_VERSION' | translate }}</md-button></md-menu-item>
                                     <md-menu-item><md-button ng-click="docAttCtrl.previewAttachment(attachment)">{{ 'DOCUMENT.OPEN_PREVIEW' | translate }}</md-button></md-menu-item>
                                     <md-menu-item><md-button ng-click="docAttCtrl.downloadAttachment(attachment)">{{ 'COMMON.DOWNLOAD' | translate }}</md-button></md-menu-item>
+                                    
+                                    <md-menu-item ng-repeat="actionItem in docAttCtrl.editActionItems" ng-show="actionItem.isVisible(attachment, docAttCtrl.isDocumentEditable)">
+                                        <md-button ng-click="docAttCtrl.executeEditAction(attachment, actionItem)" ng-disabled="actionItem.isDisabled(attachment, docAttCtrl.isDocumentEditable)">
+                                            {{ actionItem.labelKey | translate }}
+                                        </md-button>
+                                    </md-menu-item>
                                 </md-menu-content>
                             </md-menu>
                         </span>
                     </div>
                     <div class="repeat-item" layout="row" ng-repeat="attachmentVersion in attachment.versions">
-                        <span class="r" flex="5"></span>
+                        <span class="r" flex="none"></span>
                         <span class="r" flex>{{attachmentVersion.name}}</span>
                         <span class="r muted" flex="20">{{attachmentVersion.created| openeDate}}</span>
                         <span class="r muted" flex="15">{{attachmentVersion.creator.firstName + ' ' + attachmentVersion.creator.lastName}}</span>
                         <span class="r muted" flex="20">{{attachmentVersion.versionLabel}}</span>
-                        <span class="muted" flex="10">
+                        <span class="muted" flex="15">
                             <md-menu>
                                 <md-button ng-click="$mdOpenMenu($event)">
                                     {{ 'COMMON.ACTIONS' | translate }}
