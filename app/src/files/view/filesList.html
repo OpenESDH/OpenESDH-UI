@@ -8,7 +8,7 @@
             <div class="tlist">
 
                 <div class="tlist__header" layout="row">
-                    <div class="tlist__cell tlist__cardview__hide" flex="5"></div>
+                    <div class="tlist__cell tlist__cardview__hide icon" flex="none"></div>
                     <div class="tlist__cell" flex>
                         <div layout="row" layout-align="space-between center">
                             <span sort-table="title">
@@ -70,7 +70,7 @@
                 <md-virtual-repeat-container class="tlist__body" flex-height>
                     <div md-virtual-repeat="file in filesVm.files | orderObjectBy:orderByAttribute:reverseOrder | filter:filesVm.columnFilter | filter:fileFilter" class="tlist__item" layout="column" flex>
                         <div class="tlist__item__link" layout="row">
-                            <span class="tlist__cell tlist__cell__fileicon tlist__cardview__hide" flex="5">
+                            <span class="tlist__cell tlist__cell__fileicon tlist__cardview__hide" flex="none">
                                 <img class="md-avatar" ng-src="app/assets/images/filetypes/{{file.thumbNailURL}}"/>
                             </span>
                             <span class="tlist__cell" flex title="{{file.cm.versionLabel}}">

@@ -59,7 +59,7 @@
             
             function countCurrentUserNewActivities(){
                 var url = "/api/openesdh/activities/feed/new/count";
-                return $http.get(url).then(function(result){                    
+                return $http.get(url, {transformRequest: angular.noop}).then(function(result){                    
                     return result.data;
                 }, function(error){
                     if(error.status == 401){
