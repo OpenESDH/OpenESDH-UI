@@ -31,16 +31,21 @@ md-input-container textarea.md-input {
 			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#f5f5f5',GradientType=0 ); /* IE6-8 */			
 		}
 	}
+	h4 {
+		margin: 0;
+	}
 	p {
-		height: 85px;
+		min-height: 25px;
+		max-height: 85px;
 		overflow: hidden;
 		position: relative;
+		margin: 0;
 		margin-bottom: 0.5em;
 
 		&::before {
 			content: '';
 			display: block;
-			height: 30px;
+			height: 20px;
 			width: 100%;
 			bottom: 0;
 			position: absolute;
