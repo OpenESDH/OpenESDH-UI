@@ -27,7 +27,7 @@
                         <span md-highlight-text="ctrl.searchText">{{item.organizationName}} ({{item.email}})</span>
                     </md-item-template>
                     <md-not-found>
-                        {{ 'PARTY.NO_MATCHES'| translate }}
+                        {{ 'COMMON.NO_MATCHES'| translate }}
                     </md-not-found>
                 </md-autocomplete>
                 <md-chip-template>
@@ -51,7 +51,7 @@
                             <span md-highlight-text="ctrl.searchTextP">{{item.firstName}} {{item.lastName}} ({{item.email}})</span>
                         </md-item-template>
                         <md-not-found>
-                            {{ 'PARTY.NO_MATCHES'| translate }}
+                            {{ 'COMMON.NO_MATCHES'| translate }}
                         </md-not-found>
                     </md-autocomplete>
                     <md-chip-template>
@@ -64,7 +64,7 @@
                 <md-button 
                     ng-show="('can_create_contacts'|oeParam)"
                     ng-click="ctrl.newContact($event)" 
-                    title="{{ 'PARTY.CREATE_CONTACT'| translate }}" 
+                    title="{{ 'CONTACT.CREATE_NEW_CONTACT'| translate }}" 
                     style='min-width: 15px; max-height: 36px;'>+</md-button>
             </div>
         </md-dialog-content>

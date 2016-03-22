@@ -36,7 +36,7 @@
         "HISTORY": "Historik",
         "ACTION": "Handling",
         "TIME": "Tidspunkt",
-        "NO_MATCHES": "Ingen match",
+        "NO_MATCHES": "Ingen resultater",
         "EMAIL": "Email",
         "SAVE": "Gem",
         "SAVE_EMAIL": "Arkiver e-mail",
@@ -769,8 +769,7 @@
         "FIND_USERS": "Find brugere",
         "FIND_GROUPS": "Find grupper",
         "FIND_PERSON": "Find personer",
-        "FIND_ORGANISATION": "Find organisationer",
-        "NO_MATCHES": "Ingen resultater"
+        "FIND_ORGANISATION": "Find organisationer"
     },
     "ACTIVITIES": {
         "NOTIFICATIONS": "Notifikationer",
