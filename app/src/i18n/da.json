@@ -36,7 +36,7 @@
         "HISTORY": "Historik",
         "ACTION": "Handling",
         "TIME": "Tidspunkt",
-        "NO_MATCHES": "Ingen match",
+        "NO_MATCHES": "Ingen resultater",
         "EMAIL": "Email",
         "SAVE": "Gem",
         "SAVE_EMAIL": "Arkiver e-mail",
@@ -708,7 +708,8 @@
         "PARTY_ADDED_SUCCESSFULLY": "Part tilføjet",
         "PARTIES_ADDED_SUCCESSFULLY": "{{count}} parter tilføjet",
         "PARTY_CHANGED_SUCCESSFULLY": "Part ændret",
-        "PARTY_REMOVED_SUCCESSFULLY": "Part fjernet"
+        "PARTY_REMOVED_SUCCESSFULLY": "Part fjernet",
+        "CREATE_CONTACT": "Create new contact"
     },
     "TASK": {
         "MY_TASKS": "Mine opgaver",
@@ -769,8 +770,7 @@
         "FIND_USERS": "Find brugere",
         "FIND_GROUPS": "Find grupper",
         "FIND_PERSON": "Find personer",
-        "FIND_ORGANISATION": "Find organisationer",
-        "NO_MATCHES": "Ingen resultater"
+        "FIND_ORGANISATION": "Find organisationer"
     },
     "ACTIVITIES": {
         "NOTIFICATIONS": "Notifikationer",
