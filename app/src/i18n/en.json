@@ -725,8 +725,7 @@
         "PARTY_ADDED_SUCCESSFULLY": "Case party added successfully",
         "PARTIES_ADDED_SUCCESSFULLY": "{{count}} case parties added successfully",
         "PARTY_CHANGED_SUCCESSFULLY": "Case party changed successfully",
-        "PARTY_REMOVED_SUCCESSFULLY": "Case party removed successfully",
-        "CREATE_CONTACT": "Create new contact"
+        "PARTY_REMOVED_SUCCESSFULLY": "Case party removed successfully"
     },
     "TASK": {
         "MY_TASKS": "My tasks",

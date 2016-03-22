@@ -708,8 +708,7 @@
         "PARTY_ADDED_SUCCESSFULLY": "Part tilføjet",
         "PARTIES_ADDED_SUCCESSFULLY": "{{count}} parter tilføjet",
         "PARTY_CHANGED_SUCCESSFULLY": "Part ændret",
-        "PARTY_REMOVED_SUCCESSFULLY": "Part fjernet",
-        "CREATE_CONTACT": "Create new contact"
+        "PARTY_REMOVED_SUCCESSFULLY": "Part fjernet"
     },
     "TASK": {
         "MY_TASKS": "Mine opgaver",
