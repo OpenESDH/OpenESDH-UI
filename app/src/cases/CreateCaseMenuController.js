@@ -4,7 +4,7 @@ angular
 
     function CreateCaseMenuController(caseCrudDialogService, sessionService) {
         var userCapabilities = sessionService.getUserInfo().user.capabilities;
-        console.log("capab", userCapabilities);
+        // console.log("capab", userCapabilities);
         var vm = this;
         vm.registeredCaseTypes = caseCrudDialogService.getRegisteredCaseTypes().filter(function(fullType){
             var delimiter = fullType.indexOf(':');
