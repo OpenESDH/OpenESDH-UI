@@ -250,6 +250,19 @@
             data: {
                 authorizedRoles: []
             }
+        }).state('contacts', {
+            parent: 'site',
+            url: '/contacts',
+            views: {
+                'content@': {
+                    templateUrl: 'app/src/contacts/view/contacts.html',
+                    controller: 'AdminController',
+                    controllerAs: 'vm'
+                }
+            },
+            data: {
+                authorizedRoles: [USER_ROLES.user]
+            }
         }).state('tasks', {
             parent: 'site',
             url: '/tasks',

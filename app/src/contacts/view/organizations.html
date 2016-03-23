@@ -2,7 +2,7 @@
     <md-card-content>
 
         <div layout layout-align="space-between">
-            <h3 class="md-title" flex>{{ 'ORG.ORGANIZATIONS' | translate }}</h3>
+            <h3 class="md-title" flex ng-if="vm.showHeader">{{ 'ORG.ORGANIZATIONS' | translate }}</h3>
 
             <md-input-container flex="15">
                 <label>{{ 'ORG.SEARCH_FOR_ORG' | translate }}</label>

@@ -3,10 +3,12 @@
         .module('openeApp.contacts')
         .controller('OrganizationController', OrganizationController);
 
-    function OrganizationController($stateParams, $mdDialog, $location, $translate, VirtualRepeatLoader,
+    function OrganizationController($stateParams, $state, $mdDialog, $location, $translate, VirtualRepeatLoader,
             contactsService, countriesService, notificationUtilsService) {
         
         var vm = this;
+
+        vm.showHeader = $state.current.name == 'contacts' ? false : true;
         vm.showOrganizationEdit = showOrganizationEdit;
         vm.deleteOrganization = deleteOrganization;
         

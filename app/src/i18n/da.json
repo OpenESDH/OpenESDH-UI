@@ -612,6 +612,7 @@
     },
     "CONTACT": {
         "CONTACTS": "Kontakter",
+        "PEOPLE": "Personer",
         "FIRST_NAME": "Fornavn",
         "MIDDLE_NAME": "Mellemnavn",
         "LAST_NAME": "Efternavn",

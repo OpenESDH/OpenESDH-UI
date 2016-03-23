@@ -4,6 +4,6 @@ angular.module('openeApp.files', ['ngMaterial'])
 function config(modulesMenuServiceProvider) {
     modulesMenuServiceProvider.addItem({
         templateUrl: 'app/src/files/view/menuItem.html',
-        order: 2
+        order: 3
     });
 }
