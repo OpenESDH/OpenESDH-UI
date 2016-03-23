@@ -41,7 +41,7 @@ function CaseListController($filter, $controller, sessionService, $translate) {
         name: $translate.instant('CASE.FILTER.PASSIVE_CASES')
     }];
 
-    // activate();
+    activate();
 
     function activate() {
         vm.getCases();
