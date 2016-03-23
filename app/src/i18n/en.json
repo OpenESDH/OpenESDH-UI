@@ -628,6 +628,7 @@
     },
     "CONTACT": {
         "CONTACTS": "Contacts",
+        "PEOPLE": "People",
         "FIRST_NAME": "First name",
         "MIDDLE_NAME": "Middle name",
         "LAST_NAME": "Last name",

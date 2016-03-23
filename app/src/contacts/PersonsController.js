@@ -2,10 +2,12 @@ angular
         .module('openeApp.contacts')
         .controller('PersonsController', PersonsController);
 
-function PersonsController($stateParams, contactsService,
+function PersonsController($stateParams, $state, contactsService,
         notificationUtilsService, VirtualRepeatLoader, personDialogService) {
     var vm = this;
     vm.showPersonEdit = showPersonEdit;
+
+    vm.showHeader = $state.current.name == 'contacts' ? false : true;
 
     vm.dataLoader = new VirtualRepeatLoader(loadPersons, error);
 
