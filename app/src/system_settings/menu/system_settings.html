@@ -14,6 +14,10 @@
                     <md-icon class="md-default-theme" class="material-icons">widgets</md-icon>
                     <p>Addo plugin</p>
                 </md-list-item>
+                <md-list-item ng-repeat="sysSetPage in vm.modulesPages" ui-sref="{{sysSetPage.sref}}" ui-sref-active="active">
+                    <md-icon class="md-default-theme" class="material-icons">{{sysSetPage.icon}}</md-icon>
+                    <p>{{ sysSetPage.labelKey | translate}}</p>
+                </md-list-item>
             </md-list>
         </md-card-content>
     </md-card> 
