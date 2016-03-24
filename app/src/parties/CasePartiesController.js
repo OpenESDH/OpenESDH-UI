@@ -1,9 +1,10 @@
 angular
-    .module('openeApp.cases.parties')
-    .controller('CasePartiesController', CasePartiesController);
+        .module('openeApp.cases.parties')
+        .controller('CasePartiesController', CasePartiesController);
 
-function CasePartiesController($scope, $stateParams, $mdDialog, $filter, $translate, personDialogService,
-    casePartiesService, partyPermittedRolesService, contactsService, notificationUtilsService, alfrescoNodeUtils) {
+function CasePartiesController($scope, $stateParams, $mdDialog, $filter, $translate,
+        personDialogService, organizationDialogService, casePartiesService, partyPermittedRolesService,
+        contactsService, notificationUtilsService, alfrescoNodeUtils) {
     var vm = this;
     vm.parties = [];
     vm.removeParty = removeParty;
@@ -37,12 +38,12 @@ function CasePartiesController($scope, $stateParams, $mdDialog, $filter, $transl
 
     function removeParty(ev, party) {
         var confirm = $mdDialog.confirm()
-            .title($translate.instant('COMMON.CONFIRM'))
-            .textContent($translate.instant('PARTY.ARE_YOU_SURE_YOU_WANT_TO_REMOVE_PARTY', party))
-            .ariaLabel('delete confirmation')
-            .targetEvent(ev)
-            .ok($translate.instant('COMMON.YES'))
-            .cancel($translate.instant('COMMON.CANCEL'));
+                .title($translate.instant('COMMON.CONFIRM'))
+                .textContent($translate.instant('PARTY.ARE_YOU_SURE_YOU_WANT_TO_REMOVE_PARTY', party))
+                .ariaLabel('delete confirmation')
+                .targetEvent(ev)
+                .ok($translate.instant('COMMON.YES'))
+                .cancel($translate.instant('COMMON.CANCEL'));
         $mdDialog.show(confirm).then(function() {
             casePartiesService.deleteCaseParty($stateParams.caseId, party).then(function(response) {
                 //remove from list
@@ -100,10 +101,10 @@ function CasePartiesController($scope, $stateParams, $mdDialog, $filter, $transl
         contactsService.getContact(nodeRefParts.storeType, nodeRefParts.storeId, nodeRefParts.id).then(function(contact) {
 
             personDialogService
-                .showContactReadOnly(ev, contact)
-                .then(function() {
-                    // vm.dataLoader.refresh();
-                });
+                    .showContactReadOnly(ev, contact)
+                    .then(function() {
+                        // vm.dataLoader.refresh();
+                    });
         });
     }
 
@@ -126,6 +127,7 @@ function CasePartiesController($scope, $stateParams, $mdDialog, $filter, $transl
         self.searchTextP = null;
         self.querySearchP = personsQuerySearch;
         self.newContact = newContact;
+        self.newContactOrg = newContactOrg;
         //actions
         self.save = save;
         self.cancel = cancel;
@@ -191,13 +193,24 @@ function CasePartiesController($scope, $stateParams, $mdDialog, $filter, $transl
 
         function newContact(ev) {
             personDialogService
-                .showPersonEdit(ev, null, null, false)
-                .then(function(response) {
-                    self.model.selectedContacts.push(response);
-                    showAddPartiesDialog(ev, self.model);
-                }, function() {
-                    showAddPartiesDialog(ev, self.model);
-                });
+                    .showPersonEdit(ev, null, null, false)
+                    .then(function(response) {
+                        self.model.selectedContacts.push(response);
+                        showAddPartiesDialog(ev, self.model);
+                    }, function() {
+                        showAddPartiesDialog(ev, self.model);
+                    });
+        }
+
+        function newContactOrg(ev) {
+            organizationDialogService
+                    .showOrganizationEdit(ev, null, false)
+                    .then(function(response) {
+                        self.model.selectedOrganizations.push(response);
+                        showAddPartiesDialog(ev, self.model);
+                    }, function() {
+                        showAddPartiesDialog(ev, self.model);
+                    });
         }
     }
 
