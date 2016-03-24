@@ -53,7 +53,8 @@
                 targetEvent: ev,
                 clickOutsideToClose: true,
                 locals: {
-                    organization: angular.copy(vm.organization)
+                    organization: angular.copy(vm.organization),
+                    fullForm: vm.organization != undefined
                 }
             })
             .then(function(response) {
@@ -61,9 +62,10 @@
             });
         }
 
-        function DialogController($scope, $mdDialog, organization) {
+        function DialogController($scope, $mdDialog, organization, fullForm) {
             $scope.organization = organization;
             $scope.countries = countriesService.getCountries();
+            $scope.fullForm = fullForm;
 
             $scope.hide = function() {
                 $mdDialog.hide();

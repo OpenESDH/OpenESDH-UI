@@ -191,7 +191,7 @@ function CasePartiesController($scope, $stateParams, $mdDialog, $filter, $transl
 
         function newContact(ev) {
             personDialogService
-                .showPersonEdit(ev)
+                .showPersonEdit(ev, null, null, false)
                 .then(function(response) {
                     self.model.selectedContacts.push(response);
                     showAddPartiesDialog(ev, self.model);

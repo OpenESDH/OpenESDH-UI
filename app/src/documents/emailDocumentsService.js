@@ -3,74 +3,98 @@ angular
         .module('openeApp.documents')
         .factory('emailDocumentsService', EmailDocumentsService);
 
-function EmailDocumentsService($mdDialog, caseDocumentsService, casePartiesService, caseService, notificationUtilsService) {
+function EmailDocumentsService($mdDialog, caseDocumentsService, caseService,
+        notificationUtilsService, personDialogService, $q) {
     var service = {
         showDialog: showDialog
     };
     return service;
 
-    function showDialog(caseId) {
-        caseDocumentsService.getDocumentsByCaseId(caseId, 1, 100).then(function(response) {
-            var docs = response.documents;
+    function showDialog(caseId, model) {
+        var p;
+        if (model) {
+            var d = $q.defer();
+            p = d.promise;
+            d.resolve({documents: model.documents});
+        } else {
+            p = caseDocumentsService.getDocumentsByCaseId(caseId, 1, 100).then(function(response) {
+                model = {
+                    documents: response.documents,
+                    caseId: caseId,
+                    to: [],
+                    subject: "",
+                    message: ""
+                };
+            });
+        }
+
+        p.then(function(response) {
             $mdDialog.show({
                 templateUrl: 'app/src/documents/view/emailDialog.html',
                 controller: EmailDocumentsDialogController,
                 controllerAs: 'vm',
                 clickOutsideToClose: true,
                 locals: {
-                    docs: docs,
-                    caseId: caseId
+                    model: model
                 }
             });
         });
     }
 
-    function EmailDocumentsDialogController($mdDialog, contactsService, docs, caseId) {
+    function EmailDocumentsDialogController($mdDialog, contactsService, model) {
         var vm = this;
-
-        vm.documents = docs;
-        vm.caseId = caseId;
+        vm.model = model;
         vm.emailDocuments = emailDocuments;
+        vm.newContact = newContact;
         vm.cancel = cancel;
         vm.querySearch = querySearch;
-        vm.to = [];
         vm.selectedItem = null;
         vm.searchText = null;
 
         function querySearch(query) {
-            if (!query){
+            if (!query) {
                 return [];
             }
-            return contactsService.getPersons(query).then(function(response){
+            return contactsService.getPersons(query).then(function(response) {
                 return response.items;
             });
         }
 
-        
         function emailDocuments() {
             // Send the email
-            var toList = vm.to.map(function(contact){
+            var toList = vm.model.to.map(function(contact) {
                 return {
                     nodeRef: contact.nodeRefId,
                     email: contact.email
                 };
             });
-            caseService.sendEmail(caseId, {
+            caseService.sendEmail(vm.model.caseId, {
                 'to': toList,
-                'subject': vm.subject,
-                'message': vm.message || "",
-                'documents': vm.documents.filter(function(document) {
+                'subject': vm.model.subject,
+                'message': vm.model.message || "",
+                'documents': vm.model.documents.filter(function(document) {
                     return document.selected;
                 })
             }).then(function() {
                 $mdDialog.hide();
-            }, function(response){
+            }, function(response) {
                 notificationUtilsService.alert(response.data.message);
             });
         }
 
         function cancel() {
             $mdDialog.cancel();
+        }
+
+        function newContact(ev) {
+            personDialogService
+                    .showPersonEdit(ev, null, null, false)
+                    .then(function(response) {
+                        vm.model.to.push(response);
+                        showDialog(ev, vm.model);
+                    }, function() {
+                        showDialog(ev, vm.model);
+                    });
         }
     }
 }

@@ -11,7 +11,7 @@ function personDialogService($mdDialog, $translate, contactsService,
     };
     return service;
 
-    function showPersonEdit(ev, person, organization) {
+    function showPersonEdit(ev, person, organization, fullForm) {
         var edtPerson = person
                 ? angular.copy(person)
                 : (organization ? {parentNodeRefId: organization.nodeRefId} : {});
@@ -23,7 +23,8 @@ function personDialogService($mdDialog, $translate, contactsService,
             clickOutsideToClose: true,
             locals: {
                 person: edtPerson,
-                readOnly: false
+                readOnly: false,
+                fullForm: fullForm == undefined ? (person == undefined ? false : true) : fullForm
             }
         }).then(function(response) {
             return response;
@@ -39,18 +40,20 @@ function personDialogService($mdDialog, $translate, contactsService,
             clickOutsideToClose: true,
             locals: {
                 person: contact,
-                readOnly: true
+                readOnly: true,
+                fullForm: true
             }
         }).then(function(response) {
             return response;
-        });        
+        });
     }
 
-    function DialogController($scope, $mdDialog, person, readOnly) {
+    function DialogController($scope, $mdDialog, person, readOnly, fullForm) {
         $scope.person = person;
         $scope.countries = countriesService.getCountries();
         $scope.PATTERNS = PATTERNS;
         $scope.readOnly = readOnly;
+        $scope.fullForm = fullForm;
 
         $scope.hide = function() {
             $mdDialog.hide();

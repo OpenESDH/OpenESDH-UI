@@ -12,12 +12,12 @@
                     <input type="text" ng-model="person.firstName" name="firstName" required ng-maxlength="50" md-autofocus ng-disabled="readOnly">
                     <opene-error form="personForm" field="personForm.firstName"></opene-error>
                 </md-input-container>
-                <md-input-container flex>
+                <md-input-container flex ng-show="fullForm">
                     <label>{{ 'CONTACT.MIDDLE_NAME' | translate }}</label>
                     <input type="text" name="middleName" ng-model="person.middleName" ng-maxlength="50" ng-disabled="readOnly">
                     <opene-error form="personForm" field="personForm.middleName"></opene-error>
                 </md-input-container>
-                <md-input-container>
+                <md-input-container flex>
                     <label>{{ 'CONTACT.LAST_NAME' | translate }} *</label>
                     <input type="text" ng-model="person.lastName" name="lastName" required ng-maxlength="40" ng-disabled="readOnly">
                     <opene-error form="personForm" field="personForm.lastName"></opene-error>
@@ -25,6 +25,19 @@
             </div>
             <div layout>
                 <md-input-container flex>
+                    <label>{{ 'CONTACT.CPR_NO' | translate }} *</label>
+                    <input type="text" ng-model="person.cprNumber" name="cprNumber" required ng-minlength="10" 
+                           ng-maxlength="10" ng-pattern="/^\d{10}$/" ng-disabled="readOnly">
+                    <opene-error form="personForm" field="personForm.cprNumber"></opene-error>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>{{ 'COMMON.EMAIL' | translate }} *</label>
+                    <input name="email" type="email" ng-model="person.email" required ng-disabled="readOnly">
+                    <opene-error form="personForm" field="personForm.email"></opene-error>
+                </md-input-container>
+            </div>
+            <div layout ng-show="fullForm">
+                <md-input-container flex >
                     <label>{{ 'CONTACT.ADDRESS_1' | translate }}</label>
                     <input type="text" name="addressLine1" ng-model="person.addressLine1" ng-maxlength="34" ng-disabled="readOnly">
                     <opene-error form="personForm" field="personForm.addressLine1"></opene-error>
@@ -35,7 +48,7 @@
                     <opene-error form="personForm" field="personForm.addressLine2"></opene-error>
                 </md-input-container>
             </div>
-            <div layout>
+            <div layout ng-show="fullForm">
                 <md-input-container flex>
                     <label>{{ 'CONTACT.POSTAL_CODE' | translate }}</label>
                     <input type="number" name="postCode" ng-model="person.postCode" ng-minlength="4" ng-maxlength="4" ng-disabled="readOnly">
@@ -53,55 +66,47 @@
                     </md-select>
                 </md-input-container>
             </div>
-            <md-input-container>
-                <label>{{ 'CONTACT.CPR_NO' | translate }} *</label>
-                <input type="text" ng-model="person.cprNumber" name="cprNumber" required ng-minlength="10" 
-                        ng-maxlength="10" ng-pattern="/^\d{10}$/" ng-disabled="readOnly">
-                <opene-error form="personForm" field="personForm.cprNumber"></opene-error>
-            </md-input-container>
-            <md-input-container>
-                <label>{{ 'COMMON.EMAIL' | translate }} *</label>
-                <input name="email" type="email" ng-model="person.email" required ng-disabled="readOnly">
-                <opene-error form="personForm" field="personForm.email"></opene-error>
-            </md-input-container>
-            <div layout="row">
-                <md-input-container>
+            <div layout ng-show="fullForm">
+                <md-input-container flex>
                     <label>{{ 'CONTACT.PHONE' | translate }}</label>
                     <input type="text" name="phone" ng-model="person.phone" ng-minlength="4" ng-pattern="PATTERNS.phone" ng-disabled="readOnly">
                     <opene-error form="personForm" field="personForm.phone"></opene-error>
                 </md-input-container>
-                <md-input-container>
+                <md-input-container flex>
                     <label>{{ 'CONTACT.MOBILE_PHONE' | translate }}</label>
                     <input type="text" name="mobile" ng-model="person.mobile" ng-minlength="4" ng-pattern="PATTERNS.phone" ng-disabled="readOnly">
                     <opene-error form="personForm" field="personForm.mobile"></opene-error>
                 </md-input-container>
             </div>
-            <md-input-container>
+            <md-input-container ng-show="fullForm" layout>
                 <label>{{ 'CONTACT.WEBSITE' | translate }}</label>
                 <input type="text" name="website" ng-model="person.website" ng-maxlength="70" ng-disabled="readOnly">
                 <opene-error form="personForm" field="personForm.website"></opene-error>
             </md-input-container>
-            <div layout="row">
-                <md-input-container>
+            <div layout ng-show="fullForm">
+                <md-input-container flex>
                     <label>{{ 'CONTACT.LINKEDIN' | translate }}</label>
                     <input type="text" name="linkedin" ng-model="person.linkedin" ng-maxlength="70" ng-disabled="readOnly">
                     <opene-error form="personForm" field="personForm.linkedin"></opene-error>
                 </md-input-container>
-                <md-input-container>
+                <md-input-container flex>
                     <label>{{ 'CONTACT.IM' | translate }}</label>
                     <input type="text" name="im" ng-model="person.IM" ng-maxlength="70" ng-disabled="readOnly">
                     <opene-error form="personForm" field="personForm.im"></opene-error>
                 </md-input-container>
             </div>
-            <div layout="row">
+            <div layout="row" ng-show="fullForm">
                 <md-input-container flex>
                     <label>{{ 'NOTE.NOTES' | translate }}</label>
                     <textarea ng-model="person.notes" name="notes" ng-maxlength="2000" ng-disabled="readOnly"></textarea>
                     <opene-error form="personForm" field="personForm.notes"></opene-error>
                 </md-input-container>
             </div>
+            <div layout="column" ng-hide="fullForm" style="text-align: center;">
+                <a href ng-click="fullForm = true;" class="oe_add_more">Add more information</a>
+            </div>
         </md-dialog-content>
-        <md-dialog-actions ng-if="('can_create_contacts'|oeParam) && !readOnly">
+        <md-dialog-actions ng-if="('can_create_contacts' | oeParam) && !readOnly">
             <md-button type="submit" class="md-primary" ng-disabled="personForm.$invalid" ng-click="save(personForm)" >
                 {{ 'COMMON.SAVE' | translate }}
             </md-button>
@@ -112,7 +117,7 @@
                 {{ 'COMMON.CANCEL' | translate }}
             </md-button>
         </md-dialog-actions>
-        <md-dialog-actions ng-hide="('can_create_contacts'|oeParam) && !readOnly">
+        <md-dialog-actions ng-hide="('can_create_contacts' | oeParam) && !readOnly">
             <md-button ng-click="cancel()">
                 {{ 'COMMON.CLOSE' | translate }}
             </md-button>
