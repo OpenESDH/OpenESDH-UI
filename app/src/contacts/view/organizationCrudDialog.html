@@ -12,13 +12,25 @@
                     <input type="text" name="firstName" ng-model="organization.organizationName" required ng-maxlength="50" md-autofocus>
                     <opene-error form="orgForm" field="orgForm.firstName"></opene-error>
                 </md-input-container>
-                <md-input-container flex>
+                <md-input-container flex ng-show="fullForm">
                     <label>{{ 'ORG.DEPARTMENT' | translate }}</label>
                     <input type="text" name="department" ng-model="organization.department" ng-maxlength="50">
                     <opene-error form="orgForm" field="orgForm.department"></opene-error>
                 </md-input-container>
             </div>
             <div layout>
+                <md-input-container flex>
+                    <label>{{ 'ORG.VAT_NO' | translate }} *</label>
+                    <input type="text" name="cvrNumber" ng-model="organization.cvrNumber" required ng-minlength="8" ng-maxlength="8">
+                    <opene-error form="orgForm" field="orgForm.cvrNumber"></opene-error>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>{{ 'COMMON.EMAIL' | translate }} *</label>
+                    <input name="email" type="email" ng-model="organization.email" required>
+                    <opene-error form="orgForm" field="orgForm.email"></opene-error>
+                </md-input-container>
+            </div>
+            <div layout ng-show="fullForm">
                 <md-input-container flex>
                     <label>{{ 'ORG.ADDRESS_1' | translate }}</label>
                     <input type="text" name="addressLine1" ng-model="organization.addressLine1" ng-maxlength="34">
@@ -30,7 +42,7 @@
                     <opene-error form="orgForm" field="orgForm.addressLine2"></opene-error>
                 </md-input-container>
             </div>
-            <div layout>
+            <div layout ng-show="fullForm">
                 <md-input-container flex>
                     <label>{{ 'ORG.POSTAL_CODE' | translate }}</label>
                     <input type="number" name="postCode" ng-model="organization.postCode" ng-minlength="4" ng-maxlength="4">
@@ -48,19 +60,7 @@
                     </md-select>
                 </md-input-container>
             </div>
-            <div layout>
-                <md-input-container flex>
-                    <label>{{ 'ORG.VAT_NO' | translate }} *</label>
-                    <input type="text" name="cvrNumber" ng-model="organization.cvrNumber" required ng-minlength="8" ng-maxlength="8">
-                    <opene-error form="orgForm" field="orgForm.cvrNumber"></opene-error>
-                </md-input-container>
-                <md-input-container flex>
-                    <label>{{ 'COMMON.EMAIL' | translate }} *</label>
-                    <input name="email" type="email" ng-model="organization.email" required>
-                    <opene-error form="orgForm" field="orgForm.email"></opene-error>
-                </md-input-container>
-            </div>
-            <div layout>
+            <div layout ng-show="fullForm">
                 <md-input-container flex>
                     <label>{{ 'ORG.PHONE' | translate }}</label>
                     <input type="text" name="phone" ng-model="organization.phone" ng-minlength="4" ng-pattern="PATTERNS.phone">
@@ -72,14 +72,14 @@
                     <opene-error form="orgForm" field="orgForm.mobile"></opene-error>
                 </md-input-container>
             </div>
-            <div layout>
+            <div layout ng-show="fullForm">
                 <md-input-container flex>
                     <label>{{ 'ORG.WEBSITE' | translate }}</label>
                     <input type="text" name="website" ng-model="organization.website" ng-maxlength="70">
                     <opene-error form="orgForm" field="orgForm.website"></opene-error>
                 </md-input-container>
             </div>
-            <div layout>
+            <div layout ng-show="fullForm">
                 <md-input-container flex>
                     <label>{{ 'ORG.LINKEDIN' | translate }}</label>
                     <input type="text" name="linkedin" ng-model="organization.linkedin" ng-maxlength="70">
@@ -91,16 +91,18 @@
                     <opene-error form="orgForm" field="orgForm.im"></opene-error>
                 </md-input-container>
             </div>
-            <div layout>
+            <div layout ng-show="fullForm">
                 <md-input-container flex>
                     <label>{{ 'NOTE.NOTES' | translate }}</label>
                     <textarea name="notes" ng-model="organization.notes" ng-maxlength="2000" rows="3"></textarea>
                     <opene-error form="orgForm" field="orgForm.notes"></opene-error>
                 </md-input-container>
             </div>
-
+            <div layout="column" ng-hide="fullForm" style="text-align: center;">
+                <a href ng-click="fullForm = true;" class="oe_add_more">Add more information</a>
+            </div>
         </md-dialog-content>
-        
+
         <div class="md-actions" layout>
             <md-button type="submit" class="md-primary" ng-disabled="orgForm.$invalid" ng-click="save(orgForm)">
                 {{ 'COMMON.SAVE' | translate }}

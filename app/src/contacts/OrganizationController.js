@@ -1,104 +1,62 @@
 
-    angular
+angular
         .module('openeApp.contacts')
         .controller('OrganizationController', OrganizationController);
 
-    function OrganizationController($stateParams, $state, $mdDialog, $location, $translate, VirtualRepeatLoader,
-            contactsService, countriesService, notificationUtilsService) {
-        
-        var vm = this;
+function OrganizationController($stateParams, $state, $mdDialog, $location, $translate, $timeout, VirtualRepeatLoader,
+        contactsService, countriesService, notificationUtilsService, organizationDialogService) {
 
-        vm.showHeader = $state.current.name == 'contacts' ? false : true;
-        vm.showOrganizationEdit = showOrganizationEdit;
-        vm.deleteOrganization = deleteOrganization;
-        
-        if ($stateParams.uuid) {
-            //infoForm
-            initInfo();
-        } else {
-            //list
-            initList();
-        }
+    var vm = this;
 
-        function initList() {
-            vm.dataLoader = new VirtualRepeatLoader(contactsService.getOrganizations, error);
-        }
+    vm.showHeader = $state.current.name == 'contacts' ? false : true;
+    vm.showOrganizationEdit = showOrganizationEdit;
+    vm.deleteOrganization = deleteOrganization;
 
-        function initInfo() {
-            contactsService.getOrganization($stateParams.storeProtocol, $stateParams.storeIdentifier, $stateParams.uuid).then(function(organization) {
-                vm.organization = organization;
-            });
-        }
+    if ($stateParams.uuid) {
+        //infoForm
+        initInfo();
+    } else {
+        //list
+        initList();
+    }
 
-        function deleteOrganization(ev, organization) {
-            var confirm = $mdDialog.confirm()
-                    .title($translate.instant('COMMON.CONFIRM'))
-                    .textContent($translate.instant('ORG.ARE_YOU_SURE_YOU_WANT_TO_DELETE_ORG', organization))
-                    .targetEvent(ev)
-                    .ok($translate.instant('COMMON.YES'))
-                    .cancel($translate.instant('COMMON.CANCEL'));
-            $mdDialog.show(confirm).then(function() {
-                contactsService.deleteOrganization(organization).then(function() {
-                    $location.path('/admin/organizations');
-                    notificationUtilsService.notify($translate.instant("ORG.ORG_DELETED_SUCCESSFULLY", organization));
-                }, error);
-            });
-        }
+    function initList() {
+        vm.dataLoader = new VirtualRepeatLoader(contactsService.getOrganizations, error);
+    }
 
-        function showOrganizationEdit(ev) {
-            $mdDialog.show({
-                controller: DialogController,
-                templateUrl: 'app/src/contacts/view/organizationCrudDialog.html',
-                parent: angular.element(document.body),
-                targetEvent: ev,
-                clickOutsideToClose: true,
-                locals: {
-                    organization: angular.copy(vm.organization)
-                }
-            })
-            .then(function(response) {
-                //
-            });
-        }
+    function initInfo() {
+        contactsService.getOrganization($stateParams.storeProtocol, $stateParams.storeIdentifier, $stateParams.uuid).then(function(organization) {
+            vm.organization = organization;
+        });
+    }
 
-        function DialogController($scope, $mdDialog, organization) {
-            $scope.organization = organization;
-            $scope.countries = countriesService.getCountries();
+    function deleteOrganization(ev, organization) {
+        var confirm = $mdDialog.confirm()
+                .title($translate.instant('COMMON.CONFIRM'))
+                .textContent($translate.instant('ORG.ARE_YOU_SURE_YOU_WANT_TO_DELETE_ORG', organization))
+                .targetEvent(ev)
+                .ok($translate.instant('COMMON.YES'))
+                .cancel($translate.instant('COMMON.CANCEL'));
+        $mdDialog.show(confirm).then(function() {
+            contactsService.deleteOrganization(organization).then(function() {
+                $location.path('/admin/organizations');
+                notificationUtilsService.notify($translate.instant("ORG.ORG_DELETED_SUCCESSFULLY", organization));
+            }, error);
+        });
+    }
 
-            $scope.hide = function() {
-                $mdDialog.hide();
-            };
+    function showOrganizationEdit(ev) {
+        organizationDialogService.showOrganizationEdit(ev, vm.organization)
+                .then(function(response) {
+                    if (vm.organization) {
+                        vm.organization = response;
+                    } else {
+                        $timeout(vm.dataLoader.refresh, 2000);
+                    }
+                });
+    }
 
-            $scope.cancel = function() {
-                $mdDialog.cancel();
-            };
-
-            $scope.save = function(orgForm) {
-                if (!orgForm.$valid) return;
-                
-                if ($scope.organization.id) {
-                    contactsService.updateOrganization($scope.organization)
-                            .then(refreshInfoAfterSuccess, error);
-                } else {
-                    contactsService.createOrganization($scope.organization)
-                            .then(refreshListAfterSuccess, error);
-                }
-            };
-
-            function refreshListAfterSuccess(savedOrganization) {
-                notificationUtilsService.notify($translate.instant("ORG.ORG_SAVED_SUCCESSFULLY", savedOrganization));
-                vm.dataLoader.refresh();
-                $mdDialog.hide();
-            }
-
-            function refreshInfoAfterSuccess(savedOrganization) {
-                notificationUtilsService.notify($translate.instant("ORG.ORG_SAVED_SUCCESSFULLY", savedOrganization));
-                vm.organization = savedOrganization;
-                $mdDialog.hide();
-            }
-        }
-
-        function error(response) {
-            notificationUtilsService.alert(response.data.message);
-        }
-    };
+    function error(response) {
+        notificationUtilsService.alert(response.data.message);
+    }
+}

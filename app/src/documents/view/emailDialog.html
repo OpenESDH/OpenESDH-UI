@@ -8,34 +8,40 @@
         </md-toolbar>
 
         <md-dialog-content >
-            <md-chips flex ng-model="vm.to" md-require-match="true" layout="column">
-                <md-autocomplete md-selected-item="vm.selectedItem" 
-                                 md-search-text="vm.searchText" 
-                                 md-items="item in vm.querySearch(vm.searchText)" 
-                                 placeholder="{{ 'COMMON.TO' | translate }}">
-                    <span md-highlight-text="vm.searchText">{{item.firstName + ' ' + item.lastName}} ({{item.cprNumber}}, {{item.email}})</span>
-                </md-autocomplete>
-                <md-chip-template>
-                    <span>
-                        <strong>{{$chip.firstName + ' ' + $chip.lastName}}</strong>
-                        <em>({{$chip.email}})</em>
-                    </span>
-                </md-chip-template>
-            </md-chips>
-
+            <div layout='row'>
+                <md-chips flex ng-model="vm.model.to" md-require-match="true" layout="column">
+                    <md-autocomplete md-selected-item="vm.selectedItem" 
+                                     md-search-text="vm.searchText" 
+                                     md-items="item in vm.querySearch(vm.searchText)" 
+                                     placeholder="{{ 'COMMON.TO' | translate }}">
+                        <span md-highlight-text="vm.searchText">{{item.firstName + ' ' + item.lastName}} ({{item.cprNumber}}, {{item.email}})</span>
+                    </md-autocomplete>
+                    <md-chip-template>
+                        <span>
+                            <strong>{{$chip.firstName + ' ' + $chip.lastName}}</strong>
+                            <em>({{$chip.email}})</em>
+                        </span>
+                    </md-chip-template>
+                </md-chips>
+                <md-button 
+                    ng-show="('can_create_contacts'|oeParam)"
+                    ng-click="vm.newContact($event)" 
+                    title="{{ 'CONTACT.CREATE_NEW_CONTACT'| translate }}" 
+                    style='min-width: 15px; max-height: 36px;'>+ {{ 'COMMON.NEW' | translate }}</md-button>
+            </div>
             <md-input-container layout="column">
                 <label>{{ 'COMMON.SUBJECT' | translate }}</label>
-                <input type="text" name="subject" ng-model="vm.subject" required>
+                <input type="text" name="subject" ng-model="vm.model.subject" required>
                 <opene-error form="form" field="form.subject"></opene-error>
             </md-input-container>
 
             <md-input-container layout="column">
                 <label>{{ 'COMMON.MESSAGE' | translate }}</label>
-                <textarea ng-model="vm.message"></textarea>
+                <textarea ng-model="vm.model.message"></textarea>
             </md-input-container>
 
             <md-list flex>
-                <md-list-item ng-repeat="document in vm.documents">
+                <md-list-item ng-repeat="document in vm.model.documents">
                     <md-checkbox ng-model="document.selected" aria-label="{{document['cm:title']}}"></md-checkbox>
                     <label>{{document['cm:title']}}</label>
                 </md-list-item>
