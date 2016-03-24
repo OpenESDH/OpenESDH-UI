@@ -36,7 +36,7 @@
             </div>
             <md-virtual-repeat-container flex-height style="border-bottom:0">
                 <div md-virtual-repeat="template in vm.templates" class="repeat-item" layout="row">
-                    <a class="r-rowlink" href="{{vm.templateInfoUrl}}/{{template.properties.nodeRef | nodeRefUri}}" layout="row" flex="100">
+                    <a class="r-rowlink" ui-sref="{{vm.templateUisref}}(vm.tplNodeRefObj(template))" layout="row" flex="100">
                         <span class="r" flex>{{template.properties['cm:name'].displayValue}}</span>
                         <span class="r muted" flex="20">
                             <div ng-repeat="prop in template.prefilledProps">

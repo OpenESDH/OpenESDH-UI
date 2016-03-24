@@ -2,7 +2,7 @@
         .module('openeApp.caseTemplates')
         .controller('CaseTemplatesController', CaseTemplatesController);
     
-    function CaseTemplatesController($mdDialog, $translate, caseTemplateDialogService, caseTemplatesService, startCaseWorkflowService){
+    function CaseTemplatesController($mdDialog, $translate, caseTemplateDialogService, caseTemplatesService, startCaseWorkflowService, alfrescoNodeUtils){
         var vm = this;
         vm.init = init;
         vm.loadTemplates = loadTemplates;
@@ -10,6 +10,7 @@
         vm.getWorkflowDisplayName = getWorkflowDisplayName;
         vm.getPrefilledPropName = getPrefilledPropName;
         vm.getPrefilledProps = getPrefilledProps;
+        vm.tplNodeRefObj = tplNodeRefObj;
         vm.isPropSet = isPropSet;
         vm.workflowDefs = [];
         
@@ -20,6 +21,8 @@
                              "base:startDate",
                              "oe:journalFacet",
                              "oe:journalKey"];
+        
+        vm.propNameKeyPrefixes = ["CASE_TEMPLATES.PREFILLED."];
         
         function init(){
             var vm = this;
@@ -40,7 +43,15 @@
         }
         
         function getPrefilledPropName(prop){
-            return $translate.instant('CASE_TEMPLATES.PREFILLED.' + prop);
+            var vm = this;
+            for(var i=0; i<vm.propNameKeyPrefixes.length; i++){
+                var prefix = vm.propNameKeyPrefixes[i];
+                var propName = $translate.instant(prefix + prop);
+                if(propName.indexOf(prefix) == -1){
+                    return propName;
+                }
+            }
+            return prop;
         }
         
         function getWorkflowDisplayName(workflowDefId){
@@ -81,6 +92,10 @@
             caseTemplateDialogService.createTemplate(vm.caseType).then(function(){
                 vm.loadTemplates();
             });
+        }
+        
+        function tplNodeRefObj(template){
+            return alfrescoNodeUtils.processNodeRef(template.properties.nodeRef);
         }
         
     }
