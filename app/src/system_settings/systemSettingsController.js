@@ -13,4 +13,5 @@ function SystemSettingsCtrl(systemSettingsPagesService, authService) {
                 }
                 return true;
             });
+    vm.modulesPages = systemSettingsPagesService.getModulesPages();
 }

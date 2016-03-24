@@ -14,6 +14,7 @@
             'openeApp.translations.init',
             'openeApp.header',
             'openeApp.dashboard',
+            'openeApp.caseTemplates',
             'openeApp.cases',
             'openeApp.cases.members',
             'openeApp.cases.parties',

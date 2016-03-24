@@ -9,7 +9,8 @@
             uploadCaseDocument: uploadCaseDocument,
             getDocumentsFolderNodeRef: getDocumentsFolderNodeRef,
             getCaseDocumentsWithAttachments: getCaseDocumentsWithAttachments,
-            getCaseDocumentConstraints: getCaseDocumentConstraints
+            getCaseDocumentConstraints: getCaseDocumentConstraints,
+            getDocumentsFolderNodeRefByCaseRef: getDocumentsFolderNodeRefByCaseRef
         };
         return service;
         
@@ -31,7 +32,17 @@
         
         function getDocumentsFolderNodeRef(caseId){
             var requestConfig = { 
-                    url: "/api/openesdh/case/docfolder/noderef/" + caseId,
+                    url: "/api/openesdh/case/" + caseId + "/docfolder/noderef",
+                    method: "GET"
+                };
+            return $http(requestConfig).then(function(response){
+                return response.data;
+            });
+        }
+        
+        function getDocumentsFolderNodeRefByCaseRef(nodeRef){
+            var requestConfig = { 
+                    url: "/api/openesdh/case/" + nodeRef + "/docfolder/noderef",
                     method: "GET"
                 };
             return $http(requestConfig).then(function(response){
