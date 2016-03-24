@@ -1,20 +1,20 @@
 <app-header></app-header>
 <md-content layout="column">
-    <md-tabs md-dynamic-height>
-        <md-tab md-on-select="">
+    <md-tabs md-dynamic-height md-selected="currentTab">
+        <md-tab ui-sref="contacts.persons">
             <md-tab-label>
                 <span>{{ 'CONTACT.PEOPLE' | translate }}</span>
             </md-tab-label>
             <md-tab-body>
-				<div ng-include="'app/src/contacts/view/persons.html'" ></div>
-        	</md-tab-body>
+                <div ui-view="persons"></div>
+            </md-tab-body>
         </md-tab>
-        <md-tab md-on-select="">
+        <md-tab ui-sref="contacts.organizations">
             <md-tab-label>
                 <span>{{ 'ORG.ORGANIZATIONS' | translate }}</span>
             </md-tab-label>
             <md-tab-body>
-				<div ng-include="'app/src/contacts/view/organizations.html'" ></div>
+                <div ui-view="organizations"></div>
             </md-tab-body>
         </md-tab>
     </md-tabs>

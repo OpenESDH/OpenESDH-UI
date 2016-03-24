@@ -4,11 +4,9 @@ angular
         .controller('OrganizationController', OrganizationController);
 
 function OrganizationController($stateParams, $state, $mdDialog, $location, $translate, $timeout, VirtualRepeatLoader,
-        contactsService, countriesService, notificationUtilsService, organizationDialogService) {
-
+        contactsService, notificationUtilsService, organizationDialogService) {
     var vm = this;
-
-    vm.showHeader = $state.current.name == 'contacts' ? false : true;
+    vm.parentState = $state.current.name.split('.')[0];
     vm.showOrganizationEdit = showOrganizationEdit;
     vm.deleteOrganization = deleteOrganization;
 
@@ -39,7 +37,7 @@ function OrganizationController($stateParams, $state, $mdDialog, $location, $tra
                 .cancel($translate.instant('COMMON.CANCEL'));
         $mdDialog.show(confirm).then(function() {
             contactsService.deleteOrganization(organization).then(function() {
-                $location.path('/admin/organizations');
+                $state.go(vm.parentState + ".organizations");
                 notificationUtilsService.notify($translate.instant("ORG.ORG_DELETED_SUCCESSFULLY", organization));
             }, error);
         });

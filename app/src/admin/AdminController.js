@@ -1,6 +1,6 @@
 
     angular
-        .module('openeApp.cases')
+        .module('openeApp.administration')
         .controller('AdminController', AdminController);
 
     /**

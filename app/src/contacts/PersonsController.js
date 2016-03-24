@@ -7,8 +7,6 @@ function PersonsController($stateParams, $state, contactsService,
     var vm = this;
     vm.showPersonEdit = showPersonEdit;
 
-    vm.showHeader = $state.current.name == 'contacts' ? false : true;
-
     vm.dataLoader = new VirtualRepeatLoader(loadPersons, error);
 
     function loadPersons(query, params) {
