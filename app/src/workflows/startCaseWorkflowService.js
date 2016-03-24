@@ -18,16 +18,23 @@
         function StartCaseWorkflowService($mdDialog, $stateParams, workflowService) {
             
             var service = {
-                startWorkflow: startWorkflow
+                startWorkflow: startWorkflow,
+                getWorkflowDefinitions: getWorkflowDefinitions
             };
             return service;
             
             function startWorkflow(){
-                workflowService.getWorkflowDefinitions().then(function(result){
+                getWorkflowDefinitions().then(function(workflowDefs){
+                     openSelectWorkflowTypeDialog(workflowDefs);
+                });
+            }
+            
+            function getWorkflowDefinitions(){
+                return workflowService.getWorkflowDefinitions().then(function(result){
                     var workflowDefs = result.data.filter(function(workflowDef){
                         return getDialogConfig(workflowDef.name) != null;
                     });
-                    openSelectWorkflowTypeDialog(workflowDefs);
+                    return workflowDefs;
                 });
             }
             

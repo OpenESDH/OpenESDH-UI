@@ -57,6 +57,11 @@ var openeModules = [{
         sourceUrl: 'https://github.com/OpenESDH/openesdh-googledocs-ui.git',
         moduleName: 'googledocs',
         moduleId: 'openeApp.google.docs'
+    },
+    {
+        sourceUrl: 'https://github.com/OpenESDH/openesdh-staff-templates-ui.git',
+        moduleName: 'staffTemplates',
+        moduleId: 'openeApp.staffTemplates'
     }];
 
 var runOpeneModules = [];

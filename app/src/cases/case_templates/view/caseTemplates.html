@@ -1,0 +1,68 @@
+<md-card flex="grow">
+    <md-card-content>
+        <h2>{{ vm.headerMessageKey | translate}}</h2>
+        <div class="repeat-table">
+            <div class="repeat-header" layout="row">
+                <div layout="row" flex="100">
+                    <div class="r" flex>
+                        <div layout="row" layout-align="space-between center">
+                            <span>
+                                {{ 'CASE_TEMPLATES.TEMPLATE_NAME' | translate }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="r" flex="20">
+                        <div layout="row" layout-align="space-between center">
+                            <span>
+                                {{ 'CASE_TEMPLATES.PREFILLED_PARAMS' | translate }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="r" flex="20">
+                        <div layout="row" layout-align="space-between center">
+                            <span>
+                                {{ 'CASE_TEMPLATES.ADDED_DOCS' | translate }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="r" flex="30">
+                        <div layout="row" layout-align="space-between center">
+                            <span>
+                                {{ 'CASE_TEMPLATES.AVAILABLE_WORKFLOWS' | translate }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <md-virtual-repeat-container flex-height style="border-bottom:0">
+                <div md-virtual-repeat="template in vm.templates" class="repeat-item" layout="row">
+                    <a class="r-rowlink" href="{{vm.templateInfoUrl}}/{{template.properties.nodeRef | nodeRefUri}}" layout="row" flex="100">
+                        <span class="r" flex>{{template.properties['cm:name'].displayValue}}</span>
+                        <span class="r muted" flex="20">
+                            <div ng-repeat="prop in template.prefilledProps">
+                                {{vm.getPrefilledPropName(prop)}}
+                            </div>
+                        </span>
+                        <span class="r muted" flex="20">
+                            <div ng-repeat="doc in template.templateDocs">
+                                {{doc.title}}
+                            </div>
+                        </span>
+                        <span class="r muted" flex="30">
+                            <div ng-repeat="workflow in template.properties['ct:workflows'].value">
+                                {{vm.getWorkflowDisplayName(workflow)}}
+                            </div>
+                        </span>
+                    </a>
+                </div>
+            </md-virtual-repeat-container>
+        </div>
+        
+        <md-button class="md-primary" ng-click="vm.createTemplate($event)">
+            <i class="material-icons ng-scope">add</i> 
+            {{ 'CASE_TEMPLATES.NEW_CASE_TEMPLATE' | translate }}
+        </md-button>
+    </md-card-content>
+</md-card>
+
+

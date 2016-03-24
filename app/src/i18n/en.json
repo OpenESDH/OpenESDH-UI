@@ -137,6 +137,26 @@
         "ASSIGN_TO": "Assign to",
         "CASE_ADDED_TO_FAVORITE": "You have now added this case to your favorite cases and will be notified whenever the case is updated"
     },
+    "CASE_TEMPLATES": {
+        "NEW_CASE_TEMPLATE": "New case template",
+        "TEMPLATE_NAME": "Template name",
+        "PREFILLED_PARAMS": "Prefilled parameters",
+        "ADDED_DOCS": "Added documents",
+        "AVAILABLE_WORKFLOWS": "Available workflows",
+        "DOCUMENTS": "Case template documents",
+        "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_DOCUMENT": "Are you sure you want to delete the document \"{{document_title}}\"?",
+        "ARE_YOU_SURE_YOU_WANT_DELETE_TEMPLATE":  "Are you sure you want to delete the case template \"{{name}}\"?",
+        "PREFILLED": {
+            "oe:owners": "Owner",
+            "cm:title": "Title",
+            "cm:description": "Description",
+            "base:endDate": "",
+            "base:startDate": "Start date",
+            "base:endDate": "Expected end date",
+            "oe:journalFacet": "Journal facet",
+            "oe:journalKey": "Journal key"
+        }
+    },
     "DOCUMENT": {
         "STATUS_CHANGED_SUCCESS": "Status has been changed successfully",
         "CATEGORY": {
