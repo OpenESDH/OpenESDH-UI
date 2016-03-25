@@ -11,7 +11,7 @@ function VirtualRepeatLoader() {
         var self = this;
         self.toLoad_ = 0;
         self.beenInitialized = false;
-        self.items = [];
+        self.items = [{}];
         self.params = {};
         self.searchQuery = null;
 
