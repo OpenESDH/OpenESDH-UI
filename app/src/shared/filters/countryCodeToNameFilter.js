@@ -5,6 +5,6 @@
     
     function countryCodeToNameFilter($translate){
         return function(countryCode) {
-            return $translate.instant('COUNTRY.' + countryCode);
+            return countryCode ? $translate.instant('COUNTRY.' + countryCode) : undefined;
         };
     }

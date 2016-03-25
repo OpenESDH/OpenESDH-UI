@@ -30,13 +30,15 @@ function VirtualRepeatLoader() {
             if (index > self.items.length) {
                 self.fetchMoreItems_(index);
                 return null;
+            } else if (self.items.length === 0){
+                return null;
             }
             return self.items[index];
         };
 
         // Required!!.
         self.getLength = function() {
-            return self.beenInitialized ? self.items.length : DEFAULT_PAGE_SIZE;
+            return self.beenInitialized ? self.items.length : 1;
         };
 
         self.fetchMoreItems_ = function(index) {

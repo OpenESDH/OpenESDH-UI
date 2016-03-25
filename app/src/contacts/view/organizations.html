@@ -1,8 +1,8 @@
-<md-card ng-controller="OrganizationController as vm">
+<md-card>
     <md-card-content>
 
         <div layout layout-align="space-between">
-            <h3 class="md-title" flex ng-if="vm.showHeader">{{ 'ORG.ORGANIZATIONS' | translate }}</h3>
+            <h3 class="md-title" flex ng-hide="hideHeader">{{ 'ORG.ORGANIZATIONS' | translate }}</h3>
 
             <md-input-container flex="15">
                 <label>{{ 'ORG.SEARCH_FOR_ORG' | translate }}</label>
@@ -24,7 +24,7 @@
             </div>
             <md-virtual-repeat-container md-auto-shrink>
                 <div md-virtual-repeat="organization in vm.dataLoader" md-on-demand class="repeat-item">
-                    <a class="r-rowlink" href ui-sref="administration.organization({'storeProtocol': organization.storeType, 'storeIdentifier': organization.storeId, 'uuid': organization.id})" layout="row">
+                    <a class="r-rowlink" href ui-sref="{{vm.parentState}}.organization({'storeProtocol': organization.storeType, 'storeIdentifier': organization.storeId, 'uuid': organization.id})" layout="row">
                         <span class="r" flex="10">{{organization.organizationName}}</span>
                         <span class="r" flex="10">{{organization.cvrNumber}}</span>
                         <span class="r" flex="20"></span>
