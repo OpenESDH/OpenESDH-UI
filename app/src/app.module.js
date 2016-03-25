@@ -36,7 +36,6 @@
             'm43nu.auto-height',
             'dcbImgFallback',
             'openeApp.activities',
-            'openeApp.caseTemplates',
 /*DO NOT REMOVE MODULES PLACEHOLDER!!!*/ //opene-modules
             /*LAST*/ 'openeApp.translations'])// TRANSLATIONS IS ALWAYS LAST!
         .config(config)
