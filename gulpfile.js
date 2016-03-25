@@ -54,6 +54,10 @@ var openeModules = [{
         moduleId: 'openeApp.google.docs'
     },
     {
+        moduleName: 'caseTemplates',
+        moduleId: 'openeApp.caseTemplates'
+    },
+    {
         moduleName: 'staffTemplates',
         moduleId: 'openeApp.staffTemplates'
     }];
