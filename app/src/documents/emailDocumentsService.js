@@ -13,9 +13,7 @@ function EmailDocumentsService($mdDialog, caseDocumentsService, caseService,
     function showDialog(caseId, model) {
         var p;
         if (model) {
-            var d = $q.defer();
-            p = d.promise;
-            d.resolve({documents: model.documents});
+            p = $q.when({documents: model.documents});
         } else {
             p = caseDocumentsService.getDocumentsByCaseId(caseId, 1, 100).then(function(response) {
                 model = {
