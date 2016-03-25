@@ -2,7 +2,7 @@
         .module('openeApp.cases.common')
         .controller('CaseCommonDialogController', CaseCommonDialogController);
     
-    function CaseCommonDialogController($mdDialog, $translate, $filter, $controller, caseService, notificationUtilsService, sessionService, userService, caseInfo) {
+    function CaseCommonDialogController($mdDialog, $translate, $filter, $controller, caseCrudDialogService, caseService, notificationUtilsService, sessionService, userService, caseInfo) {
         angular.extend(this, $controller('CaseNodeDialogController', {}));
         var vm = this;
         vm.formTemplateUrl = "app/src/cases/common/view/caseCrudForm.html";
@@ -17,6 +17,10 @@
         vm.init = init;
         vm.initCasePropsForEdit = initCasePropsForEdit;
         vm.getPropsToSave = getPropsToSave;
+        vm.initExtras = initExtras;
+        vm.hasCaseTemplateSelector = false;
+        vm.initCaseTemplateSelector = initCaseTemplateSelector;
+        vm.extrasUI = [];
 
         function getUserInfo(){
             return sessionService.getUserInfo();
@@ -41,6 +45,27 @@
                     };
                 });
             }
+            vm.initExtras();
+        }
+        
+        function initExtras(){
+            var vm = this;
+            var extras = caseCrudDialogService.getCrudExtras(vm.caseInfo.type);
+            angular.forEach(extras, function(extra){
+                angular.extend(vm, $controller(extra.controller, {caseInfo: vm.caseInfo}));
+                vm.initExtra();
+            });
+        }
+        
+        function initCaseTemplateSelector(){
+            var vm = this;
+            var selectorConfig = caseTemplateSelectorsService.getTemplateSelector(vm.caseInfo.type);
+            if(selectorConfig == null){
+                return;
+            }
+            angular.extend(vm, $controller(selectorConfig.controller, {caseType: vm.caseInfo.type}));
+            vm.initTemplateSelector();
+            vm.hasCaseTemplateSelector = true;
         }
 
         function initCasePropsForEdit(){

@@ -65,7 +65,8 @@
         "GRID_VIEW": "Grid view",
         "DOWNLOAD_TEMPLATE_CSV": "Download template CSV",
         "LOCKED_BY": "Locked by {{locked_by}}",
-        "CONGRATULATIONS": "Congratulations!"
+        "CONGRATULATIONS": "Congratulations!",
+        "CHOOSE_TEMPLATE": "Choose template"
     },
     "SIMPLE_CASE": {
         "TYPE": "Standard case"

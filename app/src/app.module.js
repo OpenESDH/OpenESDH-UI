@@ -14,7 +14,6 @@
             'openeApp.translations.init',
             'openeApp.header',
             'openeApp.dashboard',
-            'openeApp.caseTemplates',
             'openeApp.cases',
             'openeApp.cases.members',
             'openeApp.cases.parties',
@@ -36,6 +35,7 @@
             'm43nu.auto-height',
             'dcbImgFallback',
             'openeApp.activities',
+            'openeApp.caseTemplates',
 /*DO NOT REMOVE MODULES PLACEHOLDER!!!*/ //opene-modules
             /*LAST*/ 'openeApp.translations'])// TRANSLATIONS IS ALWAYS LAST!
         .constant('USER_ROLES', {

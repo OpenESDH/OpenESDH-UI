@@ -1,0 +1,9 @@
+<div layout="row">
+    <md-input-container flex="65">
+        <label>{{ 'COMMON.CHOOSE_TEMPLATE' | translate }} *</label>
+        <md-select ng-model="vm.case.prop_cm_template" ng-change="vm.caseTemplateSelected()">
+            <md-option ng-value="template.properties.nodeRef" ng-repeat="template in vm.caseTemplates">{{template.properties['cm:name'].displayValue}}</md-option>
+        </md-select>
+    </md-input-container>
+    <md-button ng-click="vm.clearCaseTemplate()">{{'COMMON.REMOVE' | translate}}</md-button>
+</div>
