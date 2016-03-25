@@ -78,7 +78,7 @@
         }
         
         function isPropSet(prop, value){
-            if(value === "" || value.value === undefined || value.value === ""){
+            if(value === undefined || value === "" || value.value === undefined || value.value === ""){
                 return false;
             }
             if(prop == "oe:owners" && value.value[0] == "admin"){
