@@ -15,6 +15,5 @@ dist
 app/src/.sass-cache
 app/src/**/.sass-cache
 app/src/modules/*
-!app/src/modules/test/
 web.config
 /bin/
