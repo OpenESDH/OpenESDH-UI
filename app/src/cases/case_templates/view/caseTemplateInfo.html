@@ -7,8 +7,8 @@
                       <dt flex="33">{{ 'CASE_TEMPLATES.TEMPLATE_NAME' | translate }}</dt><dd flex="66">{{ vm.props["cm:name"].value }}</dd>
                       <dt flex="33" ng-show="vm.isPropSet('cm:title')">{{ 'COMMON.TITLE' | translate }}</dt>
                       <dd flex="66" ng-show="vm.isPropSet('cm:title')">{{ vm.props["cm:title"].value }}</dd>
-                      <dt flex="33" ng-show="vm.isPropSet('owners')">{{ 'CASE.CASE_OWNER' | translate }}</dt>
-                      <dd flex="66" ng-show="vm.isPropSet('owners')">{{ vm.props["owners"][0].displayName }}</dd>
+                      <dt flex="33" ng-show="vm.isPropSet('oe:owners')">{{ 'CASE.CASE_OWNER' | translate }}</dt>
+                      <dd flex="66" ng-show="vm.isPropSet('oe:owners')">{{ vm.props["owners"][0].displayName }}</dd>
                       <dt flex="33" ng-show="vm.isPropSet('oe:journalKey')">{{ 'CASE.JOURNAL_KEY' | translate }}</dt>
                       <dd flex="66" ng-show="vm.isPropSet('oe:journalKey')">{{ vm.props["oe:journalKey"].displayValue }}</dd>
                       <dt flex="33" ng-show="vm.isPropSet('oe:journalFacet')">{{ 'CASE.JOURNAL_FACET' | translate}}</dt>
