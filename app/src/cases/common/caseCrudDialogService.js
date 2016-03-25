@@ -7,13 +7,16 @@
         var serviceConfig = [{
             type: 'simple:case',
             controller: 'SimpleCaseDialogController',
-            caseInfoTemplateUrl: 'app/src/cases/common/view/caseInfo.html'
+            caseInfoFormUrl: 'app/src/cases/common/view/caseInfo.html'
         }];
+        
+        var caseCrudExtras = []; 
         
         this.$get = caseCrudDialogService;
         
         this.caseCrudForm = caseCrudForm;
         this.getCaseCrudFormConfig = getCaseCrudFormConfig;
+        this.caseCrudExtra = caseCrudExtra;
         
         function caseCrudForm(caseCrudFormConfig){
             serviceConfig.push(caseCrudFormConfig);
@@ -31,15 +34,20 @@
             return null;
         }
         
+        function caseCrudExtra(extra){
+            caseCrudExtras.push(extra);
+        }
+        
         caseCrudDialogService.$inject = ['$http', '$mdDialog', '$location'];
 
         function caseCrudDialogService($http, $mdDialog, $location) {
             return {
                 getRegisteredCaseTypes: getRegisteredCaseTypes,
-                getCaseInfoTemplateUrl: getCaseInfoTemplateUrl,
+                getCaseInfoFormUrl: getCaseInfoFormUrl,
                 getCaseControllerName: getCaseControllerName,
                 createCase: createCase,
-                editCase: editCase
+                editCase: editCase,
+                getCrudExtras: getCrudExtras
             };
             
             function getRegisteredCaseTypes(){
@@ -48,12 +56,18 @@
                 });
             }
             
-            function getCaseInfoTemplateUrl(caseType){
+            function getCrudExtras(caseType){
+                return caseCrudExtras.filter(function(item){
+                    return item.type === caseType;
+                });
+            }
+            
+            function getCaseInfoFormUrl(caseType){
                 var config = getCaseCrudFormConfig(caseType);
                 if(config == undefined){
                     config = serviceConfig[0]; //retrieve simple case config by default
                 }
-                return config.caseInfoTemplateUrl;
+                return config.caseInfoFormUrl;
             }
             
             function getCaseControllerName(caseType){

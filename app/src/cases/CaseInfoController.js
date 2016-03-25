@@ -29,7 +29,7 @@ function CaseInfoController($scope, $stateParams, startCaseWorkflowService, case
         //get caseInfo from parent controler: CaseController as caseCtrl
         $scope.caseCtrl.getCaseInfo($stateParams.caseId).then(function(result) {
             vm.caseInfo = result;
-            vm.caseInfoTemplateUrl = caseCrudDialogService.getCaseInfoTemplateUrl(result.type);
+            vm.caseInfoFormUrl = caseCrudDialogService.getCaseInfoFormUrl(result.type);
             $scope.case = result.properties;
             checkFavourite();
         });
@@ -45,7 +45,7 @@ function CaseInfoController($scope, $stateParams, startCaseWorkflowService, case
     }
 
     function startWorklfow() {
-        startCaseWorkflowService.startWorkflow();
+        startCaseWorkflowService.startWorkflow(vm.caseInfo);
     }
 
     function printCase() {

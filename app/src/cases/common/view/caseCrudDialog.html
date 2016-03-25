@@ -11,6 +11,9 @@
         </md-toolbar>
         
         <md-dialog-content>
+            
+            <ng-include ng-repeat="extra in vm.extrasUI" src="extra.formUrl"></ng-include>
+        
             <ng-include src="vm.formTemplateUrl" />
         </md-dialog-content>
 
