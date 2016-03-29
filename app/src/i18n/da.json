@@ -545,7 +545,9 @@
                 "TENANT_CONTENT_STORE_ROOT": "Lejer content store root",
                 "CREATE_TENANT": "Opret lejer",
                 "ASSIGN_MODULES": "Tildel moduler",
-                "TENANT_CREATED": "Lejer oprettet: {{tenantDomain}}"
+                "TENANT_CREATED": "Lejer oprettet: {{tenantDomain}}",
+                "TENANT_UI_CONTEXT": "Lejer UI kontekst",
+                "DISABLE_ALL_MODULES": "Deaktivere alle moduler"
             }
         }
     },
