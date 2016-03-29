@@ -49,17 +49,11 @@
                 <md-button class="md-primary" ng-click="docCtrl.deleteDocument()" ng-disabled="docCtrl.doc.isLocked" ng-show="docCtrl.isAdmin">{{ 'COMMON.DELETE' | translate }}</md-button>
 
                 <md-menu>
-                    <md-button class="md-primary" aria-label="{{ 'MENU.OPEN_MENU' | translate }}" ng-click="$mdOpenMenu($event)">
+                    <md-button class="md-primary" aria-label="{{ 'MENU.OPEN_MENU' | translate }}" ng-click="$mdOpenMenu($event)" ng-show="docCtrl.showDocumentEditActions()">
                         <md-icon>edit</md-icon>
                         {{ 'DOCUMENT.EDIT_DOCUMENT' | translate }}
                     </md-button>
                     <md-menu-content>
-                        <md-menu-item ng-show="docCtrl.canEditOnlineDocument">
-                            <md-button ng-click="docCtrl.editOnlineDocument()" ng-disabled="docCtrl.doc.isLocked || docCtrl.doc.editLockState.isLocked">
-                                <md-icon md-menu-align-target>description</md-icon>
-                                {{ 'DOCUMENT.EDIT_DOCUMENT_SHAREPOINT' | translate }}
-                            </md-button>
-                        </md-menu-item>
                         <md-menu-item ng-repeat="actionItem in docCtrl.documentEditActions" ng-show="actionItem.isVisible(docCtrl.doc)">
                             <md-button ng-click="docCtrl.executeEditAction(actionItem)" ng-disabled="actionItem.isDisabled(docCtrl.doc)">
                                 <md-icon>{{ actionItem.icon}}</md-icon>{{ actionItem.labelKey | translate }}

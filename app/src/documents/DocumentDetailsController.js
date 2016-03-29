@@ -15,6 +15,7 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
     vm.isAdmin = sessionService.isAdmin();
 
     vm.documentEditActions = documentEditActionsService.getActionItems();
+    vm.showDocumentEditActions = showDocumentEditActions;
     vm.executeEditAction = executeEditAction;
 
     vm.uploadDocNewVersion = uploadDocNewVersion;
@@ -118,6 +119,17 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
         documentPreviewService.previewDocument(vm.caseDocument.mainDocNodeRef);
     }
 
+    function showDocumentEditActions() {
+        var vm = this;
+        if (vm.doc == undefined){
+            return null;
+        }
+        var visibleActions = vm.documentEditActions.filter(function(action){
+            return action.isVisible(vm.doc);
+        });
+        return visibleActions.length > 0;
+    }
+
     function uploadDocNewVersion() {
         var vm = this;
         vm.loadCaseDocument().then(function() {
@@ -179,7 +191,7 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
     function afterDocumentDelete() {
         $location.path("/");
     }
-    
+
     function executeEditAction(menuItem) {
         var vm = this;
         var service = $injector.get(menuItem.serviceName);
