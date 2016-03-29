@@ -560,7 +560,9 @@
                 "TENANT_CONTENT_STORE_ROOT": "Tenant content store root",
                 "CREATE_TENANT": "Create tenant",
                 "ASSIGN_MODULES": "Assign modules",
-                "TENANT_CREATED": "Tenant created: {{tenantDomain}}"
+                "TENANT_CREATED": "Tenant created: {{tenantDomain}}",
+                "TENANT_UI_CONTEXT": "Tenant UI context",
+                "DISABLE_ALL_MODULES": "Disable all modules"
             }
         }
     },

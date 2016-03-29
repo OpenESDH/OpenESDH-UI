@@ -81,7 +81,7 @@
         
         function getDateValue(val){
             if(val === undefined || val.value === undefined){
-                return "";
+                return null;
             }
             return new Date(val.value);
         }
