@@ -17,6 +17,10 @@ var environment = {
     local: {
         proxy: 'http://localhost:8080',
         spp: 'http://localhost:7070'
+    },
+	testv: {
+        proxy: 'http://10.170.12.125',
+        spp: 'http://10.170.12.125:7070'
     }
 };
 
@@ -164,6 +168,10 @@ gulp.task('build', ['scripts', 'css']);
 
 gulp.task('dev', ['build', 'watch'], function() {
     createWebserver(environment.test);
+});
+
+gulp.task('testv', ['build', 'watch'], function() {
+    createWebserver(environment.testv);
 });
 
 gulp.task('demo', ['build', 'watch'], function() {
