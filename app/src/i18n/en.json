@@ -703,7 +703,7 @@
         "PRINT_ALL_NOTES": "Print all notes",
         "CREATE_NOTE": "Create note",
         "EDIT_NOTE": "Edit note",
-        "HEADLINE": "Headline",
+        "TITLE": "Headline",
         "CONTENT": "Content",
         "CONCERNED_PARTIES": "Concerned parties",
         "ADD_NOTE": "Add note",
