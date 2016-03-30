@@ -17,26 +17,6 @@
                     <span class="muted">({{docCtrl.doc.status| docStatus}})</span>
                 </h1>
             </div>
-
-            <!-- TODO: This and the case status menu in case.html could probably be refactored into some shared code -->
-            <md-menu>
-                <md-button class="md-primary" ng-click="$mdOpenMenu($event)"
-                           aria-label="{{ 'DOCUMENT.CHANGE_STATUS' | translate }}"
-                           ng-disabled="docCtrl.doc.statusChoices.length == 0">
-                    {{ 'DOCUMENT.CHANGE_STATUS' | translate }}
-                </md-button>
-                <md-menu-content>
-                    <md-menu-item ng-repeat="choiceName in docCtrl.doc.statusChoices">
-                        <md-button ng-class="{'current-choice': choiceName === docCtrl.doc.status}"
-                                   ng-disabled="choiceName === docCtrl.doc.status"
-                                   aria-label="{{ choiceName | docStatus }}"
-                                   ng-click="docCtrl.changeDocumentStatus(choiceName)">
-                            {{ choiceName | docStatus }}
-                        </md-button>
-                    </md-menu-item>
-                </md-menu-content>
-            </md-menu>
-
         </div>
     </div>
 
