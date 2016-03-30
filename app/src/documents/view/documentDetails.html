@@ -49,7 +49,10 @@
                 <md-button class="md-primary" ng-click="docCtrl.deleteDocument()" ng-disabled="docCtrl.doc.isLocked" ng-show="docCtrl.isAdmin">{{ 'COMMON.DELETE' | translate }}</md-button>
 
                 <md-menu>
-                    <md-button class="md-primary" aria-label="{{ 'MENU.OPEN_MENU' | translate }}" ng-click="$mdOpenMenu($event)" ng-show="docCtrl.showDocumentEditActions()">
+                    <md-button class="md-primary" aria-label="{{ 'MENU.OPEN_MENU' | translate }}" 
+                               ng-click="$mdOpenMenu($event)" 
+                               ng-show="docCtrl.showDocumentEditActions()"
+                               ng-disabled="docCtrl.doc.editLockState.isLocked">
                         <md-icon>edit</md-icon>
                         {{ 'DOCUMENT.EDIT_DOCUMENT' | translate }}
                     </md-button>
