@@ -57,6 +57,7 @@ function DocumentAttachmentsController($scope, $injector, $state, $stateParams, 
                 pages.push(i + 1);
             }
             vm.attachmentsPages = pages;
+            return vm.attachments;
         });
     }
 
@@ -72,7 +73,7 @@ function DocumentAttachmentsController($scope, $injector, $state, $stateParams, 
 
     function uploadAttachmentNewVersion(attachment) {
         loadAttachments().then(function() {
-            var currAttachment = vm.getAttachment(attachment.nodeRef);
+            var currAttachment = getAttachment(attachment.nodeRef);
             if (currAttachment === null || currAttachment.locked) {
                 return;
             }
@@ -80,6 +81,16 @@ function DocumentAttachmentsController($scope, $injector, $state, $stateParams, 
                 loadAttachments();
             });
         });
+    }
+    
+    function getAttachment(nodeRef) {
+        for (var i in vm.attachments) {
+            var attach = vm.attachments[i];
+            if (attach.nodeRef == nodeRef) {
+                return attach;
+            }
+        }
+        return null;
     }
 
     function downloadAttachment(attachment) {
