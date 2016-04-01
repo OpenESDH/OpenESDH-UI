@@ -1,0 +1,11 @@
+<md-menu ng-controller="SendDocumentsActionsController as docSendCtrl">
+    <md-button ng-click="$mdOpenMenu($event)" class="md-primary" aria-label="{{ 'DOCUMENT.SEND_DOCUMENTS' | translate }}">
+        <i class="material-icons">send</i> {{ 'DOCUMENT.SEND_DOCUMENTS' | translate }}
+    </md-button>
+    <md-menu-content>
+        <md-menu-item ng-repeat="item in docSendCtrl.menuItems" ng-show="item.visible">
+            <md-button ng-disabled="docCtrl.noDocuments() || (item.lockedWithCase && caseCtrl.caseIsLocked)" 
+                       ng-click="docSendCtrl.execute(docCtrl.caseId, item)">{{ item.labelKey | translate }}</md-button>
+        </md-menu-item>
+    </md-menu-content>
+</md-menu>

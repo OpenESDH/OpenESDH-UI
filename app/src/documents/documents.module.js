@@ -2,11 +2,13 @@ angular
         .module('openeApp.documents', ['ngMaterial', 'pascalprecht.translate'])
         .config(config);
 
-function config(caseDocumentActionsServiceProvider, dashboardServiceProvider, documentEditActionsServiceProvider,
+function config(caseDocumentActionsServiceProvider, sendDocumentsActionsServiceProvider, dashboardServiceProvider, documentEditActionsServiceProvider,
         documentAttachmentEditActionsServiceProvider) {
     //documents list
-    caseDocumentActionsServiceProvider.addMenuItem('DOCUMENT.EMAIL_DOCUMENTS', 'emailDocumentsService');
     caseDocumentActionsServiceProvider.addAction('/app/src/documents/view/uploadDocumentAction.html', 0);
+    caseDocumentActionsServiceProvider.addAction('/app/src/documents/view/sendDocumentsAction.html', 2);
+    
+    sendDocumentsActionsServiceProvider.addMenuItem('DOCUMENT.EMAIL_DOCUMENTS', 'emailDocumentsService');
     //document edit
     documentEditActionsServiceProvider
             .addItem('DOCUMENT.EDIT_DOCUMENT_SHAREPOINT', 'description', 'documentEditInSharePointService', isVisible_doc, isDisabled_doc);
