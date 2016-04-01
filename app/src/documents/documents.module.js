@@ -6,6 +6,7 @@ function config(caseDocumentActionsServiceProvider, dashboardServiceProvider, do
         documentAttachmentEditActionsServiceProvider) {
     //documents list
     caseDocumentActionsServiceProvider.addMenuItem('DOCUMENT.EMAIL_DOCUMENTS', 'emailDocumentsService');
+    caseDocumentActionsServiceProvider.addAction('/app/src/documents/view/uploadDocumentAction.html', 0);
     //document edit
     documentEditActionsServiceProvider
             .addItem('DOCUMENT.EDIT_DOCUMENT_SHAREPOINT', 'description', 'documentEditInSharePointService', isVisible_doc, isDisabled_doc);

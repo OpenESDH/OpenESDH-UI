@@ -5,10 +5,19 @@ angular
 function CaseDocumentActionsServiceProvider() {
     var availableItems = [];
     var availableButtons = [];
+    var actions = [];
     this.addMenuItem = addMenuItem;
     this.addNewButton = addNewButton;
+    this.addAction = addAction;
     this.$get = CaseDocumentActionsService;
 
+    function addAction(templateUrl, order){
+        actions.push({
+            templateUrl: templateUrl,
+            order: order
+        });
+    }
+    
     /**
      * 
      * @param labelKey - key for translation
@@ -38,7 +47,8 @@ function CaseDocumentActionsServiceProvider() {
     function CaseDocumentActionsService() {
         var service = {
             getMenuItems: getMenuItems,
-            getButtons: getButtons
+            getButtons: getButtons,
+            getActions: getActions
         };
         return service;
 
@@ -48,6 +58,10 @@ function CaseDocumentActionsServiceProvider() {
         
         function getButtons() {
             return availableButtons;
+        }
+        
+        function getActions(){
+            return actions;
         }
     }
 }

@@ -1,4 +1,5 @@
 <div ng-controller="CaseDocumentActionsController as docSendCtrl">
+    <ng-include ng-repeat="action in docSendCtrl.actions | orderBy: 'order'" src="action.templateUrl"></ng-include>
     <md-menu>
         <md-button ng-click="$mdOpenMenu($event)" class="md-primary" aria-label="{{ 'DOCUMENT.SEND_DOCUMENTS' | translate }}">
             <i class="material-icons">send</i> {{ 'DOCUMENT.SEND_DOCUMENTS' | translate }}

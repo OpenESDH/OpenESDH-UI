@@ -7,6 +7,7 @@ function CaseDocumentActionsController($injector, $q, caseDocumentActionsService
     vm.execute = execute;
     vm.menuItems = caseDocumentActionsService.getMenuItems();
     vm.otherButtons = caseDocumentActionsService.getButtons();
+    vm.actions = caseDocumentActionsService.getActions();
 
     vm.menuItems.map(function(item) {
         isVisible(item).then(function(result) {
