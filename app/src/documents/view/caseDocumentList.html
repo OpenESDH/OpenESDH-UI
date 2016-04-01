@@ -42,11 +42,6 @@
     </md-card-content>
     
     <div class="md-actions" layout="row" layout-xs="column" layout-padding layout-align="start start">
-        <md-button class="md-primary"
-                   ng-click="docCtrl.uploadDocument()"
-                   ng-disabled="caseCtrl.caseIsLocked">
-            <i class="material-icons">file_upload</i>{{ 'DOCUMENT.UPLOAD_NEW_DOCUMENTS' | translate }}
-        </md-button>
         <span ng-include="'app/src/documents/view/caseDocumentActions.html'"></span>
     </div>
 </md-card>

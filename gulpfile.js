@@ -64,6 +64,10 @@ var openeModules = [{
     {
         moduleName: 'staffTemplates',
         moduleId: 'openeApp.staffTemplates'
+    },
+    {
+        moduleName: 'openeDocs',
+        moduleId: 'openeApp.openeDocs'
     }];
 
 var runOpeneModules = [];

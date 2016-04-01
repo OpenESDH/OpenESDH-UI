@@ -1,20 +1,3 @@
-<div ng-controller="CaseDocumentActionsController as docSendCtrl">
-    <md-menu>
-        <md-button ng-click="$mdOpenMenu($event)" class="md-primary" aria-label="{{ 'DOCUMENT.SEND_DOCUMENTS' | translate }}">
-            <i class="material-icons">send</i> {{ 'DOCUMENT.SEND_DOCUMENTS' | translate }}
-        </md-button>
-        <md-menu-content>
-            <md-menu-item ng-repeat="item in docSendCtrl.menuItems" ng-show="item.visible">
-                <md-button ng-disabled="docCtrl.noDocuments() || (item.lockedWithCase && caseCtrl.caseIsLocked)" 
-                           ng-click="docSendCtrl.execute(docCtrl.caseId, item)">{{ item.labelKey | translate }}</md-button>
-            </md-menu-item>
-        </md-menu-content>
-    </md-menu>
-    <md-button class="md-primary" 
-               ng-repeat="btn in docSendCtrl.otherButtons"
-               ng-click="docSendCtrl.execute(docCtrl.caseId, btn, docCtrl)"
-               ng-disabled="item.lockedWithCase && caseCtrl.caseIsLocked">
-        <i class="material-icons">{{btn.icon}}</i>
-        {{ btn.labelKey | translate }}
-    </md-button>
+<div ng-controller="CaseDocumentActionsController as docActionsCtrl">
+    <ng-include ng-repeat="action in docActionsCtrl.actions | orderBy: 'order'" src="action.templateUrl"></ng-include>
 </div>
