@@ -1,17 +1,17 @@
-    <md-menu>
-        <md-button style="text-transform: none; font-size: 17px; margin: 0px 0px 0px 15px; padding: 0px; " ng-click="$mdOpenMenu($event)"
-                   aria-label="{{ 'CASE.CHANGE_STATUS' | translate }}"
-                   ng-disabled="caseCtrl.caseStatusChoices.length == 0">
-            {{ caseCtrl.case['oe:status'].value | caseStatus }}
-        </md-button>
-        <md-menu-content>
-            <md-menu-item ng-repeat="choiceName in caseCtrl.caseStatusChoices">
-                <md-button ng-class="{'current-choice': choiceName === caseCtrl.case['oe:status'].value}"
-                           ng-disabled="choiceName === caseCtrl.case['oe:status'].value"
-                           aria-label="{{ choiceName | caseStatus }}"
-                           ng-click="caseCtrl.changeCaseStatus(choiceName)">
-                    {{ choiceName | caseStatus }}
-                </md-button>
-            </md-menu-item>
-        </md-menu-content>
-    </md-menu>
+<md-menu>
+    <a href style="color:#1E88E5"
+       ng-click="$mdOpenMenu($event)" 
+       ng-disabled="caseCtrl.caseStatusChoices.length == 0">
+        {{ caseCtrl.case['oe:status'].value | caseStatus | uppercase }}
+    </a>
+    <md-menu-content>
+        <md-menu-item ng-repeat="choiceName in caseCtrl.caseStatusChoices">
+            <md-button ng-class="{'current-choice': choiceName === caseCtrl.case['oe:status'].value}"
+                       ng-disabled="choiceName === caseCtrl.case['oe:status'].value"
+                       aria-label="{{ choiceName | caseStatus }}"
+                       ng-click="caseCtrl.changeCaseStatus(choiceName)">
+                {{ choiceName | caseStatus }}
+            </md-button>
+        </md-menu-item>
+    </md-menu-content>
+</md-menu>
