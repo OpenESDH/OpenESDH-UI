@@ -549,7 +549,7 @@
                 "ARE_YOU_SURE_YOU_WANT_TO_SAVE_PARAMETERS": "Are you sure you want to save parameters?",
                 "SAVED_SUCCESSFULLY": "Configuration saved successfully"
             },
-            "TENANTS_MODULES":{
+            "TENANTS_MODULES": {
                 "TITLE": "Tenants Modules",
                 "TENANT_MODULES": "Tenant modules",
                 "TENANT": "Tenant",
@@ -655,9 +655,18 @@
         "CONTACT_SAVED_SUCCESSFULLY": "Contact \"{{firstName}} {{lastName}}\" saved successfully",
         "CONTACT_DELETED_SUCCESSFULLY": "Contact \"{{firstName}} {{lastName}}\" deleted successfully",
         "PERSON": "Person",
-        "ORGANIZATION": "Organization"
+        "ORGANIZATION": "Organization",
+        "ERRORS": {
+            "INVALID_TYPE": "The type of contact is not recognised. Can only create types PERSON/ORGANIZATION",
+            "EMAIL_IS_MANDATORY": "Email is mandatory for contact creation",
+            "MORE_THAN_ONE_CONTACT_EXITS": "There is more than one contact associated with this id",
+            "NO_SUCH_CONTACT": "Contact does not exist",
+            "TYPE_MUST_BE_ORG": "The type of contact must be ORGANIZATION",
+            "TYPE_MUST_BE_PERSON": "The type of contact must be PERSON"
+        }
     },
     "ERROR": {
+        "UNEXPECTED_ERROR": "Oops! Something went wrong.",
         "REQUIRED": "This field is required",
         "TOO_SHORT": "This field is too short",
         "TOO_LONG": "This field is too long",

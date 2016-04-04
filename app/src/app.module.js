@@ -13,6 +13,7 @@
             'isteven-multi-select',
             'openeApp.init',
             'openeApp.translations.init',
+            'openeApp.error',
             'openeApp.header',
             'openeApp.dashboard',
             'openeApp.cases',
