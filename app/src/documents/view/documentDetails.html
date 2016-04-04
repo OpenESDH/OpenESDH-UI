@@ -7,15 +7,15 @@
                 <div layout="row">
                     <dl layout="row" layout-wrap flex="50">
                         <dt flex="33">{{ 'COMMON.TITLE' | translate }}</dt><dd flex="66">{{ docCtrl.doc.title}}</dd>
-                        <dt flex="25">{{ 'COMMON.STATUS' | translate }}</dt>
+                        <dt flex="33">{{ 'COMMON.STATUS' | translate }}</dt>
                         <dd flex="66">
                             <!-- TODO: This and the case status menu in case.html could probably be refactored into some shared code -->
                             <md-menu>
-                                <md-button style="text-transform: none; font-size: 17px; margin: 0px 0px 0px 15px; padding: 0px;" ng-click="$mdOpenMenu($event)"
-                                           aria-label="{{ 'DOCUMENT.CHANGE_STATUS' | translate }}"
-                                           ng-disabled="docCtrl.doc.statusChoices.length == 0">
-                                    {{ docCtrl.doc.status | docStatus }}
-                                </md-button>
+                                <a href style="color:#1E88E5"
+                                   ng-click="$mdOpenMenu($event)" 
+                                   ng-disabled="docCtrl.doc.statusChoices.length == 0">
+                                    {{ docCtrl.doc.status | docStatus | uppercase }}
+                                </a>
                                 <md-menu-content>
                                     <md-menu-item ng-repeat="choiceName in docCtrl.doc.statusChoices">
                                         <md-button ng-class="{'current-choice': choiceName === docCtrl.doc.status}"
