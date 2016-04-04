@@ -16,6 +16,7 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
 
     vm.documentEditActions = documentEditActionsService.getActionItems();
     vm.showDocumentEditActions = showDocumentEditActions;
+    vm.disableDocumentEditActions = disableDocumentEditActions;
     vm.executeEditAction = executeEditAction;
 
     vm.uploadDocNewVersion = uploadDocNewVersion;
@@ -128,6 +129,17 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
             return action.isVisible(vm.doc);
         });
         return visibleActions.length > 0;
+    }
+    
+    function disableDocumentEditActions() {
+        var vm = this;
+        if (vm.doc == undefined){
+            return null;
+        }
+        var notDisabledActions = vm.documentEditActions.filter(function(action){
+            return action.isVisible(vm.doc) && !action.isDisabled(vm.doc);
+        });
+        return notDisabledActions.length === 0;
     }
 
     function uploadDocNewVersion() {
