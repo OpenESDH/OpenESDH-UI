@@ -75,8 +75,6 @@ function EmailDocumentsService($mdDialog, caseDocumentsService, caseService,
                 })
             }).then(function() {
                 $mdDialog.hide();
-            }, function(response) {
-                notificationUtilsService.alert(response.data.message);
             });
         }
 

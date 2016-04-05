@@ -17,8 +17,6 @@ function AssignFileDialogController($mdDialog, $translate, filesService, notific
                     notificationUtilsService.notify($translate.instant("FILE.FILE_ASSIGNED_SUCCESSFULLY",
                             {title: file.cm.title, authorityName: assignFileVm.owner.name}));
                     $mdDialog.hide();
-                }, function(response) {
-                    notificationUtilsService.alert(response.data.message || 'Unexpected exception');
                 });
     }
 

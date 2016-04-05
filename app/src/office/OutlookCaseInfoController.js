@@ -19,18 +19,11 @@ function OutlookCaseInfoController($filter, $stateParams, $translate, sessionSer
         caseService.getCaseInfo($stateParams.caseId).then(function(result) {
             vm.hasData = true;
             vm.case = result.properties;
-        }, function(response) {
+        }, function(error) {
             vm.hasData = false;
-            if (response.status === 400) {
-                //bad reqest (might be handled exception)
-                //CASE.CASE_NOT_FOUND
-                var key = 'CASE.' + response.data.message.split(' ')[1];
-                var msg = $translate.instant(key);
-                notificationUtilsService.alert(msg === key ? response.data.message : msg);
-                return;
+            if (error.domain) {
+                notificationUtilsService.alert(error.message);
             }
-            //other exceptions
-            notificationUtilsService.alert(response.data.message);
         });
     }
 }

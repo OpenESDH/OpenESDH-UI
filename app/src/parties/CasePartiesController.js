@@ -51,12 +51,14 @@ function CasePartiesController($scope, $stateParams, $mdDialog, $filter, $transl
                 vm.parties.splice(index, 1);
                 //notify
                 notificationUtilsService.notify($translate.instant("PARTY.PARTY_REMOVED_SUCCESSFULLY"));
-            }, error);
+            }, showError);
         });
     }
 
-    function error(response) {
-        notificationUtilsService.alert(response.data.message);
+    function showError(error) {
+        if (error.domain){
+            notificationUtilsService.alert(error.message);
+        }
     }
 
     function showAddPartiesDialog(ev, model) {
@@ -184,7 +186,7 @@ function CasePartiesController($scope, $stateParams, $mdDialog, $filter, $transl
                 } else {
                     notificationUtilsService.notify($translate.instant("PARTY.PARTY_ADDED_SUCCESSFULLY"));
                 }
-            }, error);
+            }, showError);
         }
 
         function cancel() {
@@ -236,7 +238,7 @@ function CasePartiesController($scope, $stateParams, $mdDialog, $filter, $transl
             vm.changeCaseParty(self.party.nodeRef, self.party.role, self.newRole).then(function() {
                 $mdDialog.hide();
                 notificationUtilsService.notify($translate.instant("PARTY.PARTY_CHANGED_SUCCESSFULLY"));
-            }, error);
+            }, showError);
         }
 
         function cancel() {

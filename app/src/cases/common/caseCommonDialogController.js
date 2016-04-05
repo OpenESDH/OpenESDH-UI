@@ -102,8 +102,10 @@
                 notificationUtilsService.notify($translate.instant("CASE.CASE_CREATED", {case_title: props.prop_cm_title}));
                 $mdDialog.hide(caseId);
                 return caseId;
-            }, function(response) {
-                notificationUtilsService.alert($translate.instant("CASE.ERROR_CREATING_CASE", {case_title: props.prop_cm_title}) + response.data.message);
+            }, function(error) {
+                if (error.domain){
+                    notificationUtilsService.alert(error.message);
+                }
             });
         }
         

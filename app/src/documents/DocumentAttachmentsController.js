@@ -107,9 +107,8 @@ function DocumentAttachmentsController($scope, $injector, $state, $stateParams, 
     }
 
     function showError(error) {
-        if (error) {
-            console.log(error);
-            notificationUtilsService.alert(error.message || error.data.message || error.statusText);
+        if (error && error.domain) {
+            notificationUtilsService.alert(error.message);
         }
     }
 }
