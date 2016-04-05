@@ -641,6 +641,7 @@
         "ORGANIZATION": "Organisation"
     },
     "ERROR": {
+        "UNEXPECTED_ERROR": "Ups! Noget gik galt.",
         "REQUIRED": "Obligatoriske felt",
         "TOO_SHORT": "Indhold for kort",
         "TOO_LONG": "Indhold for langt",
