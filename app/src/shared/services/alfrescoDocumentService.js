@@ -6,7 +6,8 @@
     function AlfrescoDocumentService($http, alfrescoNodeUtils) {
         
         var service = {
-            retrieveSingleDocument: retrieveSingleDocument
+            retrieveSingleDocument: retrieveSingleDocument,
+            deleteFile: deleteFile
         };
         return service;
         
@@ -16,6 +17,10 @@
             return $http.get(url).then(function(result){
                 return result.data.item;
             });
+        }
+        
+        function deleteFile(nodeRef){
+            return $http.delete('/slingshot/doclib/action/file/node/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri);
         }
         
     }

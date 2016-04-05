@@ -17,7 +17,7 @@
         function uploadCaseDocument(docsFolderNodeRef, fileObject){
             return $q(function(resolve, reject){
                 var fromFileObject = typeof fileObject !== "undefined" && fileObject instanceof Blob;
-                showDialog(NewCaseDocumentDialogController, {
+                showDialog('NewCaseDocumentDialogController', {
                     fromFileObject: fromFileObject
                 }).then(function(formData) {
                     
@@ -120,43 +120,6 @@
                 clickOutsideToClose: true,
                 locals: locals
             });
-        }
-        
-        function NewCaseDocumentDialogController($scope, $mdDialog, fromFileObject) {
-            
-            loadDocumentConstraints($scope);
-
-            $scope.$watch(function (scope) {
-                return $scope.fileToUpload;
-            }, function (newValue, oldValue) {
-                if (typeof newValue !== 'undefined' && newValue != null) {
-                    // Automatically set the name of the document to the
-                    // filename, unless the user has already set a name.
-                    if (typeof $scope.documentProperties.title === 'undefined'
-                            || $scope.documentProperties.title == null
-                            || $scope.documentProperties.title == "") {
-                        $scope.documentProperties.title = newValue.name;
-                    }
-                }
-            });
-
-            $scope.fromFileObject = fromFileObject;
-
-            $scope.documentProperties = {
-                    majorVersion: "false"
-            };
-            
-            $scope.cancel = function() {
-              $mdDialog.cancel();
-            };
-            
-            $scope.upload = function(){
-                var response = {
-                    fileToUpload: $scope.fileToUpload,
-                    documentProperties: $scope.documentProperties
-                };
-                $mdDialog.hide(response);
-            };
         }
         
         function CaseDocumentNewVersionDialogController($scope, $mdDialog, document){
