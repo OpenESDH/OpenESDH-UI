@@ -47,7 +47,7 @@ function httpTicketInterceptor($injector, $translate, $window, $q, sessionServic
 
     function responseError(rejection) {
         //alfresco connection failed
-        if (rejection.status === 500 && typeof rejection.data === 'string' && rejection.data.indexOf('Error: connect ECONNREFUSED') === 0) {
+        if (rejection.status === 503 || _isDevServiceUnavailable(rejection)) {
             sessionService.setUserInfo(null);
             sessionService.clearRetainedLocation();
             $window.location = "/#/login?nosso";
@@ -72,6 +72,12 @@ function httpTicketInterceptor($injector, $translate, $window, $q, sessionServic
         $window.location = "/#/login";
         notificationUtilsService.notify($translate.instant('LOGIN.SESSION_TIMEOUT'));
         delete $window._openESDHSessionExpired;
+    }
+    
+    function _isDevServiceUnavailable(rejection){
+        return rejection.status === 500 
+                && typeof rejection.data === 'string' 
+                && rejection.data.indexOf('Error: connect ECONNREFUSED') === 0;
     }
 }
 

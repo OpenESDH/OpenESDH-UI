@@ -203,8 +203,9 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
         var vm = this;
         var service = $injector.get(menuItem.serviceName);
         service.executeCaseDocAction(vm.doc, function() {
-            vm.loadCaseDocumentInfo();
-            vm.refreshDocumentView();
+            setTimeout(function() {
+                vm.loadCaseDocumentInfo();
+            }, 2000);
         }, showError, vm._scope);
     }
 
