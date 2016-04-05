@@ -22,24 +22,35 @@ function CaseInfoController($scope, $stateParams, startCaseWorkflowService, case
     vm.addCaseToFavourites = addCaseToFavourites;
     vm.removeCaseFromFavourites = removeCaseFromFavourites;
     vm.extras = caseInfoExtrasService.getExtrasControllers();
+    vm.checkFavourite = checkFavourite;
+    vm.loadCaseInfo = loadCaseInfo; 
+    vm.reloadCaseInfo = reloadCaseInfo;
 
-    loadCaseInfo();
+    vm.loadCaseInfo();
 
     function loadCaseInfo() {
+        var vm = this;
         //get caseInfo from parent controler: CaseController as caseCtrl
         $scope.caseCtrl.getCaseInfo($stateParams.caseId).then(function(result) {
             vm.caseInfo = result;
             vm.caseInfoFormUrl = caseCrudDialogService.getCaseInfoFormUrl(result.type);
             $scope.case = result.properties;
-            checkFavourite();
+            vm.checkFavourite();
         });
+    }
+    
+    function reloadCaseInfo(){
+        $scope.caseCtrl.loadCaseInfo();
+        var vm = this;
+        vm.loadCaseInfo();
     }
 
     function editCase() {
+        var vm = this;
         var promise = caseCrudDialogService.editCase(vm.caseInfo);
         if(promise != null && promise != undefined){
             promise.then(function(result) {
-                loadCaseInfo();
+                vm.loadCaseInfo();
             });            
         }
     }
@@ -53,19 +64,22 @@ function CaseInfoController($scope, $stateParams, startCaseWorkflowService, case
     }
 
     function addCaseToFavourites() {
+        var vm = this;
         preferenceService.addFavouriteCase($stateParams.caseId).then(function() {
-            checkFavourite();
+            vm.checkFavourite();
             notificationUtilsService.alert($translate.instant('CASE.CASE_ADDED_TO_FAVORITE'));
         });
     }
 
     function removeCaseFromFavourites() {
+        var vm = this;
         preferenceService.removeFavouriteCase($stateParams.caseId).then(function() {
-            checkFavourite();
+            vm.checkFavourite();
         });
     }
 
     function checkFavourite() {
+        var vm = this;
         preferenceService.isFavouriteCase($stateParams.caseId).then(function(result) {
             vm.isFavourite = result;
         });

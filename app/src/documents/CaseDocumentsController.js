@@ -3,7 +3,7 @@ angular
         .module('openeApp.documents')
         .controller('CaseDocumentsController', CaseDocumentsController);
 
-function CaseDocumentsController($controller, $stateParams, caseDocumentsService) {
+function CaseDocumentsController($scope, $controller, $stateParams, caseDocumentsService) {
 
     angular.extend(this, $controller('DocumentsController'));
     
@@ -19,6 +19,7 @@ function CaseDocumentsController($controller, $stateParams, caseDocumentsService
     vm.init();
 
     function reloadDocuments(){
+        $scope.civm.reloadCaseInfo();
         this.loadDocumentsByCase();
     }
     

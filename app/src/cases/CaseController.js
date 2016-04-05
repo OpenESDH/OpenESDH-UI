@@ -7,10 +7,11 @@ function CaseController($scope, $stateParams, $mdDialog, $translate, caseService
     var vm = this;
     vm.changeCaseStatus = changeCaseStatus;
     vm.getCaseInfo = getCaseInfo;
+    vm.loadCaseInfo = loadCaseInfo;
 
-    var _caseInfoDefer = $q.defer();
+    var _caseInfoDefer = null;
 
-    loadCaseInfo();
+    vm.loadCaseInfo();
     initTab();
 
     function initTab() {
@@ -20,6 +21,8 @@ function CaseController($scope, $stateParams, $mdDialog, $translate, caseService
     }
 
     function loadCaseInfo() {
+        _caseInfoDefer = $q.defer();
+        var vm = this;
         caseService.getCaseInfo($stateParams.caseId).then(function(result) {
             _caseInfoDefer.resolve(result);
             vm.caseInfo = result;
