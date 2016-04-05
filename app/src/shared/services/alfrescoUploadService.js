@@ -48,8 +48,6 @@
                 headers: {'Content-Type': undefined}
             }).then(function(response){
                 return response;
-            }, function (response){
-                notificationUtilsService.alert(response.data.message);
             });
         }
 

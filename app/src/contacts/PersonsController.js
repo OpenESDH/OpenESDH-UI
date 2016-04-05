@@ -31,7 +31,9 @@ function PersonsController($stateParams, $state, contactsService,
                 });
     }
 
-    function error(response) {
-        notificationUtilsService.alert(response.data.message);
+    function error(error) {
+        if (error.domain) {
+            notificationUtilsService.alert(error.message);
+        }
     }
 }

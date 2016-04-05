@@ -109,8 +109,6 @@ function OfficeController($stateParams, $window, $controller, $translate, office
                 console.log("got error", err);
             }
             
-        }, function(response) {
-            notificationUtilsService.alert(response.data.message);
         });
     }
 

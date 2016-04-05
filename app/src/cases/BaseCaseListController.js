@@ -81,9 +81,6 @@ function BaseCaseListController($mdDialog, $translate, caseService, alfrescoFold
             alfrescoFolderService.deleteFolder(caseObj.nodeRef).then(function(response) {
                 notificationUtilsService.notify($translate.instant('CASE.DELETE_CASE_SUCCESS'));
                 setTimeout(getCases.bind(vm), 500);
-            }, function(response) {
-                console.log(response);
-                notificationUtilsService.alert($translate.instant('CASE.DELETE_CASE_FAILURE'));
             });
         });
     }

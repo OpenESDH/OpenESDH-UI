@@ -55,9 +55,6 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
                     .then(function() {
                         loadList();
                         notificationUtilsService.notify($translate.instant('FILE.DELETE_FILE_SUCCESS'));
-                    }, function(response) {
-                        console.log(response);
-                        notificationUtilsService.alert($translate.instant('FILE.DELETE_FILE_FAILURE'));
                     });
         });
     }
@@ -122,9 +119,8 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
     }
 
     function showError(error) {
-        if (error) {
-            console.log(error);
-            notificationUtilsService.alert(error.message || error.data.message || error.statusText);
+        if (error && error.domain) {
+            notificationUtilsService.alert(error.message);
         }
     }
 

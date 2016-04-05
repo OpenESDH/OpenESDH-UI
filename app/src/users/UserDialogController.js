@@ -56,9 +56,9 @@ function UserDialogController($scope, $mdDialog, $mdToast, $translate, $injector
                 notifyUserSaved(userSaveResponse);
             }
         }, handleCreateEditError)
-        .then(function(){
-            userService.setEmailFeedDisabled(ucd.user);
-        });
+                .then(function() {
+                    userService.setEmailFeedDisabled(ucd.user);
+                });
     }
 
 
@@ -90,20 +90,20 @@ function UserDialogController($scope, $mdDialog, $mdToast, $translate, $injector
     }
 
     function handleCreateEditError(response) {
-        var cStack, msg;
+        var error;
         console.log(response);
 
-        if (response.status === 404) {
-            notificationUtilsService.notify("Unknown error");
-        } else {
-            cStack = response.data.callstack[1];
-            msg = (cStack) ? cStack : response.data.message;
+        if (response.data && response.data.error && response.data.error.message) {
+            error = response.data.error;
+        } else if (response.status === 404) {
+            notificationUtilsService.notify($translate.instant('ERROR.UNEXPECTED_ERROR'));
+            return;
         }
 
         // If conflict
         if (response.status === 409) {
             // Username already exists
-            if (msg.indexOf('User name already exists') > -1) {
+            if (error.message.indexOf('User name already exists') > -1) {
                 ucd.userForm.userName.$setValidity('usernameExists', false);
                 return;
             }
@@ -111,22 +111,24 @@ function UserDialogController($scope, $mdDialog, $mdToast, $translate, $injector
 
         if (response.status === 500) {
             // Email already exists
-            if (cStack.indexOf('Error updating email: already exists') > -1 ||
-                    cStack.indexOf('Email must be unique and already exists.') > -1) {
+            if (error.message.indexOf('Error updating email: already exists') > -1 ||
+                    error.message.indexOf('Email must be unique and already exists') > -1) {
                 ucd.userForm.email.$setValidity('emailExists', false);
                 return;
             }
 
-            // Incorrect Addo password
-            if (msg.indexOf('ADDO.USER.') > -1) {
-                ucd.userForm.addoUsername.$setDirty();
-                ucd.userForm.addoUsername.$setValidity('incorrectAddoPass', false);
-                ucd.userForm.addoPassword.$setDirty();
-                ucd.userForm.addoPassword.$setValidity('incorrectAddoPass', false);
-                return;
+            //domain errors:
+            if (error.domain) {
+                if (error.code === 'ADDO.USER.INCORECT_PASSWORD') {
+                    ucd.userForm.addoUsername.$setDirty();
+                    ucd.userForm.addoUsername.$setValidity('incorrectAddoPass', false);
+                    ucd.userForm.addoPassword.$setDirty();
+                    ucd.userForm.addoPassword.$setValidity('incorrectAddoPass', false);
+                    return;
+                }
             }
         }
-        notificationUtilsService.alert($translate.instant('USER.SAVE_USER_FAILURE'));
+        notificationUtilsService.notify($translate.instant('ERROR.UNEXPECTED_ERROR'));
     }
 
     function clearFieldValidation(field) {

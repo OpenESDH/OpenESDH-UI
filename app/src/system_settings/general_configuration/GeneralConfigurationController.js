@@ -31,8 +31,6 @@ function GeneralConfigurationController($mdDialog, $translate, $state, notificat
                 notificationUtilsService.notify($translate.instant("ADMIN.SYS_SETTINGS.GENERAL.SAVED_SUCCESSFULLY"));
                 //reload full state
                 $state.reload();
-            }, function(response) {
-                notificationUtilsService.alert(response.data.message || response.statusText);
             });
         });
     }

@@ -1,4 +1,3 @@
-
 angular
         .module('openeApp.cases')
         .controller('CaseInfoController', CaseInfoController);
@@ -67,7 +66,7 @@ function CaseInfoController($scope, $stateParams, startCaseWorkflowService, case
         var vm = this;
         preferenceService.addFavouriteCase($stateParams.caseId).then(function() {
             vm.checkFavourite();
-            notificationUtilsService.alert($translate.instant('CASE.CASE_ADDED_TO_FAVORITE'));
+            notificationUtilsService.notify($translate.instant('CASE.CASE_ADDED_TO_FAVORITE'));
         });
     }
 

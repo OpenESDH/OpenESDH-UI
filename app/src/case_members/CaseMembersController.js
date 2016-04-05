@@ -45,13 +45,13 @@
                         } else {
                             success($translate.instant("MEMBER.MEMBER_ADDED_SUCCESSFULLY"));
                         }
-                    }, error);
+                    });
         }
 
         function changeMember(authority, role, newRole) {
             return caseMembersService
                     .changeCaseMember($stateParams.caseId, authority, role, newRole)
-                    .then(successChange, error);
+                    .then(successChange);
         }
 
         function successChange() {
@@ -65,10 +65,6 @@
         function success(msg) {
             fillList();
             notificationUtilsService.notify(msg);
-        }
-
-        function error(response) {
-            notificationUtilsService.alert(response.data.message);
         }
 
         function showNewDialog(event) {

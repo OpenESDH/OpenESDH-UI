@@ -115,7 +115,6 @@
         "GROUP_CASES": "Ikke tildelte sager",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_CASE": "Er du sikker på, at du vil slette '{{case_title}}'?",
         "DELETE_CASE_SUCCESS": "Sag slettet",
-        "DELETE_CASE_FAILURE": "Sag kunne ikke slettes",
         "VIEW_CASE_DETAILS": "Vis sag",
         "STAFF": {
             "EMPLOYEE": "Medarbejder",
@@ -125,7 +124,6 @@
         },
         "CASE_CREATED": "Sag '{{case_title}}' oprettet",
         "CASE_UPDATED": "Sag '{{case_title}}' opdateret",
-        "ERROR_CREATING_CASE": "Kunne ikke oprette sag: {{case_title}}",
         "CASE_DETAILS": "Sagsdetajler",
         "CASE_HISTORY_LOG": "Sagshistorik",
         "COMMENTS": "Journalnoter",
@@ -207,7 +205,6 @@
         "VIEW_DOCUMENT_DETAILS": "Vis dokument",
         "SENT_FROM_OUTLOOK": "Sent from Outlook",
         "DELETE_DOC_SUCCESS": "Dokument slettet",
-        "DELETE_DOC_FAILURE": "Dokument kunne ikke slettes",
         "NO_DOCUMENTS_ADDED_YET": "Ingen dokumenter tilføjet endnu"
     },
     "FILE": {
@@ -226,7 +223,6 @@
         "FILE_ADDED_TO_CASE_SUCCESSFULLY": "Filen \"{{title}}\" er tilføjet sagen {{caseId}}",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_FILE": "Er du sikker på at du vil slette filen \"{{title}}\"?",
         "DELETE_FILE_SUCCESS": "Filen er slettet",
-        "DELETE_FILE_FAILURE": "Filen kunne ikke slettes",
         "COMMENTS_OF": "Kommentar til {{filename}}",
         "USER_TIMESTAMP": "{{date}} af {{name}}",
         "VIEW_COMMENTS": "Læs kommentar"

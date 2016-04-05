@@ -64,7 +64,8 @@ function userService($http) {
     
     function createUser(userObj) {
         return $http.post('/api/people',
-                userObj
+                userObj,
+                { errorHandler: 'skip'}
                 ).then(function(response) {
             console.log("Return success");
             return response.data;
@@ -72,7 +73,7 @@ function userService($http) {
     }
 
     function updateUser(userObj) {
-        return $http.put('/api/people/' + encodeURIComponent(userObj.userName), userObj).then(function(response) {
+        return $http.put('/api/people/' + encodeURIComponent(userObj.userName), userObj, { errorHandler: 'skip'}).then(function(response) {
             console.log("Return success");
             return response.data;
         });

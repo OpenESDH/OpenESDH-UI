@@ -114,7 +114,6 @@
         "GROUP_CASES": "Group cases",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_CASE": "Are you sure you want to delete the case '{{case_title}}'?",
         "DELETE_CASE_SUCCESS": "Case successfully deleted",
-        "DELETE_CASE_FAILURE": "Case could not be deleted",
         "VIEW_CASE_DETAILS": "View case",
         "STAFF": {
             "EMPLOYEE": "Employee",
@@ -124,7 +123,6 @@
         },
         "CASE_CREATED": "Case '{{case_title}}' created",
         "CASE_UPDATED": "Case '{{case_title}}' updated",
-        "ERROR_CREATING_CASE": "Error creating case: {{case_title}}",
         "CASE_DETAILS": "Case details",
         "CASE_HISTORY_LOG": "Case history log",
         "COMMENTS": "Journal notes",
@@ -206,7 +204,6 @@
         "VIEW_DOCUMENT_DETAILS": "View document",
         "SENT_FROM_OUTLOOK": "Sent from Outlook",
         "DELETE_DOC_SUCCESS": "Document successfully deleted",
-        "DELETE_DOC_FAILURE": "Document could not be deleted",
         "NO_DOCUMENTS_ADDED_YET": "No documents added yet"
     },
     "FILE": {
@@ -225,7 +222,6 @@
         "FILE_ADDED_TO_CASE_SUCCESSFULLY": "File \"{{title}}\" added to case {{caseId}} successfully",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_FILE": "Are you sure you want to delete the file \"{{title}}\"?",
         "DELETE_FILE_SUCCESS": "File successfully deleted",
-        "DELETE_FILE_FAILURE": "File could not be deleted",
         "COMMENTS_OF": "Comments of {{filename}}",
         "USER_TIMESTAMP": "{{date}} by {{name}}",
         "VIEW_COMMENTS": "Read comments"
@@ -582,7 +578,6 @@
         "FAILED_TO_UPLOAD_MSG": "{{failedNumberOfUsers}} user(s) were not added for the following reasons:",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER": "Are you sure you want to delete '{{user}}'?",
         "CAN_NOT_DELETE_ADMIN_USER": "Deletion of the admin user is not permitted.",
-        "SAVE_USER_FAILURE": "User could not be saved",
         "EMAIL_FEED_ENABLED": "Email feed enabled"
     },
     "GROUP": {

@@ -6,6 +6,10 @@ function RequestsErrorHandler($q, $injector, $translate) {
     return {
         // --- Response interceptor for handling errors generically ---
         responseError: function(rejection) {
+            //skip hendler
+            if (rejection.config.errorHandler && rejection.config.errorHandler === 'skip') {
+                return $q.reject(rejection);
+            }
             //unhandled codes
             if (rejection.status === 403) {
                 return $q.reject(rejection);
@@ -15,19 +19,20 @@ function RequestsErrorHandler($q, $injector, $translate) {
                 return rejection;
             }
 
+            //parse error or create default unexpected errror
             var error = (rejection.data && rejection.data.error)
                     ? rejection.data.error
-                    : {
-                        domain: false,
-                        code: 'ERROR.UNEXPECTED_ERROR'
-                    };
+                    : {domain: false};
 
-            angular.extend(error, {message: $translate.instant(error.code)});
+            //translate error message
+            if (error.code && !error.message) {
+                angular.extend(error, {message: $translate.instant(error.code, error.props)});
+            }
 
-            if (error.domain !== true) {
+            if (error.domain === false) {
                 //circular dependency fix:
                 var notificationUtilsService = $injector.get("notificationUtilsService");
-                notificationUtilsService.notify($translate.instant(error.message));
+                notificationUtilsService.notify($translate.instant('ERROR.UNEXPECTED_ERROR'));
             }
             return $q.reject(error);
         }

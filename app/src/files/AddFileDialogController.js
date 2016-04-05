@@ -21,8 +21,6 @@ function AddFileDialogController($mdDialog, $translate, filesService, notificati
                         notificationUtilsService.notify($translate.instant("FILE.FILE_UPLOADED_SUCCESSFULLY", {'title': addFileVm.files[0].name}));
                     }
                     $mdDialog.hide();
-                }, function(response) {
-                    notificationUtilsService.alert(response.data.message || 'Unexpected exception');
                 });
     }
 

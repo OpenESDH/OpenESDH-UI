@@ -122,21 +122,21 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
 
     function showDocumentEditActions() {
         var vm = this;
-        if (vm.doc == undefined){
+        if (vm.doc == undefined) {
             return null;
         }
-        var visibleActions = vm.documentEditActions.filter(function(action){
+        var visibleActions = vm.documentEditActions.filter(function(action) {
             return action.isVisible(vm.doc);
         });
         return visibleActions.length > 0;
     }
-    
+
     function disableDocumentEditActions() {
         var vm = this;
-        if (vm.doc == undefined){
+        if (vm.doc == undefined) {
             return null;
         }
-        var notDisabledActions = vm.documentEditActions.filter(function(action){
+        var notDisabledActions = vm.documentEditActions.filter(function(action) {
             return action.isVisible(vm.doc) && !action.isDisabled(vm.doc);
         });
         return notDisabledActions.length === 0;
@@ -175,9 +175,7 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
         caseDocumentDetailsService.changeDocumentStatus(vm.documentNodeRef, status).then(function(json) {
             vm.loadCaseDocumentInfo();
             notificationUtilsService.notify($translate.instant("DOCUMENT.STATUS_CHANGED_SUCCESS"));
-        }, function(response) {
-            notificationUtilsService.alert(response.data.message);
-        });
+        }, showError);
     }
 
     function deleteDocument() {
@@ -193,10 +191,7 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
             alfrescoFolderService.deleteFolder(vm.documentNodeRef).then(function(result) {
                 notificationUtilsService.notify($translate.instant('DOCUMENT.DELETE_DOC_SUCCESS'));
                 vm.afterDocumentDelete();
-            }, function(result) {
-                console.log(result);
-                notificationUtilsService.alert($translate.instant('DOCUMENT.DELETE_DOC_FAILURE'));
-            });
+            }, showError);
         });
     }
 
@@ -214,9 +209,8 @@ function DocumentDetailsController($stateParams, $translate, $mdDialog, $locatio
     }
 
     function showError(error) {
-        if (error) {
-            console.log(error);
-            notificationUtilsService.alert(error.message || error.data.message || error.statusText);
+        if (error && error.domain) {
+            notificationUtilsService.alert(error.message);
         }
     }
 }
