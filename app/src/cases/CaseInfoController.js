@@ -49,7 +49,7 @@ function CaseInfoController($scope, $stateParams, startCaseWorkflowService, case
         var promise = caseCrudDialogService.editCase(vm.caseInfo);
         if(promise != null && promise != undefined){
             promise.then(function(result) {
-                vm.loadCaseInfo();
+                vm.reloadCaseInfo();
             });            
         }
     }
