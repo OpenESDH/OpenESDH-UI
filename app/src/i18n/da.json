@@ -40,7 +40,6 @@
         "NO_MATCHES": "Ingen resultater",
         "EMAIL": "Email",
         "SAVE": "Gem",
-        "SAVE_EMAIL": "Arkiver e-mail",
         "VIEW_DETAILS": "Vis detaljer",
         "SHOW": "Vis",
         "DELETE": "Slet",
@@ -630,11 +629,18 @@
         "DEPARTMENT": "Afdeling",
         "STREET": "Gade",
         "CREATE_NEW_CONTACT": "Opret ny kontakt",
+        "EDIT_CONTACT": "Edit contact",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_PERSON_CONTACT": "Er du sikker på, at du vil slette \"{{firstName}} {{lastName}}\"?",
         "CONTACT_SAVED_SUCCESSFULLY": "Kontakt \"{{firstName}} {{lastName}}\" gemt",
         "CONTACT_DELETED_SUCCESSFULLY": "Kontakt \"{{firstName}} {{lastName}}\" slettet",
         "PERSON": "Person",
-        "ORGANIZATION": "Organisation"
+        "ORGANIZATION": "Organisation",
+        "ERRORS": {
+            "INVALID_TYPE": "The type of contact is not recognised. Can only create types PERSON/ORGANIZATION",
+            "EMAIL_IS_MANDATORY": "Email is mandatory for contact creation",
+            "MORE_THAN_ONE_CONTACT_EXITS": "There is more than one contact associated with this id",
+            "NO_SUCH_CONTACT": "Contact does not exist"
+        }
     },
     "ERROR": {
         "UNEXPECTED_ERROR": "Ups! Noget gik galt.",
@@ -730,6 +736,11 @@
         "REQUIRED_APPROVAL_PERCENTAGE": "Nødvendig godkendelsesprocent",
         "REVIEWERS_WHO_APPROVED": "Antal godkendelser",
         "ACTUAL_APPROVAL_PERCENTAGE": "Aktuel godkendelsesprocent",
+        "CLAIM": "Claim",
+        "RELEASE_TO_POOL": "Release to pool",
+        "TASK_HAS_BEEN_CLAIMED": "Task has been claimed",
+        "TASK_HAS_BEEN_RELEASED": "Task has been released",
+        "THIS_TASK_IS_UNASSIGNED": "This task is unassigned",
         "TASK_CREATED_ON_BY": "Oprettet d. {{on}} af {{by}}",
         "SHOW_ALL_OPEN_TASKS": "Alle opgaver",
         "ADHOC_TITLE": "Opgaven er tildelt af {{initiator}}"

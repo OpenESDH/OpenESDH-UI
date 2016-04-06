@@ -6,8 +6,8 @@
         "OK": "OK",
         "YES": "Yes",
         "CANCEL": "Cancel",
-        "ERROR": "Error",
         "SUCCESS": "Success",
+        "ERROR": "Error",
         "BACK": "Back",
         "NEXT": "Next",
         "DONE": "Done",
@@ -655,9 +655,7 @@
             "INVALID_TYPE": "The type of contact is not recognised. Can only create types PERSON/ORGANIZATION",
             "EMAIL_IS_MANDATORY": "Email is mandatory for contact creation",
             "MORE_THAN_ONE_CONTACT_EXITS": "There is more than one contact associated with this id",
-            "NO_SUCH_CONTACT": "Contact does not exist",
-            "TYPE_MUST_BE_ORG": "The type of contact must be ORGANIZATION",
-            "TYPE_MUST_BE_PERSON": "The type of contact must be PERSON"
+            "NO_SUCH_CONTACT": "Contact does not exist"
         }
     },
     "ERROR": {
@@ -771,11 +769,6 @@
     "OFFICE": {
         "SAVE_EMAIL_IN_OPENESDH": "Save email in Visma Case",
         "SAVE_DOCUMENT_IN_OPENESDH": "Save document in Visma Case"
-    },
-    "DOCUMENT_TYPE": {
-        "CREATE_EDIT_DOC_TYPE": "Create / edit document type",
-        "NAME": "Name",
-        "DISPLAY_NAME": "Display name"
     },
     "DOCUMENT_TYPES": {
         "DOCUMENT_TYPES": "Document types",
