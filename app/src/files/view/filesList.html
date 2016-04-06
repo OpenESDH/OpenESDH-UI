@@ -80,7 +80,9 @@
                             <span class="tlist__cell muted" flex ng-show="filesVm.tab === 'group_files'">{{ file.group}}</span>
                             <span class="tlist__cell muted" flex>
                                 <a style="color:#1E88E5" href ng-click="filesVm.showComments($event, file)" title="{{ 'FILE.VIEW_COMMENTS' | translate}}">
-                                    {{ file.comments[0].comment}}</a>
+                                    <span ng-if="file.comments.length > 0">{{ file.comments[0].comment}}</span>
+                                    <span ng-if="file.comments.length == 0" style="text-transform: uppercase">{{ 'COMMON.ADD_COMMENT' | translate}}</span>
+                                </a>
                             </span>
                             <span class="tlist__cell muted" flex="15">{{ file.cm.created | openeDate}}</span>
                             <span class="tlist__cell muted" flex="10">{{ file.cm.creator}}</span>

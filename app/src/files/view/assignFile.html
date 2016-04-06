@@ -7,7 +7,7 @@
         </md-toolbar>
         <md-dialog-content>
             <div layout="column" class="opene-autocomplete-wrapper">
-                <opene-autocomplete datasource="assignFileVm.owner" controller-name="AuthoritySelectorController" required="true" name="authority" label="{{'CASE.OWNER' | translate}} *"></opene-autocomplete>
+                <opene-autocomplete datasource="assignFileVm.owner" controller-name="FileAssigneeSelectorController" required="true" name="authority" label="{{'CASE.OWNER' | translate}} *"></opene-autocomplete>
                 <opene-error form="assignFileForm" field="assignFileForm.authority"></opene-error>
             <md-input-container>
                 <label>{{ 'COMMON.COMMENT' | translate }}</label>

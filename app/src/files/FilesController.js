@@ -109,8 +109,7 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
             locals: {
                 file: file
             }
-        }).then(function() {
-        });
+        }).then(loadList);
     }
 
     function executeAction(file, menuItem) {
