@@ -11,6 +11,16 @@
                    translate-value-name="{{comment.creator}}"></label>
             <textarea readonly ng-model="comment.comment" rows="50" columns="1"></textarea>
         </md-input-container>
+        
+        <div layout="row">
+            <md-input-container>
+                <label translate="COMMON.COMMENT"></label>
+                <textarea ng-model="fileCommentsVm.newComment" rows="50" cols="50"></textarea>
+            </md-input-container>
+            <md-button ng-click="fileCommentsVm.addComment()">
+                {{ 'COMMON.ADD_COMMENT' | translate }}
+            </md-button>
+        </div>
     </md-dialog-content>
     <md-dialog-actions>
         <md-button ng-click="fileCommentsVm.close()">
