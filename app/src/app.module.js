@@ -307,67 +307,6 @@
                     templateUrl: 'app/src/groups/view/group.html'
                 }
             }
-        }).state('administration.systemsettings', {
-            url: '/system-settings',
-            data: {
-                authorizedRoles: [USER_ROLES.admin],
-                selectedTab: 4
-            },
-            views: {
-                'systemsettings': {
-                    templateUrl: 'app/src/system_settings/menu/system_settings.html',
-                    controller: 'SystemSettingsController',
-                    controllerAs: 'vm'
-                }
-            }
-        }).state('administration.systemsettings.general', {
-            url: '/general-configuration',
-            data: {
-                authorizedRoles: [USER_ROLES.admin]
-            },
-            views: {
-                'systemsetting-view': {
-                    templateUrl: 'app/src/system_settings/general_configuration/view/generalConfiguration.html',
-                    controller: 'GeneralConfigurationController',
-                    controllerAs: 'vm'
-                }
-            }
-        }).state('administration.systemsettings.doctypes', {
-            url: '/document-types',
-            data: {
-                authorizedRoles: [USER_ROLES.admin]
-            },
-            views: {
-                'systemsetting-view': {
-                    templateUrl: 'app/src/system_settings/document_types/view/documentTypes.html',
-                    controller: 'DocumentTypesController',
-                    controllerAs: 'vm'
-                }
-            }
-        }).state('administration.systemsettings.doccategories', {
-            url: '/document-categories',
-            data: {
-                authorizedRoles: [USER_ROLES.admin]
-            },
-            views: {
-                'systemsetting-view': {
-                    templateUrl: 'app/src/system_settings/document_categories/view/documentCategories.html',
-                    controller: 'DocumentCategoriesController',
-                    controllerAs: 'vm'
-                }
-            }
-        }).state('administration.systemsettings.tenantsmodules', {
-            url: '/tenantsmodules',
-            views: {
-                'systemsetting-view': {
-                    templateUrl: 'app/src/system_settings/tenant/view/tenantsModules.html',
-                    controller: 'TenantsModulesController',
-                    controllerAs: 'vm'
-                }
-            },
-            data: {
-                authorizedRoles: [USER_ROLES.user]
-            }
         }).state('search', {
             url: '/search/:searchTerm',
             views: {

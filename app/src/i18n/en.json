@@ -67,7 +67,8 @@
         "GRID_VIEW": "Grid view",
         "DOWNLOAD_TEMPLATE_CSV": "Download template CSV",
         "LOCKED_BY": "Locked by {{locked_by}}",
-        "CONGRATULATIONS": "Congratulations!"
+        "CONGRATULATIONS": "Congratulations!",
+        "DISABLED": "Disabled"
     },
     "SIMPLE_CASE": {
         "TYPE": "Standard case"
@@ -773,20 +774,26 @@
     },
     "DOCUMENT_TYPES": {
         "DOCUMENT_TYPES": "Document types",
-        "NAME": "Name",
-        "DISPLAY_NAME": "Display name",
         "CREATE_NEW_DOC_TYPE": "Create new document type",
         "CREATE_EDIT_DOC_TYPE": "Create / edit document type",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_DOCUMENT_TYPE_X": "Are you sure you want to delete document type '{{title}}'?"
     },
     "DOCUMENT_CATEGORIES": {
         "DOCUMENT_CATEGORIES": "Document categories",
-        "NAME": "Name",
-        "DISPLAY_NAME": "Title",
         "CREATE_NEW_DOC_CATEGORY": "Create new document category",
         "CREATE_EDIT_DOC_CATEGORY": "Create / edit document category",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_DOCUMENT_CATEGORY_X": "Are you sure you want to delete document category '{{title}}'?"
+    },    
+    "PARTY_ROLES":{
+        "PARTY_ROLES": "Party roles",
+        "CREATE_NEW_PARTY_ROLE": "Create new party role",
+        "CREATE_EDIT_PARTY_ROLE": "Create / edit party role",
+        "ARE_YOU_SURE_YOU_WANT_TO_DELETE_PARTY_ROLE_X": "Are you sure you want to delete party role '{{title}}'?"
     },
+    "CLASSIFIER_VALUES":{
+        "NAME": "Name",
+        "DISPLAY_NAME": "Title"
+    },    
     "SYSTEM_SETTINGS": {
         "SYSTEM_SETTINGS": "System settings"
     },

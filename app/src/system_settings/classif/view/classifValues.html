@@ -1,0 +1,25 @@
+<md-card flex="grow">
+    <md-card-content>
+        <table>
+            <thead>
+                <tr>
+                    <th>{{ 'CLASSIFIER_VALUES.NAME' | translate }}</th>
+                    <th>{{ 'CLASSIFIER_VALUES.DISPLAY_NAME' | translate }}</th>
+                    <th>{{ 'COMMON.DISABLED' | translate }}</th>
+                    <th>{{ 'COMMON.ACTIONS' | translate }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="classifValue in vm.classifierValues" class="clickable-row" ng-click="vm.showEdit($event, classifValue)">
+                    <td>{{classifValue.name}}</td>
+                    <td>{{classifValue.displayName}}</td>
+                    <td>{{classifValue.disabled}}</td>
+                    <td>
+                        <md-button class="md-primary" ng-click="vm.doDelete($event, classifValue)" ng-disabled="{{classifValue.isSystem}}">{{ 'COMMON.DELETE' | translate }}</md-button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <md-button class="md-primary" ng-click="vm.showEdit($event)"><i class="material-icons ng-scope">add</i> {{ vm.newClassifValueMessageKey | translate }}</md-button>
+    </md-card-content>
+</md-card>

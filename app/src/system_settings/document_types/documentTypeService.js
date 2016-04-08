@@ -4,40 +4,22 @@
             .factory('documentTypeService', documentTypeService);
 
     function documentTypeService($http) {
-        var service = {
-            getDocumentTypes: getDocumentTypes,
-            getDocumentType: getDocumentType,
-            saveDocumentType: saveDocumentType,
-            deleteDocumentType: deleteDocumentType
+        return {
+            getClassifierValues: getClassifierValues,
+            saveClassifierValue: saveClassifierValue,
+            deleteClassifierValue: deleteClassifierValue
         };
-        return service;
 
-        function getDocumentTypes() {
+        function getClassifierValues() {
             return $http.get('/api/openesdh/document/types')
                     .then(onSuccess);
         }
 
-        function getDocumentType(nodeRefId) {
-            return $http.get('/api/openesdh/document/type',
-                    {
-                        params: {
-                            nodeRefId: nodeRefId
-                        }
-                    }).then(onSuccess);
+        function saveClassifierValue(documentType) {
+            return $http.post('/api/openesdh/document/type', documentType).then(onSuccess);
         }
 
-        function saveDocumentType(documentType) {
-            return $http.post('/api/openesdh/document/type', null,
-                    {
-                        params: {
-                            nodeRefId: documentType.nodeRef,
-                            name: documentType.name,
-                            mlDisplayNames: documentType.mlDisplayNames
-                        }
-                    }).then(onSuccess);
-        }
-
-        function deleteDocumentType(nodeRefId) {
+        function deleteClassifierValue(nodeRefId) {
             return $http.delete('/api/openesdh/document/type',
                     {params: {
                             nodeRefId: nodeRefId

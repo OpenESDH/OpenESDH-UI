@@ -67,7 +67,8 @@
         "GRID_VIEW": "Gittervisning",
         "DOWNLOAD_TEMPLATE_CSV": "Hent CSV skabelon",
         "LOCKED_BY": "Låst af {{locked_by}}",
-        "CONGRATULATIONS": "Tillykke!"
+        "CONGRATULATIONS": "Tillykke!",
+        "DISABLED": "Deaktiveret"
     },
     "SIMPLE_CASE": {
         "TYPE": "Standardsag"
@@ -757,19 +758,25 @@
     },
     "DOCUMENT_TYPES": {
         "DOCUMENT_TYPES": "Dokumenttyper",
-        "NAME": "Navn",
-        "DISPLAY_NAME": "Titel",
         "CREATE_NEW_DOC_TYPE": "Opret ny dokumenttype",
         "CREATE_EDIT_DOC_TYPE": "Opret / redigér dokumenttype",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_DOCUMENT_TYPE_X": "Er du sikker på, at du vil slette dokumenttype '{{title}}'?"
     },
     "DOCUMENT_CATEGORIES": {
         "DOCUMENT_CATEGORIES": "Dokument kategorier",
-        "NAME": "Navn",
-        "DISPLAY_NAME": "Titel",
         "CREATE_NEW_DOC_CATEGORY": "Opret ny dokumentkategori",
         "CREATE_EDIT_DOC_CATEGORY": "Opret / redigér document category",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_DOCUMENT_CATEGORY_X": "Er du sikker på, at du vil slette dokumentkategori '{{title}}'?"
+    },    
+    "PARTY_ROLES":{
+        "PARTY_ROLES": "Part roller",
+        "CREATE_NEW_PARTY_ROLE": "Opret ny part rolle",
+        "CREATE_EDIT_PARTY_ROLE": "Opret / redigér part rolle",
+        "ARE_YOU_SURE_YOU_WANT_TO_DELETE_PARTY_ROLE_X": "Er du sikker på, at du vil slette part rolle '{{title}}'?"
+    },
+    "CLASSIFIER_VALUES":{
+        "NAME": "Navn",
+        "DISPLAY_NAME": "Titel"
     },
     "SYSTEM_SETTINGS": {
         "SYSTEM_SETTINGS": "Systemopsætning"

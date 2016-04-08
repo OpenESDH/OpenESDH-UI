@@ -4,40 +4,22 @@
             .factory('documentCategoryService', documentCategoryService);
 
     function documentCategoryService($http) {
-        var service = {
-            getDocumentCategories: getDocumentCategories,
-            getDocumentCategory: getDocumentCategory,
-            saveDocumentCategory: saveDocumentCategory,
-            deleteDocumentCategory: deleteDocumentCategory
+        return {
+            getClassifierValues: getClassifierValues,
+            saveClassifierValue: saveClassifierValue,
+            deleteClassifierValue: deleteClassifierValue
         };
-        return service;
 
-        function getDocumentCategories() {
+        function getClassifierValues() {
             return $http.get('/api/openesdh/document/categories')
                     .then(onSuccess);
         }
-
-        function getDocumentCategory(nodeRefId) {
-            return $http.get('/api/openesdh/document/category',
-                    {
-                        params: {
-                            nodeRefId: nodeRefId
-                        }
-                    }).then(onSuccess);
+        
+        function saveClassifierValue(documentCategory) {
+            return $http.post('/api/openesdh/document/category', documentCategory).then(onSuccess);
         }
 
-        function saveDocumentCategory(documentCategory) {
-            return $http.post('/api/openesdh/document/category', null,
-                    {
-                        params: {
-                            nodeRefId: documentCategory.nodeRef,
-                            name: documentCategory.name,
-                            mlDisplayNames: documentCategory.mlDisplayNames
-                        }
-                    }).then(onSuccess);
-        }
-
-        function deleteDocumentCategory(nodeRefId) {
+        function deleteClassifierValue(nodeRefId) {
             return $http.delete('/api/openesdh/document/category',
                     {params: {
                             nodeRefId: nodeRefId
