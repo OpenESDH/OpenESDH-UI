@@ -8,8 +8,7 @@ function OutlookCaseInfoController($filter, $stateParams, $translate, sessionSer
     var vm = this;
     vm.dateFlt=$filter('openeDate');
     
-    if ($stateParams.alf_ticket && !sessionService.getUserInfo()) {
-        sessionService.setUserInfo({ticket: $stateParams.alf_ticket});
+    if (!sessionService.getUserInfo()) {
         authService.revalidateUser();
     }
 
