@@ -35,8 +35,8 @@ function OfficeController($stateParams, $window, $controller, $translate, office
 
     loadDocumentConstraints();
 
-    if ($stateParams.alf_ticket) {
-        sessionService.setUserInfo({ticket: $stateParams.alf_ticket});
+    if (!sessionService.getUserInfo()) {
+        authService.revalidateUser();
     }
     
     function debug(){

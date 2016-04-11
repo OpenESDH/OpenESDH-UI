@@ -73,10 +73,10 @@ function httpTicketInterceptor($injector, $translate, $window, $q, sessionServic
         notificationUtilsService.notify($translate.instant('LOGIN.SESSION_TIMEOUT'));
         delete $window._openESDHSessionExpired;
     }
-    
-    function _isDevServiceUnavailable(rejection){
-        return rejection.status === 500 
-                && typeof rejection.data === 'string' 
+
+    function _isDevServiceUnavailable(rejection) {
+        return rejection.status === 500
+                && typeof rejection.data === 'string'
                 && rejection.data.indexOf('Error: connect ECONNREFUSED') === 0;
     }
 }
@@ -91,7 +91,8 @@ function authService($http, $window, sessionService, userService, oeParametersSe
         isAuthorized: isAuthorized,
         getUserInfo: getUserInfo,
         revalidateUser: revalidateUser,
-        ssoLogin: ssoLogin
+        ssoLogin: ssoLogin,
+        getUserCapabilities: getUserCapabilities
     };
 
     return service;
@@ -193,16 +194,25 @@ function authService($http, $window, sessionService, userService, oeParametersSe
     function addUserAndParamsToSession(username) {
         return userService.getPerson(username).then(function(user) {
             delete $window._openESDHSessionExpired;
-
             return userService.getCapabilities().then(function(capabilities) {
                 angular.merge(user.capabilities, capabilities);
-                var userInfo = sessionService.getUserInfo();
+                var userInfo = sessionService.getUserInfo() || {};
                 userInfo['user'] = user;
                 sessionService.setUserInfo(userInfo);
                 oeParametersService.loadParameters();
                 return user;
             });
 
+        });
+    }
+
+    function getUserCapabilities() {
+        var userInfo = sessionService.getUserInfo();
+        if (userInfo) {
+            return $q.when(userInfo.user.capabilities);
+        }
+        return revalidateUser().then(function(user){
+           return user.capabilities; 
         });
     }
 }
