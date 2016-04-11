@@ -1,0 +1,43 @@
+<md-dialog class="dialog-small" aria-label="{{ dlg.dialogTitleMessageKey | translate }}">
+    <form name="dlgForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{ dlg.dialogTitleMessageKey | translate }}</h2>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+
+            <div layout="column">
+
+                <md-input-container flex>
+                    <label>{{ 'CLASSIFIER_VALUES.NAME' | translate }} *</label>
+                    <input type="text" name="name" ng-model="dlg.classifierValue.name" md-autofocus required ng-pattern="dlg.PATTERNS.fileName" 
+                            ng-disabled="dlg.classifierValue.systemRole">
+                    <opene-error form="dlgForm" field="dlgForm.name"></opene-error>
+                </md-input-container>
+
+                <md-input-container flex ng-repeat="avLang in dlg.availableLanguages">
+                    <label>{{ 'CLASSIFIER_VALUES.DISPLAY_NAME' | translate }} ({{avLang}}) *</label>
+                    <input type="text" name="{{avLang}}" ng-model="dlg.classifierValue.mlDisplayNames[avLang]" required ng-maxlength="150">
+                    <opene-error form="dlgForm" field="dlgForm[avLang]"></opene-error>
+                </md-input-container>
+                
+                <md-checkbox ng-model="dlg.classifierValue.disabled" aria-label="disabled" class="md-warn">
+                    {{ 'COMMON.DISABLED' | translate }}
+                </md-checkbox>
+
+            </div>
+
+        </md-dialog-content>
+
+        <md-dialog-actions>
+            <md-button class="md-primary" type="submit" ng-disabled="dlgForm.$invalid" ng-click="dlg.save(dlgForm)">
+                {{ 'COMMON.SAVE' | translate }}
+            </md-button>
+            <md-button ng-click="dlg.cancel()">
+                {{ 'COMMON.CANCEL' | translate }}
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
