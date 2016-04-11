@@ -2,7 +2,7 @@
         .module('openeApp.systemsettings')
         .controller('ClassifierValuesController', ClassifierValuesController);
 
-    function ClassifierValuesController($mdDialog, $translate, PATTERNS, availableLanguages, classifierValuesService) {
+    function ClassifierValuesController($mdDialog, $translate, PATTERNS, availableLanguages, classifierValuesService, classifType) {
         var vm = this;
         vm.classifierValues = [];
         vm.loadList = loadList;
@@ -13,10 +13,11 @@
         vm.dialogFormUrl = 'app/src/system_settings/classif/view/classifValueCrudDialog.html';
         vm.dialogControllerAs = 'dlg';
         vm.dialogTitleMessageKey = '';
+        vm.classifType = classifType;
 
         function loadList() {
             var vm = this;
-            classifierValuesService.getClassifierValues().then(function(data) {
+            classifierValuesService.getClassifierValues(vm.classifType).then(function(data) {
                 vm.classifierValues = data;
                 return data;
             });
@@ -31,7 +32,7 @@
                     .ok($translate.instant('COMMON.YES'))
                     .cancel($translate.instant('COMMON.CANCEL'));
             $mdDialog.show(confirm).then(function() {
-                classifierValuesService.deleteClassifierValue(classifierValue.nodeRef).then(function() {
+                classifierValuesService.deleteClassifierValue(vm.classifType, classifierValue.nodeRef).then(function() {
                     var currentCategory = vm.classifierValues.indexOf(classifierValue);
                     vm.classifierValues.splice(currentCategory, 1);
 
@@ -83,16 +84,12 @@
                     return;
                 }
                 classifierValuesService
-                    .saveClassifierValue(dc.classifierValue)
-                    .then(refreshInfoAfterSuccess, saveError);
+                    .saveClassifierValue(classifType, dc.classifierValue)
+                    .then(refreshInfoAfterSuccess);
             }
 
             function refreshInfoAfterSuccess(savedClassifierValue) {
                 $mdDialog.hide();
-            }
-
-            function saveError(response) {
-                console.log(response);
             }
         }
         

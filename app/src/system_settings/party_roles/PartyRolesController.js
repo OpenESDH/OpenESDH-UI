@@ -2,8 +2,8 @@
         .module('openeApp.systemsettings')
         .controller('PartyRolesController', PartyRolesController);
 
-    function PartyRolesController($controller, partyRolesService) {
-        angular.extend(this, $controller('ClassifierValuesController', {classifierValuesService: partyRolesService}));
+    function PartyRolesController($controller) {
+        angular.extend(this, $controller('ClassifierValuesController', {classifType: 'partyRole'}));
         var vm = this;
         vm.deleteConfirmMessage = 'PARTY_ROLES.ARE_YOU_SURE_YOU_WANT_TO_DELETE_PARTY_ROLE_X';
         vm.dialogTitleMessageKey = 'PARTY_ROLES.CREATE_EDIT_PARTY_ROLE';
