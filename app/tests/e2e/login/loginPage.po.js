@@ -8,6 +8,7 @@ var LoginPage = function () {
      * Default login as admin.
      */
     public.login = function() {
+        console.log('\n');
         public.loginAs(browser.params.loginDetails.admin.username, browser.params.loginDetails.admin.password);
     };
 

@@ -580,7 +580,12 @@
         "FAILED_TO_UPLOAD_MSG": "{{failedNumberOfUsers}} user(s) were not added for the following reasons:",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER": "Are you sure you want to delete '{{user}}'?",
         "CAN_NOT_DELETE_ADMIN_USER": "Deletion of the admin user is not permitted.",
-        "EMAIL_FEED_ENABLED": "Email feed enabled"
+        "EMAIL_FEED_ENABLED": "Email feed enabled",
+        "MANAGER": "Manager",
+        "ERRORS": {
+            "EMAIL_EXIST": "User with this email exists",
+            "USERNAME_EXISTS": "Username exists"
+        }
     },
     "GROUP": {
         "GROUPS": "Groups",
@@ -672,7 +677,8 @@
         "USERNAME_EXISTS": "Username already exists",
         "AUTH_FAILURE": "Incorrect authentication details",
         "AUTH_ERROR": "Internal login error",
-        "NOT_EQUAL_PATTERN": "Wrong input format"
+        "NOT_EQUAL_PATTERN": "Wrong input format",
+        "INVALID_CSV_FILE": "Can not read csv file"
     },
     "LOGIN": {
         "LOGIN": "Login",

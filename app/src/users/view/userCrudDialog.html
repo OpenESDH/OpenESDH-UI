@@ -9,13 +9,13 @@
             <div layout>
                 <md-input-container flex>
                     <label>{{ 'USER.FIRST_NAME' | translate }} *</label>
-                    <input type="text" name="firstName" ng-model="ucd.user.firstName" required md-autofocus>
+                    <input type="text" name="firstName" ng-model="ucd.user.cm.firstName" required md-autofocus>
                     <opene-error form="ucd.userForm" field="ucd.userForm.firstName"></opene-error>
                 </md-input-container>
 
                 <md-input-container flex>
                     <label>{{ 'USER.LAST_NAME' | translate }} *</label>
-                    <input type="text" name="lastName" ng-model="ucd.user.lastName" required>
+                    <input type="text" name="lastName" ng-model="ucd.user.cm.lastName" required>
                     <opene-error form="ucd.userForm" field="ucd.userForm.lastName"></opene-error>
                 </md-input-container>
             </div>
@@ -23,7 +23,7 @@
             <div layout>
                 <md-input-container flex>
                     <label>{{ 'COMMON.EMAIL' | translate }} *</label>
-                    <input type="email" ng-model="ucd.user.email" name="email" required ng-change="ucd.clearFieldValidation(ucd.userForm.email)">
+                    <input type="email" ng-model="ucd.user.cm.email" name="email" required ng-change="ucd.clearFieldValidation(ucd.userForm.email)">
                     <opene-error form="ucd.userForm" field="ucd.userForm.email"></opene-error>
                 </md-input-container>
             </div>
@@ -31,32 +31,33 @@
             <div layout>
                 <md-input-container flex="50">
                     <label>{{ 'LOGIN.USER_NAME' | translate }} *</label>
-                    <input type="text" name="userName" ng-model="ucd.user.userName" required ng-disabled="ucd.userExists" 
+                    <input type="text" name="userName" ng-model="ucd.user.cm.userName" required ng-disabled="ucd.userExists" 
                            ng-change="ucd.clearFieldValidation(ucd.userForm.userName)">
                     <opene-error form="ucd.userForm" field="ucd.userForm.userName"></opene-error>
                 </md-input-container>
 
-                <div ng-show="ucd.userExists">
+                <div ng-show="ucd.userExists" flex="25">
                     <md-checkbox ng-model="ucd.user.enabled" ng-true-value="false" ng-false-value="true" 
                                  aria-label="disable account" class="md-warn">
                         Disable Account
                     </md-checkbox>
                 </div>
-                <md-checkbox ng-model="ucd.user.emailFeedDisabled" ng-true-value="false" ng-false-value="true" aria-label="enable email feed" class="md-warn">
-                    {{ 'USER.EMAIL_FEED_ENABLED' | translate }}
-                </md-checkbox>
+                <div flex="25">
+                    <md-checkbox ng-model="ucd.user.cm.emailFeedDisabled" ng-true-value="false" ng-false-value="true" aria-label="enable email feed" class="md-warn">
+                        {{ 'USER.EMAIL_FEED_ENABLED' | translate }}
+                    </md-checkbox>
+                </div>
             </div>
 
-
-            <div layout>
+            <div layout ng-show="!ucd.userExists">
                 <md-input-container flex>
                     <label>{{ 'LOGIN.PASSWORD' | translate }} *</label>
-                    <input type="password" name="password" ng-model="ucd.user.password" ng-required="!ucd.userExists || undefined">
+                    <input type="password" name="password" ng-model="ucd.user.cm.password" ng-required="!ucd.userExists || undefined">
                     <opene-error form="ucd.userForm" field="ucd.userForm.password"></opene-error>
                 </md-input-container>
                 <md-input-container flex>
                     <label>{{ 'LOGIN.VERIFY_PASSWORD' | translate }} *</label>
-                    <input type="password" ng-model="ucd.user.verifypassword" opene-equals="ucd.user.password" 
+                    <input type="password" ng-model="ucd.user.verifypassword" opene-equals="ucd.user.cm.password" 
                            ng-required="!ucd.userExists || undefined" name="verify">
                     <opene-error form="ucd.userForm" field="ucd.userForm.verify"></opene-error>
                 </md-input-container>
@@ -65,23 +66,32 @@
             <div layout>
                 <md-input-container flex>
                     <label>{{ 'COMMON.DESCRIPTION' | translate }}</label>
-                    <textarea ng-model="ucd.user.desc"></textarea>
+                    <textarea ng-model="ucd.user.cm.description"></textarea>
                 </md-input-container>
             </div>
 
-            <div layout ng-if="ucd.useAddo">
+            <div class="opene-autocomplete-wrapper" layout>
+                <opene-autocomplete 
+                    datasource="ucd.user.assoc.manager" 
+                    controller-name="AuthoritySelectorController" 
+                    name="assocManager" 
+                    label="{{ 'USER.MANAGER' | translate }}">
+                </opene-autocomplete>
+                <opene-error form="ucd.userForm" field="ucd.userForm.assocManager"></opene-error>
+            </div>
+            <div layout ng-if="ucd.user.addo">
                 <md-input-container flex>
                     <label>{{ 'ADDO.USER.USERNAME' | translate }}</label>
-                    <input type="text" name="addoUsername" ng-model="ucd.user.addoUsername" 
-                           ng-required="ucd.useAddo && ucd.user.addoPassword"
+                    <input type="text" name="addoUsername" ng-model="ucd.user.addo.addoUsername" 
+                           ng-required="ucd.user.addo && ucd.user.addo.addoPassword"
                            ng-click="ucd.userForm.addoPassword.$setTouched()"
                            ng-change="ucd.clearFieldValidation(ucd.userForm.addoUsername); ucd.clearFieldValidation(ucd.userForm.addoPassword)">
-                    <opene-error form="ucd.userForm" field="ucd.userForm.addoPassword"></opene-error>
+                    <opene-error form="ucd.userForm" field="ucd.userForm.addoUsername"></opene-error>
                 </md-input-container>
                 <md-input-container flex>
                     <label>{{ 'ADDO.USER.PASSWORD' | translate }}</label>
-                    <input type="password" name="addoPassword" ng-model="ucd.user.addoPassword" 
-                           ng-required="ucd.useAddo && ucd.user.addoUsername && ucd.userForm.addoUsername.$touched"
+                    <input type="password" name="addoPassword" ng-model="ucd.user.addo.addoPassword" 
+                           ng-required="ucd.user.addo && ucd.user.addo.addoUsername && ucd.userForm.addoUsername.$touched"
                            ng-click="ucd.userForm.addoUsername.$setTouched()"
                            ng-change="ucd.clearFieldValidation(ucd.userForm.addoUsername); ucd.clearFieldValidation(ucd.userForm.addoPassword)">
                 </md-input-container>
