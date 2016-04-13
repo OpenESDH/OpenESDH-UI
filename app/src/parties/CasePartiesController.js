@@ -12,7 +12,6 @@ function CasePartiesController($scope, $stateParams, $mdDialog, $filter, $transl
     vm.showAddPartiesDialog = showAddPartiesDialog;
     vm.showChangePartyDialog = showChangePartyDialog;
     vm.showPersonReadOnly = showPersonReadOnly;
-    vm.getRoleDisplayName = getRoleDisplayName;
     vm.layout = 'list';
 
     init();
@@ -20,8 +19,8 @@ function CasePartiesController($scope, $stateParams, $mdDialog, $filter, $transl
     function init(){
         partyPermittedRolesService.getRoles().then(function(roles) {
             vm.roles = roles;
-            fillList();
         });
+        fillList();
     }
 
     function fillList() {
@@ -29,15 +28,6 @@ function CasePartiesController($scope, $stateParams, $mdDialog, $filter, $transl
         casePartiesService.getCaseParties($stateParams.caseId).then(function(parties) {
             vm.parties = parties;
         });
-    }
-    
-    function getRoleDisplayName(nodeRef){
-        for(var i=0; i < vm.roles.length; i++){
-            var role = vm.roles[i];
-            if(role.nodeRef == nodeRef){
-                return role.displayName;
-            }
-        }
     }
 
     function removeParty(ev, party) {
