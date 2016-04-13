@@ -11,23 +11,18 @@
 
             <md-input-container flex>
                 <label>{{ 'COMMON.NAME' | translate }}</label>
-                <input type="text" ng-model="dlChange.party.displayName" ng-readonly="true">
+                <input type="text" ng-model="dlChange.party.contact.displayName" ng-readonly="true">
             </md-input-container>
 
             <md-input-container flex>
                 <label>{{ 'COMMON.EMAIL' | translate }}</label>
-                <input type="text" ng-model="dlChange.party.contactId" ng-readonly="true">
+                <input type="text" ng-model="dlChange.party.contact.contactId" ng-readonly="true">
             </md-input-container>
 
             <md-input-container flex>
-                <label>{{ 'PARTY.OLD_ROLE' | translate }}</label>
-                <input type="text" ng-model="dlChange.party.role" ng-readonly="true">
-            </md-input-container>
-
-            <md-input-container flex>
-                <label>{{ 'PARTY.TO_ROLE' | translate }} *</label>
-                <md-select ng-model="dlChange.newRole" md-on-open="dlChange.loadRoles()" required>
-                    <md-option ng-value="role" ng-repeat="role in dlChange.roles">{{role}}</md-option>
+                <label>{{ 'PARTY.ROLE' | translate }} *</label>
+                <md-select ng-model="dlChange.party.roleRef" required>
+                    <md-option ng-value="role.nodeRef" ng-repeat="role in dlChange.roles">{{role.displayName}}</md-option>
                 </md-select>
             </md-input-container>
         </md-dialog-content>

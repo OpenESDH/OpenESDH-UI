@@ -166,8 +166,8 @@
             function loadParties() {
                 return casePartiesService.getCaseParties(caseId).then(function(parties) {
                     vmNote.caseParties = parties.map(function(party) {
-                        party._lowername = angular.lowercase(party.displayName);
-                        return party;
+                        party.contact._lowername = angular.lowercase(party.contact.displayName);
+                        return party.contact;
                     });
                     return vmNote.caseParties;
                 });

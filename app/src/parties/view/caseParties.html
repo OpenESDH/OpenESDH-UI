@@ -10,17 +10,17 @@
 
         <div layout="row" layout-wrap ng-show="cmCPC.layout == 'grid'">
             <div ng-repeat="party in cmCPC.parties | orderObjectBy:orderByAttribute:reverseOrder" flex-gt-md="33" flex="50" flex-sm="100">
-                <h4 style="margin-bottom: 0;" class="md-title">{{ party.displayName}}</h4>
+                <h4 style="margin-bottom: 0;" class="md-title">{{ party.contact.displayName}}</h4>
                 <dl layout="row" layout-wrap>
 
                     <dt flex="20">{{ 'COMMON.EMAIL' | translate }}</dt>
-                    <dd flex="80"><a style="color:#1E88E5" href ng-click="cmCPC.showPersonReadOnly($event, party.nodeRef)">{{ party.contactId }}</a></dd>
+                    <dd flex="80"><a style="color:#1E88E5" href ng-click="cmCPC.showPersonReadOnly($event, party.contact.nodeRef)">{{ party.contact.contactId }}</a></dd>
                     
                     <dt flex="20">{{ 'COMMON.TYPE' | translate }}</dt>
-                    <dd flex="80">{{ 'CONTACT.' + party.contactType | translate }}</dd>
+                    <dd flex="80">{{ 'CONTACT.' + party.contact.contactType | translate }}</dd>
                     
                     <dt flex="20">{{ 'PARTY.ROLE' | translate }}</dt>
-                    <dd flex="80">{{ party.role }}</dd>
+                    <dd flex="80">{{cmCPC.getRoleDisplayName(party.roleRef)}}</dd>
                     
                     <div layout="row" layout-padding>
                         <md-button class="md-primary" ng-click="cmCPC.showChangePartyDialog($event, party)" ng-disabled="caseCtrl.caseIsLocked">{{ 'PARTY.CHANGE' | translate }}</md-button>
@@ -43,12 +43,12 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="party in cmCPC.parties | orderObjectBy:orderByAttribute:reverseOrder">
-                        <td>{{party.displayName}}</td>
+                        <td>{{party.contact.displayName}}</td>
                         <td>
-                            <a style="color:#1E88E5" href ng-click="cmCPC.showPersonReadOnly($event, party.nodeRef)">{{party.contactId}}</a>
+                            <a style="color:#1E88E5" href ng-click="cmCPC.showPersonReadOnly($event, party.contact.nodeRef)">{{party.contact.contactId}}</a>
                         </td>
-                        <td>{{ 'CONTACT.' + party.contactType | translate}}</td>
-                        <td>{{party.role}}</td>
+                        <td>{{ 'CONTACT.' + party.contact.contactType | translate}}</td>
+                        <td>{{cmCPC.getRoleDisplayName(party.roleRef)}}</td>
                         <td>
                             <md-button class="md-primary" ng-click="cmCPC.showChangePartyDialog($event, party)" ng-disabled="caseCtrl.caseIsLocked">{{ 'PARTY.CHANGE' | translate }}</md-button>
                             <md-button class="md-primary" ng-click="cmCPC.removeParty($event, party)" ng-disabled="caseCtrl.caseIsLocked">{{ 'COMMON.REMOVE' | translate }}</md-button>
