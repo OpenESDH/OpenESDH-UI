@@ -20,7 +20,7 @@
                     <dd flex="80">{{ 'CONTACT.' + party.contact.contactType | translate }}</dd>
                     
                     <dt flex="20">{{ 'PARTY.ROLE' | translate }}</dt>
-                    <dd flex="80">{{cmCPC.getRoleDisplayName(party.roleRef)}}</dd>
+                    <dd flex="80">{{ party.roleDisplayName }}</dd>
                     
                     <div layout="row" layout-padding>
                         <md-button class="md-primary" ng-click="cmCPC.showChangePartyDialog($event, party)" ng-disabled="caseCtrl.caseIsLocked">{{ 'PARTY.CHANGE' | translate }}</md-button>
@@ -48,7 +48,7 @@
                             <a style="color:#1E88E5" href ng-click="cmCPC.showPersonReadOnly($event, party.contact.nodeRef)">{{party.contact.contactId}}</a>
                         </td>
                         <td>{{ 'CONTACT.' + party.contact.contactType | translate}}</td>
-                        <td>{{cmCPC.getRoleDisplayName(party.roleRef)}}</td>
+                        <td>{{ party.roleDisplayName }}</td>
                         <td>
                             <md-button class="md-primary" ng-click="cmCPC.showChangePartyDialog($event, party)" ng-disabled="caseCtrl.caseIsLocked">{{ 'PARTY.CHANGE' | translate }}</md-button>
                             <md-button class="md-primary" ng-click="cmCPC.removeParty($event, party)" ng-disabled="caseCtrl.caseIsLocked">{{ 'COMMON.REMOVE' | translate }}</md-button>
