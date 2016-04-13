@@ -10,7 +10,7 @@
         return service;
 
         function getRoles() {
-            return $http.get("/api/openesdh/case/party/permittedRoles")
+            return $http.get("/api/openesdh/party/roles")
                     .then(successOrReject);
         }
 

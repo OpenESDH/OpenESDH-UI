@@ -3,7 +3,7 @@
             .module('openeApp.cases.parties')
             .factory('casePartiesService', CasePartiesService);
 
-    function CasePartiesService($http, $q) {
+    function CasePartiesService($http, $q, alfrescoNodeUtils) {
         var service = {
             getCaseParties: getCaseParties,
             createCaseParty: createCaseParty,
@@ -18,21 +18,20 @@
         }
 
         function createCaseParty(caseId, role, contacts) {
-            return $http.post('/api/openesdh/case/' + caseId + '/party/' + role, {contactNodeRefs: contacts})
+            return $http.post('/api/openesdh/case/' + caseId + '/party', {roleRef: role, contactIds: contacts})
                     .then(successOrReject);
         }
 
-        function changeCaseParty(caseId, nodeRefId, oldRole, newRole) {
+        function changeCaseParty(caseId, partyNodeRef, roleRef) {
             return $http.put('/api/openesdh/case/' + caseId + '/party',
                     {
-                        partyId: nodeRefId,
-                        oldRole: oldRole,
-                        newRole: newRole
+                        nodeRef: partyNodeRef,
+                        roleRef: roleRef
                     }).then(successOrReject);
         }
 
-        function deleteCaseParty(caseId, party) {
-            return $http.delete('/api/openesdh/case/' + caseId + '/party/' + party.role, {params: {partyId: party.nodeRef}})
+        function deleteCaseParty(caseId, partyRef) {
+            return $http.delete('/api/openesdh/case/' + caseId + '/party/' + alfrescoNodeUtils.processNodeRef(partyRef).uri)
                     .then(successOrReject);
         }
 
