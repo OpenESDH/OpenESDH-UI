@@ -1,23 +1,51 @@
-<div class="repeat-table">
-    <div class="repeat-header" layout>
-        <span class="r" flex>{{ 'CONTACT.FIRST_NAME' | translate }}</span>
-        <span class="r" flex>{{ 'CONTACT.LAST_NAME' | translate }}</span>
-        <span class="r" flex="20">{{ 'CONTACT.DEPARTMENT' | translate }}</span>
-        <span class="r" flex>{{ 'CONTACT.STREET' | translate }}</span>
-        <span class="r" flex="10">{{ 'CONTACT.POSTAL_CODE' | translate }}</span>
-        <span class="r" flex="10">{{ 'CONTACT.CITY' | translate }}</span>
-        <span class="r" flex="10">{{ 'CONTACT.COUNTRY' | translate }}</span>
+<div class="tlist">
+    <div class="tlist__header" layout="row" style="border-bottom:0">
+        <div class="tlist__cell" flex>
+            <div layout="row" layout-align="space-between center">
+                <span>{{ 'CONTACT.FIRST_NAME' | translate }}</span>
+                <opene-column-filter type="text" filter="vm.filterArray" value="firstName" />
+            </div>
+        </div>
+        <div class="tlist__cell" flex>
+            <div layout="row" layout-align="space-between center">
+                <span>{{ 'CONTACT.LAST_NAME' | translate }}</span>
+                <opene-column-filter type="text" filter="vm.filterArray" value="lastName" />
+            </div>
+        </div>
+        <div class="tlist__cell" flex>
+            <div layout="row" layout-align="space-between center">
+                <span>{{ 'CONTACT.STREET' | translate }}</span>
+                <opene-column-filter type="text" filter="vm.filterArray" value="address" />
+            </div>
+        </div>
+        <div class="tlist__cell" flex="10">
+            <div layout="row" layout-align="space-between center">
+                <span>{{ 'CONTACT.POSTAL_CODE' | translate }}</span>
+                <opene-column-filter type="text" filter="vm.filterArray" value="postCode" />
+            </div>
+        </div>
+        <div class="tlist__cell" flex="10">
+            <div layout="row" layout-align="space-between center">
+                <span>{{ 'CONTACT.CITY' | translate }}</span>
+                <opene-column-filter type="text" filter="vm.filterArray" value="cityName" />
+            </div>
+        </div>
+        <div class="tlist__cell" flex="10">
+            <div layout="row" layout-align="space-between center">
+                <span>{{ 'CONTACT.COUNTRY' | translate }}</span>
+                <opene-column-filter type="text" filter="vm.filterArray" value="countryName" />
+            </div>
+        </div>
     </div>
-    <md-virtual-repeat-container md-auto-shrink>
-        <div md-virtual-repeat="person in vm.dataLoader" md-on-demand class="repeat-item">
+    <md-virtual-repeat-container class="tlist__body" flex-height>
+        <div md-virtual-repeat="person in vm.persons | filter:vm.columnFilter" class="tlist__item" layout="column" flex>
             <a class="r-rowlink" href ng-click="vm.showPersonEdit($event, person)" layout="row">
-                <span class="r" flex>{{person.firstName}}</span>
-                <span class="r" flex>{{person.lastName}}</span>
-                <span class="r" flex="20">{{person.department}}</span>
-                <span class="r" flex>{{person.address}}</span>
-                <span class="r" flex="10">{{person.postCode}}</span>
-                <span class="r" flex="10">{{person.cityName}}</span>
-                <span class="r" flex="10">{{person.countryCode ? (person.countryCode | countryCodeToName) : null}}</span>
+                <span class="tlist__cell" flex>{{person.firstName}}</span>
+                <span class="tlist__cell" flex>{{person.lastName}}</span>
+                <span class="tlist__cell" flex>{{person.address}}</span>
+                <span class="tlist__cell" flex="10">{{person.postCode}}</span>
+                <span class="tlist__cell" flex="10">{{person.cityName}}</span>
+                <span class="tlist__cell" flex="10">{{person.countryCode ? (person.countryCode | countryCodeToName) : null}}</span>
             </a>
         </div>
     </md-virtual-repeat-container>
