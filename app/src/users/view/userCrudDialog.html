@@ -50,7 +50,7 @@
                 </div>
             </div>
 
-            <div layout ng-show="!ucd.userExists">
+            <div layout>
                 <md-input-container flex>
                     <label>{{ 'LOGIN.PASSWORD' | translate }} *</label>
                     <input type="password" name="password" ng-model="ucd.user.usr.password" ng-required="!ucd.userExists || undefined">
