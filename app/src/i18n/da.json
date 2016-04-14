@@ -68,7 +68,8 @@
         "DOWNLOAD_TEMPLATE_CSV": "Hent CSV skabelon",
         "LOCKED_BY": "Låst af {{locked_by}}",
         "CONGRATULATIONS": "Tillykke!",
-        "DISABLED": "Deaktiveret"
+        "DISABLED": "Deaktiveret",
+        "ADD_MORE_INFO": "Tilføj yderligere information"
     },
     "SIMPLE_CASE": {
         "TYPE": "Standardsag"

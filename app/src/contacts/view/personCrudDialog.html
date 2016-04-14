@@ -103,7 +103,7 @@
                 </md-input-container>
             </div>
             <div layout="column" ng-hide="fullForm" style="text-align: center;">
-                <a href ng-click="fullForm = true;" class="oe_add_more">Add more information</a>
+                <a href ng-click="fullForm = true;" class="oe_add_more">{{'COMMON.ADD_MORE_INFO' | translate}}</a>
             </div>
         </md-dialog-content>
         <md-dialog-actions ng-if="('can_create_contacts' | oeParam) && !readOnly">
