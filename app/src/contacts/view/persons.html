@@ -4,7 +4,7 @@
             <h3 class="md-title" flex ng-hide="hideHeader">{{ 'CONTACT.CONTACTS' | translate }}</h3>
             <md-input-container flex="15">
                 <label>{{ 'CONTACT.SEARCH_FOR_CONTACTS' | translate }}</label>
-                <input type="text" ng-model="vm.searchQuery" ng-model-options="{debounce: 300}" ng-change="vm.dataLoader.search(vm.searchQuery)">
+                <input type="text" ng-model="vm.searchQuery" ng-model-options="{debounce: 300}" ng-change="vm.loadPersons()">
             </md-input-container>
         </div>
         
