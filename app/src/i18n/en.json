@@ -68,7 +68,8 @@
         "DOWNLOAD_TEMPLATE_CSV": "Download template CSV",
         "LOCKED_BY": "Locked by {{locked_by}}",
         "CONGRATULATIONS": "Congratulations!",
-        "DISABLED": "Disabled"
+        "DISABLED": "Disabled",
+        "ADD_MORE_INFO": "Add more information"
     },
     "SIMPLE_CASE": {
         "TYPE": "Standard case"
