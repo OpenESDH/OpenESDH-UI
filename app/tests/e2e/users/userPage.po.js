@@ -10,7 +10,7 @@ var UserPage = function() {
         email: element(by.model('ucd.user.cm.email')),
         enabled: element(by.model('ucd.user.enabled')),
         userName: element(by.model('ucd.user.cm.userName')),
-        password: element(by.model('ucd.user.cm.password')),
+        password: element(by.model('ucd.user.usr.password')),
         verifypassword: element(by.model('ucd.user.verifypassword')),
         desc: element(by.model('ucd.user.cm.desc')),
         cuOkBtn: element(by.id('create-user-dialog-ok-btn')),

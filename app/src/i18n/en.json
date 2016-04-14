@@ -581,6 +581,7 @@
         "FAILED_TO_UPLOAD_MSG": "{{failedNumberOfUsers}} user(s) were not added for the following reasons:",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER": "Are you sure you want to delete '{{user}}'?",
         "CAN_NOT_DELETE_ADMIN_USER": "Deletion of the admin user is not permitted.",
+        "DISABLE_ACCOUNT": "Disable account",
         "EMAIL_FEED_ENABLED": "Email feed enabled",
         "MANAGER": "Manager",
         "ERRORS": {
@@ -679,7 +680,8 @@
         "AUTH_FAILURE": "Incorrect authentication details",
         "AUTH_ERROR": "Internal login error",
         "NOT_EQUAL_PATTERN": "Wrong input format",
-        "INVALID_CSV_FILE": "Can not read csv file"
+        "INVALID_CSV_FILE": "Can not read csv file",
+        "ACCESS_DENIED": "Access Denied. You do not have the appropriate permissions to perform this operation."
     },
     "LOGIN": {
         "LOGIN": "Login",

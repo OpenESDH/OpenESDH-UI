@@ -12,7 +12,6 @@
         vm.cancel = cancel;
         vm.save = save;
         vm._saveNew = _saveNew;
-        vm._afterCaseCreated = null;//if assigned, then will be called after case creation _afterCaseCreated(caseId)
         vm._update = _update;
         vm.init = init;
         vm.initCasePropsForEdit = initCasePropsForEdit;
@@ -93,15 +92,20 @@
             var vm = this;
             var props = vm.getPropsToSave();
             // When submitting, do something with the case data
-            return caseService.createCase(vm.caseInfo.type, props).then(function (caseId){
-                if (vm._afterCaseCreated) {
-                    //if assigned, then will be called after case creation _afterCaseCreated(caseId)
-                    return vm._afterCaseCreated(caseId);
-                }
+            return caseService.createCase(vm.caseInfo.type, props).then(function (caseNodeRef){
                 // When the form is submitted, show a notification:
                 notificationUtilsService.notify($translate.instant("CASE.CASE_CREATED", {case_title: props.prop_cm_title}));
-                $mdDialog.hide(caseId);
-                return caseId;
+                
+                return caseService.getCaseId(caseNodeRef).then(function(caseId){
+                    $mdDialog.hide(caseId);
+                    return caseId;
+                }, function(error){
+                    if (error.domain && error.code === 'ERROR.ACCESS_DENIED'){
+                        //case was created for other user and we cannot access it
+                        $mdDialog.cancel();
+                    }
+                    return error;
+                });
             }, function(error) {
                 if (error.domain){
                     notificationUtilsService.alert(error.message);

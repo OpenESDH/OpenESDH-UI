@@ -52,9 +52,11 @@ function UserDialogController($mdDialog, $translate, $injector, notificationUtil
     function clearFieldValidation(field) {
         if (!field || field.$valid)
             return;
-        var errKey = Object.keys(field.$error);
-        if (errKey.length > 0){
-            field.$setValidity(errKey[0], true);
+        var e = Object.keys(field.$error);
+        for (var key in e) {
+            if (e.hasOwnProperty(key)) {
+                field.$setValidity(e[key], true);
+            }
         }
     }
 }
