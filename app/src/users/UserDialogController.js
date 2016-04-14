@@ -41,7 +41,15 @@ function UserDialogController($scope, $mdDialog, $mdToast, $translate, $injector
     function update(u) {
         if (ucd.userExists)
             ucd.user.disableAccount = !u.enabled;
-        var promise = (ucd.userExists) ? userService.updateUser(ucd.user) : userService.createUser(ucd.user);
+        var promise = (ucd.userExists) ? 
+                        userService.updateUser(ucd.user).then(function(userSaveResponse){
+                            var password = ucd.user.password; 
+                            if(password != undefined && password != null){
+                                userService.changePassword(ucd.user.userName, password);
+                            }
+                            return userSaveResponse;
+                        }) 
+                    : userService.createUser(ucd.user);
         promise.then(function(userSaveResponse) {
             if (ucd.useAddo && ucd.user.addoPassword) {
                 addoService
