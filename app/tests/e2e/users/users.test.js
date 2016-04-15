@@ -3,7 +3,6 @@ var loginPage = require('../login/loginPage.po.js');
 var globalHeader = require('../common/globalHeader.po.js');
 
 describe('openESDH users page tests', function() {
-    console.log('openESDH users page tests');
 
     //Executed before each of the "it" tests
     beforeEach(function() {
@@ -12,10 +11,17 @@ describe('openESDH users page tests', function() {
 
     //logout and wait for 2 secs
     afterEach(function() {
-        browser.driver.sleep(4000);//wait for toast message to hide
         loginPage.logout();
     });
 
+    //delete all created users
+    afterAll(function() {
+        loginPage.login(true);
+        browser.waitForAngular().then(function() {
+            userPage.deleteUsers();
+            loginPage.logout(0, 0);
+        });
+    });
 
     it('login as admin and navigate to users page', function() {
         console.log('login as admin and navigate to users page');
@@ -28,7 +34,6 @@ describe('openESDH users page tests', function() {
         console.log('login, navigate to users page and create user as Admin');
         userPage.goToUsersPage();
         browser.driver.sleep(1000);
-        expect(element(by.repeater('user in vm.allSystemUsers').row(0).column('userName')));
         userPage.createUser();
     });
 
@@ -39,13 +44,5 @@ describe('openESDH users page tests', function() {
         expect(element(by.repeater('user in vm.allSystemUsers').row(0).column('userName')));
         userPage.editUser();
     });
-
-//    it('login, navigate to users page and delete all created users', function() {
-//        console.log('login, navigate to users page and delete all created users');
-//        //some time for solr 
-//        browser.driver.sleep(5000);
-//        userPage.goToUsersPage();
-//        userPage.deleteUsers();
-//    });
 
 });
