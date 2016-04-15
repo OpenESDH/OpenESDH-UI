@@ -8,7 +8,7 @@
                     <i class="material-icons" style="vertical-align: middle;">arrow_back</i> {{ 'CASE.CASES' | translate }}
                 </md-button>
                 <h1 class="md-headline" layout-margin>
-                    {{ caseCtrl.case["cm:title"].value }} <span class="muted">{{ caseCtrl.case["oe:id"].value }}</span>
+                    {{ caseCtrl.case["cm:title"].value }} <span class="muted" id="caseId">{{ caseCtrl.case["oe:id"].value }}</span>
                     <span class="muted" ng-hide="caseCtrl.case['oe:status'].value === 'active'">
                         ({{caseCtrl.case['oe:status'].value| caseStatus}})
                     </span>

@@ -13,7 +13,7 @@
     <md-menu ng-controller="AuthController as vm"
              class="global-tools__user"
              md-position-mode="target-right target">
-        <md-button aria-label="{{ 'MENU.OPEN_MENU' | translate }}" ng-click="$mdOpenMenu($event)"
+        <md-button id="admin_menu_btn" aria-label="{{ 'MENU.OPEN_MENU' | translate }}" ng-click="$mdOpenMenu($event)"
                    style="text-transform: capitalize;">
             <span hide-sm>{{ vm.getUserInfo().user.firstName }}</span> <span hide-sm hide-md>{{ vm.getUserInfo().user.lastName }}</span>
             <i class="material-icons" style="vertical-align: middle;">more_vert</i>
@@ -103,5 +103,4 @@
             </md-whiteframe>
         </form>
     </div>
-
 </md-toolbar>

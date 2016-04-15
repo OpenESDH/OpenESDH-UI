@@ -5,6 +5,7 @@ describe('openESDH login page', function() {
 
     it('should be able to access login page and login to user dashboard', function() {
         loginPage.login();
+        console.log('should be able to access login page and login to user dashboard');
         //detect the userMenu button
         expect(globalHeader.getHeaderMenuItem().userMenuBtn);
         loginPage.logout();

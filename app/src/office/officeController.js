@@ -61,10 +61,6 @@ function OfficeController($stateParams, $window, $controller, $translate, office
                 type: caseType
             };
             var caseController = $controller(caseCrudDialogService.getCaseControllerName(caseType), {caseInfo: caseInfo});
-            caseController._afterCaseCreated = function(caseId) {
-                return caseId;
-            };
-
             angular.extend(this, caseController);
             vm.init();
         }
