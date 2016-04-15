@@ -12,7 +12,7 @@ var UserPage = function() {
         userName: element(by.model('ucd.user.cm.userName')),
         password: element(by.model('ucd.user.usr.password')),
         verifypassword: element(by.model('ucd.user.verifypassword')),
-        desc: element(by.model('ucd.user.cm.desc')),
+        desc: element(by.model('ucd.user.cm.description')),
         cuOkBtn: element(by.id('create-user-dialog-ok-btn')),
         cuCancelBtn: element(by.id('create-user-dialog-cancel-btn'))
     };
@@ -22,6 +22,7 @@ var UserPage = function() {
     return {
         goToUsersPage: goToUsersPage,
         createUser: createUser,
+        editUser: editUser,
         deleteUsers: deleteUsers
     };
 
@@ -74,19 +75,28 @@ var UserPage = function() {
         });
     }
 
+    function editUser() {
+        var firstActiveRow = element.all(by.css('.repeat-item.enabled')).get(0);
+        var firstEditButton = firstActiveRow.element(by.css('[ng-click="vm.editUser($event, user)"]'));
+        expect(firstEditButton);
+        firstEditButton.click().then(function() {
+            browser.wait(protractor.ExpectedConditions.visibilityOf(userCUInputFields.firstName), 10000).then(function() {
+                element(by.id('create-user-dialog-cancel-btn')).click().then(nop);
+            });
+        });
+    }
+
     function deleteUsers() {
         createdUsers.map(function(username) {
-            element(by.xpath('//button[@data-username="' + username + '"]'))
-                    .click().then(function() {
-//                console.log('yes');
+            element(by.xpath('//button[@data-username="' + username + '"]')).click().then(function() {
                 element(by.xpath('//md-dialog[@aria-label=\'ConfirmAre you sure ...\']//button[@aria-label=\'Yes\']'))
-                        .click().then(function() {
-//                    console.log('deleted');
-                });
+                        .click().then(nop);
             });
             return username;
         });
     }
+
+    function nop() {}
 };
 
 module.exports = UserPage();
