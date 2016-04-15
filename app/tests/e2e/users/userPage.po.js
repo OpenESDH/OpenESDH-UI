@@ -81,22 +81,19 @@ var UserPage = function() {
         expect(firstEditButton);
         firstEditButton.click().then(function() {
             browser.wait(protractor.ExpectedConditions.visibilityOf(userCUInputFields.firstName), 10000).then(function() {
-                element(by.id('create-user-dialog-cancel-btn')).click().then(nop);
+                element(by.id('create-user-dialog-cancel-btn')).click();
             });
         });
     }
 
     function deleteUsers() {
-        createdUsers.map(function(username) {
-            element(by.xpath('//button[@data-username="' + username + '"]')).click().then(function() {
-                element(by.xpath('//md-dialog[@aria-label=\'ConfirmAre you sure ...\']//button[@aria-label=\'Yes\']'))
-                        .click().then(nop);
+        browser.executeAsyncScript(function(_createdUsers, callback) {
+            var userService = angular.element(document.body).injector().get('userService');
+            _createdUsers.forEach(function(username){
+                userService.deleteUser(username).then(callback);
             });
-            return username;
-        });
+        }, createdUsers);
     }
-
-    function nop() {}
 };
 
 module.exports = UserPage();

@@ -1,4 +1,4 @@
-var CasePage = function () {
+var CasePage = function() {
     var globalHeaderMenu = require('../common/globalHeader.po.js');
 
     return{
@@ -12,25 +12,26 @@ var CasePage = function () {
     function goToCasesPage() {
         globalHeaderMenu.getHeaderMenuItem().casesBtn.click();
     }
-    
-    function deleteCases(casesToDelete){
-        browser.driver.sleep(5000);
-        goToCasesPage();
-        browser.driver.sleep(2000);
 
-        for (i = 0; i < casesToDelete.length; i++) {
-            var caseId = casesToDelete.pop();
-
-            element(by.xpath('//button[@data-case-id="' + caseId + '"]'))
-                    .click().then(function() {
-                element(by.xpath('//md-dialog[@aria-label=\'ConfirmAre you sure ...\']//button[@aria-label=\'Yes\']'))
-                        .click().then(function() {
-//                    console.log('deleted');
-                });
-            });
-        }
+    function deleteCases(casesToDelete) {
+        casesToDelete.forEach(_deleteCase);
     }
 
+    /*
+     * deletes case using angular services directly:
+     * - caseService.getCaseInfo
+     * - alfrescoFolderService.deleteFolder
+     */
+    function _deleteCase(caseId) {
+        browser.executeAsyncScript(function(_caseId, callback) {
+            var caseService = angular.element(document.body).injector().get('caseService');
+            var alfrescoFolderService = angular.element(document.body).injector().get('alfrescoFolderService');
+            caseService.getCaseInfo(_caseId).then(function(caseInfo) {
+                alfrescoFolderService.deleteFolder(caseInfo.properties.nodeRef).then(callback);
+            });
+        }, caseId).then(function(response) {
+        });
+    }
 };
 
 module.exports = CasePage();

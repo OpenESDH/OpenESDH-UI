@@ -13,8 +13,16 @@ describe('openESDH case page tests', function() {
 
     //logout and wait for 2 secs
     afterEach(function() {
-        browser.driver.sleep(4000);//wait for toast message to hide
         loginPage.logout();
+    });
+    
+    //delete all created users
+    afterAll(function() {
+        loginPage.login(true);
+        browser.waitForAngular().then(function() {
+            casePage.deleteCases(casesToDelete);
+            loginPage.logout(0, 0);
+        });
     });
 
     it('login and navigate to cases page', function() {
@@ -78,9 +86,4 @@ describe('openESDH case page tests', function() {
             });
         });
     });
-
-//    it('should delete created simple case', function() {
-//        console.log('should delete created simple case');
-//        casePage.deleteCases(casesToDelete);
-//    });
 });
