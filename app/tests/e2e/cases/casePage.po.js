@@ -3,7 +3,8 @@ var CasePage = function() {
 
     return{
         goToCasesPage: goToCasesPage,
-        deleteCases: deleteCases
+        deleteCases: deleteCases,
+        createCaseSilent: createCaseSilent
     };
 
     /**
@@ -32,6 +33,21 @@ var CasePage = function() {
         }, caseId).then(function(response) {
         });
     }
+    function createCaseSilent(type, props){
+        return browser.executeAsyncScript(function(type, props, callback) {
+                var caseService = angular.element(document.body).injector().get('caseService');
+                caseService.createCase(type, props).then(function(nodeRef){
+                    return caseService.getCaseId(nodeRef).then(callback);
+                });
+            },
+            type,
+            props
+        ).then(function (caseId) {
+            //console.log("!!!! case created " + caseId);
+            return caseId;
+        });
+    }
+
 };
 
 module.exports = CasePage();
