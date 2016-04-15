@@ -79,8 +79,8 @@ describe('openESDH case page tests', function() {
         });
     });
 
-    it('should delete created simple case', function() {
-        console.log('should delete created simple case');
-        casePage.deleteCases(casesToDelete);
-    });
+//    it('should delete created simple case', function() {
+//        console.log('should delete created simple case');
+//        casePage.deleteCases(casesToDelete);
+//    });
 });

@@ -40,12 +40,12 @@ describe('openESDH users page tests', function() {
         userPage.editUser();
     });
 
-    it('login, navigate to users page and delete all created users', function() {
-        console.log('login, navigate to users page and delete all created users');
-        //some time for solr 
-        browser.driver.sleep(5000);
-        userPage.goToUsersPage();
-        userPage.deleteUsers();
-    });
+//    it('login, navigate to users page and delete all created users', function() {
+//        console.log('login, navigate to users page and delete all created users');
+//        //some time for solr 
+//        browser.driver.sleep(5000);
+//        userPage.goToUsersPage();
+//        userPage.deleteUsers();
+//    });
 
 });
