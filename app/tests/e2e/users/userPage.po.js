@@ -23,8 +23,16 @@ var UserPage = function() {
         goToUsersPage: goToUsersPage,
         createUser: createUser,
         editUser: editUser,
-        deleteUsers: deleteUsers
+        deleteUsers: deleteUsers,
+        getCurrentUser: getCurrentUser
     };
+    
+    function getCurrentUser(){
+        return browser.executeAsyncScript(function(callback) {
+            var userService = angular.element(document.body).injector().get('userService');
+            userService.getCurrentUser().then(callback);
+        });
+    }
 
     /**
      * Go to the cases page.
