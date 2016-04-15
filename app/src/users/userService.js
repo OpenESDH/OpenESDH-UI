@@ -67,14 +67,12 @@ function userService($http) {
                 userObj,
                 { errorHandler: 'skip'}
                 ).then(function(response) {
-            console.log("Return success");
             return response.data;
         });
     }
 
     function updateUser(userObj) {
         return $http.put('/api/people/' + encodeURIComponent(userObj.userName), userObj, { errorHandler: 'skip'}).then(function(response) {
-            console.log("Return success");
             return response.data;
         });
     }
@@ -85,11 +83,14 @@ function userService($http) {
         });
     }
 
-    function changePassword(user) {
-        return $http.put("/api/person/changepassword/" + encodeURIComponent(user.userName),
-                user
-                ).then(function(response) {
-            console.log("Changing Password");
+    function changePassword(userName, newpw, oldpw) {
+        var data = {
+                newpw: newpw
+        };
+        if(oldpw != undefined){
+            data.oldpw = oldpw;
+        }
+        return $http.post("/api/person/changepassword/" + encodeURIComponent(userName), data).then(function(response) {
             return response.data;
         });
     }
