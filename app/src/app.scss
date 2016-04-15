@@ -594,3 +594,9 @@ a.oe_add_more {
         text-decoration: none;
     }
 }
+
+@media (min-width: 960px) {
+    md-toast.md-top {
+        right: 160px;
+    }
+}
