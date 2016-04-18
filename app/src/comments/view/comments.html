@@ -1,0 +1,37 @@
+<md-card ng-controller="CommentsController as commCtrl">
+    <md-card-content>
+        <h3>{{ 'COMMENTS.COMMENTS' | translate }}</h3>
+
+        <div class="repeat-table">
+            <div class="repeat-header" layout="row">
+                <span class="r" flex="20">{{ 'COMMON.DATE' | translate }}</span>
+                <span class="r" flex=20>{{ 'COMMON.OWNER' | translate }}</span>
+                <span class="r" flex>{{ 'COMMENTS.COMMENT' | translate }}</span>
+                <span class="r" flex="10"></span>
+            </div>
+            <md-virtual-repeat-container>
+                <div md-virtual-repeat="comment in commCtrl.comments.items">
+                    <div class="repeat-item" layout="row">
+                        <span class="r" flex="20">{{comment.modifiedOnISO | openeDate}}</span>
+                        <span class="r muted" flex="20">{{comment.author.firstName + ' ' + comment.author.lastName}}</span>
+                        <span class="r muted" flex>{{comment.content}}</span>
+                        <span class="muted" flex="10">
+                            <md-menu ng-if="comment.permissions.edit || comment.permissions.delete">
+                                <md-button ng-click="$mdOpenMenu($event)">
+                                    {{ 'COMMON.ACTIONS' | translate }}
+                                </md-button>
+                                <md-menu-content>
+                                    <md-menu-item ng-if="comment.permissions.edit"><md-button ng-click="commCtrl.editComment(comment)">{{ 'COMMON.EDIT' | translate }}</md-button></md-menu-item>
+                                    <md-menu-item ng-if="comment.permissions.delete"><md-button ng-click="commCtrl.deleteComment($event, comment)">{{ 'COMMON.DELETE' | translate }}</md-button></md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+                        </span>
+                    </div>
+                </div>
+            </md-virtual-repeat-container>
+        </div>
+    </md-card-content>
+    <div class="md-actions" layout="row">
+        <md-button class="md-primary" ng-click="commCtrl.addComment()">{{ 'COMMENTS.ADD_COMMENT' | translate }}</md-button>
+    </div>
+</md-card>
