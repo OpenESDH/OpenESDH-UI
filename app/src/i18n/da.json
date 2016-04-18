@@ -69,7 +69,8 @@
         "LOCKED_BY": "Låst af {{locked_by}}",
         "CONGRATULATIONS": "Tillykke!",
         "DISABLED": "Deaktiveret",
-        "ADD_MORE_INFO": "Tilføj yderligere information"
+        "ADD_MORE_INFO": "Tilføj yderligere information",
+        "DATE": "Dato"
     },
     "SIMPLE_CASE": {
         "TYPE": "Standardsag"
@@ -228,6 +229,13 @@
         "COMMENTS_OF": "Kommentar til {{filename}}",
         "USER_TIMESTAMP": "{{date}} af {{name}}",
         "VIEW_COMMENTS": "Læs kommentar"
+    },
+    "COMMENTS": {
+        "COMMENTS": "Kommentarer",
+        "ADD_COMMENT": "Tilføj kommentar",
+        "EDIT_COMMENT": "Redigér kommentar",
+        "COMMENT": "Kommentar",
+        "ARE_YOU_SURE_YOU_WANT_DELETE_COMMENT": "Er du sikker på at du vil slette kommentar?"
     },
     "COUNTRY": {
         "AF": "Afghanistan",

@@ -30,6 +30,7 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
                 ? filesService.getUserFiles
                 : filesService.getGroupFiles;
         listF().then(function(files) {
+            console.log("files", files);
             vm.files = files;
         }, showError);
     }

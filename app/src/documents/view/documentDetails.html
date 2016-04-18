@@ -88,6 +88,8 @@
         <ng-include ng-controller="DocumentAttachmentsController as docAttCtrl" 
                     ng-init="docAttCtrl.init('docCtrl.docVersion', 'docCtrl.documentNodeRef', 'docCtrl.doc.isDocumentEditable')" 
                     src="'app/src/documents/view/documentDetailsAttachments.html'"></ng-include>
+                    
+        <ng-include src="'app/src/comments/view/comments.html'"></ng-include>
     </div>
     <div flex="45">
         <md-card>
