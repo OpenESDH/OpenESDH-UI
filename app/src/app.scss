@@ -313,6 +313,12 @@ md-list md-list-item.active a {
         }
 
     }
+    .tlist__cell__date{
+        width: 138px;
+    }
+    .tlist__cell__action{
+        max-width: 88px;
+    }
     .tlist__cell__menu{
         padding: 0;
         md-menu {

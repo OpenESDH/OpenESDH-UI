@@ -20,6 +20,8 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
 
     vm.actionItems = fileListItemActionService.getItems();
     vm.executeAction = executeAction;
+    
+    vm.columns = initColumns();
 
     vm.filterArray = {};
     vm.columnFilter = columnFilter;
@@ -66,8 +68,17 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
             templateUrl: 'app/src/files/view/addFiles.html',
             parent: angular.element(document.body),
             targetEvent: ev,
-            clickOutsideToClose: true
+            clickOutsideToClose: true,
+            locals: {
+                params: {
+                    addFiles: addFiles
+                }
+            }
         }).then(loadList);
+    }
+    
+    function addFiles(model) {
+        return filesService.uploadOwnerFiles(model.owner, model.files, model.comment);
     }
 
     function assignFile(ev, file) {
@@ -121,6 +132,18 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
         if (error && error.domain) {
             notificationUtilsService.alert(error.message);
         }
+    }
+    
+    function initColumns(){
+        return {
+            title: true,
+            comment: true,
+            created: true,
+            creator: true,
+            modified: true,
+            modifier: true,
+            action: true
+        };
     }
 
     function columnFilter(item) {

@@ -6,21 +6,21 @@
             </div>
         </md-toolbar>
         <md-dialog-content>
-            <div layout="column" class="opene-autocomplete-wrapper">
-                <opene-autocomplete datasource="addFileVm.owner" controller-name="AuthoritySelectorController" required="true" name="authorityName" label="{{'CASE.OWNER' | translate}} *"></opene-autocomplete>
+            <div layout="column" class="opene-autocomplete-wrapper" ng-hide="addFileVm.params.hideOwner">
+                <opene-autocomplete datasource="addFileVm.model.owner" controller-name="AuthoritySelectorController" required="!addFileVm.params.hideOwner" name="authorityName" label="{{'CASE.OWNER'| translate}} *"></opene-autocomplete>
                 <opene-error form="addFilesForm" field="addFilesForm.authorityName"></opene-error>
-                <div>
-                    <label class="label" for="oefile-upload">{{ 'FILE.SELECT_FILE' | translate }} *</label>
-                    <input type="file" id="oefile-upload" file-model="addFileVm.files" multiple required>
-                </div>
-                <md-input-container>
-                    <label>{{ 'COMMON.COMMENT' | translate }}</label>
-                    <textarea ng-model="addFileVm.comment" rows="5" columns="1"></textarea>
-                </md-input-container>
             </div>
+            <div layout="column">
+                <label class="label" for="oefile-upload">{{ 'FILE.SELECT_FILE' | translate }} *</label>
+                <input type="file" id="oefile-upload" file-model="addFileVm.model.files" multiple required>
+            </div>
+            <md-input-container layout="column">
+                <label>{{ 'COMMON.COMMENT' | translate }}</label>
+                <textarea ng-model="addFileVm.model.comment" rows="5" columns="1"></textarea>
+            </md-input-container>
         </md-dialog-content>
         <md-dialog-actions>
-            <md-button type="submit" class="md-primary" ng-disabled="addFilesForm.$invalid || !(addFileVm.files && addFileVm.files.length > 0)" ng-click="addFileVm.addFiles()">
+            <md-button type="submit" class="md-primary" ng-disabled="addFilesForm.$invalid || !(addFileVm.model.files && addFileVm.model.files.length > 0)" ng-click="addFileVm.addFiles(addFileVm.model)">
                 {{ 'COMMON.ADD' | translate }}
             </md-button>
             <md-button ng-click="addFileVm.cancel()">

@@ -1,110 +1,86 @@
-<md-card>
-    <md-card-content>
-
-        <a class="md-button md-primary" ui-sref="{{ovm.parentState}}.organizations">{{ 'ORG.BACK_TO_ORGS' | translate }}</a>
-
-        <h2>{{ovm.organization.organizationName}}</h2>
-
-        <div layout="row" layout-wrap>
-            <div flex="50">
-                <md-card>
-                    <md-card-content>
-                        <h3>{{ 'COMMON.INFORMATION' | translate }}</h3>
-                        <dl>
-                            <div layout>
-                                <div flex>
-                                    <dt>{{ 'ORG.COMPANY_NAME' | translate }}</dt>
-                                    <dd ng-bind="ovm.organization.organizationName"></dd>
-                                </div>
-                                <div flex>
-                                    <dt>{{ 'ORG.DEPARTMENT' | translate }}</dt>
-                                    <dd ng-bind="ovm.organization.department || '&nbsp;'"></dd>
-                                </div>
-                            </div>
-                            <div layout>
-                                <div flex>
-                                    <dt>{{ 'ORG.ADDRESS_1' | translate }}</dt>
-                                    <dd ng-bind="ovm.organization.addressLine1 || '&nbsp;'"></dd>
-                                </div>
-                                <div flex>
-                                    <dt>{{ 'ORG.ADDRESS_2' | translate }}</dt>
-                                    <dd ng-bind="ovm.organization.addressLine2 || '&nbsp;'"></dd>
-                                </div>
-                            </div>
-                            <div layout>
-                                <div flex="25">
-                                    <dt>{{ 'ORG.POSTAL_CODE' | translate }}</dt>
-                                    <dd ng-bind="ovm.organization.postCode || '&nbsp;'"></dd>
-                                </div>
-                                <div flex="25">
-                                    <dt>{{ 'ORG.CITY' | translate }}</dt>
-                                    <dd ng-bind="ovm.organization.cityName || '&nbsp;'"></dd>
-                                </div>
-                                <div flex>
-                                    <dt>{{ 'ORG.COUNTRY' | translate }}</dt>
-                                    <dd ng-bind="ovm.organization.countryCode | countryCodeToName"></dd>
-                                </div>
-                            </div>
-                            <div layout>
-                                <div flex>
-                                    <dt>{{ 'ORG.VAT_NO' | translate }}</dt>
-                                    <dd ng-bind="ovm.organization.cvrNumber"></dd>
-                                </div>
-                                <div flex>
-                                    <dt>{{ 'COMMON.EMAIL' | translate }}</dt>
-                                    <dd ng-bind="ovm.organization.email || '&nbsp;'"></dd>
-                                </div>
-                            </div>
-                            <div layout>
-                                <div flex>
-                                    <dt>{{ 'ORG.PHONE' | translate }}</dt>
-                                    <dd ng-bind="ovm.organization.phone || '&nbsp;'"></dd>
-                                </div>
-                                <div flex>
-                                    <dt>{{ 'ORG.MOBILE_PHONE' | translate }}</dt>
-                                    <dd ng-bind="ovm.organization.mobile || '&nbsp;'"></dd>
-                                </div>
-                            </div>
-                            <div layout>
-                                <div flex>
-                                    <dt>{{ 'ORG.WEBSITE' | translate }}</dt>
-                                    <dd ng-bind="ovm.organization.website || '&nbsp;'"></dd>
-                                </div>
-                            </div>
-                            <div layout>
-                                <div flex>
-                                    <dt>{{ 'ORG.LINKEDIN' | translate }}</dt>
-                                    <dd ng-bind="ovm.organization.linkedin || '&nbsp;'"></dd>
-                                </div>
-                                <div flex>
-                                    <dt>{{ 'ORG.IM' | translate }}</dt>
-                                    <dd ng-bind="ovm.organization.IM || '&nbsp;'"></dd>
-                                </div>
-                            </div>
-                            <div layout>
-                                <div flex>
-                                    <dt>{{ 'NOTE.NOTES' | translate }}</dt>
-                                    <dd ng-bind="ovm.organization.notes || '&nbsp;'"></dd>
-                                </div>
-                            </div>
-                        </dl>
-                    </md-card-content>
-                    <div class="md-actions" layout="row" ng-show="('can_create_contacts'|oeParam)">
-                        <md-button class="md-primary" ng-click="ovm.showOrganizationEdit($event)">{{ 'ORG.EDIT_ORG' | translate }}</md-button>
-                        <md-button class="md-primary" ng-click="ovm.deleteOrganization($event, ovm.organization)">{{ 'ORG.DELETE_ORG' | translate }}</md-button>
-                    </div>
-                </md-card>
-            </div>
+<div class="sub-toolbar">
+    <div layout="row" layout-align="space-between center" layout-padding>
+        <div layout="row" layout-align="start center">
+            <md-button ui-sref="{{ovm.parentState}}.organizations" ng-aria="{{ 'ORG.ORGANIZATIONS' | translate }}">
+                <i class="material-icons" style="vertical-align: middle;">arrow_back</i> {{ 'ORG.ORGANIZATIONS' | translate }}
+            </md-button>
+            <h1 class="md-headline" layout-margin>
+                {{ovm.organization.organizationName}}
+            </h1>
         </div>
+    </div>
+</div>
 
-        <h2>{{ 'ORG.EMPLOYEES' | translate }}</h2>
+<div layout layout-wrap>
+    <div layout-xs="noshrink" flex-md="100" flex-gt-md="30" class="case-info-card">
         <md-card>
-            <md-card-content ng-controller="PersonsController as vm">
-                <div ng-include="'app/src/contacts/view/sharedPersonsList.html'" ></div>
-                <div class="md-actions" ng-show="('can_create_contacts'|oeParam)">
-                    <md-button class="md-primary" ng-click="vm.showPersonEdit($event, null, ovm.organization)">{{ 'CONTACT.CREATE_NEW_CONTACT' | translate }}</md-button>
-                </div>
+            <md-card-content>
+                <h3 class="md-title">{{ 'COMMON.INFORMATION' | translate }}</h3>
+                
+                <dl layout="row" layout-wrap>
+                    <dt flex="33">{{ 'ORG.COMPANY_NAME' | translate }}</dt>
+                    <dd flex="66" ng-bind="ovm.organization.organizationName"></dd>
+                    
+                    <dt flex="33" ng-show="ovm.organization.department">{{ 'ORG.DEPARTMENT' | translate }}</dt>
+                    <dd flex="66" ng-show="ovm.organization.department" ng-bind="ovm.organization.department"></dd>
+                    
+                    <dt flex="33" ng-show="ovm.organization.addressLine1">{{ 'ORG.ADDRESS_1' | translate }}</dt>
+                    <dd flex="66" ng-show="ovm.organization.addressLine1" ng-bind="ovm.organization.addressLine1"></dd>
+                    
+                    <dt flex="33" ng-show="ovm.organization.addressLine2">{{ 'ORG.ADDRESS_2' | translate }}</dt>
+                    <dd flex="66" ng-show="ovm.organization.addressLine2" ng-bind="ovm.organization.addressLine2"></dd>
+                    
+                    <dt flex="33" ng-show="ovm.organization.postCode">{{ 'ORG.POSTAL_CODE' | translate }}</dt>
+                    <dd flex="66" ng-show="ovm.organization.postCode" ng-bind="ovm.organization.postCode"></dd>
+                    
+                    <dt flex="33" ng-show="ovm.organization.cityName">{{ 'ORG.CITY' | translate }}</dt>
+                    <dd flex="66" ng-show="ovm.organization.cityName" ng-bind="ovm.organization.cityName"></dd>
+                    
+                    <dt flex="33" ng-show="ovm.organization.countryCode">{{ 'ORG.COUNTRY' | translate }}</dt>
+                    <dd flex="66" ng-show="ovm.organization.countryCode" ng-bind="ovm.organization.countryCode | countryCodeToName"></dd>
+                    
+                    <dt flex="33">{{ 'ORG.VAT_NO' | translate }}</dt>
+                    <dd flex="66" ng-bind="ovm.organization.cvrNumber"></dd>
+                    
+                    <dt flex="33">{{ 'COMMON.EMAIL' | translate }}</dt>
+                    <dd flex="66" ng-bind="ovm.organization.email"></dd>
+                    
+                    <dt flex="33" ng-show="ovm.organization.phone">{{ 'ORG.PHONE' | translate }}</dt>
+                    <dd flex="66" ng-show="ovm.organization.phone" ng-bind="ovm.organization.phone"></dd>
+                    
+                    <dt flex="33" ng-show="ovm.organization.mobile">{{ 'ORG.MOBILE_PHONE' | translate }}</dt>
+                    <dd flex="66" ng-show="ovm.organization.mobile" ng-bind="ovm.organization.mobile"></dd>
+                    
+                    <dt flex="33" ng-show="ovm.organization.website">{{ 'ORG.WEBSITE' | translate }}</dt>
+                    <dd flex="66" ng-show="ovm.organization.website" ng-bind="ovm.organization.website"></dd>
+                    
+                    <dt flex="33" ng-show="ovm.organization.linkedin">{{ 'ORG.LINKEDIN' | translate }}</dt>
+                    <dd flex="66" ng-show="ovm.organization.linkedin" ng-bind="ovm.organization.linkedin"></dd>
+                    
+                    <dt flex="33" ng-show="ovm.organization.IM">{{ 'ORG.IM' | translate }}</dt>
+                    <dd flex="66" ng-show="ovm.organization.IM" ng-bind="ovm.organization.IM"></dd>
+                    
+                    <dt flex="33" ng-show="ovm.organization.notes">{{ 'NOTE.NOTES' | translate }}</dt>
+                    <dd flex="66" ng-show="ovm.organization.notes" ng-bind="ovm.organization.notes"></dd>
+                </dl>
             </md-card-content>
+            <div class="md-actions" layout="row" ng-show="('can_create_contacts' | oeParam)">
+                <md-button class="md-primary" ng-click="ovm.showOrganizationEdit($event)">{{ 'ORG.EDIT_ORG' | translate }}</md-button>
+                <md-button class="md-primary" ng-click="ovm.deleteOrganization($event, ovm.organization)">{{ 'ORG.DELETE_ORG' | translate }}</md-button>
+            </div>
         </md-card>
+    </div>
+    <div layout-xs="noshrink" flex flex-md="100" class="case-info-card">
+        <ng-include src="'app/src/files/view/filesList.html'"></ng-include>
+    </div>
+</div>
+
+<md-card ng-controller="PersonsController as vm">
+    <md-card-content>
+        <h3 class="md-title">{{ 'ORG.EMPLOYEES' | translate }}</h3>
+        <div ng-include="'app/src/contacts/view/sharedPersonsList.html'" ></div>
     </md-card-content>
+    <div class="md-actions" ng-show="('can_create_contacts' | oeParam)">
+        <md-button class="md-primary" ng-click="vm.showPersonEdit($event, null, ovm.organization)">{{ 'CONTACT.CREATE_NEW_CONTACT' | translate }}</md-button>
+    </div>
 </md-card>

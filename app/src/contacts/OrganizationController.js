@@ -2,36 +2,65 @@
 angular
         .module('openeApp.contacts')
         .controller('OrganizationController', OrganizationController);
-
-function OrganizationController($filter, $stateParams, $state, $mdDialog, $location, $translate, $timeout, VirtualRepeatLoader,
-        contactsService, notificationUtilsService, organizationDialogService) {
+function OrganizationController($scope, $stateParams, $state, $mdDialog, $translate,
+        contactsService, notificationUtilsService, organizationDialogService, $controller, filesService) {
     var vm = this;
     vm.parentState = $state.current.name.split('.')[0];
     vm.showOrganizationEdit = showOrganizationEdit;
     vm.deleteOrganization = deleteOrganization;
-    vm.filterArray = {};
-    vm.columnFilter = columnFilter;
-    vm.organizations = [];
-    vm.loadOrganizations = loadOrganizations;
-
-    if ($stateParams.uuid) {
-        //infoForm
-        initInfo();
-    } else {
-        //list
-        vm.loadOrganizations();
-    }
-
-    function loadOrganizations(){
-        contactsService.getOrganizations(vm.searchQuery).then(function(result){
-            vm.organizations = result.items;
-        });
-    }
-
+    initInfo();
+    initFiles();
     function initInfo() {
         contactsService.getOrganization($stateParams.storeProtocol, $stateParams.storeIdentifier, $stateParams.uuid).then(function(organization) {
             vm.organization = organization;
         });
+    }
+
+    function initFiles() {
+        $scope.filesVm = {};
+        angular.extend($scope.filesVm, $controller('FilesController', {$scope: $scope}), {
+            loadList: loadOrganizationFiles,
+            showAddFileDialog: showAddFileDialog,
+            showHeader: true,
+            columns: {
+                title: true,
+                comment: true,
+                created: true,
+                creator: false,
+                modified: false,
+                modifier: false,
+                action: true
+            }
+        });
+        $scope.filesVm.loadList();
+    }
+
+    function showAddFileDialog(ev) {
+        $mdDialog.show({
+            controller: 'AddFileDialogController',
+            controllerAs: 'addFileVm',
+            templateUrl: 'app/src/files/view/addFiles.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true,
+            locals: {
+                params: {
+                    hideOwner: true,
+                    addFiles: addFiles
+                }
+            }
+        }).then($scope.filesVm.loadList);
+    }
+    
+    function addFiles(model) {
+        return filesService.uploadFiles(vm.organization.nodeRefId, model.files, model.comment);
+    }
+
+    function showOrganizationEdit(ev) {
+        organizationDialogService.showOrganizationEdit(ev, vm.organization)
+                .then(function(response) {
+                    vm.organization = response;
+                });
     }
 
     function deleteOrganization(ev, organization) {
@@ -49,65 +78,15 @@ function OrganizationController($filter, $stateParams, $state, $mdDialog, $locat
         });
     }
 
-    function showOrganizationEdit(ev) {
-        organizationDialogService.showOrganizationEdit(ev, vm.organization)
-                .then(function(response) {
-                    if (vm.organization) {
-                        vm.organization = response;
-                    } else {
-                        $timeout(function(){vm.loadOrganizations()}, 2000);
-                    }
-                });
+    function loadOrganizationFiles() {
+        filesService.getFiles($stateParams.storeProtocol, $stateParams.storeIdentifier, $stateParams.uuid).then(function(files) {
+            $scope.filesVm.files = files;
+        });
     }
 
     function error(error) {
         if (error.domain) {
             notificationUtilsService.alert(error.message);
         }
-    }
-    
-    function columnFilter(item) {
-        
-        var textFilters = ['organizationName', 'department', 'address', 'cityName'];
-        
-        for(var i=0; i<textFilters.length; i++){
-            var filter = textFilters[i];
-            if (textFilterNoMatch(filter, item)) {
-                return;
-            }    
-        }
-        
-        if (vm.filterArray.cvrNumber !== undefined) {
-            var searchText = new RegExp(vm.filterArray.cvrNumber, "i");
-            var cvrNumber = "" + item.cvrNumber;
-            if (cvrNumber.search(searchText) != 0)
-                return;
-        }
-                
-        if (vm.filterArray.postCode !== undefined) {
-            var searchText = new RegExp(vm.filterArray.postCode, "i");
-            var postCode = "" + item.postCode;
-            if (postCode.search(searchText) != 0)
-                return;
-        }
-        
-        if (vm.filterArray.countryName !== undefined && vm.filterArray.countryName.length > 0) {
-            var searchText = new RegExp(vm.filterArray.countryName, "i");
-            var countryName = $filter('countryCodeToName')(item.countryCode);
-            if (countryName == undefined || countryName.search(searchText) != 0)
-                return;
-        }
-
-        return item;
-    }
-    
-    function textFilterNoMatch(filter, item){
-        if (vm.filterArray[filter] !== undefined && vm.filterArray[filter].length > 0) {
-            var searchText = new RegExp(vm.filterArray[filter], "i");
-            var value = item[filter]; 
-            if (value == undefined || value.search(searchText) < 0)
-                return true;
-        }
-        return false;
     }
 }
