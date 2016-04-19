@@ -12,7 +12,7 @@
             <md-virtual-repeat-container>
                 <div md-virtual-repeat="comment in commCtrl.comments.items">
                     <div class="repeat-item" layout="row">
-                        <span class="r" flex="20">{{comment.modifiedOnISO | openeDate}}</span>
+                        <span class="r" flex="20">{{comment.createdOnISO | openeDate}}</span>
                         <span class="r muted" flex="20">{{comment.author.firstName + ' ' + comment.author.lastName}}</span>
                         <span class="r muted" flex>{{comment.content}}</span>
                         <span class="muted" flex="10">
