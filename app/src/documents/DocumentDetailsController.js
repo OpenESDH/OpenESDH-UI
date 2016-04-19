@@ -3,13 +3,14 @@ angular
         .module('openeApp.documents')
         .controller('DocumentDetailsController', DocumentDetailsController);
 
-function DocumentDetailsController($stateParams, $translate, $mdDialog, $location, caseDocumentDetailsService,
+function DocumentDetailsController($scope, $stateParams, $translate, $mdDialog, $location, caseDocumentDetailsService,
         documentPreviewService, caseDocumentFileDialogService, notificationUtilsService,
         alfrescoDownloadService, alfrescoFolderService, sessionService, sharePointProtocolService,
         documentEditActionsService, $injector) {
 
     var vm = this;
     vm.documentNodeRef = $stateParams.storeType + "://" + $stateParams.storeId + "/" + $stateParams.id;
+    $scope.commentsNodeRef = vm.documentNodeRef; 
     vm.caseDocument = null;
     vm.pageSize = 100;
     vm.isAdmin = sessionService.isAdmin();

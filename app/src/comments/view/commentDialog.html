@@ -1,0 +1,30 @@
+<md-dialog class="dialog-large" aria-label="comments">
+    <form name="form">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 ng-if="dlg.isNew" translate="COMMENTS.ADD_COMMENT"></h2>
+                <h2 ng-if="!dlg.isNew" translate="COMMENTS.EDIT_COMMENT"></h2>
+            </div>
+        </md-toolbar>
+        <md-dialog-content layout="column" style="margin-top: 1em; padding-bottom: 0;">
+            <div layout="column">
+                <md-input-container>
+                    <label translate="COMMON.TITLE"></label>
+                    <input type="text" required ng-model="dlg.comment.title" />
+                </md-input-container>
+                <md-input-container>
+                    <label translate="COMMENTS.COMMENT"></label>
+                    <textarea ng-model="dlg.comment.content" required rows="50" cols="50"></textarea>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions>
+            <md-button ng-click="dlg.save()" ng-disabled="form.$invalid">
+                {{ 'COMMON.SAVE' | translate }}
+            </md-button>
+            <md-button ng-click="dlg.cancel()">
+                {{ 'COMMON.CANCEL' | translate }}
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

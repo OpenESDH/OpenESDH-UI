@@ -69,7 +69,8 @@
         "LOCKED_BY": "Locked by {{locked_by}}",
         "CONGRATULATIONS": "Congratulations!",
         "DISABLED": "Disabled",
-        "ADD_MORE_INFO": "Add more information"
+        "ADD_MORE_INFO": "Add more information",
+        "DATE": "Date"
     },
     "SIMPLE_CASE": {
         "TYPE": "Standard case"
@@ -228,6 +229,13 @@
         "COMMENTS_OF": "Comments of {{filename}}",
         "USER_TIMESTAMP": "{{date}} by {{name}}",
         "VIEW_COMMENTS": "Read comments"
+    },
+    "COMMENTS": {
+        "COMMENTS": "Comments",
+        "ADD_COMMENT": "Add comment",
+        "EDIT_COMMENT": "Edit comment",
+        "COMMENT": "Comment",
+        "ARE_YOU_SURE_YOU_WANT_DELETE_COMMENT": "Are you sure you want to delete this comment?"
     },
     "COUNTRY": {
         "AF": "Afghanistan",

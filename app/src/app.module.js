@@ -16,6 +16,7 @@
             'openeApp.error',
             'openeApp.header',
             'openeApp.dashboard',
+            'openeApp.comments',
             'openeApp.cases',
             'openeApp.cases.members',
             'openeApp.cases.parties',
