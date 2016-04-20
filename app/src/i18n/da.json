@@ -70,7 +70,8 @@
         "CONGRATULATIONS": "Tillykke!",
         "DISABLED": "Deaktiveret",
         "ADD_MORE_INFO": "Tilføj yderligere information",
-        "DATE": "Dato"
+        "DATE": "Dato",
+        "EMAIL_SENT_TO": "E-mail er sendt til {{to}}"
     },
     "SIMPLE_CASE": {
         "TYPE": "Standardsag"

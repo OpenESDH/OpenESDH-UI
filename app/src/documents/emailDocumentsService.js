@@ -3,7 +3,7 @@ angular
         .module('openeApp.documents')
         .factory('emailDocumentsService', EmailDocumentsService);
 
-function EmailDocumentsService($mdDialog, caseDocumentsService, caseService,
+function EmailDocumentsService($mdDialog, $translate, caseDocumentsService, caseService,
         notificationUtilsService, personDialogService, $q) {
     var service = {
         showDialog: showDialog
@@ -75,6 +75,10 @@ function EmailDocumentsService($mdDialog, caseDocumentsService, caseService,
                 })
             }).then(function() {
                 $mdDialog.hide();
+                var emails = toList.map(function(item){
+                    return item.email;
+                }).join();
+                notificationUtilsService.notify($translate.instant('COMMON.EMAIL_SENT_TO', {to: emails}));
             });
         }
 

@@ -70,7 +70,8 @@
         "CONGRATULATIONS": "Congratulations!",
         "DISABLED": "Disabled",
         "ADD_MORE_INFO": "Add more information",
-        "DATE": "Date"
+        "DATE": "Date",
+        "EMAIL_SENT_TO": "Email has been sent to {{to}}"
     },
     "SIMPLE_CASE": {
         "TYPE": "Standard case"
