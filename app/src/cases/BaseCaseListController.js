@@ -81,6 +81,16 @@ function BaseCaseListController($mdDialog, $translate, caseService, alfrescoFold
             alfrescoFolderService.deleteFolder(caseObj.nodeRef).then(function(response) {
                 notificationUtilsService.notify($translate.instant('CASE.DELETE_CASE_SUCCESS'));
                 setTimeout(getCases.bind(vm), 500);
+            }, function(error){
+                if(error.code == 'ERROR.NODE_LOCKED'){
+                    var warn = $mdDialog.alert()
+                            .title($translate.instant('COMMON.WARNING'))
+                            .textContent($translate.instant('CASE.CANNOT_DELETE_CASE_DOC_LOCKED'))
+                            .ariaLabel('')
+                            .targetEvent(null)
+                            .ok($translate.instant('COMMON.OK'));
+                    $mdDialog.show(warn);
+                }
             });
         });
     }

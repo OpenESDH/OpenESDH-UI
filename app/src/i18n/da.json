@@ -70,7 +70,8 @@
         "CONGRATULATIONS": "Tillykke!",
         "DISABLED": "Deaktiveret",
         "ADD_MORE_INFO": "Tilføj yderligere information",
-        "DATE": "Dato"
+        "DATE": "Dato",
+        "EMAIL_SENT_TO": "E-mail er sendt til {{to}}"
     },
     "SIMPLE_CASE": {
         "TYPE": "Standardsag"
@@ -138,7 +139,8 @@
         "SELECT_CASE_TYPE": "Vælg sagstype",
         "SEARCH_EXISTING_CASE": "søg sag",
         "ASSIGN_TO": "Tildel til",
-        "CASE_ADDED_TO_FAVORITE": "Sagen er føjet til dine favoritter og du bliver notificeret når der sker nye hændelser på sagen"
+        "CASE_ADDED_TO_FAVORITE": "Sagen er føjet til dine favoritter og du bliver notificeret når der sker nye hændelser på sagen",
+        "CANNOT_DELETE_CASE_DOC_LOCKED": "Du kan ikke slette sagen da et dokument på sagen er låst. Lås dokumentet op og prøv igen."
     },
     "DOCUMENT": {
         "STATUS_CHANGED_SUCCESS": "Status er ændret",

@@ -70,7 +70,8 @@
         "CONGRATULATIONS": "Congratulations!",
         "DISABLED": "Disabled",
         "ADD_MORE_INFO": "Add more information",
-        "DATE": "Date"
+        "DATE": "Date",
+        "EMAIL_SENT_TO": "Email has been sent to {{to}}"
     },
     "SIMPLE_CASE": {
         "TYPE": "Standard case"
@@ -138,7 +139,8 @@
         "SELECT_CASE_TYPE": "Select case type",
         "SEARCH_EXISTING_CASE": "search existing case",
         "ASSIGN_TO": "Assign to",
-        "CASE_ADDED_TO_FAVORITE": "You have now added this case to your favorite cases and will be notified whenever the case is updated"
+        "CASE_ADDED_TO_FAVORITE": "You have now added this case to your favorite cases and will be notified whenever the case is updated",
+        "CANNOT_DELETE_CASE_DOC_LOCKED": "You cannot delete the case because a document is currently locked. Please unlock the document and try again."
     },
     "DOCUMENT": {
         "STATUS_CHANGED_SUCCESS": "Status has been changed successfully",
