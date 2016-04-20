@@ -4,9 +4,9 @@ angular
         .controller('AddFileDialogController', AddFileDialogController);
 
 
-function AddFileDialogController($mdDialog, notificationUtilsService, $translate, params) {
+function AddFileDialogController($mdDialog, notificationUtilsService, $translate, filesAddDialogService) {
     var addFileVm = this;
-    addFileVm.params = params;
+    addFileVm.params = filesAddDialogService;
     addFileVm.model = {
         files : null,
         comment : null
@@ -16,7 +16,7 @@ function AddFileDialogController($mdDialog, notificationUtilsService, $translate
     addFileVm.cancel = cancel;
     
     function addFiles(){
-        return addFileVm.params.addFiles(addFileVm.model).then(function() {
+        return filesAddDialogService.addFiles(addFileVm.model).then(function() {
                     if (addFileVm.model.files.length > 1) {
                         notificationUtilsService.notify($translate.instant("FILE.N_FILES_UPLOADED_SUCCESSFULLY", {'n': addFileVm.model.files.length}));
                     } else {

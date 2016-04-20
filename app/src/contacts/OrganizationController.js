@@ -8,8 +8,10 @@ function OrganizationController($scope, $stateParams, $state, $mdDialog, $transl
     vm.parentState = $state.current.name.split('.')[0];
     vm.showOrganizationEdit = showOrganizationEdit;
     vm.deleteOrganization = deleteOrganization;
+    
     initInfo();
     initFiles();
+    
     function initInfo() {
         contactsService.getOrganization($stateParams.storeProtocol, $stateParams.storeIdentifier, $stateParams.uuid).then(function(organization) {
             vm.organization = organization;
@@ -17,45 +19,9 @@ function OrganizationController($scope, $stateParams, $state, $mdDialog, $transl
     }
 
     function initFiles() {
-        $scope.filesVm = {};
-        angular.extend($scope.filesVm, $controller('FilesController', {$scope: $scope}), {
-            loadList: loadOrganizationFiles,
-            showAddFileDialog: showAddFileDialog,
-            showHeader: true,
-            columns: {
-                title: true,
-                comment: true,
-                created: true,
-                creator: false,
-                modified: false,
-                modifier: false,
-                action: true
-            }
-        });
-        $scope.filesVm.loadList();
-    }
-
-    function showAddFileDialog(ev) {
-        $mdDialog.show({
-            controller: 'AddFileDialogController',
-            controllerAs: 'addFileVm',
-            templateUrl: 'app/src/files/view/addFiles.html',
-            parent: angular.element(document.body),
-            targetEvent: ev,
-            clickOutsideToClose: true,
-            locals: {
-                params: {
-                    hideOwner: true,
-                    addFiles: addFiles
-                }
-            }
-        }).then($scope.filesVm.loadList);
+        $scope.filesVm = $controller('OrganizationFilesController', {$scope: $scope});
     }
     
-    function addFiles(model) {
-        return filesService.uploadFiles(vm.organization.nodeRefId, model.files, model.comment);
-    }
-
     function showOrganizationEdit(ev) {
         organizationDialogService.showOrganizationEdit(ev, vm.organization)
                 .then(function(response) {
@@ -75,12 +41,6 @@ function OrganizationController($scope, $stateParams, $state, $mdDialog, $transl
                 $state.go(vm.parentState + ".organizations");
                 notificationUtilsService.notify($translate.instant("ORG.ORG_DELETED_SUCCESSFULLY", organization));
             }, error);
-        });
-    }
-
-    function loadOrganizationFiles() {
-        filesService.getFiles($stateParams.storeProtocol, $stateParams.storeIdentifier, $stateParams.uuid).then(function(files) {
-            $scope.filesVm.files = files;
         });
     }
 

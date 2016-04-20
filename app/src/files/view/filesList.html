@@ -108,12 +108,12 @@
                                             </md-button>
                                         </md-menu-item>
                                         <md-menu-divider></md-menu-divider>
-                                        <md-menu-item>
+                                        <md-menu-item ng-hide="filesVm.disableEditActions">
                                             <md-button ng-click="filesVm.assignFile($event, file)" ng-disabled="file.cm.lockType">
                                                 <md-icon>send</md-icon>{{ 'FILE.ASSIGN_TO' | translate }}
                                             </md-button>
                                         </md-menu-item>
-                                        <md-menu-item>
+                                        <md-menu-item ng-hide="filesVm.disableEditActions">
                                             <md-button ng-click="filesVm.addToCase($event, file)" ng-disabled="file.cm.lockType">
                                                 <md-icon>folder_open</md-icon>{{ 'FILE.ADD_TO_CASE' | translate }}
                                             </md-button>
@@ -124,7 +124,7 @@
                                             </md-button>
                                         </md-menu-item>
                                         <!-- dynamic module actions -->
-                                        <md-menu-item ng-repeat="actionItem in filesVm.actionItems" ng-show="actionItem.isVisible(file)">
+                                        <md-menu-item ng-repeat="actionItem in filesVm.actionItems" ng-show="!filesVm.disableEditActions && actionItem.isVisible(file)">
                                             <md-button ng-click="filesVm.executeAction(file, actionItem)" ng-disabled="actionItem.isDisabled(file)">
                                                 <md-icon>{{ actionItem.icon}}</md-icon>{{ actionItem.labelKey | translate }}
                                             </md-button>

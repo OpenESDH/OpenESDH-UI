@@ -46,6 +46,7 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
     }
 
     function deleteFile(file) {
+        var vm = this;
         var confirm = $mdDialog.confirm()
                 .title($translate.instant('COMMON.CONFIRM'))
                 .textContent($translate.instant('FILE.ARE_YOU_SURE_YOU_WANT_TO_DELETE_FILE', {title: file.cm.title}))
@@ -56,7 +57,7 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
         $mdDialog.show(confirm).then(function() {
             filesService.deleteFile(file.nodeRef)
                     .then(function() {
-                        loadList();
+                        vm.loadList();
                         notificationUtilsService.notify($translate.instant('FILE.DELETE_FILE_SUCCESS'));
                     });
         });
@@ -71,11 +72,13 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
             targetEvent: ev,
             clickOutsideToClose: true,
             locals: {
-                params: {
+                filesAddDialogService: {
                     addFiles: addFiles
                 }
             }
-        }).then(loadList);
+        }).then(function(){
+            vm.loadList();
+        });
     }
     
     function addFiles(model) {
@@ -93,7 +96,9 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
             locals: {
                 file: file
             }
-        }).then(loadList);
+        }).then(function(){
+            vm.loadList();
+        });
     }
 
     function addToCase(ev, file) {
@@ -107,10 +112,13 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
             locals: {
                 file: file
             }
-        }).then(loadList);
+        }).then(function(){
+            vm.loadList();
+        });
     }
 
     function showComments(ev, file) {
+        var vm = this;
         $mdDialog.show({
             controller: 'FileCommentsDialogController',
             controllerAs: 'fileCommentsVm',
@@ -121,12 +129,17 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
             locals: {
                 file: file
             }
-        }).then(loadList);
+        }).then(function(){
+            vm.loadList();
+        });
     }
 
     function executeAction(file, menuItem) {
+        var vm = this;
         var service = $injector.get(menuItem.serviceName);
-        service.executeFileAction(file, loadList, showError, $scope);
+        service.executeFileAction(file, function(){
+            vm.loadList();
+        }, showError, $scope);
     }
 
     function showError(error) {

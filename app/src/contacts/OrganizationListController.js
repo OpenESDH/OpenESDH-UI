@@ -3,9 +3,10 @@ angular
         .module('openeApp.contacts')
         .controller('OrganizationListController', OrganizationListController);
 
-function OrganizationListController($state, $filter, contactsService) {
+function OrganizationListController($state, $filter, contactsService, organizationDialogService) {
     var vm = this;
     vm.parentState = $state.current.name.split('.')[0];
+    vm.showOrganizationEdit = showOrganizationEdit;
     vm.filterArray = {};
     vm.columnFilter = columnFilter;
     vm.organizations = [];
@@ -17,6 +18,13 @@ function OrganizationListController($state, $filter, contactsService) {
         contactsService.getOrganizations(vm.searchQuery).then(function(result) {
             vm.organizations = result.items;
         });
+    }
+    
+    function showOrganizationEdit(ev) {
+        organizationDialogService.showOrganizationEdit(ev, vm.organization)
+                .then(function(response) {
+                    vm.organization = response;
+                });
     }
 
     function columnFilter(item) {
