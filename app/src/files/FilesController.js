@@ -20,6 +20,8 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
 
     vm.actionItems = fileListItemActionService.getItems();
     vm.executeAction = executeAction;
+    
+    vm.columns = initColumns();
 
     vm.filterArray = {};
     vm.columnFilter = columnFilter;
@@ -44,6 +46,7 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
     }
 
     function deleteFile(file) {
+        var vm = this;
         var confirm = $mdDialog.confirm()
                 .title($translate.instant('COMMON.CONFIRM'))
                 .textContent($translate.instant('FILE.ARE_YOU_SURE_YOU_WANT_TO_DELETE_FILE', {title: file.cm.title}))
@@ -54,7 +57,7 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
         $mdDialog.show(confirm).then(function() {
             filesService.deleteFile(file.nodeRef)
                     .then(function() {
-                        loadList();
+                        vm.loadList();
                         notificationUtilsService.notify($translate.instant('FILE.DELETE_FILE_SUCCESS'));
                     });
         });
@@ -67,8 +70,19 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
             templateUrl: 'app/src/files/view/addFiles.html',
             parent: angular.element(document.body),
             targetEvent: ev,
-            clickOutsideToClose: true
-        }).then(loadList);
+            clickOutsideToClose: true,
+            locals: {
+                filesAddDialogService: {
+                    addFiles: addFiles
+                }
+            }
+        }).then(function(){
+            vm.loadList();
+        });
+    }
+    
+    function addFiles(model) {
+        return filesService.uploadOwnerFiles(model.owner, model.files, model.comment);
     }
 
     function assignFile(ev, file) {
@@ -82,7 +96,9 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
             locals: {
                 file: file
             }
-        }).then(loadList);
+        }).then(function(){
+            vm.loadList();
+        });
     }
 
     function addToCase(ev, file) {
@@ -96,10 +112,13 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
             locals: {
                 file: file
             }
-        }).then(loadList);
+        }).then(function(){
+            vm.loadList();
+        });
     }
 
     function showComments(ev, file) {
+        var vm = this;
         $mdDialog.show({
             controller: 'FileCommentsDialogController',
             controllerAs: 'fileCommentsVm',
@@ -110,18 +129,35 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
             locals: {
                 file: file
             }
-        }).then(loadList);
+        }).then(function(){
+            vm.loadList();
+        });
     }
 
     function executeAction(file, menuItem) {
+        var vm = this;
         var service = $injector.get(menuItem.serviceName);
-        service.executeFileAction(file, loadList, showError, $scope);
+        service.executeFileAction(file, function(){
+            vm.loadList();
+        }, showError, $scope);
     }
 
     function showError(error) {
         if (error && error.domain) {
             notificationUtilsService.alert(error.message);
         }
+    }
+    
+    function initColumns(){
+        return {
+            title: true,
+            comment: true,
+            created: true,
+            creator: true,
+            modified: true,
+            modifier: true,
+            action: true
+        };
     }
 
     function columnFilter(item) {

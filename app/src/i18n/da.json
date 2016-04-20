@@ -596,7 +596,6 @@
     },
     "ORG": {
         "ORGANIZATIONS": "Organisationer",
-        "BACK_TO_ORGS": "Tilbage til organisationer",
         "COMPANY_NAME": "Navn",
         "DEPARTMENT": "Afdeling",
         "ADDRESS_1": "Adresse 1",

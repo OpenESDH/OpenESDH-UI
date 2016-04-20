@@ -17,7 +17,7 @@ function config(modulesMenuServiceProvider, $stateProvider, USER_ROLES) {
         views: {
             'organizations': {
                 templateUrl: 'app/src/contacts/view/organizations.html',
-                controller: 'OrganizationController',
+                controller: 'OrganizationListController',
                 controllerAs: 'vm'
             }
         }
@@ -86,7 +86,7 @@ function config(modulesMenuServiceProvider, $stateProvider, USER_ROLES) {
         views: {
             'organizations': {
                 templateUrl: 'app/src/contacts/view/organizations.html',
-                controller: 'OrganizationController',
+                controller: 'OrganizationListController',
                 controllerAs: 'vm'
             }
         }
