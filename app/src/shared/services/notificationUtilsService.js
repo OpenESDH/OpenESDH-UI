@@ -6,6 +6,7 @@
     function notificationUtilsService($mdToast, $translate) {
         var service = {
             notify: notify,
+            notifyError: notifyError,
             alert: alert
         };
 
@@ -23,6 +24,20 @@
                     .content(message)
                     .position(toastPosition)
                     .hideDelay(3000)
+                    .theme('success-toast')
+            );
+        }
+        
+        function notifyError(message, toastPosition){
+            if (typeof toastPosition === 'undefined') {
+                toastPosition = defaultToastPosition;
+            }
+            $mdToast.show(
+                $mdToast.simple()
+                    .content(message)
+                    .position(toastPosition)
+                    .hideDelay(3000)
+                    .theme('error-toast')
             );
         }
 
@@ -37,6 +52,7 @@
                     .highlightAction(true)
                     .position(toastPosition)
                     .hideDelay(0)
+                    .theme('error-toast')
             );
         }
     }

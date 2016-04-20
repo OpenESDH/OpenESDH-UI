@@ -76,7 +76,10 @@
             })
             .accentPalette('amber')
             .warnPalette('deep-orange');
-
+        
+        $mdThemingProvider.theme('success-toast');
+        $mdThemingProvider.theme('error-toast');
+        
         $mdIconProvider.icon('md-calendar', 'app/assets/img/icons/today.svg');
 
         $urlRouterProvider

@@ -606,3 +606,13 @@ a.oe_add_more {
         right: 160px;
     }
 }
+
+md-toast.md-success-toast-theme .md-toast-content {
+  background-color: #BEE992;
+  color: black;
+}
+
+md-toast.md-error-toast-theme .md-toast-content {
+  background-color: #FF9292;
+  color: black;
+}
