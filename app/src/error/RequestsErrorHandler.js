@@ -32,7 +32,7 @@ function RequestsErrorHandler($q, $injector, $translate) {
             if (error.domain === false) {
                 //circular dependency fix:
                 var notificationUtilsService = $injector.get("notificationUtilsService");
-                notificationUtilsService.notify($translate.instant('ERROR.UNEXPECTED_ERROR'));
+                notificationUtilsService.notifyError($translate.instant('ERROR.UNEXPECTED_ERROR'));
             }
             return $q.reject(error);
         }
