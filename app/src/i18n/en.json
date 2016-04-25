@@ -210,7 +210,11 @@
         "VIEW_DOCUMENT_DETAILS": "View document",
         "SENT_FROM_OUTLOOK": "Sent from Outlook",
         "DELETE_DOC_SUCCESS": "Document successfully deleted",
-        "NO_DOCUMENTS_ADDED_YET": "No documents added yet"
+        "NO_DOCUMENTS_ADDED_YET": "No documents added yet",
+        "CREATE_FOLDER": "Create folder",
+        "EDIT_FOLDER": "Edit folder",
+        "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_FOLDER": "Are you sure you want to delete the folder \"{{title}}\" and all its contents?",
+        "DELETE_FOLDER_SUCCESS": "Folder successfully deleted"
     },
     "FILE": {
         "FILE": "File",

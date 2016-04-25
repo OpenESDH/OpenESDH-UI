@@ -1,0 +1,30 @@
+<md-dialog class="dialog-small" aria-label="">
+    <form name="form">
+        
+        <md-toolbar layout>
+            <div class="md-toolbar-tools">
+                <h2 ng-show="dlg.isNew">{{ 'DOCUMENT.CREATE_FOLDER' | translate }}</h2>
+                <h2 ng-show="!dlg.isNew">{{ 'DOCUMENT.EDIT_FOLDER' | translate }}</h2>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div layout layout-wrap>
+                <md-input-container flex="100">
+                    <label>{{ 'COMMON.NAME' | translate }} *</label>
+                    <input type="text" name="folderName" ng-model="dlg.folderName" required>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions>
+            <md-button class="md-primary" type="submit" ng-disabled="form.$invalid" ng-click="dlg.save()">
+                {{ 'COMMON.OK' | translate }}
+            </md-button>
+            <md-button ng-click="dlg.cancel()">
+                {{ 'COMMON.CANCEL' | translate }}
+            </md-button>
+        </md-dialog-actions>
+
+    </form>
+</md-dialog>
