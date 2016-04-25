@@ -22,6 +22,7 @@ function DocumentsController($state, $stateParams, $mdDialog, $translate, caseDo
     vm.reloadDocuments = reloadDocuments;
     vm.setSubfolderState = setSubfolderState;
     vm.openDocument = openDocument;
+    vm.setCreatorFullname = setCreatorFullname;
 
     function initSuperController(){
         var vm = this;
@@ -40,6 +41,7 @@ function DocumentsController($state, $stateParams, $mdDialog, $translate, caseDo
         caseDocumentsService.getDocsFolderContents(vm.docsFolderNodeRef).then(function(response) {
             vm.documents = response.documents;
             vm.addThumbnailUrl();
+            vm.setCreatorFullname();
         });
     }
     
@@ -58,6 +60,13 @@ function DocumentsController($state, $stateParams, $mdDialog, $translate, caseDo
             }else{
                 item.thumbNailURL = fileUtilsService.getFileIconByMimetype(item[mimeTypeProperty], 24);
             }
+        });
+    }
+    
+    function setCreatorFullname(){
+        var vm = this;
+        vm.documents.forEach(function(item) {
+            item.creator.fullName = item.creator.firstName + ' ' + item.creator.lastName; 
         });
     }
 

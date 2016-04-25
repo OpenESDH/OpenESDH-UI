@@ -15,7 +15,7 @@
                     <span class="tlist__cell" flex sort-table="title">{{ 'COMMON.TITLE' | translate }}</span>
                     <span class="tlist__cell" flex="15" sort-table="type.displayName">{{ 'COMMON.TYPE' | translate }}</span>
                     <span class="tlist__cell" flex="15" sort-table="category.displayName">{{ 'COMMON.CATEGORY' | translate }}</span>
-                    <span class="tlist__cell" flex="20" sort-table="doc:owner.0.fullname">{{ 'COMMON.CREATEDBY' | translate }}</span> <!-- might not be convenient to sort if multiple owner -->
+                    <span class="tlist__cell" flex="20" sort-table="creator.fullName">{{ 'COMMON.CREATEDBY' | translate }}</span> <!-- might not be convenient to sort if multiple owner -->
                     <span class="tlist__cell" flex="15" sort-table="modified">{{ 'COMMON.MODIFIED' | translate }}</span>
                     <span class="tlist__cell" flex="6"></span>
                 </div>
@@ -36,7 +36,7 @@
                         </span>
                         <span class="tlist__cell muted" flex="15">{{ doc.category.displayName }}</span>
                         <span class="tlist__cell muted" flex="20">
-                            {{doc.creator.firstName + ' ' + doc.creator.lastName}}
+                            {{doc.creator.fullName}}
                         </span>
                         <span class="tlist__cell muted" flex="15">{{ doc.modified | openeDate }}</span>
                         <span flex="6">
