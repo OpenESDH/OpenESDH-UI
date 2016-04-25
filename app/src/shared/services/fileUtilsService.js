@@ -8,8 +8,14 @@
             getFileIconByMimetype: getFileIconByMimetype,
             getFileExtension: getFileExtension,
             getMsProtocolForFileExtension: getMsProtocolForFileExtension,
-            getMsProtocolForFile: getMsProtocolForFile
+            getMsProtocolForFile: getMsProtocolForFile,
+            getFolderIcon: getFolderIcon
         };
+        
+        function getFolderIcon(p_iconSize){
+            var iconSize = typeof p_iconSize === "number" ? p_iconSize : 32;
+            return "generic-folder-" + iconSize + ".png";
+        }
 
         /**
          * Copied and adapted from Alfresco share for use in openESDH. The next 3 functions that is.

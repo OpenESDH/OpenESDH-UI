@@ -3,8 +3,10 @@
         .module('openeApp.documents')
         .factory('caseDocumentsService', CaseDocumentsService);
 
-    function CaseDocumentsService($http, httpUtils, alfrescoUploadService) {
+    function CaseDocumentsService($http, $q, httpUtils, alfrescoUploadService, alfrescoNodeUtils) {
         var service = {
+            getDocsFolderContents: getDocsFolderContents,
+            getDocsFolderPath: getDocsFolderPath,
             getDocumentsByCaseId: getDocumentsByCaseId,
             uploadCaseDocument: uploadCaseDocument,
             getDocumentsFolderNodeRef: getDocumentsFolderNodeRef,
@@ -14,20 +16,33 @@
         };
         return service;
         
-        function getDocumentsByCaseId(caseId, page, pageSize){
-             var requestConfig = { 
-                 url: "/api/openesdh/casedocumentssearch?caseId=" + caseId,
-                 method: "GET"
-             };
-             
-             httpUtils.setXrangeHeader(requestConfig, page, pageSize);
-             
-             return $http(requestConfig).then(function(response){
-                 return {
-                     documents: response.data, 
-                     contentRange: httpUtils.parseResponseContentRange(response)
-                 };
-             });
+        function getDocsFolderContents(nodeRef){
+            var request = { 
+                url: '/api/openesdh/case/docs/folder/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri + '/contents',
+                method: "GET"
+            };
+            return $http(request).then(function(response){
+                return {
+                    documents: response.data,
+                };
+            });
+        }
+        
+        function getDocsFolderPath(nodeRef){
+            return $http.get('/api/openesdh/case/docs/folder/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri + '/path').then(function(result){
+                return result.data;
+            });
+        }
+        
+        function getDocumentsByCaseId(caseId){
+            return getDocumentsFolderNodeRef(caseId).then(function(result){
+                return getDocsFolderContents(result.caseDocsFolderNodeRef).then(function(result){
+                    result.documents = result.documents.filter(function(item){
+                        return !item.folder;
+                    });
+                    return result;
+                });
+            });
         }
         
         function getDocumentsFolderNodeRef(caseId){

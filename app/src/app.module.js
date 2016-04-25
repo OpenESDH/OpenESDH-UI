@@ -132,6 +132,9 @@
             data: {
                 authorizedRoles: [USER_ROLES.user],
                 selectedTab: 0
+            },
+            params: {
+                subfolder: null
             }
         }).state('case.info', {
             url: '/info',
@@ -223,6 +226,9 @@
             },
             data: {
                 authorizedRoles: [USER_ROLES.user]
+            },
+            params: {
+                subfolder: null
             }
         }).state('login', {
             parent: 'site',

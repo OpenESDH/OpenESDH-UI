@@ -42,8 +42,8 @@
 
             <md-list flex>
                 <md-list-item ng-repeat="document in vm.model.documents">
-                    <md-checkbox ng-model="document.selected" aria-label="{{document['cm:title']}}"></md-checkbox>
-                    <label>{{document['cm:title']}}</label>
+                    <md-checkbox ng-model="document.selected" aria-label="{{document.title}}"></md-checkbox>
+                    <label>{{document.title}}</label>
                 </md-list-item>
             </md-list>
         </md-dialog-content>

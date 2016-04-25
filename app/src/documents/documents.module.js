@@ -5,7 +5,8 @@ angular
 function config(caseDocumentActionsServiceProvider, sendDocumentsActionsServiceProvider, dashboardServiceProvider, documentEditActionsServiceProvider,
         documentAttachmentEditActionsServiceProvider) {
     //documents list
-    caseDocumentActionsServiceProvider.addAction('/app/src/documents/view/uploadDocumentAction.html', 0);
+    caseDocumentActionsServiceProvider.addAction('/app/src/documents/view/createFolderAction.html', -1);
+    caseDocumentActionsServiceProvider.addAction('/app/src/documents/view/uploadDocumentAction.html', 1);
     caseDocumentActionsServiceProvider.addAction('/app/src/documents/view/sendDocumentsAction.html', 2);
     
     sendDocumentsActionsServiceProvider.addMenuItem('DOCUMENT.EMAIL_DOCUMENTS', 'emailDocumentsService');

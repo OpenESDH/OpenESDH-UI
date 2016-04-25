@@ -4,10 +4,12 @@
     <div class="sub-toolbar md-whiteframe-3dp">
         <div layout="row" layout-align="space-between center" layout-padding>
             <div layout="row" layout-align="start center">
-                <md-button ng-href="#/cases/case/{{docCtrl.caseId}}" ng-if="docCtrl.caseId">
-                    <i class="material-icons" style="vertical-align: middle;">arrow_back</i>
-                    {{ docCtrl.caseId}}
-                </md-button>
+                <a ng-if="docCtrl.caseId" ui-sref="case.info({'caseId': docCtrl.caseId, 'subfolder': docCtrl.subfolder})">
+                    <md-button>
+                        <i class="material-icons" style="vertical-align: middle;">arrow_back</i>
+                        {{ docCtrl.caseId}}
+                    </md-button>
+                </a>
                 <md-button ng-href="#/" ng-if="!docCtrl.caseId">
                     <i class="material-icons" style="vertical-align: middle;">arrow_back</i>
                     {{ 'COMMON.HOME' | translate }}

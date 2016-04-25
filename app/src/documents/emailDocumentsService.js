@@ -15,7 +15,7 @@ function EmailDocumentsService($mdDialog, $translate, caseDocumentsService, case
         if (model) {
             p = $q.when({documents: model.documents});
         } else {
-            p = caseDocumentsService.getDocumentsByCaseId(caseId, 1, 100).then(function(response) {
+            p = caseDocumentsService.getDocumentsByCaseId(caseId).then(function(response) {
                 model = {
                     documents: response.documents,
                     caseId: caseId,
@@ -40,6 +40,7 @@ function EmailDocumentsService($mdDialog, $translate, caseDocumentsService, case
     }
 
     function EmailDocumentsDialogController($mdDialog, contactsService, model) {
+        
         var vm = this;
         vm.model = model;
         vm.emailDocuments = emailDocuments;

@@ -3,7 +3,7 @@ angular
         .module('openeApp.documents')
         .controller('DocumentDetailsController', DocumentDetailsController);
 
-function DocumentDetailsController($scope, $stateParams, $translate, $mdDialog, $location, caseDocumentDetailsService,
+function DocumentDetailsController($scope, $state, $stateParams, $translate, $mdDialog, $location, caseDocumentDetailsService,
         documentPreviewService, caseDocumentFileDialogService, notificationUtilsService,
         alfrescoDownloadService, alfrescoFolderService, sessionService, sharePointProtocolService,
         documentEditActionsService, $injector) {
@@ -36,6 +36,7 @@ function DocumentDetailsController($scope, $stateParams, $translate, $mdDialog, 
     vm.loadVersionDetails = loadVersionDetails;
     vm.afterDocumentDelete = afterDocumentDelete;
     vm.initDocPreviewController = initDocPreviewController;
+    vm.subfolder = $stateParams.subfolder;
 
     function activate() {
         this.initDocPreviewController();
