@@ -66,7 +66,7 @@
                             <opene-column-filter type="text" filter="filesVm.filterArray" value="modifier" />
                         </div>
                     </div>
-                    <div class="tlist__cell tlist__cell__action"ng-show="filesVm.columns.action">{{ 'COMMON.ACTIONS' | translate }}</div>
+                    <div class="tlist__cell tlist__cell__action" ng-show="filesVm.columns.action">{{ 'COMMON.ACTIONS' | translate }}</div>
                 </div>
                 <md-virtual-repeat-container class="tlist__body" flex-height>
                     <div md-virtual-repeat="file in filesVm.files | orderObjectBy:orderByAttribute:reverseOrder | filter:filesVm.columnFilter | filter:fileFilter" class="tlist__item" layout="column" flex>
