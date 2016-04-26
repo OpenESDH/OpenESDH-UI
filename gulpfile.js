@@ -18,7 +18,7 @@ var environment = {
         proxy: 'http://localhost:8080',
         spp: 'http://localhost:7070'
     },
-	testv: {
+    testv: {
         proxy: 'http://10.170.12.125',
         spp: 'http://10.170.12.125:7070'
     }

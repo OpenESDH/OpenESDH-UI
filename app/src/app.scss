@@ -318,6 +318,9 @@ md-list md-list-item.active a {
     }
     .tlist__cell__action{
         max-width: 88px;
+        min-width: 88px;
+        padding: 9px 0;
+        text-align: center;
     }
     .tlist__cell__menu{
         padding: 0;
