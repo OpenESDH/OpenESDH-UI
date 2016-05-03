@@ -210,7 +210,9 @@
         "VIEW_DOCUMENT_DETAILS": "Vis dokument",
         "SENT_FROM_OUTLOOK": "Sent from Outlook",
         "DELETE_DOC_SUCCESS": "Dokument slettet",
-        "NO_DOCUMENTS_ADDED_YET": "Ingen dokumenter tilføjet endnu"
+        "NO_DOCUMENTS_ADDED_YET": "Ingen dokumenter tilføjet endnu",
+        "CREATE_FOLDER": "Opret folder",
+        "EDIT_FOLDER": "Redigér folder"
     },
     "FILE": {
         "FILE": "Fil",

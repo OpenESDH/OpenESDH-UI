@@ -194,13 +194,16 @@ textarea {
 /* Md-dialog sizes */
 md-dialog {
     &[class*="dialog-"] {
-        max-width:800px;
+        max-width:1000px;
         md-dialog-content {
             max-height:810px;
         }
     }
     &.dialog-large {
         min-width: 550px;
+    }
+    &.dialog-huge {
+        min-width: 900px;
     }
     &.dialog-large-fixed {
         width: 550px;
@@ -214,7 +217,7 @@ md-dialog {
 }
 
 @media screen and (max-width: 45em) {
-    md-dialog.dialog-large, md-dialog.dialog-small {
+    md-dialog.dialog-huge, md-dialog.dialog-large, md-dialog.dialog-small {
         width: 80%;
     }
 }
@@ -622,4 +625,31 @@ md-toast.md-error-toast-theme .md-toast-content {
 
 .breadcrumb{
     cursor: pointer
+}
+
+.expand{
+    display: inline-block;
+    width: 15px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.collapse{
+    display: inline-block;
+    width: 15px;
+    cursor: pointer;
+    margin-right: 5px;   
+}
+
+.noexpand{
+    display: inline-block; 
+    width: 20px;
+}
+
+.tree{
+    list-style: none;
+}
+
+.tree-attachment{
+    padding-left: 20px;
 }
