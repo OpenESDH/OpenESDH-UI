@@ -6,6 +6,7 @@
     function CaseDocumentsService($http, $q, httpUtils, alfrescoUploadService, alfrescoNodeUtils) {
         var service = {
             getDocsFolderContents: getDocsFolderContents,
+            getDocsFolderHierarchy: getDocsFolderHierarchy,
             getDocsFolderPath: getDocsFolderPath,
             getDocumentsByCaseId: getDocumentsByCaseId,
             uploadCaseDocument: uploadCaseDocument,
@@ -26,6 +27,18 @@
                     documents: response.data,
                 };
             });
+        }
+        
+        function getDocsFolderHierarchy(nodeRef){
+            var request = { 
+                    url: '/api/openesdh/case/docs/folder/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri + '/hierarchy',
+                    method: "GET"
+                };
+                return $http(request).then(function(response){
+                    return {
+                        documents: response.data,
+                    };
+                });
         }
         
         function getDocsFolderPath(nodeRef){

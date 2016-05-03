@@ -3,8 +3,9 @@ angular
         .controller('DocumentsController', DocumentsController);
 
 function DocumentsController($state, $stateParams, $mdDialog, $translate, caseDocumentsService, fileUtilsService, caseDocumentFileDialogService, documentPreviewService, 
-        formProcessorService, alfrescoNodeUtils, alfrescoFolderService, notificationUtilsService) {
+        formProcessorService, alfrescoNodeUtils, alfrescoFolderService, notificationUtilsService, sessionService) {
     var vm = this;
+    vm.isAdmin = sessionService.isAdmin();
     vm.uploadDocument = uploadDocument;
     vm.previewDocument = previewDocument;
     vm.noDocuments = noDocuments;

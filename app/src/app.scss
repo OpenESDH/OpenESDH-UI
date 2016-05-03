@@ -214,7 +214,7 @@ md-dialog {
 }
 
 @media screen and (max-width: 45em) {
-    md-dialog.dialog-large, md-dialog.dialog-small {
+    md-dialog.dialog-huge, md-dialog.dialog-large, md-dialog.dialog-small {
         width: 80%;
     }
 }
@@ -622,4 +622,31 @@ md-toast.md-error-toast-theme .md-toast-content {
 
 .breadcrumb{
     cursor: pointer
+}
+
+.expand{
+    display: inline-block;
+    width: 15px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.collapse{
+    display: inline-block;
+    width: 15px;
+    cursor: pointer;
+    margin-right: 5px;   
+}
+
+.noexpand{
+    display: inline-block; 
+    width: 20px;
+}
+
+.tree{
+    list-style: none;
+}
+
+.tree-attachment{
+    padding-left: 20px;
 }
