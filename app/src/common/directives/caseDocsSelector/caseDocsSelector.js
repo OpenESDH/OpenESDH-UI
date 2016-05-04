@@ -10,7 +10,8 @@
                  docsFolderNodeRef: '&',
                  selectedDocs: '=',
                  selectFolders: '&',
-                 selectLockedDocs: '&'
+                 selectLockedDocs: '&',
+                 selectDocNodeRefs: '&'
              },
              link: link
          };
@@ -20,6 +21,7 @@
              scope.onItemSelectionChanged = onItemSelectionChanged;
              scope.folderSelect = false;
              scope.lockedDocsSelect = true;
+             scope.docNodeRefsSelect = false;
              
              if(scope.selectLockedDocs != undefined && scope.selectLockedDocs() === false){
                  scope.lockedDocsSelect = false;
@@ -27,6 +29,10 @@
              
              if(scope.selectFolders != undefined && scope.selectFolders() === true){
                  scope.folderSelect = true;
+             }
+             
+             if(scope.selectDocNodeRefs != undefined && scope.selectDocNodeRefs() === true){
+                 scope.docNodeRefsSelect = true;
              }
              
              if(scope.caseId != undefined && scope.caseId() != undefined){
@@ -126,8 +132,19 @@
                      if(!item.selected){
                          return;
                      }
+                     
+                     if(scope.docNodeRefsSelect){
+                         selectedDocs.push(item.mainDocNodeRef);
+                         item.attachments.filter(function(attachment){
+                             return attachment.selected === true;
+                         }).forEach(function(attachment){
+                             selectedDocs.push(attachment.nodeRef);
+                         });
+                         return;
+                     }
+                     
                      var resultItem = plainCopy(item);
-                     resultItem.attachments = getSelecteAttachments(item.attachments);
+                     resultItem.attachments = getSelectedAttachments(item.attachments);
                      selectedDocs.push(resultItem);
                  })
              }
@@ -143,14 +160,14 @@
                  if(item.folder){
                      resultItem.children = getSelectedItems(item.children);
                  }else{
-                     resultItem.attachments = getSelecteAttachments(item.attachments)
+                     resultItem.attachments = getSelectedAttachments(item.attachments)
                  }
                  
                  return resultItem;
              });
          }
          
-         function getSelecteAttachments(attachments){
+         function getSelectedAttachments(attachments){
              return attachments.filter(function(attachment){
                  return attachment.selected === true;
              }).map(function(attachment){
