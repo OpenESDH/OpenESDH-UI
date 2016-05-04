@@ -3,52 +3,40 @@ angular
         .module('openeApp.documents')
         .factory('emailDocumentsService', EmailDocumentsService);
 
-function EmailDocumentsService($mdDialog, $translate, caseDocumentsService, caseService,
-        notificationUtilsService, personDialogService, $q) {
+function EmailDocumentsService($mdDialog, $translate, caseService, notificationUtilsService, personDialogService) {
     var service = {
         showDialog: showDialog
     };
     return service;
 
-    function showDialog(caseId, model) {
-        var p;
-        if (model) {
-            p = $q.when({documents: model.documents});
-        } else {
-            p = caseDocumentsService.getDocumentsByCaseId(caseId).then(function(response) {
-                model = {
-                    documents: response.documents,
-                    caseId: caseId,
-                    to: [],
-                    subject: "",
-                    message: ""
-                };
-            });
-        }
-
-        p.then(function(response) {
-            $mdDialog.show({
-                templateUrl: 'app/src/documents/view/emailDialog.html',
-                controller: EmailDocumentsDialogController,
-                controllerAs: 'vm',
-                clickOutsideToClose: true,
-                locals: {
-                    model: model
-                }
-            });
+    function showDialog(caseId, docsCtrl) {
+        $mdDialog.show({
+            templateUrl: 'app/src/documents/view/emailDialog.html',
+            controller: EmailDocumentsDialogController,
+            controllerAs: 'vm',
+            clickOutsideToClose: true,
+            locals: {
+                caseId: caseId
+            }
         });
     }
 
-    function EmailDocumentsDialogController($mdDialog, contactsService, model) {
+    function EmailDocumentsDialogController($mdDialog, contactsService, caseId) {
         
         var vm = this;
-        vm.model = model;
+        vm.model = {
+            caseId: caseId,
+            to: [],
+            subject: "",
+            message: ""
+        };
         vm.emailDocuments = emailDocuments;
         vm.newContact = newContact;
         vm.cancel = cancel;
         vm.querySearch = querySearch;
         vm.selectedItem = null;
         vm.searchText = null;
+        vm.selectedDocuments = [];
 
         function querySearch(query) {
             if (!query) {
@@ -71,9 +59,7 @@ function EmailDocumentsService($mdDialog, $translate, caseDocumentsService, case
                 'to': toList,
                 'subject': vm.model.subject,
                 'message': vm.model.message || "",
-                'documents': vm.model.documents.filter(function(document) {
-                    return document.selected;
-                })
+                'documents': vm.selectedDocuments
             }).then(function() {
                 $mdDialog.hide();
                 var emails = toList.map(function(item){

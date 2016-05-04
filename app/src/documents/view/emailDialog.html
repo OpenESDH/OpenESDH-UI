@@ -1,4 +1,4 @@
-<md-dialog class="dialog-small" aria-label="Email documents">
+<md-dialog class="dialog-large" aria-label="Email documents">
     <form name="form" novalidate>
 
         <md-toolbar layout>
@@ -40,12 +40,7 @@
                 <textarea ng-model="vm.model.message"></textarea>
             </md-input-container>
 
-            <md-list flex>
-                <md-list-item ng-repeat="document in vm.model.documents">
-                    <md-checkbox ng-model="document.selected" aria-label="{{document.title}}"></md-checkbox>
-                    <label>{{document.title}}</label>
-                </md-list-item>
-            </md-list>
+            <case-docs-selector case-id="vm.model.caseId" selected-docs="vm.selectedDocuments" select-doc-node-refs="true"></case-docs-selector>
         </md-dialog-content>
 
         <md-dialog-actions>
