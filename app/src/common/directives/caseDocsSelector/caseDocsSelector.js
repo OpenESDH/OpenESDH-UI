@@ -9,7 +9,8 @@
                  caseId: '&',
                  docsFolderNodeRef: '&',
                  selectedDocs: '=',
-                 selectFolders: '&'
+                 selectFolders: '&',
+                 selectLockedDocs: '&'
              },
              link: link
          };
@@ -18,6 +19,11 @@
              scope.docFolderItems = [];
              scope.onItemSelectionChanged = onItemSelectionChanged;
              scope.folderSelect = false;
+             scope.lockedDocsSelect = true;
+             
+             if(scope.selectLockedDocs != undefined && scope.selectLockedDocs() === false){
+                 scope.lockedDocsSelect = false;
+             }
              
              if(scope.selectFolders != undefined && scope.selectFolders() === true){
                  scope.folderSelect = true;
