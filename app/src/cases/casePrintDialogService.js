@@ -50,7 +50,7 @@
                     caseDetails: vm.caseDetails === true,
                     caseHistoryLog: vm.caseHistoryLog === true,
                     comments: vm.comments === true,
-                    documents: getSelectedDocNodeRefs()
+                    documents: vm.selectedDocuments
                 };
                 $mdDialog.hide(printInfo);
             }
@@ -74,17 +74,6 @@
             
             function _isAnyDocumentSelected(){
                 return vm.selectedDocuments.length > 0;
-            }
-            
-            function getSelectedDocNodeRefs(){
-                var nodeRefs = [];
-                vm.selectedDocuments.forEach(function(doc){
-                    nodeRefs.push(doc.mainDocNodeRef);
-                    doc.attachments.forEach(function(item){
-                        nodeRefs.push(item.nodeRef);
-                    });
-                });
-                return nodeRefs;
             }
         }
     }
