@@ -2,7 +2,7 @@
 <a ng-show="(item.children.length > 0 || item.attachments.length > 0) && !item.expanded" ng-click="item.expanded = true" class="expand"><i class="material-icons">add</i></a>
 <span ng-if="item.children.length == 0" class="noexpand">&nbsp;</span>
 <span ng-if="item.attachments.length == 0" class="noexpand">&nbsp;</span>
-<md-checkbox ng-model="item.selected" aria-label="checkbox" ng-change="onItemSelectionChanged(item)"></md-checkbox>
+<md-checkbox ng-if="folderSelect || !item.folder" ng-model="item.selected" aria-label="checkbox" ng-change="onItemSelectionChanged(item)"></md-checkbox>
 <img class="md-avatar" ng-src="app/assets/images/filetypes/{{item.thumbNailURL}}"/>
 {{item.title || item.name}}
 <ul ng-if="item.children.length > 0 || item.attachments.length > 0" class="tree">

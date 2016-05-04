@@ -20,6 +20,7 @@
                         clickOutsideToClose: true,
                         locals: {
                             caseObj: caseObj.properties,
+                            caseId: caseId,
                             documents: documents
                         },
                         focusOnOpen: false
@@ -32,11 +33,13 @@
             });
         }
         
-        function CasePrintDialogController($mdDialog, caseObj, documents){
+        function CasePrintDialogController($scope, $mdDialog, caseObj, caseId, documents){
             var vm = this;
             vm.case = caseObj;
+            vm.caseId = caseId;
             vm.documents = documents;
             vm.formDisabled = true;
+            vm.selectedDocuments = [];
             
             vm.cancel = function() {
               $mdDialog.cancel();
@@ -47,16 +50,16 @@
                     caseDetails: vm.caseDetails === true,
                     caseHistoryLog: vm.caseHistoryLog === true,
                     comments: vm.comments === true,
-                    documents: _getSelectedDocuments()
+                    documents: getSelectedDocNodeRefs()
                 };
                 $mdDialog.hide(printInfo);
             }
             
-            vm.onSelectionChanged = onSelectionChanged;
-            
-            vm.onDocSelectionChanged = function(){
+            $scope.$watch(function(){
+                return( vm.selectedDocuments);
+            }, function(){
                 onSelectionChanged();
-            };
+            });
             
             function onSelectionChanged(){
                 vm.formDisabled = !_isAnythingSelected();
@@ -70,27 +73,18 @@
             }
             
             function _isAnyDocumentSelected(){
-                var items = _getSelectedDocuments();
-                return items.length > 0;
+                return vm.selectedDocuments.length > 0;
             }
             
-            function _getSelectedDocuments(){
-                var items = [];
-                for(var i in vm.documents){
-                    
-                    var doc = vm.documents[i];
-                    if(doc.selected === true){
-                        items.push(doc.mainDocNodeRef);
-                    }
-                    
-                    for(var j in doc.attachments){
-                        var attach = doc.attachments[j];
-                        if(attach.selected === true){
-                            items.push(attach.nodeRef);
-                        }
-                    }
-                }
-                return items;
+            function getSelectedDocNodeRefs(){
+                var nodeRefs = [];
+                vm.selectedDocuments.forEach(function(doc){
+                    nodeRefs.push(doc.mainDocNodeRef);
+                    doc.attachments.forEach(function(item){
+                        nodeRefs.push(item.nodeRef);
+                    });
+                });
+                return nodeRefs;
             }
         }
     }
