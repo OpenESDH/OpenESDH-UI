@@ -7,9 +7,9 @@
 {{item.title || item.name}}
 <ul ng-if="item.children.length > 0 || item.attachments.length > 0" class="tree">
     <li ng-if="item.children.length > 0" ng-show="item.expanded" class="tree">
-        <div ng-repeat="item in item.children" ng-include="'app/src/common/directives/caseDocsSelector/view/caseDocumentsTreeItem.html'"></div>
+        <div ng-repeat="item in item.children" ng-if="lockedDocsSelect || !item.locked" ng-include="'app/src/common/directives/caseDocsSelector/view/caseDocumentsTreeItem.html'"></div>
     </li>
     <li ng-if="item.attachments.length > 0" ng-show="item.expanded" class="tree">
-        <div class="tree-attachment" ng-repeat="item in item.attachments" ng-include="'app/src/common/directives/caseDocsSelector/view/caseDocumentsTreeItem.html'"></div>
+        <div class="tree-attachment" ng-repeat="item in item.attachments" ng-if="lockedDocsSelect || !item.locked" ng-include="'app/src/common/directives/caseDocsSelector/view/caseDocumentsTreeItem.html'"></div>
     </li>
 </ul>
