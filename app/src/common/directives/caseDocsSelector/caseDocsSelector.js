@@ -8,7 +8,8 @@
              scope: {
                  caseId: '&',
                  docsFolderNodeRef: '&',
-                 selectedDocs: '='
+                 selectedDocs: '=',
+                 selectFolders: '&'
              },
              link: link
          };
@@ -16,6 +17,12 @@
          function link(scope){
              scope.docFolderItems = [];
              scope.onItemSelectionChanged = onItemSelectionChanged;
+             scope.folderSelect = false;
+             
+             if(scope.selectFolders != undefined && scope.selectFolders() === true){
+                 scope.folderSelect = true;
+             }
+             
              if(scope.caseId != undefined && scope.caseId() != undefined){
                  caseDocumentsService.getDocumentsFolderNodeRef(scope.caseId()).then(function(result){
                      scope.folderNodeRef = result.caseDocsFolderNodeRef;
@@ -34,6 +41,23 @@
                  }
                  updateSelectedDocsModel(scope);
              }
+             
+             function onSelectItem(item){
+                 var parent = item.parent;
+                 
+                 if(parent === undefined){
+                     return;
+                 }
+                 
+                 if(!parent.selected){
+                     if(parent.folder && !scope.folderSelect){
+                         return;
+                     }
+                     parent.selected = true;
+                     onSelectItem(parent);
+                 }
+             }
+             
          }
          
          function loadDocuments(scope){
@@ -63,19 +87,6 @@
              });
          }
          
-         function onSelectItem(item){
-             var parent = item.parent;
-             
-             if(parent === undefined){
-                 return;
-             }
-             
-             if(!parent.selected){
-                 parent.selected = true;
-                 onSelectItem(parent);
-             }
-         }
-         
          function onUnselectedItem(item){
              if(item.folder && item.children != undefined){                        
                  item.children.forEach(function(child){
@@ -90,34 +101,63 @@
          }
          
          function updateSelectedDocsModel(scope){
-             scope.selectedDocs = getSelectedItems(scope.docFolderItems);
+             
+             if(scope.folderSelect){
+                 scope.selectedDocs = getSelectedItems(scope.docFolderItems, scope);
+                 return;
+             }
+             
+             var selectedDocs = [];
+             getSelectedDocuments(scope.docFolderItems);
+             scope.selectedDocs = selectedDocs;
+             
+             function getSelectedDocuments(items){
+                 items.forEach(function(item){
+                     if(item.folder){
+                         getSelectedDocuments(item.children);
+                         return;
+                     }
+                     if(!item.selected){
+                         return;
+                     }
+                     var resultItem = plainCopy(item);
+                     resultItem.attachments = getSelecteAttachments(item.attachments);
+                     selectedDocs.push(resultItem);
+                 })
+             }
          }
          
-         function getSelectedItems(items){
+         function getSelectedItems(items, scope){
              return items.filter(function(item){
                  return item.selected === true;
              }).map(function(item){
                  
-                 var resultItem = angular.copy(item);
-                 delete resultItem.selected;
-                 delete resultItem.parent;
-                 delete resultItem.thumbNailURL;
-                 delete resultItem.expanded;
+                 var resultItem = plainCopy(item);
                  
                  if(item.folder){
                      resultItem.children = getSelectedItems(item.children);
                  }else{
-                     resultItem.attachments = item.attachments.filter(function(attachment){
-                         return attachment.selected === true;
-                     }).map(function(attachment){
-                         var resultAttachment = angular.copy(attachment);
-                         delete resultAttachment.selected;
-                         delete resultAttachment.parent;
-                         delete resultAttachment.thumbNailURL;
-                         return resultAttachment;
-                     });
+                     resultItem.attachments = getSelecteAttachments(item.attachments)
                  }
+                 
                  return resultItem;
              });
+         }
+         
+         function getSelecteAttachments(attachments){
+             return attachments.filter(function(attachment){
+                 return attachment.selected === true;
+             }).map(function(attachment){
+                 return plainCopy(attachment);
+             });
+         }
+         
+         function plainCopy(item){
+             var resultItem = angular.copy(item);
+             delete resultItem.selected;
+             delete resultItem.parent;
+             delete resultItem.thumbNailURL;
+             delete resultItem.expanded;
+             return resultItem;
          }
      }
