@@ -10,34 +10,30 @@
         
         function printCase(caseId){
             caseService.getCaseInfo(caseId).then(function(caseObj){
-                caseDocumentsService.getCaseDocumentsWithAttachments(caseId).then(function(documents){
-                    $mdDialog.show({
-                        controller: CasePrintDialogController,
-                        controllerAs: 'dlg',
-                        templateUrl: 'app/src/cases/view/casePrintDialog.html',
-                        parent: angular.element(document.body),
-                        targetEvent: null,
-                        clickOutsideToClose: true,
-                        locals: {
-                            caseObj: caseObj.properties,
-                            caseId: caseId,
-                            documents: documents
-                        },
-                        focusOnOpen: false
-                    }).then(function(printInfo){
-                        caseService.printCase(caseId, printInfo).then(function(result){
-                            documentPrintService.printPdfFromArray(result, caseId + ".pdf");
-                        });
+                $mdDialog.show({
+                    controller: CasePrintDialogController,
+                    controllerAs: 'dlg',
+                    templateUrl: 'app/src/cases/view/casePrintDialog.html',
+                    parent: angular.element(document.body),
+                    targetEvent: null,
+                    clickOutsideToClose: true,
+                    locals: {
+                        caseObj: caseObj.properties,
+                        caseId: caseId
+                    },
+                    focusOnOpen: false
+                }).then(function(printInfo){
+                    caseService.printCase(caseId, printInfo).then(function(result){
+                        documentPrintService.printPdfFromArray(result, caseId + ".pdf");
                     });
                 });
             });
         }
         
-        function CasePrintDialogController($scope, $mdDialog, caseObj, caseId, documents){
+        function CasePrintDialogController($scope, $mdDialog, caseObj, caseId){
             var vm = this;
             vm.case = caseObj;
             vm.caseId = caseId;
-            vm.documents = documents;
             vm.formDisabled = true;
             vm.selectedDocuments = [];
             
