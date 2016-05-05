@@ -16,16 +16,18 @@ function EmailDocumentsService($mdDialog, $translate, caseService, notificationU
             controllerAs: 'vm',
             clickOutsideToClose: true,
             locals: {
-                caseId: caseId
+                caseId: caseId,
+                docsFolderRef: docsCtrl.rootDocsFolder
             }
         });
     }
 
-    function EmailDocumentsDialogController($mdDialog, contactsService, caseId) {
+    function EmailDocumentsDialogController($mdDialog, contactsService, caseId, docsFolderRef) {
         
         var vm = this;
         vm.model = {
             caseId: caseId,
+            docsFolderRef: docsFolderRef,
             to: [],
             subject: "",
             message: ""
