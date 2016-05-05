@@ -11,7 +11,6 @@
             getDocumentsByCaseId: getDocumentsByCaseId,
             uploadCaseDocument: uploadCaseDocument,
             getDocumentsFolderNodeRef: getDocumentsFolderNodeRef,
-            getCaseDocumentsWithAttachments: getCaseDocumentsWithAttachments,
             getCaseDocumentConstraints: getCaseDocumentConstraints,
             getDocumentsFolderNodeRefByCaseRef: getDocumentsFolderNodeRefByCaseRef
         };
@@ -94,16 +93,6 @@
                 }
             }
             return alfrescoUploadService.uploadFile(documentFile, caseDocumentsFolder, documentProps);
-        }
-        
-        function getCaseDocumentsWithAttachments(caseId){
-            var requestConfig = { 
-                url: "/api/openesdh/case/" + caseId + "/documents/attachments",
-                method: "GET"
-            };
-            return $http(requestConfig).then(function(response){
-                return response.data;
-            });
         }
         
         function getCaseDocumentConstraints(){
