@@ -144,7 +144,6 @@ function userService($http) {
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
         }).then(function(response) {
-            console.log(response.data);
             return response.data;
         });
     }

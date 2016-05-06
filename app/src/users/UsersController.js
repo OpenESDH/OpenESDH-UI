@@ -8,7 +8,7 @@ angular
  * @param $scope
  * @constructor
  */
-function UsersController($mdDialog, notificationUtilsService, userService, $translate, ALFRESCO_URI) {
+function UsersController($mdDialog, notificationUtilsService, userService, $translate) {
     var vm = this;
 
     vm.createUser = createUser;
@@ -16,7 +16,6 @@ function UsersController($mdDialog, notificationUtilsService, userService, $tran
     vm.editUser = editUser;
     vm.showCSVUploadDialog = showCSVUploadDialog;
     vm.userExists = false;
-    vm.wcsPrefix = ALFRESCO_URI.webClientServiceProxy;
 
     //For the search control filter
     vm.selectOptions = [
@@ -128,7 +127,9 @@ function UsersController($mdDialog, notificationUtilsService, userService, $tran
         });
     }
 
-    function userUploadCSVDialogController($scope, $translate, $mdDialog, alfrescoUploadService) {
+    function userUploadCSVDialogController($scope, $translate, $mdDialog, ALFRESCO_URI) {
+
+        $scope.wcsPrefix = ALFRESCO_URI.webClientServiceProxy;
 
         $scope.cancel = function() {
             $mdDialog.cancel();
@@ -138,38 +139,39 @@ function UsersController($mdDialog, notificationUtilsService, userService, $tran
             $mdDialog.hide();
 
             userService.uploadUsersCSVFile($scope.fileToUpload).then(function(response) {
-                var returnedUsers = response.users;
-                var failedUsers = [], msg, dlgTitle;
-                var numOfFailedUsers = response.totalUsers - response.addedUsers;
-                if (response.error == "true") {
-                    dlgTitle = $translate.instant('COMMON.ERROR');
-                    msg = response.message;
-                } else if (numOfFailedUsers > 0) {
-                    dlgTitle = $translate.instant('COMMON.ERROR');
-                    //accumulate the failed users into a separate array
-                    returnedUsers.forEach(function(user) {
-                        if (user.uploadStatus.indexOf("@") == -1)
-                            failedUsers.push(user);
-                    });
-                    msg = $translate.instant('USER.FAILED_TO_UPLOAD_MSG', {failedNumberOfUsers: numOfFailedUsers});
-                    failedUsers.forEach(function(fUser) {
-                        msg += "<br/>" + fUser.username + ": " + fUser.uploadStatus;
-                    });
-
-                } else {
-                    dlgTitle = $translate.instant('COMMON.SUCCESS');
+                var numOfFailedUsers = response.totalUsers - response.createdUsers;
+                if (response.totalUsers === 0) {
+                    notificationUtilsService.alert($translate.instant('USER.ERRORS.CSV_EMPTY'));
                 }
+                if (numOfFailedUsers > 0) {
+                    var htmlContent = '<p>' + $translate.instant('USER.CSV_SUCCESSFULLY_IMPORTED', response)
+                            + '</p><div>' + $translate.instant('USER.ERRORS.FAILED_TO_UPLOAD_' + (numOfFailedUsers === 1 ? '1' : 'N'),
+                                    {failedNumberOfUsers: numOfFailedUsers})
+                            + '</div><ul class=\'csv-import-error-li\'>';
+                    response.users.forEach(function(user) {
+                        if (user.error) {
+                            htmlContent += '<li>' + $translate.instant(user.error, user) + '</li>';
+                        }
+                    });
+                    htmlContent += '</ul>';
 
-                $mdDialog.show(
-                        $mdDialog.alert()
-                        .parent(angular.element(document.querySelector('body')))
-                        .clickOutsideToClose(true)
-                        .title(dlgTitle)
-                        .textContent(msg)
-                        .ariaLabel('User upload csv response.')
-                        .ok("OK")
-                        .targetEvent(ev)
-                        );
+                    $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('body')))
+                            .clickOutsideToClose(true)
+                            .title($translate.instant('USER.ERRORS.CSV_IMPORT_ERRORS'))
+                            .htmlContent(htmlContent)
+                            .ariaLabel('User upload csv response.')
+                            .ok("OK")
+                            .targetEvent(ev)
+                            );
+                    return;
+                }
+                notificationUtilsService.notify($translate.instant('USER.CSV_SUCCESSFULLY_IMPORTED', response));
+            }, function(error) {
+                if (error.domain) {
+                    notificationUtilsService.alert(error.message);
+                }
             });
         };
     }

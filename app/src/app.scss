@@ -650,3 +650,11 @@ md-toast.md-error-toast-theme .md-toast-content {
 .tree-attachment{
     padding-left: 20px;
 }
+
+.csv-import-error-li {
+    list-style: none;
+    margin: 0;
+    max-height: 100px;
+    overflow-y: auto;
+    color: rgba(0, 0, 0, 0.53);
+}

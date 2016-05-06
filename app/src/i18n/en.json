@@ -592,15 +592,22 @@
         "CREATE_USER": "Create user",
         "UPLOAD_USERS": "Upload users (csv)",
         "UPLOAD_USERS_NOTE": "Upload users. CSV files only",
-        "FAILED_TO_UPLOAD_MSG": "{{failedNumberOfUsers}} user(s) were not added for the following reasons:",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER": "Are you sure you want to delete '{{user}}'?",
         "CAN_NOT_DELETE_ADMIN_USER": "Deletion of the admin user is not permitted.",
         "DISABLE_ACCOUNT": "Disable account",
         "EMAIL_FEED_ENABLED": "Email feed enabled",
         "MANAGER": "Manager",
+        "CSV_SUCCESSFULLY_IMPORTED": "{{createdUsers}} of {{totalUsers}} users created successfully.",
         "ERRORS": {
             "EMAIL_EXIST": "User with this email exists",
-            "USERNAME_EXISTS": "Username exists"
+            "USERNAME_EXISTS": "Username exists",
+            "CSV_EMPTY": "Csv file contains no users",
+            "CSV_IMPORT_ERRORS": "Uploaded with errors",
+            "FAILED_TO_UPLOAD_1": "{{failedNumberOfUsers}} user was not created for the following reasons:",
+            "FAILED_TO_UPLOAD_N": "{{failedNumberOfUsers}} users were not created for the following reasons:",
+            "INVALID_CSV_COLUMN": "Invalid CSV: Column \"{{columnName}}\" (column number {{columnNumber}}) must not be blank, but was on line {{line}}",
+            "CSV_DUPLICATE": "{{username}} - username already exists",
+            "CSV_DUPLICATE_EMAIL": "{{username}} - email already used"
         }
     },
     "GROUP": {
