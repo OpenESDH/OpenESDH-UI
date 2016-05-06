@@ -5,7 +5,7 @@ angular
 
 var document;
 
-function OfficeController($stateParams, $window, $controller, $translate, officeService, caseService, sessionService,
+function OfficeController($stateParams, $window, $controller, $translate, $q, officeService, caseService,
         caseDocumentsService, notificationUtilsService, caseCrudDialogService, authService) {
     var vm = this;
 
@@ -32,11 +32,28 @@ function OfficeController($stateParams, $window, $controller, $translate, office
     vm.saveOfficeDocWithCase = saveOfficeDocWithCase;
     vm.setPartial = setPartial;
     vm.debug = debug;
+    vm.authenticated = false;
 
-    loadDocumentConstraints();
+    init();
 
-    if (!sessionService.getUserInfo()) {
-        authService.revalidateUser();
+    
+    function init(){
+        authenticate().then(function(){
+            vm.authenticated = true;
+            loadDocumentConstraints();
+        });
+    }
+    
+    function authenticate(){
+        if (authService.isAuthenticated()) {
+            return $q.when(true);
+        }
+        return authService.ssoLogin().then(function(response){
+            if (response.status == 401) {
+                return authService.revalidateUser();
+            }
+            return response;
+        });
     }
     
     function debug(){

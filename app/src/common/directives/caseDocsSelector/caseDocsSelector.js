@@ -11,7 +11,9 @@
                  selectedDocs: '=',
                  selectFolders: '&',
                  selectLockedDocs: '&',
-                 selectDocNodeRefs: '&'
+                 selectDocNodeRefs: '&',
+                 itemAddonSrc: '&',
+                 singleSelect: '&'
              },
              link: link
          };
@@ -22,6 +24,13 @@
              scope.folderSelect = false;
              scope.lockedDocsSelect = true;
              scope.docNodeRefsSelect = false;
+             scope.appendItemAddon = false;
+             scope.isSingleSelect = false;
+             scope.singleSelectedItem = null;
+             
+             if(scope.singleSelect != undefined && scope.singleSelect() === true){
+                 scope.isSingleSelect = true;
+             }
              
              if(scope.selectLockedDocs != undefined && scope.selectLockedDocs() === false){
                  scope.lockedDocsSelect = false;
@@ -35,6 +44,11 @@
                  scope.docNodeRefsSelect = true;
              }
              
+             if(scope.itemAddonSrc != undefined && scope.itemAddonSrc() != undefined){
+                 scope.appendItemAddon = true;
+                 scope.itemAddon = scope.itemAddonSrc();
+             }
+             
              if(scope.caseId != undefined && scope.caseId() != undefined){
                  caseDocumentsService.getDocumentsFolderNodeRef(scope.caseId()).then(function(result){
                      scope.folderNodeRef = result.caseDocsFolderNodeRef;
@@ -46,11 +60,19 @@
              }
              
              function onItemSelectionChanged(item){
-                 if(item.selected === true){
+                 if(scope.isSingleSelect){
+                     scope.singleSelectedItem = null;
+                     if(item.selected === true){
+                         removeSelections();
+                         item.selected = true;
+                         scope.singleSelectedItem = item;
+                     }
+                 }else if(item.selected === true){
                      onSelectItem(item);
                  }else{
                      onUnselectedItem(item);
                  }
+                 
                  updateSelectedDocsModel(scope);
              }
              
@@ -70,6 +92,12 @@
                  }
              }
              
+             function removeSelections(){
+                 scope.docFolderItems.forEach(function(item){
+                     item.selected = false;
+                     onUnselectedItem(item);
+                 });
+             }
          }
          
          function loadDocuments(scope){
@@ -120,7 +148,13 @@
              }
              
              var selectedDocs = [];
-             getSelectedDocuments(scope.docFolderItems);
+             if(scope.isSingleSelect){
+                 if(scope.singleSelectedItem != null){
+                     selectedDocs.push(scope.singleSelectedItem);
+                 }
+             }else{
+                 getSelectedDocuments(scope.docFolderItems);                 
+             }
              scope.selectedDocs = selectedDocs;
              
              function getSelectedDocuments(items){
