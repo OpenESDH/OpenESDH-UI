@@ -4,10 +4,18 @@
     <div layout="column">
         <md-card>
             <md-card-content>
-                <md-input-container md-no-float style="margin:0.75rem 1rem;padding:4px">
-                    <i class="material-icons" style="position:absolute;top:0.5rem;left:0.5rem;color:rgba(0, 0, 0, 0.25)">search</i>
-                    <input type="text" ng-model="freeTextSearch" placeholder="{{ 'SEARCH.SEARCH' | translate }}" style="padding:0.5rem 0.5rem 0.5rem 2rem" />
-                </md-input-container>
+                <div layout="row" layout-align="space-between start">
+                    <div flex>
+                        <md-input-container md-no-float style="margin:0.75rem 1rem;padding:4px">
+                            <i class="material-icons" style="position:absolute;top:0.5rem;left:0.5rem;color:rgba(0, 0, 0, 0.25)">search</i>
+                            <input type="text" ng-model="freeTextSearch" placeholder="{{ 'SEARCH.SEARCH' | translate }}" style="padding:0.5rem 0.5rem 0.5rem 2rem" />
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <opene-list-filter list="tasksCtrl.taskFilter" choice="tasksCtrl.taskFilterChoice" finished="tasksCtrl.getTasks()">
+                        </opene-list-filter>
+                    </div>
+                </div>
                 <div class="tlist">
                     <div class="tlist__header" layout="row" style="border-bottom:0">
                         <span class="tlist__cell tlist__cell_icon" flex="none">

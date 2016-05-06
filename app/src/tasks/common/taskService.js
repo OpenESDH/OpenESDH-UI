@@ -5,19 +5,18 @@
 
     function TaskService($http, $translate, sessionService) {
         return {
-            getTasks: getTasks,
+            getAllTasks: getAllTasks,
             getCaseTasks: getCaseTasks,
             getCurrentUserWorkflowTasks: getCurrentUserWorkflowTasks,
+            getCurrentUserGroupTasks: getCurrentUserGroupTasks,
+            getCurrentUserSubordinatesTasks: getCurrentUserSubordinatesTasks,
             getTaskDetails: getTaskDetails,
             updateTask: updateTask,
             endTask: endTask,
             getTaskStatuses: getTaskStatuses
         };
         
-        function getTasks(){
-            if(!sessionService.isAdmin()){
-                return this.getCurrentUserWorkflowTasks();
-            }
+        function getAllTasks(){
             return $http.get("/api/openesdh/workflow/tasks").then(function (response) {
                 return response.data.tasks;
             });
@@ -31,9 +30,34 @@
         
         function getCurrentUserWorkflowTasks() {
             var userInfo = sessionService.getUserInfo();
+            var params = {
+                    params: {
+                        authority: userInfo.user.userName,
+                        pooledTasks: false
+                    }
+            };
             //&state={state?}&priority={priority?}&pooledTasks={pooledTasks?}&dueBefore={dueBefore?}&dueAfter={dueAfter?}&properties={properties?}&maxItems={maxItems?}&skipCount={skipCount?}&exclude={exclude?}
-            return $http.get("/api/task-instances?authority=" + userInfo.user.userName).then(function (response) {
+            return $http.get("/api/task-instances", params).then(function (response) {
                 return response.data.data;
+            });
+        }
+        
+        function getCurrentUserGroupTasks(){
+            var userInfo = sessionService.getUserInfo();
+            var params = {
+                    params: {
+                        authority: userInfo.user.userName,
+                        pooledTasks: true
+                    }
+            };
+            return $http.get("/api/task-instances", params).then(function (response) {
+                return response.data.data;
+            });
+        }
+        
+        function getCurrentUserSubordinatesTasks(){
+            return $http.get("/api/openesdh/workflow/subordinates/tasks").then(function (response) {
+                return response.data;
             });
         }
         
