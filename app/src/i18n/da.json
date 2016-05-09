@@ -757,7 +757,13 @@
         "THIS_TASK_IS_UNASSIGNED": "Opgaven er ikke tildelt",
         "TASK_CREATED_ON_BY": "Oprettet d. {{on}} af {{by}}",
         "SHOW_ALL_OPEN_TASKS": "Alle opgaver",
-        "ADHOC_TITLE": "Opgaven er tildelt af {{initiator}}"
+        "ADHOC_TITLE": "Opgaven er tildelt af {{initiator}}",
+        "FILTER": {
+            "ALL_TASKS": "Alle opgaver",
+            "MY_TASKS": "Mine opgaver",
+            "GROUP_TASKS": "Gruppe opgaver",
+            "SUBORDINATES_TASKS": "Mine arbejdersker"
+        }
     },
     "MENU": {
         "OPEN_MENU": "Åben menu",

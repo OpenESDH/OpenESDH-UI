@@ -790,7 +790,13 @@
         "THIS_TASK_IS_UNASSIGNED": "This task is unassigned",
         "TASK_CREATED_ON_BY": "Created on {{on}} by {{by}}",
         "SHOW_ALL_OPEN_TASKS": "Show all open tasks",
-        "ADHOC_TITLE": "Task allocated by {{initiator}}"
+        "ADHOC_TITLE": "Task allocated by {{initiator}}",
+        "FILTER": {
+            "ALL_TASKS": "All tasks",
+            "MY_TASKS": "My tasks",
+            "GROUP_TASKS": "Group tasks",
+            "SUBORDINATES_TASKS": "My Employees"
+        }
     },
     "MENU": {
         "OPEN_MENU": "Open menu",
