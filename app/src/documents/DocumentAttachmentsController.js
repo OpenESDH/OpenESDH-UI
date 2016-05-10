@@ -57,6 +57,7 @@ function DocumentAttachmentsController($scope, $injector, $state, $stateParams, 
                 pages.push(i + 1);
             }
             vm.attachmentsPages = pages;
+            $scope.docScope.hasAttachments = (vm.attachments.length > 0);
             return vm.attachments;
         });
     }
