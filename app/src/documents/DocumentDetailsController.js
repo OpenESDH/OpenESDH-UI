@@ -6,7 +6,7 @@ angular
 function DocumentDetailsController($scope, $state, $stateParams, $translate, $mdDialog, $location, caseDocumentDetailsService,
         documentPreviewService, caseDocumentFileDialogService, notificationUtilsService,
         alfrescoDownloadService, alfrescoFolderService, sessionService, sharePointProtocolService,
-        documentEditActionsService, $injector) {
+        documentEditActionsService, $injector, caseDocumentsService) {
 
     var vm = this;
     vm.documentNodeRef = $stateParams.storeType + "://" + $stateParams.storeId + "/" + $stateParams.id;
@@ -37,6 +37,10 @@ function DocumentDetailsController($scope, $state, $stateParams, $translate, $md
     vm.afterDocumentDelete = afterDocumentDelete;
     vm.initDocPreviewController = initDocPreviewController;
     vm.subfolder = $stateParams.subfolder;
+    vm.detachDocument = detachDocument;
+    vm.canDetach = canDetach;
+    
+    $scope.docScope = {hasAttachments: false};
 
     function activate() {
         this.initDocPreviewController();
@@ -214,6 +218,44 @@ function DocumentDetailsController($scope, $state, $stateParams, $translate, $md
     function showError(error) {
         if (error && error.domain) {
             notificationUtilsService.alert(error.message);
+        }
+    }
+    
+    function canDetach(){
+        var vm = this;
+        return vm.documentVersions != undefined 
+            && vm.documentVersions.length == 1
+            && $scope.docScope.hasAttachments === false;
+    }
+ 
+    function detachDocument(){
+        var vm = this;
+        $mdDialog.show({
+            controller: DetachFileDialogController,
+            controllerAs: 'assignFileVm',
+            templateUrl: 'app/src/files/view/assignFile.html',
+            parent: angular.element(document.body),
+            targetEvent: null,
+            clickOutsideToClose: true,
+            locals: {
+                documentNodeRef: vm.documentNodeRef
+            }
+        }).then(function(){
+            vm.afterDocumentDelete();           
+        });
+    }
+    
+    function DetachFileDialogController($mdDialog, $controller, $translate, notificationUtilsService, documentNodeRef){
+        var dlg = this;
+        angular.extend(dlg, $controller('AssignFileDialogController', {file:''}));
+        dlg.assignFile = assignFile;
+        delete dlg.currentUser;
+        
+        function assignFile(){
+            caseDocumentsService.detachDocument(documentNodeRef, dlg.owner, dlg.comment).then(function(){
+                notificationUtilsService.notify($translate.instant("DOCUMENT.DOCUMENT_DETACH_SUCCESS"));
+                $mdDialog.hide();
+            });
         }
     }
 }
