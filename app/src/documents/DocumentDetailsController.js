@@ -40,6 +40,7 @@ function DocumentDetailsController($scope, $state, $stateParams, $translate, $md
     vm.detachDocument = detachDocument;
     vm.canDetach = canDetach;
     
+    // attachments controller updates this flag as it loads attachments list 
     $scope.docScope = {hasAttachments: false};
 
     function activate() {
