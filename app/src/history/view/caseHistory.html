@@ -12,10 +12,15 @@
             </thead>
             <tbody>
                 <tr ng-repeat="log in historyCtrl.history| orderObjectBy:orderByAttribute:reverseOrder">
-                    <td>{{ log.action}}</td>
-                    <td>{{ log.type}}</td>
-                    <td>{{ log.user}}</td>
-                    <td>{{ log.time | openeDate: 'fullDate'}}</td>
+                    <td ng-show="log.data">
+                        {{ log.action | translate : log.data}}
+                        <ul ng-show="log.data.props" class="hist-prop-list">
+                            <li ng-repeat="prop in log.data.props">{{ prop.code | translate : prop.data}}</li>
+                        </ul>
+                    </td>
+                    <td ng-show="log.data">{{ ('auditlog.type.' + log.type) | translate}}</td>
+                    <td ng-show="log.data">{{ log.fullName}}</td>
+                    <td ng-show="log.data">{{ log.time | openeDate: 'fullDate'}}</td>
                 </tr>
             </tbody>
         </table>

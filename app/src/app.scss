@@ -314,7 +314,7 @@ md-list md-list-item.active a {
 
     }
     .tlist__cell__date{
-        width: 138px;
+        width: 144px;
     }
     .tlist__cell__action{
         max-width: 88px;
@@ -611,13 +611,13 @@ a.oe_add_more {
 }
 
 md-toast.md-success-toast-theme .md-toast-content {
-  background-color: #BEE992;
-  color: black;
+    background-color: #BEE992;
+    color: black;
 }
 
 md-toast.md-error-toast-theme .md-toast-content {
-  background-color: #FF9292;
-  color: black;
+    background-color: #FF9292;
+    color: black;
 }
 
 .breadcrumb{
@@ -649,4 +649,24 @@ md-toast.md-error-toast-theme .md-toast-content {
 
 .tree-attachment{
     padding-left: 20px;
+}
+
+.csv-import-error-li {
+    list-style: none;
+    margin: 0;
+    max-height: 100px;
+    overflow-y: auto;
+    color: rgba(0, 0, 0, 0.53);
+}
+
+ul.hist-prop-list {
+    list-style: none;
+    margin: 0;
+
+    li:after {
+        content: ','
+    }
+    li:last-child:after {
+        content: '.'
+    }
 }

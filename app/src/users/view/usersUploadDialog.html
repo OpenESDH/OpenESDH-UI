@@ -1,21 +1,24 @@
 <md-dialog aria-label="{{ 'USER.UPLOAD_USERS' | translate }}">
-  <form>
-    <md-toolbar layout="row">
-      <div class="md-toolbar-tools">
-        <h2>{{ 'USER.UPLOAD_USERS' | translate }}</h2>
-      </div>
-    </md-toolbar>
-    <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em">
-      <label class="label"><span class="md-warn">*</span> {{ 'USER.UPLOAD_USERS_NOTE' | translate }}</label>
-      <input type="file" file-model="fileToUpload">
-    </md-dialog-content>
-    <div class="md-actions" layout="row">
-      <md-button class="md-primary" ng-click="upload($event)">
-        {{ 'COMMON.UPLOAD' | translate }}
-      </md-button>
-      <md-button ng-click="cancel()">
-        {{ 'COMMON.CANCEL' | translate }}
-      </md-button>
-    </div>
-  </form>
+    <form name="form">
+        <md-toolbar layout="row">
+            <div class="md-toolbar-tools">
+                <h2>{{ 'USER.UPLOAD_USERS' | translate }}</h2>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="max-width:800px;max-height:810px;min-width:20em">
+            <label class="label"><span class="md-warn">*</span> {{ 'USER.UPLOAD_USERS_NOTE' | translate }}</label>
+            <input type="file" file-model="fileToUpload">
+        </md-dialog-content>
+        <div class="md-actions" layout="row">
+            <md-button class="md-primary" ng-click="upload($event)" ng-disabled="!fileToUpload">
+                {{ 'COMMON.UPLOAD' | translate }}
+            </md-button>
+            <md-button href="{{wcsPrefix}}/api/openesdh/users/upload/sample" aria-label="Example user upload CSV">
+                {{ 'COMMON.DOWNLOAD_TEMPLATE_CSV' | translate }}
+            </md-button>  
+            <md-button ng-click="cancel()">
+                {{ 'COMMON.CANCEL' | translate }}
+            </md-button>
+        </div>
+    </form>
 </md-dialog>

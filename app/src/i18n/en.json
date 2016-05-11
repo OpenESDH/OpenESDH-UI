@@ -594,15 +594,22 @@
         "CREATE_USER": "Create user",
         "UPLOAD_USERS": "Upload users (csv)",
         "UPLOAD_USERS_NOTE": "Upload users. CSV files only",
-        "FAILED_TO_UPLOAD_MSG": "{{failedNumberOfUsers}} user(s) were not added for the following reasons:",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER": "Are you sure you want to delete '{{user}}'?",
         "CAN_NOT_DELETE_ADMIN_USER": "Deletion of the admin user is not permitted.",
         "DISABLE_ACCOUNT": "Disable account",
         "EMAIL_FEED_ENABLED": "Email feed enabled",
         "MANAGER": "Manager",
+        "CSV_SUCCESSFULLY_IMPORTED": "{{createdUsers}} of {{totalUsers}} users created successfully.",
         "ERRORS": {
             "EMAIL_EXIST": "User with this email exists",
-            "USERNAME_EXISTS": "Username exists"
+            "USERNAME_EXISTS": "Username exists",
+            "CSV_EMPTY": "Csv file contains no users",
+            "CSV_IMPORT_ERRORS": "Uploaded with errors",
+            "FAILED_TO_UPLOAD_1": "{{failedNumberOfUsers}} user was not created for the following reasons:",
+            "FAILED_TO_UPLOAD_N": "{{failedNumberOfUsers}} users were not created for the following reasons:",
+            "INVALID_CSV_COLUMN": "Invalid CSV: Column \"{{columnName}}\" (column number {{columnNumber}}) must not be blank, but was on line {{line}}",
+            "CSV_DUPLICATE": "{{username}} - username already exists",
+            "CSV_DUPLICATE_EMAIL": "{{username}} - email already used"
         }
     },
     "GROUP": {
@@ -813,17 +820,17 @@
         "CREATE_NEW_DOC_CATEGORY": "Create new document category",
         "CREATE_EDIT_DOC_CATEGORY": "Create / edit document category",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_DOCUMENT_CATEGORY_X": "Are you sure you want to delete document category '{{title}}'?"
-    },    
-    "PARTY_ROLES":{
+    },
+    "PARTY_ROLES": {
         "PARTY_ROLES": "Party roles",
         "CREATE_NEW_PARTY_ROLE": "Create new party role",
         "CREATE_EDIT_PARTY_ROLE": "Create / edit party role",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_PARTY_ROLE_X": "Are you sure you want to delete party role '{{title}}'?"
     },
-    "CLASSIFIER_VALUES":{
+    "CLASSIFIER_VALUES": {
         "NAME": "Name",
         "DISPLAY_NAME": "Title"
-    },    
+    },
     "SYSTEM_SETTINGS": {
         "SYSTEM_SETTINGS": "System settings"
     },
@@ -881,6 +888,75 @@
             "dk.openesdh.case.workflow.task-end": "Workflow",
             "dk.openesdh.case.workflow.task-approve": "Workflow",
             "dk.openesdh.case.workflow.task-reject": "Workflow"
+        }
+    },
+    "auditlog": {
+        "type": {
+            "ATTACHMENT": "Attachment",
+            "DOCUMENT": "Document",
+            "FOLDER": "Folder",
+            "NOTE": "Note",
+            "MEMBER": "Member",
+            "SYSTEM": "System",
+            "CASE": "Case",
+            "PARTY": "Party",
+            "WORKFLOW": "Workflow"
+        },
+        "label": {
+            "case": {
+                "created": "Created \"{{title}}\""
+            },
+            "attachment": {
+                "added": "Added the attachment \"{{title}}\""
+            },
+            "document": {
+                "added": "Added the document \"{{title}}\"",
+                "deleted": "Deleted \"{{title}}\"",
+                "editing_finished": "Finished editing of \"{{title}}\""
+            },
+            "folder": {
+                "created": "Created folder \"{{title}}\"",
+                "updated": "Updated folder \"{{title}}\"",
+                "deleted": "Removed folder \"{{title}}\""
+            },
+            "note": {
+                "added": "Added the note \"{{note}}\"",
+                "updated": "Updated the note \"{{note}}\":"
+            },
+            "member": {
+                "added": "{{authority}} added as {{role}}",
+                "removed": "{{authority}} removed from {{role}}"
+            },
+            "party": {
+                "added": "Added the party {{contactName}}",
+                "removed": "Removed the party {{contactName}}",
+                "role_changed": "The role of the party {{contactName}} changed from {{roleBeforeName}} to {{roleAfterName}}"
+            },
+            "workflow": {
+                "started": "Started the workflow \"{{description}}\"",
+                "canceled": "Canceled the workflow \"{{description}}\"",
+                "task": {
+                    "ended": "Finished the workflow task \"{{description}}\"",
+                    "Approve": "Approved the workflow task \"{{description}}\"",
+                    "Reject": "Rejected the workflow task \"{{description}}\""
+                }
+            },
+            "properties": {
+                "updated": "Updated properties{{title}}:"
+            },
+            "property": {
+                "removed": "\"{{title}}\" removed",
+                "changed": "\"{{title}}\" changed to \"{{toValue}}\""
+            },
+            "office": {
+                "edit": "\"{{title}}\" version {{oldVersion}} edited in MS Office. New version is {{newVersion}}"
+            },
+            "email": {
+                "sent_1": "Document \"{{attachments}}\" was e-mailed to {{participants}}",
+                "sent_n": "Documents [{{attachments}}] were e-mailed to {{participants}}"
+            },
+            "checkedin": "Uploaded version {{newVersion}} of \"{{title}}\""
+
         }
     },
     "faceted-search.date.one-week.label": "Last week",
