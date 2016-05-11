@@ -12,7 +12,8 @@
             uploadCaseDocument: uploadCaseDocument,
             getDocumentsFolderNodeRef: getDocumentsFolderNodeRef,
             getCaseDocumentConstraints: getCaseDocumentConstraints,
-            getDocumentsFolderNodeRefByCaseRef: getDocumentsFolderNodeRefByCaseRef
+            getDocumentsFolderNodeRefByCaseRef: getDocumentsFolderNodeRefByCaseRef,
+            detachDocument: detachDocument
         };
         return service;
         
@@ -98,6 +99,17 @@
         function getCaseDocumentConstraints(){
             return $http.get("/api/openesdh/case/document/constraints").then(function(response){
                return response.data; 
+            });
+        }
+        
+        function detachDocument(documentRef, newOwnerRef, comment){
+            var params = {
+                    documentRef: documentRef,
+                    newOwnerRef: newOwnerRef,
+                    comment: comment || ''
+            };
+            return $http.put("/api/openesdh/case/document/detach", null, {params: params}).then(function(response){
+                return response.data;
             });
         }
     }

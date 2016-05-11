@@ -212,7 +212,9 @@
         "DELETE_DOC_SUCCESS": "Dokument slettet",
         "NO_DOCUMENTS_ADDED_YET": "Ingen dokumenter tilføjet endnu",
         "CREATE_FOLDER": "Opret folder",
-        "EDIT_FOLDER": "Redigér folder"
+        "EDIT_FOLDER": "Redigér folder",
+        "DETACH": "Skille",
+        "DOCUMENT_DETACH_SUCCESS": "Dokument skillet"
     },
     "FILE": {
         "FILE": "Fil",

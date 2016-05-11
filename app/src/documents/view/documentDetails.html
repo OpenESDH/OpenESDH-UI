@@ -64,7 +64,7 @@
                 <md-button class="md-primary" ng-click="docCtrl.uploadDocNewVersion()" ng-disabled="docCtrl.doc.isLocked || docCtrl.doc.editLockState.isLocked">{{'DOCUMENT.UPLOAD_NEW_VERSION'|translate }}</md-button>
                 <md-button class="md-primary" ng-click="docCtrl.downloadDocument()">{{ 'COMMON.DOWNLOAD' | translate }}</md-button>
                 <md-button class="md-primary" ng-click="docCtrl.deleteDocument()" ng-disabled="docCtrl.doc.isLocked" ng-show="docCtrl.isAdmin">{{ 'COMMON.DELETE' | translate }}</md-button>
-
+                <md-button class="md-primary" ng-click="docCtrl.detachDocument()" ng-disabled="docCtrl.doc.isLocked" ng-if="docCtrl.canDetach()">{{ 'DOCUMENT.DETACH' | translate }}</md-button>
                 <md-menu>
                     <md-button class="md-primary" aria-label="{{ 'MENU.OPEN_MENU' | translate }}" 
                                ng-click="$mdOpenMenu($event)" 

@@ -214,7 +214,9 @@
         "CREATE_FOLDER": "Create folder",
         "EDIT_FOLDER": "Edit folder",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_FOLDER": "Are you sure you want to delete the folder \"{{title}}\" and all its contents?",
-        "DELETE_FOLDER_SUCCESS": "Folder successfully deleted"
+        "DELETE_FOLDER_SUCCESS": "Folder successfully deleted",
+        "DETACH": "Detach",
+        "DOCUMENT_DETACH_SUCCESS": "Document successfully detached"
     },
     "FILE": {
         "FILE": "File",
