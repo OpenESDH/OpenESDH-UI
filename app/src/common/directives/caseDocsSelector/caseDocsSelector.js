@@ -13,7 +13,8 @@
                  selectLockedDocs: '&',
                  selectDocNodeRefs: '&',
                  itemAddonSrc: '&',
-                 singleSelect: '&'
+                 singleSelect: '&',
+                 directChildSelect: '&'
              },
              link: link
          };
@@ -21,12 +22,14 @@
          function link(scope){
              scope.docFolderItems = [];
              scope.onItemSelectionChanged = onItemSelectionChanged;
+             scope.updateModel = updateModel;
              scope.folderSelect = false;
              scope.lockedDocsSelect = true;
              scope.docNodeRefsSelect = false;
              scope.appendItemAddon = false;
              scope.isSingleSelect = false;
              scope.singleSelectedItem = null;
+             scope.isDirectChildSelect = false;
              
              if(scope.singleSelect != undefined && scope.singleSelect() === true){
                  scope.isSingleSelect = true;
@@ -49,6 +52,10 @@
                  scope.itemAddon = scope.itemAddonSrc();
              }
              
+             if(scope.directChildSelect != undefined && scope.directChildSelect() === true){
+                 scope.isDirectChildSelect = true;
+             }
+             
              if(scope.caseId != undefined && scope.caseId() != undefined){
                  caseDocumentsService.getDocumentsFolderNodeRef(scope.caseId()).then(function(result){
                      scope.folderNodeRef = result.caseDocsFolderNodeRef;
@@ -57,6 +64,10 @@
              }else{
                  scope.folderNodeRef = scope.docsFolderNodeRef();
                  loadDocuments(scope);
+             }
+             
+             function updateModel(){
+                 updateSelectedDocsModel(scope);
              }
              
              function onItemSelectionChanged(item){
@@ -79,7 +90,7 @@
              function onSelectItem(item){
                  var parent = item.parent;
                  
-                 if(parent === undefined){
+                 if(parent === undefined || scope.isDirectChildSelect){
                      return;
                  }
                  
@@ -97,6 +108,22 @@
                      item.selected = false;
                      onUnselectedItem(item);
                  });
+             }
+             
+             function onUnselectedItem(item){
+                 if(scope.isDirectChildSelect){
+                     return;
+                 }
+                 if(item.folder && item.children != undefined){                        
+                     item.children.forEach(function(child){
+                         child.selected = false;
+                         onUnselectedItem(child);
+                     });
+                 }else if(item.attachments != undefined){
+                     item.attachments.forEach(function(attachment){
+                         attachment.selected = false;
+                     });
+                 }
              }
          }
          
@@ -127,19 +154,6 @@
              });
          }
          
-         function onUnselectedItem(item){
-             if(item.folder && item.children != undefined){                        
-                 item.children.forEach(function(child){
-                     child.selected = false;
-                     onUnselectedItem(child);
-                 });
-             }else if(item.attachments != undefined){
-                 item.attachments.forEach(function(attachment){
-                     attachment.selected = false;
-                 });
-             }
-         }
-         
          function updateSelectedDocsModel(scope){
              
              if(scope.folderSelect){
@@ -154,15 +168,30 @@
                  }
              }else{
                  getSelectedDocuments(scope.docFolderItems);                 
-             }
+             }             
              scope.selectedDocs = selectedDocs;
              
              function getSelectedDocuments(items){
                  items.forEach(function(item){
+                     
                      if(item.folder){
                          getSelectedDocuments(item.children);
                          return;
                      }
+                     
+                     if(scope.isDirectChildSelect){
+                         item.attachments.filter(function(attachment){
+                             return attachment.selected === true;
+                         }).forEach(function(attachment){
+                             if(scope.docNodeRefsSelect){
+                                 selectedDocs.push(attachment.nodeRef);
+                             }else{
+                                 var copy = plainCopy(attachment);
+                                 selectedDocs.push(copy);    
+                             }
+                         });
+                     }
+                     
                      if(!item.selected){
                          return;
                      }
@@ -178,7 +207,9 @@
                      }
                      
                      var resultItem = plainCopy(item);
-                     resultItem.attachments = getSelectedAttachments(item.attachments);
+                     if(!scope.isDirectChildSelect){
+                         resultItem.attachments = getSelectedAttachments(item.attachments);
+                     }
                      selectedDocs.push(resultItem);
                  })
              }
