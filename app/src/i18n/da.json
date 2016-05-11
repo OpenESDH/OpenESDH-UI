@@ -855,6 +855,75 @@
             "dk.openesdh.case.workflow.task-reject": "Opgave"
         }
     },
+    "auditlog": {
+        "type": {
+            "ATTACHMENT": "Bilag",
+            "DOCUMENT": "Dokument",
+            "FOLDER": "Folder",
+            "NOTE": "Notat",
+            "MEMBER": "Medlem",
+            "SYSTEM": "Systemet",
+            "CASE": "Sag",
+            "PARTY": "Part",
+            "WORKFLOW": "Workflow"
+        },
+        "label": {
+            "case": {
+                "created": "Oprettede sagen \"{{title}}\""
+            },
+            "attachment": {
+                "added": "Tilføjede bilaget \"{{title}}\""
+            },
+            "document": {
+                "added": "Tilføjede dokumentet \"{{title}}\"",
+                "deleted": "Slettede \"{{title}}\"",
+                "editing_finished": "Afsluttede redigering af \"{{title}}\""
+            },
+            "folder": {
+                "created": "Tilføjede folderen \"{{title}}\"",
+                "updated": "Opdateret folderen \"{{title}}\"",
+                "deleted": "Fjernede folderen \"{{title}}\""
+            },
+            "note": {
+                "added": "Tilføjede notatet \"{{note}}\"",
+                "updated": "Opdateret notatet \"{{note}}\":"
+            },
+            "member": {
+                "added": "Tilføjede {{authority}} som {{role}}",
+                "removed": "Fjernede {{authority}} som {{role}}"
+            },
+            "party": {
+                "added": "Tilføjet parten {{contactName}}",
+                "removed": "Fjernet parten {{contactName}}",
+                "role_changed": "Part {{contactName}} rolle ændret som {{roleBeforeName}} til {{roleAfterName}}"
+            },
+            "workflow": {
+                "started": "Start workflow \"{{description}}\"",
+                "canceled": "Annullér workflow \"{{description}}\"",
+                "task": {
+                    "ended": "Afslut opgave \"{{description}}\"",
+                    "Approve": "Godkend opgave \"{{description}}\"",
+                    "Reject": "Afvis opgave \"{{description}}\""
+                }
+            },
+            "properties": {
+                "updated": "Egenskaber opdateret{{title}}:"
+            },
+            "property": {
+                "removed": "\"{{title}}\" fjernede",
+                "changed": "\"{{title}}\" ændret til \"{{toValue}}\""
+            },
+            "office": {
+                "edit": "\"{{title}}\" version {{oldVersion}} redigeres i MS Office. Ny version er {{newVersion}}"
+            },
+            "email": {
+                "sent_1": "Dokument \"{{attachments}}\" er blevet sendt med email til {{participants}}",
+                "sent_n": "Dokumenterne [{{attachments}}] blev sendt med email til {{participants}}"
+            },
+            "checkedin": "Uploade version {{newVersion}} af \"{{title}}\""
+            
+        }
+    },
     "faceted-search.date.one-week.label": "Sidste uge",
     "faceted-search.date.one-month.label": "Sidste måned",
     "faceted-search.date.six-months.label": "Sidste seks måneder",
