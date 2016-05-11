@@ -223,6 +223,7 @@
         "FILES": "Files",
         "MY_FILES": "My files",
         "GROUP_FILES": "Group files",
+        "NO_FILES_ADDED": "No files have been added",
         "SELECT_FILE": "Select file(s) to upload",
         "FILE_UPLOADED_SUCCESSFULLY": "File \"{{title}}\" uploaded successfully",
         "N_FILES_UPLOADED_SUCCESSFULLY": "{{n}} files uploaded successfully",

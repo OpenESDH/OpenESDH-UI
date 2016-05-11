@@ -221,6 +221,7 @@
         "FILES": "Filer",
         "MY_FILES": "Mine filer",
         "GROUP_FILES": "Fælles filer",
+        "NO_FILES_ADDED": "No files have been added",
         "SELECT_FILE": "Upload fil(er)",
         "FILE_UPLOADED_SUCCESSFULLY": "Filen \"{{title}}\" oploadet succesfuldt",
         "N_FILES_UPLOADED_SUCCESSFULLY": "{{n}} filer uploadet succesfuldt",

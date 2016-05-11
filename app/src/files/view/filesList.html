@@ -68,7 +68,7 @@
                     </div>
                     <div class="tlist__cell tlist__cell__action" ng-show="filesVm.columns.action">{{ 'COMMON.ACTIONS' | translate }}</div>
                 </div>
-                <md-virtual-repeat-container class="tlist__body" flex-height>
+                <md-virtual-repeat-container class="tlist__body" flex-height ng-show="filesVm.files.length > 0">
                     <div md-virtual-repeat="file in filesVm.files | orderObjectBy:orderByAttribute:reverseOrder | filter:filesVm.columnFilter | filter:fileFilter" class="tlist__item" layout="column" flex>
                         <div class="tlist__item__link" layout="row">
                             <span class="tlist__cell tlist__cell__fileicon tlist__cardview__hide" flex="none">
@@ -135,7 +135,9 @@
                         </div>
                     </div>
                 </md-virtual-repeat-container>
-
+                <div ng-show="filesVm.files.length === 0" class="empty_file_list muted">
+                    <i class="material-icons">insert_drive_file</i><br>
+                    {{ 'FILE.NO_FILES_ADDED' | translate }}</div>
                 <md-button class="md-primary" ng-click="filesVm.showAddFileDialog($event)"><i class="material-icons ng-scope">add</i> {{ 'COMMON.ADD_NEW' | translate }} {{ 'FILE.FILE' | translate }}</md-button>
             </div>
         </div>
