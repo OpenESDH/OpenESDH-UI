@@ -9,7 +9,8 @@
             getFileExtension: getFileExtension,
             getMsProtocolForFileExtension: getMsProtocolForFileExtension,
             getMsProtocolForFile: getMsProtocolForFile,
-            getFolderIcon: getFolderIcon
+            getFolderIcon: getFolderIcon,
+            getFileIcon: getFileIcon
         };
         
         function getFolderIcon(p_iconSize){
@@ -116,7 +117,7 @@
          * @return {string} The icon name, e.g. doc-file-32.png
          * @static
          */
-        function getFileIcon(p_fileName, p_fileType, p_iconSize, p_fileParentType) {
+        function getFileIcon(p_fileName, p_iconSize) {
             // Mapping from extn to icon name for cm:content
             var extns =
             {
@@ -207,30 +208,13 @@
             };
 
             var prefix = "generic",
-                fileType = typeof p_fileType === "string" ? p_fileType : "cm:content",
-                fileParentType = typeof p_fileParentType === "string" ? p_fileParentType : null,
                 iconSize = typeof p_iconSize === "number" ? p_iconSize : 32;
 
-            // If type = cm:content, then use extn look-up
-            var type = Alfresco.util.getFileIcon.types[fileType];
-            if (type === "file") {
-                var extn = p_fileName.substring(p_fileName.lastIndexOf(".") + 1).toLowerCase();
-                if (extn in extns) {
-                    prefix = extns[extn];
-                }
+            var extn = p_fileName.substring(p_fileName.lastIndexOf(".") + 1).toLowerCase();
+            if (extn in extns) {
+                prefix = extns[extn];
             }
-            else if (typeof type == "undefined") {
-                if (fileParentType !== null) {
-                    type = Alfresco.util.getFileIcon.types[fileParentType];
-                    if (typeof type == "undefined") {
-                        type = "file";
-                    }
-                }
-                else {
-                    type = "file";
-                }
-            }
-            return prefix + "-" + type + "-" + iconSize + ".png";
+            return prefix + "-file-" + iconSize + ".png";
         }
         
         function getMsProtocolForFileExtension(fileExtension){

@@ -71,7 +71,8 @@
         "DISABLED": "Disabled",
         "ADD_MORE_INFO": "Add more information",
         "DATE": "Date",
-        "EMAIL_SENT_TO": "Email has been sent to {{to}}"
+        "EMAIL_SENT_TO": "Email has been sent to {{to}}",
+        "DROP_FILES_OR_CLICK_TO_UPLOAD": "Drop files here or click to upload"
     },
     "SIMPLE_CASE": {
         "TYPE": "Standard case"

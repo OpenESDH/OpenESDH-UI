@@ -1,4 +1,4 @@
-<md-dialog class="dialog-large" aria-label="Case edit dialog">
+<md-dialog class="dialog-large" style="min-width: 750px" aria-label="Case edit dialog">
     <form name="form" novalidate>
 
         <md-toolbar layout>
@@ -11,10 +11,16 @@
         </md-toolbar>
         
         <md-dialog-content>
-            
             <ng-include ng-repeat="extra in vm.extrasUI" src="extra.formUrl"></ng-include>
         
-            <ng-include src="vm.formTemplateUrl" />
+            <ng-include src="vm.formTemplateUrl"></ng-include>
+            
+            <div ng-if="!vm.editCase">
+                <h3>{{'DOCUMENT.DOCUMENTS' | translate}}</h3>
+                <file-drop-upload form="form" on-init="vm.loadDocumentConstraints(scope)" files-model="vm.documents"
+                    file-addon-src="'app/src/cases/common/view/fileUploadAddon.html'" >
+                </file-drop-upload>
+            </div>
         </md-dialog-content>
 
         <md-dialog-actions>

@@ -14,11 +14,15 @@ function RequestsErrorHandler($q, $injector, $translate) {
             if (rejection.status === 403) {
                 return $q.reject(rejection);
             }
-            if ((rejection.status === -1 || rejection.status === 401) && rejection.config.url.indexOf("/touch") > -1) {
+            if ((rejection.status === -1 || rejection.status === 401) && (rejection.config.url.indexOf("/touch") > -1)) {
                 rejection.status = 401;
                 return rejection;
             }
-
+            
+            if(rejection.status === -1 && rejection.config.skipCanceled === true){
+                return $q.reject(rejection);
+            }
+            
             //parse error or create default unexpected errror
             var error = (rejection.data && rejection.data.error)
                     ? rejection.data.error

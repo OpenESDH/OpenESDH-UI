@@ -3,7 +3,7 @@ angular
         .module('openeApp.files')
         .factory('filesService', FilesService);
 
-function FilesService($http, fileUtilsService, alfrescoNodeUtils) {
+function FilesService($http, fileUtilsService, alfrescoNodeUtils, Upload) {
 
     return {
         getUserFiles: getUserFiles,
@@ -13,7 +13,8 @@ function FilesService($http, fileUtilsService, alfrescoNodeUtils) {
         uploadOwnerFiles: uploadOwnerFiles,
         deleteFile: deleteFile,
         moveFile: moveFile,
-        addFileToCase: addFileToCase
+        addFileToCase: addFileToCase,
+        uploadTempFile: uploadTempFile
     };
 
     /**
@@ -117,5 +118,15 @@ function FilesService($http, fileUtilsService, alfrescoNodeUtils) {
                 .then(function(response) {
                     return response;
                 });
+    }
+    
+    function uploadTempFile(file){
+        return Upload.upload({
+            url: '/api/openesdh/files/upload/tmp',
+            data: {
+                filedata: file
+            },
+            skipCanceled: true
+        });
     }
 }

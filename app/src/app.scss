@@ -684,3 +684,82 @@ ul.hist-prop-list {
         font-size: 5em;
     }
 }
+
+.drop-box {
+    cursor: pointer;
+    background: #F8F8F8;
+    border: 5px dashed #DDD;
+    width: 95%;
+    height: 65px;
+    text-align: center;
+    padding-top: 25px;
+    margin: 10px;
+}
+.dragover {
+    border: 5px dashed blue;
+}
+
+.upload-progress-bar {
+    position: relative;
+    box-sizing: border-box;
+    max-width: 700px;
+    padding-left: 42px;
+    padding-right: 42px;
+    margin-top: 15px;
+}
+
+.upload-progress-bar-thumb {
+    width: 33px;
+    height: 33px;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: absolute;
+    left: 0px;
+}
+
+.upload-progress-bar-file-name{
+    color: #333;
+    height: 25px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.upload-file-attr-input{
+    margin: 0;
+    max-width: 120px;
+}
+
+.upload-progress-bar-control{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    display: block;
+    min-width: 20px;
+}
+
+.progress {
+    height: 5px;
+    background: #ccc;
+    display: block;
+}
+
+.progress-bar {
+    height: 100%;
+    background: rgb(30,136,229);
+    width: 0;
+    display: block;
+}
+
+.upload-response {
+    padding: 0;
+    padding-top: 10px;
+    margin: 3px 0;
+    clear: both;
+    list-style: none;
+}
+
+.upload-response .sel-file li, .response .reqh {
+    color: blue;
+    padding-bottom: 5px;
+}

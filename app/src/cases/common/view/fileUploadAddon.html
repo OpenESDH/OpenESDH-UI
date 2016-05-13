@@ -1,0 +1,19 @@
+<span flex="40">
+    <md-input-container class="upload-file-attr-input" flex="50">
+        <label>{{ 'COMMON.TYPE' | translate }} *</label>
+        <md-select name="doc_type" ng-model="f.data.doc_type" required>
+            <md-option ng-repeat="type in documentConstraints.documentTypes" ng-value="type.nodeRef">
+                {{ type.displayName}}
+            </md-option>
+        </md-select>
+    </md-input-container>
+    
+    <md-input-container  class="upload-file-attr-input" flex="50">
+        <label>{{ 'COMMON.CATEGORY' | translate }} *</label>
+        <md-select name="doc_category" ng-model="f.data.doc_category" required>
+            <md-option ng-repeat="category in documentConstraints.documentCategories" ng-value="category.nodeRef">
+                {{ category.displayName}}
+            </md-option>
+        </md-select>
+    </md-input-container>
+</span>
