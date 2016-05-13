@@ -14,8 +14,13 @@ function RequestsErrorHandler($q, $injector, $translate) {
             if (rejection.status === 403) {
                 return $q.reject(rejection);
             }
-            if ((rejection.status === -1 || rejection.status === 401) && rejection.config.url.indexOf("/touch") > -1) {
+            if ((rejection.status === -1 || rejection.status === 401) && (rejection.config.url.indexOf("/touch") > -1)) {
                 rejection.status = 401;
+                return rejection;
+            }
+            
+            //upload aborted
+            if(rejection.status === -1 && rejection.config.url.indexOf("/upload/tmp") > -1){
                 return rejection;
             }
 

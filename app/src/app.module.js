@@ -9,6 +9,7 @@
             'rt.encodeuri',
             'ngResource',
             'pdf',
+            'ngFileUpload',
             'swfobject',
             'isteven-multi-select',
             'openeApp.init',

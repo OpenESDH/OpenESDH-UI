@@ -71,7 +71,8 @@
         "DISABLED": "Deaktiveret",
         "ADD_MORE_INFO": "Tilføj yderligere information",
         "DATE": "Dato",
-        "EMAIL_SENT_TO": "E-mail er sendt til {{to}}"
+        "EMAIL_SENT_TO": "E-mail er sendt til {{to}}",
+        "DROP_FILES_OR_CLICK_TO_UPLOAD": "Slip filer her eller klik for at uploade"
     },
     "SIMPLE_CASE": {
         "TYPE": "Standardsag"

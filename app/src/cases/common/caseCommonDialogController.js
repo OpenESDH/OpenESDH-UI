@@ -2,7 +2,8 @@
         .module('openeApp.cases.common')
         .controller('CaseCommonDialogController', CaseCommonDialogController);
     
-    function CaseCommonDialogController($mdDialog, $translate, $filter, $controller, caseCrudDialogService, caseService, notificationUtilsService, sessionService, userService, caseInfo) {
+    function CaseCommonDialogController($mdDialog, $translate, $filter, $controller, caseCrudDialogService, caseService, 
+            caseDocumentsService, notificationUtilsService, sessionService, userService, caseInfo) {
         angular.extend(this, $controller('CaseNodeDialogController', {}));
         var vm = this;
         vm.formTemplateUrl = "app/src/cases/common/view/caseCrudForm.html";
@@ -19,8 +20,10 @@
         vm.initExtras = initExtras;
         vm.hasCaseTemplateSelector = false;
         vm.initCaseTemplateSelector = initCaseTemplateSelector;
+        vm.loadDocumentConstraints = loadDocumentConstraints;
         vm.extrasUI = [];
-
+        vm.documents = [];
+        
         function getUserInfo(){
             return sessionService.getUserInfo();
         }
@@ -91,6 +94,11 @@
         function _saveNew() {
             var vm = this;
             var props = vm.getPropsToSave();
+            
+            if(vm.documents.length > 0){
+                props.prop_oe_tempAttachments = angular.toJson(vm.documents);
+            }
+            
             // When submitting, do something with the case data
             return caseService.createCase(vm.caseInfo.type, props).then(function (caseNodeRef){
                 // When the form is submitted, show a notification:
@@ -126,4 +134,13 @@
             var vm = this;
             return vm.retrievePropsToSave(vm.case, vm.oldCase);
         }
+        
+        function loadDocumentConstraints(scope){
+            var vm = this;
+            caseDocumentsService.getCaseDocumentConstraints().then(function(documentConstraints){
+                scope.documentConstraints = documentConstraints;
+            });
+        }
+        
+        
     }

@@ -9,7 +9,8 @@
             getFileExtension: getFileExtension,
             getMsProtocolForFileExtension: getMsProtocolForFileExtension,
             getMsProtocolForFile: getMsProtocolForFile,
-            getFolderIcon: getFolderIcon
+            getFolderIcon: getFolderIcon,
+            getFileIcon: getFileIcon
         };
         
         function getFolderIcon(p_iconSize){
@@ -212,7 +213,8 @@
                 iconSize = typeof p_iconSize === "number" ? p_iconSize : 32;
 
             // If type = cm:content, then use extn look-up
-            var type = Alfresco.util.getFileIcon.types[fileType];
+            var type = "file";
+//            var type = Alfresco.util.getFileIcon.types[fileType];
             if (type === "file") {
                 var extn = p_fileName.substring(p_fileName.lastIndexOf(".") + 1).toLowerCase();
                 if (extn in extns) {
