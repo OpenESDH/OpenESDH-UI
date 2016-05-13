@@ -48,9 +48,9 @@
                      }).then(function(response){
                            $timeout(function () {
                              file.data = response.data;
+                             validate();
                              if(scope.filesModel != undefined){
                                  scope.filesModel.push(file.data);
-                                 validate();
                              }
                            });
                      }, null, function(evt){
