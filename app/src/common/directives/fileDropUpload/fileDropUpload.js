@@ -38,7 +38,7 @@
                          return;
                      }
                      
-                     file.thumb = fileUtilsService.getFileIcon(file.name, null, 24, null);
+                     file.thumb = fileUtilsService.getFileIcon(file.name, 24);
                      file.progress = 0;
                      file.upload = filesService.uploadTempFile(file).xhr(function(xhr){
                          file.abort = function(){

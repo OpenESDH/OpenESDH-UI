@@ -125,7 +125,8 @@ function FilesService($http, fileUtilsService, alfrescoNodeUtils, Upload) {
             url: '/api/openesdh/files/upload/tmp',
             data: {
                 filedata: file
-            }
+            },
+            skipCanceled: true
         });
     }
 }

@@ -19,11 +19,10 @@ function RequestsErrorHandler($q, $injector, $translate) {
                 return rejection;
             }
             
-            //upload aborted
-            if(rejection.status === -1 && rejection.config.url.indexOf("/upload/tmp") > -1){
-                return rejection;
+            if(rejection.status === -1 && rejection.config.skipCanceled === true){
+                return $q.reject(rejection);
             }
-
+            
             //parse error or create default unexpected errror
             var error = (rejection.data && rejection.data.error)
                     ? rejection.data.error
