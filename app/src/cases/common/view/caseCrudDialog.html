@@ -17,9 +17,9 @@
             
             <div ng-if="!vm.editCase">
                 <h3>{{'DOCUMENT.DOCUMENTS' | translate}}</h3>
-                <file-drop-upload form="form" on-init="vm.loadDocumentConstraints(scope)" files-model="vm.documents"
+                <temp-file-drop-upload form="form" on-init="vm.loadDocumentConstraints(scope)" files-model="vm.documents"
                     file-addon-src="'app/src/cases/common/view/fileUploadAddon.html'" >
-                </file-drop-upload>
+                </temp-file-drop-upload>
             </div>
         </md-dialog-content>
 
