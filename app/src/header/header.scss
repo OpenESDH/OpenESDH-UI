@@ -14,7 +14,7 @@
     top: 0;
     width: auto;
     padding: 0.5rem 0;
-    
+
     .md-button {
         min-width: auto;
     }
@@ -41,6 +41,8 @@
         border-bottom: 2px solid #fff;
         border-radius: 0;
     }
+
+
 }
 
 .logged-in-user {
@@ -52,7 +54,7 @@
 
 .global-tools__search {
     display: inline-block;
-	position: relative;
+    position: relative;
     vertical-align: middle;
 
     .global-tools__search__icon {
@@ -61,7 +63,7 @@
         left: 0.5rem;
         color: rgba(0,0,0,0.25);
     }
-    
+
     .single-line .label {
         display: inline-block;
         font-size: 0.8em;
@@ -69,113 +71,136 @@
         margin: 0;
         font-weight: 400;
     }   
-    
-	input {
-		background: #fff;
-		border-radius: 0.25em;
-	}
 
-	.md-subheader .md-subheader-inner {
-	    padding: 8px 0px 8px 16px;
-	}
+    input {
+        background: #fff;
+        border-radius: 0.25em;
+    }
 
-	md-input-container {
-		position: relative;
+    .md-subheader .md-subheader-inner {
+        padding: 8px 0px 8px 16px;
+    }
+
+    md-input-container {
+        position: relative;
         margin: 0.75rem 0;
 
-		.md-input {
-			font-size: 0.8em;
+        .md-input {
+            font-size: 0.8em;
             padding: 0.5rem 0.5rem 0.5rem 2rem;
-		}
-	}
+        }
+    }
 
-	md-list-item {
-		
-		.md-avatar {
-			border-radius: 0;
-		}
+    md-list-item {
 
-		md-icon {
-			color: #454545;
-			font-size: 40px;
-		}
-	}
+        .md-avatar {
+            border-radius: 0;
+        }
 
-	md-whiteframe {
-		
+        md-icon {
+            color: #454545;
+            font-size: 40px;
+        }
+    }
+
+    md-whiteframe {
+
         width: 30rem;
         min-width: 100%;
-		position: absolute; 
-		top: 2.75rem;
+        position: absolute; 
+        top: 2.75rem;
         left: 0;
-	    background-color: white; 
-	    color: #000;
-	}
+        background-color: white; 
+        color: #000;
+    }
 
-	.activeSuggestion, 
-	md-list-item:hover {
-		cursor: pointer;
-		background-color: #1E88E5;
-	}
+    .activeSuggestion, 
+    md-list-item:hover {
+        cursor: pointer;
+        background-color: #1E88E5;
+    }
 
-	.activeSuggestion h3,
-	md-list-item:hover h3,
-	.activeSuggestion p,
-	md-list-item:hover p,
-	md-list-item.activeSuggestion md-icon {
-		color: #FFFFFF;
-	}
+    .activeSuggestion h3,
+    md-list-item:hover h3,
+        .activeSuggestion p,
+        md-list-item:hover p,
+        md-list-item.activeSuggestion md-icon {
+        color: #FFFFFF;
+    }
 }
 
+@media screen and (max-width: 809px) {
 
-@media screen and (max-width: 599px) {
-    
-    .md-toolbar-tools__logo {
-        height: 3.75rem;
-        width: 3.75rem;
+    .global-tools__links {
+        margin: 0;
     }
-    
-    .global-tools__link {
-        padding: 0.75rem;
-    }
-    
+
     .global-tools__user {
         padding: 0.25rem;
     }
-    
+
     .global-tools__search {
         display: block;
         padding: 0.5rem;
         margin: -0.25rem -1rem 0;
         background-color: #ddd;
         box-shadow: 0 0.1rem 0.1rem 0.1rem rgba(0,0,0,0.15);
-        
+
         md-input-container {
             width: 100%;
             margin: 0;
         }
     }
-    
+
 }
 
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 830px) {
 
     .global-tools__search md-whiteframe {
         border-radius: 0.25rem;    
     }
-    
+
     .global-tools__search {
         margin: 0 1rem;
     }
-    
+
 }
 
 
-@media screen and (min-width: 600px) and (max-width: 960px) {
+@media screen and (min-width: 830px) and (max-width: 960px) {
 
     .global-tools__search md-whiteframe {
         left: -8.5rem;
     }
-    
+
+}
+
+.global-tools__links {
+    .global-tools__menu_link {
+        display: none;
+    }
+}
+
+/* hide text of last menu items */ 
+@media screen and (max-width: 1419px) {
+    .global-tools__links > span > span:nth-child(n+4) {
+        .global-tools__link > span {
+            display: none;
+        }
+    }
+}
+
+/* hide logo*/
+@media screen and (max-width: 554px) {
+    .global-tools__links {
+        width: 100%;
+        
+        .md-toolbar-tools__logo {
+            display: none;
+        }
+    }
+    .global-tools__link {
+        margin: 0.3rem;
+    }
 }
