@@ -12,7 +12,7 @@
           </div>
           <md-virtual-repeat-container md-auto-shrink style="min-height: 150px;">
               <div md-virtual-repeat="document in docCtrl.documents | orderObjectBy:orderByAttribute:reverseOrder" class="repeat-item">
-                  <a class="r-rowlink" href="#/cases/case/{{ document.caseId }}/doc/{{ document.location.parent.nodeRef | nodeRefUri }}" layout="row">
+                  <a class="r-rowlink" layout="row" ui-sref="docDetails({'caseId': document.caseId, 'storeType': document.docNodeRef.storeType, 'storeId': document.docNodeRef.storeId, 'id': document.docNodeRef.id })">
                       <span class="r icon" flex="none"><img class="md-avatar" ng-src="app/assets/images/filetypes/{{document.thumbNailURL}}"/></span>
                       <span class="r" flex>{{ document.title }}</span>
                       <span class="r muted" flex="20">{{ document.modifiedOn | openeDate}}</span>
