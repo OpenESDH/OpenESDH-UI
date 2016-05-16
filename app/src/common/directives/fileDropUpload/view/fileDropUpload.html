@@ -1,17 +1,3 @@
-<div ngf-drop="uploadFiles($files)" ngf-select="uploadFiles($files)" class="drop-box" 
-     ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true">{{'COMMON.DROP_FILES_OR_CLICK_TO_UPLOAD' | translate}}</div>
-<ul style="clear:both" class="upload-response">
-    <li class="sel-file" ng-repeat="f in files">
-        <div class="upload-progress-bar">
-            <div class="upload-progress-bar-thumb"><img ng-src="app/assets/images/filetypes/{{f.thumb}}"></div>
-            <div layout="row">
-                <span class="upload-progress-bar-file-name" flex="60">{{f.name}}</span>
-                <ng-include ng-if="appendFileAddon" src="fileAddon"></ng-include>
-            </div>
-            <div class="progress" ng-show="f.progress >= 0">
-                <span class="progress-bar" style="width:{{f.progress}}%"></span>
-            </div>
-            <md-button class="upload-progress-bar-control" ng-click="removeFile(f)"><i class="material-icons">highlight_off</i></md-button>
-        </div>
-    </li>
-</ul>
+<div ngf-drop="uploadFiles($files)" ngf-select="uploadFiles($files)" ngf-drag-over-class="'dragover'" ngf-multiple="true">
+    <ng-transclude></ng-transclude>
+</div>

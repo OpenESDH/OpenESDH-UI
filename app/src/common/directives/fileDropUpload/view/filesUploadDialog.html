@@ -1,0 +1,23 @@
+<md-dialog class="dialog-large" style="min-width: 750px" aria-label="Upload files">
+        <md-toolbar layout>
+            <div class="md-toolbar-tools">
+                <h2>{{ 'COMMON.UPLOAD_FILES' | translate }}</h2>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <ul style="clear:both" class="upload-response">
+                <li class="sel-file" ng-repeat="f in dlg.files">
+                    <div class="upload-progress-bar">
+                        <div class="upload-progress-bar-thumb"><img ng-src="app/assets/images/filetypes/{{f.thumb}}"></div>
+                        <div layout="row">
+                            <span class="upload-progress-bar-file-name" flex="60">{{f.name}}</span>
+                        </div>
+                        <div class="progress" ng-show="f.progress >= 0">
+                            <span class="progress-bar" style="width:{{f.progress}}%"></span>
+                        </div>
+                        <md-button class="upload-progress-bar-control" ng-click="dlg.removeFile(f)"><i class="material-icons">highlight_off</i></md-button>
+                    </div>
+                </li>
+            </ul>
+        </md-dialog-content>
+</md-dialog>

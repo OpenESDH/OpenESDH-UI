@@ -4,7 +4,7 @@ angular
         .controller('FilesController', FilesController);
 
 function FilesController($scope, $injector, filesService, $translate, $mdDialog, notificationUtilsService,
-        alfrescoDownloadService, documentPreviewService, fileListItemActionService) {
+        alfrescoDownloadService, documentPreviewService, fileListItemActionService, sessionService) {
     var vm = this;
     vm.tab = 'my_files';
     vm.files = [];
@@ -26,13 +26,16 @@ function FilesController($scope, $injector, filesService, $translate, $mdDialog,
     vm.filterArray = {};
     vm.columnFilter = columnFilter;
 
+    filesService.getUserFilesFolderRef(sessionService.getUserInfo().user.userName).then(function(response){
+        vm.filesFolderNodeRef = response.nodeRef;
+    });
+    
     function loadList() {
         vm.files = [];
         var listF = vm.tab === 'my_files'
                 ? filesService.getUserFiles
                 : filesService.getGroupFiles;
         listF().then(function(files) {
-            console.log("files", files);
             vm.files = files;
         }, showError);
     }
