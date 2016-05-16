@@ -7,8 +7,8 @@
             <input type="text" ng-model="fileFilter" placeholder="{{ 'SEARCH.SEARCH' | translate }}" style="padding:0.5rem 0.5rem 0.5rem 2rem" />
         </md-input-container>
         <div layout="column">
-            <file-drop-upload folder-node-ref="filesVm.filesFolderNodeRef" on-complete="filesVm.loadList()">
-                <div class="tlist">
+            <div class="tlist">
+                <file-drop-upload folder-node-ref="filesVm.filesFolderNodeRef" on-complete="filesVm.loadList()">
                     <div class="tlist__header" layout="row">
                         <div class="tlist__cell tlist__cardview__hide icon" flex="none"></div>
                         <div class="tlist__cell" flex ng-show="filesVm.columns.title">
@@ -141,9 +141,10 @@
                         {{ 'FILE.NO_FILES_ADDED' | translate }}
                         <p>{{'COMMON.DROP_FILES_OR_CLICK_TO_UPLOAD' | translate}}</p>
                     </div>
-                    <md-button class="md-primary" ng-click="filesVm.showAddFileDialog($event)"><i class="material-icons ng-scope">add</i> {{ 'COMMON.ADD_NEW' | translate }} {{ 'FILE.FILE' | translate }}</md-button>
-                </div>
-            </file-drop-upload>
+                </file-drop-upload>
+                <md-button class="md-primary" ng-click="filesVm.showAddFileDialog($event)"><i class="material-icons ng-scope">add</i> {{ 'COMMON.ADD_NEW' | translate }} {{ 'FILE.FILE' | translate }}</md-button>
+            </div>
+            
         </div>
     </md-card-content>
 </md-card>
