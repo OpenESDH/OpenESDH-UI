@@ -4,24 +4,24 @@
         <img class="md-toolbar-tools__logo" src="{{$root.logoSrc}}" alt="logo">
         <a class="md-button global-tools__link" ng-class="{active: toState == 'dashboard'}" ui-sref="dashboard"><i class="material-icons">dashboard</i> <span hide show-gt-md>{{ 'COMMON.HOME' | translate }}</span></a>
         <span ng-controller="ModulesMenuController as menu">
-            <span ng-repeat="item in menu.items | orderBy: 'order'">
+            <span ng-repeat="item in menu.items| orderBy: 'order'">
                 <ng-include src="item.templateUrl"></ng-include>
             </span>
         </span>
     </div>
-    
+
     <md-menu ng-controller="AuthController as vm"
              class="global-tools__user"
              md-position-mode="target-right target">
         <md-button id="admin_menu_btn" aria-label="{{ 'MENU.OPEN_MENU' | translate }}" ng-click="$mdOpenMenu($event)"
                    style="text-transform: capitalize;">
-            <span hide-sm>{{ vm.getUserInfo().user.firstName }}</span> <span hide-sm hide-md>{{ vm.getUserInfo().user.lastName }}</span>
+            <span hide-xs hide-sm>{{ vm.getUserInfo().user.firstName}}</span> <span hide-xs hide-sm hide-md>{{ vm.getUserInfo().user.lastName}}</span>
             <i class="material-icons" style="vertical-align: middle;">more_vert</i>
         </md-button>
-        <md-menu-content width="4">
+        <md-menu-content width="4" ng-controller="ModulesMenuController as menu">
             <md-menu-item hide-gt-md class="logged-in-user">
                 <i class="material-icons" style="vertical-align: middle; width: auto; padding-left: 0;">person</i>
-                {{ vm.getUserInfo().user.firstName }} {{ vm.getUserInfo().user.lastName }}
+                {{ vm.getUserInfo().user.firstName}} {{ vm.getUserInfo().user.lastName}}
             </md-menu-item>
             <md-menu-divider hide-gt-md></md-menu-divider>
             <md-menu-item>
@@ -69,7 +69,7 @@
 
                         <div class="md-list-item-text" layout="column">
                             <h3 ng-bind="item.title"></h3>
-                            <p class="single-line"><span class="label">{{ "CASE.CASE" | translate }}</span> {{ item.case.caseTitle }}</p>
+                            <p class="single-line"><span class="label">{{ "CASE.CASE" | translate }}</span> {{ item.case.caseTitle}}</p>
                         </div>
                     </md-list-item>
 

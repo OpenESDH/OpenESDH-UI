@@ -11,16 +11,16 @@
                         <div class="tlist__cell" flex="10">
                             <div layout="row" layout-align="space-between center">
                                 <span sort-table="activitySummary.caseId">
-                            {{ 'COMMON.CASE_ID' | translate }}
-                        </span>
+                                    {{ 'COMMON.CASE_ID' | translate }}
+                                </span>
                                 <opene-column-filter type="text" filter="actCtrl.filterArray" value="id" />
                             </div>
                         </div>
-                        <div class="tlist__cell" flex="20">
+                        <div class="tlist__cell" flex="15">
                             <div layout="row" layout-align="space-between center">
                                 <span sort-table="activitySummary.caseTitle">
-                            {{ 'COMMON.TITLE' | translate }}
-                        </span>
+                                    {{ 'COMMON.TITLE' | translate }}
+                                </span>
                                 <opene-column-filter type="text" filter="actCtrl.filterArray" value="title" />
                             </div>
                         </div>
@@ -28,24 +28,24 @@
                         <div class="tlist__cell" flex="10">
                             <div layout="row" layout-align="space-between center">
                                 <span sort-table="activitySummary.modifierDisplayName">
-                            {{ 'ACTIVITIES.PERFORMER' | translate }}
-                        </span>
+                                    {{ 'ACTIVITIES.PERFORMER' | translate }}
+                                </span>
                                 <opene-column-filter type="text" filter="actCtrl.filterArray" value="performer" />
+                            </div>
+                        </div>
+                        <div class="tlist__cell tlist__cell__date">
+                            <div layout="row" layout-align="space-between center">
+                                <span sort-table="postDate">
+                                    {{ 'ACTIVITIES.DATE' | translate }}
+                                </span>
+                                <opene-column-filter type="date" filter="actCtrl.filterArray" value="date" />
                             </div>
                         </div>
                         <div class="tlist__cell" flex="15">
                             <div layout="row" layout-align="space-between center">
-                                <span sort-table="postDate">
-                            {{ 'ACTIVITIES.DATE' | translate }}
-                        </span>
-                                <opene-column-filter type="date" filter="actCtrl.filterArray" value="date" />
-                            </div>
-                        </div>
-                        <div class="tlist__cell" flex="10">
-                            <div layout="row" layout-align="space-between center">
                                 <span sort-table="activityType">
-                            {{ 'COMMON.TYPE' | translate }}
-                        </span>
+                                    {{ 'COMMON.TYPE' | translate }}
+                                </span>
                                 <opene-column-filter type="checkbox" list="actCtrl.activityTypes" filter="actCtrl.filterArray" value="type" />
                             </div>
                         </div>
@@ -56,12 +56,13 @@
                             <a class="tlist__item__link" href="#/cases/case/{{activitySummary.caseId}}" layout="row">
                                 <span class="tlist__cell tlist__cell_icon" flex="5"><i class="material-icons">announcement</i></span>
                                 <span class="tlist__cell" flex="10">{{ activitySummary.caseId }}</span>
-                                <span class="tlist__cell muted" flex="20">{{ activitySummary.caseTitle }}</span>
-                                <span class="tlist__cell muted" flex translate="ACTIVITIES.LIST.{{activity.activityType}}" translate-value-user="{{activitySummary.modifierDisplayName}}" translate-value-case="{{activitySummary.caseTitle}}" translate-value-case-id="{{activitySummary.caseId}}" translate-value-member="{{activitySummary.member}}" translate-value-role="{{activitySummary.role}}" translate-value-document="{{activitySummary.docTitle}}" translate-value-attachment="{{activitySummary.attachmentTitle}}" translate-value-workflow-description="{{activitySummary.workflowDescription}}">
-                        </span>
+                                <span class="tlist__cell muted" flex="15">{{ activitySummary.caseTitle }}</span>
+                                <span class="tlist__cell muted" flex>
+                                    {{ ('ACTIVITIES.LIST.' + activity.activityType) | translate : activitySummary }}
+                                </span>
                                 <span class="tlist__cell muted" flex="10">{{activitySummary.modifierDisplayName}}</span>
-                                <span class="tlist__cell muted" flex="15">{{activity.postDate | openeDate}}</span>
-                                <span class="tlist__cell muted" flex="10" translate="ACTIVITIES.TYPE.{{activity.activityType}}"></span>
+                                <span class="tlist__cell tlist__cell__date muted">{{activity.postDate | openeDate}}</span>
+                                <span class="tlist__cell muted" flex="15" translate="ACTIVITIES.TYPE.{{activity.activityType}}"></span>
                             </a>
                         </div>
                     </md-virtual-repeat-container>
