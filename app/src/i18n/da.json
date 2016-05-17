@@ -73,6 +73,7 @@
         "DATE": "Dato",
         "EMAIL_SENT_TO": "E-mail er sendt til {{to}}",
         "DROP_FILES_OR_CLICK_TO_UPLOAD": "Slip filer her eller klik for at uploade",
+        "DROP_FILES_TO_UPLOAD": "Slip filer her for at uploade",
         "UPLOAD_FILES": "Upload filer"
     },
     "SIMPLE_CASE": {
