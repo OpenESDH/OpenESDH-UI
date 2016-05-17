@@ -42,7 +42,13 @@
         border-radius: 0;
     }
 
-
+    & > span {
+        padding-left: 3px;
+        /*display: inline-block;*/
+        line-height: 1em;
+        text-align: left;
+        vertical-align: middle;
+    }
 }
 
 .logged-in-user {
@@ -195,7 +201,7 @@
 @media screen and (max-width: 554px) {
     .global-tools__links {
         width: 100%;
-        
+
         .md-toolbar-tools__logo {
             display: none;
         }
