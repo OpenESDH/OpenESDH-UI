@@ -1,6 +1,6 @@
 <md-card>
 
-    <md-card-content style="min-height: 400px;">
+    <md-card-content>
         <h3 class="md-title">{{ 'DOCUMENT.DOCUMENTS' | translate }}</h3>
 
         <span ng-repeat="crumb in docCtrl.breadcrumbs">
@@ -20,7 +20,7 @@
                     <div class="tlist__cell tlist__cell__date" sort-table="modified">{{ 'COMMON.MODIFIED' | translate }}</div>
                     <div class="tlist__cell tlist__cell__action"></div>
                 </div>
-                <md-virtual-repeat-container class="tlist__body" md-auto-shrink>
+                <md-virtual-repeat-container class="tlist__body" md-auto-shrink  flex-height ng-if="docCtrl.documents.length > 0">
                     <div md-virtual-repeat="doc in docCtrl.documents | orderObjectBy:orderByAttribute:reverseOrder" 
                          layout="column" flex
                          class="tlist__item {{ doc.locked ? 'muted' : '' }}" ng-disabled="doc.locked">
@@ -59,10 +59,11 @@
                             </span>
                         </div>
                     </div>
-                    <div ng-show="docCtrl.documents.length == 0">
-                        <span class="tlist__cell" flex translate="DOCUMENT.NO_DOCUMENTS_ADDED_YET"></span>
-                    </div>
                 </md-virtual-repeat-container>
+                <div ng-if="docCtrl.documents.length == 0" class="empty_file_list muted">
+                    <i class="material-icons">insert_drive_file</i><br>
+                    {{"DOCUMENT.NO_DOCUMENTS_ADDED_YET" | translate}}
+                </div>
             </div>
         </div>
     </md-card-content>
