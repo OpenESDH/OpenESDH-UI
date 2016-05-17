@@ -1,4 +1,7 @@
-<a class="md-button global-tools__link" ng-class="{active: ['contacts.persons','contacts.organizations','contacts.organization'].indexOf(toState) > -1 }" ui-sref="contacts.persons">
+<a class="md-button global-tools__link" 
+   ng-class="{active: ['contacts.persons','contacts.organizations','contacts.organization'].indexOf(toState) > -1 }" 
+   ui-sref="contacts.persons" 
+   title="{{ 'CONTACT.CONTACTS' | translate }}">
     <i class="material-icons">perm_contact_calendar</i> 
     <span hide show-gt-md>{{ 'CONTACT.CONTACTS' | translate }}</span>
 </a>
