@@ -13,7 +13,7 @@ function autocomplete(){
             name: '@',
             list: '=',
             label: '@',
-            selected: '=?'
+            removeItem: '='
         },
         controllerAs: 'vm',
         controller: '@',

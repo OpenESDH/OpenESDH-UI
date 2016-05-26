@@ -3,7 +3,7 @@ angular
         .module('openeApp.systemsettings')
         .controller('GeneralConfigurationController', GeneralConfigurationController);
 
-function GeneralConfigurationController($mdDialog, $translate, notificationUtilsService,
+function GeneralConfigurationController($mdDialog, $translate, $state, notificationUtilsService,
         oeParametersService) {
     var vm = this;
     vm.parameters = [];
@@ -29,8 +29,8 @@ function GeneralConfigurationController($mdDialog, $translate, notificationUtils
         $mdDialog.show(confirm).then(function() {
             oeParametersService.saveParameters(vm.parameters).then(function() {
                 notificationUtilsService.notify($translate.instant("ADMIN.SYS_SETTINGS.GENERAL.SAVED_SUCCESSFULLY"));
-            }, function(response) {
-                notificationUtilsService.alert(response.data.message || response.statusText);
+                //reload full state
+                $state.reload();
             });
         });
     }

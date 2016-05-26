@@ -43,7 +43,7 @@
         }
 
         function addNote(note) {
-            if (!note || (!note.headline && !note.content)) {
+            if (!note || (!note.title && !note.content)) {
                 return;
             }
             caseNotesService.addNewNote(caseId, note).then(function(response) {
@@ -82,7 +82,7 @@
             } else {
                 vmNote.editMode = false;
                 vmNote.concernedParties = [];
-                vmNote.headline = null;
+                vmNote.title = null;
                 vmNote.content = null;
             }
 
@@ -106,7 +106,7 @@
                 var data = {
                     nodeRef: vmNote.nodeRef,
                     author: vmNote.author,
-                    headline: vmNote.headline,
+                    title: vmNote.title,
                     content: vmNote.content,
                     concernedParties: partiesNodeRefs
                 };
@@ -123,7 +123,7 @@
                 });
                 
                 var note = {
-                    headline: vmNote.headline,
+                    title: vmNote.title,
                     content: vmNote.content,
                     concernedParties: partiesNodeRefs
                 };
@@ -166,8 +166,8 @@
             function loadParties() {
                 return casePartiesService.getCaseParties(caseId).then(function(parties) {
                     vmNote.caseParties = parties.map(function(party) {
-                        party._lowername = angular.lowercase(party.displayName);
-                        return party;
+                        party.contact._lowername = angular.lowercase(party.contact.displayName);
+                        return party.contact;
                     });
                     return vmNote.caseParties;
                 });

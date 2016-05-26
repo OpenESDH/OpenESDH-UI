@@ -16,7 +16,7 @@
                                 </md-input-container>
                             </div>
                             <div flex>
-                                <opene-list-filter flex list="vm.caseFilter" choice="vm.caseFilterChoice" finished="vm.getCases()" ng-show="vm.tab == 'myCases'">
+                                <opene-list-filter list="vm.caseFilter" choice="vm.caseFilterChoice" finished="vm.getCases()" ng-show="vm.tab == 'myCases'">
                                 </opene-list-filter>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                                         <span class="r muted" flex="15">{{case["cm:modified"] | openeDate}}</span>
                                         <span class="r muted" flex="10">{{case["oe:status"] | caseStatus }}</span>
                                     </a>
-                                    <span flex="10" ng-show="vm.isAdmin"><md-button class="md-primary" ng-click="vm.deleteCase(case)">{{ 'COMMON.DELETE' | translate }}</md-button></span>
+                                    <span flex="10" ng-show="vm.isAdmin"><md-button class="md-primary" ng-click="vm.deleteCase(case)" data-case-id="{{case['oe:id']}}">{{ 'COMMON.DELETE' | translate }}</md-button></span>
                                 </div>
                             </md-virtual-repeat-container>
                         </div>
@@ -118,7 +118,7 @@
                                         <i class="material-icons">view_list</i>
                                     </md-button>
                                 </div>
-                                <opene-list-filter flex list="groupCaseCtrl.caseFilter" choice="groupCaseCtrl.caseFilterChoice" finished="groupCaseCtrl.getCases()" ng-show="vm.tab == 'groupCases'">
+                                <opene-list-filter list="groupCaseCtrl.caseFilter" choice="groupCaseCtrl.caseFilterChoice" finished="groupCaseCtrl.getCases()" ng-show="vm.tab == 'groupCases'">
                                 </opene-list-filter>
                             </div>
                         </div>

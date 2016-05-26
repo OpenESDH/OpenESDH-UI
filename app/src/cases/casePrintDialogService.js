@@ -10,33 +10,32 @@
         
         function printCase(caseId){
             caseService.getCaseInfo(caseId).then(function(caseObj){
-                caseDocumentsService.getCaseDocumentsWithAttachments(caseId).then(function(documents){
-                    $mdDialog.show({
-                        controller: CasePrintDialogController,
-                        controllerAs: 'dlg',
-                        templateUrl: 'app/src/cases/view/casePrintDialog.html',
-                        parent: angular.element(document.body),
-                        targetEvent: null,
-                        clickOutsideToClose: true,
-                        locals: {
-                            caseObj: caseObj.properties,
-                            documents: documents
-                        },
-                        focusOnOpen: false
-                    }).then(function(printInfo){
-                        caseService.printCase(caseId, printInfo).then(function(result){
-                            documentPrintService.printPdfFromArray(result, caseId + ".pdf");
-                        });
+                $mdDialog.show({
+                    controller: CasePrintDialogController,
+                    controllerAs: 'dlg',
+                    templateUrl: 'app/src/cases/view/casePrintDialog.html',
+                    parent: angular.element(document.body),
+                    targetEvent: null,
+                    clickOutsideToClose: true,
+                    locals: {
+                        caseObj: caseObj.properties,
+                        caseId: caseId
+                    },
+                    focusOnOpen: false
+                }).then(function(printInfo){
+                    caseService.printCase(caseId, printInfo).then(function(result){
+                        documentPrintService.printPdfFromArray(result, caseId + ".pdf");
                     });
                 });
             });
         }
         
-        function CasePrintDialogController($mdDialog, caseObj, documents){
+        function CasePrintDialogController($scope, $mdDialog, caseObj, caseId){
             var vm = this;
             vm.case = caseObj;
-            vm.documents = documents;
+            vm.caseId = caseId;
             vm.formDisabled = true;
+            vm.selectedDocuments = [];
             
             vm.cancel = function() {
               $mdDialog.cancel();
@@ -47,16 +46,16 @@
                     caseDetails: vm.caseDetails === true,
                     caseHistoryLog: vm.caseHistoryLog === true,
                     comments: vm.comments === true,
-                    documents: _getSelectedDocuments()
+                    documents: vm.selectedDocuments
                 };
                 $mdDialog.hide(printInfo);
             }
             
-            vm.onSelectionChanged = onSelectionChanged;
-            
-            vm.onDocSelectionChanged = function(){
+            $scope.$watch(function(){
+                return( vm.selectedDocuments);
+            }, function(){
                 onSelectionChanged();
-            };
+            });
             
             function onSelectionChanged(){
                 vm.formDisabled = !_isAnythingSelected();
@@ -70,27 +69,7 @@
             }
             
             function _isAnyDocumentSelected(){
-                var items = _getSelectedDocuments();
-                return items.length > 0;
-            }
-            
-            function _getSelectedDocuments(){
-                var items = [];
-                for(var i in vm.documents){
-                    
-                    var doc = vm.documents[i];
-                    if(doc.selected === true){
-                        items.push(doc.mainDocNodeRef);
-                    }
-                    
-                    for(var j in doc.attachments){
-                        var attach = doc.attachments[j];
-                        if(attach.selected === true){
-                            items.push(attach.nodeRef);
-                        }
-                    }
-                }
-                return items;
+                return vm.selectedDocuments.length > 0;
             }
         }
     }

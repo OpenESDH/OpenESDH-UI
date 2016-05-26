@@ -17,13 +17,17 @@ var environment = {
     local: {
         proxy: 'http://localhost:8080',
         spp: 'http://localhost:7070'
+    },
+    testv: {
+        proxy: 'http://10.170.12.125',
+        spp: 'http://10.170.12.125:7070'
     }
 };
 
 var paths = {
     scripts: ['app/src/**/*.module.js', 'app/src/**/*.js', '!app/src/**/*Spec.js', '!app/src/modules/test/**/*.js', '!app/src/modules/**/tests/**/*.js'],
     scss: ['app/src/app.scss', 'app/src/**/*.scss'],
-    e2e_tests: ['app/tests/e2e/**/*test.js', 'app/src/modules/**/*test.js'],
+    e2e_tests: ['app/tests/e2e/**/*test.js', 'app/src/modules/**/tests/**/*test.js'],
     protractorConfigFile: 'app/tests/e2e/conf.js'
 };
 
@@ -33,25 +37,37 @@ var dist = {
 };
 
 var openeModules = [{
-        sourceUrl: 'https://github.com/OpenESDH/openesdh-staff-ui.git',
         moduleName: 'staff',
         moduleId: 'openeApp.cases.staff'
     },
     {
-        sourceUrl: 'https://github.com/OpenESDH/openesdh-doc-templates-ui.git',
         moduleName: 'doctemplates',
         moduleId: 'openeApp.doctemplates'
     },
     {
         //must be introduced after 'doctemplates'
-        sourceUrl: 'https://github.com/OpenESDH/openesdh-addo-ui.git',
         moduleName: 'addo',
         moduleId: 'openeApp.addo'
     },
     {
-        sourceUrl: 'https://github.com/OpenESDH/openesdh-project-rooms-ui.git',
         moduleName: 'projectRooms',
         moduleId: 'openeApp.projectRooms'
+    },
+    {
+        moduleName: 'googledocs',
+        moduleId: 'openeApp.google.docs'
+    },
+    {
+        moduleName: 'caseTemplates',
+        moduleId: 'openeApp.caseTemplates'
+    },
+    {
+        moduleName: 'staffTemplates',
+        moduleId: 'openeApp.staffTemplates'
+    },
+    {
+        moduleName: 'openeDocs',
+        moduleId: 'openeApp.openeDocs'
     }];
 
 var runOpeneModules = [];
@@ -158,6 +174,10 @@ gulp.task('dev', ['build', 'watch'], function() {
     createWebserver(environment.test);
 });
 
+gulp.task('testv', ['build', 'watch'], function() {
+    createWebserver(environment.testv);
+});
+
 gulp.task('demo', ['build', 'watch'], function() {
     createWebserver(environment.demo);
 });
@@ -180,24 +200,26 @@ gulp.task('all-modules', openeModules.map(function(module) {
     return module.moduleName;
 }));
 
-gulp.task('all-modules-install', openeModules.map(function(module) {
-    return module.moduleName + '-install';
-}));
+gulp.task('all-modules-install', function(){
+    if (fs.existsSync('./app/src/modules/test')) {
+        $.git.pull('origin', 'develop', {cwd: './app/src/modules'}, function(err) {
+            if (err)
+                throw err;
+            console.log("Modules updated.");
+        });
+    } else {
+        $.git.clone("https://github.com/OpenESDH/openesdh-modules-ui.git", {args: './app/src/modules'}, function(err) {
+            if (err)
+                throw err;
+            console.log("Modules installed.");
+        });
+
+    }
+})
 
 for (var i = 0; i < openeModules.length; i++) {
     var module = openeModules[i];
-    installModuleTask(module);
     useModuleTask(module);
-}
-
-function installModuleTask(module) {
-    gulp.task(module.moduleName + '-install', function() {
-        console.log("Installing module", module.moduleName);
-        installModule({
-            sourceUrl: module.sourceUrl,
-            moduleName: module.moduleName
-        });
-    });
 }
 
 function useModuleTask(module) {
@@ -214,22 +236,5 @@ function useOpeneModule(opt) {
         runOpeneModules.push("'" + opt.moduleId + "'");
         return;
     }
-    throw "No module found: " + opt.moduleName + ". Use gulp " + opt.moduleName + "-install";
-}
-
-function installModule(opt) {
-    if (fs.existsSync('./app/src/modules/' + opt.moduleName)) {
-        $.git.pull('origin', 'develop', {cwd: './app/src/modules/' + opt.moduleName}, function(err) {
-            if (err)
-                throw err;
-            console.log("Module " + opt.moduleName + " updated.");
-        });
-    } else {
-        $.git.clone(opt.sourceUrl, {args: './app/src/modules/' + opt.moduleName}, function(err) {
-            if (err)
-                throw err;
-            console.log("Module " + opt.moduleName + " installed.");
-        });
-
-    }
+    throw "No module found: " + opt.moduleName + ". Use gulp all-modules-install";
 }

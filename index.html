@@ -41,12 +41,18 @@
     <script src="./bower_components/angular-auto-height/dist/auto-height.js"></script>
     <script src="./bower_components/angular-img-fallback/angular.dcb-img-fallback.min.js"></script>
 
+    <script src="./bower_components/ng-file-upload-shim/ng-file-upload-shim.js"></script>
+    <script src="./bower_components/ng-file-upload/ng-file-upload.js"></script>
+
     <!-- Opene-E App -->
     <script src="./dist/opene-app.js"></script>
 
   </head>
 
   <body ng-app="openeApp" layout="column" class="body">
+    <div id="loader" layout="column" layout-align="center center">
+        <md-progress-circular md-diameter="200" flex="initial"></md-progress-circular>
+    </div>
     <md-content class="body__content" ui-view="content"></md-content>
   </body>
 

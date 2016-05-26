@@ -8,30 +8,12 @@
                     <i class="material-icons" style="vertical-align: middle;">arrow_back</i> {{ 'CASE.CASES' | translate }}
                 </md-button>
                 <h1 class="md-headline" layout-margin>
-                    {{ caseCtrl.case["cm:title"].value }} <span class="muted">{{ caseCtrl.case["oe:id"].value }}</span>
+                    {{ caseCtrl.case["cm:title"].value }} <span class="muted" id="caseId">{{ caseCtrl.case["oe:id"].value }}</span>
                     <span class="muted" ng-hide="caseCtrl.case['oe:status'].value === 'active'">
                         ({{caseCtrl.case['oe:status'].value| caseStatus}})
                     </span>
                 </h1>
             </div>
-
-            <md-menu>
-                <md-button class="md-primary" ng-click="$mdOpenMenu($event)"
-                           aria-label="{{ 'CASE.CHANGE_STATUS' | translate }}"
-                           ng-disabled="caseCtrl.caseStatusChoices.length == 0">
-                    {{ 'CASE.CHANGE_STATUS' | translate }}
-                </md-button>
-                <md-menu-content>
-                    <md-menu-item ng-repeat="choiceName in caseCtrl.caseStatusChoices">
-                        <md-button ng-class="{'current-choice': choiceName === caseCtrl.case['oe:status'].value}"
-                                   ng-disabled="choiceName === caseCtrl.case['oe:status'].value"
-                                   aria-label="{{ choiceName | caseStatus }}"
-                                   ng-click="caseCtrl.changeCaseStatus(choiceName)">
-                            {{ choiceName | caseStatus }}
-                        </md-button>
-                    </md-menu-item>
-                </md-menu-content>
-            </md-menu>
         </div>
     </div>
 

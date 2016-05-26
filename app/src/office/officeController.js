@@ -5,7 +5,7 @@ angular
 
 var document;
 
-function OfficeController($stateParams, $window, $controller, $translate, officeService, caseService, sessionService,
+function OfficeController($stateParams, $window, $controller, $translate, $q, officeService, caseService,
         caseDocumentsService, notificationUtilsService, caseCrudDialogService, authService) {
     var vm = this;
 
@@ -32,11 +32,28 @@ function OfficeController($stateParams, $window, $controller, $translate, office
     vm.saveOfficeDocWithCase = saveOfficeDocWithCase;
     vm.setPartial = setPartial;
     vm.debug = debug;
+    vm.authenticated = false;
 
-    loadDocumentConstraints();
+    init();
 
-    if ($stateParams.alf_ticket) {
-        sessionService.setUserInfo({ticket: $stateParams.alf_ticket});
+    
+    function init(){
+        authenticate().then(function(){
+            vm.authenticated = true;
+            loadDocumentConstraints();
+        });
+    }
+    
+    function authenticate(){
+        if (authService.isAuthenticated()) {
+            return $q.when(true);
+        }
+        return authService.ssoLogin().then(function(response){
+            if (response.status == 401) {
+                return authService.revalidateUser();
+            }
+            return response;
+        });
     }
     
     function debug(){
@@ -61,10 +78,6 @@ function OfficeController($stateParams, $window, $controller, $translate, office
                 type: caseType
             };
             var caseController = $controller(caseCrudDialogService.getCaseControllerName(caseType), {caseInfo: caseInfo});
-            caseController._afterCaseCreated = function(caseId) {
-                return caseId;
-            };
-
             angular.extend(this, caseController);
             vm.init();
         }
@@ -109,8 +122,6 @@ function OfficeController($stateParams, $window, $controller, $translate, office
                 console.log("got error", err);
             }
             
-        }, function(response) {
-            notificationUtilsService.alert(response.data.message);
         });
     }
 

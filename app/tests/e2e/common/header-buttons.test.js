@@ -9,6 +9,7 @@ describe('openESDH header', function() {
     });
 
     it('should display all widgets in the global header', function() {
+        console.log('should display all widgets in the global header');
         expect(globalHeader.getHeaderMenuItem().dashboardBtn);
         expect(globalHeader.getHeaderMenuItem().casesBtn);
         expect(globalHeader.getHeaderMenuItem().tasksBtn);

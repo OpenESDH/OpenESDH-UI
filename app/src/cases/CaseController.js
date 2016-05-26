@@ -7,10 +7,11 @@ function CaseController($scope, $stateParams, $mdDialog, $translate, caseService
     var vm = this;
     vm.changeCaseStatus = changeCaseStatus;
     vm.getCaseInfo = getCaseInfo;
+    vm.loadCaseInfo = loadCaseInfo;
 
-    var _caseInfoDefer = $q.defer();
+    var _caseInfoDefer = null;
 
-    loadCaseInfo();
+    vm.loadCaseInfo();
     initTab();
 
     function initTab() {
@@ -20,24 +21,19 @@ function CaseController($scope, $stateParams, $mdDialog, $translate, caseService
     }
 
     function loadCaseInfo() {
+        _caseInfoDefer = $q.defer();
+        var vm = this;
         caseService.getCaseInfo($stateParams.caseId).then(function(result) {
             _caseInfoDefer.resolve(result);
             vm.caseInfo = result;
             vm.case = result.properties;
             vm.caseStatusChoices = result.statusChoices;
             vm.caseIsLocked = result.isLocked;
-        }, function(response) {
+        }, function(error) {
             _caseInfoDefer.reject();
-            if (response.status === 400) {
-                //bad reqest (might be handled exception)
-                //CASE.CASE_NOT_FOUND
-                var key = 'CASE.' + response.data.message.split(' ')[1];
-                var msg = $translate.instant(key);
-                notificationUtilsService.alert(msg === key ? response.data.message : msg);
-                return;
+            if (error.domain){
+                notificationUtilsService.alert(error.message);
             }
-            //other exceptions
-            notificationUtilsService.alert(response.data.message);
         });
     }
 
@@ -60,8 +56,6 @@ function CaseController($scope, $stateParams, $mdDialog, $translate, caseService
                 loadCaseInfo();
                 // TODO: Documents listing also needs to be reloaded
                 notificationUtilsService.notify($translate.instant("CASE.STATUS_CHANGED_SUCCESS"));
-            }, function(response) {
-                notificationUtilsService.alert(response.data.message);
             });
         };
 

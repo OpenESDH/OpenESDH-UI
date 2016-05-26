@@ -3,7 +3,7 @@ angular
         .module('openeApp.users')
         .controller('UserDialogController', UserDialogController);
 
-function UserDialogController($scope, $mdDialog, $mdToast, $translate, $injector, $timeout, notificationUtilsService, userService, user) {
+function UserDialogController($mdDialog, $translate, $injector, notificationUtilsService, userService, user) {
     var ucd = this;
 
     // Data from the user creation form
@@ -13,25 +13,6 @@ function UserDialogController($scope, $mdDialog, $mdToast, $translate, $injector
     ucd.cancel = cancel;
     ucd.update = update;
     ucd.clearFieldValidation = clearFieldValidation;
-    ucd.useAddo = $injector.has('addoService');
-    ucd.isAddoConfigured = false;
-
-    if (ucd.useAddo) {
-        var addoService = $injector.get('addoService');
-        if (ucd.userExists) {
-            addoService.getAddoUserProperties(user.userName).then(function(addoProps) {
-                ucd.user.addoUsername = addoProps.addoUsername;
-            });
-        }
-    }
-
-    // When the form is submitted, show a notification:
-    ucd.toastPosition = {
-        bottom: false,
-        top: true,
-        left: false,
-        right: true
-    };
 
     // Cancel or submit form in dialog
     function cancel(form) {
@@ -43,37 +24,21 @@ function UserDialogController($scope, $mdDialog, $mdToast, $translate, $injector
             ucd.user.disableAccount = !u.enabled;
         var promise = (ucd.userExists) ? userService.updateUser(ucd.user) : userService.createUser(ucd.user);
         promise.then(function(userSaveResponse) {
-            if (ucd.useAddo && ucd.user.addoPassword) {
-                addoService
-                        .saveAddoUser(ucd.user.userName, ucd.user.addoUsername, ucd.user.addoPassword)
-                        .then(function() {
-                            notifyUserSaved(userSaveResponse);
-                        }, function(response) {
-                            ucd.userExists = true;
-                            handleCreateEditError(response);
-                        });
+            notifyUserSaved(userSaveResponse);
+        }, function(error) {
+            if (error.props && error.props.field) {
+                ucd.userForm[error.props.field].$setDirty();
+                ucd.userForm[error.props.field].$setValidity('domainError', false);
+                ucd.userForm[error.props.field].$error.code = error.code;
             } else {
-                notifyUserSaved(userSaveResponse);
+                notificationUtilsService.alert(error.message);
             }
-        }, handleCreateEditError)
-        .then(function(){
-            userService.setEmailFeedDisabled(ucd.user);
         });
-    }
-
-
-
-    function getToastPosition() {
-        return Object.keys(ucd.toastPosition)
-                .filter(function(pos) {
-                    return ucd.toastPosition[pos];
-                })
-                .join(' ');
     }
 
     function notifyUserSaved(user) {
         var msg = $translate.instant('USER.USER') + ' ';
-        msg += user.firstName + ' ' + user.lastName + ' ';
+        msg += (user.cm.firstName + ' ' + user.cm.lastName).trim() + ' ';
         if (ucd.userExists) {
             msg += $translate.instant('COMMON.MODIFIED').toLowerCase();
         } else {
@@ -81,62 +46,17 @@ function UserDialogController($scope, $mdDialog, $mdToast, $translate, $injector
         }
 
         $mdDialog.hide(angular.extend(user, {newUser: !ucd.userExists}));
-        $mdToast.show(
-                $mdToast.simple()
-                .content(msg)
-                .position(getToastPosition())
-                .hideDelay(3000)
-                );
-    }
-
-    function handleCreateEditError(response) {
-        var cStack, msg;
-        console.log(response);
-
-        if (response.status === 404) {
-            notificationUtilsService.notify("Unknown error");
-        } else {
-            cStack = response.data.callstack[1];
-            msg = (cStack) ? cStack : response.data.message;
-        }
-
-        // If conflict
-        if (response.status === 409) {
-            // Username already exists
-            if (msg.indexOf('User name already exists') > -1) {
-                ucd.userForm.userName.$setValidity('usernameExists', false);
-                return;
-            }
-        }
-
-        if (response.status === 500) {
-            // Email already exists
-            if (cStack.indexOf('Error updating email: already exists') > -1 ||
-                    cStack.indexOf('Email must be unique and already exists.') > -1) {
-                ucd.userForm.email.$setValidity('emailExists', false);
-                return;
-            }
-
-            // Incorrect Addo password
-            if (msg.indexOf('ADDO.USER.') > -1) {
-                ucd.userForm.addoUsername.$setDirty();
-                ucd.userForm.addoUsername.$setValidity('incorrectAddoPass', false);
-                ucd.userForm.addoPassword.$setDirty();
-                ucd.userForm.addoPassword.$setValidity('incorrectAddoPass', false);
-                return;
-            }
-        }
-        notificationUtilsService.alert($translate.instant('USER.SAVE_USER_FAILURE'));
+        notificationUtilsService.notify(msg);
     }
 
     function clearFieldValidation(field) {
-        if (field.$valid)
+        if (!field || field.$valid)
             return;
-        if (field.$error.usernameExists)
-            field.$setValidity('usernameExists', true);
-        if (field.$error.emailExists)
-            field.$setValidity('emailExists', true);
-        if (field.$error.incorrectAddoPass)
-            field.$setValidity('incorrectAddoPass', true);
+        var e = Object.keys(field.$error);
+        for (var key in e) {
+            if (e.hasOwnProperty(key)) {
+                field.$setValidity(e[key], true);
+            }
+        }
     }
 }

@@ -4,10 +4,12 @@
     <div class="sub-toolbar md-whiteframe-3dp">
         <div layout="row" layout-align="space-between center" layout-padding>
             <div layout="row" layout-align="start center">
-                <md-button ng-href="#/cases/case/{{docCtrl.caseId}}" ng-if="docCtrl.caseId">
-                    <i class="material-icons" style="vertical-align: middle;">arrow_back</i>
-                    {{ docCtrl.caseId}}
-                </md-button>
+                <a ng-if="docCtrl.caseId" ui-sref="case.info({'caseId': docCtrl.caseId, 'subfolder': docCtrl.subfolder})">
+                    <md-button>
+                        <i class="material-icons" style="vertical-align: middle;">arrow_back</i>
+                        {{ docCtrl.caseId}}
+                    </md-button>
+                </a>
                 <md-button ng-href="#/" ng-if="!docCtrl.caseId">
                     <i class="material-icons" style="vertical-align: middle;">arrow_back</i>
                     {{ 'COMMON.HOME' | translate }}
@@ -17,26 +19,6 @@
                     <span class="muted">({{docCtrl.doc.status| docStatus}})</span>
                 </h1>
             </div>
-
-            <!-- TODO: This and the case status menu in case.html could probably be refactored into some shared code -->
-            <md-menu>
-                <md-button class="md-primary" ng-click="$mdOpenMenu($event)"
-                           aria-label="{{ 'DOCUMENT.CHANGE_STATUS' | translate }}"
-                           ng-disabled="docCtrl.doc.statusChoices.length == 0">
-                    {{ 'DOCUMENT.CHANGE_STATUS' | translate }}
-                </md-button>
-                <md-menu-content>
-                    <md-menu-item ng-repeat="choiceName in docCtrl.doc.statusChoices">
-                        <md-button ng-class="{'current-choice': choiceName === docCtrl.doc.status}"
-                                   ng-disabled="choiceName === docCtrl.doc.status"
-                                   aria-label="{{ choiceName | docStatus }}"
-                                   ng-click="docCtrl.changeDocumentStatus(choiceName)">
-                            {{ choiceName | docStatus }}
-                        </md-button>
-                    </md-menu-item>
-                </md-menu-content>
-            </md-menu>
-
         </div>
     </div>
 

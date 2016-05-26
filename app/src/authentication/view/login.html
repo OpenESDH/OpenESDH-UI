@@ -16,8 +16,8 @@
                 </md-input-container>
 
                 <md-input-container flex="grow">
-                    <label>{{ 'LOGIN.PASSWORD' | translate }}</label>
                     <input type="password" ng-model="vm.credentials.password" name="password" required ng-change="vm.updateValidator()">
+                    <label>{{ 'LOGIN.PASSWORD' | translate }}</label>
                     <opene-error form="vm.form" field="vm.form.password"></opene-error>
                 </md-input-container>
 

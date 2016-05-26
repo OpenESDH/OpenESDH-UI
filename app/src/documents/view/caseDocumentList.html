@@ -1,49 +1,74 @@
-<md-card ng-controller="CaseDocumentsController as docCtrl">
-    
-    <md-card-content style="min-height: 400px;">
+<md-card>
+
+    <md-card-content>
         <h3 class="md-title">{{ 'DOCUMENT.DOCUMENTS' | translate }}</h3>
-    
-        <div class="tlist">
+
+        <span ng-repeat="crumb in docCtrl.breadcrumbs">
+            <a ng-if="$first" class="breadcrumb" ng-click="docCtrl.crumbClick()"><i class="material-icons">folder_open</i></a>
+            <span><i class="material-icons">keyboard_arrow_right</i></span>
+            <a ng-if="!$last" class="breadcrumb" ng-click="docCtrl.crumbClick(crumb)">{{crumb.title}}</a>
+            <span ng-if="$last">{{crumb.title}}</span>
+        </span>
+        <div layout="column">
+            <div class="tlist">
                 <div class="tlist__header" layout="row">
-                    <span class="tlist__cell tlist__cardview__hide icon" flex="none"></span>
-                    <span class="tlist__cell" flex sort-table="cm:title">{{ 'COMMON.TITLE' | translate }}</span>
-                    <span class="tlist__cell" flex="15" sort-table="doc:type">{{ 'COMMON.TYPE' | translate }}</span>
-                    <span class="tlist__cell" flex="15" sort-table="doc:category">{{ 'COMMON.CATEGORY' | translate }}</span>
-                    <span class="tlist__cell" flex="20" sort-table="doc:owner.0.fullname">{{ 'COMMON.CREATEDBY' | translate }}</span> <!-- might not be convenient to sort if multiple owner -->
-                    <span class="tlist__cell" flex="20" sort-table="cm:modified">{{ 'COMMON.MODIFIED' | translate }}</span>
+                    <div class="tlist__cell tlist__cell__fileicon tlist__cardview__hide" flex="none"></div>
+                    <div class="tlist__cell" flex sort-table="title">{{ 'COMMON.TITLE' | translate }}</div>
+                    <div class="tlist__cell" flex="15" sort-table="type.displayName">{{ 'COMMON.TYPE' | translate }}</div>
+                    <div class="tlist__cell" flex="15" sort-table="category.displayName">{{ 'COMMON.CATEGORY' | translate }}</div>
+                    <div class="tlist__cell" flex="20" sort-table="creator.fullName">{{ 'COMMON.CREATEDBY' | translate }}</div> <!-- might not be convenient to sort if multiple owner -->
+                    <div class="tlist__cell tlist__cell__date" sort-table="modified">{{ 'COMMON.MODIFIED' | translate }}</div>
+                    <div class="tlist__cell tlist__cell__action"></div>
                 </div>
-            <md-virtual-repeat-container class="tlist__body" md-auto-shrink>
-                <div md-virtual-repeat="doc in docCtrl.documents | orderObjectBy:orderByAttribute:reverseOrder" 
-                     layout="column" flex
-                     class="tlist__item {{ doc['oe:lockedDate'] ? 'muted' : '' }}" ng-disabled="doc['oe:lockedDate']">
-                    <a class="tlist__item__link" 
-                       href="{{docCtrl.docDetailsUrl}}/{{doc.nodeRef| nodeRefUri}}" 
-                       layout="row">
-                        <span class="tlist__cell tlist__cell__fileicon tlist__cardview__hide icon" flex="none"><img class="md-avatar" ng-src="app/assets/images/filetypes/{{doc.thumbNailURL}}"/></span>
-                        <span class="tlist__cell" flex>
-                            <img class="md-avatar tlist__cardview__show" ng-src="app/assets/images/filetypes/{{doc.thumbNailURL}}"/>
-                            {{ doc["cm:title"] }}</span>
-                        <span class="tlist__cell muted" flex="15">
-                            <i class="material-icons" ng-show="doc['office:fromOutlook']" title="{{ 'DOCUMENT.SENT_FROM_OUTLOOK' | translate}}" style="padding-right: 5px;">email</i>
-                            {{ doc["doc:type"] }}
-                        </span>
-                        <span class="tlist__cell muted" flex="15">{{ doc["doc:category"] }}</span>
-                        <span class="tlist__cell muted" flex="20">
-                            <span ng-repeat="owner in doc['doc:owner']">{{owner.fullname}}</span>
-                        </span>
-                        <span class="tlist__cell muted" flex="20">{{ doc["cm:modified"] | openeDate }}</span>
-                    </a>
+                <md-virtual-repeat-container class="tlist__body" md-auto-shrink  flex-height ng-if="docCtrl.documents.length > 0">
+                    <div md-virtual-repeat="doc in docCtrl.documents | orderObjectBy:orderByAttribute:reverseOrder" 
+                         layout="column" flex
+                         class="tlist__item {{ doc.locked ? 'muted' : '' }}" ng-disabled="doc.locked">
+                        <div class="tlist__item__link" style="cursor: pointer" ng-click="docCtrl.openItem(doc)" layout="row">
+                            <span class="tlist__cell tlist__cell__fileicon tlist__cardview__hide" flex="none">
+                                <img class="md-avatar" ng-src="app/assets/images/filetypes/{{doc.thumbNailURL}}"/>
+                            </span>
+                            <span class="tlist__cell" flex>{{doc.title}}</span>
+                            <span class="tlist__cell muted" flex="15">
+                                <i class="material-icons" ng-show="doc.aspects.fromOutlook" title="{{ 'DOCUMENT.SENT_FROM_OUTLOOK' | translate}}" style="padding-right: 5px;">email</i>
+                                {{ doc.type.displayName}}
+                            </span>
+                            <span class="tlist__cell muted" flex="15">{{ doc.category.displayName}}</span>
+                            <span class="tlist__cell muted" flex="20">
+                                {{doc.creator.fullName}}
+                            </span>
+                            <span class="tlist__cell tlist__cell__date muted">{{ doc.modified | openeDate }}</span>
+                            <span class="tlist__cell tlist__cell__menu tlist__cell__action muted">
+                                <md-menu style="text-align: left;" ng-if="doc.folder">
+                                    <md-button aria-label="{{ 'MENU.OPEN_MENU' | translate }}" ng-click="$mdOpenMenu($event)">
+                                        <i class="material-icons">more_vert</i>
+                                    </md-button>
+                                    <md-menu-content width="4">
+                                        <md-menu-item>
+                                            <md-button ng-click="docCtrl.editFolder(doc)">
+                                                <md-icon>edit</md-icon>{{ 'COMMON.EDIT' | translate }}
+                                            </md-button>
+                                        </md-menu-item>
+                                        <md-menu-item ng-if="docCtrl.isAdmin">
+                                            <md-button ng-click="docCtrl.deleteFolder(doc)">
+                                                <md-icon>delete</md-icon>{{ 'COMMON.DELETE' | translate }}
+                                            </md-button>
+                                        </md-menu-item>
+                                    </md-menu-content>
+                                </md-menu>
+                            </span>
+                        </div>
+                    </div>
+                </md-virtual-repeat-container>
+                <div ng-if="docCtrl.documents.length == 0" class="empty_file_list muted">
+                    <i class="material-icons">insert_drive_file</i><br>
+                    {{"DOCUMENT.NO_DOCUMENTS_ADDED_YET" | translate}}
                 </div>
-            </md-virtual-repeat-container>
+            </div>
         </div>
     </md-card-content>
-    
+
     <div class="md-actions" layout="row" layout-xs="column" layout-padding layout-align="start start">
-        <md-button class="md-primary"
-                   ng-click="docCtrl.uploadDocument()"
-                   ng-disabled="caseCtrl.caseIsLocked">
-            <i class="material-icons">file_upload</i>{{ 'DOCUMENT.UPLOAD_NEW_DOCUMENTS' | translate }}
-        </md-button>
-        <span ng-include="'app/src/documents/view/caseDocumentActions.html'" style="padding: 0"></span>
+        <span ng-include="'app/src/documents/view/caseDocumentActions.html'"></span>
     </div>
 </md-card>

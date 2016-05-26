@@ -1,6 +1,9 @@
   <dt flex="33">{{ 'COMMON.ID' | translate }}</dt><dd flex="66">{{ case["oe:id"].value }}</dd>
   <dt flex="33">{{ 'COMMON.TITLE' | translate }}</dt><dd flex="66">{{ case["cm:title"].value }}</dd>
-  <dt flex="33">{{ 'COMMON.STATUS' | translate }}</dt><dd flex="66">{{ case["oe:status"].value | caseStatus }}</dd>
+  <dt flex="33">{{ 'COMMON.STATUS' | translate }}</dt>
+  <dd flex="66">
+      <ng-include src="'app/src/cases/common/view/caseInfoStatus.html'"></ng-include>
+  </dd>
   <dt flex="33">{{ 'COMMON.CREATEDBY' | translate }}</dt><dd flex="66">{{ case["cm:creator"].fullname }}</dd>
   <dt flex="33">{{ 'COMMON.CREATED' | translate }}</dt><dd flex="66">{{ case["cm:created"].value | openeDate}}</dd>
   <dt flex="33">{{ 'CASE.CASE_OWNER' | translate }}</dt><dd flex="66">{{ case["owners"][0].displayName }}</dd>

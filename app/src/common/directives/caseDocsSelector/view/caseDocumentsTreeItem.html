@@ -1,0 +1,16 @@
+<a ng-show="(item.children.length > 0 || item.attachments.length > 0) && item.expanded" ng-click="item.expanded = false" class="collapse"><i class="material-icons">remove</i></a>
+<a ng-show="(item.children.length > 0 || item.attachments.length > 0) && !item.expanded" ng-click="item.expanded = true" class="expand"><i class="material-icons">add</i></a>
+<span ng-if="item.children.length == 0" class="noexpand">&nbsp;</span>
+<span ng-if="item.attachments.length == 0" class="noexpand">&nbsp;</span>
+<md-checkbox ng-if="folderSelect || !item.folder" ng-model="item.selected" aria-label="checkbox" ng-change="onItemSelectionChanged(item)"></md-checkbox>
+<img class="md-avatar" style="margin: 7px 0 -7px 0;" ng-src="app/assets/images/filetypes/{{item.thumbNailURL}}"/>
+{{item.title || item.name}}
+<ng-include ng-if="appendItemAddon" src="itemAddon"></ng-include>
+<ul ng-if="item.children.length > 0 || item.attachments.length > 0" class="tree">
+    <li ng-if="item.children.length > 0" ng-show="item.expanded" class="tree">
+        <div ng-repeat="item in item.children" ng-if="lockedDocsSelect || !item.locked" ng-include="'app/src/common/directives/caseDocsSelector/view/caseDocumentsTreeItem.html'"></div>
+    </li>
+    <li ng-if="item.attachments.length > 0" ng-show="item.expanded" class="tree">
+        <div class="tree-attachment" ng-repeat="item in item.attachments" ng-if="lockedDocsSelect || !item.locked" ng-include="'app/src/common/directives/caseDocsSelector/view/caseDocumentsTreeItem.html'"></div>
+    </li>
+</ul>

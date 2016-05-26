@@ -3,8 +3,8 @@
         <h1 class="md-headline">{{ 'OFFICE.SAVE_EMAIL_IN_OPENESDH' | translate }}</h1>
         <form name="form">
             <label>{{ 'CASE.CREATE_FROM' | translate }}
-                <md-menu ng-controller="CreateCaseMenuController as ctrl">
-                    <md-button class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="{{ 'CASE.SELECT_CASE_TYPE' | translate }}">
+                <md-menu ng-if="vm.authenticated" ng-controller="CreateCaseMenuController as ctrl">
+                    <md-button id="create-case-btn" class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="{{ 'CASE.SELECT_CASE_TYPE' | translate }}">
                         {{ 'CASE.SELECT_CASE_TYPE' | translate }}
                     </md-button>
                     <md-menu-content>

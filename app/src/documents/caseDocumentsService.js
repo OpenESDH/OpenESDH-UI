@@ -3,35 +3,74 @@
         .module('openeApp.documents')
         .factory('caseDocumentsService', CaseDocumentsService);
 
-    function CaseDocumentsService($http, httpUtils, alfrescoUploadService) {
+    function CaseDocumentsService($http, $q, httpUtils, alfrescoUploadService, alfrescoNodeUtils) {
         var service = {
+            getDocsFolderContents: getDocsFolderContents,
+            getDocsFolderHierarchy: getDocsFolderHierarchy,
+            getDocsFolderPath: getDocsFolderPath,
             getDocumentsByCaseId: getDocumentsByCaseId,
             uploadCaseDocument: uploadCaseDocument,
             getDocumentsFolderNodeRef: getDocumentsFolderNodeRef,
-            getCaseDocumentsWithAttachments: getCaseDocumentsWithAttachments,
-            getCaseDocumentConstraints: getCaseDocumentConstraints
+            getCaseDocumentConstraints: getCaseDocumentConstraints,
+            getDocumentsFolderNodeRefByCaseRef: getDocumentsFolderNodeRefByCaseRef,
+            detachDocument: detachDocument
         };
         return service;
         
-        function getDocumentsByCaseId(caseId, page, pageSize){
-             var requestConfig = { 
-                 url: "/api/openesdh/casedocumentssearch?caseId=" + caseId,
-                 method: "GET"
-             };
-             
-             httpUtils.setXrangeHeader(requestConfig, page, pageSize);
-             
-             return $http(requestConfig).then(function(response){
-                 return {
-                     documents: response.data, 
-                     contentRange: httpUtils.parseResponseContentRange(response)
-                 };
-             });
+        function getDocsFolderContents(nodeRef){
+            var request = { 
+                url: '/api/openesdh/case/docs/folder/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri + '/contents',
+                method: "GET"
+            };
+            return $http(request).then(function(response){
+                return {
+                    documents: response.data,
+                };
+            });
+        }
+        
+        function getDocsFolderHierarchy(nodeRef){
+            var request = { 
+                    url: '/api/openesdh/case/docs/folder/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri + '/hierarchy',
+                    method: "GET"
+                };
+                return $http(request).then(function(response){
+                    return {
+                        documents: response.data,
+                    };
+                });
+        }
+        
+        function getDocsFolderPath(nodeRef){
+            return $http.get('/api/openesdh/case/docs/folder/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri + '/path').then(function(result){
+                return result.data;
+            });
+        }
+        
+        function getDocumentsByCaseId(caseId){
+            return getDocumentsFolderNodeRef(caseId).then(function(result){
+                return getDocsFolderContents(result.caseDocsFolderNodeRef).then(function(result){
+                    result.documents = result.documents.filter(function(item){
+                        return !item.folder;
+                    });
+                    return result;
+                });
+            });
         }
         
         function getDocumentsFolderNodeRef(caseId){
             var requestConfig = { 
-                    url: "/api/openesdh/case/docfolder/noderef/" + caseId,
+                    url: "/api/openesdh/case/" + caseId + "/docfolder/noderef",
+                    method: "GET"
+                };
+            return $http(requestConfig).then(function(response){
+                return response.data;
+            });
+        }
+        
+        function getDocumentsFolderNodeRefByCaseRef(nodeRef){
+            var requestConfig = { 
+                    url: "/api/openesdh/case/" + nodeRef + "/docfolder/noderef",
                     method: "GET"
                 };
             return $http(requestConfig).then(function(response){
@@ -57,19 +96,20 @@
             return alfrescoUploadService.uploadFile(documentFile, caseDocumentsFolder, documentProps);
         }
         
-        function getCaseDocumentsWithAttachments(caseId){
-            var requestConfig = { 
-                url: "/api/openesdh/case/" + caseId + "/documents/attachments",
-                method: "GET"
-            };
-            return $http(requestConfig).then(function(response){
-                return response.data;
-            });
-        }
-        
         function getCaseDocumentConstraints(){
             return $http.get("/api/openesdh/case/document/constraints").then(function(response){
                return response.data; 
+            });
+        }
+        
+        function detachDocument(documentRef, newOwnerRef, comment){
+            var params = {
+                    documentRef: documentRef,
+                    newOwnerRef: newOwnerRef,
+                    comment: comment || ''
+            };
+            return $http.put("/api/openesdh/case/document/detach", null, {params: params}).then(function(response){
+                return response.data;
             });
         }
     }

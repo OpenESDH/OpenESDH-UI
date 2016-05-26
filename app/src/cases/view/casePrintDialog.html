@@ -17,7 +17,9 @@
             <md-checkbox ng-model="dlg.comments" aria-label="Comments" ng-change="dlg.onSelectionChanged()">
                 {{"CASE.COMMENTS" | translate}}
             </md-checkbox>
-            <ng-include src="'app/src/cases/view/selectCaseDocuments.html'"></ng-include>
+            <h3>{{"DOCUMENT.DOCUMENTS" | translate}}</h3>
+            <case-docs-selector case-id="dlg.caseId" selected-docs="dlg.selectedDocuments" select-doc-node-refs="true">
+            </case-docs-selector>
         </md-dialog-content>
 
         <md-dialog-actions>

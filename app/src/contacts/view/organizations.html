@@ -1,37 +1,70 @@
-<md-card ng-controller="OrganizationController as vm">
+<md-card>
     <md-card-content>
 
         <div layout layout-align="space-between">
-            <h3 class="md-title" flex>{{ 'ORG.ORGANIZATIONS' | translate }}</h3>
+            <h3 class="md-title" flex ng-hide="hideHeader">{{ 'ORG.ORGANIZATIONS' | translate }}</h3>
 
             <md-input-container flex="15">
                 <label>{{ 'ORG.SEARCH_FOR_ORG' | translate }}</label>
-                <input type="text" ng-model="vm.searchQuery" ng-model-options="{debounce: 300}" ng-change="vm.dataLoader.search(vm.searchQuery)">
+                <input type="text" ng-model="vm.searchQuery" ng-model-options="{debounce: 300}" ng-change="vm.loadOrganizations()">
             </md-input-container>
         </div>
-
-        <div class="repeat-table">
-            <div class="repeat-header" layout>
-                <span layout flex>
-                    <span class="r" flex="10">{{ 'COMMON.NAME' | translate }}</span>
-                    <span class="r" flex="10">{{ 'ORG.CVR_NO' | translate }}</span>
-                    <span class="r" flex="20">{{ 'ORG.DEPARTMENT' | translate }}</span>
-                    <span class="r" flex="20">{{ 'ORG.STREET' | translate }}</span>
-                    <span class="r" flex="10">{{ 'ORG.POSTAL_CODE' | translate }}</span>
-                    <span class="r" flex="10">{{ 'ORG.CITY' | translate }}</span>
-                    <span class="r" flex="10">{{ 'ORG.COUNTRY' | translate }}</span>
-                </span>
+        
+        <div class="tlist">
+            <div class="tlist__header" layout="row" style="border-bottom:0">
+                <div class="tlist__cell" flex="10">
+                    <div layout="row" layout-align="space-between center">
+                        <span>{{ 'COMMON.NAME' | translate }}</span>
+                        <opene-column-filter type="text" filter="vm.filterArray" value="organizationName" />
+                    </div>
+                </div>
+                <div class="tlist__cell" flex="10">
+                    <div layout="row" layout-align="space-between center">
+                        <span>{{ 'ORG.CVR_NO' | translate }}</span>
+                        <opene-column-filter type="text" filter="vm.filterArray" value="cvrNumber" />
+                    </div>
+                </div>
+                <div class="tlist__cell" flex="20">
+                    <div layout="row" layout-align="space-between center">
+                        <span>{{ 'ORG.DEPARTMENT' | translate }}</span>
+                        <opene-column-filter type="text" filter="vm.filterArray" value="department" />
+                    </div>
+                </div>
+                <div class="tlist__cell" flex="20">
+                    <div layout="row" layout-align="space-between center">
+                        <span>{{ 'ORG.STREET' | translate }}</span>
+                        <opene-column-filter type="text" filter="vm.filterArray" value="address" />
+                    </div>
+                </div>
+                <div class="tlist__cell" flex="10">
+                    <div layout="row" layout-align="space-between center">
+                        <span>{{ 'ORG.POSTAL_CODE' | translate }}</span>
+                        <opene-column-filter type="text" filter="vm.filterArray" value="postCode" />
+                    </div>
+                </div>
+                <div class="tlist__cell" flex="10">
+                    <div layout="row" layout-align="space-between center">
+                        <span>{{ 'ORG.CITY' | translate }}</span>
+                        <opene-column-filter type="text" filter="vm.filterArray" value="cityName" />
+                    </div>
+                </div>
+                <div class="tlist__cell" flex="10">
+                    <div layout="row" layout-align="space-between center">
+                        <span>{{ 'ORG.COUNTRY' | translate }}</span>
+                        <opene-column-filter type="text" filter="vm.filterArray" value="countryName" />
+                    </div>
+                </div>
             </div>
-            <md-virtual-repeat-container md-auto-shrink>
-                <div md-virtual-repeat="organization in vm.dataLoader" md-on-demand class="repeat-item">
-                    <a class="r-rowlink" href ui-sref="administration.organization({'storeProtocol': organization.storeType, 'storeIdentifier': organization.storeId, 'uuid': organization.id})" layout="row">
-                        <span class="r" flex="10">{{organization.organizationName}}</span>
-                        <span class="r" flex="10">{{organization.cvrNumber}}</span>
-                        <span class="r" flex="20"></span>
-                        <span class="r" flex="20">{{organization.address}}</span>
-                        <span class="r" flex="10">{{organization.postCode}}</span>
-                        <span class="r" flex="10">{{organization.cityName}}</span>
-                        <span class="r" flex="10">{{organization.countryCode ? (organization.countryCode | countryCodeToName) : null}}</span>
+            <md-virtual-repeat-container class="tlist__body" flex-height>
+                <div md-virtual-repeat="organization in vm.organizations | filter:vm.columnFilter" class="tlist__item" layout="column" flex>
+                    <a class="r-rowlink" href ui-sref="{{vm.parentState}}.organization({'storeProtocol': organization.storeType, 'storeIdentifier': organization.storeId, 'uuid': organization.id})" layout="row">
+                        <span class="tlist__cell" flex="10">{{organization.organizationName}}</span>
+                        <span class="tlist__cell" flex="10">{{organization.cvrNumber}}</span>
+                        <span class="tlist__cell" flex="20">{{organization.department}}</span>
+                        <span class="tlist__cell" flex="20">{{organization.address}}</span>
+                        <span class="tlist__cell" flex="10">{{organization.postCode}}</span>
+                        <span class="tlist__cell" flex="10">{{organization.cityName}}</span>
+                        <span class="tlist__cell" flex="10">{{organization.countryCode ? (organization.countryCode | countryCodeToName) : null}}</span>
                     </a>
                 </div>
             </md-virtual-repeat-container>

@@ -6,13 +6,14 @@
         "OK": "OK",
         "YES": "Yes",
         "CANCEL": "Cancel",
-        "ERROR": "Error",
         "SUCCESS": "Success",
+        "ERROR": "Error",
         "BACK": "Back",
         "NEXT": "Next",
         "DONE": "Done",
         "ACTIONS": "Actions",
         "REMOVE": "Remove",
+        "NEW": "New",
         "ADD_NEW": "Add new",
         "ADD": "Add",
         "SEND": "Send",
@@ -36,7 +37,7 @@
         "HISTORY": "History",
         "ACTION": "Action",
         "TIME": "Time",
-        "NO_MATCHES": "No matches",
+        "NO_MATCHES": "No results",
         "EMAIL": "Email",
         "SAVE": "Save",
         "VIEW_DETAILS": "View details",
@@ -57,6 +58,7 @@
         "NO": "No",
         "STATE": "State",
         "COMMENT": "Comment",
+        "ADD_COMMENT": "Add comment",
         "OPEN": "Open",
         "TO": "To",
         "SUBJECT": "Subject",
@@ -65,16 +67,22 @@
         "GRID_VIEW": "Grid view",
         "DOWNLOAD_TEMPLATE_CSV": "Download template CSV",
         "LOCKED_BY": "Locked by {{locked_by}}",
-        "CONGRATULATIONS": "Congratulations!"
+        "CONGRATULATIONS": "Congratulations!",
+        "DISABLED": "Disabled",
+        "ADD_MORE_INFO": "Add more information",
+        "DATE": "Date",
+        "EMAIL_SENT_TO": "Email has been sent to {{to}}",
+        "DROP_FILES_OR_CLICK_TO_UPLOAD": "Drop files here or click to upload",
+        "DROP_FILES_TO_UPLOAD": "Drop files here to upload",
+        "UPLOAD_FILES": "Upload files"
+    },
+    "SIMPLE_CASE": {
+        "TYPE": "Standard case"
     },
     "CASE": {
         "CONFIRM_CLOSE_CASE": "Do you want to close this case?",
         "STATUS_CHANGED_SUCCESS": "Status has been changed successfully",
         "CASETYPE_STANDARD": "Standard case",
-        "TYPE": {
-            "simple_case": "Standard case",
-            "staff_case": "Staff case"
-        },
         "STATUS": {
             "active": "Active",
             "passive": "Passive",
@@ -114,7 +122,6 @@
         "GROUP_CASES": "Group cases",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_CASE": "Are you sure you want to delete the case '{{case_title}}'?",
         "DELETE_CASE_SUCCESS": "Case successfully deleted",
-        "DELETE_CASE_FAILURE": "Case could not be deleted",
         "VIEW_CASE_DETAILS": "View case",
         "STAFF": {
             "EMPLOYEE": "Employee",
@@ -124,7 +131,6 @@
         },
         "CASE_CREATED": "Case '{{case_title}}' created",
         "CASE_UPDATED": "Case '{{case_title}}' updated",
-        "ERROR_CREATING_CASE": "Error creating case: {{case_title}}",
         "CASE_DETAILS": "Case details",
         "CASE_HISTORY_LOG": "Case history log",
         "COMMENTS": "Journal notes",
@@ -135,7 +141,9 @@
         "CREATE_FROM": "Create from",
         "SELECT_CASE_TYPE": "Select case type",
         "SEARCH_EXISTING_CASE": "search existing case",
-        "ASSIGN_TO": "Assign to"
+        "ASSIGN_TO": "Assign to",
+        "CASE_ADDED_TO_FAVORITE": "You have now added this case to your favorite cases and will be notified whenever the case is updated",
+        "CANNOT_DELETE_CASE_DOC_LOCKED": "You cannot delete the case because a document is currently locked. Please unlock the document and try again."
     },
     "DOCUMENT": {
         "STATUS_CHANGED_SUCCESS": "Status has been changed successfully",
@@ -181,6 +189,7 @@
         "VERSION_DESCRIPTION": "Version description",
         "EDIT_PROPERTIES": "Edit information",
         "EDIT_DOCUMENT": "Edit document",
+        "EDIT_DOCUMENT_SHAREPOINT": "Edit document in MS Office",
         "UPLOAD_NEW_VERSION": "Upload new version",
         "PREVIEW": "Preview",
         "ATTACHMENTS": {
@@ -204,13 +213,20 @@
         "VIEW_DOCUMENT_DETAILS": "View document",
         "SENT_FROM_OUTLOOK": "Sent from Outlook",
         "DELETE_DOC_SUCCESS": "Document successfully deleted",
-        "DELETE_DOC_FAILURE": "Document could not be deleted"
+        "NO_DOCUMENTS_ADDED_YET": "No documents added yet",
+        "CREATE_FOLDER": "Create folder",
+        "EDIT_FOLDER": "Edit folder",
+        "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_FOLDER": "Are you sure you want to delete the folder \"{{title}}\" and all its contents?",
+        "DELETE_FOLDER_SUCCESS": "Folder successfully deleted",
+        "DETACH": "Detach",
+        "DOCUMENT_DETACH_SUCCESS": "Document successfully detached"
     },
     "FILE": {
         "FILE": "File",
         "FILES": "Files",
         "MY_FILES": "My files",
         "GROUP_FILES": "Group files",
+        "NO_FILES_ADDED": "No files have been added",
         "SELECT_FILE": "Select file(s) to upload",
         "FILE_UPLOADED_SUCCESSFULLY": "File \"{{title}}\" uploaded successfully",
         "N_FILES_UPLOADED_SUCCESSFULLY": "{{n}} files uploaded successfully",
@@ -222,10 +238,16 @@
         "FILE_ADDED_TO_CASE_SUCCESSFULLY": "File \"{{title}}\" added to case {{caseId}} successfully",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_FILE": "Are you sure you want to delete the file \"{{title}}\"?",
         "DELETE_FILE_SUCCESS": "File successfully deleted",
-        "DELETE_FILE_FAILURE": "File could not be deleted",
         "COMMENTS_OF": "Comments of {{filename}}",
         "USER_TIMESTAMP": "{{date}} by {{name}}",
         "VIEW_COMMENTS": "Read comments"
+    },
+    "COMMENTS": {
+        "COMMENTS": "Comments",
+        "ADD_COMMENT": "Add comment",
+        "EDIT_COMMENT": "Edit comment",
+        "COMMENT": "Comment",
+        "ARE_YOU_SURE_YOU_WANT_DELETE_COMMENT": "Are you sure you want to delete this comment?"
     },
     "COUNTRY": {
         "AF": "Afghanistan",
@@ -546,7 +568,7 @@
                 "ARE_YOU_SURE_YOU_WANT_TO_SAVE_PARAMETERS": "Are you sure you want to save parameters?",
                 "SAVED_SUCCESSFULLY": "Configuration saved successfully"
             },
-            "TENANTS_MODULES":{
+            "TENANTS_MODULES": {
                 "TITLE": "Tenants Modules",
                 "TENANT_MODULES": "Tenant modules",
                 "TENANT": "Tenant",
@@ -557,7 +579,9 @@
                 "TENANT_CONTENT_STORE_ROOT": "Tenant content store root",
                 "CREATE_TENANT": "Create tenant",
                 "ASSIGN_MODULES": "Assign modules",
-                "TENANT_CREATED": "Tenant created: {{tenantDomain}}"
+                "TENANT_CREATED": "Tenant created: {{tenantDomain}}",
+                "TENANT_UI_CONTEXT": "Tenant UI context",
+                "DISABLE_ALL_MODULES": "Disable all modules"
             }
         }
     },
@@ -574,11 +598,23 @@
         "CREATE_USER": "Create user",
         "UPLOAD_USERS": "Upload users (csv)",
         "UPLOAD_USERS_NOTE": "Upload users. CSV files only",
-        "FAILED_TO_UPLOAD_MSG": "{{failedNumberOfUsers}} user(s) were not added for the following reasons:",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_USER": "Are you sure you want to delete '{{user}}'?",
         "CAN_NOT_DELETE_ADMIN_USER": "Deletion of the admin user is not permitted.",
-        "SAVE_USER_FAILURE": "User could not be saved",
-        "EMAIL_FEED_ENABLED": "Email feed enabled"
+        "DISABLE_ACCOUNT": "Disable account",
+        "EMAIL_FEED_ENABLED": "Email feed enabled",
+        "MANAGER": "Manager",
+        "CSV_SUCCESSFULLY_IMPORTED": "{{createdUsers}} of {{totalUsers}} users created successfully.",
+        "ERRORS": {
+            "EMAIL_EXIST": "User with this email exists",
+            "USERNAME_EXISTS": "Username exists",
+            "CSV_EMPTY": "Csv file contains no users",
+            "CSV_IMPORT_ERRORS": "Uploaded with errors",
+            "FAILED_TO_UPLOAD_1": "{{failedNumberOfUsers}} user was not created for the following reasons:",
+            "FAILED_TO_UPLOAD_N": "{{failedNumberOfUsers}} users were not created for the following reasons:",
+            "INVALID_CSV_COLUMN": "Invalid CSV: Column \"{{columnName}}\" (column number {{columnNumber}}) must not be blank, but was on line {{line}}",
+            "CSV_DUPLICATE": "{{username}} - username already exists",
+            "CSV_DUPLICATE_EMAIL": "{{username}} - email already used"
+        }
     },
     "GROUP": {
         "GROUPS": "Groups",
@@ -599,7 +635,6 @@
     },
     "ORG": {
         "ORGANIZATIONS": "Organisations",
-        "BACK_TO_ORGS": "Back to organisations",
         "COMPANY_NAME": "Company name",
         "DEPARTMENT": "Department",
         "ADDRESS_1": "Address 1",
@@ -626,6 +661,7 @@
     },
     "CONTACT": {
         "CONTACTS": "Contacts",
+        "PEOPLE": "People",
         "FIRST_NAME": "First name",
         "MIDDLE_NAME": "Middle name",
         "LAST_NAME": "Last name",
@@ -649,9 +685,16 @@
         "CONTACT_SAVED_SUCCESSFULLY": "Contact \"{{firstName}} {{lastName}}\" saved successfully",
         "CONTACT_DELETED_SUCCESSFULLY": "Contact \"{{firstName}} {{lastName}}\" deleted successfully",
         "PERSON": "Person",
-        "ORGANIZATION": "Organization"
+        "ORGANIZATION": "Organization",
+        "ERRORS": {
+            "INVALID_TYPE": "The type of contact is not recognised. Can only create types PERSON/ORGANIZATION",
+            "EMAIL_IS_MANDATORY": "Email is mandatory for contact creation",
+            "MORE_THAN_ONE_CONTACT_EXITS": "There is more than one contact associated with this id",
+            "NO_SUCH_CONTACT": "Contact does not exist"
+        }
     },
     "ERROR": {
+        "UNEXPECTED_ERROR": "Oops! Something went wrong.",
         "REQUIRED": "This field is required",
         "TOO_SHORT": "This field is too short",
         "TOO_LONG": "This field is too long",
@@ -661,7 +704,10 @@
         "EMAIL_EXISTS": "Email already exists",
         "USERNAME_EXISTS": "Username already exists",
         "AUTH_FAILURE": "Incorrect authentication details",
-        "NOT_EQUAL_PATTERN": "Wrong input format"
+        "AUTH_ERROR": "Internal login error",
+        "NOT_EQUAL_PATTERN": "Wrong input format",
+        "INVALID_CSV_FILE": "Can not read csv file",
+        "ACCESS_DENIED": "Access Denied. You do not have the appropriate permissions to perform this operation."
     },
     "LOGIN": {
         "LOGIN": "Login",
@@ -698,7 +744,7 @@
         "PRINT_ALL_NOTES": "Print all notes",
         "CREATE_NOTE": "Create note",
         "EDIT_NOTE": "Edit note",
-        "HEADLINE": "Headline",
+        "TITLE": "Headline",
         "CONTENT": "Content",
         "CONCERNED_PARTIES": "Concerned parties",
         "ADD_NOTE": "Add note",
@@ -710,7 +756,7 @@
         "PARTIES": "Parties",
         "ROLE": "Role",
         "CHANGE": "Change",
-        "ADD_PARTIES": "Add parties",
+        "ADD_PARTIES": "New party",
         "ORGANIZATIONS": "Organisations",
         "CHOOSE_ORG_CONTACTS": "Choose organisation contacts",
         "PERSONS": "Persons",
@@ -722,9 +768,7 @@
         "PARTY_ADDED_SUCCESSFULLY": "Case party added successfully",
         "PARTIES_ADDED_SUCCESSFULLY": "{{count}} case parties added successfully",
         "PARTY_CHANGED_SUCCESSFULLY": "Case party changed successfully",
-        "PARTY_REMOVED_SUCCESSFULLY": "Case party removed successfully",
-        "NO_MATCHES": "No matches were found.",
-        "CREATE_CONTACT": "Create new contact"
+        "PARTY_REMOVED_SUCCESSFULLY": "Case party removed successfully"
     },
     "TASK": {
         "MY_TASKS": "My tasks",
@@ -751,7 +795,14 @@
         "TASK_HAS_BEEN_RELEASED": "Task has been released",
         "THIS_TASK_IS_UNASSIGNED": "This task is unassigned",
         "TASK_CREATED_ON_BY": "Created on {{on}} by {{by}}",
-        "SHOW_ALL_OPEN_TASKS": "Show all open tasks"
+        "SHOW_ALL_OPEN_TASKS": "Show all open tasks",
+        "ADHOC_TITLE": "Task allocated by {{initiator}}",
+        "FILTER": {
+            "ALL_TASKS": "All tasks",
+            "MY_TASKS": "My tasks",
+            "GROUP_TASKS": "Group tasks",
+            "SUBORDINATES_TASKS": "My Employees"
+        }
     },
     "MENU": {
         "OPEN_MENU": "Open menu",
@@ -762,26 +813,27 @@
         "SAVE_EMAIL_IN_OPENESDH": "Save email in Visma Case",
         "SAVE_DOCUMENT_IN_OPENESDH": "Save document in Visma Case"
     },
-    "DOCUMENT_TYPE": {
-        "CREATE_EDIT_DOC_TYPE": "Create / edit document type",
-        "NAME": "Name",
-        "DISPLAY_NAME": "Display name"
-    },
     "DOCUMENT_TYPES": {
         "DOCUMENT_TYPES": "Document types",
-        "NAME": "Name",
-        "DISPLAY_NAME": "Display name",
         "CREATE_NEW_DOC_TYPE": "Create new document type",
         "CREATE_EDIT_DOC_TYPE": "Create / edit document type",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_DOCUMENT_TYPE_X": "Are you sure you want to delete document type '{{title}}'?"
     },
     "DOCUMENT_CATEGORIES": {
         "DOCUMENT_CATEGORIES": "Document categories",
-        "NAME": "Name",
-        "DISPLAY_NAME": "Title",
         "CREATE_NEW_DOC_CATEGORY": "Create new document category",
         "CREATE_EDIT_DOC_CATEGORY": "Create / edit document category",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_DOCUMENT_CATEGORY_X": "Are you sure you want to delete document category '{{title}}'?"
+    },
+    "PARTY_ROLES": {
+        "PARTY_ROLES": "Party roles",
+        "CREATE_NEW_PARTY_ROLE": "Create new party role",
+        "CREATE_EDIT_PARTY_ROLE": "Create / edit party role",
+        "ARE_YOU_SURE_YOU_WANT_TO_DELETE_PARTY_ROLE_X": "Are you sure you want to delete party role '{{title}}'?"
+    },
+    "CLASSIFIER_VALUES": {
+        "NAME": "Name",
+        "DISPLAY_NAME": "Title"
     },
     "SYSTEM_SETTINGS": {
         "SYSTEM_SETTINGS": "System settings"
@@ -794,8 +846,7 @@
         "FIND_USERS": "Find users",
         "FIND_GROUPS": "Find groups",
         "FIND_PERSON": "Find persons",
-        "FIND_ORGANISATION": "Find organizations",
-        "NO_MATCHES": "No matches"
+        "FIND_ORGANISATION": "Find organizations"
     },
     "ACTIVITIES": {
         "NOTIFICATIONS": "Notifications",
@@ -805,10 +856,10 @@
         "dk.openesdh.case-update": "{{user}} updated case \"{{case}} ({{caseId}})\"",
         "dk.openesdh.case.member-add": "{{user}} added member {{member}} of role {{role}} to the case \"{{case}} ({{caseId}})\"",
         "dk.openesdh.case.member-remove": "{{user}} removed member {{member}} of role {{role}} from the case \"{{case}} ({{caseId}})\"",
-        "dk.openesdh.case.document-upload": "{{user}} uploaded a new document \"{{document}}\" to the case \"{{case}} ({{caseId}})\"",
-        "dk.openesdh.case.document.new.version-upload": "{{user}} uploaded a new version of the document \"{{document}}\" to the case \"{{case}} ({{caseId}})\"",
-        "dk.openesdh.case.document.attachment-upload": "{{user}} uploaded an attachment \"{{attachment}}\" for the document \"{{document}}\" to the case \"{{case}} ({{caseId}})\"",
-        "dk.openesdh.case.document.attachment.new.version-upload": "{{user}} uploaded a new version of the attachment \"{{attachment}}\" for the document \"{{document}}\" to the case \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.document-upload": "{{user}} uploaded a new document \"{{docTitle}}\" to the case \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.document.new.version-upload": "{{user}} uploaded a new version of the document \"{{docTitle}}\" to the case \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.document.attachment-upload": "{{user}} uploaded an attachment \"{{attachmentTitle}}\" for the document \"{{docTitle}}\" to the case \"{{case}} ({{caseId}})\"",
+        "dk.openesdh.case.document.attachment.new.version-upload": "{{user}} uploaded a new version of the attachment \"{{attachmentTitle}}\" for the document \"{{docTitle}}\" to the case \"{{case}} ({{caseId}})\"",
         "dk.openesdh.case.workflow-start": "{{user}} started workflow \"{{workflowDescription}}\" for the case \"{{case}} ({{caseId}})\"",
         "dk.openesdh.case.workflow-cancel": "{{user}} canceled workflow \"{{workflowDescription}}\" for the case \"{{case}} ({{caseId}})\"",
         "dk.openesdh.case.workflow.task-end": "{{user}} completed the task \"{{workflowDescription}}\" for the case \"{{case}} ({{caseId}})\"",
@@ -818,10 +869,10 @@
             "dk.openesdh.case-update": "Updated case properties",
             "dk.openesdh.case.member-add": "Added member {{member}} of role {{role}}",
             "dk.openesdh.case.member-remove": "Removed member {{member}} of role {{role}}",
-            "dk.openesdh.case.document-upload": "Uploaded a new document \"{{document}}\"",
-            "dk.openesdh.case.document.new.version-upload": "Uploaded a new version of the document \"{{document}}\"",
-            "dk.openesdh.case.document.attachment-upload": "Uploaded an attachment \"{{attachment}}\" for the document \"{{document}}\"",
-            "dk.openesdh.case.document.attachment.new.version-upload": "Uploaded a new version of the attachment \"{{attachment}}\" for the document \"{{document}}\"",
+            "dk.openesdh.case.document-upload": "Uploaded a new document \"{{docTitle}}\"",
+            "dk.openesdh.case.document.new.version-upload": "Uploaded a new version of the document \"{{docTitle}}\"",
+            "dk.openesdh.case.document.attachment-upload": "Uploaded an attachment \"{{attachmentTitle}}\" for the document \"{{docTitle}}\"",
+            "dk.openesdh.case.document.attachment.new.version-upload": "Uploaded a new version of the attachment \"{{attachmentTitle}}\" for the document \"{{docTitle}}\"",
             "dk.openesdh.case.workflow-start": "Started workflow \"{{workflowDescription}}\"",
             "dk.openesdh.case.workflow-cancel": "Canceled workflow \"{{workflowDescription}}\"",
             "dk.openesdh.case.workflow.task-end": "Completed the task \"{{workflowDescription}}\"",
@@ -841,6 +892,75 @@
             "dk.openesdh.case.workflow.task-end": "Workflow",
             "dk.openesdh.case.workflow.task-approve": "Workflow",
             "dk.openesdh.case.workflow.task-reject": "Workflow"
+        }
+    },
+    "auditlog": {
+        "type": {
+            "ATTACHMENT": "Attachment",
+            "DOCUMENT": "Document",
+            "FOLDER": "Folder",
+            "NOTE": "Note",
+            "MEMBER": "Member",
+            "SYSTEM": "System",
+            "CASE": "Case",
+            "PARTY": "Party",
+            "WORKFLOW": "Workflow"
+        },
+        "label": {
+            "case": {
+                "created": "Created \"{{title}}\""
+            },
+            "attachment": {
+                "added": "Added the attachment \"{{title}}\""
+            },
+            "document": {
+                "added": "Added the document \"{{title}}\"",
+                "deleted": "Deleted \"{{title}}\"",
+                "editing_finished": "Finished editing of \"{{title}}\""
+            },
+            "folder": {
+                "created": "Created folder \"{{title}}\"",
+                "updated": "Updated folder \"{{title}}\"",
+                "deleted": "Removed folder \"{{title}}\""
+            },
+            "note": {
+                "added": "Added the note \"{{note}}\"",
+                "updated": "Updated the note \"{{note}}\":"
+            },
+            "member": {
+                "added": "{{authority}} added as {{role}}",
+                "removed": "{{authority}} removed from {{role}}"
+            },
+            "party": {
+                "added": "Added the party {{contactName}}",
+                "removed": "Removed the party {{contactName}}",
+                "role_changed": "The role of the party {{contactName}} changed from {{roleBeforeName}} to {{roleAfterName}}"
+            },
+            "workflow": {
+                "started": "Started the workflow \"{{description}}\"",
+                "canceled": "Canceled the workflow \"{{description}}\"",
+                "task": {
+                    "ended": "Finished the workflow task \"{{description}}\"",
+                    "Approve": "Approved the workflow task \"{{description}}\"",
+                    "Reject": "Rejected the workflow task \"{{description}}\""
+                }
+            },
+            "properties": {
+                "updated": "Updated properties{{title}}:"
+            },
+            "property": {
+                "removed": "\"{{title}}\" removed",
+                "changed": "\"{{title}}\" changed to \"{{toValue}}\""
+            },
+            "office": {
+                "edit": "\"{{title}}\" version {{oldVersion}} edited in MS Office. New version is {{newVersion}}"
+            },
+            "email": {
+                "sent_1": "Document \"{{attachments}}\" was e-mailed to {{participants}}",
+                "sent_n": "Documents [{{attachments}}] were e-mailed to {{participants}}"
+            },
+            "checkedin": "Uploaded version {{newVersion}} of \"{{title}}\""
+
         }
     },
     "faceted-search.date.one-week.label": "Last week",

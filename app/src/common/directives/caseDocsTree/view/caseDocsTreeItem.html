@@ -1,0 +1,10 @@
+<img class="md-avatar" ng-src="app/assets/images/filetypes/{{item.thumbNailURL}}"/>
+{{item.title || item.name}}
+<ul ng-if="item.children.length > 0 || item.attachments.length > 0" class="tree">
+    <li ng-if="item.children.length > 0" class="tree">
+        <div ng-repeat="item in item.children" ng-include="'app/src/common/directives/caseDocsTree/view/caseDocsTreeItem.html'"></div>
+    </li>
+    <li ng-if="item.attachments.length > 0" class="tree">
+        <div ng-repeat="item in item.attachments" ng-include="'app/src/common/directives/caseDocsTree/view/caseDocsTreeItem.html'"></div>
+    </li>
+</ul>

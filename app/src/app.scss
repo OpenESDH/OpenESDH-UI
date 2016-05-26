@@ -2,9 +2,23 @@
 $opene-primary-color  : #1E88E5;
 $opene-secondary-color: #FFD740;
 
+$muted-color: rgba(0,0,0,0.53);
+
 /*
  * Body styles
  */
+
+#loader {
+    visibility: hidden;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    -moz-opacity: 0.7;
+}
 
 .body {
     background-color: #ddd;
@@ -42,7 +56,7 @@ dt,
 .muted,
 table th,
 .label {
-    color: rgba(0,0,0,0.53);
+    color: $muted-color;
 }
 
 .repeat-table .muted .r-rowlink:not(:hover) {
@@ -114,6 +128,7 @@ textarea {
 
 .sub-toolbar {
     background: #fff;
+    min-height: 3em;
     md-select {
         margin: 0; 
     }
@@ -201,7 +216,7 @@ md-dialog {
 }
 
 @media screen and (max-width: 45em) {
-    md-dialog.dialog-large, md-dialog.dialog-small {
+    md-dialog.dialog-huge, md-dialog.dialog-large, md-dialog.dialog-small {
         width: 80%;
     }
 }
@@ -289,7 +304,8 @@ md-list md-list-item.active a {
             display: none;
         }
 
-        &.tlist__cell_icon {
+        &.tlist__cell_icon,
+        &.tlist__cell__fileicon {
             padding: 0.5em 0 0.5em 1em;
             width: 40px;
 
@@ -298,6 +314,15 @@ md-list md-list-item.active a {
             }
         }
 
+    }
+    .tlist__cell__date{
+        width: 144px;
+    }
+    .tlist__cell__action{
+        max-width: 88px;
+        min-width: 88px;
+        padding: 9px 0;
+        text-align: center;
     }
     .tlist__cell__menu{
         padding: 0;
@@ -436,7 +461,6 @@ md-content {
 md-tabs {
 
     md-tabs-wrapper {
-        z-index: 9;
         background-color: #fff;
         box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 3px 3px -2px rgba(0, 0, 0, 0.12);
     }
@@ -499,6 +523,15 @@ md-virtual-repeat-container {
     font-weight: 700;
 }
 
+md-checkbox.md-default-theme.md-checked .md-icon,
+md-checkbox.md-checked .md-icon {
+    background-color: rgb(30,136,229);
+}
+
+md-checkbox.md-checked .md-icon:after {
+    border-color: #fff;
+}
+
 md-input-container {
     .md-input:-webkit-autofill ~ label {
         -webkit-transform: translate3d(0, 6px, 0) scale(0.75);
@@ -559,4 +592,174 @@ md-input-container {
             background-color: rgba(158,158,158,0.4);
         }
     } 
+}
+
+a.oe_add_more {
+    color: $muted-color;
+    font-size: 14px;
+    &:after {
+        padding: 0px 0px 0px 3px;
+        content: '\25BC';
+        font-size: 12px;
+        text-decoration: none;
+    }
+}
+
+@media (min-width: 960px) {
+    md-toast.md-top {
+        right: 160px;
+    }
+}
+
+md-toast.md-success-toast-theme .md-toast-content {
+    background-color: #BEE992;
+    color: black;
+}
+
+md-toast.md-error-toast-theme .md-toast-content {
+    background-color: #FF9292;
+    color: black;
+}
+
+.breadcrumb{
+    cursor: pointer
+}
+
+.expand{
+    display: inline-block;
+    width: 15px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.collapse{
+    display: inline-block;
+    width: 15px;
+    cursor: pointer;
+    margin-right: 5px;   
+}
+
+.noexpand{
+    display: inline-block; 
+    width: 20px;
+}
+
+.tree{
+    list-style: none;
+}
+
+.tree-attachment{
+    padding-left: 20px;
+}
+
+.csv-import-error-li {
+    list-style: none;
+    margin: 0;
+    max-height: 100px;
+    overflow-y: auto;
+    color: $muted-color;
+}
+
+ul.hist-prop-list {
+    list-style: none;
+    margin: 0;
+
+    li:after {
+        content: ','
+    }
+    li:last-child:after {
+        content: '.'
+    }
+}
+
+.empty_file_list {
+    padding: 1em 0;
+    text-align: center;
+    font-size: larger;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.3);
+    
+    i {
+        font-size: 5em;
+    }
+}
+
+.drop-box {
+    cursor: pointer;
+    background: #F8F8F8;
+    border: 5px dashed #DDD;
+    width: 95%;
+    height: 65px;
+    text-align: center;
+    padding-top: 25px;
+    margin: 10px;
+}
+.dragover {
+    border: 5px dashed gray;
+    opacity: 0.6;
+}
+
+.upload-progress-bar {
+    position: relative;
+    box-sizing: border-box;
+    max-width: 700px;
+    padding-left: 42px;
+    padding-right: 42px;
+    margin-top: 15px;
+}
+
+.upload-progress-bar-thumb {
+    width: 33px;
+    height: 33px;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: absolute;
+    left: 0px;
+}
+
+.upload-progress-bar-file-name{
+    color: #333;
+    height: 25px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.upload-file-attr-input{
+    margin: 0;
+    max-width: 120px;
+}
+
+.upload-progress-bar-control{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    display: block;
+    min-width: 20px;
+}
+
+.progress {
+    height: 5px;
+    background: #ccc;
+    display: block;
+}
+
+.progress-bar {
+    height: 100%;
+    background: rgb(30,136,229);
+    width: 0;
+    display: block;
+}
+
+.upload-response {
+    padding: 0;
+    padding-top: 10px;
+    margin: 3px 0;
+    clear: both;
+    list-style: none;
+}
+
+.upload-response .sel-file li, .response .reqh {
+    color: blue;
+    padding-bottom: 5px;
 }

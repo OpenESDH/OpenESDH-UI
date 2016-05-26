@@ -18,27 +18,27 @@ function httpTicketInterceptor($injector, $translate, $window, $q, sessionServic
     };
 
     function request(config) {
-        
-        config.url = prefixAlfrescoServiceUrl(config.url); 
-        
+
+        config.url = prefixAlfrescoServiceUrl(config.url);
+
         if (sessionService.getUserInfo()) {
             config.params = config.params || {};
             config.params.alf_ticket = sessionService.getUserInfo().ticket;
         }
-        
+
         return config;
-        
+
     }
-    
-    function prefixAlfrescoServiceUrl(url){
-        if(url.indexOf("/api/") == 0 || url.indexOf("/openesdh/") == 0 || url.indexOf("/slingshot/") == 0 
-                || url == "/touch" || url == "/dk-openesdh-case-email"){
+
+    function prefixAlfrescoServiceUrl(url) {
+        if (url.indexOf("/api/") == 0 || url.indexOf("/openesdh/") == 0 || url.indexOf("/slingshot/") == 0
+                || url == "/touch" || url == "/dk-openesdh-case-email") {
             return ALFRESCO_URI.webClientServiceProxy + url;
         }
         return url;
     }
-    
-    function response(response) {        
+
+    function response(response) {
         if (response.status == 401 && typeof $window._openESDHSessionExpired === 'undefined') {
             sessionExpired();
         }
@@ -46,9 +46,15 @@ function httpTicketInterceptor($injector, $translate, $window, $q, sessionServic
     }
 
     function responseError(rejection) {
+        //alfresco connection failed
+        if (rejection.status === 503 || _isDevServiceUnavailable(rejection)) {
+            sessionService.setUserInfo(null);
+            sessionService.clearRetainedLocation();
+            $window.location = "/#/login?nosso";
+        }
         //Prevent from popping up the message on failed SSO attempt
-        if (rejection.status == 401 && rejection.config.url.indexOf("/touch") == -1) {
-            sessionExpired();    
+        if (rejection.status === 401 && rejection.config.url.indexOf("/touch") === -1) {
+            sessionExpired();
         }
         return $q.reject(rejection);
     }
@@ -67,9 +73,15 @@ function httpTicketInterceptor($injector, $translate, $window, $q, sessionServic
         notificationUtilsService.notify($translate.instant('LOGIN.SESSION_TIMEOUT'));
         delete $window._openESDHSessionExpired;
     }
+
+    function _isDevServiceUnavailable(rejection) {
+        return rejection.status === 500
+                && typeof rejection.data === 'string'
+                && rejection.data.indexOf('Error: connect ECONNREFUSED') === 0;
+    }
 }
 
-function authService($http, $window, $state, sessionService, userService, oeParametersService) {
+function authService($http, $window, sessionService, userService, oeParametersService, $q) {
     var service = {
         login: login,
         logout: logout,
@@ -79,7 +91,8 @@ function authService($http, $window, $state, sessionService, userService, oePara
         isAuthorized: isAuthorized,
         getUserInfo: getUserInfo,
         revalidateUser: revalidateUser,
-        ssoLogin: ssoLogin
+        ssoLogin: ssoLogin,
+        getUserCapabilities: getUserCapabilities
     };
 
     return service;
@@ -87,18 +100,18 @@ function authService($http, $window, $state, sessionService, userService, oePara
     function getUserInfo() {
         return sessionService.getUserInfo();
     }
-    
-    function ssoLogin(){
-        return $http.get("/touch").then(function(response){
-            if(response.status == 401 || authFailedSafari(response)){
-                return response;
+
+    function ssoLogin() {
+        return $http.get("/touch").then(function(response) {
+            if (response.status == 401 || authFailedSafari(response)) {
+                return $q.reject(response);
             }
             sessionService.setUserInfo({});
             return revalidateUser();
         });
     }
-    
-    function authFailedSafari(response){
+
+    function authFailedSafari(response) {
         return response.data && response.data.indexOf('Safari') != -1;
     }
 
@@ -118,17 +131,14 @@ function authService($http, $window, $state, sessionService, userService, oePara
 
     function logout() {
         var userInfo = sessionService.getUserInfo();
-
-        
-        if (userInfo){
+        if (userInfo) {
             return $http.post('/api/openesdh/logout').then(function(response) {
-              sessionService.setUserInfo(null);
-              sessionService.clearRetainedLocation();
-              oeParametersService.clearOEParameters();
-              return response;
+                sessionService.setUserInfo(null);
+                sessionService.clearRetainedLocation();
+                oeParametersService.clearOEParameters();
+                return response;
             });
         }
-
     }
 
     function loggedin() {
@@ -182,13 +192,27 @@ function authService($http, $window, $state, sessionService, userService, oePara
     }
 
     function addUserAndParamsToSession(username) {
-        return userService.getPerson(username).then(function(response) {
+        return userService.getPerson(username).then(function(user) {
             delete $window._openESDHSessionExpired;
-            var userInfo = sessionService.getUserInfo();
-            userInfo['user'] = response;
-            sessionService.setUserInfo(userInfo);
-            oeParametersService.loadParameters();
-            return response;
+            return userService.getCapabilities().then(function(capabilities) {
+                angular.merge(user.capabilities, capabilities);
+                var userInfo = sessionService.getUserInfo() || {};
+                userInfo['user'] = user;
+                sessionService.setUserInfo(userInfo);
+                oeParametersService.loadParameters();
+                return user;
+            });
+
+        });
+    }
+
+    function getUserCapabilities() {
+        var userInfo = sessionService.getUserInfo();
+        if (userInfo) {
+            return $q.when(userInfo.user.capabilities);
+        }
+        return revalidateUser().then(function(user){
+           return user.capabilities; 
         });
     }
 }

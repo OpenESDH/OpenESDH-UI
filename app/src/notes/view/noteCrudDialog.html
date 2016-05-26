@@ -10,9 +10,9 @@
         <md-dialog-content layout="column">
 
             <md-input-container flex>
-                <label>{{ 'NOTE.HEADLINE' | translate }} *</label>
-                <input type="text" name="headline" ng-model="vmNote.headline" required md-autofocus>
-                <opene-error form="form" field="form.headline"></opene-error>
+                <label>{{ 'NOTE.TITLE' | translate }} *</label>
+                <input type="text" name="title" ng-model="vmNote.title" required md-autofocus>
+                <opene-error form="form" field="form.title"></opene-error>
             </md-input-container>
 
             <md-chips ng-model="vmNote.concernedParties" md-autocomplete-snap md-require-match="true">

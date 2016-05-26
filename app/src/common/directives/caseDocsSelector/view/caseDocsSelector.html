@@ -1,0 +1,3 @@
+<ul class="tree">
+    <li class="tree" ng-repeat="item in docFolderItems" ng-if="lockedDocsSelect || !item.locked" ng-include="'app/src/common/directives/caseDocsSelector/view/caseDocumentsTreeItem.html'"></li>
+</ul>

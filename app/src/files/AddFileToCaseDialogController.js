@@ -14,7 +14,7 @@ function AddFileToCaseDialogController($mdDialog, $scope, $translate,
     addToCaseVm.caseSearch = caseService.caseSearch;
 
     $scope.documentProperties = {
-        title: file.title,
+        title: file.cm.title,
         doc_type: null,
         doc_category: null,
         description: null
@@ -33,8 +33,6 @@ function AddFileToCaseDialogController($mdDialog, $scope, $translate,
                     notificationUtilsService.notify($translate.instant("FILE.FILE_ADDED_TO_CASE_SUCCESSFULLY",
                             {title: $scope.documentProperties.title, caseId: addToCaseVm.selectedCase['oe:id']}));
                     $mdDialog.hide();
-                }, function(response) {
-                    notificationUtilsService.alert(response.data.message || 'Unexpected exception');
                 });
     }
 

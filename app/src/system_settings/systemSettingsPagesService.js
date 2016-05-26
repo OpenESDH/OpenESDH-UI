@@ -4,7 +4,9 @@ angular
 
 function SystemSettingsPagesServiceProvider() {
     var pages = [];
+    var modulesPages = [];
     this.addPage = addPage;
+    this.addModulePage = addModulePage;
     this.$get = SystemSettingsPagesService;
 
     /**
@@ -21,15 +23,29 @@ function SystemSettingsPagesServiceProvider() {
         });
         return this;
     }
+    
+    function addModulePage(labelKey, sref, icon) {
+        modulesPages.push({
+            labelKey: labelKey,
+            sref: sref,
+            icon: icon || 'content_copy'
+        });
+        return this;
+    }
 
     function SystemSettingsPagesService() {
         var service = {
-            getPages: getPages
+            getPages: getPages,
+            getModulesPages: getModulesPages
         };
         return service;
 
         function getPages() {
             return pages;
+        }
+        
+        function getModulesPages(){
+            return modulesPages;
         }
     }
 }

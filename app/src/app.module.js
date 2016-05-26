@@ -9,11 +9,15 @@
             'rt.encodeuri',
             'ngResource',
             'pdf',
+            'ngFileUpload',
             'swfobject',
             'isteven-multi-select',
+            'openeApp.init',
             'openeApp.translations.init',
+            'openeApp.error',
             'openeApp.header',
             'openeApp.dashboard',
+            'openeApp.comments',
             'openeApp.cases',
             'openeApp.cases.members',
             'openeApp.cases.parties',
@@ -37,25 +41,6 @@
             'openeApp.activities',
 /*DO NOT REMOVE MODULES PLACEHOLDER!!!*/ //opene-modules
             /*LAST*/ 'openeApp.translations'])// TRANSLATIONS IS ALWAYS LAST!
-        .constant('USER_ROLES', {
-            admin: 'admin',
-            user: 'user'
-            //guest: 'guest' we don't want this type of user as of yet
-        })
-        .constant('ALFRESCO_URI', {
-            apiProxy: '/alfresco/api/',
-            serviceApiProxy: '/alfresco/s',
-            serviceSlingshotProxy: '/slingshot/',
-            webClientServiceProxy: '/alfresco/wcs'
-        })
-        .constant('PATTERNS', {
-            fileName: /^[a-zA-Z0-9_\-,!@#$%^&()=+ ]+$/,
-            phone: /^[+]?[0-9\- ]+$/
-        })
-        .constant('APP_CONFIG', {
-            appName: 'OpenESDH',
-            logoSrc: './app/assets/images/logo-light.svg'
-        })
         .config(config)
         .run(function ($rootScope, $state, $mdDialog, authService, sessionService, APP_CONFIG) {
             angular.element(window.document)[0].title = APP_CONFIG.appName;
@@ -92,7 +77,10 @@
             })
             .accentPalette('amber')
             .warnPalette('deep-orange');
-
+        
+        $mdThemingProvider.theme('success-toast');
+        $mdThemingProvider.theme('error-toast');
+        
         $mdIconProvider.icon('md-calendar', 'app/assets/img/icons/today.svg');
 
         $urlRouterProvider
@@ -145,6 +133,9 @@
             data: {
                 authorizedRoles: [USER_ROLES.user],
                 selectedTab: 0
+            },
+            params: {
+                subfolder: null
             }
         }).state('case.info', {
             url: '/info',
@@ -236,6 +227,9 @@
             },
             data: {
                 authorizedRoles: [USER_ROLES.user]
+            },
+            params: {
+                subfolder: null
             }
         }).state('login', {
             parent: 'site',
@@ -323,102 +317,6 @@
                 'groups': {
                     templateUrl: 'app/src/groups/view/group.html'
                 }
-            }
-        }).state('administration.organizations', {
-            url: '/organizations',
-            data: {
-                authorizedRoles: [USER_ROLES.admin],
-                searchContext: 'CONTACT_ORGANISATIONS',
-                selectedTab: 2
-            },
-            views: {
-                'organizations': {
-                    templateUrl: 'app/src/contacts/view/organizations.html'
-                }
-            }
-        }).state('administration.organization', {
-            url: '/organization/:storeProtocol/:storeIdentifier/:uuid',
-            data: {
-                authorizedRoles: [USER_ROLES.admin],
-                selectedTab: 2
-            },
-            views: {
-                'organizations': {
-                    templateUrl: 'app/src/contacts/view/organization.html'
-                }
-            }
-        }).state('administration.contacts', {
-            url: '/contacts',
-            data: {
-                authorizedRoles: [USER_ROLES.admin],
-                searchContext: 'CONTACT_USERS',
-                selectedTab: 3
-            },
-            views: {
-                'contacts': {
-                    templateUrl: 'app/src/contacts/view/persons.html'
-                }
-            }
-        }).state('administration.systemsettings', {
-            url: '/system-settings',
-            data: {
-                authorizedRoles: [USER_ROLES.admin],
-                selectedTab: 4
-            },
-            views: {
-                'systemsettings': {
-                    templateUrl: 'app/src/system_settings/menu/system_settings.html',
-                    controller: 'SystemSettingsController',
-                    controllerAs: 'vm'
-                }
-            }
-        }).state('administration.systemsettings.general', {
-            url: '/general-configuration',
-            data: {
-                authorizedRoles: [USER_ROLES.admin]
-            },
-            views: {
-                'systemsetting-view': {
-                    templateUrl: 'app/src/system_settings/general_configuration/view/generalConfiguration.html',
-                    controller: 'GeneralConfigurationController',
-                    controllerAs: 'vm'
-                }
-            }
-        }).state('administration.systemsettings.doctypes', {
-            url: '/document-types',
-            data: {
-                authorizedRoles: [USER_ROLES.admin]
-            },
-            views: {
-                'systemsetting-view': {
-                    templateUrl: 'app/src/system_settings/document_types/view/documentTypes.html',
-                    controller: 'DocumentTypesController',
-                    controllerAs: 'vm'
-                }
-            }
-        }).state('administration.systemsettings.doccategories', {
-            url: '/document-categories',
-            data: {
-                authorizedRoles: [USER_ROLES.admin]
-            },
-            views: {
-                'systemsetting-view': {
-                    templateUrl: 'app/src/system_settings/document_categories/view/documentCategories.html',
-                    controller: 'DocumentCategoriesController',
-                    controllerAs: 'vm'
-                }
-            }
-        }).state('administration.systemsettings.tenantsmodules', {
-            url: '/tenantsmodules',
-            views: {
-                'systemsetting-view': {
-                    templateUrl: 'app/src/system_settings/tenant/view/tenantsModules.html',
-                    controller: 'TenantsModulesController',
-                    controllerAs: 'vm'
-                }
-            },
-            data: {
-                authorizedRoles: [USER_ROLES.user]
             }
         }).state('search', {
             url: '/search/:searchTerm',

@@ -36,7 +36,7 @@
                             <md-button class="md-primary" style="margin: 0;" ng-click="vm.editUser($event, user)" aria-label="Edit user">
                                 {{ 'USER.EDIT_USER' | translate }}
                             </md-button>
-                            <md-button class="md-primary" style="margin: 0;" ng-if="user.userName !== 'admin'" ng-click="vm.deleteUser($event, user)" aria-label="Delete user">
+                            <md-button class="md-primary" style="margin: 0;" ng-if="user.userName !== 'admin'" ng-click="vm.deleteUser($event, user)" aria-label="Delete user" data-username="{{user.userName}}">
                                 {{ 'COMMON.DELETE' | translate }}
                             </md-button>
                         </span>
@@ -52,9 +52,6 @@
         </md-button>
         <md-button class="md-primary" ng-click="vm.showCSVUploadDialog($event)" aria-label="Upload users">
             {{ 'USER.UPLOAD_USERS' | translate }}
-        </md-button>
-        <md-button class="md-primary" href="{{vm.wcsPrefix}}/api/openesdh/users/upload/sample" aria-label="Example user upload CSV">
-            {{ 'COMMON.DOWNLOAD_TEMPLATE_CSV' | translate }}
         </md-button>
     </div>
 </md-card>

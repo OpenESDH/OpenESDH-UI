@@ -41,7 +41,7 @@
             var nodeRef = note.nodeRef;
             var data = {
                     content: note.content,
-                    headline: note.headline,
+                    title: note.title,
                     author: note.author,
                     concernedParties: note.concernedParties
             };

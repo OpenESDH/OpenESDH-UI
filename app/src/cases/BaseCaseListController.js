@@ -69,6 +69,7 @@ function BaseCaseListController($mdDialog, $translate, caseService, alfrescoFold
     }
 
     function deleteCase(caseObj) {
+        var vm = this;
         var confirm = $mdDialog.confirm()
                 .title($translate.instant('COMMON.CONFIRM'))
                 .textContent($translate.instant('CASE.ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_CASE', {case_title: caseObj["cm:title"]}))
@@ -79,10 +80,17 @@ function BaseCaseListController($mdDialog, $translate, caseService, alfrescoFold
         $mdDialog.show(confirm).then(function() {
             alfrescoFolderService.deleteFolder(caseObj.nodeRef).then(function(response) {
                 notificationUtilsService.notify($translate.instant('CASE.DELETE_CASE_SUCCESS'));
-                setTimeout(getCases, 500);
-            }, function(response) {
-                console.log(response);
-                notificationUtilsService.alert($translate.instant('CASE.DELETE_CASE_FAILURE'));
+                setTimeout(getCases.bind(vm), 500);
+            }, function(error){
+                if(error.code == 'ERROR.NODE_LOCKED'){
+                    var warn = $mdDialog.alert()
+                            .title($translate.instant('COMMON.WARNING'))
+                            .textContent($translate.instant('CASE.CANNOT_DELETE_CASE_DOC_LOCKED'))
+                            .ariaLabel('')
+                            .targetEvent(null)
+                            .ok($translate.instant('COMMON.OK'));
+                    $mdDialog.show(warn);
+                }
             });
         });
     }

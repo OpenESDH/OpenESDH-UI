@@ -5,8 +5,10 @@
 
     function StartCaseWorkflowServiceProvider(){
         var serviceConfig = [];
+        var wfSuppliers = [];
         
         this.wfDialogConfig = wfDialogConfig;
+        this.wfSupplier = wfSupplier;
         
         this.$get = StartCaseWorkflowService;
         
@@ -15,19 +17,54 @@
             return this;
         }
         
-        function StartCaseWorkflowService($mdDialog, $stateParams, workflowService) {
+        function wfSupplier(supplier){
+            wfSuppliers.push(supplier);
+        }
+        
+        function StartCaseWorkflowService($mdDialog, $stateParams, $injector, $q, workflowService) {
             
             var service = {
-                startWorkflow: startWorkflow
+                startWorkflow: startWorkflow,
+                getWorkflowDefinitions: getWorkflowDefinitions
             };
             return service;
             
-            function startWorkflow(){
-                workflowService.getWorkflowDefinitions().then(function(result){
+            function startWorkflow(caseInfo){
+                getAllowedWorkflows(caseInfo).then(function(allowedWorkflows){
+                    getWorkflowDefinitions().then(function(workflowDefs){
+                        if(allowedWorkflows != undefined){
+                            workflowDefs = workflowDefs.filter(function(item){
+                                return allowedWorkflows.indexOf(item.id) != -1;
+                            });
+                        }
+                        openSelectWorkflowTypeDialog(workflowDefs);
+                    });
+                });
+            }
+            
+            function getAllowedWorkflows(caseInfo){
+                var supplier = getWfSupplier(caseInfo);
+                if(supplier != undefined){
+                    return supplier.getAllowedWorkflows(caseInfo);
+                }
+                return $q.when();
+            }
+            
+            function getWfSupplier(caseInfo){
+                for(var i=0; i<wfSuppliers.length; i++){
+                    var supplier = wfSuppliers[i];
+                    if(supplier.canSupply(caseInfo)){
+                        return $injector.get(supplier.supplierName);
+                    }
+                }
+            }
+            
+            function getWorkflowDefinitions(){
+                return workflowService.getWorkflowDefinitions().then(function(result){
                     var workflowDefs = result.data.filter(function(workflowDef){
                         return getDialogConfig(workflowDef.name) != null;
                     });
-                    openSelectWorkflowTypeDialog(workflowDefs);
+                    return workflowDefs;
                 });
             }
             

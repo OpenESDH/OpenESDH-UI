@@ -6,7 +6,7 @@
             <i class="material-icons" style="vertical-align: middle;">arrow_back</i>
             {{ 'TASK.TASKS' | translate }}
         </md-button>
-        <h1 class="md-headline" layout-margin>{{ taskCtrl.task.properties.bpm_description }}</h1>
+        <h1 class="md-headline" layout-margin>{{ taskCtrl.task | taskTitle }}</h1>
     </div>
     <md-button class="md-primary"
                ng-click="taskCtrl.deleteWorkflow(taskCtrl.task)"

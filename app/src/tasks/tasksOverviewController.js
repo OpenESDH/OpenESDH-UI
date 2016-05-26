@@ -2,10 +2,28 @@
         .module('openeApp.tasks')
         .controller('tasksOverviewController', TasksOverviewController);
 
-    function TasksOverviewController($filter, $translate, taskService) {
+    function TasksOverviewController($filter, $translate, sessionService, taskService) {
         var vm = this;
         vm.tasks = [];
-        vm.displayHeader = true;
+        vm.displaySubToolbar = true;
+        vm.taskFilter = [{
+            name: $translate.instant('TASK.FILTER.MY_TASKS'),
+            value: 'mytasks'
+        }, {
+            name: $translate.instant('TASK.FILTER.GROUP_TASKS'),
+            value: 'grouptasks'
+        }, {
+            name: $translate.instant('TASK.FILTER.SUBORDINATES_TASKS'),
+            value: 'subordinatestasks'
+        }];
+        if(sessionService.isAdmin()){
+            vm.taskFilter.unshift({
+                name: $translate.instant('TASK.FILTER.ALL_TASKS'),
+                value: 'all'
+            });
+        }
+        vm.taskFilterChoice = vm.taskFilter[0];
+        vm.getTasks = getTasks;
         vm.filterArray = {};
         vm.columnFilter = columnFilter;
 
@@ -37,12 +55,27 @@
             value: "Completed"
         }];
 
-        loadTasks();
-
-        function loadTasks() {
-            taskService.getTasks().then(function(result) {
-                vm.tasks = result;
-            });
+        vm.getTasks();
+        
+        function getTasks(){
+            var filter = vm.taskFilterChoice.value;
+            if(filter == 'all'){
+                taskService.getAllTasks().then(function(result) {
+                    vm.tasks = result;
+                });    
+            }else if(filter == 'mytasks'){
+                taskService.getCurrentUserWorkflowTasks().then(function(result) {
+                    vm.tasks = result;
+                });
+            }else if(filter == 'grouptasks'){
+                taskService.getCurrentUserGroupTasks().then(function(result) {
+                    vm.tasks = result;
+                });
+            }else if(filter == 'subordinatestasks'){
+                taskService.getCurrentUserSubordinatesTasks().then(function(result) {
+                    vm.tasks = result;
+                });
+            }
         }
 
         function columnFilter(item) {
@@ -57,6 +90,13 @@
                 var searchText = new RegExp(vm.filterArray.description, "i");
                 var description = $filter('taskDescription')(item);
                 if (description.search(searchText) < 0)
+                    return;
+            }
+            
+            if (vm.filterArray.caseId !== undefined) {
+                var searchText = new RegExp(vm.filterArray.caseId, "i");
+                var caseId = item.caseId;
+                if (caseId == undefined || caseId.search(searchText) < 0)
                     return;
             }
 

@@ -17,7 +17,8 @@
             </form>
         </mt-wz-step>
         <mt-wz-step class="workflowWizardStep">
-            <ng-include src="'app/src/workflows/view/selectCaseDocuments.html'"></ng-include>
+            <h3>{{"DOCUMENT.DOCUMENTS" | translate}}</h3>
+            <case-docs-selector case-id="dlg.caseId" selected-docs="dlg.selectedDocuments" select-doc-node-refs="true"></case-docs-selector>
         </mt-wz-step>
     </mt-wizard>
 </md-dialog>

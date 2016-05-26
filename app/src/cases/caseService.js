@@ -3,13 +3,14 @@
         .module('openeApp.cases')
         .factory('caseService', caseService);
 
-    function caseService($http, userService, alfrescoNodeUtils) {
+    function caseService($http, userService, alfrescoNodeUtils, formProcessorService) {
         var service = {
             getCaseTypes: getCaseTypes,
             getCases: getCases,
             getMyCases: getMyCases,
             createCase: createCase,
             updateCase: updateCase,
+            getCaseId: getCaseId,
             getCaseInfo: getCaseInfo,
             changeCaseStatus: changeCaseStatus,
             sendEmail: sendEmail,
@@ -77,20 +78,22 @@
         function createCase(type, props) {
             return userService.getHome().then(function (response) {
                 props.alf_destination = response.nodeRef;
-                return $http.post('/api/type/' + type + '/formprocessor', props).then(function (response) {
-                    var nodeRef = response.data.persistedObject;
-                    return $http.get('/api/openesdh/documents/isCaseDoc/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri).then(function (response) {
-                        return response.data.caseId;
-                    });
+                return formProcessorService.createNode(type, props).then(function(nodeRef){
+                    return nodeRef;
                 });
             });
         }
         
         function updateCase(nodeRef, props){
-            return $http.post('/api/node/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri + '/formprocessor', props).then(function (response) {
-                return response.data;
+            return formProcessorService.updateNode(nodeRef, props);
+        }
+        
+        function getCaseId(nodeRef) {
+            return $http.get('/api/openesdh/documents/isCaseDoc/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri).then(function(response) {
+                return response.data.caseId;
             });
         }
+        
         
         function getCaseInfo(caseId) {
             return $http.get('/api/openesdh/caseinfo/' + caseId).then(getCaseInfoComplete);

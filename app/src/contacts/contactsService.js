@@ -56,8 +56,13 @@ function contactsService($http, $q) {
                 sortAscending: true
             };
         }
+        var props = {
+            baseType: baseType, 
+            term: searchTerm || '',
+            no_cache: new Date().getTime()
+        };
         return $http.get('/api/openesdh/contactsearch',
-                {params: angular.extend({baseType: baseType, term: searchTerm || ''}, pagingParams)})
+                {params: angular.extend(props, pagingParams)})
                 .then(successOrReject);
     }
 

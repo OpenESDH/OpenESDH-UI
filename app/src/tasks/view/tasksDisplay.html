@@ -1,11 +1,21 @@
 <md-content layout="column">
+    <div class="sub-toolbar md-whiteframe-3dp" ng-show="tasksCtrl.displaySubToolbar">
+    </div>
     <div layout="column">
-        <md-card style="margin-top:0">
+        <md-card>
             <md-card-content>
-                <md-input-container md-no-float style="margin:0.75rem 1rem;padding:4px">
-                    <i class="material-icons" style="position:absolute;top:0.5rem;left:0.5rem;color:rgba(0, 0, 0, 0.25)">search</i>
-                    <input type="text" ng-model="freeTextSearch" placeholder="{{ 'SEARCH.SEARCH' | translate }}" style="padding:0.5rem 0.5rem 0.5rem 2rem" />
-                </md-input-container>
+                <div layout="row" layout-align="space-between start">
+                    <div flex>
+                        <md-input-container md-no-float style="margin:0.75rem 1rem;padding:4px">
+                            <i class="material-icons" style="position:absolute;top:0.5rem;left:0.5rem;color:rgba(0, 0, 0, 0.25)">search</i>
+                            <input type="text" ng-model="freeTextSearch" placeholder="{{ 'SEARCH.SEARCH' | translate }}" style="padding:0.5rem 0.5rem 0.5rem 2rem" />
+                        </md-input-container>
+                    </div>
+                    <div flex>
+                        <opene-list-filter list="tasksCtrl.taskFilter" choice="tasksCtrl.taskFilterChoice" finished="tasksCtrl.getTasks()">
+                        </opene-list-filter>
+                    </div>
+                </div>
                 <div class="tlist">
                     <div class="tlist__header" layout="row" style="border-bottom:0">
                         <span class="tlist__cell tlist__cell_icon" flex="none">
@@ -26,6 +36,12 @@
                             <div layout="row" layout-align="space-between center">
                                 <span sort-table="properties.bpm_status">{{ 'COMMON.STATUS' | translate }}</span>
                                 <opene-column-filter type="checkbox" list="tasksCtrl.taskStatuses" filter="tasksCtrl.filterArray" value="status" />
+                            </div>
+                        </div>
+                        <div class="tlist__cell" flex="10">
+                            <div layout="row" layout-align="space-between center">
+                                <span>{{ 'CASE.CASE' | translate }}</span>
+                                <opene-column-filter type="text" filter="tasksCtrl.filterArray" value="caseId" />
                             </div>
                         </div>
                         <div class="tlist__cell" flex="15">
@@ -51,11 +67,12 @@
                         <div md-virtual-repeat="task in tasksCtrl.tasks | orderObjectBy:orderByAttribute:reverseOrder | filter:tasksCtrl.columnFilter | filter:freeTextSearch" class="tlist__item" layout="column" flex>
                             <a class="tlist__item__link" href="#/tasks/task/{{task.name | encodeUri}}/{{task.id | encodeUri}}" layout="row">
                                 <span class="tlist__cell tlist__cell_icon" flex="none"><i class="material-icons">assignment</i></span>
-                                <span class="tlist__cell" flex>{{ task.properties.bpm_description }}</span>
+                                <span class="tlist__cell" flex>{{ task | taskTitle }}</span>
                                 <span class="tlist__cell muted" flex="25">
                             <span class="cell__label">{{ 'COMMON.DESCRIPTION' | translate }}</span> {{ task | taskDescription }}
                                 </span>
                                 <span class="tlist__cell muted" flex="15"><span class="cell__label">{{ 'COMMON.STATUS' | translate }}</span> {{ task.properties.bpm_status | workflowTaskStatus}}</span>
+                                <span class="tlist__cell muted" flex="10"><span class="cell__label">{{ 'CASE.CASE' | translate }}</span> {{ task.caseId}}</span>
                                 <span class="tlist__cell muted" flex="15"><span class="cell__label">{{ 'COMMON.DUE_DATE' | translate }}</span>{{ task.properties.bpm_dueDate | date }}</span>
                                 <span class="tlist__cell muted" flex="15" ng-show="tasksCtrl.case_tasks"><span class="cell__label">{{ 'ACTIVITIES.PERFORMER' | translate }}</span>{{ task.owner.firstName + " " + task.owner.lastName }}</span>
                                 <span class="tlist__cell muted" flex="10"><span class="cell__label">{{ 'COMMON.PRIORITY' | translate }}</span>{{ task.properties.bpm_priority | workflowTaskPriority}}</span>

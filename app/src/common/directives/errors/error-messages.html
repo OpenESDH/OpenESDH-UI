@@ -10,5 +10,8 @@
 <span ng-message="emailNotExists">{{ 'ERROR.EMAIL_NOT_EXISTS' | translate }}</span>
 <span ng-message="openeEquals">{{ 'ERROR.PASSWORD_NOMATCH' | translate }}</span>
 <span ng-message="loginFailure">{{ 'ERROR.AUTH_FAILURE' | translate }}</span>
-<span ng-message="incorrectAddoPass">{{ 'ERROR.INCORECT_ADDO_PASSWORD' | translate }}</span>
+<span ng-message="loginError">{{ 'ERROR.AUTH_ERROR' | translate }}</span>
 <span ng-message="pattern">{{ 'ERROR.NOT_EQUAL_PATTERN' | translate }}</span>
+
+<!-- Domain error -->
+<span ng-message="domainError">{{ field.$error.code | translate }}</span>

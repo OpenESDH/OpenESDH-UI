@@ -13,6 +13,7 @@
         "DONE": "Færdig",
         "ACTIONS": "Handlinger",
         "REMOVE": "Fjern",
+        "NEW": "Ny",
         "ADD_NEW": "Tilføj ny",
         "ADD": "Tilføj",
         "SEND": "Send",
@@ -36,10 +37,9 @@
         "HISTORY": "Historik",
         "ACTION": "Handling",
         "TIME": "Tidspunkt",
-        "NO_MATCHES": "Ingen match",
+        "NO_MATCHES": "Ingen resultater",
         "EMAIL": "Email",
         "SAVE": "Gem",
-        "SAVE_EMAIL": "Arkiver e-mail",
         "VIEW_DETAILS": "Vis detaljer",
         "SHOW": "Vis",
         "DELETE": "Slet",
@@ -58,24 +58,31 @@
         "NO": "Nr",
         "STATE": "Status",
         "COMMENT": "Kommentar",
+        "ADD_COMMENT": "Tilføj kommentar",
         "OPEN": "Åbne",
         "TO": "Til",
         "SUBJECT": "Emne",
         "MESSAGE": "Meddelelse",
         "LIST_VIEW": "Listevisning",
         "GRID_VIEW": "Gittervisning",
-    "DOWNLOAD_TEMPLATE_CSV": "Hent CSV skabelon",
+        "DOWNLOAD_TEMPLATE_CSV": "Hent CSV skabelon",
         "LOCKED_BY": "Låst af {{locked_by}}",
-    "CONGRATULATIONS": "Tillykke!"
+        "CONGRATULATIONS": "Tillykke!",
+        "DISABLED": "Deaktiveret",
+        "ADD_MORE_INFO": "Tilføj yderligere information",
+        "DATE": "Dato",
+        "EMAIL_SENT_TO": "E-mail er sendt til {{to}}",
+        "DROP_FILES_OR_CLICK_TO_UPLOAD": "Slip filer her eller klik for at uploade",
+        "DROP_FILES_TO_UPLOAD": "Slip filer her for at uploade",
+        "UPLOAD_FILES": "Upload filer"
+    },
+    "SIMPLE_CASE": {
+        "TYPE": "Standardsag"
     },
     "CASE": {
         "CONFIRM_CLOSE_CASE": "Vil du lukke denne sag?",
         "STATUS_CHANGED_SUCCESS": "Status er ændret",
         "CASETYPE_STANDARD": "Standard sag",
-        "TYPE": {
-            "simple_case": "Standardsag",
-            "staff_case": "Personalesag"
-        },
         "STATUS": {
             "active": "Aktiv",
             "passive": "Passiv",
@@ -115,7 +122,6 @@
         "GROUP_CASES": "Ikke tildelte sager",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_THE_CASE": "Er du sikker på, at du vil slette '{{case_title}}'?",
         "DELETE_CASE_SUCCESS": "Sag slettet",
-        "DELETE_CASE_FAILURE": "Sag kunne ikke slettes",
         "VIEW_CASE_DETAILS": "Vis sag",
         "STAFF": {
             "EMPLOYEE": "Medarbejder",
@@ -125,7 +131,6 @@
         },
         "CASE_CREATED": "Sag '{{case_title}}' oprettet",
         "CASE_UPDATED": "Sag '{{case_title}}' opdateret",
-        "ERROR_CREATING_CASE": "Kunne ikke oprette sag: {{case_title}}",
         "CASE_DETAILS": "Sagsdetajler",
         "CASE_HISTORY_LOG": "Sagshistorik",
         "COMMENTS": "Journalnoter",
@@ -136,7 +141,9 @@
         "CREATE_FROM": "Opret en",
         "SELECT_CASE_TYPE": "Vælg sagstype",
         "SEARCH_EXISTING_CASE": "søg sag",
-        "ASSIGN_TO": "Tildel til"
+        "ASSIGN_TO": "Tildel til",
+        "CASE_ADDED_TO_FAVORITE": "Sagen er føjet til dine favoritter og du bliver notificeret når der sker nye hændelser på sagen",
+        "CANNOT_DELETE_CASE_DOC_LOCKED": "Du kan ikke slette sagen da et dokument på sagen er låst. Lås dokumentet op og prøv igen."
     },
     "DOCUMENT": {
         "STATUS_CHANGED_SUCCESS": "Status er ændret",
@@ -182,6 +189,7 @@
         "VERSION_DESCRIPTION": "Versionsbeskrivelse",
         "EDIT_PROPERTIES": "Redigér information",
         "EDIT_DOCUMENT": "Redigér dokument",
+        "EDIT_DOCUMENT_SHAREPOINT": "Redigér | MS Office",
         "UPLOAD_NEW_VERSION": "Upload ny version",
         "PREVIEW": "Preview",
         "ATTACHMENTS": {
@@ -205,13 +213,18 @@
         "VIEW_DOCUMENT_DETAILS": "Vis dokument",
         "SENT_FROM_OUTLOOK": "Sent from Outlook",
         "DELETE_DOC_SUCCESS": "Dokument slettet",
-        "DELETE_DOC_FAILURE": "Dokument kunne ikke slettes"
+        "NO_DOCUMENTS_ADDED_YET": "Ingen dokumenter tilføjet endnu",
+        "CREATE_FOLDER": "Opret folder",
+        "EDIT_FOLDER": "Redigér folder",
+        "DETACH": "Skille",
+        "DOCUMENT_DETACH_SUCCESS": "Dokument skillet"
     },
     "FILE": {
         "FILE": "Fil",
         "FILES": "Filer",
         "MY_FILES": "Mine filer",
         "GROUP_FILES": "Fælles filer",
+        "NO_FILES_ADDED": "No files have been added",
         "SELECT_FILE": "Upload fil(er)",
         "FILE_UPLOADED_SUCCESSFULLY": "Filen \"{{title}}\" oploadet succesfuldt",
         "N_FILES_UPLOADED_SUCCESSFULLY": "{{n}} filer uploadet succesfuldt",
@@ -223,10 +236,16 @@
         "FILE_ADDED_TO_CASE_SUCCESSFULLY": "Filen \"{{title}}\" er tilføjet sagen {{caseId}}",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_FILE": "Er du sikker på at du vil slette filen \"{{title}}\"?",
         "DELETE_FILE_SUCCESS": "Filen er slettet",
-        "DELETE_FILE_FAILURE": "Filen kunne ikke slettes",
         "COMMENTS_OF": "Kommentar til {{filename}}",
         "USER_TIMESTAMP": "{{date}} af {{name}}",
         "VIEW_COMMENTS": "Læs kommentar"
+    },
+    "COMMENTS": {
+        "COMMENTS": "Kommentarer",
+        "ADD_COMMENT": "Tilføj kommentar",
+        "EDIT_COMMENT": "Redigér kommentar",
+        "COMMENT": "Kommentar",
+        "ARE_YOU_SURE_YOU_WANT_DELETE_COMMENT": "Er du sikker på at du vil slette kommentar?"
     },
     "COUNTRY": {
         "AF": "Afghanistan",
@@ -531,7 +550,7 @@
                 "ARE_YOU_SURE_YOU_WANT_TO_SAVE_PARAMETERS": "Er du sikker på at du vil gemme indstillingerne?",
                 "SAVED_SUCCESSFULLY": "Indstillinger gemt1"
             },
-            "TENANTS_MODULES":{
+            "TENANTS_MODULES": {
                 "TITLE": "Lejermodul",
                 "TENANT_MODULES": "Lejermodul",
                 "TENANT": "Lejer",
@@ -542,7 +561,9 @@
                 "TENANT_CONTENT_STORE_ROOT": "Lejer content store root",
                 "CREATE_TENANT": "Opret lejer",
                 "ASSIGN_MODULES": "Tildel moduler",
-                "TENANT_CREATED": "Lejer oprettet: {{tenantDomain}}"
+                "TENANT_CREATED": "Lejer oprettet: {{tenantDomain}}",
+                "TENANT_UI_CONTEXT": "Lejer UI kontekst",
+                "DISABLE_ALL_MODULES": "Deaktivere alle moduler"
             }
         }
     },
@@ -583,7 +604,6 @@
     },
     "ORG": {
         "ORGANIZATIONS": "Organisationer",
-        "BACK_TO_ORGS": "Tilbage til organisationer",
         "COMPANY_NAME": "Navn",
         "DEPARTMENT": "Afdeling",
         "ADDRESS_1": "Adresse 1",
@@ -610,6 +630,7 @@
     },
     "CONTACT": {
         "CONTACTS": "Kontakter",
+        "PEOPLE": "Personer",
         "FIRST_NAME": "Fornavn",
         "MIDDLE_NAME": "Mellemnavn",
         "LAST_NAME": "Efternavn",
@@ -628,13 +649,21 @@
         "DEPARTMENT": "Afdeling",
         "STREET": "Gade",
         "CREATE_NEW_CONTACT": "Opret ny kontakt",
+        "EDIT_CONTACT": "Rediger kontakt",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_PERSON_CONTACT": "Er du sikker på, at du vil slette \"{{firstName}} {{lastName}}\"?",
         "CONTACT_SAVED_SUCCESSFULLY": "Kontakt \"{{firstName}} {{lastName}}\" gemt",
         "CONTACT_DELETED_SUCCESSFULLY": "Kontakt \"{{firstName}} {{lastName}}\" slettet",
-    "PERSON": "Person",
-        "ORGANIZATION": "Organisation"
+        "PERSON": "Person",
+        "ORGANIZATION": "Organisation",
+        "ERRORS": {
+            "INVALID_TYPE": "Type skal være enten person eller organisation",
+            "EMAIL_IS_MANDATORY": "E-mail adresse er obligatorisk",
+            "MORE_THAN_ONE_CONTACT_EXITS": "Der er flere end en kontakt tilknyttet dette id",
+            "NO_SUCH_CONTACT": "Kontakt eksisterer ikke"
+        }
     },
     "ERROR": {
+        "UNEXPECTED_ERROR": "Ups! Noget gik galt.",
         "REQUIRED": "Obligatoriske felt",
         "TOO_SHORT": "Indhold for kort",
         "TOO_LONG": "Indhold for langt",
@@ -644,6 +673,7 @@
         "EMAIL_EXISTS": "Email findes allerede",
         "USERNAME_EXISTS": "Brugernavn findes allerede",
         "AUTH_FAILURE": "Forkert loginoplysninger",
+        "AUTH_ERROR": "Fejl",
         "NOT_EQUAL_PATTERN": "Forkert format"
     },
     "LOGIN": {
@@ -681,7 +711,7 @@
         "PRINT_ALL_NOTES": "Print alle noter",
         "CREATE_NOTE": "Opret note",
         "EDIT_NOTE": "Redigér note",
-        "HEADLINE": "Overskrift",
+        "TITLE": "Overskrift",
         "CONTENT": "Indhold",
         "CONCERNED_PARTIES": "Relaterede parter",
         "ADD_NOTE": "Tilføj note",
@@ -693,7 +723,7 @@
         "PARTIES": "Parter",
         "ROLE": "Rolle",
         "CHANGE": "Skift",
-        "ADD_PARTIES": "Tilføj parter",
+        "ADD_PARTIES": "Ny part",
         "ORGANIZATIONS": "Organisationer",
         "CHOOSE_ORG_CONTACTS": "Vælg organisationskontakter",
         "PERSONS": "Personer",
@@ -726,8 +756,20 @@
         "REQUIRED_APPROVAL_PERCENTAGE": "Nødvendig godkendelsesprocent",
         "REVIEWERS_WHO_APPROVED": "Antal godkendelser",
         "ACTUAL_APPROVAL_PERCENTAGE": "Aktuel godkendelsesprocent",
+        "CLAIM": "Krav",
+        "RELEASE_TO_POOL": "Frigiv til pool",
+        "TASK_HAS_BEEN_CLAIMED": "Opgaven er reserveret",
+        "TASK_HAS_BEEN_RELEASED": "Opgaven er frigivet",
+        "THIS_TASK_IS_UNASSIGNED": "Opgaven er ikke tildelt",
         "TASK_CREATED_ON_BY": "Oprettet d. {{on}} af {{by}}",
-        "SHOW_ALL_OPEN_TASKS": "Alle opgaver"
+        "SHOW_ALL_OPEN_TASKS": "Alle opgaver",
+        "ADHOC_TITLE": "Opgaven er tildelt af {{initiator}}",
+        "FILTER": {
+            "ALL_TASKS": "Alle opgaver",
+            "MY_TASKS": "Mine opgaver",
+            "GROUP_TASKS": "Gruppe opgaver",
+            "SUBORDINATES_TASKS": "Mine arbejdersker"
+        }
     },
     "MENU": {
         "OPEN_MENU": "Åben menu",
@@ -740,19 +782,25 @@
     },
     "DOCUMENT_TYPES": {
         "DOCUMENT_TYPES": "Dokumenttyper",
-        "NAME": "Navn",
-        "DISPLAY_NAME": "Titel",
         "CREATE_NEW_DOC_TYPE": "Opret ny dokumenttype",
         "CREATE_EDIT_DOC_TYPE": "Opret / redigér dokumenttype",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_DOCUMENT_TYPE_X": "Er du sikker på, at du vil slette dokumenttype '{{title}}'?"
     },
     "DOCUMENT_CATEGORIES": {
         "DOCUMENT_CATEGORIES": "Dokument kategorier",
-        "NAME": "Navn",
-        "DISPLAY_NAME": "Titel",
         "CREATE_NEW_DOC_CATEGORY": "Opret ny dokumentkategori",
         "CREATE_EDIT_DOC_CATEGORY": "Opret / redigér document category",
         "ARE_YOU_SURE_YOU_WANT_TO_DELETE_DOCUMENT_CATEGORY_X": "Er du sikker på, at du vil slette dokumentkategori '{{title}}'?"
+    },    
+    "PARTY_ROLES":{
+        "PARTY_ROLES": "Part roller",
+        "CREATE_NEW_PARTY_ROLE": "Opret ny part rolle",
+        "CREATE_EDIT_PARTY_ROLE": "Opret / redigér part rolle",
+        "ARE_YOU_SURE_YOU_WANT_TO_DELETE_PARTY_ROLE_X": "Er du sikker på, at du vil slette part rolle '{{title}}'?"
+    },
+    "CLASSIFIER_VALUES":{
+        "NAME": "Navn",
+        "DISPLAY_NAME": "Titel"
     },
     "SYSTEM_SETTINGS": {
         "SYSTEM_SETTINGS": "Systemopsætning"
@@ -765,8 +813,7 @@
         "FIND_USERS": "Find brugere",
         "FIND_GROUPS": "Find grupper",
         "FIND_PERSON": "Find personer",
-        "FIND_ORGANISATION": "Find organisationer",
-        "NO_MATCHES": "Ingen resultater"
+        "FIND_ORGANISATION": "Find organisationer"
     },
     "ACTIVITIES": {
         "NOTIFICATIONS": "Notifikationer",
@@ -812,6 +859,75 @@
             "dk.openesdh.case.workflow.task-end": "Opgave",
             "dk.openesdh.case.workflow.task-approve": "Opgave",
             "dk.openesdh.case.workflow.task-reject": "Opgave"
+        }
+    },
+    "auditlog": {
+        "type": {
+            "ATTACHMENT": "Bilag",
+            "DOCUMENT": "Dokument",
+            "FOLDER": "Folder",
+            "NOTE": "Notat",
+            "MEMBER": "Medlem",
+            "SYSTEM": "Systemet",
+            "CASE": "Sag",
+            "PARTY": "Part",
+            "WORKFLOW": "Workflow"
+        },
+        "label": {
+            "case": {
+                "created": "Oprettede sagen \"{{title}}\""
+            },
+            "attachment": {
+                "added": "Tilføjede bilaget \"{{title}}\""
+            },
+            "document": {
+                "added": "Tilføjede dokumentet \"{{title}}\"",
+                "deleted": "Slettede \"{{title}}\"",
+                "editing_finished": "Afsluttede redigering af \"{{title}}\""
+            },
+            "folder": {
+                "created": "Tilføjede folderen \"{{title}}\"",
+                "updated": "Opdateret folderen \"{{title}}\"",
+                "deleted": "Fjernede folderen \"{{title}}\""
+            },
+            "note": {
+                "added": "Tilføjede notatet \"{{note}}\"",
+                "updated": "Opdateret notatet \"{{note}}\":"
+            },
+            "member": {
+                "added": "Tilføjede {{authority}} som {{role}}",
+                "removed": "Fjernede {{authority}} som {{role}}"
+            },
+            "party": {
+                "added": "Tilføjet parten {{contactName}}",
+                "removed": "Fjernet parten {{contactName}}",
+                "role_changed": "Part {{contactName}} rolle ændret som {{roleBeforeName}} til {{roleAfterName}}"
+            },
+            "workflow": {
+                "started": "Start workflow \"{{description}}\"",
+                "canceled": "Annullér workflow \"{{description}}\"",
+                "task": {
+                    "ended": "Afslut opgave \"{{description}}\"",
+                    "Approve": "Godkend opgave \"{{description}}\"",
+                    "Reject": "Afvis opgave \"{{description}}\""
+                }
+            },
+            "properties": {
+                "updated": "Egenskaber opdateret{{title}}:"
+            },
+            "property": {
+                "removed": "\"{{title}}\" fjernede",
+                "changed": "\"{{title}}\" ændret til \"{{toValue}}\""
+            },
+            "office": {
+                "edit": "\"{{title}}\" version {{oldVersion}} redigeres i MS Office. Ny version er {{newVersion}}"
+            },
+            "email": {
+                "sent_1": "Dokument \"{{attachments}}\" er blevet sendt med email til {{participants}}",
+                "sent_n": "Dokumenterne [{{attachments}}] blev sendt med email til {{participants}}"
+            },
+            "checkedin": "Uploade version {{newVersion}} af \"{{title}}\""
+            
         }
     },
     "faceted-search.date.one-week.label": "Sidste uge",

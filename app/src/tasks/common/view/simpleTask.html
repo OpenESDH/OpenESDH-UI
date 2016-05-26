@@ -33,7 +33,7 @@
                               <dd flex="66">{{ taskCtrl.task.workflowInstance.startDate | openeDate }}</dd>
 
                               <dt flex="20">{{ 'COMMON.DESCRIPTION' | translate }}</dt>
-                              <dd flex="66">{{ taskCtrl.task.description }}</dd>
+                              <dd flex="66">{{ taskCtrl.task | taskDescription }}</dd>
 
                             </dl>
                           </md-card-content>

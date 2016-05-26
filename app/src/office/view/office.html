@@ -4,7 +4,7 @@
     <form name="form">
         
       <h2 class="md-title">{{ 'CASE.CREATE_FROM' | translate }}
-        <md-menu ng-controller="CreateCaseMenuController as ctrl">
+        <md-menu ng-if="vm.authenticated" ng-controller="CreateCaseMenuController as ctrl">
           <md-button class="md-primary" ng-click="$mdOpenMenu($event)" aria-label="{{ 'CASE.SELECT_CASE_TYPE' | translate }}">
             {{ 'CASE.SELECT_CASE_TYPE' | translate }}
           </md-button>
