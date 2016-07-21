@@ -1,7 +1,6 @@
-
 angular
-        .module('openeApp.files')
-        .factory('filesService', FilesService);
+    .module('openeApp.files')
+    .factory('filesService', FilesService);
 
 function FilesService($http, fileUtilsService, alfrescoNodeUtils) {
 
@@ -23,7 +22,7 @@ function FilesService($http, fileUtilsService, alfrescoNodeUtils) {
      */
     function getUserFiles() {
         return $http.get('/api/openesdh/files/user')
-                .then(_fileListResponse);
+            .then(_fileListResponse);
     }
 
     /**
@@ -32,7 +31,7 @@ function FilesService($http, fileUtilsService, alfrescoNodeUtils) {
      */
     function getGroupFiles() {
         return $http.get('/api/openesdh/files/group')
-                .then(_fileListResponse);
+            .then(_fileListResponse);
     }
 
     /**
@@ -42,11 +41,11 @@ function FilesService($http, fileUtilsService, alfrescoNodeUtils) {
      */
     function getFiles(storeProtocol, storeIdentifier, uuid) {
         return $http.get('/api/openesdh/files/' + storeProtocol + '/' + storeIdentifier + '/' + uuid)
-                .then(_fileListResponse);
+            .then(_fileListResponse);
     }
 
     function _fileListResponse(response) {
-        return response.data.map(function(file) {
+        return response.data.map(function (file) {
             file.thumbNailURL = fileUtilsService.getFileIconByMimetype(file.cm.content.mimetype, 24);
             return file;
         });
@@ -64,7 +63,7 @@ function FilesService($http, fileUtilsService, alfrescoNodeUtils) {
         formData.append('nodeRef', nodeRef);
         return _uploadFiles('/api/openesdh/files', formData, files, comment);
     }
-    
+
     /**
      * Uploads file and assigns it to specified user or group
      * @param owner - nodeRefId of user or group
@@ -77,55 +76,57 @@ function FilesService($http, fileUtilsService, alfrescoNodeUtils) {
         formData.append('owner', owner);
         return _uploadFiles('/api/openesdh/files/owner', formData, files, comment);
     }
-    
+
     /**
      * Returns nodeRef of the user files folder
      */
-    function getUserFilesFolderRef(user){
-        return $http.get("/api/openesdh/files/user/" + user + "/folder").then(function(response){
+    function getUserFilesFolderRef(user) {
+        return $http.get("/api/openesdh/files/user/" + user + "/folder").then(function (response) {
             return response.data;
         })
     }
-    
-    function _uploadFiles(url, formData, files, comment){
+
+    function _uploadFiles(url, formData, files, comment) {
         if (comment) {
             formData.append('comment', comment);
         }
-        angular.forEach(files, function(file) {
+        angular.forEach(files, function (file) {
             formData.append('file', file);
         });
         return $http.post(url, formData, {
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
-        }).then(function(response) {
+        }).then(function (response) {
             return response.data;
         });
     }
 
     function deleteFile(nodeRef) {
         return $http.delete('/api/openesdh/file/' + alfrescoNodeUtils.processNodeRef(nodeRef).uri)
-                .then(function(response) {
-                    return response;
-                });
+            .then(function (response) {
+                return response;
+            });
     }
 
     function moveFile(nodeRef, newOwner, comment) {
         return $http.put('/api/openesdh/file/assign',
-                null, {params: {
-                        nodeRef: nodeRef,
-                        owner: newOwner,
-                        comment: comment || ''
-                    }})
-                .then(function(response) {
-                    return response;
-                });
+            null, {
+                params: {
+                    nodeRef: nodeRef,
+                    owner: newOwner,
+                    comment: comment || ''
+                }
+            })
+            .then(function (response) {
+                return response;
+            });
     }
 
     function addFileToCase(caseId, nodeRef, documentProperties) {
         return $http.put('/api/openesdh/case/' + caseId + '/addFile', null,
-                {params: angular.extend(documentProperties, {nodeRef: nodeRef})})
-                .then(function(response) {
-                    return response;
-                });
+            {params: angular.extend(documentProperties, {nodeRef: nodeRef})})
+            .then(function (response) {
+                return response;
+            });
     }
 }

@@ -45,11 +45,6 @@ var openeModules = [{
         moduleId: 'openeApp.doctemplates'
     },
     {
-        //must be introduced after 'doctemplates'
-        moduleName: 'addo',
-        moduleId: 'openeApp.addo'
-    },
-    {
         moduleName: 'projectRooms',
         moduleId: 'openeApp.projectRooms'
     },
@@ -77,6 +72,7 @@ function createWebserver(config) {
     return gulp.src('./')
             .pipe($.webserver({
                 open: false, // Open up a browser automatically
+                port: 7000,
                 host: '0.0.0.0', // hostname needed if you want to access the server from anywhere on your local network
                 middleware: [
                    proxy('/alfresco/**/documentLibrary/**', {target: config.spp, changeOrigin: true})
@@ -215,7 +211,7 @@ gulp.task('all-modules-install', function(){
         });
 
     }
-})
+});
 
 for (var i = 0; i < openeModules.length; i++) {
     var module = openeModules[i];

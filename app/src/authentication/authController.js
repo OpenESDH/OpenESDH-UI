@@ -103,8 +103,7 @@ function AuthController($state, $stateParams, authService, userService, $mdDialo
                     }
             );
         };
-    }
-    ;
+    };
 
     function showForgotDialog(ev) {
         $mdDialog.show({

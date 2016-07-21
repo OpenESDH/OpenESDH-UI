@@ -1,8 +1,6 @@
-angular
-        .module('openeApp.translations.init', []);
+angular.module('openeApp.translations.init', []);
 
-angular
-        .module('openeApp.translations', ['pascalprecht.translate'])
+angular.module('openeApp.translations', ['pascalprecht.translate'])
         .factory('availableLanguages', AvailableLanguages)
         .config(config);
 
@@ -10,7 +8,7 @@ var availableLanguages = {
     keys: ['en', 'da'],
     localesKeys: {
         'en_US': 'en',
-        'en_UK': 'en',
+        'en_GB': 'en',
         'da_DK': 'da'
     }
 };
@@ -34,5 +32,3 @@ function config($translateProvider, languageFilesProvider) {
         $translateProvider.preferredLanguage(availableLanguages.keys[0]);
     }
 }
-
-
