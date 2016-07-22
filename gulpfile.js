@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
-        $ = require('gulp-load-plugins')(),
-        fs = require('fs'),
-        proxy = require('http-proxy-middleware');
+    $ = require('gulp-load-plugins')(),
+    fs = require('fs'),
+    proxy = require('http-proxy-middleware');
 
 // Config vars
 // If, after a while, there are a lot of config vars, we can move these to a separate file
@@ -12,7 +12,7 @@ var environment = {
     },
     demo: {
         proxy: 'http://demo.openesdh.dk',
-        spp: 'http://demo.openesdh.dk:7070'    
+        spp: 'http://demo.openesdh.dk:7070'
     },
     local: {
         proxy: 'http://localhost:8080',
@@ -37,9 +37,9 @@ var dist = {
 };
 
 var openeModules = [{
-        moduleName: 'staff',
-        moduleId: 'openeApp.cases.staff'
-    },
+    moduleName: 'staff',
+    moduleId: 'openeApp.cases.staff'
+},
     {
         moduleName: 'doctemplates',
         moduleId: 'openeApp.doctemplates'
@@ -70,22 +70,22 @@ var runOpeneModules = [];
 // Setting up a local webserver
 function createWebserver(config) {
     return gulp.src('./')
-            .pipe($.webserver({
-                open: false, // Open up a browser automatically
-                port: 7000,
-                host: '0.0.0.0', // hostname needed if you want to access the server from anywhere on your local network
-                middleware: [
-                   proxy('/alfresco/**/documentLibrary/**', {target: config.spp, changeOrigin: true})
-                ],
-                proxies: [{
-                    source: '/alfresco/opene/cases',
-                    target: config.spp + '/alfresco/opene/cases'
-                },
+        .pipe($.webserver({
+            open: false, // Open up a browser automatically
+            port: 8000,
+            host: '0.0.0.0', // hostname needed if you want to access the server from anywhere on your local network
+            middleware: [
+                proxy('/alfresco/**/documentLibrary/**', {target: config.spp, changeOrigin: true})
+            ],
+            proxies: [{
+                source: '/alfresco/opene/cases',
+                target: config.spp + '/alfresco/opene/cases'
+            },
                 {
-                        source: '/alfresco',
-                        target: config.proxy + '/alfresco'
-                    }]
-            }));
+                    source: '/alfresco',
+                    target: config.proxy + '/alfresco'
+                }]
+        }));
 }
 
 function includeOpeneModules(content) {
@@ -97,45 +97,45 @@ function includeOpeneModules(content) {
 }
 
 // Script tasks
-gulp.task('scripts', function() {
+gulp.task('scripts', function () {
     return gulp.src(paths.scripts)
-            .pipe($.wrap('(function(){\n"use strict";\n<%= contents %>\n})();'))
-            //.pipe($.jshint('.jshintrc'))
-            //.pipe($.jshint.reporter('jshint-stylish'))
-            .pipe($.concat(dist.name + '.js'))
-            .pipe($.change(includeOpeneModules))
-            .pipe($.change(includeAppConfigParams))
-            .pipe(gulp.dest(dist.folder))
-            .pipe($.rename({suffix: '.min'}))
-            .pipe($.stripDebug())
-            .pipe($.ngAnnotate())
-            .pipe($.uglify())
-            .pipe(gulp.dest(dist.folder))
-            .on('error', $.util.log);
+        .pipe($.wrap('(function(){\n"use strict";\n<%= contents %>\n})();'))
+        //.pipe($.jshint('.jshintrc'))
+        //.pipe($.jshint.reporter('jshint-stylish'))
+        .pipe($.concat(dist.name + '.js'))
+        .pipe($.change(includeOpeneModules))
+        .pipe($.change(includeAppConfigParams))
+        .pipe(gulp.dest(dist.folder))
+        .pipe($.rename({suffix: '.min'}))
+        .pipe($.stripDebug())
+        .pipe($.ngAnnotate())
+        .pipe($.uglify())
+        .pipe(gulp.dest(dist.folder))
+        .on('error', $.util.log);
 });
 
 // Css
-gulp.task('css', function() {
+gulp.task('css', function () {
     return gulp.src(paths.scss)
-            .pipe($.wrap('/** ---------------- \n * Filepath: <%= file.relative %>\n */\n<%= contents %>'))
-            .pipe($.concat(dist.name + '.scss'))
-            .pipe($.sass())
-            .pipe(gulp.dest(dist.folder))
-            .pipe($.rename({suffix: '.min'}))
-            .pipe($.minifyCss())
-            .pipe(gulp.dest(dist.folder))
-            .on('error', $.util.log);
+        .pipe($.wrap('/** ---------------- \n * Filepath: <%= file.relative %>\n */\n<%= contents %>'))
+        .pipe($.concat(dist.name + '.scss'))
+        .pipe($.sass())
+        .pipe(gulp.dest(dist.folder))
+        .pipe($.rename({suffix: '.min'}))
+        .pipe($.minifyCss())
+        .pipe(gulp.dest(dist.folder))
+        .on('error', $.util.log);
 });
 
 // UI-test
-gulp.task('e2e-tests', function() {
+gulp.task('e2e-tests', function () {
     gulp.src(paths.e2e_tests)
-            .pipe($.protractor.protractor({
-                configFile: paths.protractorConfigFile
-            }))
-            .on('error', function(e) {
-                throw e;
-            });
+        .pipe($.protractor.protractor({
+            configFile: paths.protractorConfigFile
+        }))
+        .on('error', function (e) {
+            throw e;
+        });
 });
 
 function includeAppConfigParams(content) {
@@ -150,7 +150,7 @@ function includeAppConfigParams(content) {
 }
 
 // Set up watchers
-gulp.task('watch', function() {
+gulp.task('watch', function () {
     gulp.watch(paths.scripts, ['scripts']);
     gulp.watch(paths.scss, ['css']);
 });
@@ -166,19 +166,19 @@ gulp.task('watch', function() {
  */
 gulp.task('build', ['scripts', 'css']);
 
-gulp.task('dev', ['build', 'watch'], function() {
+gulp.task('dev', ['build', 'watch'], function () {
     createWebserver(environment.test);
 });
 
-gulp.task('testv', ['build', 'watch'], function() {
+gulp.task('testv', ['build', 'watch'], function () {
     createWebserver(environment.testv);
 });
 
-gulp.task('demo', ['build', 'watch'], function() {
+gulp.task('demo', ['build', 'watch'], function () {
     createWebserver(environment.demo);
 });
 
-gulp.task('local', ['build', 'watch'], function() {
+gulp.task('local', ['build', 'watch'], function () {
     createWebserver(environment.local);
 });
 
@@ -192,19 +192,19 @@ gulp.task('ui-test', ['e2e-tests']);
  */
 gulp.task('default', ['dev']);
 
-gulp.task('all-modules', openeModules.map(function(module) {
+gulp.task('all-modules', openeModules.map(function (module) {
     return module.moduleName;
 }));
 
-gulp.task('all-modules-install', function(){
+gulp.task('all-modules-install', function () {
     if (fs.existsSync('./app/src/modules/test')) {
-        $.git.pull('origin', 'develop', {cwd: './app/src/modules'}, function(err) {
+        $.git.pull('origin', 'develop', {cwd: './app/src/modules'}, function (err) {
             if (err)
                 throw err;
             console.log("Modules updated.");
         });
     } else {
-        $.git.clone("https://github.com/OpenESDH/openesdh-modules-ui.git", {args: './app/src/modules'}, function(err) {
+        $.git.clone("https://github.com/OpenESDH/openesdh-modules-ui.git", {args: './app/src/modules'}, function (err) {
             if (err)
                 throw err;
             console.log("Modules installed.");
@@ -219,7 +219,7 @@ for (var i = 0; i < openeModules.length; i++) {
 }
 
 function useModuleTask(module) {
-    gulp.task(module.moduleName, function() {
+    gulp.task(module.moduleName, function () {
         useOpeneModule({
             moduleName: module.moduleName,
             moduleId: module.moduleId
