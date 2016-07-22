@@ -6,6 +6,7 @@
             <i class="material-icons" style="position:absolute;top:0.5rem;left:0.5rem;color:rgba(0, 0, 0, 0.25)">search</i>
             <input type="text" ng-model="fileFilter" placeholder="{{ 'SEARCH.SEARCH' | translate }}" style="padding:0.5rem 0.5rem 0.5rem 2rem" />
         </md-input-container>
+
         <div layout="column">
             <div class="tlist">
                 <file-drop-upload folder-node-ref="filesVm.filesFolderNodeRef" on-complete="filesVm.loadList()">

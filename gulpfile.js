@@ -45,11 +45,6 @@ var openeModules = [{
         moduleId: 'openeApp.doctemplates'
     },
     {
-        //must be introduced after 'doctemplates'
-        moduleName: 'addo',
-        moduleId: 'openeApp.addo'
-    },
-    {
         moduleName: 'projectRooms',
         moduleId: 'openeApp.projectRooms'
     },
