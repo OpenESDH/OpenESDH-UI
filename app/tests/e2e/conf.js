@@ -25,7 +25,7 @@ exports.config = {
 
     onPrepare: function () {
         browser.driver.manage().window().setSize(1440, 800);
-        browser.get('http://localhost:8000/#');
+        browser.get('http://localhost:7000/#');
         browser.getCapabilities().then(function (capabilities) {
             browser.capabilities = capabilities;
         });
