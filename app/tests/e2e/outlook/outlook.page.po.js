@@ -6,7 +6,7 @@ var OutlookIntegration = function () {
     // This method gets a web session id. Just like the outlook plugin authenticates.
     // No user info is stored in the sessionService.
     ret.plainLogin = function(){
-        browser.get('http://localhost:7000');
+        browser.get('http://localhost:8000');
         
         return browser.executeAsyncScript(function(username, password, callback) {
                 var http = angular.element(document.body).injector().get('$http');
@@ -26,7 +26,7 @@ var OutlookIntegration = function () {
     };
     
     ret.goToSaveMailInCasePage = function(){
-        browser.get('http://localhost:7000/#/outlook');
+        browser.get('http://localhost:8000/#/outlook');
     }
     
     return ret;
