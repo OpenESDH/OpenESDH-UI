@@ -40,10 +40,10 @@ var openeModules = [{
     moduleName: 'staff',
     moduleId: 'openeApp.cases.staff'
 },
-    {
+    /*{
         moduleName: 'doctemplates',
         moduleId: 'openeApp.doctemplates'
-    },
+    },*/
     {
         moduleName: 'projectRooms',
         moduleId: 'openeApp.projectRooms'

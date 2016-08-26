@@ -810,8 +810,8 @@
         "LOGOUT": "Logout"
     },
     "OFFICE": {
-        "SAVE_EMAIL_IN_OPENESDH": "Save email in Visma Case",
-        "SAVE_DOCUMENT_IN_OPENESDH": "Save document in Visma Case"
+        "SAVE_EMAIL_IN_OPENESDH": "Save email in OpenESDH Case",
+        "SAVE_DOCUMENT_IN_OPENESDH": "Save document in OpenESDH Case"
     },
     "DOCUMENT_TYPES": {
         "DOCUMENT_TYPES": "Document types",
