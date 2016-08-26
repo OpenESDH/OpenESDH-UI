@@ -777,8 +777,8 @@
         "LOGOUT": "Log ud"
     },
     "OFFICE": {
-        "SAVE_EMAIL_IN_OPENESDH": "Gem e-mail i Visma Case",
-        "SAVE_DOCUMENT_IN_OPENESDH": "Gem dokument i Visma Case"
+        "SAVE_EMAIL_IN_OPENESDH": "Gem e-mail i OpenESDH Case",
+        "SAVE_DOCUMENT_IN_OPENESDH": "Gem dokument i OpenESDH Case"
     },
     "DOCUMENT_TYPES": {
         "DOCUMENT_TYPES": "Dokumenttyper",
